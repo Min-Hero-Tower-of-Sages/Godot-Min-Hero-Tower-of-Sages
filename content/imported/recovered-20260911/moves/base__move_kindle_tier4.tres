@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dqdksp5bv7hta"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_k34io"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_qk7a8"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_ago8s"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_qjwpu"]
+
+[sub_resource type="Resource" id="Resource_wflfr"]
+script = ExtResource("1_k34io")
+kind = 12
+amount = -45
+duration = 10
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_qk7a8")
+id = &"base:move/kindle/tier4/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:444"
+
+[sub_resource type="Resource" id="Resource_w8wb8"]
+script = ExtResource("1_k34io")
+kind = 12
+target_scope = 2
+phase = 2
+amount = -45
+duration = 10
+legacy_order = 1
+executor = ExtResource("2_qk7a8")
+id = &"base:move/kindle/tier4/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:444"
+
+[sub_resource type="Resource" id="Resource_dfrki"]
+script = ExtResource("1_k34io")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = 4
+stat_type_id = &"base:stat/attack"
+legacy_order = 2
+executor = ExtResource("3_ago8s")
+id = &"base:move/kindle/tier4/effect/02_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:444"
+
+[resource]
+script = ExtResource("4_qjwpu")
+family_id = &"base:move_family/kindle"
+tier = 4
+type_id = &"base:type/fire"
+legacy_class_id = 9
+legacy_visual_id = 9
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_inflame"
+energy_cost = 15
+effects = Array[ExtResource("1_k34io")]([SubResource("Resource_wflfr"), SubResource("Resource_w8wb8"), SubResource("Resource_dfrki")])
+presentation_id = &"base:presentation/move/move_icon_inflame"
+id = &"base:move/kindle/tier4"
+display_name = "Kindle  lv.4"
+legacy_numeric_id = 48
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

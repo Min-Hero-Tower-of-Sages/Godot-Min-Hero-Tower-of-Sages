@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://v1m8qk87f58u"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_84n3f"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_brxbw"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_6bklt"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_2icrd"]
+
+[sub_resource type="Resource" id="Resource_6f1tg"]
+script = ExtResource("1_84n3f")
+scaling = 1
+roll_scope = 1
+amount = 30
+random_bonus = 375
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_brxbw")
+id = &"base:move/crazed_blast/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2282"
+
+[sub_resource type="Resource" id="Resource_bep20"]
+script = ExtResource("1_84n3f")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 2
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("3_6bklt")
+id = &"base:move/crazed_blast/tier5/effect/01_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2282"
+
+[resource]
+script = ExtResource("4_2icrd")
+family_id = &"base:move_family/crazed_blast"
+tier = 5
+type_id = &"base:type/demonic"
+legacy_class_id = 127
+legacy_visual_id = 127
+legacy_dot_visual_id = 127
+buff_icon_name = &"moveIcon_crazedBlast"
+energy_cost = 20
+exhaust_turns = 2
+effects = Array[ExtResource("1_84n3f")]([SubResource("Resource_6f1tg"), SubResource("Resource_bep20")])
+presentation_id = &"base:presentation/move/move_icon_crazed_blast"
+id = &"base:move/crazed_blast/tier5"
+display_name = "Forced Insanity"
+legacy_numeric_id = 574
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

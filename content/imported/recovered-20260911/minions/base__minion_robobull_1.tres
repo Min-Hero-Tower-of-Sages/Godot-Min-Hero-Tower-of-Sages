@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_4u61x"]
+
+[resource]
+script = ExtResource("1_4u61x")
+type_ids = Array[StringName]([&"base:type/robot", &"base:type/fire"])
+base_health = 50
+base_energy = 35
+base_attack = 80
+base_healing = 20
+base_speed = 65
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/reckless_dash/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/download/tier1", &"base:move/fire_shot/tier1", &"base:move/mirror_coating/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/robobull_robot", &"base:talent_tree/robobull_fire", &"base:talent_tree/robobull_normal"])
+presentation_id = &"base:presentation/minion/robotbull"
+id = &"base:minion/robobull_1"
+display_name = "Titoro"
+legacy_numeric_id = 92
+legacy_class_name = "RoboBull_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1533"

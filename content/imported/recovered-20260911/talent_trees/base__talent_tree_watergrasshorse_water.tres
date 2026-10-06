@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_wn3n3"]
+
+[resource]
+script = ExtResource("1_wn3n3")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/watergrasshorse_water/node/0_0",
+"move_ids": ["base:move/cleric/tier1", "base:move/cleric/tier2", "base:move/cleric/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1799.0, 1800.0, 1801.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/watergrasshorse_water/node/1_0",
+"move_ids": ["base:move/rainfall/tier1", "base:move/rainfall/tier2", "base:move/rainfall/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1802.0, 1803.0, 1804.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/watergrasshorse_water/node/2_0",
+"move_ids": ["base:move/ice_shield/tier1", "base:move/ice_shield/tier2", "base:move/ice_shield/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1805.0, 1806.0, 1807.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/watergrasshorse_water/node/0_1",
+"move_ids": ["base:move/brilliance/tier1", "base:move/brilliance/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1808.0, 1809.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/watergrasshorse_water/node/1_1",
+"move_ids": ["base:move/rainfall/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/watergrasshorse_water/node/1_0"],
+"row": 1.0,
+"source_lines": [1810.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/watergrasshorse_water/node/2_1",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1811.0, 1812.0, 1813.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/watergrasshorse_water/node/0_2",
+"move_ids": ["base:move/brilliance/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/watergrasshorse_water/node/0_1"],
+"row": 2.0,
+"source_lines": [1814.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/watergrasshorse_water/node/1_2",
+"move_ids": ["base:move/overflow/tier3", "base:move/overflow/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1815.0, 1816.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/watergrasshorse_water/node/2_2",
+"move_ids": ["base:move/water_infusion/tier1", "base:move/water_infusion/tier2", "base:move/water_infusion/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1817.0, 1818.0, 1819.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/watergrasshorse_water/node/1_3",
+"move_ids": ["base:move/overflow/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/watergrasshorse_water/node/1_2"],
+"row": 3.0,
+"source_lines": [1820.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/watergrasshorse_water/node/2_3",
+"move_ids": ["base:move/water_infusion/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/watergrasshorse_water/node/2_2"],
+"row": 3.0,
+"source_lines": [1821.0]
+}])
+id = &"base:talent_tree/watergrasshorse_water"
+display_name = "Water"
+legacy_class_name = "WaterGrassHorse_Water"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1796"

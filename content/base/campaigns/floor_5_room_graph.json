@@ -1,0 +1,58 @@
+{
+  "floor_index": 4,
+  "source_floor_index": 4,
+  "source_room_order": [
+    "base:room/level_1_gym"
+  ],
+  "entry_room_id": "base:room/level_1_gym",
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_1_gym",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    }
+  ],
+  "eggery_source": {
+    "source_location": "development/extracted/full-20260908/script/scripts/PresistentData/StaticData.as",
+    "source_method": "SetupTheEggeryInfo",
+    "source_floor_index": 4,
+    "room_order_note": "StaticData room index 4 is the gym; it contains no Eggery room. The Eggery pool is indexed independently by source floor index.",
+    "conditional_mod_variant": "The source adds BMod 1 only when that mod is enabled; its pool is not a base-game minion candidate.",
+    "mod_candidate": "BMod 1",
+    "mod_weight": 60,
+    "source_minion_level_base": 15,
+    "source_minion_level_random_offset": [0, 2]
+  },
+  "rooms": [
+    {
+      "id": "base:room/level_1_gym",
+      "display_name": "Floor 5 — Grass Sage gym",
+      "legacy_class_name": "LevelContainer_Level_1_gym",
+      "source_symbol": "Utilities.LevelContainer_Level_1_gym",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_gym.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_gym.json",
+      "room_index": 0,
+      "spawn_ids": ["entry-0"],
+      "encounter_ids": ["base:encounter/grass_floor5_sage"],
+      "trainer_binding": {
+        "trainer_room_id": 0,
+        "trainer_type": "TRAINER_GYM_1",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as",
+        "source_method": "CreateFloor_Boss1"
+      },
+      "interactions": [
+        {
+          "id": "floor-5-grass-sage",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 0,
+          "trainer_type": "TRAINER_GYM_1",
+          "source_trigger": "buttonZoneObject",
+          "first_visit_text": "You have done very well so far, but I will push you to your limits. For I am Tafel the Grass Sage.",
+          "encounter_id": "base:encounter/grass_floor5_sage"
+        }
+      ]
+    }
+  ]
+}

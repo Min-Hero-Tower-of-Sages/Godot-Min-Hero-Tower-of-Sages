@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_35noh"]
+
+[resource]
+script = ExtResource("1_35noh")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/firefrog_group/node/0_0",
+"move_ids": ["base:move/wildfire/tier1", "base:move/wildfire/tier2", "base:move/wildfire/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [435.0, 436.0, 437.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firefrog_group/node/1_0",
+"move_ids": ["base:move/inflame/tier1", "base:move/inflame/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [438.0, 439.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firefrog_group/node/2_0",
+"move_ids": ["base:move/rock_blast/tier1", "base:move/rock_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [440.0, 441.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firefrog_group/node/0_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [442.0, 443.0, 444.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firefrog_group/node/1_1",
+"move_ids": ["base:move/inflame/tier3", "base:move/inflame/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firefrog_group/node/1_0"],
+"row": 1.0,
+"source_lines": [445.0, 446.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firefrog_group/node/2_1",
+"move_ids": ["base:move/rock_blast/tier3", "base:move/rock_blast/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firefrog_group/node/2_0"],
+"row": 1.0,
+"source_lines": [447.0, 448.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firefrog_group/node/0_2",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firefrog_group/node/0_1"],
+"row": 2.0,
+"source_lines": [449.0, 450.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firefrog_group/node/1_2",
+"move_ids": ["base:move/fire_shot/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [451.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firefrog_group/node/2_2",
+"move_ids": ["base:move/intense_flame/tier1", "base:move/intense_flame/tier2", "base:move/intense_flame/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [452.0, 453.0, 454.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firefrog_group/node/1_3",
+"move_ids": ["base:move/fire_shot/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firefrog_group/node/1_2"],
+"row": 3.0,
+"source_lines": [455.0]
+}])
+id = &"base:talent_tree/firefrog_group"
+display_name = "Group"
+legacy_class_name = "FireFrog_Group"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:432"

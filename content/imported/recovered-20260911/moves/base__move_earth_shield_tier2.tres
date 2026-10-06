@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bspkild4vu50g"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_55n85"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_62dqo"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_ur5m4"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_uxb6x"]
+
+[sub_resource type="Resource" id="Resource_knx2p"]
+script = ExtResource("1_55n85")
+kind = 12
+amount = 13
+duration = 3
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_62dqo")
+id = &"base:move/earth_shield/tier2/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:957"
+
+[sub_resource type="Resource" id="Resource_mrgp8"]
+script = ExtResource("1_55n85")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 13
+duration = 3
+legacy_order = 1
+executor = ExtResource("2_62dqo")
+id = &"base:move/earth_shield/tier2/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:957"
+
+[sub_resource type="Resource" id="Resource_qg5mq"]
+script = ExtResource("1_55n85")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 1
+chance_percent = 5
+stat_type_id = &"base:stat/health"
+legacy_order = 2
+executor = ExtResource("3_ur5m4")
+id = &"base:move/earth_shield/tier2/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:957"
+
+[resource]
+script = ExtResource("4_uxb6x")
+family_id = &"base:move_family/earth_shield"
+tier = 2
+type_id = &"base:type/earth"
+legacy_class_id = 63
+legacy_visual_id = 63
+legacy_dot_visual_id = 63
+buff_icon_name = &"moveIcon_earthShield"
+energy_cost = 4
+target_side = 2
+enemy_target_count = 0
+ally_target_count = 1
+only_self = true
+effects = Array[ExtResource("1_55n85")]([SubResource("Resource_knx2p"), SubResource("Resource_mrgp8"), SubResource("Resource_qg5mq")])
+presentation_id = &"base:presentation/move/move_icon_earth_shield"
+id = &"base:move/earth_shield/tier2"
+display_name = "Earth Shield  lv.2"
+legacy_numeric_id = 196
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

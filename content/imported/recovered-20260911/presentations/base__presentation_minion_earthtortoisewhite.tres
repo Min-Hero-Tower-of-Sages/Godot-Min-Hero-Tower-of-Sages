@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_t61lc"]
+
+[resource]
+script = ExtResource("1_t61lc")
+legacy_sprite_name = &"earthTortoiseWhite"
+icon_offset = Vector2i(3, 9)
+id = &"base:presentation/minion/earthtortoisewhite"
+display_name = "Tortastone presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1593"

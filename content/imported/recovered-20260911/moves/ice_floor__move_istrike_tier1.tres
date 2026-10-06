@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://djxuoiikb1x58"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_yviqn"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_ua3h1"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_88m5i"]
+
+[sub_resource type="Resource" id="Resource_n7ku1"]
+script = ExtResource("1_yviqn")
+scaling = 1
+roll_scope = 1
+amount = 10
+random_bonus = 30
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_ua3h1")
+id = &"ice_floor:move/istrike/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:65"
+
+[resource]
+script = ExtResource("3_88m5i")
+family_id = &"ice_floor:move_family/istrike"
+type_id = &"ice_floor:type/thaw"
+legacy_class_id = 181
+legacy_visual_id = 144
+legacy_dot_visual_id = 144
+buff_icon_name = &"moveIcon_iStrike"
+energy_cost = 5
+exhaust_turns = 1
+target_mode = 2
+random_targets = true
+effects = Array[ExtResource("1_yviqn")]([SubResource("Resource_n7ku1")])
+presentation_id = &"ice_floor:presentation/move/move_icon_i_strike"
+id = &"ice_floor:move/istrike/tier1"
+display_name = "Ancient Strike"
+legacy_numeric_id = 893
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"
+source_mod = &"ice_floor"

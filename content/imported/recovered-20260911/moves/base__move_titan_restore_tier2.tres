@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bxxkmbr5rixh"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_erae8"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_xeleo"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_4nwdr"]
+
+[sub_resource type="Resource" id="Resource_miw68"]
+script = ExtResource("1_erae8")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 55
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_xeleo")
+id = &"base:move/titan_restore/tier2/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2938"
+
+[resource]
+script = ExtResource("3_4nwdr")
+family_id = &"base:move_family/titan_restore"
+tier = 2
+type_id = &"base:type/titan"
+legacy_class_id = 173
+legacy_visual_id = 173
+legacy_dot_visual_id = 173
+buff_icon_name = &"moveIcon_grassBlade"
+energy_cost = 18
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_erae8")]([SubResource("Resource_miw68")])
+presentation_id = &"base:presentation/move/move_icon_grass_blade"
+id = &"base:move/titan_restore/tier2"
+display_name = "Titan Restore  lv.2"
+legacy_numeric_id = 801
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

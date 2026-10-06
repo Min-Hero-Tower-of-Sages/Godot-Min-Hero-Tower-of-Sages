@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_sdxdb"]
+
+[resource]
+script = ExtResource("1_sdxdb")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/goo_normal/node/0_0",
+"move_ids": ["base:move/spark/tier1", "base:move/spark/tier2", "base:move/spark/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2770.0, 2771.0, 2772.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/goo_normal/node/1_0",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier2", "base:move/tackle/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2773.0, 2774.0, 2775.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/goo_normal/node/2_0",
+"move_ids": ["base:move/wild_lance/tier1", "base:move/wild_lance/tier2", "base:move/wild_lance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2776.0, 2777.0, 2778.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/goo_normal/node/0_1",
+"move_ids": ["base:move/charge_pass/tier1", "base:move/charge_pass/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2779.0, 2780.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/goo_normal/node/1_1",
+"move_ids": ["base:move/tackle/tier4", "base:move/tackle/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/goo_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [2781.0, 2782.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/goo_normal/node/2_1",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier2", "base:move/ferocity/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2783.0, 2784.0, 2785.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/goo_normal/node/0_2",
+"move_ids": ["base:move/charge_pass/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/goo_normal/node/0_1"],
+"row": 2.0,
+"source_lines": [2786.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/goo_normal/node/1_2",
+"move_ids": ["base:move/poison_tooth/tier2", "base:move/poison_tooth/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2787.0, 2788.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/goo_normal/node/2_2",
+"move_ids": ["base:move/ferocity/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/goo_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [2789.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/goo_normal/node/1_3",
+"move_ids": ["base:move/poison_tooth/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/goo_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [2790.0]
+}])
+id = &"base:talent_tree/goo_normal"
+display_name = "Normal"
+legacy_class_name = "Goo_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2767"

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://vp5pk8mi157p"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_rvmim"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_1dgf2"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_sr7yy"]
+
+[sub_resource type="Resource" id="Resource_fwode"]
+script = ExtResource("1_rvmim")
+scaling = 1
+roll_scope = 1
+amount = 100
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_1dgf2")
+id = &"base:move/titan_slash/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2845"
+
+[resource]
+script = ExtResource("3_sr7yy")
+family_id = &"base:move_family/titan_slash"
+tier = 5
+type_id = &"base:type/titan"
+legacy_class_id = 168
+legacy_visual_id = 168
+legacy_dot_visual_id = 168
+buff_icon_name = &"moveIcon_titanSlash"
+energy_cost = 35
+effects = Array[ExtResource("1_rvmim")]([SubResource("Resource_fwode")])
+presentation_id = &"base:presentation/move/move_icon_titan_slash"
+id = &"base:move/titan_slash/tier5"
+display_name = "Titan Death Claw"
+legacy_numeric_id = 779
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

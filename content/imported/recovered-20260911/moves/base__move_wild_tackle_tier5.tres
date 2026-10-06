@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://ddnfbbnr6t120"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_1xx1i"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_gp0gl"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_qoojx"]
+
+[sub_resource type="Resource" id="Resource_43oxj"]
+script = ExtResource("1_1xx1i")
+scaling = 1
+roll_scope = 1
+amount = 85
+random_bonus = 45
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_gp0gl")
+id = &"base:move/wild_tackle/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1414"
+
+[resource]
+script = ExtResource("3_qoojx")
+family_id = &"base:move_family/wild_tackle"
+tier = 5
+type_id = &"base:type/dino"
+legacy_class_id = 95
+legacy_visual_id = 95
+legacy_dot_visual_id = 95
+buff_icon_name = &"moveIcon_wildTackle"
+energy_cost = 35
+exhaust_turns = 1
+effects = Array[ExtResource("1_1xx1i")]([SubResource("Resource_43oxj")])
+presentation_id = &"base:presentation/move/move_icon_wild_tackle"
+id = &"base:move/wild_tackle/tier5"
+display_name = "Wild Slam"
+legacy_numeric_id = 414
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

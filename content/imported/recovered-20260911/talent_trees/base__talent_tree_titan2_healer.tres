@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_khkpk"]
+
+[resource]
+script = ExtResource("1_khkpk")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/titan2_healer/node/0_0",
+"move_ids": ["base:move/ice_enclosure/tier3", "base:move/ice_enclosure/tier4", "base:move/ice_enclosure/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4358.0, 4359.0, 4360.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_healer/node/1_0",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4361.0, 4362.0, 4363.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_healer/node/2_0",
+"move_ids": ["base:move/titan_heal/tier2", "base:move/titan_heal/tier3", "base:move/titan_heal/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4364.0, 4365.0, 4366.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/titan2_healer/node/0_1",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4367.0, 4368.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_healer/node/1_1",
+"move_ids": ["base:move/priest/tier3", "base:move/priest/tier4", "base:move/priest/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4369.0, 4370.0, 4371.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_healer/node/2_1",
+"move_ids": ["base:move/titan_recovery/tier1", "base:move/titan_recovery/tier2", "base:move/titan_recovery/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4372.0, 4373.0, 4374.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/titan2_healer/node/0_2",
+"move_ids": ["base:move/mirror_skin/tier4", "base:move/mirror_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/titan2_healer/node/0_1"],
+"row": 2.0,
+"source_lines": [4375.0, 4376.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_healer/node/1_2",
+"move_ids": ["base:move/titan_light/tier3", "base:move/titan_light/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4377.0, 4378.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_healer/node/2_2",
+"move_ids": ["base:move/titan_recovery/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/titan2_healer/node/2_1"],
+"row": 2.0,
+"source_lines": [4379.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_healer/node/1_3",
+"move_ids": ["base:move/titan_light/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/titan2_healer/node/1_2"],
+"row": 3.0,
+"source_lines": [4380.0]
+}])
+id = &"base:talent_tree/titan2_healer"
+display_name = "Healer"
+legacy_class_name = "Titan2_Healer"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4355"

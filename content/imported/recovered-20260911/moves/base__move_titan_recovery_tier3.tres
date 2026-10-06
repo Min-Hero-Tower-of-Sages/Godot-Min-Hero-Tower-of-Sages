@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bloj0rx2yvtko"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_de3ti"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_bic6v"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_a57dp"]
+
+[sub_resource type="Resource" id="Resource_e1esd"]
+script = ExtResource("1_de3ti")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 65
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_bic6v")
+id = &"base:move/titan_recovery/tier3/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3010"
+
+[resource]
+script = ExtResource("3_a57dp")
+family_id = &"base:move_family/titan_recovery"
+tier = 3
+type_id = &"base:type/titan"
+legacy_class_id = 176
+legacy_visual_id = 176
+legacy_dot_visual_id = 176
+buff_icon_name = &"moveIcon_titanRecovery"
+energy_cost = 50
+cooldown_turns = 10
+target_side = 1
+target_mode = 1
+target_count = 5
+enemy_target_count = 0
+ally_target_count = 5
+effects = Array[ExtResource("1_de3ti")]([SubResource("Resource_e1esd")])
+presentation_id = &"base:presentation/move/move_icon_titan_recovery"
+visuals_have_buffer = false
+id = &"base:move/titan_recovery/tier3"
+display_name = "Titan Recovery  lv.3"
+legacy_numeric_id = 817
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

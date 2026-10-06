@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bcbyaml2nu545"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ncvci"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_8571m"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_klf4s"]
+
+[sub_resource type="Resource" id="Resource_syq3e"]
+script = ExtResource("1_ncvci")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 35
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_8571m")
+id = &"base:move/wildfire/tier5/effect/00_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:370"
+
+[resource]
+script = ExtResource("3_klf4s")
+family_id = &"base:move_family/wildfire"
+tier = 5
+type_id = &"base:type/fire"
+legacy_class_id = 7
+legacy_visual_id = 7
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_wildfire"
+energy_cost = 70
+target_mode = 1
+target_count = 5
+enemy_target_count = 5
+effects = Array[ExtResource("1_ncvci")]([SubResource("Resource_syq3e")])
+presentation_id = &"base:presentation/move/move_icon_wildfire"
+visuals_have_buffer = false
+id = &"base:move/wildfire/tier5"
+display_name = "Sea of Flames"
+legacy_numeric_id = 39
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

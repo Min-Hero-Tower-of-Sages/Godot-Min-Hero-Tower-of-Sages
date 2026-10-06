@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cblck2qp1gq8"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_i6hgt"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="2_co43r"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_ch83x"]
+
+[sub_resource type="Resource" id="Resource_rtwxx"]
+script = ExtResource("1_i6hgt")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -2
+stat_type_id = &"base:stat/speed"
+executor = ExtResource("2_co43r")
+id = &"base:move/skin_trap/tier5/effect/00_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1182"
+
+[resource]
+script = ExtResource("3_ch83x")
+family_id = &"base:move_family/skin_trap"
+tier = 5
+type_id = &"base:type/undead"
+legacy_class_id = 82
+legacy_visual_id = 82
+legacy_dot_visual_id = 82
+buff_icon_name = &"moveIcon_skinTrap"
+energy_cost = 55
+target_mode = 1
+target_count = 5
+enemy_target_count = 5
+effects = Array[ExtResource("1_i6hgt")]([SubResource("Resource_rtwxx")])
+presentation_id = &"base:presentation/move/move_icon_skin_trap"
+visuals_have_buffer = false
+id = &"base:move/skin_trap/tier5"
+display_name = "Flesh Trap"
+legacy_numeric_id = 869
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

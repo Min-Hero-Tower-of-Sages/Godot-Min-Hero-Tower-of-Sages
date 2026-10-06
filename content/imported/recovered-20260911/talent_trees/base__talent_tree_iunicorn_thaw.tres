@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_7mtx0"]
+
+[resource]
+script = ExtResource("1_7mtx0")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/iunicorn_thaw/node/0_0",
+"move_ids": ["ice_floor:move/ihorn/tier2", "ice_floor:move/ihorn/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [62.0, 63.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/iunicorn_thaw/node/1_0",
+"move_ids": ["ice_floor:move/imicro/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [64.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/iunicorn_thaw/node/2_0",
+"move_ids": ["ice_floor:move/istrike/tier1", "ice_floor:move/istrike/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [65.0, 66.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/iunicorn_thaw/node/0_1",
+"move_ids": ["ice_floor:move/ifist/tier2", "ice_floor:move/ifist/tier3", "ice_floor:move/ifist/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [67.0, 68.0, 69.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/iunicorn_thaw/node/1_1",
+"move_ids": ["ice_floor:move/imicro/tier3", "ice_floor:move/imicro/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/iunicorn_thaw/node/1_0"],
+"row": 1.0,
+"source_lines": [70.0, 71.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/iunicorn_thaw/node/2_1",
+"move_ids": ["ice_floor:move/istrike/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [72.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/iunicorn_thaw/node/0_2",
+"move_ids": ["ice_floor:move/ifist/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/iunicorn_thaw/node/0_1"],
+"row": 2.0,
+"source_lines": [73.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/iunicorn_thaw/node/1_2",
+"move_ids": ["ice_floor:move/imicro/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/iunicorn_thaw/node/1_1"],
+"row": 2.0,
+"source_lines": [74.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/iunicorn_thaw/node/2_2",
+"move_ids": ["ice_floor:move/istrike/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/iunicorn_thaw/node/2_1"],
+"row": 2.0,
+"source_lines": [75.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/iunicorn_thaw/node/2_3",
+"move_ids": ["ice_floor:move/istrike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/iunicorn_thaw/node/2_2"],
+"row": 3.0,
+"source_lines": [76.0]
+}])
+id = &"base:talent_tree/iunicorn_thaw"
+display_name = "Thaw"
+legacy_class_name = "iUnicorn_Thaw"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:59"

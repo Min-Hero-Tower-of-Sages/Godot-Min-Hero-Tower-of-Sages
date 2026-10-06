@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_d4k3i"]
+
+[resource]
+script = ExtResource("1_d4k3i")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/anteater_robot/node/0_0",
+"move_ids": ["base:move/download/tier1", "base:move/download/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2359.0, 2360.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/anteater_robot/node/1_0",
+"move_ids": ["base:move/cog_fallout/tier1", "base:move/cog_fallout/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2361.0, 2362.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/anteater_robot/node/2_0",
+"move_ids": ["base:move/alloy_coat/tier1", "base:move/alloy_coat/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2363.0, 2364.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/anteater_robot/node/0_1",
+"move_ids": ["base:move/download/tier3", "base:move/download/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/anteater_robot/node/0_0"],
+"row": 1.0,
+"source_lines": [2365.0, 2366.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/anteater_robot/node/1_1",
+"move_ids": ["base:move/cog_fallout/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/anteater_robot/node/1_0"],
+"row": 1.0,
+"source_lines": [2367.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/anteater_robot/node/2_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2368.0, 2369.0, 2370.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/anteater_robot/node/0_2",
+"move_ids": ["base:move/download/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/anteater_robot/node/0_1"],
+"row": 2.0,
+"source_lines": [2371.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/anteater_robot/node/1_2",
+"move_ids": ["base:move/twin_missile/tier3", "base:move/twin_missile/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2372.0, 2373.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/anteater_robot/node/2_2",
+"move_ids": ["base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/anteater_robot/node/2_1"],
+"row": 2.0,
+"source_lines": [2374.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/anteater_robot/node/1_3",
+"move_ids": ["base:move/twin_missile/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/anteater_robot/node/1_2"],
+"row": 3.0,
+"source_lines": [2375.0]
+}])
+id = &"base:talent_tree/anteater_robot"
+display_name = "Robot"
+legacy_class_name = "AntEater_Robot"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2356"

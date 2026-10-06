@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://d10fimtvw8l3c"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_1lcpw"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_kqgpg"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_bn3ca"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_shic4"]
+
+[sub_resource type="Resource" id="Resource_uj4gw"]
+script = ExtResource("1_1lcpw")
+kind = 12
+amount = 16
+duration = 3
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_kqgpg")
+id = &"base:move/titan_heal/tier4/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2989"
+
+[sub_resource type="Resource" id="Resource_0e31f"]
+script = ExtResource("1_1lcpw")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 75
+uses_type_effectiveness = true
+can_critical = true
+legacy_order = 1
+executor = ExtResource("3_bn3ca")
+id = &"base:move/titan_heal/tier4/effect/01_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2989"
+
+[sub_resource type="Resource" id="Resource_orujs"]
+script = ExtResource("1_1lcpw")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 16
+duration = 3
+legacy_order = 2
+executor = ExtResource("2_kqgpg")
+id = &"base:move/titan_heal/tier4/effect/02_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2989"
+
+[resource]
+script = ExtResource("4_shic4")
+family_id = &"base:move_family/titan_heal"
+tier = 4
+type_id = &"base:type/titan"
+legacy_class_id = 175
+legacy_visual_id = 175
+legacy_dot_visual_id = 175
+buff_icon_name = &"moveIcon_titanHeal"
+energy_cost = 30
+cooldown_turns = 5
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_1lcpw")]([SubResource("Resource_uj4gw"), SubResource("Resource_0e31f"), SubResource("Resource_orujs")])
+presentation_id = &"base:presentation/move/move_icon_titan_heal"
+id = &"base:move/titan_heal/tier4"
+display_name = "Titan Heal  lv.4"
+legacy_numeric_id = 813
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

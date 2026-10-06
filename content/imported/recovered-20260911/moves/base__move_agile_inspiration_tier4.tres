@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cyswejyk2acxl"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_74kh8"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_dlw7k"]
+
+[sub_resource type="Resource" id="Resource_6igt3"]
+script = ExtResource("1_74kh8")
+kind = 18
+target_scope = 4
+phase = 4
+amount = 20
+stat_type_id = &"base:stat/speed"
+id = &"base:move/agile_inspiration/tier4/effect/00_stat_percent_allied_team"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3418"
+
+[resource]
+script = ExtResource("2_dlw7k")
+family_id = &"base:move_family/agile_inspiration"
+tier = 4
+legacy_class_id = 43
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_agileInspiration"
+is_global_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_74kh8")]([SubResource("Resource_6igt3")])
+presentation_id = &"base:presentation/move/move_icon_agile_inspiration"
+id = &"base:move/agile_inspiration/tier4"
+display_name = "Agile Inspiration  lv.4"
+legacy_numeric_id = 283
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

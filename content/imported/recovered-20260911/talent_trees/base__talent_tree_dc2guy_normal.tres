@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_ytohg"]
+
+[resource]
+script = ExtResource("1_ytohg")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/dc2guy_normal/node/0_0",
+"move_ids": ["base:move/grind/tier1", "base:move/grind/tier2", "base:move/grind/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2641.0, 2642.0, 2643.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dc2guy_normal/node/1_0",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2644.0, 2645.0, 2646.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dc2guy_normal/node/2_0",
+"move_ids": ["base:move/spike/tier1", "base:move/spike/tier3", "base:move/spike/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2647.0, 2648.0, 2649.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/dc2guy_normal/node/0_1",
+"move_ids": ["base:move/reflect_damage/tier1", "base:move/reflect_damage/tier2", "base:move/reflect_damage/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2650.0, 2651.0, 2652.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dc2guy_normal/node/1_1",
+"move_ids": ["base:move/agility/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/dc2guy_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [2653.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dc2guy_normal/node/2_1",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier3", "base:move/reckless_dash/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2654.0, 2655.0, 2656.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/dc2guy_normal/node/0_2",
+"move_ids": ["base:move/energizing_inspiration/tier1", "base:move/energizing_inspiration/tier2", "base:move/energizing_inspiration/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2657.0, 2658.0, 2659.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dc2guy_normal/node/1_2",
+"move_ids": ["base:move/crush/tier3", "base:move/crush/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2660.0, 2661.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dc2guy_normal/node/2_2",
+"move_ids": ["base:move/deadly_inspiration/tier1", "base:move/deadly_inspiration/tier2", "base:move/deadly_inspiration/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2662.0, 2663.0, 2664.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dc2guy_normal/node/1_3",
+"move_ids": ["base:move/crush/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/dc2guy_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [2665.0]
+}])
+id = &"base:talent_tree/dc2guy_normal"
+display_name = "Inspire"
+legacy_class_name = "DC2Guy_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2638"

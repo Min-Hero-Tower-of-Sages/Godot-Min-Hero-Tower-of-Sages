@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_f7nyb"]
+
+[resource]
+script = ExtResource("1_f7nyb")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/evileye_normal/node/0_0",
+"move_ids": ["base:move/flare_up/tier1", "base:move/flare_up/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3591.0, 3592.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/evileye_normal/node/1_0",
+"move_ids": ["base:move/concentration/tier1", "base:move/concentration/tier2", "base:move/concentration/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3593.0, 3594.0, 3595.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/evileye_normal/node/2_0",
+"move_ids": ["base:move/demonic_sacrifice/tier1", "base:move/demonic_sacrifice/tier2", "base:move/demonic_sacrifice/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3596.0, 3597.0, 3598.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/evileye_normal/node/0_1",
+"move_ids": ["base:move/ice_enclosure/tier1", "base:move/ice_enclosure/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3599.0, 3600.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/evileye_normal/node/1_1",
+"move_ids": ["base:move/concentration/tier4", "base:move/concentration/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/evileye_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [3601.0, 3602.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/evileye_normal/node/2_1",
+"move_ids": ["base:move/touch_fire/tier1", "base:move/touch_fire/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3603.0, 3604.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/evileye_normal/node/1_2",
+"move_ids": ["base:move/spike/tier3", "base:move/spike/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3605.0, 3606.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/evileye_normal/node/2_2",
+"move_ids": ["base:move/touch_fire/tier3", "base:move/touch_fire/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/evileye_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [3607.0, 3608.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/evileye_normal/node/1_3",
+"move_ids": ["base:move/spike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/evileye_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [3609.0]
+}])
+id = &"base:talent_tree/evileye_normal"
+display_name = "Mixed"
+legacy_class_name = "EvilEye_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3588"

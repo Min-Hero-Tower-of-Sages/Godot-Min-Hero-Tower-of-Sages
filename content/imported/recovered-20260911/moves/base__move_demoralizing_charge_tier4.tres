@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://djnfhr1kiuo85"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ecfux"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_wdhq5"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_bkrfh"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_20bxf"]
+
+[sub_resource type="Resource" id="Resource_qxvgo"]
+script = ExtResource("1_ecfux")
+scaling = 1
+roll_scope = 1
+amount = 100
+random_bonus = 50
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_wdhq5")
+id = &"base:move/demoralizing_charge/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1338"
+
+[sub_resource type="Resource" id="Resource_sa80y"]
+script = ExtResource("1_ecfux")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+chance_percent = 45
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("3_bkrfh")
+id = &"base:move/demoralizing_charge/tier4/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1338"
+
+[sub_resource type="Resource" id="Resource_jpqgd"]
+script = ExtResource("1_ecfux")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+chance_percent = 45
+stat_type_id = &"base:stat/speed"
+legacy_order = 2
+executor = ExtResource("3_bkrfh")
+id = &"base:move/demoralizing_charge/tier4/effect/02_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1338"
+
+[resource]
+script = ExtResource("4_20bxf")
+family_id = &"base:move_family/demoralizing_charge"
+tier = 4
+type_id = &"base:type/dino"
+legacy_class_id = 93
+legacy_visual_id = 93
+legacy_dot_visual_id = 93
+buff_icon_name = &"moveIcon_demoralizingCharge"
+energy_cost = 40
+charge_turns = 1
+effects = Array[ExtResource("1_ecfux")]([SubResource("Resource_qxvgo"), SubResource("Resource_sa80y"), SubResource("Resource_jpqgd")])
+presentation_id = &"base:presentation/move/move_icon_demoralizing_charge"
+id = &"base:move/demoralizing_charge/tier4"
+display_name = "Demoralizing Charge  lv.4"
+legacy_numeric_id = 403
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

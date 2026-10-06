@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cmqxllibnjm5s"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_lynfy"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_wk4f6"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_lnb5s"]
+
+[sub_resource type="Resource" id="Resource_5rjrn"]
+script = ExtResource("1_lynfy")
+scaling = 1
+roll_scope = 1
+amount = 100
+random_bonus = 20
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_wk4f6")
+id = &"base:move/demonic_force/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2257"
+
+[resource]
+script = ExtResource("3_lnb5s")
+family_id = &"base:move_family/demonic_force"
+tier = 3
+type_id = &"base:type/demonic"
+legacy_class_id = 126
+legacy_visual_id = 126
+legacy_dot_visual_id = 126
+buff_icon_name = &"moveIcon_demonicForce"
+energy_cost = 20
+exhaust_turns = 2
+effects = Array[ExtResource("1_lynfy")]([SubResource("Resource_5rjrn")])
+presentation_id = &"base:presentation/move/move_icon_demonic_force"
+id = &"base:move/demonic_force/tier3"
+display_name = "Demonic Force  lv.3"
+legacy_numeric_id = 567
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

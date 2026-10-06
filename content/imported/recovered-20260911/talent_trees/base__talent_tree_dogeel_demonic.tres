@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_ttsax"]
+
+[resource]
+script = ExtResource("1_ttsax")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/dogeel_demonic/node/0_0",
+"move_ids": ["base:move/madness/tier1", "base:move/madness/tier2", "base:move/madness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2695.0, 2696.0, 2697.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dogeel_demonic/node/1_0",
+"move_ids": ["base:move/demonic_strike/tier1", "base:move/demonic_strike/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2698.0, 2699.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dogeel_demonic/node/2_0",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2700.0, 2701.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/dogeel_demonic/node/0_1",
+"move_ids": ["base:move/bone_chill/tier1", "base:move/bone_chill/tier2", "base:move/bone_chill/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2702.0, 2703.0, 2704.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dogeel_demonic/node/1_1",
+"move_ids": ["base:move/demonic_strike/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/dogeel_demonic/node/1_0"],
+"row": 1.0,
+"source_lines": [2705.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dogeel_demonic/node/2_1",
+"move_ids": ["base:move/ferocity/tier3", "base:move/ferocity/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/dogeel_demonic/node/2_0"],
+"row": 1.0,
+"source_lines": [2706.0, 2707.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dogeel_demonic/node/1_2",
+"move_ids": ["base:move/demonic_force/tier2", "base:move/demonic_force/tier3", "base:move/demonic_force/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2708.0, 2709.0, 2710.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dogeel_demonic/node/2_2",
+"move_ids": ["base:move/blood_ritual/tier1", "base:move/blood_ritual/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2711.0, 2712.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dogeel_demonic/node/1_3",
+"move_ids": ["base:move/demonic_force/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/dogeel_demonic/node/1_2"],
+"row": 3.0,
+"source_lines": [2713.0]
+}])
+id = &"base:talent_tree/dogeel_demonic"
+display_name = "Demonic"
+legacy_class_name = "DogEel_Demonic"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2692"

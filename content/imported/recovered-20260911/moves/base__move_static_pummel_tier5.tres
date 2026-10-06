@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://pndsc77uvvhe"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_0u5px"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_0rpd4"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="3_yx43y"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_4cuhe"]
+
+[sub_resource type="Resource" id="Resource_uljb6"]
+script = ExtResource("1_0u5px")
+scaling = 1
+roll_scope = 1
+amount = 40
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_0rpd4")
+id = &"base:move/static_pummel/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:661"
+
+[sub_resource type="Resource" id="Resource_88g7s"]
+script = ExtResource("1_0u5px")
+kind = 15
+roll_scope = 1
+legacy_order = 1
+executor = ExtResource("3_yx43y")
+id = &"base:move/static_pummel/tier5/effect/01_stun_enemy_targets"
+display_name = "Stun"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:661"
+
+[resource]
+script = ExtResource("4_4cuhe")
+family_id = &"base:move_family/static_pummel"
+tier = 5
+type_id = &"base:type/energy"
+legacy_class_id = 70
+legacy_visual_id = 188
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_staticPummel"
+energy_cost = 50
+effects = Array[ExtResource("1_0u5px")]([SubResource("Resource_uljb6"), SubResource("Resource_88g7s")])
+presentation_id = &"base:presentation/move/move_icon_static_pummel"
+id = &"base:move/static_pummel/tier5"
+display_name = "Stun Blast"
+legacy_numeric_id = 354
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_5lxet"]
+
+[resource]
+script = ExtResource("1_5lxet")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_darkness/node/0_0",
+"move_ids": ["base:move/madness/tier1", "base:move/madness/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3714.0, 3715.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_darkness/node/1_0",
+"move_ids": ["base:move/cleric/tier1", "base:move/cleric/tier2", "base:move/cleric/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3716.0, 3717.0, 3718.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_darkness/node/2_0",
+"move_ids": ["base:move/demonic_strike/tier1", "base:move/demonic_strike/tier2", "base:move/demonic_strike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3719.0, 3720.0, 3721.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_darkness/node/0_1",
+"move_ids": ["base:move/madness/tier3", "base:move/madness/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_darkness/node/0_0"],
+"row": 1.0,
+"source_lines": [3722.0, 3723.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_darkness/node/1_1",
+"move_ids": ["base:move/cleric/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_darkness/node/1_0"],
+"row": 1.0,
+"source_lines": [3724.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_darkness/node/2_1",
+"move_ids": ["base:move/demonic_sacrifice/tier1", "base:move/demonic_sacrifice/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3725.0, 3726.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_darkness/node/0_2",
+"move_ids": ["base:move/purge/tier1"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3727.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_darkness/node/1_2",
+"move_ids": ["base:move/demonic_bargain/tier3", "base:move/demonic_bargain/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3728.0, 3729.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_darkness/node/2_2",
+"move_ids": ["base:move/demonic_sacrifice/tier3", "base:move/demonic_sacrifice/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_darkness/node/2_1"],
+"row": 2.0,
+"source_lines": [3730.0, 3731.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_darkness/node/1_3",
+"move_ids": ["base:move/demonic_bargain/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_darkness/node/1_2"],
+"row": 3.0,
+"source_lines": [3732.0]
+}])
+id = &"base:talent_tree/holystrongman_darkness"
+display_name = "Darkness"
+legacy_class_name = "HolyStrongMan_Darkness"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3711"

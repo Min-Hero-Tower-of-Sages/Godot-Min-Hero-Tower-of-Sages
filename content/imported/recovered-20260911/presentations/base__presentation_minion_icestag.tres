@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_qywqh"]
+
+[resource]
+script = ExtResource("1_qywqh")
+legacy_sprite_name = &"iceStag"
+icon_offset = Vector2i(-15, -15)
+id = &"base:presentation/minion/icestag"
+display_name = "Frostag presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:804"

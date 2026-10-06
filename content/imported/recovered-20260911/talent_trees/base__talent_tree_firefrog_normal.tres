@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_0nlwe"]
+
+[resource]
+script = ExtResource("1_0nlwe")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/firefrog_normal/node/0_0",
+"move_ids": ["base:move/roar/tier1", "base:move/roar/tier2", "base:move/roar/tier3", "base:move/roar/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [462.0, 463.0, 464.0, 465.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firefrog_normal/node/1_0",
+"move_ids": ["base:move/poison_tooth/tier1", "base:move/poison_tooth/tier2", "base:move/poison_tooth/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [466.0, 467.0, 468.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firefrog_normal/node/2_0",
+"move_ids": ["base:move/earthy_fortitude/tier1", "base:move/earthy_fortitude/tier2", "base:move/earthy_fortitude/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [469.0, 470.0, 471.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firefrog_normal/node/0_1",
+"move_ids": ["base:move/skillful/tier1", "base:move/skillful/tier2", "base:move/skillful/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [472.0, 473.0, 474.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firefrog_normal/node/1_1",
+"move_ids": ["base:move/invigorate/tier1", "base:move/invigorate/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [475.0, 476.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firefrog_normal/node/2_1",
+"move_ids": ["base:move/crush/tier1", "base:move/crush/tier2", "base:move/crush/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [477.0, 478.0, 479.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firefrog_normal/node/0_2",
+"move_ids": ["base:move/skillful/tier4", "base:move/skillful/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firefrog_normal/node/0_1"],
+"row": 2.0,
+"source_lines": [480.0, 481.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firefrog_normal/node/1_2",
+"move_ids": ["base:move/invigorate/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/firefrog_normal/node/1_1"],
+"row": 2.0,
+"source_lines": [482.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firefrog_normal/node/2_2",
+"move_ids": ["base:move/crush/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firefrog_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [483.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firefrog_normal/node/1_3",
+"move_ids": ["base:move/energizing_inspiration/tier2"],
+"prerequisite_node_ids": ["base:talent_tree/firefrog_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [484.0]
+}])
+id = &"base:talent_tree/firefrog_normal"
+display_name = "Inspire"
+legacy_class_name = "FireFrog_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:459"

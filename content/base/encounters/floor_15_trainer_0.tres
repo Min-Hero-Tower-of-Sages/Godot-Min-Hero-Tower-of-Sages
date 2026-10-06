@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/roboshark_1", "level": 37, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/poison_tooth/tier2", &"base:move/fresh_stream/tier1", &"base:move/soak/tier5", &"base:move/agility/tier5", &"base:move/waterjet/tier3", &"base:move/concentration/tier3", &"base:move/steel_spike/tier2", &"base:move/cog_fallout/tier2"])
+}, {
+"definition_id": &"base:minion/cheetah_2", "level": 37, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier4", &"base:move/charge_blast/tier5", &"base:move/ferocity/tier5", &"base:move/concentration/tier3", &"base:move/agility/tier2"])
+}, {
+"definition_id": &"base:minion/anteater_2", "level": 37, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/twin_missile/tier1", &"base:move/download/tier5", &"base:move/cog_fallout/tier1", &"base:move/vicious/tier5", &"base:move/perseverance/tier3", &"base:move/fire_bash/tier2", &"base:move/spark/tier1"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 37, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}, {
+"definition_id": &"base:minion/scorpion_2", "level": 37, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier1", &"base:move/spike/tier5", &"base:move/tackle/tier5", &"base:move/slow/tier4", &"base:move/mirror_skin/tier3", &"base:move/quickness/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 159, "sage_seals": 1}}
+source_trainer_id = &"base:trainer/standard/14/0"
+source_floor_index = 14
+source_level_offset = 0
+source_trainer_type = &"TrainerType.TRAINER_GYM_3"
+id = &"base:encounter/floor15_trainer_0"
+display_name = "Floor 15 — source trainer 0"
+description = "Source start dialogue: We must ponder metastasis during our skirmish and the reprocussions it has on the axioms of space and destiny. \n...\nIt is the duty of the Electric Sage to test your knowledge.\nSource defeat dialogue: You're competence is exemplary!\n...\nWith the Sage Seal of Knowledge, you now have the option to pick a second egg in the hatchery.  If you don't want your first choice."
+legacy_class_name = "TrainerSystem.CreateFloor_Boss3"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:842"
+battle_modifier_configuration = {"extra_minions": {"enemy": {"count": 2, "templates": [{"definition_id": "base:minion/dogeel_2", "level": 35, "move_ids": ["base:move/spark/tier1", "base:move/mirror_skin/tier5", "base:move/spike/tier4", "base:move/slow/tier2", "base:move/madness/tier3", "base:move/bone_chill/tier3"], "source_derive_stats": true}]}, "player": {"count": 2, "templates": [{"definition_id": "base:minion/groundmole_3", "level": 37, "move_ids": ["base:move/claw/tier1", "base:move/rock_throw/tier1", "base:move/perseverance/tier5", "base:move/taunt/tier5", "base:move/rock_skin/tier5", "base:move/crush/tier2", "base:move/concentration/tier2", "base:move/fortitude/tier2"], "source_derive_stats": true}]}}}

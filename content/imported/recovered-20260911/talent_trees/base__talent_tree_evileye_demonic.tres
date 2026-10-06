@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_amro4"]
+
+[resource]
+script = ExtResource("1_amro4")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/evileye_demonic/node/0_0",
+"move_ids": ["base:move/blood_ritual/tier1", "base:move/blood_ritual/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3566.0, 3567.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/evileye_demonic/node/1_0",
+"move_ids": ["base:move/wild_lance/tier1", "base:move/wild_lance/tier2", "base:move/wild_lance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3568.0, 3569.0, 3570.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/evileye_demonic/node/2_0",
+"move_ids": ["base:move/icy_blast/tier1", "base:move/icy_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3571.0, 3572.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/evileye_demonic/node/0_1",
+"move_ids": ["base:move/blood_ritual/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/evileye_demonic/node/0_0"],
+"row": 1.0,
+"source_lines": [3573.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/evileye_demonic/node/1_1",
+"move_ids": ["base:move/demonic_force/tier1", "base:move/demonic_force/tier2", "base:move/demonic_force/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3574.0, 3575.0, 3576.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/evileye_demonic/node/2_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3577.0, 3578.0, 3579.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/evileye_demonic/node/1_2",
+"move_ids": ["base:move/demonic_strike/tier2", "base:move/demonic_strike/tier3", "base:move/demonic_strike/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3580.0, 3581.0, 3582.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/evileye_demonic/node/2_2",
+"move_ids": ["base:move/vicious/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/evileye_demonic/node/2_1"],
+"row": 2.0,
+"source_lines": [3583.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/evileye_demonic/node/1_3",
+"move_ids": ["base:move/demonic_strike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/evileye_demonic/node/1_2"],
+"row": 3.0,
+"source_lines": [3584.0]
+}])
+id = &"base:talent_tree/evileye_demonic"
+display_name = "Demonic"
+legacy_class_name = "EvilEye_Demonic"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3563"

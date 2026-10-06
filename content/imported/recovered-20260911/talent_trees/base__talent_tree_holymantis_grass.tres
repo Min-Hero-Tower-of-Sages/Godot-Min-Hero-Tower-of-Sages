@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_1460c"]
+
+[resource]
+script = ExtResource("1_1460c")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holymantis_grass/node/0_0",
+"move_ids": ["base:move/nourish/tier2", "base:move/nourish/tier3", "base:move/nourish/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1124.0, 1125.0, 1126.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_grass/node/1_0",
+"move_ids": ["base:move/priest/tier1", "base:move/priest/tier2", "base:move/priest/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1127.0, 1128.0, 1129.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holymantis_grass/node/2_0",
+"move_ids": ["base:move/razor_vine/tier1", "base:move/razor_vine/tier2", "base:move/razor_vine/tier3", "base:move/razor_vine/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1130.0, 1131.0, 1132.0, 1133.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holymantis_grass/node/0_1",
+"move_ids": ["base:move/nourish/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_grass/node/0_0"],
+"row": 1.0,
+"source_lines": [1134.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_grass/node/1_1",
+"move_ids": ["base:move/priest/tier4", "base:move/priest/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_grass/node/1_0"],
+"row": 1.0,
+"source_lines": [1135.0, 1136.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holymantis_grass/node/2_1",
+"move_ids": ["base:move/regrowth/tier1", "base:move/regrowth/tier2", "base:move/regrowth/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1137.0, 1138.0, 1139.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holymantis_grass/node/0_2",
+"move_ids": ["base:move/swift_mend/tier1", "base:move/swift_mend/tier2", "base:move/swift_mend/tier3", "base:move/swift_mend/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1140.0, 1141.0, 1142.0, 1143.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_grass/node/1_2",
+"move_ids": ["base:move/serenity/tier3", "base:move/serenity/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1144.0, 1145.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holymantis_grass/node/2_2",
+"move_ids": ["base:move/regrowth/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_grass/node/2_1"],
+"row": 2.0,
+"source_lines": [1146.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holymantis_grass/node/0_3",
+"move_ids": ["base:move/swift_mend/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_grass/node/0_2"],
+"row": 3.0,
+"source_lines": [1147.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_grass/node/1_3",
+"move_ids": ["base:move/serenity/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_grass/node/1_2"],
+"row": 3.0,
+"source_lines": [1148.0]
+}])
+id = &"base:talent_tree/holymantis_grass"
+display_name = "Grass"
+legacy_class_name = "HolyMantis_Grass"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1121"

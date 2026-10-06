@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_hwfmo"]
+
+[resource]
+script = ExtResource("1_hwfmo")
+type_ids = Array[StringName]([&"base:type/holy"])
+base_health = 15
+base_energy = 35
+base_attack = 61
+base_healing = 72
+base_speed = 85
+experience_gain_rate = 0
+gem_slots = 2
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/holy_strike/tier1", &"base:move/pound/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/hope/tier1", &"base:move/mending_inspiration/tier1", &"base:move/demonic_force/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/holybell_holy", &"base:talent_tree/holymantis_normal", &"base:talent_tree/batdemon_demonic"])
+evolution_id = &"ophan:minion/holyeye2"
+evolution_level = 20
+presentation_id = &"ophan:presentation/minion/holyeye1"
+id = &"ophan:minion/holyeye1"
+display_name = "Adophan"
+legacy_class_name = "HolyEye_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:427"
+source_mod = &"ophan"

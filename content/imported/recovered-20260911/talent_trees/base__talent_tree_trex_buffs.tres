@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_qmgtc"]
+
+[resource]
+script = ExtResource("1_qmgtc")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/trex_buffs/node/0_0",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier3", "base:move/reckless_dash/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1573.0, 1574.0, 1575.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/trex_buffs/node/1_0",
+"move_ids": ["base:move/inflame/tier1", "base:move/inflame/tier2", "base:move/inflame/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1576.0, 1577.0, 1578.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/trex_buffs/node/2_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1579.0, 1580.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/trex_buffs/node/0_1",
+"move_ids": ["base:move/perseverance/tier1", "base:move/perseverance/tier3", "base:move/perseverance/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1581.0, 1582.0, 1583.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/trex_buffs/node/1_1",
+"move_ids": ["base:move/flesh_sacrifice/tier1", "base:move/flesh_sacrifice/tier3", "base:move/flesh_sacrifice/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1584.0, 1585.0, 1586.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/trex_buffs/node/2_1",
+"move_ids": ["base:move/vicious/tier3", "base:move/vicious/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/trex_buffs/node/2_0"],
+"row": 1.0,
+"source_lines": [1587.0, 1588.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/trex_buffs/node/0_2",
+"move_ids": ["base:move/diamond_skin/tier1", "base:move/diamond_skin/tier3", "base:move/diamond_skin/tier5"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1589.0, 1590.0, 1591.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/trex_buffs/node/1_2",
+"move_ids": ["base:move/deadly_inspiration/tier2", "base:move/deadly_inspiration/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1592.0, 1593.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/trex_buffs/node/2_2",
+"move_ids": ["base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/trex_buffs/node/2_1"],
+"row": 2.0,
+"source_lines": [1594.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/trex_buffs/node/1_3",
+"move_ids": ["base:move/deadly_inspiration/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/trex_buffs/node/1_2"],
+"row": 3.0,
+"source_lines": [1595.0]
+}])
+id = &"base:talent_tree/trex_buffs"
+display_name = "Buffs"
+legacy_class_name = "TRex_Buffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1570"

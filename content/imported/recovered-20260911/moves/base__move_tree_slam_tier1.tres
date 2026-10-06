@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b14ahx00wesd4"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_b6yn2"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_hykpi"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_kcuoy"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_iy8rk"]
+
+[sub_resource type="Resource" id="Resource_lqwx1"]
+script = ExtResource("1_b6yn2")
+scaling = 1
+roll_scope = 1
+amount = 30
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_hykpi")
+id = &"base:move/tree_slam/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1538"
+
+[sub_resource type="Resource" id="Resource_vjsl5"]
+script = ExtResource("1_b6yn2")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 1
+chance_percent = 50
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("3_kcuoy")
+id = &"base:move/tree_slam/tier1/effect/01_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1538"
+
+[resource]
+script = ExtResource("4_iy8rk")
+family_id = &"base:move_family/tree_slam"
+type_id = &"base:type/plant"
+legacy_class_id = 104
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_treeSlam"
+energy_cost = 5
+cooldown_turns = 2
+effects = Array[ExtResource("1_b6yn2")]([SubResource("Resource_lqwx1"), SubResource("Resource_vjsl5")])
+presentation_id = &"base:presentation/move/move_icon_tree_slam"
+id = &"base:move/tree_slam/tier1"
+display_name = "Tree Slam"
+legacy_numeric_id = 455
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

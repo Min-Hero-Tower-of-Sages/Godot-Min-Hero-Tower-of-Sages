@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c6uo02n8dfi5i"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_haism"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_pcu8v"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_7hdeg"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_2ft5s"]
+
+[sub_resource type="Resource" id="Resource_j3m6s"]
+script = ExtResource("1_haism")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 1
+random_bonus = 140
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_pcu8v")
+id = &"base:move/forceful_heal/tier2/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2141"
+
+[sub_resource type="Resource" id="Resource_lf00f"]
+script = ExtResource("1_haism")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = 1
+chance_percent = 10
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("3_7hdeg")
+id = &"base:move/forceful_heal/tier2/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2141"
+
+[resource]
+script = ExtResource("4_2ft5s")
+family_id = &"base:move_family/forceful_heal"
+tier = 2
+type_id = &"base:type/demonic"
+legacy_class_id = 122
+legacy_visual_id = 122
+legacy_dot_visual_id = 122
+buff_icon_name = &"moveIcon_forcefulHeal"
+energy_cost = 18
+exhaust_turns = 1
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_haism")]([SubResource("Resource_j3m6s"), SubResource("Resource_lf00f")])
+presentation_id = &"base:presentation/move/move_icon_forceful_heal"
+id = &"base:move/forceful_heal/tier2"
+display_name = "Forceful Heal  lv.2"
+legacy_numeric_id = 546
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

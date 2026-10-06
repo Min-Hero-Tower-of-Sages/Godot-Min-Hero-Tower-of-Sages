@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://4ttbvvmob704"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_7m0uy"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_oihlk"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_rmc68"]
+
+[sub_resource type="Resource" id="Resource_dhn78"]
+script = ExtResource("1_7m0uy")
+kind = 7
+target_scope = 0
+phase = 4
+amount = 60
+executor = ExtResource("2_oihlk")
+id = &"base:move/mirror_skin/tier4/effect/00_reflect_actor"
+display_name = "Reflect"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3429"
+
+[resource]
+script = ExtResource("3_rmc68")
+family_id = &"base:move_family/mirror_skin"
+tier = 4
+legacy_class_id = 44
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_mirrorSkin"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_7m0uy")]([SubResource("Resource_dhn78")])
+presentation_id = &"base:presentation/move/move_icon_mirror_skin"
+id = &"base:move/mirror_skin/tier4"
+display_name = "Mirror Skin  lv.4"
+legacy_numeric_id = 288
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

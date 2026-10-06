@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_qd5ok"]
+
+[resource]
+script = ExtResource("1_qd5ok")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/goo_debuffs/node/0_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2797.0, 2798.0, 2799.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/goo_debuffs/node/1_0",
+"move_ids": ["base:move/mud_blast/tier1", "base:move/mud_blast/tier2", "base:move/mud_blast/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2800.0, 2801.0, 2802.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/goo_debuffs/node/2_0",
+"move_ids": ["base:move/crush/tier1", "base:move/crush/tier2", "base:move/crush/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2803.0, 2804.0, 2805.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/goo_debuffs/node/0_1",
+"move_ids": ["base:move/tire/tier1", "base:move/tire/tier2", "base:move/tire/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2806.0, 2807.0, 2808.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/goo_debuffs/node/1_1",
+"move_ids": ["base:move/mud_blast/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/goo_debuffs/node/1_0"],
+"row": 1.0,
+"source_lines": [2809.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/goo_debuffs/node/2_1",
+"move_ids": ["base:move/fortitude/tier1", "base:move/fortitude/tier2", "base:move/fortitude/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2810.0, 2811.0, 2812.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/goo_debuffs/node/0_2",
+"move_ids": ["base:move/tire/tier4", "base:move/tire/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/goo_debuffs/node/0_1"],
+"row": 2.0,
+"source_lines": [2813.0, 2814.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/goo_debuffs/node/1_2",
+"move_ids": ["base:move/slow/tier3", "base:move/slow/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2815.0, 2816.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/goo_debuffs/node/2_2",
+"move_ids": ["base:move/fortitude/tier4", "base:move/fortitude/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/goo_debuffs/node/2_1"],
+"row": 2.0,
+"source_lines": [2817.0, 2818.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/goo_debuffs/node/1_3",
+"move_ids": ["base:move/slow/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/goo_debuffs/node/1_2"],
+"row": 3.0,
+"source_lines": [2819.0]
+}])
+id = &"base:talent_tree/goo_debuffs"
+display_name = "Debuff"
+legacy_class_name = "Goo_DeBuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2794"

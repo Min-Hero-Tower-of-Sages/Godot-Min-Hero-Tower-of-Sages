@@ -1,0 +1,107 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://2mju5547mplm"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_6n8v1"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_jwkpc"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_kv4ga"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="4_dup4i"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="5_gkkwj"]
+
+[sub_resource type="Resource" id="Resource_p2pdb"]
+script = ExtResource("1_6n8v1")
+scaling = 1
+roll_scope = 1
+amount = 45
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_jwkpc")
+id = &"base:move/flare_up/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:302"
+
+[sub_resource type="Resource" id="Resource_dw0p0"]
+script = ExtResource("1_6n8v1")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 40
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_kv4ga")
+id = &"base:move/flare_up/tier3/effect/01_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:302"
+
+[sub_resource type="Resource" id="Resource_be3al"]
+script = ExtResource("1_6n8v1")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/attack"
+legacy_order = 2
+executor = ExtResource("4_dup4i")
+id = &"base:move/flare_up/tier3/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:302"
+
+[sub_resource type="Resource" id="Resource_t6loh"]
+script = ExtResource("1_6n8v1")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/speed"
+legacy_order = 3
+executor = ExtResource("4_dup4i")
+id = &"base:move/flare_up/tier3/effect/03_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:302"
+
+[sub_resource type="Resource" id="Resource_oc1m7"]
+script = ExtResource("1_6n8v1")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/attack"
+legacy_order = 4
+executor = ExtResource("4_dup4i")
+id = &"base:move/flare_up/tier3/effect/04_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:302"
+
+[sub_resource type="Resource" id="Resource_auvdx"]
+script = ExtResource("1_6n8v1")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/speed"
+legacy_order = 5
+executor = ExtResource("4_dup4i")
+id = &"base:move/flare_up/tier3/effect/05_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:302"
+
+[resource]
+script = ExtResource("5_gkkwj")
+family_id = &"base:move_family/flare_up"
+tier = 3
+type_id = &"base:type/fire"
+legacy_class_id = 4
+legacy_visual_id = 4
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_flareUp"
+energy_cost = 35
+effects = Array[ExtResource("1_6n8v1")]([SubResource("Resource_p2pdb"), SubResource("Resource_dw0p0"), SubResource("Resource_be3al"), SubResource("Resource_t6loh"), SubResource("Resource_oc1m7"), SubResource("Resource_auvdx")])
+presentation_id = &"base:presentation/move/move_icon_flare_up"
+id = &"base:move/flare_up/tier3"
+display_name = "Flare Up  lv.3"
+legacy_numeric_id = 22
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

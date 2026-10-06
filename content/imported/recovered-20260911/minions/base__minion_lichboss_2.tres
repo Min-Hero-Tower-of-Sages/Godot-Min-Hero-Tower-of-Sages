@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_13m6q"]
+
+[resource]
+script = ExtResource("1_13m6q")
+type_ids = Array[StringName]([&"base:type/undead"])
+base_health = 35
+base_energy = 40
+base_attack = 75
+base_healing = 40
+base_speed = 40
+experience_gain_rate = 3
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/haunt/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/lifeless_touch/tier1", &"base:move/lich_burn/tier1", &"base:move/mirror_coating/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/lichboss_debuffs", &"base:talent_tree/lichboss_undead", &"base:talent_tree/lichboss_reflect"])
+evolution_id = &"base:minion/lichboss_3"
+evolution_level = 50
+presentation_id = &"base:presentation/minion/undeadlich2"
+id = &"base:minion/lichboss_2"
+display_name = "Kel'ten"
+legacy_numeric_id = 83
+legacy_class_name = "LichBoss_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:843"

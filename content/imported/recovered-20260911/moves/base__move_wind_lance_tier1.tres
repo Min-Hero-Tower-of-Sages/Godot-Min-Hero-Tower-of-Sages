@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bghlcuhs3wgty"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_gnkt5"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_6k4d4"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_beicd"]
+
+[sub_resource type="Resource" id="Resource_br4sp"]
+script = ExtResource("1_gnkt5")
+scaling = 1
+roll_scope = 1
+amount = 40
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_6k4d4")
+id = &"base:move/wind_lance/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2320"
+
+[resource]
+script = ExtResource("3_beicd")
+family_id = &"base:move_family/wind_lance"
+type_id = &"base:type/flying"
+legacy_class_id = 139
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_windLance"
+energy_cost = 12
+effects = Array[ExtResource("1_gnkt5")]([SubResource("Resource_br4sp")])
+presentation_id = &"base:presentation/move/move_icon_wind_lance"
+id = &"base:move/wind_lance/tier1"
+display_name = "Wind Lance"
+legacy_numeric_id = 630
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

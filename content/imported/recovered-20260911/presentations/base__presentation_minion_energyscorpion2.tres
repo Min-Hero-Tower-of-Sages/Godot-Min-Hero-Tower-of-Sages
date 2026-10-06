@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_wmg3p"]
+
+[resource]
+script = ExtResource("1_wmg3p")
+legacy_sprite_name = &"energyScorpion2"
+icon_offset = Vector2i(2, -41)
+id = &"base:presentation/minion/energyscorpion2"
+display_name = "Emperun presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1415"

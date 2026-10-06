@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/grasssnake_1",
+"level": 20,
+"move_ids": Array[StringName]([]),
+"slot_index": 0,
+"source_level_offset": -2
+}, {
+"definition_id": &"base:minion/icetree_1",
+"level": 20,
+"move_ids": Array[StringName]([]),
+"slot_index": 1,
+"source_level_offset": -2
+}, {
+"definition_id": &"base:minion/icetree_1",
+"level": 20,
+"move_ids": Array[StringName]([]),
+"slot_index": 2,
+"source_level_offset": -2
+}, {
+"definition_id": &"base:minion/trex_1",
+"level": 20,
+"move_ids": Array[StringName]([]),
+"slot_index": 3,
+"source_level_offset": -2
+}, {
+"definition_id": &"base:minion/groundattacker_1",
+"level": 20,
+"move_ids": Array[StringName]([]),
+"slot_index": 4,
+"source_level_offset": -2
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 14, "floor_keys": 1}}
+battle_modifier_configuration = {"shield": {"player": 1, "enemy": 1}}
+source_trainer_id = &"base:trainer/standard/3/1"
+source_floor_index = 3
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/grass_floor4_trainer_1"
+display_name = "Floor 4 — hiking student"
+legacy_class_name = "TrainerSystem.CreateFloor4"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:295"

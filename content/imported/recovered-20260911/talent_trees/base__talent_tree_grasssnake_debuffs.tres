@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_xq2u8"]
+
+[resource]
+script = ExtResource("1_xq2u8")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/0_0",
+"move_ids": ["base:move/fortitude/tier1", "base:move/fortitude/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [921.0, 922.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/1_0",
+"move_ids": ["base:move/peck/tier1", "base:move/peck/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [923.0, 924.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/2_0",
+"move_ids": ["base:move/crush/tier1", "base:move/crush/tier2", "base:move/crush/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [925.0, 926.0, 927.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/0_1",
+"move_ids": ["base:move/fortitude/tier4", "base:move/fortitude/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/grasssnake_debuffs/node/0_0"],
+"row": 1.0,
+"source_lines": [928.0, 929.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/1_1",
+"move_ids": ["base:move/slow/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [930.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/2_1",
+"move_ids": ["base:move/crush/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/grasssnake_debuffs/node/2_0"],
+"row": 1.0,
+"source_lines": [931.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/0_2",
+"move_ids": ["base:move/blow_by/tier1"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [932.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/1_2",
+"move_ids": ["base:move/slow/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/grasssnake_debuffs/node/1_1"],
+"row": 2.0,
+"source_lines": [933.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/2_2",
+"move_ids": ["base:move/tire/tier1", "base:move/tire/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [934.0, 935.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grasssnake_debuffs/node/1_3",
+"move_ids": ["base:move/slow/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/grasssnake_debuffs/node/1_2"],
+"row": 3.0,
+"source_lines": [936.0]
+}])
+id = &"base:talent_tree/grasssnake_debuffs"
+display_name = "Debuff"
+legacy_class_name = "GrassSnake_Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:918"

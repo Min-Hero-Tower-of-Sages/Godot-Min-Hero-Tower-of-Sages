@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/worm_3", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/rock_slide/tier1", &"base:move/grind/tier5", &"base:move/crush/tier4", &"base:move/ferocity/tier5", &"base:move/poison_tooth/tier5", &"base:move/skillful/tier2"])
+}, {
+"definition_id": &"base:minion/worm_3", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/rock_slide/tier1", &"base:move/grind/tier5", &"base:move/crush/tier4", &"base:move/ferocity/tier5", &"base:move/poison_tooth/tier5", &"base:move/skillful/tier2"])
+}, {
+"definition_id": &"base:minion/worm_3", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/rock_slide/tier1", &"base:move/grind/tier5", &"base:move/crush/tier4", &"base:move/ferocity/tier5", &"base:move/poison_tooth/tier5", &"base:move/skillful/tier2"])
+}, {
+"definition_id": &"base:minion/worm_3", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/rock_slide/tier1", &"base:move/grind/tier5", &"base:move/crush/tier4", &"base:move/ferocity/tier5", &"base:move/poison_tooth/tier5", &"base:move/skillful/tier2"])
+}, {
+"definition_id": &"base:minion/worm_3", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/tackle/tier3", &"base:move/rock_slide/tier1", &"base:move/infes/tier3", &"base:move/rancid_bite/tier4", &"base:move/flesh_sacrifice/tier3", &"base:move/rock_blast/tier2", &"base:move/earth_shield/tier1", &"base:move/perseverance/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/7/room/3"
+source_floor_index = 37
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor38_trainer_3"
+display_name = "Floor 38 — source trainer 3"
+description = "Source start dialogue: Hehehehe, what bringggs you here!?\nSource defeat dialogue: Arrgh, you're too strong! Stay away!"
+legacy_class_name = "TrainerSystem.CreateFloor6_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1934"

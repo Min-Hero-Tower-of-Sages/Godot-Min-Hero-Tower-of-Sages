@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_6sqj2"]
+
+[resource]
+script = ExtResource("1_6sqj2")
+legacy_sprite_name = &"waterSeal1"
+icon_offset = Vector2i(-2, 0)
+id = &"base:presentation/minion/waterseal1"
+display_name = "Sealo presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1794"

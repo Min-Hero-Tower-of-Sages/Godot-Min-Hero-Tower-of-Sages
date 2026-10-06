@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bf6j2u5487g1"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_cktsq"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_homp8"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_cbdrl"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_66o50"]
+
+[sub_resource type="Resource" id="Resource_oy37u"]
+script = ExtResource("1_cktsq")
+scaling = 1
+roll_scope = 1
+amount = 35
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_homp8")
+id = &"base:move/crusade/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2501"
+
+[sub_resource type="Resource" id="Resource_nancb"]
+script = ExtResource("1_cktsq")
+kind = 1
+target_scope = 0
+phase = 3
+scaling = 2
+roll_scope = 1
+amount = 8
+legacy_order = 1
+executor = ExtResource("3_cbdrl")
+id = &"base:move/crusade/tier2/effect/01_heal_actor"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2501"
+
+[resource]
+script = ExtResource("4_66o50")
+family_id = &"base:move_family/crusade"
+tier = 2
+type_id = &"base:type/holy"
+legacy_class_id = 149
+legacy_visual_id = 149
+legacy_dot_visual_id = 149
+buff_icon_name = &"moveIcon_crusade"
+energy_cost = 10
+cooldown_turns = 1
+effects = Array[ExtResource("1_cktsq")]([SubResource("Resource_oy37u"), SubResource("Resource_nancb")])
+presentation_id = &"base:presentation/move/move_icon_crusade"
+id = &"base:move/crusade/tier2"
+display_name = "Crusade  lv.2"
+legacy_numeric_id = 681
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

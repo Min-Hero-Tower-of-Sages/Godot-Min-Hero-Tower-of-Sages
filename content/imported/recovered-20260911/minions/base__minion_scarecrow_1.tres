@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_bljer"]
+
+[resource]
+script = ExtResource("1_bljer")
+type_ids = Array[StringName]([&"base:type/demonic", &"base:type/undead"])
+base_health = 35
+base_energy = 45
+base_attack = 35
+base_healing = 30
+base_speed = 35
+gem_slots = 1
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/blood_press/tier1", &"base:move/infes/tier1", &"base:move/slow/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/scarecrow_demonic", &"base:talent_tree/scarecrow_undead", &"base:talent_tree/scarecrow_debuff"])
+evolution_id = &"base:minion/scarecrow_2"
+evolution_level = 35
+presentation_id = &"base:presentation/minion/undeadscarecrow1"
+id = &"base:minion/scarecrow_1"
+display_name = "Pumcin"
+legacy_numeric_id = 74
+legacy_class_name = "ScareCrow_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:882"

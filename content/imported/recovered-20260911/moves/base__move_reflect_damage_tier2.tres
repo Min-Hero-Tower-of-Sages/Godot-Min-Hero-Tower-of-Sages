@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bp5p68rb5nxon"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_dkiad"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_b5wg4"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_dxgn7"]
+
+[sub_resource type="Resource" id="Resource_gsd8u"]
+script = ExtResource("1_dkiad")
+kind = 7
+amount = 75
+duration = 3
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_b5wg4")
+id = &"base:move/reflect_damage/tier2/effect/00_reflect_enemy_targets"
+display_name = "Reflect"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3238"
+
+[sub_resource type="Resource" id="Resource_l65ko"]
+script = ExtResource("1_dkiad")
+kind = 7
+target_scope = 2
+phase = 2
+amount = 75
+duration = 3
+legacy_order = 1
+executor = ExtResource("2_b5wg4")
+id = &"base:move/reflect_damage/tier2/effect/01_reflect_ally_targets"
+display_name = "Reflect"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3238"
+
+[resource]
+script = ExtResource("3_dxgn7")
+family_id = &"base:move_family/reflect_damage"
+tier = 2
+type_id = &"base:type/normal"
+legacy_class_id = 26
+legacy_visual_id = 26
+legacy_dot_visual_id = 26
+buff_icon_name = &"moveIcon_mirrorSkin"
+energy_cost = 10
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_dkiad")]([SubResource("Resource_gsd8u"), SubResource("Resource_l65ko")])
+presentation_id = &"base:presentation/move/move_icon_mirror_skin"
+id = &"base:move/reflect_damage/tier2"
+display_name = "Reflect Damage  lv.2"
+legacy_numeric_id = 131
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

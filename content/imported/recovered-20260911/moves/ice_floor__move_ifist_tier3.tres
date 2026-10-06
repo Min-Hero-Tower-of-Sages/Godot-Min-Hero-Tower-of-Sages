@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cqyrpbs4lk1am"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_3hd0s"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_1lnkj"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_scqeg"]
+
+[sub_resource type="Resource" id="Resource_7udl6"]
+script = ExtResource("1_3hd0s")
+scaling = 1
+roll_scope = 1
+amount = 25
+random_bonus = 50
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_1lnkj")
+id = &"ice_floor:move/ifist/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:210"
+
+[resource]
+script = ExtResource("3_scqeg")
+family_id = &"ice_floor:move_family/ifist"
+tier = 3
+type_id = &"ice_floor:type/thaw"
+legacy_class_id = 182
+legacy_visual_id = 182
+legacy_dot_visual_id = 182
+buff_icon_name = &"moveIcon_iFist"
+energy_cost = 25
+cooldown_turns = 2
+target_count = 3
+enemy_target_count = 3
+effects = Array[ExtResource("1_3hd0s")]([SubResource("Resource_7udl6")])
+presentation_id = &"ice_floor:presentation/move/move_icon_i_fist"
+id = &"ice_floor:move/ifist/tier3"
+display_name = "Arctic Fist  lv.3"
+legacy_numeric_id = 900
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"
+source_mod = &"ice_floor"

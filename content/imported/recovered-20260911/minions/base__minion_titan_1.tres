@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_8djun"]
+
+[resource]
+script = ExtResource("1_8djun")
+type_ids = Array[StringName]([&"base:type/titan"])
+base_health = 65
+base_energy = 75
+base_attack = 100
+base_healing = 50
+base_speed = 60
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/titan_slash/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/titan_slam/tier1", &"base:move/waterjet/tier1", &"base:move/destabilize/tier2"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/titan1_titan", &"base:talent_tree/titan1_water", &"base:talent_tree/titan1_earth"])
+presentation_id = &"base:presentation/minion/titan1"
+id = &"base:minion/titan_1"
+display_name = "Sobek"
+legacy_numeric_id = 100
+legacy_class_name = "Titan1_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2586"

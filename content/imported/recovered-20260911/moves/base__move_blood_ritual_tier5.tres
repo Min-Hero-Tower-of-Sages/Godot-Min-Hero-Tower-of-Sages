@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://df3tyjm6utra3"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_faush"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_bg3hn"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_njtto"]
+
+[sub_resource type="Resource" id="Resource_ssnie"]
+script = ExtResource("1_faush")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 180
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_bg3hn")
+id = &"base:move/blood_ritual/tier5/effect/00_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2297"
+
+[resource]
+script = ExtResource("3_njtto")
+family_id = &"base:move_family/blood_ritual"
+tier = 5
+type_id = &"base:type/demonic"
+legacy_class_id = 128
+legacy_visual_id = 128
+legacy_dot_visual_id = 128
+buff_icon_name = &"moveIcon_bloodFusion"
+energy_cost = 35
+exhaust_turns = 3
+effects = Array[ExtResource("1_faush")]([SubResource("Resource_ssnie")])
+presentation_id = &"base:presentation/move/move_icon_blood_fusion"
+id = &"base:move/blood_ritual/tier5"
+display_name = "Blood Swap"
+legacy_numeric_id = 579
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

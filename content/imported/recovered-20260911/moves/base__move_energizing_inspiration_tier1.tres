@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://0hilxmsx1k4c"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_t0778"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_4uiws"]
+
+[sub_resource type="Resource" id="Resource_36aud"]
+script = ExtResource("1_t0778")
+kind = 18
+target_scope = 4
+phase = 4
+amount = 5
+stat_type_id = &"base:stat/energy"
+id = &"base:move/energizing_inspiration/tier1/effect/00_stat_percent_allied_team"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3343"
+
+[resource]
+script = ExtResource("2_4uiws")
+family_id = &"base:move_family/energizing_inspiration"
+legacy_class_id = 34
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_energizingInspiration"
+is_global_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_t0778")]([SubResource("Resource_36aud")])
+presentation_id = &"base:presentation/move/move_icon_energizing_inspiration"
+id = &"base:move/energizing_inspiration/tier1"
+display_name = "Energizing Inspiration"
+legacy_numeric_id = 235
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

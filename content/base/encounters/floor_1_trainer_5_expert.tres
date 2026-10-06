@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3 uid="uid://dwkmr6wipn4t"]
+
+[ext_resource type="Script" uid="uid://di5hf1nmbwpfk" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/waterbird_1",
+"level": 7,
+"move_ids": Array[StringName]([]),
+"slot_index": 0
+}, {
+"definition_id": &"base:minion/waterbird_1",
+"level": 7,
+"move_ids": Array[StringName]([]),
+"slot_index": 1
+}, {
+"definition_id": &"base:minion/grassgorilla_1",
+"level": 7,
+"move_ids": Array[StringName]([]),
+"slot_index": 2
+}])
+ai_profile_id = &"base:ai/trainer/expert"
+rewards = {
+"first_clear": {
+"eggery_keys": 1,
+"floor_money_basis": 7,
+"random_gems": {
+"count": 1,
+"tier": 1
+}
+}
+}
+source_trainer_id = &"base:trainer/standard/0/5"
+source_floor_index = 0
+source_level_offset = 1
+source_trainer_type = &"TrainerType.EXPERT_TRAINER"
+id = &"base:encounter/grass_floor1_room5_expert"
+display_name = "Floor 1 — expert sage"
+legacy_class_name = "TrainerSystem.CreateFloor1"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:183"

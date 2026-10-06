@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_tjob8"]
+
+[resource]
+script = ExtResource("1_tjob8")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/crow_flying/node/0_0",
+"move_ids": ["base:move/wild_lance/tier1", "base:move/wild_lance/tier2", "base:move/wild_lance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3488.0, 3489.0, 3490.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/crow_flying/node/1_0",
+"move_ids": ["base:move/cutting_wind/tier1", "base:move/cutting_wind/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3491.0, 3492.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/crow_flying/node/2_0",
+"move_ids": ["base:move/volley/tier1", "base:move/volley/tier2", "base:move/volley/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3493.0, 3494.0, 3495.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/crow_flying/node/0_1",
+"move_ids": ["base:move/concentration/tier1", "base:move/concentration/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3496.0, 3497.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/crow_flying/node/1_1",
+"move_ids": ["base:move/cutting_wind/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/crow_flying/node/1_0"],
+"row": 1.0,
+"source_lines": [3498.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/crow_flying/node/2_1",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3499.0, 3500.0, 3501.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/crow_flying/node/0_2",
+"move_ids": ["base:move/blow_by/tier1"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3502.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/crow_flying/node/1_2",
+"move_ids": ["base:move/peck/tier3", "base:move/peck/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3503.0, 3504.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/crow_flying/node/2_2",
+"move_ids": ["base:move/quickness/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/crow_flying/node/2_1"],
+"row": 2.0,
+"source_lines": [3505.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/crow_flying/node/1_3",
+"move_ids": ["base:move/peck/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/crow_flying/node/1_2"],
+"row": 3.0,
+"source_lines": [3506.0]
+}])
+id = &"base:talent_tree/crow_flying"
+display_name = "Flying"
+legacy_class_name = "Crow_Flying"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3485"

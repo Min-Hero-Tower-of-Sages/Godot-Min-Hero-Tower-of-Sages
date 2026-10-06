@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/anteater_2", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/twin_missile/tier1", &"base:move/download/tier5", &"base:move/cog_fallout/tier1", &"base:move/vicious/tier5", &"base:move/perseverance/tier3", &"base:move/fire_bash/tier2", &"base:move/spark/tier1"])
+}, {
+"definition_id": &"base:minion/jellyfish_2", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/waterjet/tier5", &"base:move/soak/tier5", &"base:move/vicious/tier5", &"base:move/spark/tier2"])
+}, {
+"definition_id": &"base:minion/jellyfish_2", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/overload/tier5", &"base:move/spark/tier3", &"base:move/charge_blast/tier5", &"base:move/quickness/tier1", &"base:move/crazed_blast/tier1", &"base:move/skillful/tier2"])
+}, {
+"definition_id": &"base:minion/jellyfish_2", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/reflect_damage/tier3", &"base:move/grind/tier3", &"base:move/mirror_skin/tier5", &"base:move/skillful/tier1", &"base:move/spark/tier3", &"base:move/crazed_blast/tier1", &"base:move/quickness/tier1"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/spike/tier4", &"base:move/ore_drill/tier5", &"base:move/mud_blast/tier3", &"base:move/platinum/tier2", &"base:move/twin_missile/tier3", &"base:move/overload/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/12/room/3"
+source_floor_index = 42
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor43_trainer_3"
+display_name = "Floor 43 — source trainer 3"
+description = "Source start dialogue: Prepare for a fatality.\nSource defeat dialogue: Now that was fatal!"
+legacy_class_name = "TrainerSystem.CreateFloor10_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2179"
+battle_modifier_configuration = {"extra_minions": {"enemy": {"count": 6, "templates": [{"definition_id": "base:minion/slenderman_1", "level": 60, "move_ids": ["base:move/haunt/tier1", "base:move/flesh_sacrifice/tier5", "base:move/vicious/tier3", "base:move/rancid_bite/tier5", "base:move/fortitude/tier5", "base:move/efficiency/tier1"], "source_derive_stats": true}]}, "player": {"count": 2, "templates": [{"definition_id": "base:minion/holystrongguy_1", "level": 60, "move_ids": ["base:move/pound/tier2", "base:move/crusade/tier5", "base:move/holy_strike/tier5", "base:move/penance/tier5", "base:move/vicious/tier5", "base:move/fire_bash/tier1"], "source_derive_stats": true}]}}}

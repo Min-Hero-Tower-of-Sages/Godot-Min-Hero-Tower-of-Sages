@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_oug8r"]
+
+[resource]
+script = ExtResource("1_oug8r")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/0_0",
+"move_ids": ["base:move/earthy_fortitude/tier1", "base:move/earthy_fortitude/tier3", "base:move/earthy_fortitude/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [794.0, 795.0, 796.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/1_0",
+"move_ids": ["base:move/poison_tooth/tier1", "base:move/poison_tooth/tier3", "base:move/poison_tooth/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [797.0, 798.0, 799.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/2_0",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [800.0, 801.0, 802.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/0_1",
+"move_ids": ["base:move/tackle/tier4", "base:move/tackle/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [803.0, 804.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/1_1",
+"move_ids": ["base:move/invigorate/tier1", "base:move/invigorate/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [805.0, 806.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/2_1",
+"move_ids": ["base:move/agility/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/flyinggrasssuperminion_normal/node/2_0"],
+"row": 1.0,
+"source_lines": [807.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/0_2",
+"move_ids": ["base:move/reckless_dash/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [808.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/1_2",
+"move_ids": ["base:move/invigorate/tier3", "base:move/invigorate/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/flyinggrasssuperminion_normal/node/1_1"],
+"row": 2.0,
+"source_lines": [809.0, 810.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/2_2",
+"move_ids": ["base:move/titan_blast/tier1", "base:move/titan_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [811.0, 812.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/0_3",
+"move_ids": ["base:move/reckless_dash/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/flyinggrasssuperminion_normal/node/0_2"],
+"row": 3.0,
+"source_lines": [813.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/flyinggrasssuperminion_normal/node/2_3",
+"move_ids": ["base:move/titan_blast/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/flyinggrasssuperminion_normal/node/2_2"],
+"row": 3.0,
+"source_lines": [814.0]
+}])
+id = &"base:talent_tree/flyinggrasssuperminion_normal"
+display_name = "Normal"
+legacy_class_name = "FlyingGrassSuperMinion_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:791"

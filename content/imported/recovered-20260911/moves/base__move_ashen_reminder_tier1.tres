@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://brjsq2hfvfirx"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_i7ww6"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="2_t1wtd"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_rgpxi"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_blera"]
+
+[sub_resource type="Resource" id="Resource_2pyah"]
+script = ExtResource("1_i7ww6")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 40
+executor = ExtResource("2_t1wtd")
+id = &"base:move/ashen_reminder/tier1/effect/00_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1225"
+
+[sub_resource type="Resource" id="Resource_bcjml"]
+script = ExtResource("1_i7ww6")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/speed"
+legacy_order = 1
+executor = ExtResource("3_rgpxi")
+id = &"base:move/ashen_reminder/tier1/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1225"
+
+[sub_resource type="Resource" id="Resource_jf4lh"]
+script = ExtResource("1_i7ww6")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/healing"
+legacy_order = 2
+executor = ExtResource("3_rgpxi")
+id = &"base:move/ashen_reminder/tier1/effect/02_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1225"
+
+[resource]
+script = ExtResource("4_blera")
+family_id = &"base:move_family/ashen_reminder"
+type_id = &"base:type/undead"
+legacy_class_id = 85
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_ashenReminder"
+energy_cost = 10
+target_mode = 2
+target_count = 3
+enemy_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_i7ww6")]([SubResource("Resource_2pyah"), SubResource("Resource_bcjml"), SubResource("Resource_jf4lh")])
+presentation_id = &"base:presentation/move/move_icon_ashen_reminder"
+visuals_have_buffer = false
+id = &"base:move/ashen_reminder/tier1"
+display_name = "Ashen Reminder"
+legacy_numeric_id = 880
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

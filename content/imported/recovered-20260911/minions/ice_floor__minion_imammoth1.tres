@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_evo31"]
+
+[resource]
+script = ExtResource("1_evo31")
+type_ids = Array[StringName]([&"ice_floor:type/thaw"])
+base_health = 31
+base_energy = 22
+base_attack = 31
+base_healing = 21
+base_speed = 28
+experience_gain_rate = 3
+gem_slots = 2
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/pound/tier1", &"base:move/flurry/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/icy_blast/tier1", &"ice_floor:move/ihorn/tier1", &"base:move/ice_enclosure/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/icebird_ice", &"base:talent_tree/imammoth_thaw", &"base:talent_tree/icedeer_healing"])
+evolution_id = &"ice_floor:minion/imammoth2"
+evolution_level = 29
+presentation_id = &"ice_floor:presentation/minion/imammoth"
+id = &"ice_floor:minion/imammoth1"
+display_name = "Frosttusk"
+legacy_class_name = "iMammoth_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:188"
+source_mod = &"ice_floor"

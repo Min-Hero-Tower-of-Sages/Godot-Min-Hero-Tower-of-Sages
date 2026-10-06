@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_w5a62"]
+
+[resource]
+script = ExtResource("1_w5a62")
+type_ids = Array[StringName]([&"ice_floor:type/thaw", &"base:type/water"])
+base_health = 23
+base_energy = 17
+base_attack = 35
+base_healing = 29
+base_speed = 29
+experience_gain_rate = 3
+gem_slots = 2
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"ice_floor:move/ihorn/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/waterjet/tier1", &"ice_floor:move/imicro/tier1", &"base:move/tire/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/jellyfish_water", &"base:talent_tree/iunicorn_thaw", &"base:talent_tree/landshark_support"])
+evolution_id = &"ice_floor:minion/iunicorn3"
+evolution_level = 32
+presentation_id = &"ice_floor:presentation/minion/iunicorn"
+id = &"ice_floor:minion/iunicorn2"
+display_name = "Unithawl"
+legacy_class_name = "iUnicorn_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:329"
+source_mod = &"ice_floor"

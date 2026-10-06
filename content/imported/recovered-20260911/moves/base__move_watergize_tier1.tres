@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://by1h2vvw6yjys"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_jhebn"]
+[ext_resource type="Script" uid="uid://g81j5j6ogo3j" path="res://src/domain/battle/energy_effect_executor.gd" id="2_5peq3"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_gvfpa"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="4_ig5ej"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="5_kvw5h"]
+
+[sub_resource type="Resource" id="Resource_7btwy"]
+script = ExtResource("1_jhebn")
+kind = 2
+target_scope = 0
+phase = 0
+scaling = 3
+amount = 10
+executor = ExtResource("2_5peq3")
+id = &"base:move/watergize/tier1/effect/00_energy_actor"
+display_name = "Energy"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1845"
+
+[sub_resource type="Resource" id="Resource_3g414"]
+script = ExtResource("1_jhebn")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 15
+uses_type_effectiveness = true
+can_critical = true
+legacy_order = 1
+executor = ExtResource("3_gvfpa")
+id = &"base:move/watergize/tier1/effect/01_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1845"
+
+[sub_resource type="Resource" id="Resource_wvnrd"]
+script = ExtResource("1_jhebn")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = 1
+chance_percent = 10
+stat_type_id = &"base:stat/energy"
+legacy_order = 2
+executor = ExtResource("4_ig5ej")
+id = &"base:move/watergize/tier1/effect/02_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1845"
+
+[resource]
+script = ExtResource("5_kvw5h")
+family_id = &"base:move_family/watergize"
+type_id = &"base:type/water"
+legacy_class_id = 137
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_energize"
+energy_cost = 12
+target_side = 1
+target_mode = 2
+target_count = 3
+enemy_target_count = 0
+ally_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_jhebn")]([SubResource("Resource_7btwy"), SubResource("Resource_3g414"), SubResource("Resource_wvnrd")])
+presentation_id = &"base:presentation/move/move_icon_energize"
+visuals_have_buffer = false
+id = &"base:move/watergize/tier1"
+display_name = "Watergize"
+legacy_numeric_id = 620
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

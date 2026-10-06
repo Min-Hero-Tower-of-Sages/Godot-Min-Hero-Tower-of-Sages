@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bglg4106nv3rx"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_tlhmr"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_jxoot"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_le2er"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_ygkou"]
+
+[sub_resource type="Resource" id="Resource_8ggea"]
+script = ExtResource("1_tlhmr")
+scaling = 1
+roll_scope = 1
+amount = 55
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_jxoot")
+id = &"base:move/righteous_fate/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2523"
+
+[sub_resource type="Resource" id="Resource_ps8rv"]
+script = ExtResource("1_tlhmr")
+kind = 1
+target_scope = 0
+phase = 3
+scaling = 2
+roll_scope = 1
+amount = 65
+legacy_order = 1
+executor = ExtResource("3_le2er")
+id = &"base:move/righteous_fate/tier3/effect/01_heal_actor"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2523"
+
+[resource]
+script = ExtResource("4_ygkou")
+family_id = &"base:move_family/righteous_fate"
+tier = 3
+type_id = &"base:type/holy"
+legacy_class_id = 150
+legacy_visual_id = 150
+legacy_dot_visual_id = 150
+buff_icon_name = &"moveIcon_righteousFate"
+energy_cost = 30
+cooldown_turns = 3
+effects = Array[ExtResource("1_tlhmr")]([SubResource("Resource_8ggea"), SubResource("Resource_ps8rv")])
+presentation_id = &"base:presentation/move/move_icon_righteous_fate"
+id = &"base:move/righteous_fate/tier3"
+display_name = "Righteous Fate  lv.3"
+legacy_numeric_id = 687
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

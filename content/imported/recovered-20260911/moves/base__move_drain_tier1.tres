@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://by8gly8ijaisu"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ocebg"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_r8vl4"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_fowrc"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_8i7y3"]
+
+[sub_resource type="Resource" id="Resource_7lm8t"]
+script = ExtResource("1_ocebg")
+scaling = 1
+roll_scope = 1
+amount = 15
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_r8vl4")
+id = &"base:move/drain/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1508"
+
+[sub_resource type="Resource" id="Resource_nuyeo"]
+script = ExtResource("1_ocebg")
+kind = 1
+target_scope = 0
+phase = 3
+scaling = 2
+roll_scope = 1
+amount = 15
+legacy_order = 1
+executor = ExtResource("3_fowrc")
+id = &"base:move/drain/tier1/effect/01_heal_actor"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1508"
+
+[resource]
+script = ExtResource("4_8i7y3")
+family_id = &"base:move_family/drain"
+type_id = &"base:type/plant"
+legacy_class_id = 97
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_drain"
+energy_cost = 6
+effects = Array[ExtResource("1_ocebg")]([SubResource("Resource_7lm8t"), SubResource("Resource_nuyeo")])
+presentation_id = &"base:presentation/move/move_icon_drain"
+id = &"base:move/drain/tier1"
+display_name = "Drain"
+legacy_numeric_id = 420
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

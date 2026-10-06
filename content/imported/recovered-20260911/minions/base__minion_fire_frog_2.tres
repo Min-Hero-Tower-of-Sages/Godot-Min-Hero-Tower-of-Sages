@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_4iyra"]
+
+[resource]
+script = ExtResource("1_4iyra")
+type_ids = Array[StringName]([&"base:type/fire"])
+base_health = 50
+base_energy = 32
+base_attack = 48
+base_healing = 40
+base_speed = 32
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/pound/tier1", &"base:move/sear/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/touch_fire/tier1", &"base:move/fire_shot/tier1", &"base:move/energizing_inspiration/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/firefrog_direct", &"base:talent_tree/firefrog_group", &"base:talent_tree/firefrog_normal"])
+evolution_id = &"base:minion/fire_frog_3"
+evolution_level = 34
+presentation_id = &"base:presentation/minion/firetoad2"
+id = &"base:minion/fire_frog_2"
+display_name = "Volcanoad"
+legacy_numeric_id = 32
+legacy_class_name = "FireFrog_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2359"

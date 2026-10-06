@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_sv2an"]
+
+[resource]
+script = ExtResource("1_sv2an")
+legacy_sprite_name = &"flyingHarpy"
+icon_offset = Vector2i(1, -7)
+id = &"base:presentation/minion/flyingharpy"
+display_name = "Harwing presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1494"

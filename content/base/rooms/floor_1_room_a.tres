@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="RoomDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/room_definition.gd" id="1_room"]
+[ext_resource type="Resource" path="res://content/base/room_payloads/floor_1_room_a_payload.tres" id="2_payload"]
+
+[resource]
+script = ExtResource("1_room")
+payload = ExtResource("2_payload")
+source_payload_path = "res://content/base/room_payloads/packaged/rooms-20260908/level_1_1_a.json"
+source_room_symbol = &"Utilities.LevelContainer_Level_1_1_A"
+encounter_ids = Array[StringName]([&"base:encounter/grass_floor1_room1_normal"])
+exits = Array[Dictionary]([{
+"transition_id": 1,
+"target_room_id": &"base:room/level_1_1_h0",
+"target_spawn_id": &"entry-1",
+"source_position": Vector2(392.5, 736.25),
+"source_scale": Vector2(1.3286133, 0.32089233)
+}])
+spawn_ids = Array[StringName]([&"start", &"entry-1"])
+spawn_positions = {"start": Vector2(402.0, 606.0), "entry-1": Vector2(417.0, 672.0), "entry-2": Vector2(411.0, 188.0)}
+interactions = Array[Dictionary]([{
+"id": &"floor-1-trainer-1",
+"kind": &"trainer",
+"encounter_id": &"base:encounter/grass_floor1_room1_normal",
+"source_position": Vector2(369.95, 489.0),
+"actor_position": Vector2(403.5, 472.5),
+"source_zone_id": 0,
+"first_visit_text": "Are you a fellow student? Let’s head up to the battle arena then. If you win I’ll give you a key!"
+}])
+minimap_metadata = {
+"floor_index": 0,
+"room_index": 1,
+"source_dimensions": Vector2(866.45, 805.2),
+"source_payload": "development/normalized/rooms-20260908/level_1_1_a.json"
+}
+id = &"base:room/level_1_1_a"
+display_name = "Floor 1 — garden entrance"
+legacy_class_name = "LevelContainer_Level_1_1_A"
+source_location = "development/extracted/full-20260908/binaryData/1666_Utilities.LevelContainer_Level_1_1_A.bin"

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://d4wqg7ga4t0m"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_b0bkn"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_g2ruj"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_te3q4"]
+
+[sub_resource type="Resource" id="Resource_g2lx8"]
+script = ExtResource("1_b0bkn")
+kind = 11
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 4
+amount = 70
+duration = 3
+executor = ExtResource("2_g2ruj")
+id = &"base:move/resurgence/tier3/effect/00_periodic_heal_ally_targets"
+display_name = "Periodic Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1639"
+
+[resource]
+script = ExtResource("3_te3q4")
+family_id = &"base:move_family/resurgence"
+tier = 3
+type_id = &"base:type/plant"
+legacy_class_id = 106
+legacy_visual_id = 106
+legacy_dot_visual_id = 106
+buff_icon_name = &"moveIcon_resurgence"
+energy_cost = 18
+cooldown_turns = 7
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_b0bkn")]([SubResource("Resource_g2lx8")])
+presentation_id = &"base:presentation/move/move_icon_resurgence"
+id = &"base:move/resurgence/tier3"
+display_name = "Resurgence  lv.3"
+legacy_numeric_id = 467
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

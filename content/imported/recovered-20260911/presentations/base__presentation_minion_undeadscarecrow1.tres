@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_qhs78"]
+
+[resource]
+script = ExtResource("1_qhs78")
+legacy_sprite_name = &"undeadScarecrow1"
+icon_offset = Vector2i(21, 0)
+id = &"base:presentation/minion/undeadscarecrow1"
+display_name = "Pumcin presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:882"

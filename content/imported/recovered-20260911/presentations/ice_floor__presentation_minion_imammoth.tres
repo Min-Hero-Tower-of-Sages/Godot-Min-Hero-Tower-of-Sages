@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_45w7v"]
+
+[resource]
+script = ExtResource("1_45w7v")
+legacy_sprite_name = &"iMammoth"
+id = &"ice_floor:presentation/minion/imammoth"
+display_name = "Frosttusk presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:188"
+source_mod = &"ice_floor"

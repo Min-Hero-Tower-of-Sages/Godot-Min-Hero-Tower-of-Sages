@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bvb22nsumxuy7"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_heon0"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_35kll"]
+
+[sub_resource type="Resource" id="Resource_8t4q3"]
+script = ExtResource("1_heon0")
+kind = 19
+target_scope = 0
+phase = 4
+amount = 60
+id = &"base:move/taunt/tier3/effect/00_redirect_damage_actor"
+display_name = "Redirect Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:825"
+
+[resource]
+script = ExtResource("2_35kll")
+family_id = &"base:move_family/taunt"
+tier = 3
+legacy_class_id = 57
+legacy_visual_id = 188
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_taunt"
+is_passive = true
+energy_cost = 0
+enemy_target_count = 0
+effects = Array[ExtResource("1_heon0")]([SubResource("Resource_8t4q3")])
+presentation_id = &"base:presentation/move/move_icon_taunt"
+id = &"base:move/taunt/tier3"
+display_name = "Taunt  lv.3"
+legacy_numeric_id = 177
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

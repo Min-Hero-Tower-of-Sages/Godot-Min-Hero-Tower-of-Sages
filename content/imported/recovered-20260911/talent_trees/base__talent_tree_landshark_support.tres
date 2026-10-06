@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_52qku"]
+
+[resource]
+script = ExtResource("1_52qku")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/landshark_support/node/0_0",
+"move_ids": ["base:move/crush/tier1", "base:move/crush/tier2", "base:move/crush/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1390.0, 1391.0, 1392.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/landshark_support/node/1_0",
+"move_ids": ["base:move/reflect_damage/tier1", "base:move/reflect_damage/tier2", "base:move/reflect_damage/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1393.0, 1394.0, 1395.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/landshark_support/node/2_0",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1396.0, 1397.0, 1398.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/landshark_support/node/0_1",
+"move_ids": ["base:move/slow/tier1", "base:move/slow/tier2", "base:move/slow/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1399.0, 1400.0, 1401.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/landshark_support/node/1_1",
+"move_ids": ["base:move/reflect_damage/tier4", "base:move/reflect_damage/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/landshark_support/node/1_0"],
+"row": 1.0,
+"source_lines": [1402.0, 1403.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/landshark_support/node/2_1",
+"move_ids": ["base:move/quickness/tier4", "base:move/quickness/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/landshark_support/node/2_0"],
+"row": 1.0,
+"source_lines": [1404.0, 1405.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/landshark_support/node/0_2",
+"move_ids": ["base:move/slow/tier4", "base:move/slow/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/landshark_support/node/0_1"],
+"row": 2.0,
+"source_lines": [1406.0, 1407.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/landshark_support/node/1_2",
+"move_ids": ["base:move/tire/tier3", "base:move/tire/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1408.0, 1409.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/landshark_support/node/1_3",
+"move_ids": ["base:move/tire/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/landshark_support/node/1_2"],
+"row": 3.0,
+"source_lines": [1410.0]
+}])
+id = &"base:talent_tree/landshark_support"
+display_name = "Support"
+legacy_class_name = "LandShark_Support"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1387"

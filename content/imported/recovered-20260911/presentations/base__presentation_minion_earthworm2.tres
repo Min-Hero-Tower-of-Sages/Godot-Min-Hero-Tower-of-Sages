@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_steb6"]
+
+[resource]
+script = ExtResource("1_steb6")
+legacy_sprite_name = &"earthWorm2"
+icon_offset = Vector2i(-5, 9)
+id = &"base:presentation/minion/earthworm2"
+display_name = "Rottar presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2545"

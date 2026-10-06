@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cfhwie317f6mx"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_otspt"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_wrlsw"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_i2mkf"]
+
+[sub_resource type="Resource" id="Resource_yls2k"]
+script = ExtResource("1_otspt")
+kind = 12
+amount = 29
+duration = 2
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_wrlsw")
+id = &"base:move/chosen_earth/tier5/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:982"
+
+[sub_resource type="Resource" id="Resource_5ce8k"]
+script = ExtResource("1_otspt")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 29
+duration = 2
+legacy_order = 1
+executor = ExtResource("2_wrlsw")
+id = &"base:move/chosen_earth/tier5/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:982"
+
+[resource]
+script = ExtResource("3_i2mkf")
+family_id = &"base:move_family/chosen_earth"
+tier = 5
+type_id = &"base:type/earth"
+legacy_class_id = 64
+legacy_visual_id = 64
+legacy_dot_visual_id = 64
+buff_icon_name = &"moveIcon_chosenEarth"
+energy_cost = 50
+target_side = 1
+target_count = 3
+enemy_target_count = 0
+ally_target_count = 3
+effects = Array[ExtResource("1_otspt")]([SubResource("Resource_yls2k"), SubResource("Resource_5ce8k")])
+presentation_id = &"base:presentation/move/move_icon_chosen_earth"
+id = &"base:move/chosen_earth/tier5"
+display_name = "Directed Earth"
+legacy_numeric_id = 204
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

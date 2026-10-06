@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dcbae5yxbhk7d"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_7xot1"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_rc80j"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_if5v4"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_jqwls"]
+
+[sub_resource type="Resource" id="Resource_a21m0"]
+script = ExtResource("1_7xot1")
+scaling = 1
+roll_scope = 1
+amount = 50
+random_bonus = 20
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_rc80j")
+id = &"base:move/claw/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3060"
+
+[sub_resource type="Resource" id="Resource_ykx6e"]
+script = ExtResource("1_7xot1")
+kind = 1
+target_scope = 0
+phase = 3
+scaling = 2
+roll_scope = 1
+amount = 20
+legacy_order = 1
+executor = ExtResource("3_if5v4")
+id = &"base:move/claw/tier5/effect/01_heal_actor"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3060"
+
+[resource]
+script = ExtResource("4_jqwls")
+family_id = &"base:move_family/claw"
+tier = 5
+type_id = &"base:type/normal"
+legacy_class_id = 15
+legacy_visual_id = 15
+legacy_dot_visual_id = 15
+buff_icon_name = &"moveIcon_claw"
+energy_cost = 30
+effects = Array[ExtResource("1_7xot1")]([SubResource("Resource_a21m0"), SubResource("Resource_ykx6e")])
+presentation_id = &"base:presentation/move/move_icon_claw"
+id = &"base:move/claw/tier5"
+display_name = "Blood Swipes"
+legacy_numeric_id = 84
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

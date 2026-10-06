@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b1o76boi8pb5q"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_n5hod"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_axy5v"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_hv8pb"]
+
+[sub_resource type="Resource" id="Resource_d15uj"]
+script = ExtResource("1_n5hod")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 15
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_axy5v")
+id = &"base:move/poison_ivy/tier1/effect/00_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1694"
+
+[resource]
+script = ExtResource("3_hv8pb")
+family_id = &"base:move_family/poison_ivy"
+type_id = &"base:type/plant"
+legacy_class_id = 102
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_poisonIvy"
+energy_cost = 3
+effects = Array[ExtResource("1_n5hod")]([SubResource("Resource_d15uj")])
+presentation_id = &"base:presentation/move/move_icon_poison_ivy"
+id = &"base:move/poison_ivy/tier1"
+display_name = "Poison Ivy"
+legacy_numeric_id = 445
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

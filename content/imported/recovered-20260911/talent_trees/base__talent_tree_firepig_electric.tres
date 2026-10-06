@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_o54p1"]
+
+[resource]
+script = ExtResource("1_o54p1")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/firepig_electric/node/0_0",
+"move_ids": ["base:move/spark/tier1", "base:move/spark/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [186.0, 187.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_electric/node/1_0",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [188.0, 189.0, 190.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_electric/node/2_0",
+"move_ids": ["base:move/batch_bolt/tier1", "base:move/batch_bolt/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [191.0, 192.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firepig_electric/node/0_1",
+"move_ids": ["base:move/spark/tier3", "base:move/spark/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_electric/node/0_0"],
+"row": 1.0,
+"source_lines": [193.0, 194.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_electric/node/1_1",
+"move_ids": ["base:move/quickness/tier4", "base:move/quickness/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_electric/node/1_0"],
+"row": 1.0,
+"source_lines": [195.0, 196.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_electric/node/2_1",
+"move_ids": ["base:move/charge_pass/tier1"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [197.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firepig_electric/node/0_2",
+"move_ids": ["base:move/static_pummel/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [198.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_electric/node/1_2",
+"move_ids": ["base:move/agile_inspiration/tier1", "base:move/agile_inspiration/tier2"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_electric/node/1_1"],
+"row": 2.0,
+"source_lines": [199.0, 200.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_electric/node/2_2",
+"move_ids": ["base:move/charge_pass/tier2", "base:move/charge_pass/tier3", "base:move/charge_pass/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_electric/node/2_1"],
+"row": 2.0,
+"source_lines": [201.0, 202.0, 203.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firepig_electric/node/0_3",
+"move_ids": ["base:move/static_pummel/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_electric/node/0_2"],
+"row": 3.0,
+"source_lines": [204.0]
+}])
+id = &"base:talent_tree/firepig_electric"
+display_name = "Electric"
+legacy_class_name = "FirePig_electric"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:183"

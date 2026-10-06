@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cs63b2ttf7nnq"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_8ckkc"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_va3gq"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_m1wxe"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_4icjq"]
+
+[sub_resource type="Resource" id="Resource_o1tmv"]
+script = ExtResource("1_8ckkc")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 1
+random_bonus = 150
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_va3gq")
+id = &"base:move/demonic_bargain/tier5/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2127"
+
+[sub_resource type="Resource" id="Resource_aum5q"]
+script = ExtResource("1_8ckkc")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+chance_percent = 20
+stat_type_id = &"base:stat/energy"
+legacy_order = 1
+executor = ExtResource("3_m1wxe")
+id = &"base:move/demonic_bargain/tier5/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2127"
+
+[resource]
+script = ExtResource("4_4icjq")
+family_id = &"base:move_family/demonic_bargain"
+tier = 5
+type_id = &"base:type/demonic"
+legacy_class_id = 121
+legacy_visual_id = 121
+legacy_dot_visual_id = 121
+buff_icon_name = &"moveIcon_demonicBargain"
+energy_cost = 55
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_8ckkc")]([SubResource("Resource_o1tmv"), SubResource("Resource_aum5q")])
+presentation_id = &"base:presentation/move/move_icon_demonic_bargain"
+id = &"base:move/demonic_bargain/tier5"
+display_name = "Demonic Insight"
+legacy_numeric_id = 544
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

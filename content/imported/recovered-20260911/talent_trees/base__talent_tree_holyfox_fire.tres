@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_dsde0"]
+
+[resource]
+script = ExtResource("1_dsde0")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holyfox_fire/node/0_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2077.0, 2078.0, 2079.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holyfox_fire/node/1_0",
+"move_ids": ["base:move/flare_up/tier1", "base:move/flare_up/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2080.0, 2081.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holyfox_fire/node/2_0",
+"move_ids": ["base:move/wildfire/tier1", "base:move/wildfire/tier2", "base:move/wildfire/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2082.0, 2083.0, 2084.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holyfox_fire/node/0_1",
+"move_ids": ["base:move/righteous_zeal/tier1", "base:move/righteous_zeal/tier2", "base:move/righteous_zeal/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2085.0, 2086.0, 2087.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holyfox_fire/node/1_1",
+"move_ids": ["base:move/flare_up/tier3", "base:move/flare_up/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/holyfox_fire/node/1_0"],
+"row": 1.0,
+"source_lines": [2088.0, 2089.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holyfox_fire/node/2_1",
+"move_ids": ["base:move/sear/tier2", "base:move/sear/tier3", "base:move/sear/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2090.0, 2091.0, 2092.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holyfox_fire/node/1_2",
+"move_ids": ["base:move/intense_flame/tier2", "base:move/intense_flame/tier3", "base:move/intense_flame/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2093.0, 2094.0, 2095.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holyfox_fire/node/2_2",
+"move_ids": ["base:move/sear/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holyfox_fire/node/2_1"],
+"row": 2.0,
+"source_lines": [2096.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holyfox_fire/node/1_3",
+"move_ids": ["base:move/intense_flame/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holyfox_fire/node/1_2"],
+"row": 3.0,
+"source_lines": [2097.0]
+}])
+id = &"base:talent_tree/holyfox_fire"
+display_name = "Fire"
+legacy_class_name = "HolyFox_Fire"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2074"

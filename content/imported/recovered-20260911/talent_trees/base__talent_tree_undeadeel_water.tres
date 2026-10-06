@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_lqo6r"]
+
+[resource]
+script = ExtResource("1_lqo6r")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/undeadeel_water/node/0_0",
+"move_ids": ["base:move/icy_blast/tier1", "base:move/icy_blast/tier3", "base:move/icy_blast/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4136.0, 4137.0, 4138.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_water/node/1_0",
+"move_ids": ["base:move/soak/tier2", "base:move/soak/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4139.0, 4140.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_water/node/2_0",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier2", "base:move/ferocity/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4141.0, 4142.0, 4143.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/undeadeel_water/node/0_1",
+"move_ids": ["base:move/coldfront/tier1", "base:move/coldfront/tier2", "base:move/coldfront/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4144.0, 4145.0, 4146.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_water/node/1_1",
+"move_ids": ["base:move/soak/tier4", "base:move/soak/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_water/node/1_0"],
+"row": 1.0,
+"source_lines": [4147.0, 4148.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_water/node/2_1",
+"move_ids": ["base:move/ferocity/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_water/node/2_0"],
+"row": 1.0,
+"source_lines": [4149.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/undeadeel_water/node/0_2",
+"move_ids": ["base:move/coldfront/tier4", "base:move/coldfront/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_water/node/0_1"],
+"row": 2.0,
+"source_lines": [4150.0, 4151.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_water/node/1_2",
+"move_ids": ["base:move/water_slam/tier3", "base:move/water_slam/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4152.0, 4153.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_water/node/2_2",
+"move_ids": ["base:move/ice_enclosure/tier1", "base:move/ice_enclosure/tier2", "base:move/ice_enclosure/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4154.0, 4155.0, 4156.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_water/node/1_3",
+"move_ids": ["base:move/water_slam/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_water/node/1_2"],
+"row": 3.0,
+"source_lines": [4157.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_water/node/2_3",
+"move_ids": ["base:move/ice_enclosure/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_water/node/2_2"],
+"row": 3.0,
+"source_lines": [4158.0]
+}])
+id = &"base:talent_tree/undeadeel_water"
+display_name = "Water"
+legacy_class_name = "UndeadEel_Water"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4133"

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/waterhorse_1", "level": 60, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/spike/tier2", &"base:move/waterjet/tier1", &"base:move/hailstone/tier4", &"base:move/soak/tier5", &"base:move/ferocity/tier5", &"base:move/agility/tier4"])
+}, {
+"definition_id": &"base:minion/waterhorse_1", "level": 60, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/spike/tier2", &"base:move/overload/tier5", &"base:move/agility/tier5", &"base:move/concentration/tier5", &"base:move/quickness/tier3", &"base:move/spark/tier1"])
+}, {
+"definition_id": &"base:minion/waterhorse_1", "level": 60, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/spike/tier2", &"base:move/overload/tier5", &"base:move/agility/tier5", &"base:move/concentration/tier5", &"base:move/quickness/tier3", &"base:move/spark/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/expert"
+rewards = {"first_clear": {"floor_money_basis": 2000, "eggery_keys": 1, "random_gems": {"count": 1, "tier": 6}}}
+source_trainer_id = &"base:trainer/hard/11/room/5"
+source_floor_index = 41
+source_level_offset = 0
+source_trainer_type = &"TrainerType.EXPERT_TRAINER"
+id = &"base:encounter/floor42_trainer_5_expert"
+display_name = "Floor 42 — source trainer 5"
+description = "Source start dialogue: \nSource defeat dialogue: "
+legacy_class_name = "TrainerSystem.CreateFloor9_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2138"
+battle_modifier_configuration = {"resurrection": {"team": 1, "turns": 8}}

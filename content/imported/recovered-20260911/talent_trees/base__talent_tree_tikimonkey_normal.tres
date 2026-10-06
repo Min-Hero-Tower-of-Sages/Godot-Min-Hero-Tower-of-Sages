@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_aw4a3"]
+
+[resource]
+script = ExtResource("1_aw4a3")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/tikimonkey_normal/node/0_0",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier2", "base:move/reckless_dash/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2256.0, 2257.0, 2258.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tikimonkey_normal/node/1_0",
+"move_ids": ["base:move/skillful/tier1", "base:move/skillful/tier2", "base:move/skillful/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2259.0, 2260.0, 2261.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tikimonkey_normal/node/2_0",
+"move_ids": ["base:move/lich_burn/tier1", "base:move/lich_burn/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2262.0, 2263.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tikimonkey_normal/node/0_1",
+"move_ids": ["base:move/roar/tier1", "base:move/roar/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2264.0, 2265.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tikimonkey_normal/node/1_1",
+"move_ids": ["base:move/skillful/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tikimonkey_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [2266.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tikimonkey_normal/node/2_1",
+"move_ids": ["base:move/invigorate/tier1", "base:move/invigorate/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2267.0, 2268.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tikimonkey_normal/node/0_2",
+"move_ids": ["base:move/roar/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/tikimonkey_normal/node/0_1"],
+"row": 2.0,
+"source_lines": [2269.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tikimonkey_normal/node/1_2",
+"move_ids": ["base:move/mirror_skin/tier3", "base:move/mirror_skin/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2270.0, 2271.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tikimonkey_normal/node/2_2",
+"move_ids": ["base:move/invigorate/tier3", "base:move/invigorate/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/tikimonkey_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [2272.0, 2273.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tikimonkey_normal/node/0_3",
+"move_ids": ["base:move/prehistoric_bite/tier1", "base:move/prehistoric_bite/tier2"],
+"prerequisite_node_ids": [],
+"row": 3.0,
+"source_lines": [2274.0, 2275.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tikimonkey_normal/node/1_3",
+"move_ids": ["base:move/mirror_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tikimonkey_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [2276.0]
+}])
+id = &"base:talent_tree/tikimonkey_normal"
+display_name = "Reflect"
+legacy_class_name = "TikiMonkey_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2253"

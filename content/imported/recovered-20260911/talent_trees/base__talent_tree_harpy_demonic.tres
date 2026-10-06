@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_sag4b"]
+
+[resource]
+script = ExtResource("1_sag4b")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/harpy_demonic/node/0_0",
+"move_ids": ["base:move/cleric/tier1", "base:move/cleric/tier2", "base:move/cleric/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1990.0, 1991.0, 1992.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/harpy_demonic/node/1_0",
+"move_ids": ["base:move/blood_press/tier1", "base:move/blood_press/tier2", "base:move/blood_press/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1993.0, 1994.0, 1995.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/harpy_demonic/node/2_0",
+"move_ids": ["base:move/deathly_energy/tier1", "base:move/deathly_energy/tier2", "base:move/deathly_energy/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1996.0, 1997.0, 1998.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/harpy_demonic/node/0_1",
+"move_ids": ["base:move/cleric/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/harpy_demonic/node/0_0"],
+"row": 1.0,
+"source_lines": [1999.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/harpy_demonic/node/1_1",
+"move_ids": ["base:move/demonic_sacrifice/tier3", "base:move/demonic_sacrifice/tier4", "base:move/demonic_sacrifice/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2000.0, 2001.0, 2002.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/harpy_demonic/node/2_1",
+"move_ids": ["base:move/forceful_heal/tier1", "base:move/forceful_heal/tier2", "base:move/forceful_heal/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2003.0, 2004.0, 2005.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/harpy_demonic/node/0_2",
+"move_ids": ["base:move/brilliance/tier1", "base:move/brilliance/tier2", "base:move/brilliance/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2006.0, 2007.0, 2008.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/harpy_demonic/node/1_2",
+"move_ids": ["base:move/demonic_bargain/tier3", "base:move/demonic_bargain/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2009.0, 2010.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/harpy_demonic/node/1_3",
+"move_ids": ["base:move/demonic_bargain/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/harpy_demonic/node/1_2"],
+"row": 3.0,
+"source_lines": [2011.0]
+}])
+id = &"base:talent_tree/harpy_demonic"
+display_name = "Demonic"
+legacy_class_name = "Harpy_Demonic"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1987"

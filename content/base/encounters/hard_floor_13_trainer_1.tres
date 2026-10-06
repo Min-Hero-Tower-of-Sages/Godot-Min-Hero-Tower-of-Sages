@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/hummingbird_1", "level": 60, "source_level_offset": -2, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/steel_spike/tier5", &"base:move/spark/tier2", &"base:move/cog_fallout/tier2", &"base:move/ferocity/tier5", &"base:move/concentration/tier5"])
+}, {
+"definition_id": &"base:minion/hummingbird_1", "level": 60, "source_level_offset": -2, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/steel_spike/tier5", &"base:move/spark/tier2", &"base:move/cog_fallout/tier2", &"base:move/ferocity/tier5", &"base:move/concentration/tier5"])
+}, {
+"definition_id": &"base:minion/hummingbird_1", "level": 60, "source_level_offset": -2, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/steel_spike/tier5", &"base:move/spark/tier2", &"base:move/cog_fallout/tier2", &"base:move/ferocity/tier5", &"base:move/concentration/tier5"])
+}, {
+"definition_id": &"base:minion/hummingbird_1", "level": 60, "source_level_offset": -2, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/peck/tier2", &"base:move/hurricane/tier4", &"base:move/charge_pass/tier2", &"base:move/agility/tier4", &"base:move/cog_fallout/tier2", &"base:move/spark/tier1", &"base:move/ferocity/tier3"])
+}, {
+"definition_id": &"base:minion/hummingbird_1", "level": 60, "source_level_offset": -2, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/mirror_skin/tier5", &"base:move/wild_lance/tier5", &"base:move/reflect_damage/tier4", &"base:move/slow/tier2", &"base:move/charge_pass/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/13/room/1"
+source_floor_index = 43
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor44_trainer_1"
+display_name = "Floor 44 — source trainer 1"
+description = "Source start dialogue: Time to take you to school.\nSource defeat dialogue: Looks like you already know robots are weak to fire, water, electric, and dino moves."
+legacy_class_name = "TrainerSystem.CreateFloor11_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2221"

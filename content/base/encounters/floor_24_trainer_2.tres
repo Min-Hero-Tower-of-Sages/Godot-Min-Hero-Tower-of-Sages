@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/waterseal_2", "level": 51, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/hailstone/tier5", &"base:move/icy_blast/tier4", &"base:move/efficiency/tier3", &"base:move/soak/tier3", &"base:move/vicious/tier3"])
+}, {
+"definition_id": &"base:minion/ground_plant_3", "level": 51, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/razor_vine/tier1", &"base:move/regrowth/tier5", &"base:move/efficiency/tier3", &"base:move/nourish/tier5", &"base:move/priest/tier5", &"base:move/energize/tier1"])
+}, {
+"definition_id": &"base:minion/ground_plant_3", "level": 51, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/razor_vine/tier1", &"base:move/mud_blast/tier5", &"base:move/rock_throw/tier3", &"base:move/concentration/tier3", &"base:move/mirror_skin/tier2", &"base:move/drain/tier3", &"base:move/vicious/tier4"])
+}, {
+"definition_id": &"base:minion/ground_plant_3", "level": 51, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/razor_vine/tier1", &"base:move/tire/tier4", &"base:move/crush/tier2", &"base:move/drain/tier1", &"base:move/vicious/tier4", &"base:move/demoralizing_charge/tier4", &"base:move/slow/tier3"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 51, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 1186, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/23/2"
+source_floor_index = 23
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor24_trainer_2"
+display_name = "Floor 24 — source trainer 2"
+description = "Source start dialogue: You look like a challeging trainer mon.\nSource defeat dialogue: I was right mon, you are quite the challenge!"
+legacy_class_name = "TrainerSystem.CreateFloor20"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1290"
+battle_modifier_configuration = {"move_timer": {"interval": 5, "source_power": 1, "move_id": "base:move/ice_barrier/tier3", "buff_move_id": "base:move/deadly_inspiration/tier2", "actor": {"instance_id": "floor24-timer-2", "definition_id": "internal:minion/bmod_2", "team": 1, "level": 50, "move_ids": ["base:move/ice_barrier/tier3"]}}, "extra_minions": {"enemy": {"count": 2, "templates": [{"definition_id": "base:minion/fire_frog_3", "level": 50, "move_ids": ["base:move/pound/tier1", "base:move/sear/tier1", "base:move/fire_shot/tier5", "base:move/inflame/tier4", "base:move/rock_blast/tier2", "base:move/vicious/tier5", "base:move/intense_flame/tier3"], "source_derive_stats": true}]}, "player": {"count": 2, "templates": [{"definition_id": "base:minion/icebird_2", "level": 50, "move_ids": ["base:move/claw/tier1", "base:move/peck/tier1", "base:move/ice_shield/tier5", "base:move/ice_barrier/tier4", "base:move/priest/tier5", "base:move/ice_enclosure/tier3", "base:move/mystic_ice/tier2"], "source_derive_stats": true}]}}}

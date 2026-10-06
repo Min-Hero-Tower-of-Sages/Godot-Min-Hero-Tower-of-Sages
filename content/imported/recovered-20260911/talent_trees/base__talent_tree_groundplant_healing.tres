@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_rqqb3"]
+
+[resource]
+script = ExtResource("1_rqqb3")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/groundplant_healing/node/0_0",
+"move_ids": ["base:move/drain/tier1", "base:move/drain/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [574.0, 575.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_healing/node/1_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [576.0, 577.0, 578.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_healing/node/2_0",
+"move_ids": ["base:move/spore_blast/tier1", "base:move/spore_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [579.0, 580.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/groundplant_healing/node/0_1",
+"move_ids": ["base:move/drain/tier3", "base:move/drain/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/groundplant_healing/node/0_0"],
+"row": 1.0,
+"source_lines": [581.0, 582.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_healing/node/1_1",
+"move_ids": ["base:move/soak/tier1", "base:move/soak/tier2", "base:move/soak/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [583.0, 584.0, 585.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_healing/node/2_1",
+"move_ids": ["base:move/nourish/tier1", "base:move/nourish/tier2", "base:move/nourish/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [586.0, 587.0, 588.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/groundplant_healing/node/0_2",
+"move_ids": ["base:move/regrowth/tier3", "base:move/regrowth/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [589.0, 590.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_healing/node/1_2",
+"move_ids": ["base:move/priest/tier1", "base:move/priest/tier2", "base:move/priest/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [591.0, 592.0, 593.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_healing/node/2_2",
+"move_ids": ["base:move/nourish/tier4", "base:move/nourish/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/groundplant_healing/node/2_1"],
+"row": 2.0,
+"source_lines": [594.0, 595.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/groundplant_healing/node/0_3",
+"move_ids": ["base:move/regrowth/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/groundplant_healing/node/0_2"],
+"row": 3.0,
+"source_lines": [596.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_healing/node/1_3",
+"move_ids": ["base:move/priest/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/groundplant_healing/node/1_2"],
+"row": 3.0,
+"source_lines": [597.0]
+}])
+id = &"base:talent_tree/groundplant_healing"
+display_name = "Healing"
+legacy_class_name = "GroundPlant_Healing"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:571"

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://du12ywh2otvd5"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_tsh8d"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_1xt0c"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_to0ng"]
+
+[sub_resource type="Resource" id="Resource_bf87u"]
+script = ExtResource("1_tsh8d")
+scaling = 1
+roll_scope = 1
+amount = 1
+random_bonus = 74
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_1xt0c")
+id = &"base:move/thunderstorm/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:677"
+
+[resource]
+script = ExtResource("3_to0ng")
+family_id = &"base:move_family/thunderstorm"
+tier = 4
+type_id = &"base:type/energy"
+legacy_class_id = 71
+legacy_visual_id = 71
+legacy_dot_visual_id = 71
+buff_icon_name = &"moveIcon_thunderstorm"
+energy_cost = 32
+target_mode = 2
+target_count = 3
+enemy_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_tsh8d")]([SubResource("Resource_bf87u")])
+presentation_id = &"base:presentation/move/move_icon_thunderstorm"
+visuals_have_buffer = false
+id = &"base:move/thunderstorm/tier4"
+display_name = "Thunderstorm  lv.4"
+legacy_numeric_id = 828
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

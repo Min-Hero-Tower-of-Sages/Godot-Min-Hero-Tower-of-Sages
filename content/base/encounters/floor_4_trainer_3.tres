@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/grassgorilla_2",
+"level": 21,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier1", &"base:move/tree_slam/tier5", &"base:move/drain/tier2", &"base:move/timber/tier3", &"base:move/vicious/tier5", &"base:move/rock_throw/tier2", &"base:move/bone_crunch/tier1"]),
+"slot_index": 0,
+"source_level_offset": -1
+}, {
+"definition_id": &"base:minion/icetree_2",
+"level": 21,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/sleet/tier5", &"base:move/bone_chill/tier5", &"base:move/hailstone/tier1", &"base:move/ice_enclosure/tier1", &"base:move/agility/tier5"]),
+"slot_index": 1,
+"source_level_offset": -1
+}, {
+"definition_id": &"base:minion/holymantris_1",
+"level": 21,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/nourish/tier1", &"base:move/holy_light/tier5", &"base:move/cleric/tier5", &"base:move/hope/tier2", &"base:move/priest/tier5", &"base:move/regrowth/tier1"]),
+"slot_index": 2,
+"source_level_offset": -1
+}, {
+"definition_id": &"base:minion/racoon_2",
+"level": 21,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/sear/tier5", &"base:move/vicious/tier4", &"base:move/touch_fire/tier4", &"base:move/fire_blast/tier1", &"base:move/quickness/tier2", &"base:move/inflame/tier2"]),
+"slot_index": 3,
+"source_level_offset": -1
+}, {
+"definition_id": &"base:minion/racoon_2",
+"level": 21,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier5", &"base:move/quickness/tier4", &"base:move/batch_bolt/tier1", &"base:move/overload/tier2", &"base:move/agility/tier2", &"base:move/vicious/tier3", &"base:move/touch_fire/tier1"]),
+"slot_index": 4,
+"source_level_offset": -1
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 14, "floor_keys": 1}}
+battle_modifier_configuration = {"shield": {"player": 2, "enemy": 2}}
+source_trainer_id = &"base:trainer/standard/3/3"
+source_floor_index = 3
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/grass_floor4_trainer_3"
+display_name = "Floor 4 — battle student"
+legacy_class_name = "TrainerSystem.CreateFloor4"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:314"

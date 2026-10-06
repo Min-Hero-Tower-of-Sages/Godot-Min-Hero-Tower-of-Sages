@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_j4dwa"]
+
+[resource]
+script = ExtResource("1_j4dwa")
+type_ids = Array[StringName]([&"base:type/plant"])
+base_health = 40
+base_energy = 35
+base_attack = 40
+base_healing = 30
+base_speed = 45
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/poison_tooth/tier1", &"base:move/razor_vine/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/grassblade/tier1", &"base:move/slow/tier1", &"base:move/tackle/tier2"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/grasssnake_grass", &"base:talent_tree/grasssnake_debuffs", &"base:talent_tree/grasssnake_normal"])
+evolution_id = &"base:minion/grasssnake_3"
+evolution_level = 32
+presentation_id = &"base:presentation/minion/plantviper2"
+id = &"base:minion/grasssnake_2"
+display_name = "Cobrapent"
+legacy_numeric_id = 6
+legacy_class_name = "GrassSnake_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2257"

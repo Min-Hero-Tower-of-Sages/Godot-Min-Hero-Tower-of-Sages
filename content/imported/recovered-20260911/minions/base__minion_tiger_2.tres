@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_l1gnp"]
+
+[resource]
+script = ExtResource("1_l1gnp")
+type_ids = Array[StringName]([&"base:type/normal"])
+base_health = 60
+base_energy = 65
+base_attack = 60
+base_healing = 45
+base_speed = 70
+experience_gain_rate = 3
+gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/roar/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/reckless_dash/tier1", &"base:move/chosen_earth/tier2", &"base:move/poison_tooth/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/tiger_speed", &"base:talent_tree/tiger_gaurd", &"base:talent_tree/tiger_normal"])
+presentation_id = &"base:presentation/minion/normaltiger2"
+id = &"base:minion/tiger_2"
+display_name = "Tigertan"
+legacy_numeric_id = 1
+legacy_class_name = "Tiger_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:981"

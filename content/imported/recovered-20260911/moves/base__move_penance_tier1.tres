@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c0ykl6errgcu4"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_5jdth"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_yungr"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_sbq8x"]
+
+[sub_resource type="Resource" id="Resource_u4ilm"]
+script = ExtResource("1_5jdth")
+scaling = 1
+roll_scope = 1
+amount = 35
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_yungr")
+id = &"base:move/penance/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2434"
+
+[resource]
+script = ExtResource("3_sbq8x")
+family_id = &"base:move_family/penance"
+type_id = &"base:type/holy"
+legacy_class_id = 146
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_penance"
+energy_cost = 5
+cooldown_turns = 1
+effects = Array[ExtResource("1_5jdth")]([SubResource("Resource_u4ilm")])
+presentation_id = &"base:presentation/move/move_icon_penance"
+id = &"base:move/penance/tier1"
+display_name = "penance"
+legacy_numeric_id = 665
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

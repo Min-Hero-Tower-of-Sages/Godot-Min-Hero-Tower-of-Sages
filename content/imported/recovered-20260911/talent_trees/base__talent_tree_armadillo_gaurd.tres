@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_bva4j"]
+
+[resource]
+script = ExtResource("1_bva4j")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/armadillo_gaurd/node/0_0",
+"move_ids": ["base:move/overload/tier1", "base:move/overload/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2460.0, 2461.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_gaurd/node/1_0",
+"move_ids": ["base:move/rock_throw/tier1", "base:move/rock_throw/tier2", "base:move/rock_throw/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2462.0, 2463.0, 2464.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_gaurd/node/2_0",
+"move_ids": ["base:move/diamond_skin/tier1", "base:move/diamond_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2465.0, 2466.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/armadillo_gaurd/node/0_1",
+"move_ids": ["base:move/overload/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_gaurd/node/0_0"],
+"row": 1.0,
+"source_lines": [2467.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_gaurd/node/1_1",
+"move_ids": ["base:move/charge_pass/tier1", "base:move/charge_pass/tier2", "base:move/charge_pass/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2468.0, 2469.0, 2470.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_gaurd/node/2_1",
+"move_ids": ["base:move/diamond_skin/tier3", "base:move/diamond_skin/tier4", "base:move/diamond_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_gaurd/node/2_0"],
+"row": 1.0,
+"source_lines": [2471.0, 2472.0, 2473.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_gaurd/node/1_2",
+"move_ids": ["base:move/taunt/tier3", "base:move/taunt/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2474.0, 2475.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_gaurd/node/2_2",
+"move_ids": ["base:move/burn/tier1", "base:move/burn/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2476.0, 2477.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_gaurd/node/1_3",
+"move_ids": ["base:move/taunt/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_gaurd/node/1_2"],
+"row": 3.0,
+"source_lines": [2478.0]
+}])
+id = &"base:talent_tree/armadillo_gaurd"
+display_name = "Guard"
+legacy_class_name = "Armadillo_Gaurd"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2457"

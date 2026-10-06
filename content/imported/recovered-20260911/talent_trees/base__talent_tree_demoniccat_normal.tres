@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_4y6l1"]
+
+[resource]
+script = ExtResource("1_4y6l1")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/demoniccat_normal/node/0_0",
+"move_ids": ["base:move/focus/tier1", "base:move/focus/tier2", "base:move/focus/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [710.0, 711.0, 712.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/demoniccat_normal/node/1_0",
+"move_ids": ["base:move/spike/tier1", "base:move/spike/tier2", "base:move/spike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [713.0, 714.0, 715.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/demoniccat_normal/node/2_0",
+"move_ids": ["base:move/claw/tier2", "base:move/claw/tier3", "base:move/claw/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [716.0, 717.0, 718.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/demoniccat_normal/node/0_1",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [719.0, 720.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/demoniccat_normal/node/1_1",
+"move_ids": ["base:move/energize/tier1", "base:move/energize/tier2", "base:move/energize/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [721.0, 722.0, 723.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/demoniccat_normal/node/2_1",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [724.0, 725.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/demoniccat_normal/node/1_2",
+"move_ids": ["base:move/deadly_inspiration/tier1"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [726.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/demoniccat_normal/node/2_2",
+"move_ids": ["base:move/mirror_skin/tier3", "base:move/mirror_skin/tier4", "base:move/mirror_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/demoniccat_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [727.0, 728.0, 729.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/demoniccat_normal/node/1_3",
+"move_ids": ["base:move/deadly_inspiration/tier2"],
+"prerequisite_node_ids": ["base:talent_tree/demoniccat_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [730.0]
+}])
+id = &"base:talent_tree/demoniccat_normal"
+display_name = "Reflect"
+legacy_class_name = "DemonicCat_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:707"

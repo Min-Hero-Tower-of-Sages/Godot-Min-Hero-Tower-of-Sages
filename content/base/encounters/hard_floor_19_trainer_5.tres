@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/holyfox_1", "level": 60, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/intense_flame/tier5", &"base:move/efficiency/tier3", &"base:move/righteous_zeal/tier3", &"base:move/vicious/tier5", &"base:move/holy_strike/tier1"])
+}, {
+"definition_id": &"base:minion/holyfox_1", "level": 60, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/intense_flame/tier5", &"base:move/efficiency/tier3", &"base:move/righteous_zeal/tier3", &"base:move/vicious/tier5", &"base:move/holy_strike/tier1"])
+}, {
+"definition_id": &"base:minion/holyfox_1", "level": 60, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/purge/tier1", &"base:move/vicious/tier5", &"base:move/holy_strike/tier4", &"base:move/cleanse_darkness/tier5", &"base:move/blow_by/tier4"])
+}, {
+"definition_id": &"base:minion/holyfox_1", "level": 60, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/intense_flame/tier5", &"base:move/efficiency/tier3", &"base:move/righteous_zeal/tier3", &"base:move/vicious/tier5", &"base:move/holy_strike/tier1"])
+}, {
+"definition_id": &"base:minion/holyfox_1", "level": 60, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/mending_inspiration/tier3", &"base:move/crusade/tier3", &"base:move/agility/tier1", &"base:move/hope/tier5", &"base:move/mirror_skin/tier3", &"base:move/efficiency/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/expert"
+rewards = {"first_clear": {"floor_money_basis": 2000, "eggery_keys": 1, "random_gems": {"count": 1, "tier": 6}}}
+source_trainer_id = &"base:trainer/hard/19/room/5"
+source_floor_index = 49
+source_level_offset = 0
+source_trainer_type = &"TrainerType.EXPERT_TRAINER"
+id = &"base:encounter/floor50_trainer_5_expert"
+display_name = "Floor 50 — source trainer 5"
+description = "Source start dialogue: \nSource defeat dialogue: "
+legacy_class_name = "TrainerSystem.CreateFloor16_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2565"
+battle_modifier_configuration = {"extra_minions": {"enemy": {"count": 11, "templates": [{"definition_id": "base:minion/holyfox_1", "level": 60, "move_ids": ["base:move/tackle/tier1", "base:move/sear/tier1", "base:move/intense_flame/tier5", "base:move/efficiency/tier3", "base:move/righteous_zeal/tier3", "base:move/vicious/tier5", "base:move/holy_strike/tier1"], "source_derive_stats": true}]}, "player": {"count": 1, "templates": [{"definition_id": "base:minion/batdemon_1", "level": 60, "move_ids": ["base:move/sear/tier2", "base:move/demonic_force/tier5", "base:move/blood_ritual/tier5", "base:move/reckless_dash/tier1", "base:move/ferocity/tier5", "base:move/vicious/tier3", "base:move/fire_bash/tier1", "base:move/rock_blast/tier1"], "source_derive_stats": true}]}}}

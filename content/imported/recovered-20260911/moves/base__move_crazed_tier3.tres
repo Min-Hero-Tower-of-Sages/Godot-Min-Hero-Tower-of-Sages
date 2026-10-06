@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://5tu1gr8g35ao"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ffwj2"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_2ci73"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="3_2gx6r"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="4_fx3h3"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="5_i41iy"]
+
+[sub_resource type="Resource" id="Resource_j0eph"]
+script = ExtResource("1_ffwj2")
+scaling = 1
+roll_scope = 1
+amount = 1
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_2ci73")
+id = &"base:move/crazed/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3034"
+
+[sub_resource type="Resource" id="Resource_0xs74"]
+script = ExtResource("1_ffwj2")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 10
+legacy_order = 1
+executor = ExtResource("3_2gx6r")
+id = &"base:move/crazed/tier3/effect/01_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3034"
+
+[sub_resource type="Resource" id="Resource_8mujd"]
+script = ExtResource("1_ffwj2")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 3
+stat_type_id = &"base:stat/attack"
+legacy_order = 2
+executor = ExtResource("4_fx3h3")
+id = &"base:move/crazed/tier3/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3034"
+
+[sub_resource type="Resource" id="Resource_uxvq8"]
+script = ExtResource("1_ffwj2")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 3
+stat_type_id = &"base:stat/speed"
+legacy_order = 3
+executor = ExtResource("4_fx3h3")
+id = &"base:move/crazed/tier3/effect/03_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3034"
+
+[sub_resource type="Resource" id="Resource_4vbdq"]
+script = ExtResource("1_ffwj2")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = -3
+stat_type_id = &"base:stat/health"
+legacy_order = 4
+executor = ExtResource("4_fx3h3")
+id = &"base:move/crazed/tier3/effect/04_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3034"
+
+[resource]
+script = ExtResource("5_i41iy")
+family_id = &"base:move_family/crazed"
+tier = 3
+type_id = &"base:type/titan"
+legacy_class_id = 177
+legacy_visual_id = 177
+legacy_dot_visual_id = 177
+buff_icon_name = &"moveIcon_crazed"
+energy_cost = 5
+cooldown_turns = 1
+target_side = 2
+enemy_target_count = 0
+ally_target_count = 1
+only_self = true
+effects = Array[ExtResource("1_ffwj2")]([SubResource("Resource_j0eph"), SubResource("Resource_0xs74"), SubResource("Resource_8mujd"), SubResource("Resource_uxvq8"), SubResource("Resource_4vbdq")])
+presentation_id = &"base:presentation/move/move_icon_crazed"
+id = &"base:move/crazed/tier3"
+display_name = "Crazed  lv.3"
+legacy_numeric_id = 822
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

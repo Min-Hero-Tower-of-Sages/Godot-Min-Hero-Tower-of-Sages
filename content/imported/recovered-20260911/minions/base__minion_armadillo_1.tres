@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_40437"]
+
+[resource]
+script = ExtResource("1_40437")
+type_ids = Array[StringName]([&"base:type/robot"])
+base_health = 65
+base_energy = 45
+base_attack = 30
+base_healing = 7
+base_speed = 15
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/spike/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/ore_drill/tier1", &"base:move/taunt/tier2", &"base:move/crush/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/armadillo_robot", &"base:talent_tree/armadillo_gaurd", &"base:talent_tree/armadillo_normal"])
+evolution_id = &"base:minion/armadillo_2"
+evolution_level = 34
+presentation_id = &"base:presentation/minion/normalarmadillo1"
+id = &"base:minion/armadillo_1"
+display_name = "Chidilla"
+legacy_numeric_id = 52
+legacy_class_name = "Armadillo_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1059"

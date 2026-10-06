@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bqml8r5eb2uqg"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_v7dm5"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_v05bi"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="3_3wdlf"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_kho1b"]
+
+[sub_resource type="Resource" id="Resource_wbtf7"]
+script = ExtResource("1_v7dm5")
+scaling = 1
+roll_scope = 1
+amount = 45
+random_bonus = 15
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_v05bi")
+id = &"base:move/blinding_jolt/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:712"
+
+[sub_resource type="Resource" id="Resource_6qnee"]
+script = ExtResource("1_v7dm5")
+kind = 15
+roll_scope = 1
+chance_percent = 5
+legacy_order = 1
+executor = ExtResource("3_3wdlf")
+id = &"base:move/blinding_jolt/tier2/effect/01_stun_enemy_targets"
+display_name = "Stun"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:712"
+
+[resource]
+script = ExtResource("4_kho1b")
+family_id = &"base:move_family/blinding_jolt"
+tier = 2
+type_id = &"base:type/energy"
+legacy_class_id = 73
+legacy_visual_id = 73
+legacy_dot_visual_id = 73
+buff_icon_name = &"moveIcon_blindingJolt"
+energy_cost = 9
+accuracy_percent = 80
+effects = Array[ExtResource("1_v7dm5")]([SubResource("Resource_wbtf7"), SubResource("Resource_6qnee")])
+presentation_id = &"base:presentation/move/move_icon_blinding_jolt"
+id = &"base:move/blinding_jolt/tier2"
+display_name = "Blinding Jolt  lv.2"
+legacy_numeric_id = 836
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bukrd8et3dt4x"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_oonpw"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_tg8fm"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_6thja"]
+
+[sub_resource type="Resource" id="Resource_3rr24"]
+script = ExtResource("1_oonpw")
+kind = 11
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 4
+amount = 70
+duration = 2
+executor = ExtResource("2_tg8fm")
+id = &"base:move/serenity/tier3/effect/00_periodic_heal_ally_targets"
+display_name = "Periodic Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1684"
+
+[resource]
+script = ExtResource("3_6thja")
+family_id = &"base:move_family/serenity"
+tier = 3
+type_id = &"base:type/plant"
+legacy_class_id = 108
+legacy_visual_id = 108
+legacy_dot_visual_id = 108
+buff_icon_name = &"moveIcon_serenity"
+cooldown_turns = 50
+exhaust_turns = 1
+target_side = 1
+target_mode = 1
+target_count = 5
+enemy_target_count = 0
+ally_target_count = 5
+effects = Array[ExtResource("1_oonpw")]([SubResource("Resource_3rr24")])
+presentation_id = &"base:presentation/move/move_icon_serenity"
+visuals_have_buffer = false
+id = &"base:move/serenity/tier3"
+display_name = "Serenity  lv.3"
+legacy_numeric_id = 477
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

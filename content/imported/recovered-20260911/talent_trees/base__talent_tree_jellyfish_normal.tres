@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_2rkdp"]
+
+[resource]
+script = ExtResource("1_2rkdp")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_normal/node/0_0",
+"move_ids": ["base:move/wild_lance/tier1", "base:move/wild_lance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3036.0, 3037.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_normal/node/1_0",
+"move_ids": ["base:move/grind/tier1", "base:move/grind/tier2", "base:move/grind/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3038.0, 3039.0, 3040.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_normal/node/2_0",
+"move_ids": ["base:move/skillful/tier1", "base:move/skillful/tier2", "base:move/skillful/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3041.0, 3042.0, 3043.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_normal/node/0_1",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3044.0, 3045.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_normal/node/1_1",
+"move_ids": ["base:move/grind/tier4", "base:move/grind/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [3046.0, 3047.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_normal/node/2_1",
+"move_ids": ["base:move/energize/tier1", "base:move/energize/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3048.0, 3049.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_normal/node/0_2",
+"move_ids": ["base:move/mirror_skin/tier3", "base:move/mirror_skin/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_normal/node/0_1"],
+"row": 2.0,
+"source_lines": [3050.0, 3051.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_normal/node/1_2",
+"move_ids": ["base:move/reflect_damage/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3052.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_normal/node/0_3",
+"move_ids": ["base:move/mirror_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_normal/node/0_2"],
+"row": 3.0,
+"source_lines": [3053.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_normal/node/1_3",
+"move_ids": ["base:move/reflect_damage/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [3054.0]
+}])
+id = &"base:talent_tree/jellyfish_normal"
+display_name = "Reflect"
+legacy_class_name = "JellyFish_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3033"

@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dpeu2dv358a57"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_lrbyl"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_ny58u"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="3_ke1h1"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_3fcyq"]
+
+[sub_resource type="Resource" id="Resource_26hfv"]
+script = ExtResource("1_lrbyl")
+scaling = 1
+roll_scope = 1
+amount = 1
+random_bonus = 4
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_ny58u")
+id = &"ice_floor:move/imicro/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:130"
+
+[sub_resource type="Resource" id="Resource_5x51m"]
+script = ExtResource("1_lrbyl")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 1
+legacy_order = 1
+executor = ExtResource("3_ke1h1")
+id = &"ice_floor:move/imicro/tier1/effect/01_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:130"
+
+[resource]
+script = ExtResource("4_3fcyq")
+family_id = &"ice_floor:move_family/imicro"
+type_id = &"ice_floor:type/thaw"
+legacy_class_id = 186
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_iMicro"
+energy_cost = 5
+target_mode = 2
+target_count = 2
+enemy_target_count = 2
+random_targets = true
+effects = Array[ExtResource("1_lrbyl")]([SubResource("Resource_26hfv"), SubResource("Resource_5x51m")])
+presentation_id = &"ice_floor:presentation/move/move_icon_i_micro"
+visuals_have_buffer = false
+id = &"ice_floor:move/imicro/tier1"
+display_name = "Microwave"
+legacy_numeric_id = 918
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"
+source_mod = &"ice_floor"

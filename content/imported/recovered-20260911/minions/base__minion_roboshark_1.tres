@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_l37ac"]
+
+[resource]
+script = ExtResource("1_l37ac")
+type_ids = Array[StringName]([&"base:type/water", &"base:type/robot"])
+base_health = 80
+base_energy = 55
+base_attack = 70
+base_healing = 50
+base_speed = 45
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/poison_tooth/tier2"])
+specialization_move_ids = Array[StringName]([&"base:move/fresh_stream/tier1", &"base:move/solder/tier1", &"base:move/twin_missile/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/roboshark_water", &"base:talent_tree/roboshark_gaurd", &"base:talent_tree/roboshark_robot"])
+presentation_id = &"base:presentation/minion/robotshark"
+id = &"base:minion/roboshark_1"
+display_name = "Megalatron"
+legacy_numeric_id = 97
+legacy_class_name = "RoboShark_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1375"

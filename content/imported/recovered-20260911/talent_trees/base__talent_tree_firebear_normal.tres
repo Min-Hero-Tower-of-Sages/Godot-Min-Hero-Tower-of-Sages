@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_e78a6"]
+
+[resource]
+script = ExtResource("1_e78a6")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/firebear_normal/node/0_0",
+"move_ids": ["base:move/claw/tier2", "base:move/claw/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [297.0, 298.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firebear_normal/node/1_0",
+"move_ids": ["base:move/roar/tier1", "base:move/roar/tier2", "base:move/roar/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [299.0, 300.0, 301.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firebear_normal/node/2_0",
+"move_ids": ["base:move/perseverance/tier1", "base:move/perseverance/tier2", "base:move/perseverance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [302.0, 303.0, 304.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firebear_normal/node/0_1",
+"move_ids": ["base:move/claw/tier4", "base:move/claw/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firebear_normal/node/0_0"],
+"row": 1.0,
+"source_lines": [305.0, 306.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firebear_normal/node/1_1",
+"move_ids": ["base:move/energizing_inspiration/tier1", "base:move/energizing_inspiration/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [307.0, 308.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firebear_normal/node/2_1",
+"move_ids": ["base:move/perseverance/tier4", "base:move/perseverance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firebear_normal/node/2_0"],
+"row": 1.0,
+"source_lines": [309.0, 310.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firebear_normal/node/0_2",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [311.0, 312.0, 313.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firebear_normal/node/1_2",
+"move_ids": ["base:move/crush/tier2", "base:move/crush/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [314.0, 315.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firebear_normal/node/2_2",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier2", "base:move/reckless_dash/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [316.0, 317.0, 318.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firebear_normal/node/1_3",
+"move_ids": ["base:move/crush/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firebear_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [319.0]
+}])
+id = &"base:talent_tree/firebear_normal"
+display_name = "Normal"
+legacy_class_name = "FireBear_normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:294"

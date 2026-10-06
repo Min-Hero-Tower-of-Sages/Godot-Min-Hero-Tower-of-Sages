@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://lal2wxfxbm6u"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_p6nj4"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_wdjit"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_7y4kd"]
+
+[sub_resource type="Resource" id="Resource_61wk3"]
+script = ExtResource("1_p6nj4")
+kind = 12
+amount = -6
+duration = 3
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_wdjit")
+id = &"base:move/coldfront/tier1/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1998"
+
+[sub_resource type="Resource" id="Resource_wgqla"]
+script = ExtResource("1_p6nj4")
+kind = 12
+target_scope = 2
+phase = 2
+amount = -6
+duration = 3
+legacy_order = 1
+executor = ExtResource("2_wdjit")
+id = &"base:move/coldfront/tier1/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1998"
+
+[resource]
+script = ExtResource("3_7y4kd")
+family_id = &"base:move_family/coldfront"
+type_id = &"base:type/ice"
+legacy_class_id = 115
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_coldfront"
+energy_cost = 15
+target_mode = 1
+target_count = 5
+enemy_target_count = 5
+effects = Array[ExtResource("1_p6nj4")]([SubResource("Resource_61wk3"), SubResource("Resource_wgqla")])
+presentation_id = &"base:presentation/move/move_icon_coldfront"
+visuals_have_buffer = false
+id = &"base:move/coldfront/tier1"
+display_name = "Coldfront"
+legacy_numeric_id = 510
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

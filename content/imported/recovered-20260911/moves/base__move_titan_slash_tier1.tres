@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://de70rlhxb11rb"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_lhhvu"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_fbppp"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_m8ib5"]
+
+[sub_resource type="Resource" id="Resource_rt0gj"]
+script = ExtResource("1_lhhvu")
+scaling = 1
+roll_scope = 1
+amount = 40
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_fbppp")
+id = &"base:move/titan_slash/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2833"
+
+[resource]
+script = ExtResource("3_m8ib5")
+family_id = &"base:move_family/titan_slash"
+type_id = &"base:type/titan"
+legacy_class_id = 168
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_titanSlash"
+energy_cost = 8
+effects = Array[ExtResource("1_lhhvu")]([SubResource("Resource_rt0gj")])
+presentation_id = &"base:presentation/move/move_icon_titan_slash"
+id = &"base:move/titan_slash/tier1"
+display_name = "Titan Slash"
+legacy_numeric_id = 775
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

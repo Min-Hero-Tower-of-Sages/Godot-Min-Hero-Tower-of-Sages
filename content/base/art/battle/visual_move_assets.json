@@ -1,0 +1,1153 @@
+{
+  "format_version": 1,
+  "families": {
+    "183": {
+      "visual_id_name": "VISUALS_MOVE_CHARGING",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "187": {
+      "visual_id_name": "VISUALS_MOVE_DAMAGE_REFLECTED",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "184": {
+      "visual_id_name": "VISUALS_MOVE_EXHAUST",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "185": {
+      "visual_id_name": "VISUALS_MOVE_FROZEN",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "182": {
+      "visual_id_name": "VISUALS_MOVE_MISS",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "186": {
+      "visual_id_name": "VISUALS_MOVE_STUNNED",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "181": {
+      "visual_id_name": "VISUALS_STAT_CHANGE",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "188": {
+      "visual_id_name": "VISUALS_SameAsClass",
+      "static_dispatch_status": "dynamic_minion_move_class_alias",
+      "texture_paths": []
+    },
+    "162": {
+      "visual_id_name": "VM_alloy_coat",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/634_Utilities_SpriteHandler_mv_alloyBall.png"
+      ]
+    },
+    "96": {
+      "visual_id_name": "VM_ancient_force",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1332_Utilities_SpriteHandler_mv_ancientForce.png"
+      ]
+    },
+    "85": {
+      "visual_id_name": "VM_ashen_reminder",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1506_Utilities_SpriteHandler_mv_ashenReminder.png"
+      ]
+    },
+    "67": {
+      "visual_id_name": "VM_batch_bolt",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/195_Utilities_SpriteHandler_mv_blueLightningBolt.png"
+      ]
+    },
+    "14": {
+      "visual_id_name": "VM_blaze",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1482_Utilities_SpriteHandler_mv_skullAndFlames.png"
+      ]
+    },
+    "73": {
+      "visual_id_name": "VM_blinding_jolt",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/105_Utilities_SpriteHandler_mv_boltEye.png"
+      ]
+    },
+    "125": {
+      "visual_id_name": "VM_blood_press",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/456_Utilities_SpriteHandler_mv_bloodPress.png"
+      ]
+    },
+    "128": {
+      "visual_id_name": "VM_blood_ritual",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/588_Utilities_SpriteHandler_mv_bloodSymbol.png"
+      ]
+    },
+    "143": {
+      "visual_id_name": "VM_blow_by",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1542_Utilities_SpriteHandler_mv_swoopingArrows.png"
+      ]
+    },
+    "114": {
+      "visual_id_name": "VM_bone_chill",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/552_Utilities_SpriteHandler_mv_frozenSkull.png"
+      ]
+    },
+    "92": {
+      "visual_id_name": "VM_bone_crunch",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/448_Utilities_SpriteHandler_mv_brokenBone.png"
+      ]
+    },
+    "152": {
+      "visual_id_name": "VM_brilliance",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/743_Utilities_SpriteHandler_mv_radianceArcs.png"
+      ]
+    },
+    "1": {
+      "visual_id_name": "VM_burn",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/720_Utilities_SpriteHandler_mv_arcFlame.png"
+      ]
+    },
+    "66": {
+      "visual_id_name": "VM_charge_blast",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1533_Utilities_SpriteHandler_mv_lightningBlast.png"
+      ]
+    },
+    "69": {
+      "visual_id_name": "VM_charge_pass",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/807_Utilities_SpriteHandler_mv_blueHorizontalBolt.png"
+      ]
+    },
+    "64": {
+      "visual_id_name": "VM_chosen_earth",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/485_Utilities_SpriteHandler_mv_diamondRocks.png"
+      ]
+    },
+    "15": {
+      "visual_id_name": "VM_claw",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/511_Utilities_SpriteHandler_mv_clawNoFur.png"
+      ]
+    },
+    "156": {
+      "visual_id_name": "VM_cleanse_darkness",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1103_Utilities_SpriteHandler_mv_holyHand.png"
+      ]
+    },
+    "155": {
+      "visual_id_name": "VM_cleansing_heal",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/856_Utilities_SpriteHandler_mv_healSignGreen.png"
+      ]
+    },
+    "158": {
+      "visual_id_name": "VM_cog_fallout",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1118_Utilities_SpriteHandler_mv_cog.png"
+      ]
+    },
+    "115": {
+      "visual_id_name": "VM_coldfront",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1283_Utilities_SpriteHandler_mv_snowflake.png"
+      ]
+    },
+    "177": {
+      "visual_id_name": "VM_crazed",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/580_Utilities_SpriteHandler_mv_crazed.png"
+      ]
+    },
+    "127": {
+      "visual_id_name": "VM_crazed_blast",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1270_Utilities_SpriteHandler_mv_crazyBlast.png"
+      ]
+    },
+    "149": {
+      "visual_id_name": "VM_crusade",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1671_Utilities_SpriteHandler_mv_sword.png"
+      ]
+    },
+    "19": {
+      "visual_id_name": "VM_crush",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/984_Utilities_SpriteHandler_mv_purpleFist.png"
+      ]
+    },
+    "142": {
+      "visual_id_name": "VM_cutting_wind",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1638_Utilities_SpriteHandler_mv_cuttingWind.png"
+      ]
+    },
+    "167": {
+      "visual_id_name": "VM_death_call",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/557_Utilities_SpriteHandler_mv_bullet.png"
+      ]
+    },
+    "86": {
+      "visual_id_name": "VM_deathly_energy",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/925_Utilities_SpriteHandler_mv_reaper.png"
+      ]
+    },
+    "121": {
+      "visual_id_name": "VM_demonic_bargain",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/636_Utilities_SpriteHandler_mv_handsShake.png"
+      ]
+    },
+    "126": {
+      "visual_id_name": "VM_demonic_force",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/871_Utilities_SpriteHandler_mv_goldMask.png"
+      ]
+    },
+    "123": {
+      "visual_id_name": "VM_demonic_sacrifice",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/944_Utilities_SpriteHandler_mv_demonicSacrifice.png"
+      ]
+    },
+    "124": {
+      "visual_id_name": "VM_demonic_strike",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1636_Utilities_SpriteHandler_mv_demonFist.png"
+      ]
+    },
+    "83": {
+      "visual_id_name": "VM_demoralize",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1516_Utilities_SpriteHandler_mv_eyes.png"
+      ]
+    },
+    "93": {
+      "visual_id_name": "VM_demoralizing_charge",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1494_Utilities_SpriteHandler_mv_tricerotopsHead.png"
+      ]
+    },
+    "180": {
+      "visual_id_name": "VM_desperation",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1391_Utilities_SpriteHandler_mv_motionArcsYellow.png"
+      ]
+    },
+    "55": {
+      "visual_id_name": "VM_destabilize",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "171": {
+      "visual_id_name": "VM_dominate",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1578_Utilities_SpriteHandler_mv_starburst.png"
+      ]
+    },
+    "160": {
+      "visual_id_name": "VM_download",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/943_Utilities_SpriteHandler_mv_binary.png"
+      ]
+    },
+    "97": {
+      "visual_id_name": "VM_drain",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/982_Utilities_SpriteHandler_mv_drain.png"
+      ]
+    },
+    "81": {
+      "visual_id_name": "VM_dread_transfer",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1234_Utilities_SpriteHandler_mv_greenSkull.png"
+      ]
+    },
+    "113": {
+      "visual_id_name": "VM_dry_ice",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/733_Utilities_SpriteHandler_mv_dryIce.png"
+      ]
+    },
+    "56": {
+      "visual_id_name": "VM_earth_barrier",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1622_Utilities_SpriteHandler_mv_stoneBarrier.png"
+      ]
+    },
+    "63": {
+      "visual_id_name": "VM_earth_shield",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1133_Utilities_SpriteHandler_mv_earthShield.png"
+      ]
+    },
+    "61": {
+      "visual_id_name": "VM_earthquake",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "65": {
+      "visual_id_name": "VM_earthy_fortitude",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/941_Utilities_SpriteHandler_mv_earthlyFortitude.png"
+      ]
+    },
+    "51": {
+      "visual_id_name": "VM_energize",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1347_Utilities_SpriteHandler_mv_nuclearWater.png"
+      ]
+    },
+    "120": {
+      "visual_id_name": "VM_evil_eye",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1429_Utilities_SpriteHandler_mv_demonEye.png"
+      ]
+    },
+    "2": {
+      "visual_id_name": "VM_fire_bash",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1479_Utilities_SpriteHandler_mv_fireFist.png"
+      ]
+    },
+    "5": {
+      "visual_id_name": "VM_fire_blast",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1208_Utilities_SpriteHandler_mv_fireBlast.png"
+      ]
+    },
+    "3": {
+      "visual_id_name": "VM_fire_bolt",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/323_Utilities_SpriteHandler_mv_fireBolt.png"
+      ]
+    },
+    "6": {
+      "visual_id_name": "VM_fire_ram",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/551_Utilities_SpriteHandler_mv_fireRam.png"
+      ]
+    },
+    "12": {
+      "visual_id_name": "VM_fire_shot",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/241_Utilities_SpriteHandler_mv_fireball.png"
+      ]
+    },
+    "4": {
+      "visual_id_name": "VM_flare_up",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/950_Utilities_SpriteHandler_mv_flameWithFace.png"
+      ]
+    },
+    "76": {
+      "visual_id_name": "VM_flesh_sacrifice",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1308_Utilities_SpriteHandler_mv_rottenHeart.png"
+      ]
+    },
+    "140": {
+      "visual_id_name": "VM_flurry",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/571_Utilities_SpriteHandler_mv_windBlade.png"
+      ]
+    },
+    "88": {
+      "visual_id_name": "VM_focused_charge",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1288_Utilities_SpriteHandler_mv_focusedCharge.png"
+      ]
+    },
+    "122": {
+      "visual_id_name": "VM_forceful_heal",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/759_Utilities_SpriteHandler_mv_greenHealHand.png"
+      ]
+    },
+    "131": {
+      "visual_id_name": "VM_fresh_stream",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/253_Utilities_SpriteHandler_mv_stream.png"
+      ]
+    },
+    "98": {
+      "visual_id_name": "VM_grassblade",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/221_Utilities_SpriteHandler_mv_leafSword.png"
+      ]
+    },
+    "23": {
+      "visual_id_name": "VM_grind",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/392_Utilities_SpriteHandler_mv_pawGrind.png"
+      ]
+    },
+    "27": {
+      "visual_id_name": "VM_group_reflect",
+      "static_dispatch_status": "method_fallthrough_to_TestVisualMove",
+      "texture_paths": []
+    },
+    "110": {
+      "visual_id_name": "VM_hailstone",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/433_Utilities_SpriteHandler_mv_hailstone.png"
+      ]
+    },
+    "77": {
+      "visual_id_name": "VM_haunt",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/775_Utilities_SpriteHandler_mv_skeletonGhost.png"
+      ]
+    },
+    "151": {
+      "visual_id_name": "VM_holy_burn",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1419_Utilities_SpriteHandler_mv_holyBurn.png"
+      ]
+    },
+    "148": {
+      "visual_id_name": "VM_holy_light",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/971_Utilities_SpriteHandler_mv_yellowLightRays.png"
+      ]
+    },
+    "145": {
+      "visual_id_name": "VM_holy_strike",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1123_Utilities_SpriteHandler_mv_holyFist.png"
+      ]
+    },
+    "147": {
+      "visual_id_name": "VM_hope",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/757_Utilities_SpriteHandler_mv_pinkHands.png"
+      ]
+    },
+    "141": {
+      "visual_id_name": "VM_hurricane",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/502_Utilities_SpriteHandler_mv_whirlwind.png"
+      ]
+    },
+    "118": {
+      "visual_id_name": "VM_ice_barrier",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1557_Utilities_SpriteHandler_mv_iceBarrier.png"
+      ]
+    },
+    "117": {
+      "visual_id_name": "VM_ice_enclosure",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1557_Utilities_SpriteHandler_mv_iceBarrier.png"
+      ]
+    },
+    "116": {
+      "visual_id_name": "VM_ice_shield",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/193_Utilities_SpriteHandler_mv_iceShield.png"
+      ]
+    },
+    "111": {
+      "visual_id_name": "VM_icy_blast",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1168_Utilities_SpriteHandler_mv_iceBlast.png"
+      ]
+    },
+    "74": {
+      "visual_id_name": "VM_infest",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/458_Utilities_SpriteHandler_mv_spider.png"
+      ]
+    },
+    "8": {
+      "visual_id_name": "VM_inflame",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/218_Utilities_SpriteHandler_mv_inflame.png"
+      ]
+    },
+    "90": {
+      "visual_id_name": "VM_inner_force",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1140_Utilities_SpriteHandler_mv_dinoHeadPowerUp.png"
+      ]
+    },
+    "13": {
+      "visual_id_name": "VM_intense_flame",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1015_Utilities_SpriteHandler_mv_blueMysticalFlame.png"
+      ]
+    },
+    "52": {
+      "visual_id_name": "VM_invigorate",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/215_Utilities_SpriteHandler_mv_leafYinYang.png"
+      ]
+    },
+    "9": {
+      "visual_id_name": "VM_kindle",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1161_Utilities_SpriteHandler_mv_kindle.png"
+      ]
+    },
+    "169": {
+      "visual_id_name": "VM_kings_rush",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/483_Utilities_SpriteHandler_mv_crown.png"
+      ]
+    },
+    "80": {
+      "visual_id_name": "VM_lich_burn",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1451_Utilities_SpriteHandler_mv_hornedskull.png"
+      ]
+    },
+    "84": {
+      "visual_id_name": "VM_lifeless_touch",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1478_Utilities_SpriteHandler_mv_skeletonHand.png"
+      ]
+    },
+    "119": {
+      "visual_id_name": "VM_madness",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/675_Utilities_SpriteHandler_mv_eyeball.png"
+      ]
+    },
+    "153": {
+      "visual_id_name": "VM_martyr",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/619_Utilities_SpriteHandler_mv_blueHands.png"
+      ]
+    },
+    "166": {
+      "visual_id_name": "VM_metal_mold",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1310_Utilities_SpriteHandler_mv_metalMold.png"
+      ]
+    },
+    "163": {
+      "visual_id_name": "VM_metal_shield",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/817_Utilities_SpriteHandler_mv_shield.png"
+      ]
+    },
+    "94": {
+      "visual_id_name": "VM_meteor_strike",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1337_Utilities_SpriteHandler_mv_meteor.png"
+      ]
+    },
+    "79": {
+      "visual_id_name": "VM_mortify",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1164_Utilities_SpriteHandler_mv_screamingGhost.png"
+      ]
+    },
+    "60": {
+      "visual_id_name": "VM_mud_blast",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/811_Utilities_SpriteHandler_mv_mudBlast.png"
+      ]
+    },
+    "109": {
+      "visual_id_name": "VM_mystic_ice",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/434_Utilities_SpriteHandler_mv_purpleCrystal.png"
+      ]
+    },
+    "100": {
+      "visual_id_name": "VM_nourish",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1583_Utilities_SpriteHandler_mv_handsAndPlant.png"
+      ]
+    },
+    "161": {
+      "visual_id_name": "VM_ore_drill",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1175_Utilities_SpriteHandler_mv_drill.png"
+      ]
+    },
+    "136": {
+      "visual_id_name": "VM_overflow",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/258_Utilities_SpriteHandler_mv_fallingWater.png"
+      ]
+    },
+    "72": {
+      "visual_id_name": "VM_overload",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1182_Utilities_SpriteHandler_mv_staticBurst.png"
+      ]
+    },
+    "138": {
+      "visual_id_name": "VM_peck",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/498_Utilities_SpriteHandler_mv_beak.png"
+      ]
+    },
+    "146": {
+      "visual_id_name": "VM_penance",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/913_Utilities_SpriteHandler_mv_lightBeam.png"
+      ]
+    },
+    "78": {
+      "visual_id_name": "VM_phantom_strike",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/765_Utilities_SpriteHandler_mv_ghostFist.png"
+      ]
+    },
+    "89": {
+      "visual_id_name": "VM_piercing_charge",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/608_Utilities_SpriteHandler_mv_brokenShield.png"
+      ]
+    },
+    "164": {
+      "visual_id_name": "VM_platinum",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/703_Utilities_SpriteHandler_mv_metalPlate.png"
+      ]
+    },
+    "189": {
+      "visual_id_name": "VM_poisonToothPoisonBubbles",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1624_Utilities_SpriteHandler_mv_poisonDrop.png"
+      ]
+    },
+    "102": {
+      "visual_id_name": "VM_poison_ivy",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/217_Utilities_SpriteHandler_mv_leafWithSkull.png"
+      ]
+    },
+    "17": {
+      "visual_id_name": "VM_poison_tooth",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/178_Utilities_SpriteHandler_mv_fang.png"
+      ]
+    },
+    "22": {
+      "visual_id_name": "VM_pound",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/395_Utilities_SpriteHandler_mv_poundFist.png"
+      ]
+    },
+    "87": {
+      "visual_id_name": "VM_prehistoric_bite",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/307_Utilities_SpriteHandler_mv_teethSet.png"
+      ]
+    },
+    "179": {
+      "visual_id_name": "VM_purge",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1243_Utilities_SpriteHandler_mv_blueSwoopingArrows.png"
+      ]
+    },
+    "133": {
+      "visual_id_name": "VM_rainfall",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/946_Utilities_SpriteHandler_mv_raindrop.png"
+      ]
+    },
+    "75": {
+      "visual_id_name": "VM_rancid_bite",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/728_Utilities_SpriteHandler_mv_grossMouth.png"
+      ]
+    },
+    "103": {
+      "visual_id_name": "VM_razor_vine",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1379_Utilities_SpriteHandler_mv_razorWhip.png"
+      ]
+    },
+    "18": {
+      "visual_id_name": "VM_reckless_dash",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/924_Utilities_SpriteHandler_mv_sideDash.png"
+      ]
+    },
+    "91": {
+      "visual_id_name": "VM_reckless_grasp",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1648_Utilities_SpriteHandler_mv_dinoClaw.png"
+      ]
+    },
+    "26": {
+      "visual_id_name": "VM_reflect_damage",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1558_Utilities_SpriteHandler_mv_mirror.png"
+      ]
+    },
+    "134": {
+      "visual_id_name": "VM_refreshing_wave",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1484_Utilities_SpriteHandler_mv_wave.png"
+      ]
+    },
+    "101": {
+      "visual_id_name": "VM_regrowth",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1309_Utilities_SpriteHandler_mv_sprout.png"
+      ]
+    },
+    "106": {
+      "visual_id_name": "VM_resurgence",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1626_Utilities_SpriteHandler_mv_vines.png"
+      ]
+    },
+    "150": {
+      "visual_id_name": "VM_righteous_fate",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/861_Utilities_SpriteHandler_mv_blueLightBurst.png"
+      ]
+    },
+    "154": {
+      "visual_id_name": "VM_righteous_zeal",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1526_Utilities_SpriteHandler_mv_goldSword.png"
+      ]
+    },
+    "20": {
+      "visual_id_name": "VM_roar",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/106_Utilities_SpriteHandler_mv_soundWaves.png"
+      ]
+    },
+    "58": {
+      "visual_id_name": "VM_rock_blast",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/613_Utilities_SpriteHandler_mv_rockBlast.png"
+      ]
+    },
+    "54": {
+      "visual_id_name": "VM_rock_slide",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1231_Utilities_SpriteHandler_mv_rock1.png"
+      ]
+    },
+    "53": {
+      "visual_id_name": "VM_rock_throw",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1231_Utilities_SpriteHandler_mv_rock1.png"
+      ]
+    },
+    "0": {
+      "visual_id_name": "VM_sear",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/241_Utilities_SpriteHandler_mv_fireball.png"
+      ]
+    },
+    "108": {
+      "visual_id_name": "VM_serenity",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/915_Utilities_SpriteHandler_mv_lightCircle.png"
+      ]
+    },
+    "82": {
+      "visual_id_name": "VM_skin_trap",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1619_Utilities_SpriteHandler_mv_bearTrap.png"
+      ]
+    },
+    "112": {
+      "visual_id_name": "VM_sleet",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1283_Utilities_SpriteHandler_mv_snowflake.png"
+      ]
+    },
+    "25": {
+      "visual_id_name": "VM_slow",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/806_Utilities_SpriteHandler_mv_spiderweb.png"
+      ]
+    },
+    "129": {
+      "visual_id_name": "VM_soak",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/258_Utilities_SpriteHandler_mv_fallingWater.png"
+      ]
+    },
+    "165": {
+      "visual_id_name": "VM_solder",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/292_Utilities_SpriteHandler_mv_sparks.png"
+      ]
+    },
+    "68": {
+      "visual_id_name": "VM_spark",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/429_Utilities_SpriteHandler_mv_staticBolt.png"
+      ]
+    },
+    "21": {
+      "visual_id_name": "VM_spike",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/780_Utilities_SpriteHandler_mv_spikeCluster.png"
+      ]
+    },
+    "99": {
+      "visual_id_name": "VM_spore_blast",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1085_Utilities_SpriteHandler_mv_spores.png"
+      ]
+    },
+    "70": {
+      "visual_id_name": "VM_static_pummel",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/235_Utilities_SpriteHandler_mv_lightningFist.png"
+      ]
+    },
+    "157": {
+      "visual_id_name": "VM_steel_spike",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/172_Utilities_SpriteHandler_mv_steelSpike.png"
+      ]
+    },
+    "59": {
+      "visual_id_name": "VM_stone_fall",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1232_Utilities_SpriteHandler_mv_rock2.png"
+      ]
+    },
+    "62": {
+      "visual_id_name": "VM_stonequake",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": []
+    },
+    "178": {
+      "visual_id_name": "VM_stun",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1628_Utilities_SpriteHandler_mv_smallYellowImpact.png"
+      ]
+    },
+    "107": {
+      "visual_id_name": "VM_swift_mend",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/215_Utilities_SpriteHandler_mv_leafYinYang.png"
+      ]
+    },
+    "16": {
+      "visual_id_name": "VM_tackle",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1391_Utilities_SpriteHandler_mv_motionArcsYellow.png"
+      ]
+    },
+    "57": {
+      "visual_id_name": "VM_taunt",
+      "static_dispatch_status": "method_fallthrough_to_TestVisualMove",
+      "texture_paths": []
+    },
+    "71": {
+      "visual_id_name": "VM_thunderstorm",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1459_Utilities_SpriteHandler_mv_lightningBolt.png"
+      ]
+    },
+    "105": {
+      "visual_id_name": "VM_timber",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1003_Utilities_SpriteHandler_mv_plank.png"
+      ]
+    },
+    "28": {
+      "visual_id_name": "VM_tire",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/916_Utilities_SpriteHandler_mv_tire.png"
+      ]
+    },
+    "170": {
+      "visual_id_name": "VM_titan_blast",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/133_Utilities_SpriteHandler_mv_titanBlast.png"
+      ]
+    },
+    "175": {
+      "visual_id_name": "VM_titan_heal",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1021_Utilities_SpriteHandler_mv_titanHeal.png"
+      ]
+    },
+    "174": {
+      "visual_id_name": "VM_titan_light",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/971_Utilities_SpriteHandler_mv_yellowLightRays.png"
+      ]
+    },
+    "176": {
+      "visual_id_name": "VM_titan_recovery",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/856_Utilities_SpriteHandler_mv_healSignGreen.png"
+      ]
+    },
+    "173": {
+      "visual_id_name": "VM_titan_restore",
+      "static_dispatch_status": "method_fallthrough_to_TestVisualMove",
+      "texture_paths": []
+    },
+    "172": {
+      "visual_id_name": "VM_titan_slam",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/966_Utilities_SpriteHandler_mv_titanFist.png"
+      ]
+    },
+    "168": {
+      "visual_id_name": "VM_titan_slash",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/188_Utilities_SpriteHandler_mv_titanSword.png"
+      ]
+    },
+    "11": {
+      "visual_id_name": "VM_touch_fire",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1210_Utilities_SpriteHandler_mv_touchFire.png"
+      ]
+    },
+    "104": {
+      "visual_id_name": "VM_tree_slam",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/755_Utilities_SpriteHandler_mv_roughFist.png"
+      ]
+    },
+    "159": {
+      "visual_id_name": "VM_twin_missile",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1326_Utilities_SpriteHandler_mv_missle.png"
+      ]
+    },
+    "144": {
+      "visual_id_name": "VM_volley",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1397_Utilities_SpriteHandler_mv_downwardAirImpact.png"
+      ]
+    },
+    "10": {
+      "visual_id_name": "VM_warmth",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1280_Utilities_SpriteHandler_mv_orangeHealthSymbol.png"
+      ]
+    },
+    "135": {
+      "visual_id_name": "VM_water_infusion",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/641_Utilities_SpriteHandler_mv_raindropHealSymbol.png"
+      ]
+    },
+    "130": {
+      "visual_id_name": "VM_water_slam",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1217_Utilities_SpriteHandler_mv_waterFist.png"
+      ]
+    },
+    "137": {
+      "visual_id_name": "VM_watergize",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1347_Utilities_SpriteHandler_mv_nuclearWater.png"
+      ]
+    },
+    "132": {
+      "visual_id_name": "VM_waterjet",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1065_Utilities_SpriteHandler_mv_waterJet.png"
+      ]
+    },
+    "24": {
+      "visual_id_name": "VM_wild_lance",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1475_Utilities_SpriteHandler_mv_lance.png"
+      ]
+    },
+    "95": {
+      "visual_id_name": "VM_wild_tackle",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/610_Utilities_SpriteHandler_mv_motionArcsBlue.png"
+      ]
+    },
+    "7": {
+      "visual_id_name": "VM_wildfire",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/1028_Utilities_SpriteHandler_mv_fireStrip.png"
+      ]
+    },
+    "139": {
+      "visual_id_name": "VM_wind_lance",
+      "static_dispatch_status": "explicit_static_dispatch_case",
+      "texture_paths": [
+        "res://content/base/art/battle/visual_moves/300_Utilities_SpriteHandler_mv_windLance.png"
+      ]
+    }
+  }
+}

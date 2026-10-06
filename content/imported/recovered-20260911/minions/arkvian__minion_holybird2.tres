@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_6b3c7"]
+
+[resource]
+script = ExtResource("1_6b3c7")
+type_ids = Array[StringName]([&"base:type/holy", &"base:type/flying"])
+base_health = 20
+base_energy = 32
+base_attack = 65
+base_healing = 65
+base_speed = 85
+experience_gain_rate = 3
+gem_slots = 4
+initial_move_ids = Array[StringName]([&"base:move/peck/tier1", &"base:move/claw/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/holy_light/tier1", &"base:move/flurry/tier1", &"base:move/nourish/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/holymantis_holy", &"base:talent_tree/holybird_flying", &"base:talent_tree/icetree_healing"])
+presentation_id = &"arkvian:presentation/minion/holybird2"
+id = &"arkvian:minion/holybird2"
+display_name = "Arkclaw"
+legacy_class_name = "holyBirb_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:510"
+source_mod = &"arkvian"

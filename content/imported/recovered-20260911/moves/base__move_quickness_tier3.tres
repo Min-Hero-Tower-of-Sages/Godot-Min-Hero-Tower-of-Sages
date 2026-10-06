@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cpn1n5sy81y7o"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_eeqq8"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_wuo53"]
+
+[sub_resource type="Resource" id="Resource_5qlpf"]
+script = ExtResource("1_eeqq8")
+kind = 18
+target_scope = 0
+phase = 4
+amount = 20
+stat_type_id = &"base:stat/speed"
+id = &"base:move/quickness/tier3/effect/00_stat_percent_actor"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3401"
+
+[resource]
+script = ExtResource("2_wuo53")
+family_id = &"base:move_family/quickness"
+tier = 3
+legacy_class_id = 41
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_quickness"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_eeqq8")]([SubResource("Resource_5qlpf")])
+presentation_id = &"base:presentation/move/move_icon_quickness"
+id = &"base:move/quickness/tier3"
+display_name = "Quickness  lv.3"
+legacy_numeric_id = 272
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

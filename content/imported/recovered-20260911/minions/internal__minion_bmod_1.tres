@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_jbwna"]
+
+[resource]
+script = ExtResource("1_jbwna")
+type_ids = Array[StringName]([&"base:type/normal"])
+base_health = 10
+base_energy = 10
+base_attack = 10
+base_healing = 10
+base_speed = 10
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/tackle/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/infes/tier1", &"base:move/earthquake/tier1", &"base:move/grind/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/worm_undead", &"base:talent_tree/worm_earth", &"base:talent_tree/worm_normal"])
+evolution_id = &"internal:minion/bmod_2"
+presentation_id = &"internal:presentation/minion/generalroom_healstone"
+id = &"internal:minion/bmod_1"
+display_name = "BMod 1"
+legacy_class_name = "BattleMod_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2624"
+source_mod = &"internal"

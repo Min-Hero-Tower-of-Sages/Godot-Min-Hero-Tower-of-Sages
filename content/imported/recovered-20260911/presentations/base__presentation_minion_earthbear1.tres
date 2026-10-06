@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_f0psv"]
+
+[resource]
+script = ExtResource("1_f0psv")
+legacy_sprite_name = &"earthBear1"
+icon_offset = Vector2i(19, 9)
+id = &"base:presentation/minion/earthbear1"
+display_name = "Cubble presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2298"

@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([
+{
+"definition_id": &"base:minion/grasssnake_3",
+"level": 25,
+"move_ids": Array[StringName]([&"base:move/poison_tooth/tier1", &"base:move/vicious/tier3", &"base:move/quickness/tier3", &"base:move/mirror_skin/tier2", &"base:move/concentration/tier3", &"base:move/drain/tier3", &"base:move/grassblade/tier5", &"base:move/razor_vine/tier1"]),
+"slot_index": 0,
+"source_level_offset": -3
+},
+{
+"definition_id": &"base:minion/grasssnake_3",
+"level": 25,
+"move_ids": Array[StringName]([&"base:move/poison_tooth/tier1", &"base:move/vicious/tier3", &"base:move/quickness/tier3", &"base:move/mirror_skin/tier2", &"base:move/concentration/tier3", &"base:move/drain/tier3", &"base:move/grassblade/tier5", &"base:move/razor_vine/tier1"]),
+"slot_index": 1,
+"source_level_offset": -3
+},
+{
+"definition_id": &"base:minion/grasssnake_3",
+"level": 25,
+"move_ids": Array[StringName]([&"base:move/poison_tooth/tier1", &"base:move/vicious/tier3", &"base:move/quickness/tier3", &"base:move/mirror_skin/tier2", &"base:move/concentration/tier3", &"base:move/drain/tier3", &"base:move/grassblade/tier5", &"base:move/razor_vine/tier1"]),
+"slot_index": 2,
+"source_level_offset": -3
+},
+{
+"definition_id": &"base:minion/grassgorilla_2",
+"level": 25,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier1", &"base:move/rock_throw/tier2", &"base:move/vicious/tier5", &"base:move/bone_crunch/tier1", &"base:move/drain/tier2", &"base:move/tree_slam/tier5", &"base:move/timber/tier3"]),
+"slot_index": 3,
+"source_level_offset": -3
+},
+{
+"definition_id": &"base:minion/grassgorilla_2",
+"level": 25,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier1", &"base:move/rock_throw/tier2", &"base:move/vicious/tier5", &"base:move/bone_crunch/tier1", &"base:move/drain/tier2", &"base:move/tree_slam/tier5", &"base:move/timber/tier3"]),
+"slot_index": 4,
+"source_level_offset": -3
+}
+])
+ai_profile_id = &"base:ai/trainer/normal"
+source_trainer_id = &"base:trainer/hard/1/room/1"
+source_floor_index = 31
+source_level_offset = -3
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/demo_hard_floor1_room1"
+display_name = "Hard mode floor 1, room 1 roster"
+legacy_class_name = "CreateFloor1_hardMode"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\TopDown\\Trainers\\TrainerSystem.as:1935"

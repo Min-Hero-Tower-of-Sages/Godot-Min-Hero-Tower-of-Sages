@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MenuDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/content/menu_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"tests:menu/extension_probe"
+display_name = "Menu Extension Probe"
+description = "Test-only fixture for the catalog menu scene contract."
+source_mod = &"tests"
+scene_path = "res://tests/fixtures/menu_extension_probe.tscn"
+order = 10
+availability_condition = &"always"

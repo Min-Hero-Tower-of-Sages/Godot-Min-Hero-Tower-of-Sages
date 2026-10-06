@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/demonic_cat_2", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/blood_press/tier5", &"base:move/blood_ritual/tier2", &"base:move/ferocity/tier5", &"base:move/crazed_blast/tier3", &"base:move/focus/tier3"])
+}, {
+"definition_id": &"base:minion/demonic_cat_2", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/reflect_damage/tier1", &"base:move/spike/tier3", &"base:move/mirror_skin/tier5", &"base:move/quickness/tier1", &"base:move/deadly_inspiration/tier2", &"base:move/blood_ritual/tier2", &"base:move/ferocity/tier3"])
+}, {
+"definition_id": &"base:minion/waterbird_3", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/peck/tier2", &"base:move/soak/tier5", &"base:move/waterjet/tier5", &"base:move/ferocity/tier5", &"base:move/focus/tier3"])
+}, {
+"definition_id": &"base:minion/waterbird_3", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/peck/tier2", &"base:move/soak/tier1", &"base:move/flurry/tier5", &"base:move/focus/tier5", &"base:move/agility/tier5", &"base:move/ferocity/tier3", &"base:move/waterjet/tier1"])
+}, {
+"definition_id": &"base:minion/waterbird_3", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/peck/tier2", &"base:move/soak/tier1", &"base:move/flurry/tier5", &"base:move/focus/tier5", &"base:move/agility/tier5", &"base:move/ferocity/tier3", &"base:move/waterjet/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/21/room/3"
+source_floor_index = 51
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor52_trainer_3"
+display_name = "Floor 52 — source trainer 3"
+description = "Source start dialogue: The forest is place of inspiration to me.\nSource defeat dialogue: It is clear you know the forest, but did you know plant types are weak to fire, ice, flying, demonic, and dino moves."
+legacy_class_name = "TrainerSystem.CreateFloor17_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2627"
+battle_modifier_configuration = {"shield": {"enemy": 3, "player": 3}}

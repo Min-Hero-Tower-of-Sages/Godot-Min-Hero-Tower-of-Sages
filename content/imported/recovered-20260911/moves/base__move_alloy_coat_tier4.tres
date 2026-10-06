@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://inn8tuj8cr72"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ukcyh"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_yuj38"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_oju2x"]
+
+[sub_resource type="Resource" id="Resource_52d5p"]
+script = ExtResource("1_ukcyh")
+scaling = 1
+roll_scope = 1
+amount = 50
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_yuj38")
+id = &"base:move/alloy_coat/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2738"
+
+[resource]
+script = ExtResource("3_oju2x")
+family_id = &"base:move_family/alloy_coat"
+tier = 4
+type_id = &"base:type/robot"
+legacy_class_id = 162
+legacy_visual_id = 162
+legacy_dot_visual_id = 162
+buff_icon_name = &"moveIcon_alloyCoat"
+energy_cost = 35
+cooldown_turns = 2
+target_mode = 2
+target_count = 3
+enemy_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_ukcyh")]([SubResource("Resource_52d5p")])
+presentation_id = &"base:presentation/move/move_icon_alloy_coat"
+visuals_have_buffer = false
+id = &"base:move/alloy_coat/tier4"
+display_name = "Alloy Coat  lv.4"
+legacy_numeric_id = 748
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

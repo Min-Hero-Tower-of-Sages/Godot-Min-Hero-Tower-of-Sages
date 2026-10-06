@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_owa2t"]
+
+[resource]
+script = ExtResource("1_owa2t")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/titan2_titan/node/0_0",
+"move_ids": ["base:move/crush/tier3", "base:move/crush/tier4", "base:move/crush/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4304.0, 4305.0, 4306.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_titan/node/1_0",
+"move_ids": ["base:move/titan_slash/tier3", "base:move/titan_slash/tier4", "base:move/titan_slash/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4307.0, 4308.0, 4309.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_titan/node/2_0",
+"move_ids": ["base:move/roar/tier2", "base:move/roar/tier3", "base:move/roar/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4310.0, 4311.0, 4312.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/titan2_titan/node/0_1",
+"move_ids": ["base:move/titan_blast/tier1", "base:move/titan_blast/tier2", "base:move/titan_blast/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4313.0, 4314.0, 4315.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_titan/node/1_1",
+"move_ids": ["base:move/ancient_force/tier3", "base:move/ancient_force/tier4", "base:move/ancient_force/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4316.0, 4317.0, 4318.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_titan/node/2_1",
+"move_ids": ["base:move/flurry/tier3", "base:move/flurry/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4319.0, 4320.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_titan/node/1_2",
+"move_ids": ["base:move/dominate/tier3", "base:move/dominate/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4321.0, 4322.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_titan/node/2_2",
+"move_ids": ["base:move/flurry/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/titan2_titan/node/2_1"],
+"row": 2.0,
+"source_lines": [4323.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_titan/node/1_3",
+"move_ids": ["base:move/dominate/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/titan2_titan/node/1_2"],
+"row": 3.0,
+"source_lines": [4324.0]
+}])
+id = &"base:talent_tree/titan2_titan"
+display_name = "Titan"
+legacy_class_name = "Titan2_Titan"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4301"

@@ -1,0 +1,64 @@
+{
+  "floor_index": 9,
+  "source_floor_index": 9,
+  "source_room_order": [
+    "base:room/level_2_gym"
+  ],
+  "entry_room_id": "base:room/level_2_gym",
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_2_gym",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "base:room/level_2_gym",
+      "display_name": "Floor 10 — Fire Sage gym",
+      "legacy_class_name": "LevelContainer_Level_2_gym",
+      "source_symbol": "Utilities.LevelContainer_Level_2_gym",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_gym.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_gym.json",
+      "room_index": 0,
+      "encounter_ids": [
+        "base:encounter/floor10_fire_sage"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 0,
+        "trainer_type": "TrainerType.TRAINER_GYM_2",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:593",
+        "source_method": "CreateFloor_Boss2",
+        "source_floor_argument": 9
+      },
+      "interactions": [
+        {
+          "id": "floor-10-fire-sage",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 0,
+          "trainer_type": "TrainerType.TRAINER_GYM_2",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor10_fire_sage",
+          "first_visit_text": "I can feel the heat of your passion!  I am the Sage of Fire, I will truely test your passion!",
+          "lose_text": "You're passion is stronger than I expected.  Well done!!\n...\nThe Sage Seal of Passion grants you the ability to combine gems."
+        }
+      ]
+    }
+  ],
+  "eggery_source": {
+    "source_location": "development/extracted/full-20260908/script/scripts/PresistentData/StaticData.as",
+    "source_method": "SetupTheEggeryInfo",
+    "source_floor_index": 9,
+    "room_order_note": "Level_2_gym has no Eggery room. Pool index 9 is conditional BMod 1 only and is not available in the base catalog.",
+    "source_candidates": [
+      {
+        "source_minion": "BMod 1",
+        "weight": 60,
+        "conditional_mod_only": true,
+        "available_in_base_catalog": false
+      }
+    ]
+  }
+}

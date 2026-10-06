@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_86dd3"]
+
+[resource]
+script = ExtResource("1_86dd3")
+legacy_sprite_name = &"normalArmadillo"
+icon_offset = Vector2i(-1, -14)
+id = &"base:presentation/minion/normalarmadillo"
+display_name = "Armordilla presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1079"

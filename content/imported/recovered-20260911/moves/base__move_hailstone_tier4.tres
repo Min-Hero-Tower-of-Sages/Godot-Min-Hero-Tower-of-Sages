@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bnkhu4cwy882d"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_tnkij"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_1gjxo"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_q787d"]
+
+[sub_resource type="Resource" id="Resource_qhtpk"]
+script = ExtResource("1_tnkij")
+scaling = 1
+roll_scope = 1
+amount = 55
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_1gjxo")
+id = &"base:move/hailstone/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1890"
+
+[resource]
+script = ExtResource("3_q787d")
+family_id = &"base:move_family/hailstone"
+tier = 4
+type_id = &"base:type/ice"
+legacy_class_id = 110
+legacy_visual_id = 110
+legacy_dot_visual_id = 110
+buff_icon_name = &"moveIcon_hailstone"
+energy_cost = 20
+effects = Array[ExtResource("1_tnkij")]([SubResource("Resource_qhtpk")])
+presentation_id = &"base:presentation/move/move_icon_hailstone"
+id = &"base:move/hailstone/tier4"
+display_name = "Hailstone  lv.4"
+legacy_numeric_id = 488
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

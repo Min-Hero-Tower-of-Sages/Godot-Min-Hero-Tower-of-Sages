@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/jellyfish_2", "level": 41, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/waterjet/tier5", &"base:move/soak/tier5", &"base:move/vicious/tier5", &"base:move/spark/tier2"])
+}, {
+"definition_id": &"base:minion/jellyfish_2", "level": 41, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/reflect_damage/tier3", &"base:move/grind/tier3", &"base:move/mirror_skin/tier5", &"base:move/skillful/tier1", &"base:move/spark/tier3", &"base:move/crazed_blast/tier1", &"base:move/quickness/tier1"])
+}, {
+"definition_id": &"base:minion/griffen_2", "level": 41, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/cutting_wind/tier5", &"base:move/vicious/tier5", &"base:move/icy_blast/tier2", &"base:move/volley/tier1", &"base:move/quickness/tier5", &"base:move/spark/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 127, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/13/2"
+source_floor_index = 13
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor14_trainer_2"
+display_name = "Floor 14 — source trainer 2"
+description = "Source start dialogue: Tonight I dine on Turtle soup.\nSource defeat dialogue: Don't you dare say \\\"Cowabunga dude\\\"!"
+legacy_class_name = "TrainerSystem.CreateFloor12"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:793"
+battle_modifier_configuration = {"extra_minions": {"enemy": {"count": 5, "templates": [{"definition_id": "base:minion/groundmole_1", "level": 29, "move_ids": ["base:move/claw/tier1", "base:move/rock_throw/tier1", "base:move/perseverance/tier5", "base:move/taunt/tier5", "base:move/rock_skin/tier5", "base:move/crush/tier2", "base:move/concentration/tier2", "base:move/fortitude/tier2"], "source_derive_stats": true}]}, "player": {"count": 3, "templates": [{"definition_id": "base:minion/demonic_cat_2", "level": 39, "move_ids": ["base:move/claw/tier1", "base:move/blood_press/tier5", "base:move/blood_ritual/tier2", "base:move/ferocity/tier5", "base:move/crazed_blast/tier3", "base:move/focus/tier3"], "source_derive_stats": true}]}}}

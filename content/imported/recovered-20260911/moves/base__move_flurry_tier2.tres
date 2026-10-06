@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://buumx5jr4ljnx"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_q28pm"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_rk37h"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_j325l"]
+
+[sub_resource type="Resource" id="Resource_m6uly"]
+script = ExtResource("1_q28pm")
+scaling = 1
+roll_scope = 1
+amount = 45
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_rk37h")
+id = &"base:move/flurry/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2339"
+
+[resource]
+script = ExtResource("3_j325l")
+family_id = &"base:move_family/flurry"
+tier = 2
+type_id = &"base:type/flying"
+legacy_class_id = 140
+legacy_visual_id = 140
+legacy_dot_visual_id = 140
+buff_icon_name = &"moveIcon_flurry"
+energy_cost = 18
+cooldown_turns = 2
+target_mode = 2
+target_count = 2
+enemy_target_count = 2
+random_targets = true
+effects = Array[ExtResource("1_q28pm")]([SubResource("Resource_m6uly")])
+presentation_id = &"base:presentation/move/move_icon_flurry"
+visuals_have_buffer = false
+id = &"base:move/flurry/tier2"
+display_name = "Flurry  lv.2"
+legacy_numeric_id = 636
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_l7cna"]
+
+[resource]
+script = ExtResource("1_l7cna")
+type_ids = Array[StringName]([&"base:type/energy"])
+base_health = 25
+base_energy = 35
+base_attack = 40
+base_healing = 25
+base_speed = 50
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/charge_blast/tier1", &"base:move/charge_pass/tier1", &"base:move/agile_inspiration/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/cheetah_electric", &"base:talent_tree/cheetah_support", &"base:talent_tree/cheetah_inspire"])
+evolution_id = &"base:minion/cheetah_2"
+evolution_level = 25
+presentation_id = &"base:presentation/minion/energycheetah1"
+id = &"base:minion/cheetah_1"
+display_name = "Elecat"
+legacy_numeric_id = 47
+legacy_class_name = "Cheetah_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1098"

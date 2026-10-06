@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_fdnp3"]
+
+[resource]
+script = ExtResource("1_fdnp3")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/armadillo_robot/node/0_0",
+"move_ids": ["base:move/platinum/tier1", "base:move/platinum/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2437.0, 2438.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_robot/node/1_0",
+"move_ids": ["base:move/mud_blast/tier1", "base:move/mud_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2439.0, 2440.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_robot/node/2_0",
+"move_ids": ["base:move/spike/tier2", "base:move/spike/tier3", "base:move/spike/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2441.0, 2442.0, 2443.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/armadillo_robot/node/0_1",
+"move_ids": ["base:move/solder/tier1", "base:move/solder/tier2", "base:move/solder/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2444.0, 2445.0, 2446.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_robot/node/1_1",
+"move_ids": ["base:move/mud_blast/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_robot/node/1_0"],
+"row": 1.0,
+"source_lines": [2447.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_robot/node/2_1",
+"move_ids": ["base:move/twin_missile/tier1", "base:move/twin_missile/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2448.0, 2449.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_robot/node/1_2",
+"move_ids": ["base:move/ore_drill/tier3", "base:move/ore_drill/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2450.0, 2451.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_robot/node/2_2",
+"move_ids": ["base:move/twin_missile/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_robot/node/2_1"],
+"row": 2.0,
+"source_lines": [2452.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_robot/node/1_3",
+"move_ids": ["base:move/ore_drill/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_robot/node/1_2"],
+"row": 3.0,
+"source_lines": [2453.0]
+}])
+id = &"base:talent_tree/armadillo_robot"
+display_name = "Robot"
+legacy_class_name = "Armadillo_Robot"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2434"

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/tiger_2", "level": 48, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/roar/tier1", &"base:move/reckless_dash/tier4", &"base:move/wild_lance/tier3", &"base:move/quickness/tier5", &"base:move/fortitude/tier5", &"base:move/destabilize/tier1"])
+}, {
+"definition_id": &"base:minion/pinkbell_1", "level": 48, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/burn/tier1", &"base:move/hope/tier5", &"base:move/ice_shield/tier2", &"base:move/cleansing_heal/tier4", &"base:move/cleric/tier5", &"base:move/brilliance/tier2"])
+}, {
+"definition_id": &"base:minion/undeadeel_1", "level": 48, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier3", &"base:move/water_slam/tier5", &"base:move/ferocity/tier5", &"base:move/icy_blast/tier5", &"base:move/ice_enclosure/tier5", &"base:move/mortify/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 389, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/18/3"
+source_floor_index = 18
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor19_trainer_3"
+display_name = "Floor 19 — source trainer 3"
+description = "Source start dialogue: There is peace in the graves, a deep silience.\nSource defeat dialogue: There is peace in battle as well."
+legacy_class_name = "TrainerSystem.CreateFloor16"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1049"
+battle_modifier_configuration = {"resurrection": {"team": 1, "turns": 11}}

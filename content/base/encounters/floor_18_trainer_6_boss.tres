@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/crow_2", "level": 43, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/demonic_strike/tier5", &"base:move/lich_burn/tier3", &"base:move/hailstone/tier3", &"base:move/burn/tier3", &"base:move/vicious/tier4"])
+}, {
+"definition_id": &"base:minion/crow_2", "level": 43, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/peck/tier5", &"base:move/cutting_wind/tier3", &"base:move/wild_lance/tier1", &"base:move/quickness/tier4", &"base:move/concentration/tier3", &"base:move/blow_by/tier1", &"base:move/efficiency/tier2"])
+}, {
+"definition_id": &"base:minion/crow_2", "level": 43, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/demonic_strike/tier5", &"base:move/lich_burn/tier3", &"base:move/hailstone/tier3", &"base:move/burn/tier3", &"base:move/vicious/tier4"])
+}, {
+"definition_id": &"base:minion/crow_2", "level": 43, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/peck/tier5", &"base:move/cutting_wind/tier3", &"base:move/wild_lance/tier1", &"base:move/quickness/tier4", &"base:move/concentration/tier3", &"base:move/blow_by/tier1", &"base:move/efficiency/tier2"])
+}, {
+"definition_id": &"base:minion/batdemon_1", "level": 43, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/sear/tier2", &"base:move/fire_blast/tier5", &"base:move/rock_blast/tier3", &"base:move/fire_bash/tier5", &"base:move/intense_flame/tier1", &"base:move/blood_ritual/tier2", &"base:move/crazed_blast/tier1", &"base:move/ferocity/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 311, "eggery_keys": 1}}
+source_trainer_id = &"base:trainer/standard/17/6"
+source_floor_index = 17
+source_level_offset = 0
+source_trainer_type = &"TrainerType.BOSS_TRAINER"
+id = &"base:encounter/floor18_trainer_6_boss"
+display_name = "Floor 18 — source trainer 6"
+description = "Source start dialogue: I will show you the strength of a Cerberus.\nSource defeat dialogue: Your strength is in your minions and in you."
+legacy_class_name = "TrainerSystem.CreateFloor15"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1014"
+battle_modifier_configuration = {"resurrection": {"team": 1, "turns": 12}}

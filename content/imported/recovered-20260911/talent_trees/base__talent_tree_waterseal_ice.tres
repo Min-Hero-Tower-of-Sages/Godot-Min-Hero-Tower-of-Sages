@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_llf0j"]
+
+[resource]
+script = ExtResource("1_llf0j")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/waterseal_ice/node/0_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1740.0, 1741.0, 1742.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_ice/node/1_0",
+"move_ids": ["base:move/icy_blast/tier1", "base:move/icy_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1743.0, 1744.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_ice/node/2_0",
+"move_ids": ["base:move/ice_shield/tier1", "base:move/ice_shield/tier2", "base:move/ice_shield/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1745.0, 1746.0, 1747.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterseal_ice/node/0_1",
+"move_ids": ["base:move/perseverance/tier1", "base:move/perseverance/tier2", "base:move/perseverance/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1748.0, 1749.0, 1750.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_ice/node/1_1",
+"move_ids": ["base:move/icy_blast/tier3", "base:move/icy_blast/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_ice/node/1_0"],
+"row": 1.0,
+"source_lines": [1751.0, 1752.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_ice/node/2_1",
+"move_ids": ["base:move/ice_shield/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_ice/node/2_0"],
+"row": 1.0,
+"source_lines": [1753.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterseal_ice/node/0_2",
+"move_ids": ["base:move/perseverance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_ice/node/0_1"],
+"row": 2.0,
+"source_lines": [1754.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_ice/node/1_2",
+"move_ids": ["base:move/hailstone/tier3", "base:move/hailstone/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1755.0, 1756.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_ice/node/2_2",
+"move_ids": ["base:move/mystic_ice/tier1", "base:move/mystic_ice/tier2", "base:move/mystic_ice/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1757.0, 1758.0, 1759.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_ice/node/1_3",
+"move_ids": ["base:move/hailstone/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_ice/node/1_2"],
+"row": 3.0,
+"source_lines": [1760.0]
+}])
+id = &"base:talent_tree/waterseal_ice"
+display_name = "Ice"
+legacy_class_name = "WaterSeal_Ice"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1737"

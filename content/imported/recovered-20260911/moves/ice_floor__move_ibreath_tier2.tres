@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://d85xxcwi2rqq"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_idoao"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_f8n72"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_vs2da"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_3hbb6"]
+
+[sub_resource type="Resource" id="Resource_07kt4"]
+script = ExtResource("1_idoao")
+scaling = 1
+roll_scope = 1
+amount = 15
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_f8n72")
+id = &"ice_floor:move/ibreath/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:177"
+
+[sub_resource type="Resource" id="Resource_ys8r2"]
+script = ExtResource("1_idoao")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("3_vs2da")
+id = &"ice_floor:move/ibreath/tier2/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:177"
+
+[resource]
+script = ExtResource("4_3hbb6")
+family_id = &"ice_floor:move_family/ibreath"
+tier = 2
+type_id = &"ice_floor:type/thaw"
+legacy_class_id = 185
+legacy_visual_id = 185
+legacy_dot_visual_id = 185
+buff_icon_name = &"moveIcon_iBreath"
+energy_cost = 3
+cooldown_turns = 1
+target_mode = 2
+random_targets = true
+effects = Array[ExtResource("1_idoao")]([SubResource("Resource_07kt4"), SubResource("Resource_ys8r2")])
+presentation_id = &"ice_floor:presentation/move/move_icon_i_breath"
+visuals_have_buffer = false
+id = &"ice_floor:move/ibreath/tier2"
+display_name = "Cold Breath  lv.2"
+legacy_numeric_id = 914
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"
+source_mod = &"ice_floor"

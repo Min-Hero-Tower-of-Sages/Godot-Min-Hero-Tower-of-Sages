@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/tikimonkey_2", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/mirror_skin/tier5", &"base:move/lich_burn/tier2", &"base:move/skillful/tier1", &"base:move/roar/tier3", &"base:move/invigorate/tier1", &"base:move/agility/tier3", &"base:move/prehistoric_bite/tier2"])
+}, {
+"definition_id": &"base:minion/tikimonkey_2", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/mirror_skin/tier5", &"base:move/lich_burn/tier2", &"base:move/skillful/tier1", &"base:move/roar/tier3", &"base:move/invigorate/tier1", &"base:move/agility/tier3", &"base:move/prehistoric_bite/tier2"])
+}, {
+"definition_id": &"base:minion/tikimonkey_2", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/mirror_skin/tier5", &"base:move/lich_burn/tier2", &"base:move/skillful/tier1", &"base:move/roar/tier3", &"base:move/invigorate/tier1", &"base:move/agility/tier3", &"base:move/prehistoric_bite/tier2"])
+}, {
+"definition_id": &"base:minion/tikimonkey_2", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/mirror_skin/tier5", &"base:move/lich_burn/tier2", &"base:move/skillful/tier1", &"base:move/roar/tier3", &"base:move/invigorate/tier1", &"base:move/agility/tier3", &"base:move/prehistoric_bite/tier2"])
+}, {
+"definition_id": &"base:minion/tikimonkey_2", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/mirror_skin/tier5", &"base:move/lich_burn/tier2", &"base:move/skillful/tier1", &"base:move/roar/tier3", &"base:move/invigorate/tier1", &"base:move/agility/tier3", &"base:move/prehistoric_bite/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/6/room/2"
+source_floor_index = 36
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor37_trainer_2"
+display_name = "Floor 37 — source trainer 2"
+description = "Source start dialogue: ARE YOU READY FOR THE PAIN!!\nSource defeat dialogue: OUCH! I felt the pain on that one..."
+legacy_class_name = "TrainerSystem.CreateFloor5_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1871"

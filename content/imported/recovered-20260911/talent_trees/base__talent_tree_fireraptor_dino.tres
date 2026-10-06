@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_mye3o"]
+
+[resource]
+script = ExtResource("1_mye3o")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/fireraptor_dino/node/0_0",
+"move_ids": ["base:move/piercing_charge/tier1", "base:move/piercing_charge/tier2", "base:move/piercing_charge/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [491.0, 492.0, 493.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireraptor_dino/node/1_0",
+"move_ids": ["base:move/focused_charge/tier1", "base:move/focused_charge/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [494.0, 495.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/fireraptor_dino/node/2_0",
+"move_ids": ["base:move/prehistoric_bite/tier2", "base:move/prehistoric_bite/tier3", "base:move/prehistoric_bite/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [496.0, 497.0, 498.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/fireraptor_dino/node/0_1",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier2", "base:move/ferocity/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [499.0, 500.0, 501.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireraptor_dino/node/1_1",
+"move_ids": ["base:move/focused_charge/tier3", "base:move/focused_charge/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/fireraptor_dino/node/1_0"],
+"row": 1.0,
+"source_lines": [502.0, 503.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/fireraptor_dino/node/2_1",
+"move_ids": ["base:move/prehistoric_bite/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/fireraptor_dino/node/2_0"],
+"row": 1.0,
+"source_lines": [504.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/fireraptor_dino/node/0_2",
+"move_ids": ["base:move/ferocity/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/fireraptor_dino/node/0_1"],
+"row": 2.0,
+"source_lines": [505.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireraptor_dino/node/1_2",
+"move_ids": ["base:move/reckless_grasp/tier3", "base:move/reckless_grasp/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [506.0, 507.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/fireraptor_dino/node/2_2",
+"move_ids": ["base:move/inner_force/tier1", "base:move/inner_force/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [508.0, 509.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireraptor_dino/node/1_3",
+"move_ids": ["base:move/reckless_grasp/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/fireraptor_dino/node/1_2"],
+"row": 3.0,
+"source_lines": [510.0]
+}])
+id = &"base:talent_tree/fireraptor_dino"
+display_name = "Dino"
+legacy_class_name = "FireRaptor_Dino"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:488"

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_l123v"]
+
+[resource]
+script = ExtResource("1_l123v")
+type_ids = Array[StringName]([&"base:type/normal"])
+base_health = 30
+base_energy = 40
+base_attack = 35
+base_healing = 25
+base_speed = 40
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/soak/tier1", &"base:move/sear/tier1", &"base:move/spark/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/racoon_water", &"base:talent_tree/racoon_fire", &"base:talent_tree/racoon_electric"])
+evolution_id = &"base:minion/racoon_2"
+evolution_level = 20
+presentation_id = &"base:presentation/minion/normalraccoon1"
+id = &"base:minion/racoon_1"
+display_name = "Tatail"
+legacy_numeric_id = 23
+legacy_class_name = "Racoon_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1631"

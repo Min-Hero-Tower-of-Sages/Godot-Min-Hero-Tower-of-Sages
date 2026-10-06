@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://ca6n0ny2km7y7"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_mlrph"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_fq8yi"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_fi8me"]
+
+[sub_resource type="Resource" id="Resource_li3bt"]
+script = ExtResource("1_mlrph")
+scaling = 1
+roll_scope = 1
+amount = 100
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_fq8yi")
+id = &"base:move/soak/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1723"
+
+[resource]
+script = ExtResource("3_fi8me")
+family_id = &"base:move_family/soak"
+tier = 5
+type_id = &"base:type/water"
+legacy_class_id = 129
+legacy_visual_id = 129
+legacy_dot_visual_id = 129
+buff_icon_name = &"moveIcon_soak"
+energy_cost = 45
+effects = Array[ExtResource("1_mlrph")]([SubResource("Resource_li3bt")])
+presentation_id = &"base:presentation/move/move_icon_soak"
+id = &"base:move/soak/tier5"
+display_name = "Drench"
+legacy_numeric_id = 584
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

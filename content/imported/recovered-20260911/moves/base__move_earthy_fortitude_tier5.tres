@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://euu3vj84k3fs"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_rsuol"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_u6xx0"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_ut1yk"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_03hn8"]
+
+[sub_resource type="Resource" id="Resource_cned7"]
+script = ExtResource("1_rsuol")
+kind = 12
+amount = 23
+duration = 2
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_u6xx0")
+id = &"base:move/earthy_fortitude/tier5/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1004"
+
+[sub_resource type="Resource" id="Resource_hhyvt"]
+script = ExtResource("1_rsuol")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 23
+duration = 2
+legacy_order = 1
+executor = ExtResource("2_u6xx0")
+id = &"base:move/earthy_fortitude/tier5/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1004"
+
+[sub_resource type="Resource" id="Resource_ypb74"]
+script = ExtResource("1_rsuol")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = 1
+chance_percent = 50
+stat_type_id = &"base:stat/health"
+legacy_order = 2
+executor = ExtResource("3_ut1yk")
+id = &"base:move/earthy_fortitude/tier5/effect/02_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1004"
+
+[resource]
+script = ExtResource("4_03hn8")
+family_id = &"base:move_family/earthy_fortitude"
+tier = 5
+type_id = &"base:type/earth"
+legacy_class_id = 65
+legacy_visual_id = 65
+legacy_dot_visual_id = 65
+buff_icon_name = &"moveIcon_earthyFortitude"
+energy_cost = 110
+cooldown_turns = 2
+target_side = 1
+target_mode = 1
+target_count = 5
+enemy_target_count = 0
+ally_target_count = 5
+effects = Array[ExtResource("1_rsuol")]([SubResource("Resource_cned7"), SubResource("Resource_hhyvt"), SubResource("Resource_ypb74")])
+presentation_id = &"base:presentation/move/move_icon_earthy_fortitude"
+visuals_have_buffer = false
+id = &"base:move/earthy_fortitude/tier5"
+display_name = "Steel Shield"
+legacy_numeric_id = 209
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

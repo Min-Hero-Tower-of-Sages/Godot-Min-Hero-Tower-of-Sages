@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://u780r6idmslv"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_dxbxh"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_5cohb"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_wst1x"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_765wv"]
+
+[sub_resource type="Resource" id="Resource_b8to4"]
+script = ExtResource("1_dxbxh")
+scaling = 1
+roll_scope = 1
+amount = 55
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_5cohb")
+id = &"base:move/spore_blast/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1575"
+
+[sub_resource type="Resource" id="Resource_nedji"]
+script = ExtResource("1_dxbxh")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 45
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_wst1x")
+id = &"base:move/spore_blast/tier2/effect/01_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1575"
+
+[resource]
+script = ExtResource("4_765wv")
+family_id = &"base:move_family/spore_blast"
+tier = 2
+type_id = &"base:type/plant"
+legacy_class_id = 99
+legacy_visual_id = 99
+legacy_dot_visual_id = 99
+buff_icon_name = &"moveIcon_sporeBlast"
+energy_cost = 15
+cooldown_turns = 5
+exhaust_turns = 1
+effects = Array[ExtResource("1_dxbxh")]([SubResource("Resource_b8to4"), SubResource("Resource_nedji")])
+presentation_id = &"base:presentation/move/move_icon_spore_blast"
+id = &"base:move/spore_blast/tier2"
+display_name = "Spore Blast  lv.2"
+legacy_numeric_id = 431
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

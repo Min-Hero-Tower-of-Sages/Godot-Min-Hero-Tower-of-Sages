@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="RoomDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/room_definition.gd" id="1_room"]
+[ext_resource type="Resource" path="res://content/base/room_payloads/floor_1_entryhallway_payload.tres" id="2_payload"]
+
+[resource]
+script = ExtResource("1_room")
+payload = ExtResource("2_payload")
+source_payload_path = "res://content/base/room_payloads/packaged/rooms-20260908/level_1_1_entryhallway.json"
+source_room_symbol = &"Utilities.LevelContainer_Level_1_1_EntryHallway"
+exits = Array[Dictionary]([{
+"transition_id": 12,
+"target_room_id": &"base:room/level_1_1_courtyard",
+"target_spawn_id": &"entry-12",
+"source_position": Vector2(311.25, 104.0),
+"source_scale": Vector2(3.5186157, 0.71694946)
+}])
+spawn_ids = Array[StringName]([&"start", &"entry-12"])
+spawn_positions = {"start": Vector2(412.0, 736.0), "entry-12": Vector2(409.0, 187.0)}
+interactions = Array[Dictionary]([])
+minimap_metadata = {"floor_index": 0, "room_index": 0, "source_dimensions": Vector2(854.8, 877.1)}
+id = &"base:room/level_1_1_entryhallway"
+display_name = "Floor 1 — entry hallway"
+legacy_class_name = "LevelContainer_Level_1_1_EntryHallway"
+source_location = "development/extracted/full-20260908/binaryData/Utilities.LevelContainer_Level_1_1_EntryHallway.bin"

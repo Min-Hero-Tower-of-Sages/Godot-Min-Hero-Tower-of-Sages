@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_b6vr7"]
+
+[resource]
+script = ExtResource("1_b6vr7")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/grassgorilla_support/node/0_0",
+"move_ids": ["base:move/fortitude/tier1", "base:move/fortitude/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [846.0, 847.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grassgorilla_support/node/1_0",
+"move_ids": ["base:move/rock_slide/tier1", "base:move/rock_slide/tier2", "base:move/rock_slide/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [848.0, 849.0, 850.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grassgorilla_support/node/2_0",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier2", "base:move/reckless_dash/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [851.0, 852.0, 853.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/grassgorilla_support/node/0_1",
+"move_ids": ["base:move/fortitude/tier3", "base:move/fortitude/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/grassgorilla_support/node/0_0"],
+"row": 1.0,
+"source_lines": [854.0, 855.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grassgorilla_support/node/1_1",
+"move_ids": ["base:move/earthquake/tier2"],
+"prerequisite_node_ids": ["base:talent_tree/grassgorilla_support/node/1_0"],
+"row": 1.0,
+"source_lines": [856.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grassgorilla_support/node/2_1",
+"move_ids": ["base:move/taunt/tier1", "base:move/taunt/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [857.0, 858.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/grassgorilla_support/node/0_2",
+"move_ids": ["base:move/fortitude/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/grassgorilla_support/node/0_1"],
+"row": 2.0,
+"source_lines": [859.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grassgorilla_support/node/1_2",
+"move_ids": ["base:move/roar/tier3", "base:move/roar/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [860.0, 861.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grassgorilla_support/node/2_2",
+"move_ids": ["base:move/tire/tier1"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [862.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/grassgorilla_support/node/0_3",
+"move_ids": ["base:move/hulk_inspiration/tier2"],
+"prerequisite_node_ids": ["base:talent_tree/grassgorilla_support/node/0_2"],
+"row": 3.0,
+"source_lines": [863.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grassgorilla_support/node/1_3",
+"move_ids": ["base:move/roar/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/grassgorilla_support/node/1_2"],
+"row": 3.0,
+"source_lines": [864.0]
+}])
+id = &"base:talent_tree/grassgorilla_support"
+display_name = "Support"
+legacy_class_name = "GrassGorilla_Support"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:843"

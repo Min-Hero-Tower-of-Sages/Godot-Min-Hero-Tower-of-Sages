@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_bwojw"]
+
+[resource]
+script = ExtResource("1_bwojw")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/tortoise_health/node/0_0",
+"move_ids": ["base:move/prehistoric_bite/tier1", "base:move/prehistoric_bite/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2308.0, 2309.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tortoise_health/node/1_0",
+"move_ids": ["base:move/rock_blast/tier1", "base:move/rock_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2310.0, 2311.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tortoise_health/node/2_0",
+"move_ids": ["base:move/rock_slide/tier1", "base:move/rock_slide/tier2", "base:move/rock_slide/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2312.0, 2313.0, 2314.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tortoise_health/node/0_1",
+"move_ids": ["base:move/earth_barrier/tier1", "base:move/earth_barrier/tier2", "base:move/earth_barrier/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2315.0, 2316.0, 2317.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tortoise_health/node/1_1",
+"move_ids": ["base:move/rock_blast/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/tortoise_health/node/1_0"],
+"row": 1.0,
+"source_lines": [2318.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tortoise_health/node/2_1",
+"move_ids": ["base:move/fortitude/tier1", "base:move/fortitude/tier2", "base:move/fortitude/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2319.0, 2320.0, 2321.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tortoise_health/node/1_2",
+"move_ids": ["base:move/perseverance/tier2", "base:move/perseverance/tier3", "base:move/perseverance/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2322.0, 2323.0, 2324.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tortoise_health/node/2_2",
+"move_ids": ["base:move/fortitude/tier4", "base:move/fortitude/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tortoise_health/node/2_1"],
+"row": 2.0,
+"source_lines": [2325.0, 2326.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tortoise_health/node/1_3",
+"move_ids": ["base:move/perseverance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tortoise_health/node/1_2"],
+"row": 3.0,
+"source_lines": [2327.0]
+}])
+id = &"base:talent_tree/tortoise_health"
+display_name = "Health"
+legacy_class_name = "Tortoise_Health"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2305"

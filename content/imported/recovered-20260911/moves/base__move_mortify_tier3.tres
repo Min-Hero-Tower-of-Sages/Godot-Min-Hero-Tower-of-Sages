@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://csljs4bfqsbrk"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_78ehh"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_6o870"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_1m2w7"]
+
+[sub_resource type="Resource" id="Resource_v4w16"]
+script = ExtResource("1_78ehh")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 90
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_6o870")
+id = &"base:move/mortify/tier3/effect/00_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1098"
+
+[resource]
+script = ExtResource("3_1m2w7")
+family_id = &"base:move_family/mortify"
+tier = 3
+type_id = &"base:type/undead"
+legacy_class_id = 79
+legacy_visual_id = 79
+legacy_dot_visual_id = 79
+buff_icon_name = &"moveIcon_mortify"
+energy_cost = 55
+effects = Array[ExtResource("1_78ehh")]([SubResource("Resource_v4w16")])
+presentation_id = &"base:presentation/move/move_icon_mortify"
+id = &"base:move/mortify/tier3"
+display_name = "Mortify  lv.3"
+legacy_numeric_id = 852
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

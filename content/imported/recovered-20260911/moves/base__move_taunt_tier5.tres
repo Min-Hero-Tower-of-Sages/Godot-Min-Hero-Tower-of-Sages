@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://csuhqfrbhfjxg"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_rt6dr"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_ikbgd"]
+
+[sub_resource type="Resource" id="Resource_3i57d"]
+script = ExtResource("1_rt6dr")
+kind = 19
+target_scope = 0
+phase = 4
+amount = 100
+id = &"base:move/taunt/tier5/effect/00_redirect_damage_actor"
+display_name = "Redirect Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:833"
+
+[resource]
+script = ExtResource("2_ikbgd")
+family_id = &"base:move_family/taunt"
+tier = 5
+legacy_class_id = 57
+legacy_visual_id = 188
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_taunt"
+is_passive = true
+energy_cost = 0
+enemy_target_count = 0
+effects = Array[ExtResource("1_rt6dr")]([SubResource("Resource_3i57d")])
+presentation_id = &"base:presentation/move/move_icon_taunt"
+id = &"base:move/taunt/tier5"
+display_name = "Torment"
+legacy_numeric_id = 179
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

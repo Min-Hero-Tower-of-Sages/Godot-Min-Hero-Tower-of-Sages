@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c2i70ntb0vq7l"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_bkmqg"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_80snx"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_jf3jh"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_b8227"]
+
+[sub_resource type="Resource" id="Resource_ccvf4"]
+script = ExtResource("1_bkmqg")
+scaling = 1
+roll_scope = 1
+amount = 100
+random_bonus = 50
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_80snx")
+id = &"base:move/inner_force/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1448"
+
+[sub_resource type="Resource" id="Resource_qse4n"]
+script = ExtResource("1_bkmqg")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 2
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("3_jf3jh")
+id = &"base:move/inner_force/tier3/effect/01_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1448"
+
+[sub_resource type="Resource" id="Resource_vi6n6"]
+script = ExtResource("1_bkmqg")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 2
+stat_type_id = &"base:stat/speed"
+legacy_order = 2
+executor = ExtResource("3_jf3jh")
+id = &"base:move/inner_force/tier3/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1448"
+
+[resource]
+script = ExtResource("4_b8227")
+family_id = &"base:move_family/inner_force"
+tier = 3
+type_id = &"base:type/dino"
+legacy_class_id = 90
+legacy_visual_id = 90
+legacy_dot_visual_id = 90
+buff_icon_name = &"moveIcon_innerForce"
+exhaust_turns = 1
+effects = Array[ExtResource("1_bkmqg")]([SubResource("Resource_ccvf4"), SubResource("Resource_qse4n"), SubResource("Resource_vi6n6")])
+presentation_id = &"base:presentation/move/move_icon_inner_force"
+id = &"base:move/inner_force/tier3"
+display_name = "Inner Force  lv.3"
+legacy_numeric_id = 387
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

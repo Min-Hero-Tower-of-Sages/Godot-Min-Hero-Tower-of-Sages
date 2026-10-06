@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_45umj"]
+
+[resource]
+script = ExtResource("1_45umj")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/lichboss_reflect/node/0_0",
+"move_ids": ["base:move/focus/tier1", "base:move/focus/tier2", "base:move/focus/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3895.0, 3896.0, 3897.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/lichboss_reflect/node/1_0",
+"move_ids": ["base:move/bone_chill/tier1", "base:move/bone_chill/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3898.0, 3899.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/lichboss_reflect/node/2_0",
+"move_ids": ["base:move/icy_blast/tier1", "base:move/icy_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3900.0, 3901.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/lichboss_reflect/node/0_1",
+"move_ids": ["base:move/reflect_damage/tier1", "base:move/reflect_damage/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3902.0, 3903.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/lichboss_reflect/node/1_1",
+"move_ids": ["base:move/bone_chill/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/lichboss_reflect/node/1_0"],
+"row": 1.0,
+"source_lines": [3904.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/lichboss_reflect/node/2_1",
+"move_ids": ["base:move/icy_blast/tier3", "base:move/icy_blast/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/lichboss_reflect/node/2_0"],
+"row": 1.0,
+"source_lines": [3905.0, 3906.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/lichboss_reflect/node/0_2",
+"move_ids": ["base:move/reflect_damage/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/lichboss_reflect/node/0_1"],
+"row": 2.0,
+"source_lines": [3907.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/lichboss_reflect/node/1_2",
+"move_ids": ["base:move/mirror_coating/tier2", "base:move/mirror_coating/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3908.0, 3909.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/lichboss_reflect/node/1_3",
+"move_ids": ["base:move/mirror_coating/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/lichboss_reflect/node/1_2"],
+"row": 3.0,
+"source_lines": [3910.0]
+}])
+id = &"base:talent_tree/lichboss_reflect"
+display_name = "Reflect"
+legacy_class_name = "LichBoss_Reflect"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3892"

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/tortoise_1", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/perseverance/tier5", &"base:move/prehistoric_bite/tier2", &"base:move/rock_blast/tier1", &"base:move/fortitude/tier5", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier1"])
+}, {
+"definition_id": &"base:minion/waterbird_3", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/peck/tier2", &"base:move/soak/tier1", &"base:move/flurry/tier5", &"base:move/focus/tier5", &"base:move/agility/tier5", &"base:move/ferocity/tier3", &"base:move/waterjet/tier1"])
+}, {
+"definition_id": &"base:minion/icetree_2", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/nourish/tier5", &"base:move/swift_mend/tier3", &"base:move/priest/tier5", &"base:move/serenity/tier1", &"base:move/ice_shield/tier4", &"base:move/agility/tier1"])
+}, {
+"definition_id": &"base:minion/icetree_2", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/nourish/tier5", &"base:move/swift_mend/tier3", &"base:move/priest/tier5", &"base:move/serenity/tier1", &"base:move/ice_shield/tier4", &"base:move/agility/tier1"])
+}, {
+"definition_id": &"base:minion/tortoise_1", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/perseverance/tier5", &"base:move/prehistoric_bite/tier2", &"base:move/rock_blast/tier1", &"base:move/fortitude/tier5", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/hard"
+rewards = {"first_clear": {"floor_money_basis": 2000, "eggery_keys": 1, "random_gems": {"count": 1, "tier": 6}}}
+source_trainer_id = &"base:trainer/hard/27/room/4"
+source_floor_index = 57
+source_level_offset = -1
+source_trainer_type = &"TrainerType.HARD_TRAINER"
+id = &"base:encounter/floor58_trainer_4_hard"
+display_name = "Floor 58 — source trainer 4"
+description = "Source start dialogue: \nSource defeat dialogue: "
+legacy_class_name = "TrainerSystem.CreateFloor22_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2961"

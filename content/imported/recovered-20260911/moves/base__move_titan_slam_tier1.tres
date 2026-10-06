@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://7lssx7e4khki"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_6wkco"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_dpnll"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_cfevt"]
+
+[sub_resource type="Resource" id="Resource_exei3"]
+script = ExtResource("1_6wkco")
+scaling = 1
+roll_scope = 1
+amount = 40
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_dpnll")
+id = &"base:move/titan_slam/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2912"
+
+[resource]
+script = ExtResource("3_cfevt")
+family_id = &"base:move_family/titan_slam"
+type_id = &"base:type/titan"
+legacy_class_id = 172
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_titanSlam"
+energy_cost = 15
+cooldown_turns = 5
+target_count = 3
+enemy_target_count = 3
+effects = Array[ExtResource("1_6wkco")]([SubResource("Resource_exei3")])
+presentation_id = &"base:presentation/move/move_icon_titan_slam"
+visuals_have_buffer = false
+id = &"base:move/titan_slam/tier1"
+display_name = "Titan Slam"
+legacy_numeric_id = 795
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

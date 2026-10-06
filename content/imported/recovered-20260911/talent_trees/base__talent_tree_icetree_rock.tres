@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_w150c"]
+
+[resource]
+script = ExtResource("1_w150c")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/icetree_rock/node/0_0",
+"move_ids": ["base:move/reflect_damage/tier1", "base:move/reflect_damage/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1344.0, 1345.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icetree_rock/node/1_0",
+"move_ids": ["base:move/rock_throw/tier1", "base:move/rock_throw/tier2", "base:move/rock_throw/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1346.0, 1347.0, 1348.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icetree_rock/node/2_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1349.0, 1350.0, 1351.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icetree_rock/node/0_1",
+"move_ids": ["base:move/destabilize/tier1", "base:move/destabilize/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1352.0, 1353.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icetree_rock/node/1_1",
+"move_ids": ["base:move/rock_throw/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/icetree_rock/node/1_0"],
+"row": 1.0,
+"source_lines": [1354.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icetree_rock/node/2_1",
+"move_ids": ["base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icetree_rock/node/2_0"],
+"row": 1.0,
+"source_lines": [1355.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icetree_rock/node/0_2",
+"move_ids": ["base:move/destabilize/tier3", "base:move/destabilize/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/icetree_rock/node/0_1"],
+"row": 2.0,
+"source_lines": [1356.0, 1357.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icetree_rock/node/1_2",
+"move_ids": ["base:move/stone_fall/tier2", "base:move/stone_fall/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1358.0, 1359.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icetree_rock/node/1_3",
+"move_ids": ["base:move/destabilize/tier5", "base:move/stone_fall/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icetree_rock/node/1_2"],
+"row": 3.0,
+"source_lines": [1360.0, 1361.0]
+}])
+id = &"base:talent_tree/icetree_rock"
+display_name = "Rock"
+legacy_class_name = "IceTree_Rock"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1341"

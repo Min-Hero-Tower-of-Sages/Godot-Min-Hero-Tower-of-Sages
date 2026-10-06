@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_aand0"]
+
+[resource]
+script = ExtResource("1_aand0")
+type_ids = Array[StringName]([&"base:type/undead"])
+base_health = 75
+base_energy = 70
+base_attack = 45
+base_healing = 45
+base_speed = 30
+experience_gain_rate = 2
+gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/haunt/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/infes/tier1", &"base:move/flesh_sacrifice/tier1", &"base:move/crush/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/slenderman_debuff", &"base:talent_tree/slenderman_undead", &"base:talent_tree/slenderman_normal"])
+presentation_id = &"base:presentation/minion/undeadgolem"
+id = &"base:minion/slenderman_1"
+display_name = "Biomez"
+legacy_numeric_id = 77
+legacy_class_name = "SlenderMan_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:941"

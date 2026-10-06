@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://u4odp22i18td"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_fsj7w"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_8iv2l"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_ty24t"]
+
+[sub_resource type="Resource" id="Resource_6iv2f"]
+script = ExtResource("1_fsj7w")
+kind = 12
+amount = 26
+duration = 2
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_8iv2l")
+id = &"base:move/chosen_earth/tier3/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:976"
+
+[sub_resource type="Resource" id="Resource_yo330"]
+script = ExtResource("1_fsj7w")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 26
+duration = 2
+legacy_order = 1
+executor = ExtResource("2_8iv2l")
+id = &"base:move/chosen_earth/tier3/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:976"
+
+[resource]
+script = ExtResource("3_ty24t")
+family_id = &"base:move_family/chosen_earth"
+tier = 3
+type_id = &"base:type/earth"
+legacy_class_id = 64
+legacy_visual_id = 64
+legacy_dot_visual_id = 64
+buff_icon_name = &"moveIcon_chosenEarth"
+energy_cost = 20
+target_side = 1
+target_count = 2
+enemy_target_count = 0
+ally_target_count = 2
+effects = Array[ExtResource("1_fsj7w")]([SubResource("Resource_6iv2f"), SubResource("Resource_yo330")])
+presentation_id = &"base:presentation/move/move_icon_chosen_earth"
+id = &"base:move/chosen_earth/tier3"
+display_name = "Chosen Earth  lv.3"
+legacy_numeric_id = 202
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

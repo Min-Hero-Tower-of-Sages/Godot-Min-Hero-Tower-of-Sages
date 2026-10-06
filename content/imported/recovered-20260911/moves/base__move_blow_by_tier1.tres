@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dqbtxtlqlym63"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_17asc"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="2_regei"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_1ojfw"]
+
+[sub_resource type="Resource" id="Resource_lhnx6"]
+script = ExtResource("1_17asc")
+kind = 17
+roll_scope = 2
+executor = ExtResource("2_regei")
+id = &"base:move/blow_by/tier1/effect/00_clear_buffs_debuffs_enemy_targets"
+display_name = "Clear Buffs Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2378"
+
+[sub_resource type="Resource" id="Resource_iobu2"]
+script = ExtResource("1_17asc")
+kind = 17
+target_scope = 2
+phase = 2
+roll_scope = 2
+legacy_order = 1
+executor = ExtResource("2_regei")
+id = &"base:move/blow_by/tier1/effect/01_clear_buffs_debuffs_ally_targets"
+display_name = "Clear Buffs Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2378"
+
+[resource]
+script = ExtResource("3_1ojfw")
+family_id = &"base:move_family/blow_by"
+type_id = &"base:type/flying"
+legacy_class_id = 143
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_blowBy"
+energy_cost = 10
+effects = Array[ExtResource("1_17asc")]([SubResource("Resource_lhnx6"), SubResource("Resource_iobu2")])
+presentation_id = &"base:presentation/move/move_icon_blow_by"
+id = &"base:move/blow_by/tier1"
+display_name = "Blow By"
+legacy_numeric_id = 650
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

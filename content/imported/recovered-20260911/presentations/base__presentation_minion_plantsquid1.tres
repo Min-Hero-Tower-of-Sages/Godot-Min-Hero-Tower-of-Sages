@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_tyoba"]
+
+[resource]
+script = ExtResource("1_tyoba")
+legacy_sprite_name = &"plantSquid1"
+icon_offset = Vector2i(15, 11)
+id = &"base:presentation/minion/plantsquid1"
+display_name = "Octaleaf presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2462"

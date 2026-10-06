@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://binu0vyhw2hor"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_npidi"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="2_epxga"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_gi0u2"]
+
+[sub_resource type="Resource" id="Resource_xsfg8"]
+script = ExtResource("1_npidi")
+kind = 15
+roll_scope = 1
+executor = ExtResource("2_epxga")
+id = &"base:move/stun/tier1/effect/00_stun_enemy_targets"
+display_name = "Stun"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:727"
+
+[resource]
+script = ExtResource("3_gi0u2")
+family_id = &"base:move_family/stun"
+type_id = &"base:type/energy"
+legacy_class_id = 178
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_stun"
+energy_cost = 35
+effects = Array[ExtResource("1_npidi")]([SubResource("Resource_xsfg8")])
+presentation_id = &"base:presentation/move/move_icon_stun"
+id = &"base:move/stun/tier1"
+display_name = "Stun"
+legacy_numeric_id = 890
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

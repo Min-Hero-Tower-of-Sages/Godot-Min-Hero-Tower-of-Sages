@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_p0f6q"]
+
+[resource]
+script = ExtResource("1_p0f6q")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/icebird_ice/node/0_0",
+"move_ids": ["base:move/dry_ice/tier1", "base:move/dry_ice/tier2", "base:move/dry_ice/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1208.0, 1209.0, 1210.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_ice/node/1_0",
+"move_ids": ["base:move/hailstone/tier1", "base:move/hailstone/tier2", "base:move/hailstone/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1211.0, 1212.0, 1213.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_ice/node/2_0",
+"move_ids": ["base:move/mystic_ice/tier1", "base:move/mystic_ice/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1214.0, 1215.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icebird_ice/node/0_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1216.0, 1217.0, 1218.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_ice/node/1_1",
+"move_ids": ["base:move/energize/tier1", "base:move/energize/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1219.0, 1220.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_ice/node/2_1",
+"move_ids": ["base:move/sleet/tier1", "base:move/sleet/tier2", "base:move/sleet/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1221.0, 1222.0, 1223.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icebird_ice/node/0_2",
+"move_ids": ["base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_ice/node/0_1"],
+"row": 2.0,
+"source_lines": [1224.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_ice/node/1_2",
+"move_ids": ["base:move/icy_blast/tier3", "base:move/icy_blast/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1225.0, 1226.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_ice/node/2_2",
+"move_ids": ["base:move/sleet/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_ice/node/2_1"],
+"row": 2.0,
+"source_lines": [1227.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_ice/node/1_3",
+"move_ids": ["base:move/icy_blast/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_ice/node/1_2"],
+"row": 3.0,
+"source_lines": [1228.0]
+}])
+id = &"base:talent_tree/icebird_ice"
+display_name = "Ice"
+legacy_class_name = "IceBird_Ice"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1205"

@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_q6uy0"]
+
+[resource]
+script = ExtResource("1_q6uy0")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holybell_normal/node/0_0",
+"move_ids": ["base:move/flare_up/tier1", "base:move/flare_up/tier2", "base:move/flare_up/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3437.0, 3438.0, 3439.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_normal/node/1_0",
+"move_ids": ["base:move/blow_by/tier1", "base:move/blow_by/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3440.0, 3441.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holybell_normal/node/2_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3442.0, 3443.0, 3444.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holybell_normal/node/0_1",
+"move_ids": ["base:move/purge/tier1"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3445.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_normal/node/1_1",
+"move_ids": ["base:move/tire/tier1", "base:move/tire/tier2", "base:move/tire/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3446.0, 3447.0, 3448.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holybell_normal/node/2_1",
+"move_ids": ["base:move/efficiency/tier4", "base:move/efficiency/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_normal/node/2_0"],
+"row": 1.0,
+"source_lines": [3449.0, 3450.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_normal/node/1_2",
+"move_ids": ["base:move/invigorate/tier2", "base:move/invigorate/tier3", "base:move/invigorate/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3451.0, 3452.0, 3453.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_normal/node/1_3",
+"move_ids": ["base:move/invigorate/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [3454.0]
+}])
+id = &"base:talent_tree/holybell_normal"
+display_name = "Energy"
+legacy_class_name = "HolyBell_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3434"

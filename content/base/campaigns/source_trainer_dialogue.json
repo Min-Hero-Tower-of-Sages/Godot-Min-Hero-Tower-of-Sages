@@ -1,0 +1,1764 @@
+{
+  "base:trainer/standard/0/1": {
+    "first_visit_text": "Are you a fellow student?  Let's head up to the battle arena then.  If you win I'll give you a key!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did fantastic!"
+  },
+  "base:trainer/standard/0/2": {
+    "first_visit_text": "I won't give up my key easily!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You might be good enough to beat my teacher!"
+  },
+  "base:trainer/standard/0/3": {
+    "first_visit_text": " Let's see if we can learn from one another.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "That was great!  Here is a key to my teachers door."
+  },
+  "base:trainer/standard/0/4": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/0/5": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/0/6": {
+    "first_visit_text": "I am a Sage of Courage.  To be a Grand Sage you must demonstrate the ability to be courageous.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You have demonstrated much courage in that battle, but there is still more to learn.  Here is the first piece of the Courage Sage Seal.  Also, here is a key to the hatchery."
+  },
+  "base:trainer/standard/1/1": {
+    "first_visit_text": "Each floor has students that are stronger than the previous floors.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You are quite strong, my friend!"
+  },
+  "base:trainer/standard/1/2": {
+    "first_visit_text": "There wasn't much to do after we destroyed the ring...",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You would do well in the fellowship."
+  },
+  "base:trainer/standard/1/3": {
+    "first_visit_text": "My teacher has taught me well.  I will show you the strength of my birds!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I admit they are weak to electric and ground moves."
+  },
+  "base:trainer/standard/1/4": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/1/5": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/1/6": {
+    "first_visit_text": "Courage is the ability to do a difficult thing.  I will test your courage now.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You have shown me you understand courage, here is the second piece to the Sage Seal of Courage."
+  },
+  "base:trainer/standard/2/1": {
+    "first_visit_text": "My Tatails are so cute...I mean cool!!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "How dare you do that to them!!"
+  },
+  "base:trainer/standard/2/2": {
+    "first_visit_text": "Har Har, let's see what you're made of my lad.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Lad, you put the hurting on me. Well done!"
+  },
+  "base:trainer/standard/2/3": {
+    "first_visit_text": "Electricity is the life of machinery, can you stand up to it?",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "That was a shockingly good battle!"
+  },
+  "base:trainer/standard/2/4": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/2/5": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/2/6": {
+    "first_visit_text": "You're shaping into quite the trainer.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Here is the final piece to the Sage Seal of Courage, you must fight the Grass Sage to have it fused together."
+  },
+  "base:trainer/standard/3/1": {
+    "first_visit_text": "It's a great day for a hike!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It's always a great day for a hike!"
+  },
+  "base:trainer/standard/3/2": {
+    "first_visit_text": "The flowers bloom just as my beauty blooms.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It appears your skill blooms as the flowers do."
+  },
+  "base:trainer/standard/3/3": {
+    "first_visit_text": "One does not simply win a battle.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "We'll I guess one does..."
+  },
+  "base:trainer/standard/3/4": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/3/5": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/3/6": {
+    "first_visit_text": "I will show you the true strength of the minions you are about to get.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Go claim your prize, here is a key to the hatchery."
+  },
+  "base:trainer/standard/4/0": {
+    "first_visit_text": "You have done very well so far, but I will push you to your limits.  For I am Tafel the Grass Sage.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "That was fantastic!!  I award you the Sage Seal of Courage.\n...\nYou can now find random money chests in the Tower."
+  },
+  "base:trainer/standard/5/1": {
+    "first_visit_text": "I've got da Vudu mon.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You killed da Vudu mon!"
+  },
+  "base:trainer/standard/5/2": {
+    "first_visit_text": "ARE YOU READY FOR THE PAIN!!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "OUCH! I felt the pain on that one..."
+  },
+  "base:trainer/standard/5/3": {
+    "first_visit_text": "I'm burning to battle you!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Way to put out my fire."
+  },
+  "base:trainer/standard/5/4": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/5/5": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/5/6": {
+    "first_visit_text": "A Grand Sage needs passion!  I will test the depth of your passion!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You are quite passionate!  Here is a piece of the Seal of Passion!"
+  },
+  "base:trainer/standard/6/1": {
+    "first_visit_text": "Ooga booga, ooga booga, ooga booga!!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Well.....that certainly didn't work!"
+  },
+  "base:trainer/standard/6/2": {
+    "first_visit_text": "One must train very hard to reach the pinnacle.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You train well, very well."
+  },
+  "base:trainer/standard/6/3": {
+    "first_visit_text": "Hehehehe, what bringggs you here!?",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Arrgh, you're too strong! Stay away!"
+  },
+  "base:trainer/standard/6/4": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/6/5": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/6/6": {
+    "first_visit_text": "I can see your passion is truely deepening!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Excellent!  Here is the second piece of the Sage Seal of Passion!"
+  },
+  "base:trainer/standard/7/1": {
+    "first_visit_text": "I'll show you how to battle mon.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Looks like I could learn some pointers from you mon."
+  },
+  "base:trainer/standard/7/2": {
+    "first_visit_text": "Welcome to the jungle.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "That wasn't very fun."
+  },
+  "base:trainer/standard/7/3": {
+    "first_visit_text": ".................",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I have broken my vows of silenece to say that was an AMAZING fight!!"
+  },
+  "base:trainer/standard/7/4": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/7/5": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/7/6": {
+    "first_visit_text": "Passion is what drives our actions!  And the ability to act is vital for a Grand Sage!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Well done!  Here is the third and final piece of the Sage Seal of Passion!"
+  },
+  "base:trainer/standard/8/1": {
+    "first_visit_text": "Titoro will bring the heat",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You smothered my Titoro..."
+  },
+  "base:trainer/standard/8/2": {
+    "first_visit_text": "I'm sure in my training.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "...I must work harder it seems..."
+  },
+  "base:trainer/standard/8/3": {
+    "first_visit_text": "I've got a few tricks up my sleeve mon.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Well done mon, I'll tell you a trick. When you're up against earth minions, remember they are weak against plant, water, and undead moves."
+  },
+  "base:trainer/standard/8/4": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/8/5": {
+    "first_visit_text": "In hard mode we must fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You did great!"
+  },
+  "base:trainer/standard/8/6": {
+    "first_visit_text": "I will truely test your strength, but the reward is worth it.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Well done!  Go and claim your reward...it is well earned."
+  },
+  "base:trainer/standard/9/0": {
+    "first_visit_text": "I can feel the heat of your passion!  I am the Sage of Fire, I will truely test your passion!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You're passion is stronger than I expected.  Well done!!\n...\nThe Sage Seal of Passion grants you the ability to combine gems."
+  },
+  "base:trainer/standard/10/1": {
+    "first_visit_text": "I calculate that it is highly improbable that you'll win this fight.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "E=mc squared your good!!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/10/2": {
+    "first_visit_text": "Prepare to be shredded!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Looks like you did the shredding.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/10/3": {
+    "first_visit_text": "Electricity is so much fun to play with!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Ouch!  Your skill is shocking.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/10/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/10/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/10/6": {
+    "first_visit_text": "A Grand Sage needs deep knowledge of minions and the world they live in.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I can see the knowledge in your actions.  Here is a piece of the Sage Seal of Knowledge.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/11/1": {
+    "first_visit_text": "My mom thinks I'm cool!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Honestly, that wasn't true....sinff",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/11/2": {
+    "first_visit_text": "Yeah, so, um.  Lets like battle.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Wow, um, yeah, your like good.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/11/3": {
+    "first_visit_text": "Prepare for a fatality.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Now that was fatal!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/11/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/11/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/11/6": {
+    "first_visit_text": "Your knowledge is growing?  Let's see by how much.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your knowledge is top notch!  Here is the second piece of the Sage Seal of Knowledge.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/12/1": {
+    "first_visit_text": "Time to take you to school.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Looks like you already know robots are weak to fire, water, electric, and dino moves.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/12/2": {
+    "first_visit_text": "Ah, there you are.  I'm glad to see you!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I enjoy our battles, I feel like I learn so much!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/12/3": {
+    "first_visit_text": "My eyes are aflame for a good fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "That burns good!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/12/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/12/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/12/6": {
+    "first_visit_text": "If you have enough knowledge I will grant you the final piece of the Sage Seal of Knowledge.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You're ready to challenge the Sage of Knowledge, here is the final piece of the Seal.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/13/1": {
+    "first_visit_text": "The world isn't going to science itself!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Back to science I go then",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/13/2": {
+    "first_visit_text": "Tonight I dine on Turtle soup.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Don't you dare say \\\"Cowabunga dude\\\"!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/13/3": {
+    "first_visit_text": "I study what happens when death calls.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It looks like you have caller ID.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/13/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/13/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/13/6": {
+    "first_visit_text": "Prepare to be tested.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You have passed with flying colors!",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/14/0": {
+    "first_visit_text": "We must ponder metastasis during our skirmish and the reprocussions it has on the axioms of space and destiny. \n...\nIt is the duty of the Electric Sage to test your knowledge.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You're competence is exemplary!\n...\nWith the Sage Seal of Knowledge, you now have the option to pick a second egg in the hatchery.  If you don't want your first choice.",
+    "trainer_name": "Electric Sage"
+  },
+  "base:trainer/standard/15/1": {
+    "first_visit_text": "Well well, you think you can win?  We'll see about that.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I hate to admit it.  But I guess you might be alright...",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/15/2": {
+    "first_visit_text": "<Sighs>....Prehaps you will be a challenge...",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "That was, eventful...you have excited me!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/15/3": {
+    "first_visit_text": "Hahahahahahahahahaaaaaaaaa",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "..................",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/15/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/15/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/15/6": {
+    "first_visit_text": "A Grand Sage needs persistence, times will get tough.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your strength in battle shows your persistence.  Here is the first piece of the Sage Seal of Persistence.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/16/1": {
+    "first_visit_text": "Have you met my sisters, we're of one mind.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I just want us to act in unison.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/16/2": {
+    "first_visit_text": "Have you met my sisters, we're two times better than most.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I'm the arrogant one, I guess.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/16/3": {
+    "first_visit_text": "Have you met my sisters, three is our favorite number.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "We must learn who we are, to find our deepest strength.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/16/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/16/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/16/6": {
+    "first_visit_text": "Those that face death, face persistence.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your persistence is fitting of a Grand Sage.  Here is the second piece of the Sage Seal of Persistence.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/17/1": {
+    "first_visit_text": "I sense doom in this temple.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You battle well and your heart is strong, but remember that undead minions are weak to fire, holy, and plant moves.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/17/3": {
+    "first_visit_text": "ARRRRRRRRRRR hehehe hahaha",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "sniff, sniff.......SNIFFFFF",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/17/2": {
+    "first_visit_text": "Huzzah!  Boy am I ready for a good battle!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Double Huzzah!  That was fantastic!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/17/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/17/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/17/6": {
+    "first_visit_text": "I will show you the strength of a Cerberus.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your strength is in your minions and in you.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/18/1": {
+    "first_visit_text": "Graves, death, bones, fun, lich, redrum, REDRUM",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "hahahahahhahahaaaa",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/18/2": {
+    "first_visit_text": "The bones of my enemies hold much value.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I will find others...",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/18/3": {
+    "first_visit_text": "There is peace in the graves, a deep silience.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "There is peace in battle as well.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/18/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/18/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/18/6": {
+    "first_visit_text": "Battle shows the extent of our persistence.  It is easy to see a Grand Sage's persistence.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You have the making of a Grand Sage, here is the final piece of the Sage Seal of Persistence.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/19/0": {
+    "first_visit_text": "Da Undead Sage welcomes ya!  I'll test your persistence, ya dig?",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your persistence is strong mon!!\n...\nThe undead Sage Seal grants you the abiltiy to find random gem chests.",
+    "trainer_name": "Undead Sage"
+  },
+  "base:trainer/standard/20/1": {
+    "first_visit_text": "Hey!  I've heard a lot of really good things about you!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "The rumors are true, you're amazing!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/20/2": {
+    "first_visit_text": "Water is the essence of life, and life is a beautiful thing.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "There is beauty in battle as well.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/20/3": {
+    "first_visit_text": "The forest is place of inspiration to me.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It is clear you know the forest, but did you know plant types are weak to fire, ice, flying, demonic, and dino moves.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/20/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/20/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/20/6": {
+    "first_visit_text": "All Grand Sages have a sense of serenity to them.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your serenity is more intense than mine.  Here is the first piece of the Sage Seal of Serenity.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/21/1": {
+    "first_visit_text": "Fresh Air is just one of my favorite things!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "A good battle is another one of my favorite things!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/21/2": {
+    "first_visit_text": "I find peace in water.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your mastery of water is excellent, you seem to know it's weak to electric, plant, and flying moves.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/21/3": {
+    "first_visit_text": "YOU SHALL NOT PASS",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Well...maybe you will.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/21/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/21/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/21/6": {
+    "first_visit_text": "A demonstration of serenity is inner peace.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I have seen your inner peace.  Here is another piece of the Sage Seal of Serenity.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/22/1": {
+    "first_visit_text": "Let's do this, it's GO TIME!!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "....that was STELLAR!!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/22/2": {
+    "first_visit_text": "Fire is my passion!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Although fire is strong it is also weak to water and earth.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/22/3": {
+    "first_visit_text": "You are no match for Flamator, I will show you true power.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I have been the one shown power.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/22/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/22/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/22/6": {
+    "first_visit_text": "A Grand Sage must balance serenity and passion, it is one of the true tests of a Grand Sage.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your passion is a complement to your serenity.  Here is the third piece to the Sage Seal of Serenity.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/23/1": {
+    "first_visit_text": "My fire will blast you to pieces!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "The heat of your passion is strong.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/23/2": {
+    "first_visit_text": "You look like a challeging trainer mon.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "I was right mon, you are quite the challenge!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/23/3": {
+    "first_visit_text": "In training minions it is important to know their strengths and their weaknesses.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "An example is that dino minions are weak to ice, earth, robot, and titan attacks.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/23/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/23/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/23/6": {
+    "first_visit_text": "I will push your serenity to it's limit!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your serenity is powerful!  Here is final piece to the Sage Seal of Serenity.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/24/0": {
+    "first_visit_text": "One must have respect for life, if one want's serenity.  I am the Talo Sage, let us test your respect for life.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your respect for life is strong, it is with great pleasure I award you the talo Sage Seal.\n...\nWith the talo Sage seal you have received a super strong gem.",
+    "trainer_name": "Talo Sage"
+  },
+  "base:trainer/standard/25/1": {
+    "first_visit_text": "I'm going to use science to win this battle!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Awwwwwww, you were too strong!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/25/2": {
+    "first_visit_text": "Like, oh, my gosh!  We should, like, totally be best friends forever!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Ughh, my bff would, like, never do that to me!!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/25/3": {
+    "first_visit_text": "I, like, uh, love racoons!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It's like not fair, you must know that normal type are weak against undead and demonic moves.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/25/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/25/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/25/6": {
+    "first_visit_text": "Sanctity is the most important atribute of a Grand Sage.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You demonstrate a great deal of sanctity in your actions.  Here is the first piece to the Sage Seal of Sanctity.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/26/1": {
+    "first_visit_text": "I'm so excited...it's like an energy in the air!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You deflated my excitement, but only a little!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/26/2": {
+    "first_visit_text": "Electricity is a very interesting phenomenon.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You seem to know the weakness of electricity, earth and dino moves.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/26/3": {
+    "first_visit_text": "Prepare yourself for a K.O.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It is I that have been knocked out...",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/26/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/26/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/26/6": {
+    "first_visit_text": "Always have Sanctity on you mind.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "That was excellent, well done!  Here is the second piece to the Sage Seal of Sanctity.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/27/1": {
+    "first_visit_text": "Ha har, Halloween is my favorite day...",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "...it feels like you stole a bag of candy from me...you meanie!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/27/3": {
+    "first_visit_text": "I show you the force of the underworld!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It appears you know demon minions are weak to water and holy attacks.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/27/2": {
+    "first_visit_text": "I see a victory in future, but who's I am not sure of...",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It is clear now, you are the victor.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/27/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/27/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/27/6": {
+    "first_visit_text": "To reach the highest level of sanctity one must have a pure soul.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your soul is pure, this I feel.  Here's the third piece to the Sage Seal of Sanctity",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/28/1": {
+    "first_visit_text": "Ah hahahaha!  Let's see if we can put a smile on that face!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Eh hehehe, looks like the jokes on me!!  Hahahaha!",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/28/2": {
+    "first_visit_text": "I sense...death...",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "...it appears the victory is yours.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/28/3": {
+    "first_visit_text": "In darkness you must find the light.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "You fight well, for that I give you a tip.  When fighting holy minions use demonic or normal moves.",
+    "trainer_name": "Student"
+  },
+  "base:trainer/standard/28/4": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Hard Sage"
+  },
+  "base:trainer/standard/28/5": {
+    "first_visit_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "",
+    "trainer_name": "Expert Sage"
+  },
+  "base:trainer/standard/28/6": {
+    "first_visit_text": "You are close to a Grand Sage and it is easy to see.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "The road ahead is tough, but I feel you are ready.  Here is the final piece to the Sage Seal of Sanctity.",
+    "trainer_name": "Minor Sage"
+  },
+  "base:trainer/standard/29/0": {
+    "first_visit_text": "There is deep power in sanctity, and I will show it to you.  For I am the Daco Sage.",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "Your sanctity is apparent, your victory is well earned.\n...\nThe Sanctity Sage Seal grants you the option to pick a third choice in the hatchery.",
+    "trainer_name": "Daco Sage"
+  },
+  "base:trainer/standard/30/0": {
+    "first_visit_text": "This is excellent!!  I knew you'd make it to the top, let's see your full strength!",
+    "repeat_text": "You already beat me!   Retry for three stars?",
+    "after_win_text": "It has been a long while since I've enjoyed a battle that much. Well done!  You are now a Grand Sage, go and claim your Titan.  It waits for you in the lobby...",
+    "trainer_name": "Grand Sage"
+  },
+  "base:trainer/hard/1/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Time to find out the depth of your skill, but I think you'll do great!",
+    "after_win_text": "I knew it, you did fantastic!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/1/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "I heard you're pretty good, we'll see about that.",
+    "after_win_text": "So the rumors are true!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/1/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "Hi there!  Let's have a battle?",
+    "after_win_text": "Thanks, that was fun!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/1/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/1/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/1/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I'd like to test your skill in combat.",
+    "after_win_text": "Well done!  Here is a key to the hatchery.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/2/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Battling is like adventuring, it tests who you are.",
+    "after_win_text": "You are quite strong, my friend.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/2/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "There wasn't much to do after we destroyed the ring...",
+    "after_win_text": "You would do well in the fellowship.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/2/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "I will show you the strength of my jelly fish!",
+    "after_win_text": "Ahhhhh!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/2/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/2/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/2/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "Let us battle and test your skill.",
+    "after_win_text": "Here is a key for your skill in combat.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/3/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "My minions are so cute...I mean cool!!",
+    "after_win_text": "How dare you do that to them!!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/3/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Har Har, let's see what you're made of my lad.",
+    "after_win_text": "Lad, you put the hurting on me. Well done!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/3/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "Electricity is the life of machinery, can you stand up to it?",
+    "after_win_text": "That was a shockingly good battle!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/3/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/3/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/3/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "You're shaping into quite the trainer.",
+    "after_win_text": "Here is a key to the hatchery.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/4/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "It's a great day for a hike!",
+    "after_win_text": "It's always a great day for a hike!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/4/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "The flowers bloom just as my beauty blooms.",
+    "after_win_text": "It appears your skill blooms as the flowers do.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/4/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "One does not simply win a battle.",
+    "after_win_text": "We'll I guess one does...",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/4/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/4/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/4/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I will show you the true strength of the minions you are about to get.",
+    "after_win_text": "Go claim your prize, here is a key to the hatchery.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/5/room/0": {
+    "trainer_name": "Grass Sage",
+    "first_visit_text": "You have done very well so far, but I will push you to your limits.  For I am Tafel the Grass Sage.",
+    "after_win_text": "That was fantastic!!  I award you the grass Sage Seal.\n...\nYou can now find random money chests in the Tower.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/6/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "I've got da Vudu mon.",
+    "after_win_text": "You killed da Vudu mon!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/6/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "ARE YOU READY FOR THE PAIN!!",
+    "after_win_text": "OUCH! I felt the pain on that one...",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/6/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "I'm burning to battle you!",
+    "after_win_text": "Way to put out my fire.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/6/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/6/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/6/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "Let's see what you're made of!",
+    "after_win_text": "Well done, here is a key to the hatchery.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/7/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Ooga booga, ooga booga, ooga booga!!",
+    "after_win_text": "Well.....that certainly didn't work!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/7/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "One must train very hard to reach the pinnacle.",
+    "after_win_text": "You train well, very well.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/7/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "Hehehehe, what bringggs you here!?",
+    "after_win_text": "Arrgh, you're too strong! Stay away!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/7/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/7/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/7/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I can see your strength is truely deepening, I'm looking forward to the challenge.",
+    "after_win_text": "Excellent!  Here is your key to the hatchery.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/8/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "I'll show you how to battle mon.",
+    "after_win_text": "Looks like I could learn some pointers from you mon.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/8/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Welcome to the jungle.",
+    "after_win_text": "That wasn't very fun.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/8/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": ".................",
+    "after_win_text": "I have broken my vows of silenece to say that was an AMAZING fight!!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/8/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/8/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/8/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I've heard good things about you, let's put that to the test.",
+    "after_win_text": "I'm not disappointed, that was a fine fight!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/9/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "My minions will bring the heat",
+    "after_win_text": "You smothered my minions...",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/9/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "I'm sure in my training.",
+    "after_win_text": "...I must work harder it seems...",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/9/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "I've got a few tricks up my sleeve mon.",
+    "after_win_text": "Well done mon, I'll tell you a trick. When you're up against earth minions, remember they are weak against plant, water, and undead moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/9/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/9/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/9/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I will truely test your strength, but the reward is worth it.",
+    "after_win_text": "Well done!  Go and claim your reward...it is well earned.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/10/room/0": {
+    "trainer_name": "Fire Sage",
+    "first_visit_text": "You look tough...but we'll soon see just how tough.  I am the Sage of Fire, let us test your strength.",
+    "after_win_text": "You're tougher than I expected.  Well done!!\n...\nThe fire Sage Seal grants you the ability to combine gems.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/11/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "I calculate that it is highly improbable that you'll win this fight.",
+    "after_win_text": "E=mc squared your good!!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/11/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Prepare to be shredded!",
+    "after_win_text": "Looks like you did the shredding.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/11/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "Electricity is so much fun to play with!",
+    "after_win_text": "Ouch!  Your skill is shocking.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/11/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/11/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/11/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "Let us test your skill.",
+    "after_win_text": "Your is skill is improving, well done!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/12/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "My mom thinks I'm cool!",
+    "after_win_text": "Honestly, that wasn't true....sinff",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/12/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Yeah, so, um.  Lets like battle.",
+    "after_win_text": "Wow, um, yeah, your like good.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/12/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "Prepare for a fatality.",
+    "after_win_text": "Now that was fatal!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/12/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/12/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/12/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "It is time to test your battle prowess.",
+    "after_win_text": "Your skill is top notch!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/13/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Time to take you to school.",
+    "after_win_text": "Looks like you already know robots are weak to fire, water, electric, and dino moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/13/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Ah, there you are.  I'm glad to see you!",
+    "after_win_text": "I enjoy our battles, I feel like I learn so much!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/13/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "My eyes are aflame for a good fight!",
+    "after_win_text": "That burns good!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/13/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/13/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/13/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "The two of us shall battle to test our skill.",
+    "after_win_text": "That was a grand fight, well done!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/14/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "The world isn't going to science itself!",
+    "after_win_text": "Back to science I go then",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/14/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Tonight I dine on Turtle soup.",
+    "after_win_text": "Don't you dare say \\\"Cowabunga dude\\\"!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/14/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "I study what happens when death calls.",
+    "after_win_text": "It looks like you have caller ID.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/14/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/14/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/14/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "Prepare to be tested.",
+    "after_win_text": "You have passed with flying colors!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/15/room/0": {
+    "trainer_name": "Electric Sage",
+    "first_visit_text": "We must ponder metastasis during our skirmish and the reprocussions it has on the axioms of space and destiny. \n...\nIt is the duty of the Electric Sage.",
+    "after_win_text": "You're competence is exemplary!\n...\nWith the electric Sage Seal, you now have the option to pick a second egg in the hatchery.  If you don't want your first choice.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/16/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Well well, you think you can win?  We'll see about that.",
+    "after_win_text": "I hate to admit it.  But I guess you might be alright...",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/16/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "<Sighs>....Prehaps you will be a challenge...",
+    "after_win_text": "That was, eventful...you have excited me!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/16/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "Hahahahahahahahahaaaaaaaaa",
+    "after_win_text": "..................",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/16/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/16/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/16/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "We shall try and deepen your skill.",
+    "after_win_text": "Your growth is fantasic!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/17/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Have you met my sisters, we're of one mind.",
+    "after_win_text": "I just want us to act in unison.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/17/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Have you met my sisters, we're two times better than most.",
+    "after_win_text": "I'm the arrogant one, I guess.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/17/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "Have you met my sisters, three is our favorite number.",
+    "after_win_text": "We must learn who we are, to find our deepest strength.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/17/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/17/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/17/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "In death there can be new life, let us battle.",
+    "after_win_text": "It is as I say, well done.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/18/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "I sense doom in this temple.",
+    "after_win_text": "You battle well and your heart is strong, but remember that undead minions are weak to fire, holy, and plant moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/18/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "ARRRRRRRRRRR hehehe hahaha",
+    "after_win_text": "sniff, sniff.......SNIFFFFF",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/18/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Huzzah!  Boy am I ready for a good battle!",
+    "after_win_text": "Double Huzzah!  That was fantastic!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/18/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/18/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/18/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I will show you the strength of a Cerberus.",
+    "after_win_text": "Your strength is in your minions and in you.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/19/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Graves, death, bones, fun, lich, redrum, REDRUM",
+    "after_win_text": "hahahahahhahahaaaa",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/19/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "The bones of my enemies hold much value.",
+    "after_win_text": "I will find others...",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/19/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "There is peace in the graves, a deep silience.",
+    "after_win_text": "There is peace in battle as well.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/19/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/19/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/19/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "We shall battle to test ourselves.",
+    "after_win_text": "For your victory, I will give you a tip.  When fighting ice minions use fire, flying, robot, or titan moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/20/room/0": {
+    "trainer_name": "Undead Sage",
+    "first_visit_text": "Da Undead Sage welcomes ya!  Your battle is strong here, ya dig?",
+    "after_win_text": "Your battle is strong mon!!\n...\nThe undead Sage Seal grants you the abiltiy to find random gem chests.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/21/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Hey!  I've heard a lot of really good things about you!",
+    "after_win_text": "The rumors are true, you're amazing!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/21/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Water is the essence of life, and life is a beautiful thing.",
+    "after_win_text": "There is beauty in battle as well.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/21/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "The forest is place of inspiration to me.",
+    "after_win_text": "It is clear you know the forest, but did you know plant types are weak to fire, ice, flying, demonic, and dino moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/21/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/21/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/21/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I look forward to our battle.",
+    "after_win_text": "You're not one to disappoint, that was great!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/22/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Fresh Air is just one of my favorite things!",
+    "after_win_text": "A good battle is another one of my favorite things!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/22/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "I find peace in water.",
+    "after_win_text": "Your mastery of water is excellent, you seem to know it's weak to electric, plant, and flying moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/22/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "YOU SHALL NOT PASS",
+    "after_win_text": "Well...maybe you will.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/22/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/22/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/22/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "To battle and find victory is a thing of excellence.",
+    "after_win_text": "Your excellence is evident.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/23/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Let's do this, it's GO TIME!!",
+    "after_win_text": "....that was STELLAR!!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/23/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Fire is my passion!",
+    "after_win_text": "Although fire is strong it is also weak to water and earth.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/23/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "You are no match for Flamator, I will show you true power.",
+    "after_win_text": "I have been the one shown power.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/23/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/23/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/23/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I shall do my best in our battle, I don't think you'll be disappointed.",
+    "after_win_text": "Your best is better than mine!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/24/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "My fire will blast you to pieces!",
+    "after_win_text": "The heat of your passion is strong.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/24/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "You look like a challeging trainer mon.",
+    "after_win_text": "I was right mon, you are quite the challenge!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/24/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "In training minions it is important to know their strengths and their weaknesses.",
+    "after_win_text": "An example is that dino minions are weak to ice, earth, robot, and titan attacks.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/24/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/24/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/24/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "We shall test our strength and find out who is stronger.",
+    "after_win_text": "Your skill is unmatched!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/25/room/0": {
+    "trainer_name": "Talo Sage",
+    "first_visit_text": "One must have respect for life, if one want's to master combat.  I am the Talo Sage, let us test your respect for life.",
+    "after_win_text": "Your respect for life is strong, it is with great pleasure I award you the talo Sage Seal.\n...\nWith the talo Sage seal you have received a super strong gem.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/26/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "I'm going to use science to win this battle!",
+    "after_win_text": "Awwwwwww, you were too strong!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/26/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Like, oh, my gosh!  We should, like, totally be best friends forever!",
+    "after_win_text": "Ughh, my bff would, like, never do that to me!!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/26/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "I, like, uh, love racoons!",
+    "after_win_text": "It's like not fair, you must know that normal type are weak against undead and demonic moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/26/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/26/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/26/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "You are getting close to the Grand Sage, let's see if you are ready for the challenge.",
+    "after_win_text": "The fight with the Grand Sage will be tough but, in my opinion you're close to being ready!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/27/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "I'm so excited...it's like an energy in the air!",
+    "after_win_text": "You deflated my excitement, but only a little!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/27/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "Electricity is a very interesting phenomenon.",
+    "after_win_text": "You seem to know the weakness of electricity, earth and dino moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/27/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "Prepare yourself for a K.O.",
+    "after_win_text": "It is I that have been knocked out...",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/27/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/27/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/27/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "Push yourself to the limit in our battle.",
+    "after_win_text": "That was excellent, well done!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/28/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Ha har, Halloween is my favorite day...",
+    "after_win_text": "...it feels like you stole a bag of candy from me...you meanie!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/28/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "I show you the force of the underworld!",
+    "after_win_text": "It appears you know demon minions are weak to water and holy attacks.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/28/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "I see a victory in future, but who's I am not sure of...",
+    "after_win_text": "It is clear now, you are the victor.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/28/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/28/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/28/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "We must allow each battle to push us to new heights.",
+    "after_win_text": "Your strength has grown even taller.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/29/room/1": {
+    "trainer_name": "Student",
+    "first_visit_text": "Ah hahahaha!  Let's see if we can put a smile on that face!",
+    "after_win_text": "Eh hehehe, looks like the jokes on me!!  Hahahaha!",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/29/room/2": {
+    "trainer_name": "Student",
+    "first_visit_text": "I sense...death...",
+    "after_win_text": "...it appears the victory is yours.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/29/room/3": {
+    "trainer_name": "Student",
+    "first_visit_text": "In darkness you must find the light.",
+    "after_win_text": "You fight well, for that I give you a tip.  When fighting holy minions use demonic or normal moves.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/29/room/4": {
+    "trainer_name": "Hard Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/29/room/5": {
+    "trainer_name": "Expert Sage",
+    "first_visit_text": "",
+    "after_win_text": "",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/29/room/6": {
+    "trainer_name": "Minor Sage",
+    "first_visit_text": "I want to help prepare you for the challenges you are soon to face.",
+    "after_win_text": "The road ahead is tough, but I feel you are ready.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/30/room/0": {
+    "trainer_name": "Daco Sage",
+    "first_visit_text": "There is deep power in death, and I will show it to you.  For I am the Daco Sage.",
+    "after_win_text": "There is great power in life as well, your victory is well earned.\n...\nThe daco Sage Seal grants you the option to pick a third choice in the hatchery.",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  },
+  "base:trainer/hard/31/room/0": {
+    "trainer_name": "Grand Sage",
+    "first_visit_text": "This is excellent!!  I knew you'd make it to the top, let's see your full strength!",
+    "after_win_text": "It has been a long while since I've enjoyed a battle that much. Well done!  You are now a Grand Master, go and claim your Titan.  It waits for you in the lobby...",
+    "repeat_text": "You already beat me!   Retry for three stars?"
+  }
+}

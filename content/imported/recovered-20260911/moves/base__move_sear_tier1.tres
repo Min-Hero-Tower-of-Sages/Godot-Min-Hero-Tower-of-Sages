@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://btf86wacfv7rw"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_1am6v"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_333qj"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_ltvhw"]
+
+[sub_resource type="Resource" id="Resource_8glup"]
+script = ExtResource("1_1am6v")
+scaling = 1
+roll_scope = 1
+amount = 25
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_333qj")
+id = &"base:move/sear/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:251"
+
+[resource]
+script = ExtResource("3_ltvhw")
+family_id = &"base:move_family/sear"
+type_id = &"base:type/fire"
+legacy_class_id = 0
+legacy_visual_id = 0
+legacy_dot_visual_id = 0
+buff_icon_name = &"moveIcon_sear"
+energy_cost = 5
+effects = Array[ExtResource("1_1am6v")]([SubResource("Resource_8glup")])
+presentation_id = &"base:presentation/move/move_icon_sear"
+id = &"base:move/sear/tier1"
+display_name = "Sear"
+legacy_numeric_id = 0
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

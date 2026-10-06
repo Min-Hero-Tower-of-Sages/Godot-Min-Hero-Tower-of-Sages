@@ -1,0 +1,1046 @@
+{
+  "format_version": 2,
+  "source": "PresistentData/StaticData.as:GetVisualMinionMove:SetSounds+m_mainSound2",
+  "sound_paths": {
+    "forestTrack": "res://content/base/audio/forestTrack.mp3",
+    "tower_eggeryDoorClosing": "res://content/base/audio/tower_eggeryDoorClosing.mp3",
+    "battle_levelUp": "res://content/base/audio/battle_levelUp.mp3",
+    "menu_tutorialOpen": "res://content/base/audio/menu_tutorialOpen.mp3",
+    "tower_moneyPickup": "res://content/base/audio/tower_moneyPickup.mp3",
+    "battle_misc1": "res://content/base/audio/battle_misc1.mp3",
+    "tower_openingChest": "res://content/base/audio/tower_openingChest.mp3",
+    "battleTrack": "res://content/base/audio/battleTrack.mp3",
+    "battle_debuff": "res://content/base/audio/battle_debuff.mp3",
+    "battle_gunFire": "res://content/base/audio/battle_gunFire.mp3",
+    "battle_blood1": "res://content/base/audio/battle_blood1.mp3",
+    "undeadTrack": "res://content/base/audio/undeadTrack.mp3",
+    "fireTrack": "res://content/base/audio/fireTrack.mp3",
+    "battle_blood3": "res://content/base/audio/battle_blood3.mp3",
+    "battle_hit_thump_splat": "res://content/base/audio/battle_hit_thump_splat.mp3",
+    "tower_healstone": "res://content/base/audio/tower_healstone.mp3",
+    "battle_hit_thump_knock": "res://content/base/audio/battle_hit_thump_knock.mp3",
+    "tower_teleport": "res://content/base/audio/tower_teleport.mp3",
+    "menu_tickSound": "res://content/base/audio/menu_tickSound.mp3",
+    "battle_waterSplash": "res://content/base/audio/battle_waterSplash.mp3",
+    "battle_hit_slap_normal": "res://content/base/audio/battle_hit_slap_normal.mp3",
+    "battle_hit_thump_bounce": "res://content/base/audio/battle_hit_thump_bounce.mp3",
+    "battle_metalImpact": "res://content/base/audio/battle_metalImpact.mp3",
+    "tower_fireplace": "res://content/base/audio/tower_fireplace.mp3",
+    "battle_dinoRoar": "res://content/base/audio/battle_dinoRoar.mp3",
+    "battle_demonicGrowl": "res://content/base/audio/battle_demonicGrowl.mp3",
+    "battle_ghostWispher": "res://content/base/audio/battle_ghostWispher.mp3",
+    "battle_roar": "res://content/base/audio/battle_roar.mp3",
+    "battle_charging": "res://content/base/audio/battle_charging.mp3",
+    "menu_buyingItem": "res://content/base/audio/menu_buyingItem.mp3",
+    "tower_runningWater": "res://content/base/audio/tower_runningWater.mp3",
+    "battle_whoosh_magic2": "res://content/base/audio/battle_whoosh_magic2.mp3",
+    "battle_fireBall": "res://content/base/audio/battle_fireBall.mp3",
+    "tower_eggsGoingIntoTheGround": "res://content/base/audio/tower_eggsGoingIntoTheGround.mp3",
+    "battle_whoosh_magic1": "res://content/base/audio/battle_whoosh_magic1.mp3",
+    "battle_whoosh_magic4": "res://content/base/audio/battle_whoosh_magic4.mp3",
+    "battle_whoosh_magic3": "res://content/base/audio/battle_whoosh_magic3.mp3",
+    "battle_electric_bolt": "res://content/base/audio/battle_electric_bolt.mp3",
+    "battle_whoosh_misslePass": "res://content/base/audio/battle_whoosh_misslePass.mp3",
+    "doorEntryHum": "res://content/base/audio/doorEntryHum.mp3",
+    "battle_swipe": "res://content/base/audio/battle_swipe.mp3",
+    "battle_whoosh_sword_swipe": "res://content/base/audio/battle_whoosh_sword_swipe.mp3",
+    "battle_whoosh_falling_object": "res://content/base/audio/battle_whoosh_falling_object.mp3",
+    "battle_lose": "res://content/base/audio/battle_lose.mp3",
+    "battle_earthquake": "res://content/base/audio/battle_earthquake.mp3",
+    "battle_rockHittingGround": "res://content/base/audio/battle_rockHittingGround.mp3",
+    "battle_whoosh_highPitch": "res://content/base/audio/battle_whoosh_highPitch.mp3",
+    "titleTrack": "res://content/base/audio/titleTrack.mp3",
+    "battle_rayGun": "res://content/base/audio/battle_rayGun.mp3",
+    "menu_onPress": "res://content/base/audio/menu_onPress.mp3",
+    "battle_whoosh_wind": "res://content/base/audio/battle_whoosh_wind.mp3",
+    "electricTrack": "res://content/base/audio/electricTrack.mp3",
+    "battle_victory": "res://content/base/audio/battle_victory.mp3",
+    "battle_flamethrower": "res://content/base/audio/battle_flamethrower.mp3",
+    "battle_ghostWispher2": "res://content/base/audio/battle_ghostWispher2.mp3",
+    "riverTrack": "res://content/base/audio/riverTrack.mp3",
+    "battle_whoosh_punch": "res://content/base/audio/battle_whoosh_punch.mp3",
+    "battle_hit_slap_quick": "res://content/base/audio/battle_hit_slap_quick.mp3",
+    "battle_hit_splat": "res://content/base/audio/battle_hit_splat.mp3",
+    "battle_freezeExplosion": "res://content/base/audio/battle_freezeExplosion.mp3",
+    "battle_buff": "res://content/base/audio/battle_buff.mp3",
+    "battle_wingsFlapping": "res://content/base/audio/battle_wingsFlapping.mp3",
+    "battle_glassBreaking": "res://content/base/audio/battle_glassBreaking.mp3",
+    "battle_exhausted": "res://content/base/audio/battle_exhausted.mp3",
+    "battle_spark": "res://content/base/audio/battle_spark.mp3",
+    "battle_whoosh_swipe": "res://content/base/audio/battle_whoosh_swipe.mp3",
+    "tower_keyPickup": "res://content/base/audio/tower_keyPickup.mp3",
+    "battle_earthquake2": "res://content/base/audio/battle_earthquake2.mp3",
+    "battle_magic1": "res://content/base/audio/battle_magic1.mp3",
+    "battle_bubbles": "res://content/base/audio/battle_bubbles.mp3",
+    "tower_gettingMap": "res://content/base/audio/tower_gettingMap.mp3",
+    "battle_metalImpact2": "res://content/base/audio/battle_metalImpact2.mp3",
+    "doorEntryHum_fadeout": "res://content/base/audio/doorEntryHum_fadeout.mp3",
+    "battle_hit_thump_normal": "res://content/base/audio/battle_hit_thump_normal.mp3",
+    "battle_whoosh_falling_deepSound": "res://content/base/audio/battle_whoosh_falling_deepSound.mp3",
+    "tower_gemPickup": "res://content/base/audio/tower_gemPickup.mp3",
+    "tower_doorUnlock": "res://content/base/audio/tower_doorUnlock.mp3",
+    "battle_whoosh": "res://content/base/audio/battle_whoosh.mp3"
+  },
+  "visual_sounds": {
+    "187": {
+      "impact": "battle_rockHittingGround",
+      "impact_volume": 0.5,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 1.0
+    },
+    "162": {
+      "impact": "battle_metalImpact2",
+      "impact_volume": 0.3,
+      "main": "",
+      "main_volume": 0.1,
+      "main2": "battle_whoosh_punch",
+      "main2_volume": 0.05
+    },
+    "96": {
+      "impact": "battle_hit_thump_knock",
+      "impact_volume": 0.6,
+      "main": "battle_fireBall",
+      "main_volume": 1.0
+    },
+    "85": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher",
+      "main_volume": 0.3
+    },
+    "67": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_electric_bolt",
+      "main_volume": 1.0
+    },
+    "14": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 0.9
+    },
+    "73": {
+      "impact": "battle_electric_bolt",
+      "impact_volume": 0.9,
+      "main": "",
+      "main_volume": 0.9,
+      "main2": "battle_spark",
+      "main2_volume": 0.9
+    },
+    "125": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_hit_splat",
+      "main_volume": 0.9
+    },
+    "128": {
+      "impact": "battle_ghostWispher2",
+      "impact_volume": 0.9,
+      "main": "battle_misc1",
+      "main_volume": 0.6
+    },
+    "143": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_swipe",
+      "main_volume": 0.9
+    },
+    "114": {
+      "impact": "battle_freezeExplosion",
+      "impact_volume": 0.45,
+      "main": "",
+      "main_volume": 0.9,
+      "main2": "battle_misc1",
+      "main2_volume": 0.9
+    },
+    "92": {
+      "impact": "battle_blood1",
+      "impact_volume": 0.9,
+      "main": "battle_dinoRoar",
+      "main_volume": 0.9
+    },
+    "152": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_magic4",
+      "main_volume": 0.9
+    },
+    "66": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_electric_bolt",
+      "main_volume": 1.0
+    },
+    "69": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_electric_bolt",
+      "main_volume": 0.9
+    },
+    "64": {
+      "impact": "battle_rockHittingGround",
+      "impact_volume": 1.0,
+      "main": "battle_rockHittingGround",
+      "main_volume": 0.1
+    },
+    "15": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_swipe",
+      "main_volume": 0.9
+    },
+    "156": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.4
+    },
+    "155": {
+      "impact": "",
+      "impact_volume": 0.25,
+      "main": "battle_magic1",
+      "main_volume": 0.15
+    },
+    "158": {
+      "impact": "battle_hit_slap_quick",
+      "impact_volume": 0.4,
+      "main": "battle_whoosh_highPitch",
+      "main_volume": 0.3
+    },
+    "115": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_whoosh_wind",
+      "main_volume": 0.25
+    },
+    "127": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher2",
+      "main_volume": 0.9
+    },
+    "149": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 0.9,
+      "main": "",
+      "main_volume": 0.3,
+      "main2": "battle_magic1",
+      "main2_volume": 0.4
+    },
+    "19": {
+      "impact": "battle_hit_thump_normal",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_punch",
+      "main_volume": 0.9
+    },
+    "142": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_swipe",
+      "main_volume": 0.9
+    },
+    "167": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.7,
+      "main": "battle_gunFire",
+      "main_volume": 0.3
+    },
+    "86": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher2",
+      "main_volume": 0.9
+    },
+    "121": {
+      "impact": "battle_magic1",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher",
+      "main_volume": 1.0
+    },
+    "126": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 1.0,
+      "main": "battle_demonicGrowl",
+      "main_volume": 0.6
+    },
+    "123": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher",
+      "main_volume": 0.4
+    },
+    "124": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_punch",
+      "main_volume": 0.9
+    },
+    "83": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher2",
+      "main_volume": 1.0
+    },
+    "93": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_dinoRoar",
+      "main_volume": 0.9
+    },
+    "180": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_hit_thump_normal",
+      "main_volume": 0.9
+    },
+    "55": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_earthquake",
+      "main_volume": 1.0
+    },
+    "171": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_misslePass",
+      "main_volume": 0.9
+    },
+    "160": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_rayGun",
+      "main_volume": 0.9
+    },
+    "97": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_magic3",
+      "main_volume": 0.9
+    },
+    "81": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.9,
+      "main": "",
+      "main_volume": 0.05,
+      "main2": "battle_ghostWispher",
+      "main2_volume": 0.9
+    },
+    "113": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_freezeExplosion",
+      "main_volume": 0.7
+    },
+    "56": {
+      "impact": "battle_rockHittingGround",
+      "impact_volume": 1.0,
+      "main": "battle_rockHittingGround",
+      "main_volume": 0.1
+    },
+    "63": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_metalImpact2",
+      "main_volume": 0.9
+    },
+    "61": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_earthquake",
+      "main_volume": 0.7
+    },
+    "65": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.3
+    },
+    "51": {
+      "impact": "battle_waterSplash",
+      "impact_volume": 0.3,
+      "main": "battle_waterSplash",
+      "main_volume": 0.07
+    },
+    "120": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher2",
+      "main_volume": 1.0
+    },
+    "2": {
+      "impact": "battle_hit_thump_normal",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 0.9
+    },
+    "5": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 1.0
+    },
+    "3": {
+      "impact": "battle_hit_slap_quick",
+      "impact_volume": 0.6,
+      "main": "battle_fireBall",
+      "main_volume": 0.9
+    },
+    "6": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 0.9
+    },
+    "12": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 1.0,
+      "main": "battle_fireBall",
+      "main_volume": 1.0
+    },
+    "4": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_flamethrower",
+      "main_volume": 0.75
+    },
+    "76": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.9,
+      "main": "",
+      "main_volume": 0.1,
+      "main2": "battle_ghostWispher",
+      "main2_volume": 0.9
+    },
+    "140": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_misslePass",
+      "main_volume": 0.9
+    },
+    "88": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_dinoRoar",
+      "main_volume": 0.9
+    },
+    "122": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_demonicGrowl",
+      "main_volume": 0.5
+    },
+    "131": {
+      "impact": "battle_waterSplash",
+      "impact_volume": 0.9,
+      "main": "battle_bubbles",
+      "main_volume": 0.9
+    },
+    "98": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.3,
+      "main": "battle_whoosh_sword_swipe",
+      "main_volume": 0.7
+    },
+    "23": {
+      "impact": "battle_hit_thump_bounce",
+      "impact_volume": 1.0,
+      "main": "",
+      "main_volume": 0.9,
+      "main2": "battle_whoosh_wind",
+      "main2_volume": 1.0
+    },
+    "110": {
+      "impact": "battle_freezeExplosion",
+      "impact_volume": 0.2,
+      "main": "battle_whoosh_falling_object",
+      "main_volume": 1.0
+    },
+    "77": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher",
+      "main_volume": 1.0
+    },
+    "151": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 0.9
+    },
+    "148": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.9
+    },
+    "145": {
+      "impact": "battle_hit_thump_knock",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_punch",
+      "main_volume": 0.9
+    },
+    "147": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.9
+    },
+    "141": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_wingsFlapping",
+      "main_volume": 1.0
+    },
+    "118": {
+      "impact": "battle_metalImpact2",
+      "impact_volume": 0.7,
+      "main": "battle_whoosh_wind",
+      "main_volume": 0.3
+    },
+    "117": {
+      "impact": "battle_metalImpact2",
+      "impact_volume": 0.3,
+      "main": "",
+      "main_volume": 0.1,
+      "main2": "battle_whoosh_punch",
+      "main2_volume": 0.1
+    },
+    "116": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_metalImpact2",
+      "main_volume": 0.9
+    },
+    "111": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_freezeExplosion",
+      "main_volume": 0.8
+    },
+    "74": {
+      "impact": "",
+      "impact_volume": 0.3,
+      "main": "battle_ghostWispher",
+      "main_volume": 0.45
+    },
+    "8": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 0.75
+    },
+    "90": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_dinoRoar",
+      "main_volume": 0.8
+    },
+    "52": {
+      "impact": "battle_waterSplash",
+      "impact_volume": 0.3,
+      "main": "battle_waterSplash",
+      "main_volume": 0.07
+    },
+    "9": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 0.75
+    },
+    "169": {
+      "impact": "battle_rockHittingGround",
+      "impact_volume": 0.5,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 1.0
+    },
+    "80": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_demonicGrowl",
+      "main_volume": 0.9
+    },
+    "84": {
+      "impact": "battle_blood3",
+      "impact_volume": 1.0,
+      "main": "",
+      "main_volume": 0.9
+    },
+    "119": {
+      "impact": "",
+      "impact_volume": 0.3,
+      "main": "battle_ghostWispher",
+      "main_volume": 0.45
+    },
+    "153": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_magic2",
+      "main_volume": 0.9
+    },
+    "166": {
+      "impact": "battle_metalImpact2",
+      "impact_volume": 0.3,
+      "main": "",
+      "main_volume": 0.1,
+      "main2": "battle_whoosh_punch",
+      "main2_volume": 0.1
+    },
+    "163": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_metalImpact2",
+      "main_volume": 0.9
+    },
+    "94": {
+      "impact": "battle_hit_thump_knock",
+      "impact_volume": 1.0,
+      "main": "battle_fireBall",
+      "main_volume": 1.0
+    },
+    "79": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher",
+      "main_volume": 1.0
+    },
+    "60": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_blood1",
+      "main_volume": 0.35
+    },
+    "109": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.9
+    },
+    "100": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.9
+    },
+    "161": {
+      "impact": "battle_hit_thump_normal",
+      "impact_volume": 0.9,
+      "main": "battle_metalImpact",
+      "main_volume": 0.6
+    },
+    "136": {
+      "impact": "battle_magic1",
+      "impact_volume": 0.2,
+      "main": "battle_waterSplash",
+      "main_volume": 0.25
+    },
+    "72": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_electric_bolt",
+      "main_volume": 1.0
+    },
+    "138": {
+      "impact": "battle_hit_thump_normal",
+      "impact_volume": 0.8,
+      "main": "battle_whoosh_wind",
+      "main_volume": 0.4,
+      "main2": "battle_whoosh_wind",
+      "main2_volume": 1.0
+    },
+    "146": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 1.0,
+      "main": "battle_fireBall",
+      "main_volume": 1.0
+    },
+    "78": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_punch",
+      "main_volume": 0.9
+    },
+    "89": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_glassBreaking",
+      "main_volume": 0.9
+    },
+    "164": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_metalImpact",
+      "main_volume": 1.0
+    },
+    "189": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_bubbles",
+      "main_volume": 0.9
+    },
+    "102": {
+      "impact": "",
+      "impact_volume": 0.25,
+      "main": "battle_hit_slap_normal",
+      "main_volume": 0.1,
+      "main2": "battle_whoosh_swipe",
+      "main2_volume": 0.2
+    },
+    "17": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 1.0,
+      "main": "battle_misc1",
+      "main_volume": 0.4
+    },
+    "22": {
+      "impact": "battle_hit_slap_quick",
+      "impact_volume": 1.0,
+      "main": "battle_misc1",
+      "main_volume": 0.3
+    },
+    "87": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.2,
+      "main": "battle_roar",
+      "main_volume": 0.08
+    },
+    "179": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_swipe",
+      "main_volume": 0.9
+    },
+    "133": {
+      "impact": "battle_magic1",
+      "impact_volume": 0.1,
+      "main": "battle_whoosh_wind",
+      "main_volume": 0.1
+    },
+    "75": {
+      "impact": "battle_blood1",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher2",
+      "main_volume": 1.0
+    },
+    "103": {
+      "impact": "",
+      "impact_volume": 0.25,
+      "main": "battle_hit_slap_normal",
+      "main_volume": 0.1,
+      "main2": "battle_whoosh_swipe",
+      "main2_volume": 0.2
+    },
+    "18": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_hit_thump_knock",
+      "main_volume": 0.9
+    },
+    "91": {
+      "impact": "battle_hit_slap_quick",
+      "impact_volume": 0.9,
+      "main": "battle_dinoRoar",
+      "main_volume": 0.15
+    },
+    "26": {
+      "impact": "battle_metalImpact",
+      "impact_volume": 1.0,
+      "main": "",
+      "main_volume": 0.9,
+      "main2": "battle_metalImpact",
+      "main2_volume": 0.3
+    },
+    "134": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_waterSplash",
+      "main_volume": 0.2
+    },
+    "101": {
+      "impact": "",
+      "impact_volume": 0.25,
+      "main": "battle_magic1",
+      "main_volume": 0.15
+    },
+    "106": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.9
+    },
+    "150": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_magic1",
+      "main_volume": 0.9
+    },
+    "154": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_magic1",
+      "main_volume": 0.9
+    },
+    "20": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_roar",
+      "main_volume": 0.6
+    },
+    "58": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_earthquake",
+      "main_volume": 0.5
+    },
+    "54": {
+      "impact": "battle_rockHittingGround",
+      "impact_volume": 0.3,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 1.0
+    },
+    "53": {
+      "impact": "battle_rockHittingGround",
+      "impact_volume": 0.5,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 1.0
+    },
+    "0": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 1.0,
+      "main": "battle_fireBall",
+      "main_volume": 1.0
+    },
+    "108": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.4
+    },
+    "82": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_metalImpact",
+      "main_volume": 0.9
+    },
+    "112": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_whoosh_wind",
+      "main_volume": 0.3
+    },
+    "25": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_ghostWispher",
+      "main_volume": 0.9
+    },
+    "129": {
+      "impact": "battle_waterSplash",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_wind",
+      "main_volume": 0.6
+    },
+    "165": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_spark",
+      "main_volume": 1.0
+    },
+    "68": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_spark",
+      "main_volume": 1.0
+    },
+    "21": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_highPitch",
+      "main_volume": 0.9
+    },
+    "99": {
+      "impact": "",
+      "impact_volume": 0.05,
+      "main": "",
+      "main_volume": 0.1,
+      "main2": "battle_whoosh_wind",
+      "main2_volume": 0.15
+    },
+    "70": {
+      "impact": "battle_electric_bolt",
+      "impact_volume": 1.0,
+      "main": "battle_spark",
+      "main_volume": 0.5
+    },
+    "157": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 1.0,
+      "main": "battle_swipe",
+      "main_volume": 1.0
+    },
+    "59": {
+      "impact": "battle_hit_thump_knock",
+      "impact_volume": 0.8,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 1.0
+    },
+    "62": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_earthquake",
+      "main_volume": 0.8
+    },
+    "178": {
+      "impact": "",
+      "impact_volume": 0.3,
+      "main": "battle_spark",
+      "main_volume": 0.4
+    },
+    "107": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.8
+    },
+    "16": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_hit_thump_normal",
+      "main_volume": 0.9
+    },
+    "71": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_electric_bolt",
+      "main_volume": 1.0
+    },
+    "105": {
+      "impact": "battle_hit_thump_knock",
+      "impact_volume": 0.8,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 1.0
+    },
+    "28": {
+      "impact": "battle_hit_slap_quick",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 0.7
+    },
+    "170": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 1.0
+    },
+    "175": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.9
+    },
+    "174": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_magic1",
+      "main_volume": 0.9
+    },
+    "176": {
+      "impact": "",
+      "impact_volume": 0.25,
+      "main": "battle_magic1",
+      "main_volume": 0.15
+    },
+    "172": {
+      "impact": "battle_hit_thump_knock",
+      "impact_volume": 1.0,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 0.9
+    },
+    "168": {
+      "impact": "battle_hit_splat",
+      "impact_volume": 0.3,
+      "main": "battle_whoosh_sword_swipe",
+      "main_volume": 0.7
+    },
+    "11": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_fireBall",
+      "main_volume": 0.8
+    },
+    "104": {
+      "impact": "battle_hit_thump_knock",
+      "impact_volume": 1.0,
+      "main": "battle_whoosh_falling_deepSound",
+      "main_volume": 0.9
+    },
+    "159": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_whoosh_misslePass",
+      "main_volume": 1.0
+    },
+    "144": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 0.5,
+      "main": "battle_whoosh_wind",
+      "main_volume": 0.7
+    },
+    "10": {
+      "impact": "battle_magic1",
+      "impact_volume": 0.05,
+      "main": "",
+      "main_volume": 0.1,
+      "main2": "battle_fireBall",
+      "main2_volume": 0.15
+    },
+    "135": {
+      "impact": "battle_magic1",
+      "impact_volume": 0.25,
+      "main": "battle_waterSplash",
+      "main_volume": 0.15
+    },
+    "130": {
+      "impact": "battle_waterSplash",
+      "impact_volume": 0.9,
+      "main": "battle_whoosh_wind",
+      "main_volume": 0.4
+    },
+    "137": {
+      "impact": "battle_magic1",
+      "impact_volume": 0.2,
+      "main": "battle_waterSplash",
+      "main_volume": 0.07
+    },
+    "132": {
+      "impact": "battle_waterSplash",
+      "impact_volume": 0.7,
+      "main": "battle_waterSplash",
+      "main_volume": 0.4
+    },
+    "24": {
+      "impact": "battle_hit_thump_splat",
+      "impact_volume": 1.0,
+      "main": "battle_swipe",
+      "main_volume": 1.0
+    },
+    "95": {
+      "impact": "",
+      "impact_volume": 0.9,
+      "main": "battle_hit_thump_knock",
+      "main_volume": 0.9
+    },
+    "7": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_flamethrower",
+      "main_volume": 0.25
+    },
+    "139": {
+      "impact": "",
+      "impact_volume": 1.0,
+      "main": "battle_whoosh_wind",
+      "main_volume": 1.0
+    }
+  }
+}

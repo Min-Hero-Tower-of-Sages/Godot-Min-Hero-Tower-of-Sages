@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/cheetah_1",
+"level": 13,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier4", &"base:move/charge_blast/tier5", &"base:move/ferocity/tier5", &"base:move/concentration/tier3", &"base:move/agility/tier2"]),
+"slot_index": 0,
+"source_level_offset": -1
+}, {
+"definition_id": &"base:minion/goo_1",
+"level": 13,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/poison_tooth/tier5", &"base:move/wild_lance/tier3", &"base:move/ferocity/tier4", &"base:move/charge_pass/tier1", &"base:move/spark/tier3", &"base:move/infes/tier2"]),
+"slot_index": 1,
+"source_level_offset": -1
+}, {
+"definition_id": &"base:minion/goo_1",
+"level": 13,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/poison_tooth/tier5", &"base:move/wild_lance/tier3", &"base:move/ferocity/tier4", &"base:move/charge_pass/tier1", &"base:move/spark/tier3", &"base:move/infes/tier2"]),
+"slot_index": 2,
+"source_level_offset": -1
+}, {
+"definition_id": &"base:minion/goo_1",
+"level": 13,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/poison_tooth/tier5", &"base:move/wild_lance/tier3", &"base:move/ferocity/tier4", &"base:move/charge_pass/tier1", &"base:move/spark/tier3", &"base:move/infes/tier2"]),
+"slot_index": 3,
+"source_level_offset": -1
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 11, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/2/3"
+source_floor_index = 2
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/grass_floor3_trainer_3"
+display_name = "Floor 3 — electric student"
+legacy_class_name = "TrainerSystem.CreateFloor3"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:262"

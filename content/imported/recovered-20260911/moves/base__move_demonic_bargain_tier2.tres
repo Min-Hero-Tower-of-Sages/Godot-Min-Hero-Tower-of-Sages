@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://26xbew1476fv"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_4o6vu"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_pykff"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_woan3"]
+
+[sub_resource type="Resource" id="Resource_qe8n1"]
+script = ExtResource("1_4o6vu")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 1
+random_bonus = 90
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_pykff")
+id = &"base:move/demonic_bargain/tier2/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2118"
+
+[resource]
+script = ExtResource("3_woan3")
+family_id = &"base:move_family/demonic_bargain"
+tier = 2
+type_id = &"base:type/demonic"
+legacy_class_id = 121
+legacy_visual_id = 121
+legacy_dot_visual_id = 121
+buff_icon_name = &"moveIcon_demonicBargain"
+energy_cost = 18
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_4o6vu")]([SubResource("Resource_qe8n1")])
+presentation_id = &"base:presentation/move/move_icon_demonic_bargain"
+id = &"base:move/demonic_bargain/tier2"
+display_name = "Demonic Bargain  lv.2"
+legacy_numeric_id = 541
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

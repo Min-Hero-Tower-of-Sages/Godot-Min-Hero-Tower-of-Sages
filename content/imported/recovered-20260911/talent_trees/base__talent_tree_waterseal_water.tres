@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_lk4qf"]
+
+[resource]
+script = ExtResource("1_lk4qf")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/waterseal_water/node/0_0",
+"move_ids": ["base:move/soak/tier1", "base:move/soak/tier2", "base:move/soak/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1711.0, 1712.0, 1713.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_water/node/1_0",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier2", "base:move/reckless_dash/tier4", "base:move/reckless_dash/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1714.0, 1715.0, 1716.0, 1717.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_water/node/2_0",
+"move_ids": ["base:move/energize/tier1", "base:move/energize/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1718.0, 1719.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterseal_water/node/0_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1720.0, 1721.0, 1722.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_water/node/1_1",
+"move_ids": ["base:move/water_slam/tier1", "base:move/water_slam/tier2", "base:move/water_slam/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1723.0, 1724.0, 1725.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_water/node/2_1",
+"move_ids": ["base:move/flesh_sacrifice/tier1", "base:move/flesh_sacrifice/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1726.0, 1727.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterseal_water/node/0_2",
+"move_ids": ["base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_water/node/0_1"],
+"row": 2.0,
+"source_lines": [1728.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_water/node/1_2",
+"move_ids": ["base:move/waterjet/tier3", "base:move/waterjet/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1729.0, 1730.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_water/node/2_2",
+"move_ids": ["base:move/flesh_sacrifice/tier4", "base:move/flesh_sacrifice/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_water/node/2_1"],
+"row": 2.0,
+"source_lines": [1731.0, 1732.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_water/node/1_3",
+"move_ids": ["base:move/waterjet/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_water/node/1_2"],
+"row": 3.0,
+"source_lines": [1733.0]
+}])
+id = &"base:talent_tree/waterseal_water"
+display_name = "Water"
+legacy_class_name = "WaterSeal_Water"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1708"

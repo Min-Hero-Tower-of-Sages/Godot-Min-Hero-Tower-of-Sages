@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_mqbey"]
+
+[resource]
+script = ExtResource("1_mqbey")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/waterseal_support/node/0_0",
+"move_ids": ["base:move/rock_skin/tier1", "base:move/rock_skin/tier2", "base:move/rock_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1767.0, 1768.0, 1769.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_support/node/1_0",
+"move_ids": ["base:move/grind/tier1", "base:move/grind/tier2", "base:move/grind/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1770.0, 1771.0, 1772.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_support/node/2_0",
+"move_ids": ["base:move/crush/tier1", "base:move/crush/tier2", "base:move/crush/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1773.0, 1774.0, 1775.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterseal_support/node/0_1",
+"move_ids": ["base:move/bone_chill/tier1", "base:move/bone_chill/tier2", "base:move/bone_chill/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1776.0, 1777.0, 1778.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_support/node/1_1",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1779.0, 1780.0, 1781.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_support/node/2_1",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1782.0, 1783.0, 1784.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterseal_support/node/0_2",
+"move_ids": ["base:move/bone_chill/tier4", "base:move/bone_chill/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_support/node/0_1"],
+"row": 2.0,
+"source_lines": [1785.0, 1786.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_support/node/1_2",
+"move_ids": ["base:move/invigorate/tier3", "base:move/invigorate/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1787.0, 1788.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterseal_support/node/2_2",
+"move_ids": ["base:move/tire/tier1", "base:move/tire/tier2", "base:move/tire/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1789.0, 1790.0, 1791.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterseal_support/node/1_3",
+"move_ids": ["base:move/invigorate/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterseal_support/node/1_2"],
+"row": 3.0,
+"source_lines": [1792.0]
+}])
+id = &"base:talent_tree/waterseal_support"
+display_name = "Support"
+legacy_class_name = "WaterSeal_Support"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1764"

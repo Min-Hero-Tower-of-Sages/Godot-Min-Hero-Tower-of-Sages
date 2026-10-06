@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/fire_frog_1", "level": 21, "source_level_offset": -2, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/sear/tier1", &"base:move/touch_fire/tier1", &"base:move/warmth/tier5", &"base:move/priest/tier5", &"base:move/slow/tier1", &"base:move/earthy_fortitude/tier3", &"base:move/skillful/tier3"])
+}, {
+"definition_id": &"base:minion/fire_frog_1", "level": 21, "source_level_offset": -2, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/sear/tier1", &"base:move/touch_fire/tier5", &"base:move/flare_up/tier5", &"base:move/warmth/tier1", &"base:move/slow/tier3", &"base:move/roar/tier4"])
+}, {
+"definition_id": &"base:minion/fire_frog_1", "level": 21, "source_level_offset": -2, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/sear/tier1", &"base:move/fire_shot/tier5", &"base:move/inflame/tier4", &"base:move/rock_blast/tier2", &"base:move/vicious/tier5", &"base:move/intense_flame/tier3"])
+}, {
+"definition_id": &"base:minion/ground_plant_2", "level": 21, "source_level_offset": -2, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/razor_vine/tier1", &"base:move/mud_blast/tier5", &"base:move/rock_throw/tier3", &"base:move/concentration/tier3", &"base:move/mirror_skin/tier2", &"base:move/drain/tier3", &"base:move/vicious/tier4"])
+}, {
+"definition_id": &"base:minion/fire_bear_1", "level": 21, "source_level_offset": -2, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/sear/tier1", &"base:move/fire_bash/tier5", &"base:move/fire_blast/tier2", &"base:move/kindle/tier3", &"base:move/ferocity/tier5", &"base:move/wildfire/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 27, "floor_keys": 1}}
+battle_modifier_configuration = {"move_timer": {"interval": 3, "move_id": &"base:move/sear/tier1", "buff_move_id": &"base:move/hulk_inspiration/tier3", "source_power": 1, "actor": {"instance_id": "floor7-trainer1-move-timer", "definition_id": &"internal:minion/bmod_2", "team": 1, "level": 19, "move_ids": Array[StringName]([&"base:move/sear/tier1"])}}}
+source_trainer_id = &"base:trainer/standard/6/1"
+source_floor_index = 6
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor7_trainer_1"
+display_name = "Floor 7 — source trainer 1"
+description = "Source start dialogue: Ooga booga, ooga booga, ooga booga!!\nSource defeat dialogue: Well.....that certainly didn't work!"
+legacy_class_name = "TrainerSystem.CreateFloor6"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:422"

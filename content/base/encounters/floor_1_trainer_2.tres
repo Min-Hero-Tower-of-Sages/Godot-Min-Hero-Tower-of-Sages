@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/grassgorilla_1",
+"level": 7,
+"move_ids": Array[StringName]([]),
+"slot_index": 0
+}, {
+"definition_id": &"base:minion/grassgorilla_1",
+"level": 7,
+"move_ids": Array[StringName]([]),
+"slot_index": 1
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 7, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/0/2"
+source_floor_index = 0
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/grass_floor1_room2_normal"
+display_name = "Floor 1 — key keeper"
+legacy_class_name = "TrainerSystem.CreateFloor1"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:164"

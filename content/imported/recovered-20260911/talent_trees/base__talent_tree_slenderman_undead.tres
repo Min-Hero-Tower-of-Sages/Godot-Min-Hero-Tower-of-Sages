@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_ukli5"]
+
+[resource]
+script = ExtResource("1_ukli5")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/slenderman_undead/node/0_0",
+"move_ids": ["base:move/haunt/tier2", "base:move/haunt/tier3", "base:move/haunt/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4011.0, 4012.0, 4013.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/slenderman_undead/node/1_0",
+"move_ids": ["base:move/lich_burn/tier1", "base:move/lich_burn/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4014.0, 4015.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/slenderman_undead/node/2_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4016.0, 4017.0, 4018.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/slenderman_undead/node/0_1",
+"move_ids": ["base:move/haunt/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/slenderman_undead/node/0_0"],
+"row": 1.0,
+"source_lines": [4019.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/slenderman_undead/node/1_1",
+"move_ids": ["base:move/lich_burn/tier3", "base:move/lich_burn/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/slenderman_undead/node/1_0"],
+"row": 1.0,
+"source_lines": [4020.0, 4021.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/slenderman_undead/node/2_1",
+"move_ids": ["base:move/rancid_bite/tier1", "base:move/rancid_bite/tier2", "base:move/rancid_bite/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4022.0, 4023.0, 4024.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/slenderman_undead/node/0_2",
+"move_ids": ["base:move/flesh_sacrifice/tier3", "base:move/flesh_sacrifice/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4025.0, 4026.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/slenderman_undead/node/2_2",
+"move_ids": ["base:move/rancid_bite/tier4", "base:move/rancid_bite/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/slenderman_undead/node/2_1"],
+"row": 2.0,
+"source_lines": [4027.0, 4028.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/slenderman_undead/node/0_3",
+"move_ids": ["base:move/flesh_sacrifice/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/slenderman_undead/node/0_2"],
+"row": 3.0,
+"source_lines": [4029.0]
+}])
+id = &"base:talent_tree/slenderman_undead"
+display_name = "Undead"
+legacy_class_name = "SlenderMan_Undead"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4008"

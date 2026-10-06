@@ -1,0 +1,59 @@
+{
+  "floor_index": 30,
+  "source_floor_index": 30,
+  "source_room_order": [
+    "base:room/level_7_gym"
+  ],
+  "entry_room_id": "base:room/level_7_gym",
+  "rooms": [
+    {
+      "id": "base:room/level_7_gym",
+      "display_name": "Floor 31 — Level_7_gym",
+      "legacy_class_name": "LevelContainer_Level_7_gym",
+      "source_symbol": "Utilities.LevelContainer_Level_7_gym",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_7_gym.as",
+      "source_payload": "res://content/base/room_payloads/source/level_7_gym.json",
+      "room_index": 0,
+      "exits": [],
+      "encounter_ids": [
+        "base:encounter/floor31_trainer_0"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 0,
+        "trainer_type": "TrainerType.TRAINER_GRAND_SAGE",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1606",
+        "source_method": "CreateFloor_Boss_Grand_Sage",
+        "source_floor_argument": 30
+      },
+      "interactions": [
+        {
+          "id": "floor-31-trainer-0",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 0,
+          "trainer_type": "TrainerType.TRAINER_GRAND_SAGE",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor31_trainer_0",
+          "first_visit_text": "This is excellent!!  I knew you'd make it to the top, let's see your full strength!",
+          "lose_text": "It has been a long while since I've enjoyed a battle that much. Well done!  You are now a Grand Sage, go and claim your Titan.  It waits for you in the lobby..."
+        }
+      ]
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_7_gym",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    }
+  ],
+  "eggery_source": {
+    "source_floor_index": 30,
+    "source_minion_level_base": 58,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/batdemon_1", "level": 55, "source_level_offset": -2, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/sear/tier2", &"base:move/fire_blast/tier5", &"base:move/rock_blast/tier3", &"base:move/fire_bash/tier5", &"base:move/intense_flame/tier1", &"base:move/blood_ritual/tier2", &"base:move/crazed_blast/tier1", &"base:move/ferocity/tier3"])
+}, {
+"definition_id": &"base:minion/slenderman_1", "level": 55, "source_level_offset": -2, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/haunt/tier5", &"base:move/infes/tier5", &"base:move/mortify/tier4", &"base:move/efficiency/tier3", &"base:move/rancid_bite/tier2"])
+}, {
+"definition_id": &"base:minion/slenderman_1", "level": 55, "source_level_offset": -2, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/haunt/tier1", &"base:move/flesh_sacrifice/tier5", &"base:move/vicious/tier3", &"base:move/rancid_bite/tier5", &"base:move/fortitude/tier5", &"base:move/efficiency/tier1"])
+}, {
+"definition_id": &"base:minion/crow_3", "level": 55, "source_level_offset": -2, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/peck/tier5", &"base:move/cutting_wind/tier3", &"base:move/wild_lance/tier1", &"base:move/quickness/tier4", &"base:move/concentration/tier3", &"base:move/blow_by/tier1", &"base:move/efficiency/tier2"])
+}, {
+"definition_id": &"base:minion/crow_3", "level": 55, "source_level_offset": -2, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/demonic_strike/tier5", &"base:move/lich_burn/tier3", &"base:move/hailstone/tier3", &"base:move/burn/tier3", &"base:move/vicious/tier4"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/28/1"
+source_floor_index = 28
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor29_trainer_1"
+display_name = "Floor 29 — source trainer 1"
+description = "Source start dialogue: Ah hahahaha!  Let's see if we can put a smile on that face!\nSource defeat dialogue: Eh hehehe, looks like the jokes on me!!  Hahahaha!"
+legacy_class_name = "TrainerSystem.CreateFloor24"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1533"
+battle_modifier_configuration = {"shield": {"enemy": 3, "player": 3}}

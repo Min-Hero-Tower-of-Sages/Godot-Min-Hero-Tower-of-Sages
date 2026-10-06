@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_u86xf"]
+
+[resource]
+script = ExtResource("1_u86xf")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_inspire/node/0_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3739.0, 3740.0, 3741.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_inspire/node/1_0",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3742.0, 3743.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_inspire/node/2_0",
+"move_ids": ["base:move/tackle/tier2", "base:move/tackle/tier3", "base:move/tackle/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3744.0, 3745.0, 3746.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_inspire/node/0_1",
+"move_ids": ["base:move/efficiency/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_inspire/node/0_0"],
+"row": 1.0,
+"source_lines": [3747.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_inspire/node/1_1",
+"move_ids": ["base:move/fortitude/tier1", "base:move/fortitude/tier2", "base:move/fortitude/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3748.0, 3749.0, 3750.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_inspire/node/2_1",
+"move_ids": ["base:move/slow/tier1", "base:move/slow/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3751.0, 3752.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_inspire/node/0_2",
+"move_ids": ["base:move/reflect_damage/tier1", "base:move/reflect_damage/tier2", "base:move/reflect_damage/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3753.0, 3754.0, 3755.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_inspire/node/1_2",
+"move_ids": ["base:move/deadly_inspiration/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3756.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_inspire/node/2_2",
+"move_ids": ["base:move/slow/tier3", "base:move/slow/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_inspire/node/2_1"],
+"row": 2.0,
+"source_lines": [3757.0, 3758.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_inspire/node/1_3",
+"move_ids": ["base:move/deadly_inspiration/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_inspire/node/1_2"],
+"row": 3.0,
+"source_lines": [3759.0]
+}])
+id = &"base:talent_tree/holystrongman_inspire"
+display_name = "Inspire"
+legacy_class_name = "HolyStrongMan_Inspire"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3736"

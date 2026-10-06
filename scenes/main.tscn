@@ -1,0 +1,366 @@
+[gd_scene format=3 uid="uid://urm13milb6jg"]
+
+[ext_resource type="Script" uid="uid://vf0u86yqhfy0" path="res://src/presentation/main.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bri20ok5ap30d" path="res://content/base/art/battle/battleScreenBackground_sky.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://2g1yxyl6hri5" path="res://content/base/art/battle/battleScreenBackground_clouds.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bmo2rwn4i6pl3" path="res://content/base/art/battle/battleScreenBackground_horizon.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c0ja0fltcx66g" path="res://content/base/art/battle/battleScreenBackground_island.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cojjlfh5ud4q7" path="res://content/base/art/battle/battleScreenCurrMinionsTurn.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dbs6ill0hf3it" path="res://content/base/art/battle/battleScreenMenus_movesModuleBackground.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cyx8rrl37ai2q" path="res://content/base/art/battle/battleScreenMenus_fillBar_energyFill.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://csgc2rjq5jy8q" path="res://content/base/art/battle/battleScreenMenus_fillBar_energyCap.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://1qtup1gnlfn3" path="res://content/base/art/battle/outOfEnergyTip.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://detmkfekn26j8" path="res://content/base/art/battle/battleScreenMenus_movesDeselectButton.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://da3fex6nq648r" path="res://content/base/art/battle/forfeitButton.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://dewdfjyb108wf" path="res://content/base/art/battle/conformationBox_background.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://ch70hcdaamoa6" path="res://content/base/art/battle/conformationBox_yesButton.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://bq08npmhf33yi" path="res://content/base/art/battle/conformationBox_noButton.png" id="16"]
+
+[node name="Main" type="Control" unique_id=1953148274]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="Sky" type="TextureRect" parent="." unique_id=1724142308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Clouds" type="TextureRect" parent="." unique_id=1580788766]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 6.0
+offset_right = 586.0
+offset_bottom = 255.0
+mouse_filter = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Horizon" type="TextureRect" parent="." unique_id=460697589]
+layout_mode = 0
+offset_top = 196.0
+offset_right = 700.0
+offset_bottom = 308.0
+mouse_filter = 2
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Island" type="TextureRect" parent="." unique_id=913744028]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 167.0
+offset_right = 772.0
+offset_bottom = 513.0
+mouse_filter = 2
+texture = ExtResource("5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Shade" type="ColorRect" parent="." unique_id=1256172035]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.07, 0.12, 0.12)
+
+[node name="CombatantLayer" type="Control" parent="." unique_id=1650801801]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BattleGreyLayer" type="ColorRect" parent="." unique_id=175798104]
+unique_name_in_owner = true
+visible = false
+z_index = 600
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="CurrentMinionTurn" type="TextureRect" parent="." unique_id=1842349588]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+mouse_filter = 2
+texture = ExtResource("6")
+expand_mode = 1
+
+[node name="MoveVfxLayer" type="Control" parent="." unique_id=1263175147]
+unique_name_in_owner = true
+z_index = 750
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BattleBanner" type="PanelContainer" parent="." unique_id=14240666]
+visible = false
+layout_mode = 0
+offset_left = 174.0
+offset_top = 12.0
+offset_right = 526.0
+offset_bottom = 55.0
+mouse_filter = 2
+
+[node name="EventText" type="Label" parent="BattleBanner" unique_id=1838639214]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.91, 0.55, 1)
+theme_override_font_sizes/font_size = 15
+text = "Tower of Sages"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovePanel" type="Control" parent="." unique_id=686017377]
+unique_name_in_owner = true
+visible = false
+z_index = 800
+anchors_preset = 0
+offset_right = 1.0
+offset_bottom = 1.0
+mouse_filter = 2
+
+[node name="SelectorBackground" type="TextureRect" parent="MovePanel" unique_id=1456924611]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -50.0
+offset_right = 196.0
+offset_bottom = 125.0
+mouse_filter = 2
+texture = ExtResource("7")
+
+[node name="EnergyFill" type="TextureProgressBar" parent="MovePanel" unique_id=810785780]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 33.0
+offset_top = 33.0
+offset_right = 103.0
+offset_bottom = 46.0
+mouse_filter = 2
+texture_progress = ExtResource("9")
+
+[node name="EnergyCap" type="TextureRect" parent="MovePanel" unique_id=102928981]
+visible = false
+layout_mode = 0
+offset_left = 101.0
+offset_top = 33.0
+offset_right = 106.0
+offset_bottom = 46.0
+mouse_filter = 2
+texture = ExtResource("10")
+
+[node name="TurnTitle" type="Label" parent="MovePanel" unique_id=1701751740]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 33.0
+offset_top = 29.0
+offset_right = 103.0
+offset_bottom = 49.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "10/10"
+horizontal_alignment = 1
+
+[node name="MoveButtons" type="Control" parent="MovePanel" unique_id=2063002114]
+unique_name_in_owner = true
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="OutOfEnergyTip" type="TextureRect" parent="MovePanel" unique_id=1703627010]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -147.0
+offset_top = -124.0
+offset_right = 73.0
+offset_bottom = -84.0
+mouse_filter = 2
+texture = ExtResource("11")
+
+[node name="CooldownTip" type="PanelContainer" parent="MovePanel" unique_id=589235012]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -147.0
+offset_top = -124.0
+offset_right = 73.0
+offset_bottom = -84.0
+mouse_filter = 2
+
+[node name="CooldownText" type="Label" parent="MovePanel/CooldownTip" unique_id=78891303]
+layout_mode = 2
+text = "MOVES COOLING DOWN, USE DESPERATION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Forfeit" type="TextureButton" parent="." unique_id=322086605]
+unique_name_in_owner = true
+z_index = 1000
+layout_mode = 0
+offset_left = 624.0
+offset_right = 690.0
+offset_bottom = 27.0
+texture_normal = ExtResource("13")
+
+[node name="ForfeitConfirmation" type="Control" parent="." unique_id=924654071]
+unique_name_in_owner = true
+visible = false
+z_index = 1100
+anchors_preset = 0
+offset_left = 490.0
+offset_top = 10.0
+offset_right = 701.0
+offset_bottom = 95.0
+
+[node name="Background" type="TextureRect" parent="ForfeitConfirmation" unique_id=737743071]
+layout_mode = 0
+offset_right = 211.0
+offset_bottom = 85.0
+texture = ExtResource("14")
+
+[node name="Question" type="Label" parent="ForfeitConfirmation" unique_id=1189644361]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 11.0
+offset_right = 207.0
+offset_bottom = 41.0
+text = "Are you sure?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Yes" type="TextureButton" parent="ForfeitConfirmation" unique_id=1962137956]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 42.0
+offset_right = 106.0
+offset_bottom = 81.0
+texture_normal = ExtResource("15")
+
+[node name="No" type="TextureButton" parent="ForfeitConfirmation" unique_id=533035506]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 105.0
+offset_top = 42.0
+offset_right = 206.0
+offset_bottom = 81.0
+texture_normal = ExtResource("16")
+
+[node name="CancelTarget" type="Button" parent="." unique_id=166528077]
+unique_name_in_owner = true
+visible = false
+z_index = 900
+layout_mode = 0
+offset_right = 57.0
+offset_bottom = 41.0
+tooltip_text = "Return to moves"
+icon = ExtResource("12")
+expand_icon = true
+
+[node name="StartOverlay" type="ColorRect" parent="." unique_id=591145162]
+unique_name_in_owner = true
+z_index = 1200
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.045, 0.08, 0.78)
+
+[node name="StartBox" type="PanelContainer" parent="StartOverlay" unique_id=1674822130]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 165.0
+offset_right = 520.0
+offset_bottom = 354.0
+
+[node name="Rows" type="VBoxContainer" parent="StartOverlay/StartBox" unique_id=1874821118]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Title" type="Label" parent="StartOverlay/StartBox/Rows" unique_id=1974907561]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.31, 1)
+theme_override_font_sizes/font_size = 28
+text = "MIN HERO"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="StartOverlay/StartBox/Rows" unique_id=1574337251]
+layout_mode = 2
+text = "Tower of Sages • battle rebuild"
+horizontal_alignment = 1
+
+[node name="StartBattle" type="Button" parent="StartOverlay/StartBox/Rows" unique_id=1241387998]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "Begin battle"
+
+[node name="ResultOverlay" type="ColorRect" parent="." unique_id=2081255614]
+unique_name_in_owner = true
+visible = false
+z_index = 1200
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.045, 0.08, 0.8)
+
+[node name="ResultBox" type="PanelContainer" parent="ResultOverlay" unique_id=1944424203]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 190.0
+offset_right = 495.0
+offset_bottom = 335.0
+
+[node name="Rows" type="VBoxContainer" parent="ResultOverlay/ResultBox" unique_id=1310667411]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ResultTitle" type="Label" parent="ResultOverlay/ResultBox/Rows" unique_id=525839041]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_font_sizes/font_size = 25
+text = "Victory"
+horizontal_alignment = 1
+
+[node name="RestartBattle" type="Button" parent="ResultOverlay/ResultBox/Rows" unique_id=1639714191]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "Battle again"

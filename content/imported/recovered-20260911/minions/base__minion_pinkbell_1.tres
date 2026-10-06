@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_dgre6"]
+
+[resource]
+script = ExtResource("1_dgre6")
+type_ids = Array[StringName]([&"base:type/holy", &"base:type/fire"])
+base_health = 45
+base_energy = 45
+base_attack = 45
+base_healing = 65
+base_speed = 45
+experience_gain_rate = 2
+gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/burn/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/touch_fire/tier1", &"base:move/hope/tier1", &"base:move/invigorate/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/holybell_fire", &"base:talent_tree/holybell_holy", &"base:talent_tree/holybell_normal"])
+presentation_id = &"base:presentation/minion/holypinkbell"
+id = &"base:minion/pinkbell_1"
+display_name = "Healabell"
+legacy_numeric_id = 79
+legacy_class_name = "PinkBell_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:629"

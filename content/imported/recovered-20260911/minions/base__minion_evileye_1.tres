@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_o8ooe"]
+
+[resource]
+script = ExtResource("1_o8ooe")
+type_ids = Array[StringName]([&"base:type/demonic"])
+base_health = 15
+base_energy = 35
+base_attack = 45
+base_healing = 35
+base_speed = 50
+experience_gain_rate = 0
+gem_slots = 1
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/evil_eye/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/evil_eye/tier2", &"base:move/demonic_strike/tier1", &"base:move/spike/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/evileye_debuffs", &"base:talent_tree/evileye_demonic", &"base:talent_tree/evileye_normal"])
+evolution_id = &"base:minion/evileye_2"
+evolution_level = 34
+presentation_id = &"base:presentation/minion/demoniceyeball1"
+id = &"base:minion/evileye_1"
+display_name = "Leeru"
+legacy_numeric_id = 70
+legacy_class_name = "EvilEye_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:707"

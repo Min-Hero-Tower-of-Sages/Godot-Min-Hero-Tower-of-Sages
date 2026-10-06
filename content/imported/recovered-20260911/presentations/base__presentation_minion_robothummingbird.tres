@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_r0o2f"]
+
+[resource]
+script = ExtResource("1_r0o2f")
+legacy_sprite_name = &"robotHummingbird"
+icon_offset = Vector2i(-2, -7)
+id = &"base:presentation/minion/robothummingbird"
+display_name = "Amliflier presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1317"

@@ -1,0 +1,59 @@
+{
+  "floor_index": 19,
+  "source_floor_index": 19,
+  "source_room_order": [
+    "base:room/level_4_gym"
+  ],
+  "entry_room_id": "base:room/level_4_gym",
+  "rooms": [
+    {
+      "id": "base:room/level_4_gym",
+      "display_name": "Floor 20 — Level_4_gym",
+      "legacy_class_name": "LevelContainer_Level_4_gym",
+      "source_symbol": "Utilities.LevelContainer_Level_4_gym",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_4_gym.as",
+      "source_payload": "res://content/base/room_payloads/source/level_4_gym.json",
+      "room_index": 0,
+      "exits": [],
+      "encounter_ids": [
+        "base:encounter/floor20_trainer_0"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 0,
+        "trainer_type": "TrainerType.TRAINER_GYM_4",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1085",
+        "source_method": "CreateFloor_Boss4",
+        "source_floor_argument": 19
+      },
+      "interactions": [
+        {
+          "id": "floor-20-trainer-0",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 0,
+          "trainer_type": "TrainerType.TRAINER_GYM_4",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor20_trainer_0",
+          "first_visit_text": "Da Undead Sage welcomes ya!  I'll test your persistence, ya dig?",
+          "lose_text": "Your persistence is strong mon!!\n...\nThe undead Sage Seal grants you the abiltiy to find random gem chests."
+        }
+      ]
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_4_gym",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    }
+  ],
+  "eggery_source": {
+    "source_floor_index": 19,
+    "source_minion_level_base": 45,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ]
+  }
+}

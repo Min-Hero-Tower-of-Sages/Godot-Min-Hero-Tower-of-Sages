@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_ot8pj"]
+
+[resource]
+script = ExtResource("1_ot8pj")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/scorpion_ground/node/0_0",
+"move_ids": ["base:move/rock_skin/tier1", "base:move/rock_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3167.0, 3168.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_ground/node/1_0",
+"move_ids": ["base:move/rock_slide/tier1", "base:move/rock_slide/tier2", "base:move/rock_slide/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3169.0, 3170.0, 3171.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scorpion_ground/node/2_0",
+"move_ids": ["base:move/taunt/tier1", "base:move/taunt/tier2", "base:move/taunt/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3172.0, 3173.0, 3174.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scorpion_ground/node/0_1",
+"move_ids": ["base:move/rock_skin/tier3", "base:move/rock_skin/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_ground/node/0_0"],
+"row": 1.0,
+"source_lines": [3175.0, 3176.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_ground/node/1_1",
+"move_ids": ["base:move/rock_slide/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_ground/node/1_0"],
+"row": 1.0,
+"source_lines": [3177.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scorpion_ground/node/2_1",
+"move_ids": ["base:move/fortitude/tier1", "base:move/fortitude/tier2", "base:move/fortitude/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3178.0, 3179.0, 3180.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scorpion_ground/node/0_2",
+"move_ids": ["base:move/rock_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_ground/node/0_1"],
+"row": 2.0,
+"source_lines": [3181.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_ground/node/1_2",
+"move_ids": ["base:move/rock_throw/tier3", "base:move/rock_throw/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3182.0, 3183.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_ground/node/1_3",
+"move_ids": ["base:move/rock_throw/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_ground/node/1_2"],
+"row": 3.0,
+"source_lines": [3184.0]
+}])
+id = &"base:talent_tree/scorpion_ground"
+display_name = "Earth"
+legacy_class_name = "Scorpion_Ground"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3164"

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bvupuyeccfrv1"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_e5wx0"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_we75i"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_4u3db"]
+
+[sub_resource type="Resource" id="Resource_opntd"]
+script = ExtResource("1_e5wx0")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 55
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_we75i")
+id = &"base:move/hope/tier3/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2462"
+
+[resource]
+script = ExtResource("3_4u3db")
+family_id = &"base:move_family/hope"
+tier = 3
+type_id = &"base:type/holy"
+legacy_class_id = 147
+legacy_visual_id = 147
+legacy_dot_visual_id = 147
+buff_icon_name = &"moveIcon_hope"
+energy_cost = 25
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_e5wx0")]([SubResource("Resource_opntd")])
+presentation_id = &"base:presentation/move/move_icon_hope"
+id = &"base:move/hope/tier3"
+display_name = "Hope  lv.3"
+legacy_numeric_id = 672
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://botqochvu1278"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_dl84y"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_woblj"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_i6pi2"]
+
+[sub_resource type="Resource" id="Resource_pol0h"]
+script = ExtResource("1_dl84y")
+scaling = 1
+roll_scope = 1
+amount = 90
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_woblj")
+id = &"base:move/twin_missile/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2694"
+
+[resource]
+script = ExtResource("3_i6pi2")
+family_id = &"base:move_family/twin_missile"
+tier = 5
+type_id = &"base:type/robot"
+legacy_class_id = 159
+legacy_visual_id = 159
+legacy_dot_visual_id = 159
+buff_icon_name = &"moveIcon_twinMissile"
+energy_cost = 95
+target_count = 2
+enemy_target_count = 2
+effects = Array[ExtResource("1_dl84y")]([SubResource("Resource_pol0h")])
+presentation_id = &"base:presentation/move/move_icon_twin_missile"
+id = &"base:move/twin_missile/tier5"
+display_name = "Precision Missiles"
+legacy_numeric_id = 734
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

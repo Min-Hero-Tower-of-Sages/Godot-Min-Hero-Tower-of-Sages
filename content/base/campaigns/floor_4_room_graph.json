@@ -1,0 +1,557 @@
+{
+  "floor_index": 3,
+  "source_floor_index": 3,
+  "source_room_order": [
+    "base:room/level_1_4_h1",
+    "base:room/level_1_4_a",
+    "base:room/level_1_4_b",
+    "base:room/level_1_4_e",
+    "base:room/level_1_4_c",
+    "base:room/floor_4_expert_room_fire",
+    "base:room/level_1_4_d",
+    "base:room/level_1_4_f",
+    "base:room/level_1_4_h2",
+    "base:room/level_1_4_h3",
+    "base:room/level_1_4_h4",
+    "base:room/level_1_4_eggery"
+  ],
+  "entry_room_id": "base:room/level_1_4_h1",
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_1_4_h1",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    },
+    {
+      "room_id": "base:room/level_1_4_eggery",
+      "transition_id": 100,
+      "source_sprite": "roomTransitionObject_lobbyFromEggery",
+      "target_route": "lobby"
+    }
+  ],
+  "source_binding_anomalies": [
+    {
+      "encounter_id": "base:encounter/grass_floor4_trainer_3",
+      "trainer_room_id": 3,
+      "intended_room_id": "base:room/level_1_4_e",
+      "reason": "TrainerSystem defines trainer 3 for source room index 3, but the normalized E payload and its embedded LevelContainer contain no buttonZoneObject; no interaction trigger or position is inferred."
+    }
+  ],
+  "eggery_source": {
+    "source_location": "development/extracted/full-20260908/script/scripts/PresistentData/StaticData.as",
+    "source_method": "SetupTheEggeryInfo",
+    "source_floor_index": 3,
+    "conditional_mod_variant": "HolyBirb1 changes weights to 45/27/18/10; base game weights below are used",
+    "base_game_candidates": [
+      "base:minion/healinghorse_1",
+      "base:minion/holymantris_1",
+      "base:minion/trex_1"
+    ],
+    "base_game_weights": [
+      50,
+      30,
+      20
+    ],
+    "source_minion_level_base": 22,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ]
+  },
+  "rooms": [
+    {
+      "id": "base:room/level_1_4_h1",
+      "display_name": "Floor 4 — north entrance",
+      "legacy_class_name": "LevelContainer_Level_1_4_H1",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_H1",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_H1.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_h1.json",
+      "room_index": 0,
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_1_4_a",
+          "target_spawn_id": "entry-1"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_a",
+      "display_name": "Floor 4 — west chamber",
+      "legacy_class_name": "LevelContainer_Level_1_4_A",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_A",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_A.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_a.json",
+      "room_index": 1,
+      "encounter_ids": [
+        "base:encounter/grass_floor4_trainer_1"
+      ],
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_1_4_h1",
+          "target_spawn_id": "entry-1"
+        },
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_1_4_h2",
+          "target_spawn_id": "entry-2"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-trainer-1",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "encounter_id": "base:encounter/grass_floor4_trainer_1",
+          "trainer_room_id": 1,
+          "first_visit_text": "It's a great day for a hike!"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_b",
+      "display_name": "Floor 4 — east chamber",
+      "legacy_class_name": "LevelContainer_Level_1_4_B",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_B",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_B.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_b.json",
+      "room_index": 2,
+      "encounter_ids": [
+        "base:encounter/grass_floor4_trainer_2"
+      ],
+      "exits": [
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_1_4_h2",
+          "target_spawn_id": "entry-3"
+        },
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_1_4_h3",
+          "target_spawn_id": "entry-4"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-trainer-2",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "encounter_id": "base:encounter/grass_floor4_trainer_2",
+          "trainer_room_id": 2,
+          "first_visit_text": "The flowers bloom just as my beauty blooms."
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_e",
+      "display_name": "Floor 4 — map chamber",
+      "legacy_class_name": "LevelContainer_Level_1_4_E",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_E",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_E.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_e.json",
+      "room_index": 3,
+      "encounter_ids": [
+        "base:encounter/grass_floor4_trainer_3"
+      ],
+      "exits": [
+        {
+          "transition_id": 11,
+          "target_room_id": "base:room/level_1_4_h2",
+          "target_spawn_id": "entry-11",
+          "is_teleport": true
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_c",
+      "display_name": "Floor 4 — south chamber",
+      "legacy_class_name": "LevelContainer_Level_1_4_C",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_C",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_C.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_c.json",
+      "room_index": 4,
+      "encounter_ids": [
+        "base:encounter/grass_floor4_trainer_4_hard"
+      ],
+      "exits": [
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_1_4_h3",
+          "target_spawn_id": "entry-5"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-trainer-4-hard",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "encounter_id": "base:encounter/grass_floor4_trainer_4_hard",
+          "trainer_room_id": 4,
+          "requires_tower_mode": "hard"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_d",
+      "display_name": "Floor 4 — expert access chamber",
+      "legacy_class_name": "LevelContainer_Level_1_4_D",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_D",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_D.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_d.json",
+      "room_index": 6,
+      "encounter_ids": [
+        "base:encounter/grass_floor4_trainer_6_boss"
+      ],
+      "exits": [
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_1_4_h2",
+          "target_spawn_id": "entry-6"
+        },
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/floor_4_expert_room_fire",
+          "target_spawn_id": "entry-expert",
+          "requires_tower_mode": "hard"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-trainer-6-boss",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "encounter_id": "base:encounter/grass_floor4_trainer_6_boss",
+          "trainer_room_id": 6,
+          "first_visit_text": "I will show you the true strength of the minions you are about to get."
+        }
+      ],
+      "source_only_exit_id": 99,
+      "source_spawns": [
+        {
+          "id": "expert-return",
+          "source_marker": "expert_roomTransitionObject"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_f",
+      "display_name": "Floor 4 — boss chamber",
+      "legacy_class_name": "LevelContainer_Level_1_4_F",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_F",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_F.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_f.json",
+      "room_index": 7,
+      "exits": [
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_1_4_h2",
+          "target_spawn_id": "entry-7"
+        },
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_1_4_h4",
+          "target_spawn_id": "entry-8"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-eggery-door",
+          "kind": "unlock_eggery_door",
+          "source_zone_id": 2,
+          "required_eggery_keys": 1,
+          "locked_text": "I need more keys to open that door."
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_h2",
+      "display_name": "Floor 4 — central passage",
+      "legacy_class_name": "LevelContainer_Level_1_4_H2",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_H2",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_H2.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_h2.json",
+      "room_index": 8,
+      "exits": [
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_1_4_a",
+          "target_spawn_id": "entry-2"
+        },
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_1_4_b",
+          "target_spawn_id": "entry-3"
+        },
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_1_4_d",
+          "target_spawn_id": "entry-6"
+        },
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_1_4_f",
+          "target_spawn_id": "entry-7"
+        },
+        {
+          "transition_id": 11,
+          "target_room_id": "base:room/level_1_4_e",
+          "target_spawn_id": "entry-11",
+          "is_teleport": true
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-heal-h2",
+          "kind": "heal_party",
+          "source_zone_id": 1,
+          "trigger_on_enter": true
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_h3",
+      "display_name": "Floor 4 — west passage",
+      "legacy_class_name": "LevelContainer_Level_1_4_H3",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_H3",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_H3.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_h3.json",
+      "room_index": 9,
+      "exits": [
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_1_4_b",
+          "target_spawn_id": "entry-4"
+        },
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_1_4_c",
+          "target_spawn_id": "entry-5"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-heal-h3",
+          "kind": "heal_party",
+          "source_zone_id": 1,
+          "trigger_on_enter": true
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_h4",
+      "display_name": "Floor 4 — hatchery passage",
+      "legacy_class_name": "LevelContainer_Level_1_4_H4",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_H4",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_H4.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_h4.json",
+      "room_index": 10,
+      "exits": [
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_1_4_f",
+          "target_spawn_id": "entry-8"
+        },
+        {
+          "transition_id": 9,
+          "target_room_id": "base:room/level_1_4_eggery",
+          "target_spawn_id": "entry-9",
+          "requires_progression_flag": "eggery_door_unlocked"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_1_4_eggery",
+      "display_name": "Floor 4 — hatchery",
+      "legacy_class_name": "LevelContainer_Level_1_4_Eggery",
+      "source_symbol": "Utilities.LevelContainer_Level_1_4_Eggery",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_Eggery.as",
+      "source_payload": "res://content/base/room_payloads/source/level_1_4_eggery.json",
+      "room_index": 11,
+      "exits": [
+        {
+          "transition_id": 9,
+          "target_room_id": "base:room/level_1_4_h4",
+          "target_spawn_id": "entry-9"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-egg-slot-0",
+          "kind": "egg_pick",
+          "source_zone_id": 0,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        },
+        {
+          "id": "floor-4-egg-slot-1",
+          "kind": "egg_pick",
+          "source_zone_id": 1,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        },
+        {
+          "id": "floor-4-egg-slot-2",
+          "kind": "egg_pick",
+          "source_zone_id": 2,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        },
+        {
+          "id": "floor-4-egg-slot-3",
+          "kind": "egg_pick",
+          "source_zone_id": 3,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        },
+        {
+          "id": "floor-4-egg-slot-4",
+          "kind": "egg_pick",
+          "source_zone_id": 4,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        },
+        {
+          "id": "floor-4-egg-slot-5",
+          "kind": "egg_pick",
+          "source_zone_id": 5,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        },
+        {
+          "id": "floor-4-egg-slot-6",
+          "kind": "egg_pick",
+          "source_zone_id": 6,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        },
+        {
+          "id": "floor-4-egg-slot-7",
+          "kind": "egg_pick",
+          "source_zone_id": 7,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        },
+        {
+          "id": "floor-4-egg-slot-8",
+          "kind": "egg_pick",
+          "source_zone_id": 8,
+          "candidates": [
+            "base:minion/healinghorse_1",
+            "base:minion/holymantris_1",
+            "base:minion/trex_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ],
+          "candidate_source": "base_game_static_data"
+        }
+      ]
+    },
+    {
+      "id": "base:room/floor_4_expert_room_fire",
+      "display_name": "Floor 4 — expert trial",
+      "legacy_class_name": "ExpertRoom_fire",
+      "source_symbol": "TopDown.Levels.MainTower.ExpertRoom_fire",
+      "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/MainTower/ExpertRoom_fire.as",
+      "source_payload": "res://content/base/room_payloads/source/early_floor_4_expert.json",
+      "room_index": 5,
+      "encounter_ids": [
+        "base:encounter/grass_floor4_trainer_5_expert"
+      ],
+      "exits": [
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/level_1_4_d",
+          "target_spawn_id": "expert-return",
+          "requires_tower_mode": "hard"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-4-expert-trainer",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 5,
+          "encounter_id": "base:encounter/grass_floor4_trainer_5_expert",
+          "requires_tower_mode": "hard"
+        }
+      ]
+    }
+  ]
+}

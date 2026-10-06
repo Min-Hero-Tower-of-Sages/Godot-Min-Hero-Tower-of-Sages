@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://xxksnuthf3vh"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_kktqs"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_0grvg"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_1ju8h"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_5n881"]
+
+[sub_resource type="Resource" id="Resource_tflxi"]
+script = ExtResource("1_kktqs")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 70
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_0grvg")
+id = &"base:move/swift_mend/tier5/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1666"
+
+[sub_resource type="Resource" id="Resource_y3ljy"]
+script = ExtResource("1_kktqs")
+kind = 11
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 4
+amount = 70
+duration = 3
+legacy_order = 1
+executor = ExtResource("3_1ju8h")
+id = &"base:move/swift_mend/tier5/effect/01_periodic_heal_ally_targets"
+display_name = "Periodic Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1666"
+
+[resource]
+script = ExtResource("4_5n881")
+family_id = &"base:move_family/swift_mend"
+tier = 5
+type_id = &"base:type/plant"
+legacy_class_id = 107
+legacy_visual_id = 107
+legacy_dot_visual_id = 107
+buff_icon_name = &"moveIcon_swiftMend"
+energy_cost = 50
+cooldown_turns = 3
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_kktqs")]([SubResource("Resource_tflxi"), SubResource("Resource_y3ljy")])
+presentation_id = &"base:presentation/move/move_icon_swift_mend"
+id = &"base:move/swift_mend/tier5"
+display_name = "Rapid Remedy"
+legacy_numeric_id = 474
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

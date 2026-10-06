@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_llsa4"]
+
+[resource]
+script = ExtResource("1_llsa4")
+legacy_sprite_name = &"dirtFish"
+icon_offset = Vector2i(-5, -60)
+id = &"zanyu:presentation/minion/dirtfish"
+display_name = "Zanyu presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:571"
+source_mod = &"zanyu"

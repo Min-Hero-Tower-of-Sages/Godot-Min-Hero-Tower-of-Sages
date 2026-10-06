@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b4h3u2ncqsokv"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ebpgi"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="2_esns1"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_nj4u2"]
+
+[sub_resource type="Resource" id="Resource_ww7tt"]
+script = ExtResource("1_ebpgi")
+kind = 17
+roll_scope = 2
+executor = ExtResource("2_esns1")
+id = &"base:move/cleanse_darkness/tier4/effect/00_clear_buffs_debuffs_enemy_targets"
+display_name = "Clear Buffs Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2641"
+
+[sub_resource type="Resource" id="Resource_lgmh7"]
+script = ExtResource("1_ebpgi")
+kind = 17
+target_scope = 2
+phase = 2
+roll_scope = 2
+legacy_order = 1
+executor = ExtResource("2_esns1")
+id = &"base:move/cleanse_darkness/tier4/effect/01_clear_buffs_debuffs_ally_targets"
+display_name = "Clear Buffs Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2641"
+
+[resource]
+script = ExtResource("3_nj4u2")
+family_id = &"base:move_family/cleanse_darkness"
+tier = 4
+type_id = &"base:type/holy"
+legacy_class_id = 156
+legacy_visual_id = 156
+legacy_dot_visual_id = 156
+buff_icon_name = &"moveIcon_cleanseDarkness"
+energy_cost = 50
+target_side = 1
+target_mode = 2
+target_count = 4
+enemy_target_count = 0
+ally_target_count = 4
+random_targets = true
+effects = Array[ExtResource("1_ebpgi")]([SubResource("Resource_ww7tt"), SubResource("Resource_lgmh7")])
+presentation_id = &"base:presentation/move/move_icon_cleanse_darkness"
+id = &"base:move/cleanse_darkness/tier4"
+display_name = "Cleanse Darkness  lv.4"
+legacy_numeric_id = 718
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

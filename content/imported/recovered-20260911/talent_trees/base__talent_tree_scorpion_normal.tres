@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_hqmrg"]
+
+[resource]
+script = ExtResource("1_hqmrg")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/scorpion_normal/node/0_0",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier2", "base:move/tackle/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3191.0, 3192.0, 3193.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_normal/node/1_0",
+"move_ids": ["base:move/earthquake/tier1", "base:move/earthquake/tier2", "base:move/earthquake/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3194.0, 3195.0, 3196.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scorpion_normal/node/2_0",
+"move_ids": ["base:move/claw/tier2", "base:move/claw/tier3", "base:move/claw/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3197.0, 3198.0, 3199.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scorpion_normal/node/0_1",
+"move_ids": ["base:move/tackle/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_normal/node/0_0"],
+"row": 1.0,
+"source_lines": [3200.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_normal/node/1_1",
+"move_ids": ["base:move/earthquake/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [3201.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scorpion_normal/node/2_1",
+"move_ids": ["base:move/slow/tier1", "base:move/slow/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3202.0, 3203.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scorpion_normal/node/0_2",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3204.0, 3205.0, 3206.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_normal/node/1_2",
+"move_ids": ["base:move/spike/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3207.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scorpion_normal/node/2_2",
+"move_ids": ["base:move/slow/tier3", "base:move/slow/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [3208.0, 3209.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_normal/node/1_3",
+"move_ids": ["base:move/spike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [3210.0]
+}])
+id = &"base:talent_tree/scorpion_normal"
+display_name = "Normal"
+legacy_class_name = "Scorpion_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3188"

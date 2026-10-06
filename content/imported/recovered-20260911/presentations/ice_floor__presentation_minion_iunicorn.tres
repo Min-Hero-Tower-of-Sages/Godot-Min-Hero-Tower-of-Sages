@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_dr0fn"]
+
+[resource]
+script = ExtResource("1_dr0fn")
+legacy_sprite_name = &"iUnicorn"
+id = &"ice_floor:presentation/minion/iunicorn"
+display_name = "Frosticorn presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:309"
+source_mod = &"ice_floor"

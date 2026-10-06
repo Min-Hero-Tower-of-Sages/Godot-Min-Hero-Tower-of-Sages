@@ -1,0 +1,59 @@
+{
+  "floor_index": 14,
+  "source_floor_index": 14,
+  "source_room_order": [
+    "base:room/level_3_gym"
+  ],
+  "entry_room_id": "base:room/level_3_gym",
+  "rooms": [
+    {
+      "id": "base:room/level_3_gym",
+      "display_name": "Floor 15 — Level_3_gym",
+      "legacy_class_name": "LevelContainer_Level_3_gym",
+      "source_symbol": "Utilities.LevelContainer_Level_3_gym",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_3_gym.as",
+      "source_payload": "res://content/base/room_payloads/source/level_3_gym.json",
+      "room_index": 0,
+      "exits": [],
+      "encounter_ids": [
+        "base:encounter/floor15_trainer_0"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 0,
+        "trainer_type": "TrainerType.TRAINER_GYM_3",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:842",
+        "source_method": "CreateFloor_Boss3",
+        "source_floor_argument": 14
+      },
+      "interactions": [
+        {
+          "id": "floor-15-trainer-0",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 0,
+          "trainer_type": "TrainerType.TRAINER_GYM_3",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor15_trainer_0",
+          "first_visit_text": "We must ponder metastasis during our skirmish and the reprocussions it has on the axioms of space and destiny. \n...\nIt is the duty of the Electric Sage to test your knowledge.",
+          "lose_text": "You're competence is exemplary!\n...\nWith the Sage Seal of Knowledge, you now have the option to pick a second egg in the hatchery.  If you don't want your first choice."
+        }
+      ]
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_3_gym",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    }
+  ],
+  "eggery_source": {
+    "source_floor_index": 14,
+    "source_minion_level_base": 37,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ]
+  }
+}

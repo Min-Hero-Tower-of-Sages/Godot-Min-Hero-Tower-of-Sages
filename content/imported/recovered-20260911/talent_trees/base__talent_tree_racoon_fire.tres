@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_v7pte"]
+
+[resource]
+script = ExtResource("1_v7pte")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/racoon_fire/node/0_0",
+"move_ids": ["base:move/touch_fire/tier1", "base:move/touch_fire/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1498.0, 1499.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/racoon_fire/node/1_0",
+"move_ids": ["base:move/poison_tooth/tier1", "base:move/poison_tooth/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1500.0, 1501.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/racoon_fire/node/2_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1502.0, 1503.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/racoon_fire/node/0_1",
+"move_ids": ["base:move/touch_fire/tier3", "base:move/touch_fire/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/racoon_fire/node/0_0"],
+"row": 1.0,
+"source_lines": [1504.0, 1505.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/racoon_fire/node/1_1",
+"move_ids": ["base:move/inflame/tier1", "base:move/inflame/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1506.0, 1507.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/racoon_fire/node/2_1",
+"move_ids": ["base:move/vicious/tier3", "base:move/vicious/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/racoon_fire/node/2_0"],
+"row": 1.0,
+"source_lines": [1508.0, 1509.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/racoon_fire/node/1_2",
+"move_ids": ["base:move/sear/tier3", "base:move/sear/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1510.0, 1511.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/racoon_fire/node/2_2",
+"move_ids": ["base:move/fire_blast/tier1"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1512.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/racoon_fire/node/1_3",
+"move_ids": ["base:move/sear/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/racoon_fire/node/1_2"],
+"row": 3.0,
+"source_lines": [1513.0]
+}])
+id = &"base:talent_tree/racoon_fire"
+display_name = "Fire"
+legacy_class_name = "Racoon_Fire"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1495"

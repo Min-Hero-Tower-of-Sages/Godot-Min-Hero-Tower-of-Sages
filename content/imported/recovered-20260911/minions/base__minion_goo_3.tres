@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_lrf87"]
+
+[resource]
+script = ExtResource("1_lrf87")
+type_ids = Array[StringName]([&"base:type/normal"])
+base_health = 80
+base_energy = 95
+base_attack = 45
+base_healing = 45
+base_speed = 45
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/tackle/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/ashen_reminder/tier1", &"base:move/poison_tooth/tier1", &"base:move/slow/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/goo_undead", &"base:talent_tree/goo_normal", &"base:talent_tree/goo_debuffs"])
+presentation_id = &"base:presentation/minion/normalslime3"
+id = &"base:minion/goo_3"
+display_name = "Destroslime"
+legacy_numeric_id = 58
+legacy_class_name = "Goo_stage3"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1259"

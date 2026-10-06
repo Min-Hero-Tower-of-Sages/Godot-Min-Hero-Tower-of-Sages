@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_a1x4j"]
+
+[resource]
+script = ExtResource("1_a1x4j")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/fireghost_undead/node/0_0",
+"move_ids": ["base:move/phantom_strike/tier1", "base:move/phantom_strike/tier2", "base:move/phantom_strike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3616.0, 3617.0, 3618.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireghost_undead/node/1_0",
+"move_ids": ["base:move/focus/tier1", "base:move/focus/tier2", "base:move/focus/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3619.0, 3620.0, 3621.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/fireghost_undead/node/2_0",
+"move_ids": ["base:move/demonic_force/tier1", "base:move/demonic_force/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3622.0, 3623.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/fireghost_undead/node/0_1",
+"move_ids": ["base:move/phantom_strike/tier4", "base:move/phantom_strike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/fireghost_undead/node/0_0"],
+"row": 1.0,
+"source_lines": [3624.0, 3625.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireghost_undead/node/1_1",
+"move_ids": ["base:move/focus/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/fireghost_undead/node/1_0"],
+"row": 1.0,
+"source_lines": [3626.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/fireghost_undead/node/2_1",
+"move_ids": ["base:move/haunt/tier1", "base:move/haunt/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3627.0, 3628.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireghost_undead/node/1_2",
+"move_ids": ["base:move/lich_burn/tier3", "base:move/lich_burn/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3629.0, 3630.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/fireghost_undead/node/2_2",
+"move_ids": ["base:move/haunt/tier3", "base:move/haunt/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/fireghost_undead/node/2_1"],
+"row": 2.0,
+"source_lines": [3631.0, 3632.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireghost_undead/node/1_3",
+"move_ids": ["base:move/lich_burn/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/fireghost_undead/node/1_2"],
+"row": 3.0,
+"source_lines": [3633.0]
+}])
+id = &"base:talent_tree/fireghost_undead"
+display_name = "Undead"
+legacy_class_name = "FireGhost_Undead"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3613"

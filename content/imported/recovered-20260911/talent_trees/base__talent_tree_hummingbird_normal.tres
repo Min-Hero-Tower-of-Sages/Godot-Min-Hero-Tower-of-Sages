@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_sd1f6"]
+
+[resource]
+script = ExtResource("1_sd1f6")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/hummingbird_normal/node/0_0",
+"move_ids": ["base:move/tackle/tier2", "base:move/tackle/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2954.0, 2955.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/hummingbird_normal/node/1_0",
+"move_ids": ["base:move/wild_lance/tier1", "base:move/wild_lance/tier2", "base:move/wild_lance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2956.0, 2957.0, 2958.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/hummingbird_normal/node/2_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2959.0, 2960.0, 2961.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/hummingbird_normal/node/0_1",
+"move_ids": ["base:move/reflect_damage/tier1", "base:move/reflect_damage/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2962.0, 2963.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/hummingbird_normal/node/1_1",
+"move_ids": ["base:move/wild_lance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/hummingbird_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [2964.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/hummingbird_normal/node/2_1",
+"move_ids": ["base:move/efficiency/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/hummingbird_normal/node/2_0"],
+"row": 1.0,
+"source_lines": [2965.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/hummingbird_normal/node/0_2",
+"move_ids": ["base:move/reflect_damage/tier3", "base:move/reflect_damage/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/hummingbird_normal/node/0_1"],
+"row": 2.0,
+"source_lines": [2966.0, 2967.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/hummingbird_normal/node/1_2",
+"move_ids": ["base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3", "base:move/mirror_skin/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2968.0, 2969.0, 2970.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/hummingbird_normal/node/2_2",
+"move_ids": ["base:move/slow/tier1", "base:move/slow/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2971.0, 2972.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/hummingbird_normal/node/1_3",
+"move_ids": ["base:move/mirror_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/hummingbird_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [2973.0]
+}])
+id = &"base:talent_tree/hummingbird_normal"
+display_name = "Reflect"
+legacy_class_name = "HummingBird_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2951"

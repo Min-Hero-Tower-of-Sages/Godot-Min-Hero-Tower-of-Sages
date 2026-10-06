@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://mxb38q3evbcf"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_hrgbw"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_4tokn"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_aeg2c"]
+
+[sub_resource type="Resource" id="Resource_3ruqr"]
+script = ExtResource("1_hrgbw")
+scaling = 1
+roll_scope = 1
+amount = 1
+random_bonus = 74
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_4tokn")
+id = &"base:move/batch_bolt/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:616"
+
+[resource]
+script = ExtResource("3_aeg2c")
+family_id = &"base:move_family/batch_bolt"
+tier = 4
+type_id = &"base:type/energy"
+legacy_class_id = 67
+legacy_visual_id = 188
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_batchBolt"
+energy_cost = 40
+target_mode = 1
+target_count = 5
+enemy_target_count = 5
+effects = Array[ExtResource("1_hrgbw")]([SubResource("Resource_3ruqr")])
+presentation_id = &"base:presentation/move/move_icon_batch_bolt"
+visuals_have_buffer = false
+id = &"base:move/batch_bolt/tier4"
+display_name = "Batch Bolt  lv.4"
+legacy_numeric_id = 338
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

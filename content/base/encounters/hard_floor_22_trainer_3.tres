@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/trex_3", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/wild_tackle/tier1", &"base:move/prehistoric_bite/tier1", &"base:move/inner_force/tier1", &"base:move/ferocity/tier5", &"base:move/reckless_grasp/tier5", &"base:move/fire_ram/tier5", &"base:move/crazed_blast/tier5", &"base:move/reckless_dash/tier3"])
+}, {
+"definition_id": &"base:minion/landshark_1", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier5", &"base:move/soak/tier5", &"base:move/refreshing_wave/tier3", &"base:move/cleric/tier5", &"base:move/reflect_damage/tier1"])
+}, {
+"definition_id": &"base:minion/landshark_1", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/waterjet/tier5", &"base:move/rock_blast/tier5", &"base:move/vicious/tier5", &"base:move/soak/tier3"])
+}, {
+"definition_id": &"base:minion/grassgorilla_2", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier1", &"base:move/tree_slam/tier5", &"base:move/drain/tier2", &"base:move/timber/tier3", &"base:move/vicious/tier5", &"base:move/rock_throw/tier2", &"base:move/bone_crunch/tier1"])
+}, {
+"definition_id": &"base:minion/grassgorilla_2", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier1", &"base:move/grind/tier5", &"base:move/tackle/tier5", &"base:move/efficiency/tier1", &"base:move/mirror_skin/tier5", &"base:move/drain/tier2", &"base:move/wild_lance/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/22/room/3"
+source_floor_index = 52
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor53_trainer_3"
+display_name = "Floor 53 — source trainer 3"
+description = "Source start dialogue: YOU SHALL NOT PASS\nSource defeat dialogue: Well...maybe you will."
+legacy_class_name = "TrainerSystem.CreateFloor18_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2689"
+battle_modifier_configuration = {"resurrection": {"team": 1, "turns": 5}}

@@ -1,0 +1,28 @@
+.godot/
+build/
+dist/
+# Local recovery/reference material, diagnostic captures and toolchains.
+# All assets/data required by the actual game are packaged under content/.
+development/
+export_templates/
+feature_profiles/
+script_templates/
+text_editor_themes/
+*.log
+*.err
+*.stdout.log
+*.stderr.log
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+test-report.json
+__pycache__/
+*.pyc

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_wt1df"]
+
+[resource]
+script = ExtResource("1_wt1df")
+legacy_sprite_name = &"waterHorse"
+icon_offset = Vector2i(6, -6)
+id = &"base:presentation/minion/waterhorse"
+display_name = "Foramare presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1833"

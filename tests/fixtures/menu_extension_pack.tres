@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ContentPackDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/content/content_pack_definition.gd" id="1"]
+[ext_resource type="Script" path="res://src/content/content_definition.gd" id="2"]
+[ext_resource type="Resource" path="res://tests/fixtures/menu_extension_probe.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"tests:pack/menu_extension"
+display_name = "Test Menu Extension"
+source_mod = &"tests"
+dependencies = Array[StringName]([])
+enabled_by_default = true
+mod_flag_ids = Array[StringName]([])
+definitions = Array[ExtResource("2")]([ExtResource("3")])
+source_room_graph_path = ""

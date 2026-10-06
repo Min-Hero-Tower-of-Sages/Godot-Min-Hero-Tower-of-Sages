@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c5se1dnc1se5b"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_7srmm"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_8kbik"]
+
+[sub_resource type="Resource" id="Resource_o3crr"]
+script = ExtResource("1_7srmm")
+kind = 20
+target_scope = 0
+phase = 4
+amount = 7
+id = &"base:move/focus/tier2/effect/00_critical_chance_actor"
+display_name = "Critical Chance"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3438"
+
+[resource]
+script = ExtResource("2_8kbik")
+family_id = &"base:move_family/focus"
+tier = 2
+legacy_class_id = 45
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_focus"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_7srmm")]([SubResource("Resource_o3crr")])
+presentation_id = &"base:presentation/move/move_icon_focus"
+id = &"base:move/focus/tier2"
+display_name = "Focus  lv.2"
+legacy_numeric_id = 291
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

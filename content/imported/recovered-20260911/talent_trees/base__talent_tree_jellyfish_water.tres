@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_rjfeh"]
+
+[resource]
+script = ExtResource("1_rjfeh")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_water/node/0_0",
+"move_ids": ["base:move/forceful_heal/tier1", "base:move/forceful_heal/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2980.0, 2981.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_water/node/1_0",
+"move_ids": ["base:move/soak/tier1", "base:move/soak/tier2", "base:move/soak/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2982.0, 2983.0, 2984.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_water/node/2_0",
+"move_ids": ["base:move/fresh_stream/tier1", "base:move/fresh_stream/tier2", "base:move/fresh_stream/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2985.0, 2986.0, 2987.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_water/node/0_1",
+"move_ids": ["base:move/refreshing_wave/tier1", "base:move/refreshing_wave/tier3", "base:move/refreshing_wave/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2988.0, 2989.0, 2990.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_water/node/1_1",
+"move_ids": ["base:move/soak/tier4", "base:move/soak/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_water/node/1_0"],
+"row": 1.0,
+"source_lines": [2991.0, 2992.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_water/node/2_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2993.0, 2994.0, 2995.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_water/node/0_2",
+"move_ids": ["base:move/priest/tier2", "base:move/priest/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2996.0, 2997.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_water/node/1_2",
+"move_ids": ["base:move/waterjet/tier2", "base:move/waterjet/tier3", "base:move/waterjet/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2998.0, 2999.0, 3000.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_water/node/2_2",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_water/node/2_1"],
+"row": 2.0,
+"source_lines": [3001.0, 3002.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_water/node/0_3",
+"move_ids": ["base:move/priest/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_water/node/0_2"],
+"row": 3.0,
+"source_lines": [3003.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_water/node/1_3",
+"move_ids": ["base:move/waterjet/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_water/node/1_2"],
+"row": 3.0,
+"source_lines": [3004.0]
+}])
+id = &"base:talent_tree/jellyfish_water"
+display_name = "Water"
+legacy_class_name = "JellyFish_Water"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2977"

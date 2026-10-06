@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_h4bmq"]
+
+[resource]
+script = ExtResource("1_h4bmq")
+type_ids = Array[StringName]([&"base:type/earth", &"base:type/normal"])
+base_health = 85
+base_energy = 40
+base_attack = 85
+base_healing = 30
+base_speed = 45
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/pound/tier1", &"base:move/rock_throw/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/stone_fall/tier1", &"base:move/rancid_bite/tier1", &"base:move/tackle/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/groundattacker_ground", &"base:talent_tree/groundattacker_mixed", &"base:talent_tree/groundattacker_normal"])
+presentation_id = &"base:presentation/minion/earthbeetle3"
+id = &"base:minion/groundattacker_3"
+display_name = "Betehulk"
+legacy_numeric_id = 17
+legacy_class_name = "GroundAttacker_stage3"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1894"

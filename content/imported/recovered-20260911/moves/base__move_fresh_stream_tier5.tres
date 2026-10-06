@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://t577n7exvepy"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_yceww"]
+[ext_resource type="Script" uid="uid://g81j5j6ogo3j" path="res://src/domain/battle/energy_effect_executor.gd" id="2_mxovi"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="3_dom1v"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="4_x74m2"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="5_gxfbi"]
+
+[sub_resource type="Resource" id="Resource_vc5rg"]
+script = ExtResource("1_yceww")
+kind = 2
+target_scope = 0
+phase = 0
+scaling = 3
+amount = 35
+executor = ExtResource("2_mxovi")
+id = &"base:move/fresh_stream/tier5/effect/00_energy_actor"
+display_name = "Energy"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1760"
+
+[sub_resource type="Resource" id="Resource_6ok88"]
+script = ExtResource("1_yceww")
+scaling = 1
+roll_scope = 1
+amount = 70
+uses_type_effectiveness = true
+can_critical = true
+legacy_order = 1
+executor = ExtResource("3_dom1v")
+id = &"base:move/fresh_stream/tier5/effect/01_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1760"
+
+[sub_resource type="Resource" id="Resource_usdib"]
+script = ExtResource("1_yceww")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 1
+chance_percent = 50
+stat_type_id = &"base:stat/energy"
+legacy_order = 2
+executor = ExtResource("4_x74m2")
+id = &"base:move/fresh_stream/tier5/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1760"
+
+[resource]
+script = ExtResource("5_gxfbi")
+family_id = &"base:move_family/fresh_stream"
+tier = 5
+type_id = &"base:type/water"
+legacy_class_id = 131
+legacy_visual_id = 131
+legacy_dot_visual_id = 131
+buff_icon_name = &"moveIcon_freshStream"
+energy_cost = 50
+effects = Array[ExtResource("1_yceww")]([SubResource("Resource_vc5rg"), SubResource("Resource_6ok88"), SubResource("Resource_usdib")])
+presentation_id = &"base:presentation/move/move_icon_fresh_stream"
+id = &"base:move/fresh_stream/tier5"
+display_name = "Fresh River"
+legacy_numeric_id = 594
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

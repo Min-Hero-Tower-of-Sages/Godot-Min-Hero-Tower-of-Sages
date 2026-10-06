@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://i42uyrg3bph6"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_jfrws"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_fluv1"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_83ni4"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_ywx2i"]
+
+[sub_resource type="Resource" id="Resource_yd4vn"]
+script = ExtResource("1_jfrws")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 20
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_fluv1")
+id = &"base:move/deathly_energy/tier5/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1256"
+
+[sub_resource type="Resource" id="Resource_3rg28"]
+script = ExtResource("1_jfrws")
+kind = 11
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 4
+amount = 35
+duration = 3
+legacy_order = 1
+executor = ExtResource("3_83ni4")
+id = &"base:move/deathly_energy/tier5/effect/01_periodic_heal_ally_targets"
+display_name = "Periodic Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1256"
+
+[resource]
+script = ExtResource("4_ywx2i")
+family_id = &"base:move_family/deathly_energy"
+tier = 5
+type_id = &"base:type/undead"
+legacy_class_id = 86
+legacy_visual_id = 86
+legacy_dot_visual_id = 86
+buff_icon_name = &"moveIcon_deathlyEnergy"
+energy_cost = 25
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_jfrws")]([SubResource("Resource_yd4vn"), SubResource("Resource_3rg28")])
+presentation_id = &"base:presentation/move/move_icon_deathly_energy"
+id = &"base:move/deathly_energy/tier5"
+display_name = "Dark Energy"
+legacy_numeric_id = 889
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

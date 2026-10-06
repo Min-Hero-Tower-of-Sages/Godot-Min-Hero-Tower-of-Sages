@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://0cljlxepwsre"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_1qhx8"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_p6df0"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_db13t"]
+
+[sub_resource type="Resource" id="Resource_hxmnl"]
+script = ExtResource("1_1qhx8")
+scaling = 1
+roll_scope = 1
+amount = 10
+random_bonus = 175
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_p6df0")
+id = &"base:move/crazed_blast/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2273"
+
+[resource]
+script = ExtResource("3_db13t")
+family_id = &"base:move_family/crazed_blast"
+tier = 2
+type_id = &"base:type/demonic"
+legacy_class_id = 127
+legacy_visual_id = 127
+legacy_dot_visual_id = 127
+buff_icon_name = &"moveIcon_crazedBlast"
+energy_cost = 5
+exhaust_turns = 2
+effects = Array[ExtResource("1_1qhx8")]([SubResource("Resource_hxmnl")])
+presentation_id = &"base:presentation/move/move_icon_crazed_blast"
+id = &"base:move/crazed_blast/tier2"
+display_name = "Crazed Blast  lv.2"
+legacy_numeric_id = 571
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

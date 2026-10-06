@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_qk1h6"]
+
+[resource]
+script = ExtResource("1_qk1h6")
+type_ids = Array[StringName]([&"base:type/flying", &"base:type/ice"])
+base_health = 30
+base_energy = 45
+base_attack = 65
+base_healing = 50
+base_speed = 70
+experience_gain_rate = 2
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/peck/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/icy_blast/tier1", &"base:move/flurry/tier1", &"base:move/ice_shield/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/icebird_ice", &"base:talent_tree/icebird_flying", &"base:talent_tree/icebird_reflect"])
+presentation_id = &"base:presentation/minion/flyingowl2"
+id = &"base:minion/icebird_2"
+display_name = "Arcticowl"
+legacy_numeric_id = 19
+legacy_class_name = "IceBird_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2056"

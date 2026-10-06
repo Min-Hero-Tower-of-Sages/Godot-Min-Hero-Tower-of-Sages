@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_i7w1k"]
+
+[resource]
+script = ExtResource("1_i7w1k")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/icedeer_reflect/node/0_0",
+"move_ids": ["base:move/crusade/tier1", "base:move/crusade/tier2", "base:move/crusade/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3819.0, 3820.0, 3821.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icedeer_reflect/node/1_0",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3822.0, 3823.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icedeer_reflect/node/2_0",
+"move_ids": ["base:move/cleanse_darkness/tier1", "base:move/cleanse_darkness/tier2", "base:move/cleanse_darkness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3824.0, 3825.0, 3826.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icedeer_reflect/node/0_1",
+"move_ids": ["base:move/spike/tier1", "base:move/spike/tier2", "base:move/spike/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3827.0, 3828.0, 3829.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icedeer_reflect/node/1_1",
+"move_ids": ["base:move/agility/tier3", "base:move/agility/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icedeer_reflect/node/1_0"],
+"row": 1.0,
+"source_lines": [3830.0, 3831.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icedeer_reflect/node/2_1",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3832.0, 3833.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icedeer_reflect/node/0_2",
+"move_ids": ["base:move/tire/tier2", "base:move/tire/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3834.0, 3835.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icedeer_reflect/node/1_2",
+"move_ids": ["base:move/reflect_damage/tier2", "base:move/reflect_damage/tier3", "base:move/reflect_damage/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3836.0, 3837.0, 3838.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icedeer_reflect/node/2_2",
+"move_ids": ["base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/icedeer_reflect/node/2_1"],
+"row": 2.0,
+"source_lines": [3839.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icedeer_reflect/node/0_3",
+"move_ids": ["base:move/tire/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icedeer_reflect/node/0_2"],
+"row": 3.0,
+"source_lines": [3840.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icedeer_reflect/node/1_3",
+"move_ids": ["base:move/reflect_damage/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icedeer_reflect/node/1_2"],
+"row": 3.0,
+"source_lines": [3841.0]
+}])
+id = &"base:talent_tree/icedeer_reflect"
+display_name = "Reflect"
+legacy_class_name = "IceDeer_Reflect"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3816"

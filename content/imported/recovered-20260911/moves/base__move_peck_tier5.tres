@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://d25vwxlclbs2r"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_wrxv0"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_wvkhi"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_ie1bu"]
+
+[sub_resource type="Resource" id="Resource_gvnc4"]
+script = ExtResource("1_wrxv0")
+scaling = 1
+roll_scope = 1
+amount = 100
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_wvkhi")
+id = &"base:move/peck/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2316"
+
+[resource]
+script = ExtResource("3_ie1bu")
+family_id = &"base:move_family/peck"
+tier = 5
+type_id = &"base:type/flying"
+legacy_class_id = 138
+legacy_visual_id = 138
+legacy_dot_visual_id = 138
+buff_icon_name = &"moveIcon_peck"
+energy_cost = 45
+effects = Array[ExtResource("1_wrxv0")]([SubResource("Resource_gvnc4")])
+presentation_id = &"base:presentation/move/move_icon_peck"
+id = &"base:move/peck/tier5"
+display_name = "Drill Beak"
+legacy_numeric_id = 629
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

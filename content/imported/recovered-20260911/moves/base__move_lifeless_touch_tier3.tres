@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cyh1yw35de0aw"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_xbgpq"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="2_plgnr"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_8chou"]
+
+[sub_resource type="Resource" id="Resource_dya0r"]
+script = ExtResource("1_xbgpq")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -3
+stat_type_id = &"base:stat/healing"
+executor = ExtResource("2_plgnr")
+id = &"base:move/lifeless_touch/tier3/effect/00_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1217"
+
+[resource]
+script = ExtResource("3_8chou")
+family_id = &"base:move_family/lifeless_touch"
+tier = 3
+type_id = &"base:type/undead"
+legacy_class_id = 84
+legacy_visual_id = 84
+legacy_dot_visual_id = 84
+buff_icon_name = &"moveIcon_lifelessTouch"
+energy_cost = 25
+target_mode = 2
+target_count = 3
+enemy_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_xbgpq")]([SubResource("Resource_dya0r")])
+presentation_id = &"base:presentation/move/move_icon_lifeless_touch"
+visuals_have_buffer = false
+id = &"base:move/lifeless_touch/tier3"
+display_name = "Lifeless Touch  lv.3"
+legacy_numeric_id = 877
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

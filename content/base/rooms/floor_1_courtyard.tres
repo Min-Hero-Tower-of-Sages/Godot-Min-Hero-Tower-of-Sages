@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="RoomDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/room_definition.gd" id="1_room"]
+[ext_resource type="Resource" path="res://content/base/room_payloads/floor_1_courtyard_payload.tres" id="2_payload"]
+
+[resource]
+script = ExtResource("1_room")
+payload = ExtResource("2_payload")
+source_payload_path = "res://content/base/room_payloads/packaged/rooms-20260908/level_1_1_courtyard.json"
+source_room_symbol = &"Utilities.LevelContainer_Level_1_1_courtyard"
+exits = Array[Dictionary]([{
+"transition_id": 12,
+"target_room_id": &"base:room/level_1_1_entryhallway",
+"target_spawn_id": &"entry-12",
+"source_position": Vector2(1250.5, 2150.5),
+"source_scale": Vector2(1.6940308, 0.55970764)
+}, {
+"transition_id": 13,
+"target_room_id": &"base:room/level_1_1_h0",
+"target_spawn_id": &"entry-13",
+"source_position": Vector2(715.5, 113.0),
+"source_scale": Vector2(1.7388, 0.5298462)
+}])
+spawn_ids = Array[StringName]([&"entry-12", &"entry-13"])
+spawn_positions = {"entry-12": Vector2(1291.0, 2083.0), "entry-13": Vector2(754.0, 197.0)}
+interactions = Array[Dictionary]([])
+minimap_metadata = {"floor_index": 0, "room_index": 12, "source_dimensions": Vector2(1817.0, 2310.0)}
+id = &"base:room/level_1_1_courtyard"
+display_name = "Floor 1 — courtyard"
+legacy_class_name = "LevelContainer_Level_1_1_courtyard"
+source_location = "development/extracted/full-20260908/binaryData/Utilities.LevelContainer_Level_1_1_courtyard.bin"

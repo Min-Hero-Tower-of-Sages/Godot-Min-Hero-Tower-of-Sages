@@ -1,0 +1,889 @@
+{
+  "id": "base:room/floor_2_expert_room_undead",
+  "asset_identity": {
+    "class_name": "TopDown.Levels.MainTower.ExpertRoom_fire",
+    "identity_source": "script_authored_AddObject_calls"
+  },
+  "source_binary": "",
+  "xml": {
+    "tag": "level",
+    "attributes": {
+      "width": "695.3",
+      "height": "826.55"
+    },
+    "text": "",
+    "children": [
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "53",
+          "yPos": "546.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "173",
+          "yPos": "546.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "293",
+          "yPos": "546.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "413",
+          "yPos": "546.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "533",
+          "yPos": "546.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "73",
+          "yPos": "426.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "193",
+          "yPos": "426.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "313",
+          "yPos": "426.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "433",
+          "yPos": "426.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "553",
+          "yPos": "426.5",
+          "xScale": "0.7868804931640625",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "57",
+          "yPos": "306.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "177",
+          "yPos": "306.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "297",
+          "yPos": "306.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "417",
+          "yPos": "306.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "537",
+          "yPos": "306.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "77",
+          "yPos": "186.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "197",
+          "yPos": "186.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_upperLeftCorner",
+          "xPos": "5.55",
+          "yPos": "0",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "317",
+          "yPos": "186.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_topWall",
+          "xPos": "136.5",
+          "yPos": "-0.05",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "437",
+          "yPos": "186.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorTile",
+          "xPos": "557",
+          "yPos": "186.5",
+          "xScale": "0.7704925537109375",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_sideWall",
+          "xPos": "611.5",
+          "yPos": "229",
+          "xScale": "1",
+          "yScale": "0.6888427734375",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_upperRightCorner",
+          "xPos": "567.5",
+          "yPos": "0.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_lowerRightCorner",
+          "xPos": "568",
+          "yPos": "508",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_bottomWall",
+          "xPos": "133",
+          "yPos": "605.2",
+          "xScale": "1.021575927734375",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_lowerLeftCorner",
+          "xPos": "4.7",
+          "yPos": "507.65",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_sideWall",
+          "xPos": "92.55",
+          "yPos": "229.2",
+          "xScale": "-1",
+          "yScale": "0.6888427734375",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_bottomWall",
+          "xPos": "339",
+          "yPos": "605.2",
+          "xScale": "1.138671875",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_topWall",
+          "xPos": "337",
+          "yPos": "-0.05",
+          "xScale": "1.1484222412109375",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_sideWall",
+          "xPos": "611.5",
+          "yPos": "366",
+          "xScale": "1",
+          "yScale": "0.7140655517578125",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_sideWall",
+          "xPos": "92.55",
+          "yPos": "366.2",
+          "xScale": "-1",
+          "yScale": "0.7140655517578125",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorRunnerTop",
+          "xPos": "258",
+          "yPos": "308",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorRunnerTop",
+          "xPos": "460",
+          "yPos": "497",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "180"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_floorRunner_rotationConnect",
+          "xPos": "259",
+          "yPos": "400",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_genericTapestry_fire",
+          "xPos": "431.5",
+          "yPos": "40",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_candelabra",
+          "xPos": "537",
+          "yPos": "43.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_detailTapestry_fire",
+          "xPos": "288",
+          "yPos": "41",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_statuePedestal",
+          "xPos": "443.5",
+          "yPos": "220.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_genericTapestry_fire",
+          "xPos": "143.5",
+          "yPos": "40",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_candelabra",
+          "xPos": "76",
+          "yPos": "43.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_statuePedestal",
+          "xPos": "183.5",
+          "yPos": "220.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_expertStatue",
+          "xPos": "185.5",
+          "yPos": "184",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_expertStatue",
+          "xPos": "445.5",
+          "yPos": "184",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "room_teleporterOff",
+          "xPos": "288.5",
+          "yPos": "499",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "room_expertTeleporter_glow",
+          "xPos": "293",
+          "yPos": "367",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_sideTorch",
+          "xPos": "611",
+          "yPos": "253",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_sideTorch",
+          "xPos": "611",
+          "yPos": "423",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_sideTorch",
+          "xPos": "93",
+          "yPos": "424",
+          "xScale": "-1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_sideTorch",
+          "xPos": "93",
+          "yPos": "254",
+          "xScale": "-1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_bottomTorch",
+          "xPos": "493",
+          "yPos": "590.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_bottomTorch",
+          "xPos": "133",
+          "yPos": "590.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "generalRoom_expertEnemy",
+          "xPos": "308",
+          "yPos": "187",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "72",
+          "yPos": "169",
+          "xScale": "5.5099945068359375",
+          "yScale": "0.3600006103515625",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "567",
+          "yPos": "185",
+          "xScale": "0.3204193115234375",
+          "yScale": "0.55999755859375",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "107",
+          "yPos": "185",
+          "xScale": "0.3204193115234375",
+          "yScale": "0.55999755859375",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "613",
+          "yPos": "180",
+          "xScale": "0.32000732421875",
+          "yScale": "8.671630859375",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "59",
+          "yPos": "180",
+          "xScale": "0.32000732421875",
+          "yScale": "8.8153076171875",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "82",
+          "yPos": "605",
+          "xScale": "5.5099945068359375",
+          "yScale": "0.55999755859375",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "449",
+          "yPos": "269",
+          "xScale": "0.8000030517578125",
+          "yScale": "0.720001220703125",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "189",
+          "yPos": "269",
+          "xScale": "0.8000030517578125",
+          "yScale": "0.720001220703125",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "buttonZoneObject",
+          "xPos": "280.05",
+          "yPos": "186",
+          "xScale": "1.5694580078125",
+          "yScale": "1.809295654296875",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "collRect",
+          "xPos": "328",
+          "yPos": "269.5",
+          "xScale": "0.6199951171875",
+          "yScale": "0.2599945068359375",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "expert_entryObject",
+          "xPos": "341",
+          "yPos": "425",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "expert_roomTransitionObject",
+          "xPos": "345",
+          "yPos": "517",
+          "xScale": "0.477447509765625",
+          "yScale": "0.477447509765625",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "menus_speechBubble",
+          "xPos": "232",
+          "yPos": "117.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      },
+      {
+        "tag": "levelObject",
+        "attributes": {
+          "spriteName": "fire_music_override",
+          "xPos": "87",
+          "yPos": "763.5",
+          "xScale": "1",
+          "yScale": "1",
+          "rotation": "0"
+        },
+        "text": "",
+        "children": []
+      }
+    ]
+  }
+}

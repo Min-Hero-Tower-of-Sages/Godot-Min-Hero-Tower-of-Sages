@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/raptor_2", "level": 26, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/claw/tier2", &"base:move/prehistoric_bite/tier4", &"base:move/fire_blast/tier5", &"base:move/fire_ram/tier5", &"base:move/fire_bash/tier5", &"base:move/concentration/tier1", &"base:move/ferocity/tier3"])
+}, {
+"definition_id": &"base:minion/fire_pig_2", "level": 26, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/burn/tier1", &"base:move/static_pummel/tier5", &"base:move/spark/tier4", &"base:move/quickness/tier4", &"base:move/vicious/tier3", &"base:move/fire_bash/tier3"])
+}, {
+"definition_id": &"base:minion/tikimonkey_2", "level": 26, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/mirror_skin/tier5", &"base:move/lich_burn/tier2", &"base:move/skillful/tier1", &"base:move/roar/tier3", &"base:move/invigorate/tier1", &"base:move/agility/tier3", &"base:move/prehistoric_bite/tier2"])
+}, {
+"definition_id": &"base:minion/worm_2", "level": 26, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/tackle/tier2", &"base:move/rock_slide/tier1", &"base:move/infes/tier5", &"base:move/rancid_bite/tier4", &"base:move/mud_blast/tier2", &"base:move/skillful/tier2", &"base:move/crush/tier1", &"base:move/ferocity/tier3"])
+}, {
+"definition_id": &"base:minion/chameleon_1", "level": 26, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/grassblade/tier5", &"base:move/tree_slam/tier3", &"base:move/razor_vine/tier1", &"base:move/vicious/tier5", &"base:move/efficiency/tier5"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 52, "sage_seals": 1}}
+source_trainer_id = &"base:trainer/standard/9/0"
+source_floor_index = 9
+source_level_offset = 0
+source_trainer_type = &"TrainerType.TRAINER_GYM_2"
+id = &"base:encounter/floor10_fire_sage"
+display_name = "Floor 10 — source trainer 0"
+description = "Source start dialogue: I can feel the heat of your passion!  I am the Sage of Fire, I will truely test your passion!\nSource defeat dialogue: You're passion is stronger than I expected.  Well done!!\n...\nThe Sage Seal of Passion grants you the ability to combine gems."
+legacy_class_name = "TrainerSystem.CreateFloor_Boss2"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:593"
+battle_modifier_configuration = {"move_timer": {"interval": 6, "move_id": &"base:move/slow/tier5", "buff_move_id": &"base:move/agile_inspiration/tier4", "source_power": 1, "actor": {"instance_id": "floor10-fire-sage-move-timer", "definition_id": &"internal:minion/bmod_2", "team": 1, "level": 26, "move_ids": Array[StringName]([&"base:move/slow/tier5"])}}}

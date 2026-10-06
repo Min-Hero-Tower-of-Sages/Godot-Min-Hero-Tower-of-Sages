@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dyjaxe1y3sph5"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ije1k"]
+[ext_resource type="Script" uid="uid://b2adsq7wfencb" path="res://src/domain/battle/shield_effect_executor.gd" id="2_j7cxd"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_wo7si"]
+
+[sub_resource type="Resource" id="Resource_48ed5"]
+script = ExtResource("1_ije1k")
+kind = 6
+target_scope = 2
+phase = 2
+scaling = 2
+amount = 35
+executor = ExtResource("2_j7cxd")
+id = &"base:move/ice_barrier/tier1/effect/00_shield_ally_targets"
+display_name = "Shield"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2051"
+
+[resource]
+script = ExtResource("3_wo7si")
+family_id = &"base:move_family/ice_barrier"
+type_id = &"base:type/ice"
+legacy_class_id = 118
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_iceBarrier"
+energy_cost = 10
+cooldown_turns = 2
+target_side = 1
+target_count = 3
+enemy_target_count = 0
+ally_target_count = 3
+effects = Array[ExtResource("1_ije1k")]([SubResource("Resource_48ed5")])
+presentation_id = &"base:presentation/move/move_icon_ice_barrier"
+visuals_have_buffer = false
+id = &"base:move/ice_barrier/tier1"
+display_name = "Ice Barrier"
+legacy_numeric_id = 525
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_prlru"]
+
+[resource]
+script = ExtResource("1_prlru")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_electric/node/0_0",
+"move_ids": ["base:move/pound/tier2", "base:move/pound/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3011.0, 3012.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_electric/node/1_0",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3013.0, 3014.0, 3015.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_electric/node/2_0",
+"move_ids": ["base:move/spark/tier1", "base:move/spark/tier2", "base:move/spark/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3016.0, 3017.0, 3018.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/jellyfish_electric/node/0_1",
+"move_ids": ["base:move/crazed_blast/tier1"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3019.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_electric/node/1_1",
+"move_ids": ["base:move/quickness/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_electric/node/1_0"],
+"row": 1.0,
+"source_lines": [3020.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_electric/node/2_1",
+"move_ids": ["base:move/charge_blast/tier1", "base:move/charge_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3021.0, 3022.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_electric/node/1_2",
+"move_ids": ["base:move/overload/tier2", "base:move/overload/tier3", "base:move/overload/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3023.0, 3024.0, 3025.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_electric/node/2_2",
+"move_ids": ["base:move/charge_blast/tier3", "base:move/charge_blast/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_electric/node/2_1"],
+"row": 2.0,
+"source_lines": [3026.0, 3027.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/jellyfish_electric/node/1_3",
+"move_ids": ["base:move/overload/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_electric/node/1_2"],
+"row": 3.0,
+"source_lines": [3028.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/jellyfish_electric/node/2_3",
+"move_ids": ["base:move/charge_blast/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/jellyfish_electric/node/2_2"],
+"row": 3.0,
+"source_lines": [3029.0]
+}])
+id = &"base:talent_tree/jellyfish_electric"
+display_name = "Electric"
+legacy_class_name = "JellyFish_Electric"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3008"

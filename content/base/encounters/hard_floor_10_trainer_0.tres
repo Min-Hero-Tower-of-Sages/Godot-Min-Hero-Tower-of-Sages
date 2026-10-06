@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/raptor_3", "level": 60, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/claw/tier2", &"base:move/prehistoric_bite/tier4", &"base:move/fire_blast/tier5", &"base:move/fire_ram/tier5", &"base:move/fire_bash/tier5", &"base:move/concentration/tier1", &"base:move/ferocity/tier3"])
+}, {
+"definition_id": &"base:minion/fire_bear_2", "level": 60, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/sear/tier1", &"base:move/taunt/tier5", &"base:move/flare_up/tier2", &"base:move/rock_slide/tier1", &"base:move/rock_skin/tier5", &"base:move/earth_barrier/tier3", &"base:move/perseverance/tier5", &"base:move/energizing_inspiration/tier1"])
+}, {
+"definition_id": &"base:minion/robobull_1", "level": 60, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/reckless_dash/tier1", &"base:move/fire_shot/tier1", &"base:move/ferocity/tier5", &"base:move/fire_bash/tier4", &"base:move/fire_blast/tier3", &"base:move/agility/tier3", &"base:move/cog_fallout/tier1"])
+}, {
+"definition_id": &"base:minion/holyfox_1", "level": 60, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/mending_inspiration/tier3", &"base:move/crusade/tier3", &"base:move/agility/tier1", &"base:move/hope/tier5", &"base:move/mirror_skin/tier3", &"base:move/efficiency/tier2"])
+}, {
+"definition_id": &"base:minion/harpy_1", "level": 60, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/peck/tier4", &"base:move/cutting_wind/tier1", &"base:move/vicious/tier5", &"base:move/hailstone/tier3", &"base:move/volley/tier3", &"base:move/blood_press/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 2000}}
+source_trainer_id = &"base:trainer/hard/10/room/0"
+source_floor_index = 40
+source_level_offset = 0
+source_trainer_type = &"TrainerType.TRAINER_GYM_2"
+id = &"base:encounter/floor41_trainer_0"
+display_name = "Floor 41 — source trainer 0"
+description = "Source start dialogue: You look tough...but we'll soon see just how tough.  I am the Sage of Fire, let us test your strength.\nSource defeat dialogue: You're tougher than I expected.  Well done!!\n...\nThe fire Sage Seal grants you the ability to combine gems."
+legacy_class_name = "TrainerSystem.CreateFloor_Boss2_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2084"
+battle_modifier_configuration = {"move_timer": {"interval": 4, "source_power": 1, "move_id": "base:move/ice_shield/tier5", "buff_move_id": "base:move/deadly_inspiration/tier5", "actor": {"instance_id": "floor41-timer-0", "definition_id": "internal:minion/bmod_2", "team": 1, "level": 60, "move_ids": ["base:move/ice_shield/tier5"]}}}

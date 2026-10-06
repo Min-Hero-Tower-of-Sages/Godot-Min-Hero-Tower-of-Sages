@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/dogeel_2", "level": 60, "source_level_offset": -2, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/spark/tier3", &"base:move/blinding_jolt/tier5", &"base:move/rock_throw/tier1", &"base:move/quickness/tier4", &"base:move/ferocity/tier4", &"base:move/demonic_strike/tier1"])
+}, {
+"definition_id": &"base:minion/icetree_2", "level": 60, "source_level_offset": -2, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/nourish/tier5", &"base:move/swift_mend/tier3", &"base:move/priest/tier5", &"base:move/serenity/tier1", &"base:move/ice_shield/tier4", &"base:move/agility/tier1"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 60, "source_level_offset": -2, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/27/room/1"
+source_floor_index = 57
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor58_trainer_1"
+display_name = "Floor 58 — source trainer 1"
+description = "Source start dialogue: I'm so excited...it's like an energy in the air!\nSource defeat dialogue: You deflated my excitement, but only a little!"
+legacy_class_name = "TrainerSystem.CreateFloor22_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2935"
+battle_modifier_configuration = {"extra_minions": {"enemy": {"count": 6, "templates": [{"definition_id": "base:minion/raptor_2", "level": 52, "move_ids": ["base:move/claw/tier2", "base:move/prehistoric_bite/tier5", "base:move/reckless_grasp/tier4", "base:move/ferocity/tier5", "base:move/fire_ram/tier5", "base:move/concentration/tier3"], "source_derive_stats": true}]}}}

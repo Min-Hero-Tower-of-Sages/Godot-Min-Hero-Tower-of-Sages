@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cmprwbkv4326a"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_lr1x3"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_ulvuk"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_tq6go"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_621ls"]
+
+[sub_resource type="Resource" id="Resource_v3t04"]
+script = ExtResource("1_lr1x3")
+scaling = 1
+roll_scope = 1
+amount = 15
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_ulvuk")
+id = &"base:move/fire_ram/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:345"
+
+[sub_resource type="Resource" id="Resource_cjf8s"]
+script = ExtResource("1_lr1x3")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 5
+random_bonus = 40
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_tq6go")
+id = &"base:move/fire_ram/tier3/effect/01_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:345"
+
+[resource]
+script = ExtResource("4_621ls")
+family_id = &"base:move_family/fire_ram"
+tier = 3
+type_id = &"base:type/fire"
+legacy_class_id = 6
+legacy_visual_id = 6
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_fireRam"
+energy_cost = 32
+target_mode = 2
+target_count = 3
+enemy_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_lr1x3")]([SubResource("Resource_v3t04"), SubResource("Resource_cjf8s")])
+presentation_id = &"base:presentation/move/move_icon_fire_ram"
+id = &"base:move/fire_ram/tier3"
+display_name = "Fire Ram  lv.3"
+legacy_numeric_id = 32
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

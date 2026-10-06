@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_qdwbw"]
+
+[resource]
+script = ExtResource("1_qdwbw")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/scorpion_electric/node/0_0",
+"move_ids": ["base:move/spark/tier2", "base:move/spark/tier3", "base:move/spark/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3142.0, 3143.0, 3144.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_electric/node/1_0",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3145.0, 3146.0, 3147.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scorpion_electric/node/2_0",
+"move_ids": ["base:move/charge_pass/tier1", "base:move/charge_pass/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3148.0, 3149.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scorpion_electric/node/0_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3150.0, 3151.0, 3152.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_electric/node/1_1",
+"move_ids": ["base:move/quickness/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_electric/node/1_0"],
+"row": 1.0,
+"source_lines": [3153.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scorpion_electric/node/2_1",
+"move_ids": ["base:move/charge_pass/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_electric/node/2_0"],
+"row": 1.0,
+"source_lines": [3154.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scorpion_electric/node/0_2",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_electric/node/0_1"],
+"row": 2.0,
+"source_lines": [3155.0, 3156.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_electric/node/1_2",
+"move_ids": ["base:move/overload/tier2", "base:move/overload/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3157.0, 3158.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scorpion_electric/node/2_2",
+"move_ids": ["base:move/charge_pass/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_electric/node/2_1"],
+"row": 2.0,
+"source_lines": [3159.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scorpion_electric/node/1_3",
+"move_ids": ["base:move/overload/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scorpion_electric/node/1_2"],
+"row": 3.0,
+"source_lines": [3160.0]
+}])
+id = &"base:talent_tree/scorpion_electric"
+display_name = "Electric"
+legacy_class_name = "Scorpion_Electric"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3139"

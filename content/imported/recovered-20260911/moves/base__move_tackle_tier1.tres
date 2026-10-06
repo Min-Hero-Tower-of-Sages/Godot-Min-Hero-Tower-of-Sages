@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dbsyudh4opi6m"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_l41db"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_kw2i5"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_sangg"]
+
+[sub_resource type="Resource" id="Resource_888mk"]
+script = ExtResource("1_l41db")
+scaling = 1
+roll_scope = 1
+amount = 25
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_kw2i5")
+id = &"base:move/tackle/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3068"
+
+[resource]
+script = ExtResource("3_sangg")
+family_id = &"base:move_family/tackle"
+type_id = &"base:type/normal"
+legacy_class_id = 16
+legacy_visual_id = 188
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_tackle"
+energy_cost = 3
+effects = Array[ExtResource("1_l41db")]([SubResource("Resource_888mk")])
+presentation_id = &"base:presentation/move/move_icon_tackle"
+id = &"base:move/tackle/tier1"
+display_name = "Tackle"
+legacy_numeric_id = 85
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

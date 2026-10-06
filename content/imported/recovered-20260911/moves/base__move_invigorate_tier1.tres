@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://w1a75ire2wya"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_mwkwk"]
+[ext_resource type="Script" uid="uid://g81j5j6ogo3j" path="res://src/domain/battle/energy_effect_executor.gd" id="2_swsaw"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_bl68b"]
+
+[sub_resource type="Resource" id="Resource_61qqn"]
+script = ExtResource("1_mwkwk")
+kind = 2
+target_scope = 0
+phase = 0
+scaling = 3
+amount = 50
+executor = ExtResource("2_swsaw")
+id = &"base:move/invigorate/tier1/effect/00_energy_actor"
+display_name = "Energy"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3280"
+
+[resource]
+script = ExtResource("3_bl68b")
+family_id = &"base:move_family/invigorate"
+type_id = &"base:type/normal"
+legacy_class_id = 52
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_swiftMend"
+energy_cost = 0
+cooldown_turns = 5
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_mwkwk")]([SubResource("Resource_61qqn")])
+presentation_id = &"base:presentation/move/move_icon_swift_mend"
+id = &"base:move/invigorate/tier1"
+display_name = "Invigorate"
+legacy_numeric_id = 325
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

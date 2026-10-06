@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/grasssnake_3", "level": 35, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/poison_tooth/tier1", &"base:move/razor_vine/tier1", &"base:move/grassblade/tier5", &"base:move/vicious/tier3", &"base:move/drain/tier3", &"base:move/concentration/tier3", &"base:move/quickness/tier3", &"base:move/mirror_skin/tier2"])
+}, {
+"definition_id": &"base:minion/grasssnake_3", "level": 35, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/poison_tooth/tier1", &"base:move/razor_vine/tier1", &"base:move/slow/tier5", &"base:move/fortitude/tier5", &"base:move/crush/tier1", &"base:move/blow_by/tier1", &"base:move/tire/tier2", &"base:move/quickness/tier3", &"base:move/drain/tier2"])
+}, {
+"definition_id": &"base:minion/grassgorilla_2", "level": 35, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier1", &"base:move/tree_slam/tier5", &"base:move/drain/tier2", &"base:move/timber/tier3", &"base:move/vicious/tier5", &"base:move/rock_throw/tier2", &"base:move/bone_crunch/tier1"])
+}, {
+"definition_id": &"base:minion/icebird_2", "level": 35, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/peck/tier1", &"base:move/flurry/tier5", &"base:move/wind_lance/tier3", &"base:move/agility/tier5", &"base:move/hailstone/tier3", &"base:move/vicious/tier2"])
+}, {
+"definition_id": &"base:minion/groundmole_3", "level": 35, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/rock_throw/tier1", &"base:move/stone_fall/tier5", &"base:move/rock_blast/tier3", &"base:move/quickness/tier1", &"base:move/ferocity/tier5", &"base:move/fire_blast/tier2", &"base:move/vicious/tier4", &"base:move/fire_bash/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 102, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/12/2"
+source_floor_index = 12
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor13_trainer_2"
+display_name = "Floor 13 — source trainer 2"
+description = "Source start dialogue: Ah, there you are.  I'm glad to see you!\nSource defeat dialogue: I enjoy our battles, I feel like I learn so much!"
+legacy_class_name = "TrainerSystem.CreateFloor11"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:736"
+battle_modifier_configuration = {"shield": {"enemy": 2, "player": 2}}

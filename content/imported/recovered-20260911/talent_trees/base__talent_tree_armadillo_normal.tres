@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_rffv8"]
+
+[resource]
+script = ExtResource("1_rffv8")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/armadillo_normal/node/0_0",
+"move_ids": ["base:move/perseverance/tier1", "base:move/perseverance/tier2", "base:move/perseverance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2485.0, 2486.0, 2487.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_normal/node/1_0",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier2", "base:move/tackle/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2488.0, 2489.0, 2490.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_normal/node/2_0",
+"move_ids": ["base:move/earth_barrier/tier1", "base:move/earth_barrier/tier2", "base:move/earth_barrier/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2491.0, 2492.0, 2493.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/armadillo_normal/node/0_1",
+"move_ids": ["base:move/perseverance/tier4", "base:move/perseverance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_normal/node/0_0"],
+"row": 1.0,
+"source_lines": [2494.0, 2495.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_normal/node/1_1",
+"move_ids": ["base:move/tackle/tier4", "base:move/tackle/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [2496.0, 2497.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_normal/node/2_1",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2498.0, 2499.0, 2500.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/armadillo_normal/node/0_2",
+"move_ids": ["base:move/destabilize/tier1", "base:move/destabilize/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2501.0, 2502.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_normal/node/1_2",
+"move_ids": ["base:move/crush/tier3", "base:move/crush/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2503.0, 2504.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/armadillo_normal/node/2_2",
+"move_ids": ["base:move/mirror_skin/tier4", "base:move/mirror_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [2505.0, 2506.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/armadillo_normal/node/1_3",
+"move_ids": ["base:move/crush/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/armadillo_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [2507.0]
+}])
+id = &"base:talent_tree/armadillo_normal"
+display_name = "Normal"
+legacy_class_name = "Armadillo_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2482"

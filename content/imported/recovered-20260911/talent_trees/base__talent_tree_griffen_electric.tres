@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_8g2yf"]
+
+[resource]
+script = ExtResource("1_8g2yf")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/griffen_electric/node/0_0",
+"move_ids": ["base:move/spark/tier1", "base:move/spark/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2849.0, 2850.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/griffen_electric/node/1_0",
+"move_ids": ["base:move/peck/tier2", "base:move/peck/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2851.0, 2852.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/griffen_electric/node/2_0",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2853.0, 2854.0, 2855.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/griffen_electric/node/0_1",
+"move_ids": ["base:move/spark/tier3", "base:move/spark/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/griffen_electric/node/0_0"],
+"row": 1.0,
+"source_lines": [2856.0, 2857.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/griffen_electric/node/1_1",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier2", "base:move/reckless_dash/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2858.0, 2859.0, 2860.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/griffen_electric/node/2_1",
+"move_ids": ["base:move/quickness/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/griffen_electric/node/2_0"],
+"row": 1.0,
+"source_lines": [2861.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/griffen_electric/node/0_2",
+"move_ids": ["base:move/spark/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/griffen_electric/node/0_1"],
+"row": 2.0,
+"source_lines": [2862.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/griffen_electric/node/1_2",
+"move_ids": ["base:move/thunderstorm/tier3", "base:move/thunderstorm/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2863.0, 2864.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/griffen_electric/node/2_2",
+"move_ids": ["base:move/fire_bolt/tier1", "base:move/fire_bolt/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2865.0, 2866.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/griffen_electric/node/1_3",
+"move_ids": ["base:move/thunderstorm/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/griffen_electric/node/1_2"],
+"row": 3.0,
+"source_lines": [2867.0]
+}])
+id = &"base:talent_tree/griffen_electric"
+display_name = "Electric"
+legacy_class_name = "Griffen_Electric"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2846"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_asydx"]
+
+[resource]
+script = ExtResource("1_asydx")
+type_ids = Array[StringName]([&"base:type/fire", &"base:type/holy"])
+base_health = 35
+base_energy = 40
+base_attack = 60
+base_healing = 60
+base_speed = 70
+experience_gain_rate = 2
+gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/purge/tier1", &"base:move/intense_flame/tier1", &"base:move/mending_inspiration/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/holyfox_holy", &"base:talent_tree/holyfox_fire", &"base:talent_tree/holyfox_normal"])
+presentation_id = &"base:presentation/minion/holyfox"
+id = &"base:minion/holyfox_1"
+display_name = "Firox"
+legacy_numeric_id = 46
+legacy_class_name = "HolyFox_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1513"

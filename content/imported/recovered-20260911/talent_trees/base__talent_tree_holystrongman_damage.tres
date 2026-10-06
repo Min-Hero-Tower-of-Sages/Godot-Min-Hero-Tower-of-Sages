@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_qo7gd"]
+
+[resource]
+script = ExtResource("1_qo7gd")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_damage/node/0_0",
+"move_ids": ["base:move/holy_strike/tier1", "base:move/holy_strike/tier2", "base:move/holy_strike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3688.0, 3689.0, 3690.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_damage/node/1_0",
+"move_ids": ["base:move/penance/tier1", "base:move/penance/tier2", "base:move/penance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3691.0, 3692.0, 3693.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_damage/node/2_0",
+"move_ids": ["base:move/crush/tier1", "base:move/crush/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3694.0, 3695.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_damage/node/0_1",
+"move_ids": ["base:move/holy_strike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_damage/node/0_0"],
+"row": 1.0,
+"source_lines": [3696.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_damage/node/1_1",
+"move_ids": ["base:move/penance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_damage/node/1_0"],
+"row": 1.0,
+"source_lines": [3697.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_damage/node/2_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3698.0, 3699.0, 3700.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holystrongman_damage/node/0_2",
+"move_ids": ["base:move/fire_bash/tier1", "base:move/fire_bash/tier2", "base:move/fire_bash/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3701.0, 3702.0, 3703.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_damage/node/1_2",
+"move_ids": ["base:move/crusade/tier3", "base:move/crusade/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3704.0, 3705.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holystrongman_damage/node/2_2",
+"move_ids": ["base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_damage/node/2_1"],
+"row": 2.0,
+"source_lines": [3706.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holystrongman_damage/node/1_3",
+"move_ids": ["base:move/crusade/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holystrongman_damage/node/1_2"],
+"row": 3.0,
+"source_lines": [3707.0]
+}])
+id = &"base:talent_tree/holystrongman_damage"
+display_name = "Holy"
+legacy_class_name = "HolyStrongMan_Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3685"

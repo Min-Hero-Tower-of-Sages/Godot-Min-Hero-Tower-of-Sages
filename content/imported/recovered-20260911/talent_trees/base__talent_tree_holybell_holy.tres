@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_jxcxe"]
+
+[resource]
+script = ExtResource("1_jxcxe")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holybell_holy/node/0_0",
+"move_ids": ["base:move/ice_shield/tier1", "base:move/ice_shield/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3410.0, 3411.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_holy/node/1_0",
+"move_ids": ["base:move/cleansing_heal/tier1", "base:move/cleansing_heal/tier2", "base:move/cleansing_heal/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3412.0, 3413.0, 3414.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holybell_holy/node/2_0",
+"move_ids": ["base:move/penance/tier1", "base:move/penance/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3415.0, 3416.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holybell_holy/node/0_1",
+"move_ids": ["base:move/brilliance/tier1", "base:move/brilliance/tier2", "base:move/brilliance/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3417.0, 3418.0, 3419.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_holy/node/1_1",
+"move_ids": ["base:move/cleansing_heal/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_holy/node/1_0"],
+"row": 1.0,
+"source_lines": [3420.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holybell_holy/node/2_1",
+"move_ids": ["base:move/penance/tier3", "base:move/penance/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_holy/node/2_0"],
+"row": 1.0,
+"source_lines": [3421.0, 3422.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_holy/node/1_2",
+"move_ids": ["base:move/hope/tier3", "base:move/hope/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3423.0, 3424.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holybell_holy/node/2_2",
+"move_ids": ["base:move/cleric/tier1", "base:move/cleric/tier2", "base:move/cleric/tier3", "base:move/cleric/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3425.0, 3426.0, 3427.0, 3428.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_holy/node/1_3",
+"move_ids": ["base:move/hope/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_holy/node/1_2"],
+"row": 3.0,
+"source_lines": [3429.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holybell_holy/node/2_3",
+"move_ids": ["base:move/cleric/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_holy/node/2_2"],
+"row": 3.0,
+"source_lines": [3430.0]
+}])
+id = &"base:talent_tree/holybell_holy"
+display_name = "Holy"
+legacy_class_name = "HolyBell_Holy"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3407"

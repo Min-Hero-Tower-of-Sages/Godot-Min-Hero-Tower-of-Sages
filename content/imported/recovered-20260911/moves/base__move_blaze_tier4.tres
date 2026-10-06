@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bcorbbypa4gw0"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_irt0l"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_dq5g7"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_pab5p"]
+
+[sub_resource type="Resource" id="Resource_jh3y0"]
+script = ExtResource("1_irt0l")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 5
+random_bonus = 50
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_dq5g7")
+id = &"base:move/blaze/tier4/effect/00_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:579"
+
+[resource]
+script = ExtResource("3_pab5p")
+family_id = &"base:move_family/blaze"
+tier = 4
+type_id = &"base:type/fire"
+legacy_class_id = 14
+legacy_visual_id = 14
+legacy_dot_visual_id = 14
+buff_icon_name = &"moveIcon_blaze"
+energy_cost = 55
+target_mode = 2
+target_count = 5
+enemy_target_count = 5
+random_targets = true
+effects = Array[ExtResource("1_irt0l")]([SubResource("Resource_jh3y0")])
+presentation_id = &"base:presentation/move/move_icon_blaze"
+id = &"base:move/blaze/tier4"
+display_name = "Blaze  lv.4"
+legacy_numeric_id = 73
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/waterbird_1",
+"level": 7,
+"move_ids": Array[StringName]([&"base:move/peck/tier2", &"base:move/soak/tier5", &"base:move/waterjet/tier5", &"base:move/ferocity/tier5", &"base:move/focus/tier3"]),
+"slot_index": 0
+}, {
+"definition_id": &"base:minion/groundattacker_1",
+"level": 7,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/rock_throw/tier1", &"base:move/tackle/tier5", &"base:move/grind/tier5", &"base:move/mirror_skin/tier5", &"base:move/destabilize/tier1", &"base:move/quickness/tier4"]),
+"slot_index": 1
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 7, "eggery_keys": 1}}
+source_trainer_id = &"base:trainer/standard/0/6"
+source_floor_index = 0
+source_level_offset = 0
+source_trainer_type = &"TrainerType.BOSS_TRAINER"
+id = &"base:encounter/grass_floor1_room6_boss"
+display_name = "Floor 1 — Sage of Courage"
+legacy_class_name = "TrainerSystem.CreateFloor1"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:187"

@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_2f8kr"]
+
+[resource]
+script = ExtResource("1_2f8kr")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/tiger_normal/node/0_0",
+"move_ids": ["base:move/pound/tier2", "base:move/pound/tier3", "base:move/pound/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4109.0, 4110.0, 4111.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tiger_normal/node/1_0",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4112.0, 4113.0, 4114.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tiger_normal/node/2_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4115.0, 4116.0, 4117.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tiger_normal/node/0_1",
+"move_ids": ["base:move/energize/tier1", "base:move/energize/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4118.0, 4119.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tiger_normal/node/1_1",
+"move_ids": ["base:move/demoralizing_charge/tier1", "base:move/demoralizing_charge/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4120.0, 4121.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tiger_normal/node/2_1",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tiger_normal/node/2_0"],
+"row": 1.0,
+"source_lines": [4122.0, 4123.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tiger_normal/node/0_2",
+"move_ids": ["base:move/roar/tier2", "base:move/roar/tier3", "base:move/roar/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4124.0, 4125.0, 4126.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tiger_normal/node/1_2",
+"move_ids": ["base:move/poison_tooth/tier3", "base:move/poison_tooth/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4127.0, 4128.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tiger_normal/node/1_3",
+"move_ids": ["base:move/poison_tooth/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tiger_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [4129.0]
+}])
+id = &"base:talent_tree/tiger_normal"
+display_name = "Normal"
+legacy_class_name = "Tiger_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4106"

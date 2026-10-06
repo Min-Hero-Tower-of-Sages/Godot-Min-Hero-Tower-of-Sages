@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_3pciy"]
+
+[resource]
+script = ExtResource("1_3pciy")
+legacy_sprite_name = &"plantLizard"
+icon_offset = Vector2i(13, 9)
+id = &"base:presentation/minion/plantlizard"
+display_name = "Chameleon presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1475"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_idrjh"]
+
+[resource]
+script = ExtResource("1_idrjh")
+type_ids = Array[StringName]([&"base:type/plant", &"base:type/normal"])
+base_health = 60
+base_energy = 40
+base_attack = 65
+base_healing = 25
+base_speed = 35
+experience_gain_rate = 2
+gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/tree_slam/tier1", &"base:move/hulk_inspiration/tier1", &"base:move/grind/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/grassgorilla_grass", &"base:talent_tree/grassgorilla_support", &"base:talent_tree/grassgorilla_normal"])
+presentation_id = &"base:presentation/minion/plantgorilla2"
+id = &"base:minion/grassgorilla_2"
+display_name = "Cactilla"
+legacy_numeric_id = 12
+legacy_class_name = "GrassGorilla_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2136"

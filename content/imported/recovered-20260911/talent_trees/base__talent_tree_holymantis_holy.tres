@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_dp5xm"]
+
+[resource]
+script = ExtResource("1_dp5xm")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holymantis_holy/node/0_0",
+"move_ids": ["base:move/hope/tier1", "base:move/hope/tier2", "base:move/hope/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1155.0, 1156.0, 1157.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_holy/node/1_0",
+"move_ids": ["base:move/cleric/tier1", "base:move/cleric/tier2", "base:move/cleric/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1158.0, 1159.0, 1160.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holymantis_holy/node/2_0",
+"move_ids": ["base:move/holy_burn/tier1", "base:move/holy_burn/tier2", "base:move/holy_burn/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1161.0, 1162.0, 1163.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holymantis_holy/node/0_1",
+"move_ids": ["base:move/purge/tier1"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_holy/node/0_0"],
+"row": 1.0,
+"source_lines": [1164.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_holy/node/1_1",
+"move_ids": ["base:move/cleric/tier4", "base:move/cleric/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_holy/node/1_0"],
+"row": 1.0,
+"source_lines": [1165.0, 1166.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holymantis_holy/node/2_1",
+"move_ids": ["base:move/brilliance/tier1", "base:move/brilliance/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1167.0, 1168.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_holy/node/1_2",
+"move_ids": ["base:move/holy_light/tier3", "base:move/holy_light/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1169.0, 1170.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holymantis_holy/node/2_2",
+"move_ids": ["base:move/brilliance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_holy/node/2_1"],
+"row": 2.0,
+"source_lines": [1171.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_holy/node/1_3",
+"move_ids": ["base:move/holy_light/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_holy/node/1_2"],
+"row": 3.0,
+"source_lines": [1172.0]
+}])
+id = &"base:talent_tree/holymantis_holy"
+display_name = "Holy"
+legacy_class_name = "HolyMantis_Holy"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1152"

@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_4ftgu"]
+
+[resource]
+script = ExtResource("1_4ftgu")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/tortoise_buffs/node/0_0",
+"move_ids": ["base:move/crazed_blast/tier1", "base:move/crazed_blast/tier2", "base:move/crazed_blast/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2334.0, 2335.0, 2336.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tortoise_buffs/node/1_0",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2337.0, 2338.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tortoise_buffs/node/2_0",
+"move_ids": ["base:move/skillful/tier1", "base:move/skillful/tier2", "base:move/skillful/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2339.0, 2340.0, 2341.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tortoise_buffs/node/0_1",
+"move_ids": ["base:move/solder/tier1", "base:move/solder/tier2", "base:move/solder/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2342.0, 2343.0, 2344.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tortoise_buffs/node/1_1",
+"move_ids": ["base:move/tackle/tier4", "base:move/tackle/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tortoise_buffs/node/1_0"],
+"row": 1.0,
+"source_lines": [2345.0, 2346.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tortoise_buffs/node/2_1",
+"move_ids": ["base:move/skillful/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tortoise_buffs/node/2_0"],
+"row": 1.0,
+"source_lines": [2347.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tortoise_buffs/node/0_2",
+"move_ids": ["base:move/ferocity/tier4", "base:move/ferocity/tier5"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2348.0, 2349.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tortoise_buffs/node/1_2",
+"move_ids": ["base:move/hulk_inspiration/tier3", "base:move/hulk_inspiration/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2350.0, 2351.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tortoise_buffs/node/1_3",
+"move_ids": ["base:move/hulk_inspiration/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tortoise_buffs/node/1_2"],
+"row": 3.0,
+"source_lines": [2352.0]
+}])
+id = &"base:talent_tree/tortoise_buffs"
+display_name = "Buffs"
+legacy_class_name = "Tortoise_Buffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2331"

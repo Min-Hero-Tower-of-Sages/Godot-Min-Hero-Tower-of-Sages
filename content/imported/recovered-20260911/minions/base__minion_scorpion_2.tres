@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_db4h3"]
+
+[resource]
+script = ExtResource("1_db4h3")
+type_ids = Array[StringName]([&"base:type/energy", &"base:type/earth"])
+base_health = 60
+base_energy = 50
+base_attack = 40
+base_healing = 30
+base_speed = 55
+experience_gain_rate = 2
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/overload/tier1", &"base:move/rock_throw/tier1", &"base:move/spike/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/scorpion_electric", &"base:talent_tree/scorpion_ground", &"base:talent_tree/scorpion_normal"])
+evolution_id = &"base:minion/scorpion_3"
+evolution_level = 42
+presentation_id = &"base:presentation/minion/energyscorpion2"
+id = &"base:minion/scorpion_2"
+display_name = "Emperun"
+legacy_numeric_id = 65
+legacy_class_name = "Scorpion_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1415"

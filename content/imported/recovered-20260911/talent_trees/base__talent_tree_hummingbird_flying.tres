@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_ptae5"]
+
+[resource]
+script = ExtResource("1_ptae5")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/hummingbird_flying/node/0_0",
+"move_ids": ["base:move/peck/tier2", "base:move/peck/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2929.0, 2930.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/hummingbird_flying/node/1_0",
+"move_ids": ["base:move/claw/tier1", "base:move/claw/tier2", "base:move/claw/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2931.0, 2932.0, 2933.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/hummingbird_flying/node/2_0",
+"move_ids": ["base:move/charge_pass/tier1", "base:move/charge_pass/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2934.0, 2935.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/hummingbird_flying/node/0_1",
+"move_ids": ["base:move/blow_by/tier1"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2936.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/hummingbird_flying/node/1_1",
+"move_ids": ["base:move/claw/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/hummingbird_flying/node/1_0"],
+"row": 1.0,
+"source_lines": [2937.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/hummingbird_flying/node/2_1",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2938.0, 2939.0, 2940.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/hummingbird_flying/node/0_2",
+"move_ids": ["base:move/blow_by/tier2", "base:move/blow_by/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/hummingbird_flying/node/0_1"],
+"row": 2.0,
+"source_lines": [2941.0, 2942.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/hummingbird_flying/node/1_2",
+"move_ids": ["base:move/hurricane/tier2", "base:move/hurricane/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2943.0, 2944.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/hummingbird_flying/node/2_2",
+"move_ids": ["base:move/agility/tier4", "base:move/agility/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/hummingbird_flying/node/2_1"],
+"row": 2.0,
+"source_lines": [2945.0, 2946.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/hummingbird_flying/node/1_3",
+"move_ids": ["base:move/hurricane/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/hummingbird_flying/node/1_2"],
+"row": 3.0,
+"source_lines": [2947.0]
+}])
+id = &"base:talent_tree/hummingbird_flying"
+display_name = "Flying"
+legacy_class_name = "HummingBird_Flying"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2926"

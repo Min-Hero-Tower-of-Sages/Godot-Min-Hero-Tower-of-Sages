@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://x5601vi8v1b0"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_axttc"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_5gjn3"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_6t1u2"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_u4nmb"]
+
+[sub_resource type="Resource" id="Resource_eesnb"]
+script = ExtResource("1_axttc")
+scaling = 1
+roll_scope = 1
+amount = 30
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_5gjn3")
+id = &"base:move/drain/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1517"
+
+[sub_resource type="Resource" id="Resource_21q5e"]
+script = ExtResource("1_axttc")
+kind = 1
+target_scope = 0
+phase = 3
+scaling = 2
+roll_scope = 1
+amount = 30
+legacy_order = 1
+executor = ExtResource("3_6t1u2")
+id = &"base:move/drain/tier4/effect/01_heal_actor"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1517"
+
+[resource]
+script = ExtResource("4_u4nmb")
+family_id = &"base:move_family/drain"
+tier = 4
+type_id = &"base:type/plant"
+legacy_class_id = 97
+legacy_visual_id = 97
+legacy_dot_visual_id = 97
+buff_icon_name = &"moveIcon_drain"
+energy_cost = 30
+effects = Array[ExtResource("1_axttc")]([SubResource("Resource_eesnb"), SubResource("Resource_21q5e")])
+presentation_id = &"base:presentation/move/move_icon_drain"
+id = &"base:move/drain/tier4"
+display_name = "Drain  lv.4"
+legacy_numeric_id = 423
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

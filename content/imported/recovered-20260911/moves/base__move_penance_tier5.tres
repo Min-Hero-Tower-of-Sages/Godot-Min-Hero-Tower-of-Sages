@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bsh2shpd3m05b"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_wss5e"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_154vf"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_oeovr"]
+
+[sub_resource type="Resource" id="Resource_dorm8"]
+script = ExtResource("1_wss5e")
+scaling = 1
+roll_scope = 1
+amount = 100
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_154vf")
+id = &"base:move/penance/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2447"
+
+[resource]
+script = ExtResource("3_oeovr")
+family_id = &"base:move_family/penance"
+tier = 5
+type_id = &"base:type/holy"
+legacy_class_id = 146
+legacy_visual_id = 146
+legacy_dot_visual_id = 146
+buff_icon_name = &"moveIcon_penance"
+energy_cost = 35
+cooldown_turns = 2
+effects = Array[ExtResource("1_wss5e")]([SubResource("Resource_dorm8")])
+presentation_id = &"base:presentation/move/move_icon_penance"
+id = &"base:move/penance/tier5"
+display_name = "divine wrath"
+legacy_numeric_id = 669
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

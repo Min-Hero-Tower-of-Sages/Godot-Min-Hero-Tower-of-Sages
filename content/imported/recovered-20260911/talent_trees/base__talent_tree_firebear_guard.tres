@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_aemjt"]
+
+[resource]
+script = ExtResource("1_aemjt")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/firebear_guard/node/0_0",
+"move_ids": ["base:move/flare_up/tier1", "base:move/flare_up/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [270.0, 271.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firebear_guard/node/1_0",
+"move_ids": ["base:move/rock_throw/tier1", "base:move/rock_throw/tier2", "base:move/rock_throw/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [272.0, 273.0, 274.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firebear_guard/node/2_0",
+"move_ids": ["base:move/rock_slide/tier1", "base:move/rock_slide/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [275.0, 276.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firebear_guard/node/0_1",
+"move_ids": ["base:move/destabilize/tier1", "base:move/destabilize/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [277.0, 278.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firebear_guard/node/1_1",
+"move_ids": ["base:move/rock_throw/tier4", "base:move/rock_throw/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firebear_guard/node/1_0"],
+"row": 1.0,
+"source_lines": [279.0, 280.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firebear_guard/node/2_1",
+"move_ids": ["base:move/rock_skin/tier1", "base:move/rock_skin/tier2", "base:move/rock_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [281.0, 282.0, 283.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firebear_guard/node/0_2",
+"move_ids": ["base:move/destabilize/tier3", "base:move/destabilize/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firebear_guard/node/0_1"],
+"row": 2.0,
+"source_lines": [284.0, 285.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firebear_guard/node/1_2",
+"move_ids": ["base:move/earth_barrier/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [286.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firebear_guard/node/2_2",
+"move_ids": ["base:move/rock_skin/tier4", "base:move/rock_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firebear_guard/node/2_1"],
+"row": 2.0,
+"source_lines": [287.0, 288.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firebear_guard/node/0_3",
+"move_ids": ["base:move/destabilize/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firebear_guard/node/0_2"],
+"row": 3.0,
+"source_lines": [289.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firebear_guard/node/1_3",
+"move_ids": ["base:move/taunt/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firebear_guard/node/1_2"],
+"row": 3.0,
+"source_lines": [290.0]
+}])
+id = &"base:talent_tree/firebear_guard"
+display_name = "Guard"
+legacy_class_name = "FireBear_guard"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:267"

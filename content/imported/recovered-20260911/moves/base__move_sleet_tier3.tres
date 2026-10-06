@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://81dbpiidvmlw"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_igbsv"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_1xprp"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="3_0j3rl"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_kx8dr"]
+
+[sub_resource type="Resource" id="Resource_gpky2"]
+script = ExtResource("1_igbsv")
+scaling = 1
+roll_scope = 1
+amount = 15
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_1xprp")
+id = &"base:move/sleet/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1934"
+
+[sub_resource type="Resource" id="Resource_i0vfc"]
+script = ExtResource("1_igbsv")
+kind = 16
+roll_scope = 1
+chance_percent = 30
+legacy_order = 1
+executor = ExtResource("3_0j3rl")
+id = &"base:move/sleet/tier3/effect/01_freeze_enemy_targets"
+display_name = "Freeze"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1934"
+
+[resource]
+script = ExtResource("4_kx8dr")
+family_id = &"base:move_family/sleet"
+tier = 3
+type_id = &"base:type/ice"
+legacy_class_id = 112
+legacy_visual_id = 112
+legacy_dot_visual_id = 112
+buff_icon_name = &"moveIcon_sleet"
+energy_cost = 19
+effects = Array[ExtResource("1_igbsv")]([SubResource("Resource_gpky2"), SubResource("Resource_i0vfc")])
+presentation_id = &"base:presentation/move/move_icon_sleet"
+id = &"base:move/sleet/tier3"
+display_name = "Sleet  lv.3"
+legacy_numeric_id = 497
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

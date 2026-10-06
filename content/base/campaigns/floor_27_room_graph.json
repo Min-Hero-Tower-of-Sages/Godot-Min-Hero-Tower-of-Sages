@@ -1,0 +1,645 @@
+{
+  "floor_index": 26,
+  "source_floor_index": 26,
+  "source_room_order": [
+    "base:room/level_6_2_h1",
+    "base:room/level_6_2_b",
+    "base:room/level_6_2_e",
+    "base:room/level_6_2_a",
+    "base:room/level_6_2_c",
+    "base:room/floor_27_expert",
+    "base:room/level_6_2_d",
+    "base:room/level_6_2_f",
+    "base:room/level_6_2_h2",
+    "base:room/level_6_2_h3",
+    "base:room/level_6_2_eggery"
+  ],
+  "entry_room_id": "base:room/level_6_2_h1",
+  "rooms": [
+    {
+      "id": "base:room/level_6_2_h1",
+      "display_name": "Floor 27 — Level_6_2_H1",
+      "legacy_class_name": "LevelContainer_Level_6_2_H1",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_H1",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_H1.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_h1.json",
+      "room_index": 0,
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_6_2_b",
+          "target_spawn_id": "entry-1"
+        },
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_6_2_e",
+          "target_spawn_id": "entry-4"
+        },
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_6_2_a",
+          "target_spawn_id": "entry-5"
+        },
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_6_2_d",
+          "target_spawn_id": "entry-6"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-27-heal-0",
+          "kind": "heal_party",
+          "source_zone_id": 1,
+          "trigger_on_enter": true
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_b",
+      "display_name": "Floor 27 — Level_6_2_B",
+      "legacy_class_name": "LevelContainer_Level_6_2_B",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_B",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_B.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_b.json",
+      "room_index": 1,
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_6_2_h1",
+          "target_spawn_id": "entry-1"
+        },
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_6_2_h3",
+          "target_spawn_id": "entry-2"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor27_trainer_1"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 1,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1418",
+        "source_method": "CreateFloor22",
+        "source_floor_argument": 26
+      },
+      "interactions": [
+        {
+          "id": "floor-27-trainer-1",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 1,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor27_trainer_1",
+          "first_visit_text": "I'm so excited...it's like an energy in the air!",
+          "lose_text": "You deflated my excitement, but only a little!"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_e",
+      "display_name": "Floor 27 — Level_6_2_E",
+      "legacy_class_name": "LevelContainer_Level_6_2_E",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_E",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_E.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_e.json",
+      "room_index": 2,
+      "exits": [
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_6_2_h1",
+          "target_spawn_id": "entry-4"
+        },
+        {
+          "transition_id": 9,
+          "target_room_id": "base:room/level_6_2_f",
+          "target_spawn_id": "entry-9"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor27_trainer_2"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 2,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1426",
+        "source_method": "CreateFloor22",
+        "source_floor_argument": 26
+      },
+      "interactions": [
+        {
+          "id": "floor-27-trainer-2",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 2,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor27_trainer_2",
+          "first_visit_text": "Electricity is a very interesting phenomenon.",
+          "lose_text": "You seem to know the weakness of electricity, earth and dino moves."
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_a",
+      "display_name": "Floor 27 — Level_6_2_A",
+      "legacy_class_name": "LevelContainer_Level_6_2_A",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_A",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_A.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_a.json",
+      "room_index": 3,
+      "exits": [
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_6_2_h1",
+          "target_spawn_id": "entry-5"
+        },
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/floor_27_expert",
+          "target_spawn_id": "entry-expert",
+          "requires_tower_mode": "hard"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor27_trainer_3"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 3,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1435",
+        "source_method": "CreateFloor22",
+        "source_floor_argument": 26
+      },
+      "interactions": [
+        {
+          "id": "floor-27-trainer-3",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 3,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor27_trainer_3",
+          "first_visit_text": "Prepare yourself for a K.O.",
+          "lose_text": "It is I that have been knocked out..."
+        }
+      ],
+      "source_spawns": [
+        {
+          "id": "expert-return",
+          "source_marker": "expert_roomTransitionObject"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_c",
+      "display_name": "Floor 27 — Level_6_2_C",
+      "legacy_class_name": "LevelContainer_Level_6_2_C",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_C",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_C.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_c.json",
+      "room_index": 4,
+      "exits": [
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_6_2_h3",
+          "target_spawn_id": "entry-3"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor27_trainer_4_hard"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 4,
+        "trainer_type": "TrainerType.HARD_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1444",
+        "source_method": "CreateFloor22",
+        "source_floor_argument": 26
+      },
+      "interactions": [
+        {
+          "id": "floor-27-trainer-4",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 4,
+          "trainer_type": "TrainerType.HARD_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor27_trainer_4_hard",
+          "first_visit_text": "",
+          "lose_text": ""
+        }
+      ]
+    },
+    {
+      "id": "base:room/floor_27_expert",
+      "display_name": "Floor 27 — ExpertRoom_electric",
+      "legacy_class_name": "ExpertRoom_electric",
+      "source_symbol": "TopDown.Levels.MainTower.ExpertRoom_electric",
+      "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/MainTower/ExpertRoom_electric.as",
+      "source_payload": "res://content/base/room_payloads/source/floor_27_expert.json",
+      "room_index": 5,
+      "exits": [
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/level_6_2_a",
+          "target_spawn_id": "expert-return",
+          "requires_tower_mode": "hard"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor27_trainer_5_expert"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 5,
+        "trainer_type": "TrainerType.EXPERT_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1451",
+        "source_method": "CreateFloor22",
+        "source_floor_argument": 26
+      },
+      "interactions": [
+        {
+          "id": "floor-27-trainer-5",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 5,
+          "trainer_type": "TrainerType.EXPERT_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor27_trainer_5_expert",
+          "first_visit_text": "",
+          "lose_text": "",
+          "requires_tower_mode": "hard"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_d",
+      "display_name": "Floor 27 — Level_6_2_D",
+      "legacy_class_name": "LevelContainer_Level_6_2_D",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_D",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_D.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_d.json",
+      "room_index": 6,
+      "exits": [
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_6_2_h1",
+          "target_spawn_id": "entry-6"
+        },
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_6_2_h2",
+          "target_spawn_id": "entry-7"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor27_trainer_6_boss"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 6,
+        "trainer_type": "TrainerType.BOSS_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1458",
+        "source_method": "CreateFloor22",
+        "source_floor_argument": 26
+      },
+      "interactions": [
+        {
+          "id": "floor-27-trainer-6",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 6,
+          "trainer_type": "TrainerType.BOSS_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor27_trainer_6_boss",
+          "first_visit_text": "Always have Sanctity on you mind.",
+          "lose_text": "That was excellent, well done!  Here is the second piece to the Sage Seal of Sanctity."
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_f",
+      "display_name": "Floor 27 — Level_6_2_F",
+      "legacy_class_name": "LevelContainer_Level_6_2_F",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_F",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_F.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_f.json",
+      "room_index": 7,
+      "exits": [
+        {
+          "transition_id": 9,
+          "target_room_id": "base:room/level_6_2_e",
+          "target_spawn_id": "entry-9"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_h2",
+      "display_name": "Floor 27 — Level_6_2_H2",
+      "legacy_class_name": "LevelContainer_Level_6_2_H2",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_H2",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_H2.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_h2.json",
+      "room_index": 8,
+      "exits": [
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_6_2_d",
+          "target_spawn_id": "entry-7"
+        },
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_6_2_eggery",
+          "target_spawn_id": "entry-8"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_h3",
+      "display_name": "Floor 27 — Level_6_2_H3",
+      "legacy_class_name": "LevelContainer_Level_6_2_H3",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_H3",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_H3.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_h3.json",
+      "room_index": 9,
+      "exits": [
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_6_2_b",
+          "target_spawn_id": "entry-2"
+        },
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_6_2_c",
+          "target_spawn_id": "entry-3"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_2_eggery",
+      "display_name": "Floor 27 — Level_6_2_Eggery",
+      "legacy_class_name": "LevelContainer_Level_6_2_Eggery",
+      "source_symbol": "Utilities.LevelContainer_Level_6_2_Eggery",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_2_Eggery.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_2_eggery.json",
+      "room_index": 10,
+      "exits": [
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_6_2_h2",
+          "target_spawn_id": "entry-8"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-27-egg-slot-0",
+          "kind": "egg_pick",
+          "source_zone_id": 0,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        },
+        {
+          "id": "floor-27-egg-slot-1",
+          "kind": "egg_pick",
+          "source_zone_id": 1,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        },
+        {
+          "id": "floor-27-egg-slot-2",
+          "kind": "egg_pick",
+          "source_zone_id": 2,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        },
+        {
+          "id": "floor-27-egg-slot-3",
+          "kind": "egg_pick",
+          "source_zone_id": 3,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        },
+        {
+          "id": "floor-27-egg-slot-4",
+          "kind": "egg_pick",
+          "source_zone_id": 4,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        },
+        {
+          "id": "floor-27-egg-slot-5",
+          "kind": "egg_pick",
+          "source_zone_id": 5,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        },
+        {
+          "id": "floor-27-egg-slot-6",
+          "kind": "egg_pick",
+          "source_zone_id": 6,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        },
+        {
+          "id": "floor-27-egg-slot-7",
+          "kind": "egg_pick",
+          "source_zone_id": 7,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        },
+        {
+          "id": "floor-27-egg-slot-8",
+          "kind": "egg_pick",
+          "source_zone_id": 8,
+          "candidates": [
+            "base:minion/scorpion_1",
+            "base:minion/goo_1",
+            "base:minion/armadillo_1",
+            "base:minion/armadillo_2",
+            "base:minion/anteater_1",
+            "base:minion/anteater_2",
+            "base:minion/hummingbird_1",
+            "base:minion/roboshark_1"
+          ],
+          "weights": [
+            5.0,
+            5.0,
+            5.0,
+            25.0,
+            5.0,
+            25.0,
+            25.0,
+            5.0
+          ]
+        }
+      ]
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_6_2_h1",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    },
+    {
+      "room_id": "base:room/level_6_2_eggery",
+      "transition_id": 100,
+      "source_sprite": "roomTransitionObject_lobbyFromEggery",
+      "target_route": "lobby"
+    }
+  ],
+  "eggery_source": {
+    "source_floor_index": 26,
+    "source_minion_level_base": 53,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ]
+  }
+}

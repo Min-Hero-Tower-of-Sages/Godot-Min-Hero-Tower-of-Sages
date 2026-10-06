@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TypeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/type_definition.gd" id="1_ox1ye"]
+
+[resource]
+script = ExtResource("1_ox1ye")
+id = &"base:type/dino"
+display_name = "Dino"
+legacy_numeric_id = 14
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\States\\MinionType.as"

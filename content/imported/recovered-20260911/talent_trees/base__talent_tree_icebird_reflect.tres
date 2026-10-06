@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_45gbt"]
+
+[resource]
+script = ExtResource("1_45gbt")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/icebird_reflect/node/0_0",
+"move_ids": ["base:move/wild_lance/tier1", "base:move/wild_lance/tier2", "base:move/wild_lance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1266.0, 1267.0, 1268.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_reflect/node/1_0",
+"move_ids": ["base:move/ice_barrier/tier1", "base:move/ice_barrier/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1269.0, 1270.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_reflect/node/2_0",
+"move_ids": ["base:move/priest/tier1", "base:move/priest/tier2", "base:move/priest/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1271.0, 1272.0, 1273.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icebird_reflect/node/0_1",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1274.0, 1275.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_reflect/node/1_1",
+"move_ids": ["base:move/ice_barrier/tier3", "base:move/ice_barrier/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_reflect/node/1_0"],
+"row": 1.0,
+"source_lines": [1276.0, 1277.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_reflect/node/2_1",
+"move_ids": ["base:move/priest/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_reflect/node/2_0"],
+"row": 1.0,
+"source_lines": [1278.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icebird_reflect/node/0_2",
+"move_ids": ["base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_reflect/node/0_1"],
+"row": 2.0,
+"source_lines": [1279.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_reflect/node/1_2",
+"move_ids": ["base:move/ice_shield/tier3", "base:move/ice_shield/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1280.0, 1281.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_reflect/node/2_2",
+"move_ids": ["base:move/ice_enclosure/tier1", "base:move/ice_enclosure/tier2", "base:move/ice_enclosure/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1282.0, 1283.0, 1284.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_reflect/node/1_3",
+"move_ids": ["base:move/ice_shield/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_reflect/node/1_2"],
+"row": 3.0,
+"source_lines": [1285.0]
+}])
+id = &"base:talent_tree/icebird_reflect"
+display_name = "Shields"
+legacy_class_name = "IceBird_Reflect"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1263"

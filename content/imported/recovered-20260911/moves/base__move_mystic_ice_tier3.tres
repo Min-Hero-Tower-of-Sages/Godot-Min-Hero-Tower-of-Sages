@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cxfkp8tpuh7gn"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_n6ok8"]
+[ext_resource type="Script" uid="uid://b2adsq7wfencb" path="res://src/domain/battle/shield_effect_executor.gd" id="2_8h41p"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_wmrj1"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_m3dem"]
+
+[sub_resource type="Resource" id="Resource_5g8j7"]
+script = ExtResource("1_n6ok8")
+kind = 6
+target_scope = 2
+phase = 2
+scaling = 2
+amount = 30
+executor = ExtResource("2_8h41p")
+id = &"base:move/mystic_ice/tier3/effect/00_shield_ally_targets"
+display_name = "Shield"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2075"
+
+[sub_resource type="Resource" id="Resource_f2c87"]
+script = ExtResource("1_n6ok8")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = 1
+chance_percent = 70
+stat_type_id = &"base:stat/healing"
+legacy_order = 1
+executor = ExtResource("3_wmrj1")
+id = &"base:move/mystic_ice/tier3/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2075"
+
+[resource]
+script = ExtResource("4_m3dem")
+family_id = &"base:move_family/mystic_ice"
+tier = 3
+type_id = &"base:type/ice"
+legacy_class_id = 109
+legacy_visual_id = 109
+legacy_dot_visual_id = 109
+buff_icon_name = &"moveIcon_mysticIce"
+energy_cost = 28
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_n6ok8")]([SubResource("Resource_5g8j7"), SubResource("Resource_f2c87")])
+presentation_id = &"base:presentation/move/move_icon_mystic_ice"
+id = &"base:move/mystic_ice/tier3"
+display_name = "Mystic Ice  lv.3"
+legacy_numeric_id = 482
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

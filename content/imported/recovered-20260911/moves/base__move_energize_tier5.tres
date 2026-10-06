@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://db2g236ubky0l"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_vahc6"]
+[ext_resource type="Script" uid="uid://g81j5j6ogo3j" path="res://src/domain/battle/energy_effect_executor.gd" id="2_37q5x"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_ag537"]
+
+[sub_resource type="Resource" id="Resource_y53xq"]
+script = ExtResource("1_vahc6")
+kind = 2
+target_scope = 0
+phase = 0
+scaling = 3
+amount = 100
+executor = ExtResource("2_37q5x")
+id = &"base:move/energize/tier5/effect/00_energy_actor"
+display_name = "Energy"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3275"
+
+[resource]
+script = ExtResource("3_ag537")
+family_id = &"base:move_family/energize"
+tier = 5
+type_id = &"base:type/normal"
+legacy_class_id = 51
+legacy_visual_id = 51
+legacy_dot_visual_id = 51
+buff_icon_name = &"moveIcon_energize"
+energy_cost = 0
+cooldown_turns = 1
+target_side = 2
+enemy_target_count = 0
+ally_target_count = 1
+only_self = true
+effects = Array[ExtResource("1_vahc6")]([SubResource("Resource_y53xq")])
+presentation_id = &"base:presentation/move/move_icon_energize"
+id = &"base:move/energize/tier5"
+display_name = "Energize  lv.5"
+legacy_numeric_id = 324
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

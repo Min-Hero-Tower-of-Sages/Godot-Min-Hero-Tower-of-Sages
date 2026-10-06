@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TypeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/type_definition.gd" id="1_4p40p"]
+
+[resource]
+script = ExtResource("1_4p40p")
+id = &"base:type/none"
+display_name = "None"
+legacy_numeric_id = 0
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\States\\MinionType.as"

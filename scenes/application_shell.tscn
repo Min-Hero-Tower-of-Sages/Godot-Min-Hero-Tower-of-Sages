@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cvswc8ksit35o"]
+
+[ext_resource type="Script" uid="uid://fklfam2silna" path="res://src/application/application_shell.gd" id="1_shell"]
+
+[node name="ApplicationShell" type="Control" unique_id=1691495920]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_shell")
+
+[node name="ScreenHost" type="Control" parent="." unique_id=201395640]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

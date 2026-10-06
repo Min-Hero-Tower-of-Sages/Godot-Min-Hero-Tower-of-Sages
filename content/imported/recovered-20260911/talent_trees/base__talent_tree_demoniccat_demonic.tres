@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_txe04"]
+
+[resource]
+script = ExtResource("1_txe04")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/demoniccat_demonic/node/0_0",
+"move_ids": ["base:move/blood_ritual/tier1", "base:move/blood_ritual/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [685.0, 686.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/demoniccat_demonic/node/1_0",
+"move_ids": ["base:move/phantom_strike/tier1", "base:move/phantom_strike/tier2", "base:move/phantom_strike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [687.0, 688.0, 689.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/demoniccat_demonic/node/2_0",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [690.0, 691.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/demoniccat_demonic/node/0_1",
+"move_ids": ["base:move/crazed_blast/tier1"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [692.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/demoniccat_demonic/node/1_1",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [693.0, 694.0, 695.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/demoniccat_demonic/node/2_1",
+"move_ids": ["base:move/ferocity/tier3", "base:move/ferocity/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/demoniccat_demonic/node/2_0"],
+"row": 1.0,
+"source_lines": [696.0, 697.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/demoniccat_demonic/node/0_2",
+"move_ids": ["base:move/crazed_blast/tier2", "base:move/crazed_blast/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/demoniccat_demonic/node/0_1"],
+"row": 2.0,
+"source_lines": [698.0, 699.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/demoniccat_demonic/node/1_2",
+"move_ids": ["base:move/blood_press/tier3", "base:move/blood_press/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [700.0, 701.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/demoniccat_demonic/node/2_2",
+"move_ids": ["base:move/ferocity/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/demoniccat_demonic/node/2_1"],
+"row": 2.0,
+"source_lines": [702.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/demoniccat_demonic/node/1_3",
+"move_ids": ["base:move/blood_press/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/demoniccat_demonic/node/1_2"],
+"row": 3.0,
+"source_lines": [703.0]
+}])
+id = &"base:talent_tree/demoniccat_demonic"
+display_name = "Demonic"
+legacy_class_name = "DemonicCat_Demonic"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:682"

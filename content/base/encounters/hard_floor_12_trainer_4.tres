@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/demonic_cat_2", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/evil_eye/tier5", &"base:move/tire/tier3", &"base:move/demonic_strike/tier4", &"base:move/phantom_strike/tier3", &"base:move/agility/tier4"])
+}, {
+"definition_id": &"base:minion/demonic_cat_2", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/blood_press/tier5", &"base:move/blood_ritual/tier2", &"base:move/ferocity/tier5", &"base:move/crazed_blast/tier3", &"base:move/focus/tier3"])
+}, {
+"definition_id": &"base:minion/demonic_cat_2", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/reflect_damage/tier1", &"base:move/spike/tier3", &"base:move/mirror_skin/tier5", &"base:move/quickness/tier1", &"base:move/deadly_inspiration/tier2", &"base:move/blood_ritual/tier2", &"base:move/ferocity/tier3"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/spike/tier3", &"base:move/crush/tier1", &"base:move/perseverance/tier5", &"base:move/tackle/tier2", &"base:move/mirror_skin/tier5", &"base:move/destabilize/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/hard"
+rewards = {"first_clear": {"floor_money_basis": 2000, "eggery_keys": 1, "random_gems": {"count": 1, "tier": 6}}}
+source_trainer_id = &"base:trainer/hard/12/room/4"
+source_floor_index = 42
+source_level_offset = -1
+source_trainer_type = &"TrainerType.HARD_TRAINER"
+id = &"base:encounter/floor43_trainer_4_hard"
+display_name = "Floor 43 — source trainer 4"
+description = "Source start dialogue: \nSource defeat dialogue: "
+legacy_class_name = "TrainerSystem.CreateFloor10_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2190"

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://852f6wyq43q6"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_c7hty"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_7dek7"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_o1qk0"]
+
+[sub_resource type="Resource" id="Resource_5o6p2"]
+script = ExtResource("1_c7hty")
+kind = 12
+target_scope = 0
+phase = 4
+amount = 19
+executor = ExtResource("2_7dek7")
+id = &"base:move/rock_skin/tier4/effect/00_armor_actor"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3468"
+
+[resource]
+script = ExtResource("3_o1qk0")
+family_id = &"base:move_family/rock_skin"
+tier = 4
+legacy_class_id = 47
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_rockSkin"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_c7hty")]([SubResource("Resource_5o6p2")])
+presentation_id = &"base:presentation/move/move_icon_rock_skin"
+id = &"base:move/rock_skin/tier4"
+display_name = "Rock Skin  lv.4"
+legacy_numeric_id = 303
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

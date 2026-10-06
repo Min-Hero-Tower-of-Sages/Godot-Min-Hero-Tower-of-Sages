@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/lichboss_2", "level": 48, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/haunt/tier4", &"base:move/lifeless_touch/tier5", &"base:move/flesh_sacrifice/tier2", &"base:move/skin_trap/tier2", &"base:move/demoralize/tier3", &"base:move/bone_chill/tier2", &"base:move/icy_blast/tier1"])
+}, {
+"definition_id": &"base:minion/lichboss_3", "level": 48, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/haunt/tier1", &"base:move/lich_burn/tier5", &"base:move/vicious/tier5", &"base:move/mortify/tier5", &"base:move/phantom_strike/tier3"])
+}, {
+"definition_id": &"base:minion/icedeer_1", "level": 48, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/icy_blast/tier1", &"base:move/sleet/tier5", &"base:move/ferocity/tier5", &"base:move/hailstone/tier5", &"base:move/agility/tier2", &"base:move/crusade/tier2"])
+}, {
+"definition_id": &"base:minion/icedeer_1", "level": 48, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/icy_blast/tier1", &"base:move/ice_enclosure/tier5", &"base:move/ice_shield/tier3", &"base:move/cleric/tier5", &"base:move/ice_barrier/tier4", &"base:move/blow_by/tier1"])
+}, {
+"definition_id": &"base:minion/fire_bear_2", "level": 48, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/sear/tier1", &"base:move/taunt/tier5", &"base:move/flare_up/tier2", &"base:move/rock_slide/tier1", &"base:move/rock_skin/tier5", &"base:move/earth_barrier/tier3", &"base:move/perseverance/tier5", &"base:move/energizing_inspiration/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 389, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/18/2"
+source_floor_index = 18
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor19_trainer_2"
+display_name = "Floor 19 — source trainer 2"
+description = "Source start dialogue: The bones of my enemies hold much value.\nSource defeat dialogue: I will find others..."
+legacy_class_name = "TrainerSystem.CreateFloor16"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1039"
+battle_modifier_configuration = {"resurrection": {"team": 1, "turns": 12}}

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/slenderman_1", "level": 60, "source_level_offset": -2, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/haunt/tier5", &"base:move/infes/tier5", &"base:move/mortify/tier4", &"base:move/efficiency/tier3", &"base:move/rancid_bite/tier2"])
+}, {
+"definition_id": &"base:minion/slenderman_1", "level": 60, "source_level_offset": -2, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/haunt/tier5", &"base:move/infes/tier5", &"base:move/mortify/tier4", &"base:move/efficiency/tier3", &"base:move/rancid_bite/tier2"])
+}, {
+"definition_id": &"base:minion/slenderman_1", "level": 60, "source_level_offset": -2, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/haunt/tier5", &"base:move/infes/tier5", &"base:move/mortify/tier4", &"base:move/efficiency/tier3", &"base:move/rancid_bite/tier2"])
+}, {
+"definition_id": &"base:minion/slenderman_1", "level": 60, "source_level_offset": -2, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/haunt/tier5", &"base:move/infes/tier5", &"base:move/mortify/tier4", &"base:move/efficiency/tier3", &"base:move/rancid_bite/tier2"])
+}, {
+"definition_id": &"base:minion/slenderman_1", "level": 60, "source_level_offset": -2, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/haunt/tier5", &"base:move/infes/tier5", &"base:move/mortify/tier4", &"base:move/efficiency/tier3", &"base:move/rancid_bite/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/16/room/1"
+source_floor_index = 46
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor47_trainer_1"
+display_name = "Floor 47 — source trainer 1"
+description = "Source start dialogue: Well well, you think you can win?  We'll see about that.\nSource defeat dialogue: I hate to admit it.  But I guess you might be alright..."
+legacy_class_name = "TrainerSystem.CreateFloor13_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2346"
+battle_modifier_configuration = {"resurrection": {"team": 1, "turns": 5}}

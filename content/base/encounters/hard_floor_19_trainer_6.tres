@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/holyfox_1", "level": 60, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/intense_flame/tier5", &"base:move/efficiency/tier3", &"base:move/righteous_zeal/tier3", &"base:move/vicious/tier5", &"base:move/holy_strike/tier1"])
+}, {
+"definition_id": &"base:minion/holystrongguy_1", "level": 60, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier2", &"base:move/crusade/tier5", &"base:move/holy_strike/tier5", &"base:move/penance/tier5", &"base:move/vicious/tier5", &"base:move/fire_bash/tier1"])
+}, {
+"definition_id": &"base:minion/griffen_2", "level": 60, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/cutting_wind/tier5", &"base:move/vicious/tier5", &"base:move/icy_blast/tier2", &"base:move/volley/tier1", &"base:move/quickness/tier5", &"base:move/spark/tier2"])
+}, {
+"definition_id": &"base:minion/holymantris_1", "level": 60, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/nourish/tier2", &"base:move/serenity/tier5", &"base:move/priest/tier5", &"base:move/swift_mend/tier1", &"base:move/cleric/tier5", &"base:move/hope/tier1"])
+}, {
+"definition_id": &"base:minion/bluebell_1", "level": 60, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/burn/tier4", &"base:move/touch_fire/tier5", &"base:move/vicious/tier5", &"base:move/intense_flame/tier3", &"base:move/mortify/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 2000, "eggery_keys": 1}}
+source_trainer_id = &"base:trainer/hard/19/room/6"
+source_floor_index = 49
+source_level_offset = 0
+source_trainer_type = &"TrainerType.BOSS_TRAINER"
+id = &"base:encounter/floor50_trainer_6_boss"
+display_name = "Floor 50 — source trainer 6"
+description = "Source start dialogue: We shall battle to test ourselves.\nSource defeat dialogue: For your victory, I will give you a tip.  When fighting ice minions use fire, flying, robot, or titan moves."
+legacy_class_name = "TrainerSystem.CreateFloor16_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2574"
+battle_modifier_configuration = {"extra_minions": {"enemy": {"count": 5, "templates": [{"definition_id": "base:minion/holystrongguy_1", "level": 60, "move_ids": ["base:move/pound/tier2", "base:move/crusade/tier5", "base:move/holy_strike/tier5", "base:move/penance/tier5", "base:move/vicious/tier5", "base:move/fire_bash/tier1"], "source_derive_stats": true}]}, "player": {"count": 2, "templates": [{"definition_id": "base:minion/harpy_1", "level": 60, "move_ids": ["base:move/peck/tier4", "base:move/cutting_wind/tier1", "base:move/vicious/tier5", "base:move/hailstone/tier3", "base:move/volley/tier3", "base:move/blood_press/tier3"], "source_derive_stats": true}]}}}

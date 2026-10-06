@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/grasssnake_3", "level": 60, "source_level_offset": -2, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/poison_tooth/tier1", &"base:move/razor_vine/tier1", &"base:move/grassblade/tier5", &"base:move/vicious/tier3", &"base:move/drain/tier3", &"base:move/concentration/tier3", &"base:move/quickness/tier3", &"base:move/mirror_skin/tier2"])
+}, {
+"definition_id": &"base:minion/icetree_2", "level": 60, "source_level_offset": -2, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/nourish/tier5", &"base:move/swift_mend/tier3", &"base:move/priest/tier5", &"base:move/serenity/tier1", &"base:move/ice_shield/tier4", &"base:move/agility/tier1"])
+}, {
+"definition_id": &"base:minion/trex_3", "level": 60, "source_level_offset": -2, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/wild_tackle/tier1", &"base:move/prehistoric_bite/tier1", &"base:move/inner_force/tier5", &"base:move/ferocity/tier5", &"base:move/reckless_grasp/tier5", &"base:move/vicious/tier4", &"base:move/reckless_dash/tier1"])
+}, {
+"definition_id": &"base:minion/trex_3", "level": 60, "source_level_offset": -2, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/wild_tackle/tier1", &"base:move/prehistoric_bite/tier1", &"base:move/inner_force/tier1", &"base:move/ferocity/tier5", &"base:move/reckless_grasp/tier5", &"base:move/fire_ram/tier5", &"base:move/crazed_blast/tier5", &"base:move/reckless_dash/tier3"])
+}, {
+"definition_id": &"base:minion/groundattacker_3", "level": 60, "source_level_offset": -2, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/rock_throw/tier1", &"base:move/stone_fall/tier5", &"base:move/rock_blast/tier5", &"base:move/destabilize/tier3", &"base:move/ferocity/tier5", &"base:move/fire_blast/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/4/room/1"
+source_floor_index = 34
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor35_trainer_1"
+display_name = "Floor 35 — source trainer 1"
+description = "Source start dialogue: It's a great day for a hike!\nSource defeat dialogue: It's always a great day for a hike!"
+legacy_class_name = "TrainerSystem.CreateFloor4_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1788"
+battle_modifier_configuration = {"shield": {"enemy": 2, "player": 2}}

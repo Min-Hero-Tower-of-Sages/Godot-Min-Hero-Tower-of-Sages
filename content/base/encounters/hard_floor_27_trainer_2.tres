@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/armadillo_2", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}, {
+"definition_id": &"base:minion/dc2guy_1", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/pound/tier2", &"base:move/death_call/tier5", &"base:move/ferocity/tier5", &"base:move/twin_missile/tier5", &"base:move/download/tier5", &"base:move/fire_blast/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/27/room/2"
+source_floor_index = 57
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor58_trainer_2"
+display_name = "Floor 58 — source trainer 2"
+description = "Source start dialogue: Electricity is a very interesting phenomenon.\nSource defeat dialogue: You seem to know the weakness of electricity, earth and dino moves."
+legacy_class_name = "TrainerSystem.CreateFloor22_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2943"

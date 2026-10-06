@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ContentPackDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/content_pack_definition.gd" id="1_pack"]
+[ext_resource type="Script" path="res://src/content/content_definition.gd" id="2_definition"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_13_trainer_1.tres" id="3_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_13_trainer_2.tres" id="4_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_13_trainer_3.tres" id="5_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_13_trainer_4_hard.tres" id="6_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_13_trainer_5_expert.tres" id="7_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_13_trainer_6_boss.tres" id="8_encounter"]
+
+[resource]
+script = ExtResource("1_pack")
+dependencies = Array[StringName]([&"base:pack/recovered", &"base:pack/floor_13_slice"])
+definitions = Array[ExtResource("2_definition")]([ExtResource("3_encounter"), ExtResource("4_encounter"), ExtResource("5_encounter"), ExtResource("6_encounter"), ExtResource("7_encounter"), ExtResource("8_encounter")])
+id = &"base:pack/floor_13_trainers"
+display_name = "Standard tower — floor 13 trainers"

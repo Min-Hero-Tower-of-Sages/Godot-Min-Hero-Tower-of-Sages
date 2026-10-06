@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://ci4iudmragleb"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_0pnpo"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_26ol4"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_v252k"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_8bk2s"]
+
+[sub_resource type="Resource" id="Resource_dvaxx"]
+script = ExtResource("1_0pnpo")
+scaling = 1
+roll_scope = 1
+amount = 40
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_26ol4")
+id = &"base:move/waterjet/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1767"
+
+[sub_resource type="Resource" id="Resource_nv8pw"]
+script = ExtResource("1_0pnpo")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 1
+stat_type_id = &"base:stat/speed"
+legacy_order = 1
+executor = ExtResource("3_v252k")
+id = &"base:move/waterjet/tier1/effect/01_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1767"
+
+[resource]
+script = ExtResource("4_8bk2s")
+family_id = &"base:move_family/waterjet"
+type_id = &"base:type/water"
+legacy_class_id = 132
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_waterJet"
+energy_cost = 20
+effects = Array[ExtResource("1_0pnpo")]([SubResource("Resource_dvaxx"), SubResource("Resource_nv8pw")])
+presentation_id = &"base:presentation/move/move_icon_water_jet"
+id = &"base:move/waterjet/tier1"
+display_name = "Water Jet"
+legacy_numeric_id = 595
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://8pfs50efaekf"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_3lkmx"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_sk74y"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_msx5q"]
+
+[sub_resource type="Resource" id="Resource_bhgaq"]
+script = ExtResource("1_3lkmx")
+scaling = 1
+roll_scope = 1
+amount = 40
+random_bonus = 60
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_sk74y")
+id = &"ice_floor:move/istrike/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:89"
+
+[resource]
+script = ExtResource("3_msx5q")
+family_id = &"ice_floor:move_family/istrike"
+tier = 5
+type_id = &"ice_floor:type/thaw"
+legacy_class_id = 181
+legacy_visual_id = 144
+legacy_dot_visual_id = 144
+buff_icon_name = &"moveIcon_iStrike"
+energy_cost = 35
+cooldown_turns = 4
+exhaust_turns = 2
+target_mode = 2
+target_count = 3
+enemy_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_3lkmx")]([SubResource("Resource_bhgaq")])
+presentation_id = &"ice_floor:presentation/move/move_icon_i_strike"
+id = &"ice_floor:move/istrike/tier5"
+display_name = "Ice Age"
+legacy_numeric_id = 897
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"
+source_mod = &"ice_floor"

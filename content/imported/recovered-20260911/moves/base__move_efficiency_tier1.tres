@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b4wlt03mev8r6"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_u0vih"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_qecj0"]
+
+[sub_resource type="Resource" id="Resource_cdslf"]
+script = ExtResource("1_u0vih")
+kind = 18
+target_scope = 0
+phase = 4
+amount = 10
+stat_type_id = &"base:stat/energy"
+id = &"base:move/efficiency/tier1/effect/00_stat_percent_actor"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3327"
+
+[resource]
+script = ExtResource("2_qecj0")
+family_id = &"base:move_family/efficiency"
+legacy_class_id = 32
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_efficiency"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_u0vih")]([SubResource("Resource_cdslf")])
+presentation_id = &"base:presentation/move/move_icon_efficiency"
+id = &"base:move/efficiency/tier1"
+display_name = "Efficiency"
+legacy_numeric_id = 225
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

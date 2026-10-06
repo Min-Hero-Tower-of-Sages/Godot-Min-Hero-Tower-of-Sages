@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bnwbcpjmdxu7v"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_wp26w"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_r744j"]
+
+[sub_resource type="Resource" id="Resource_p847l"]
+script = ExtResource("1_wp26w")
+kind = 20
+target_scope = 0
+phase = 4
+amount = 10
+id = &"base:move/concentration/tier2/effect/00_critical_chance_actor"
+display_name = "Critical Chance"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3451"
+
+[resource]
+script = ExtResource("2_r744j")
+family_id = &"base:move_family/concentration"
+tier = 2
+legacy_class_id = 46
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_concentration"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_wp26w")]([SubResource("Resource_p847l")])
+presentation_id = &"base:presentation/move/move_icon_concentration"
+id = &"base:move/concentration/tier2"
+display_name = "Concentration  lv.2"
+legacy_numeric_id = 296
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://jvcqpvqidqqw"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_u7ts6"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_mpo8d"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_oktlq"]
+
+[sub_resource type="Resource" id="Resource_cawm7"]
+script = ExtResource("1_u7ts6")
+scaling = 1
+roll_scope = 1
+amount = 20
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_mpo8d")
+id = &"base:move/claw/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3050"
+
+[resource]
+script = ExtResource("3_oktlq")
+family_id = &"base:move_family/claw"
+type_id = &"base:type/normal"
+legacy_class_id = 15
+legacy_visual_id = 15
+legacy_dot_visual_id = 15
+buff_icon_name = &"moveIcon_claw"
+energy_cost = 2
+effects = Array[ExtResource("1_u7ts6")]([SubResource("Resource_cawm7")])
+presentation_id = &"base:presentation/move/move_icon_claw"
+id = &"base:move/claw/tier1"
+display_name = "Claw"
+legacy_numeric_id = 80
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

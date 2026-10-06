@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://6faeeur036mo"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_2aajt"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_yejod"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_h51fr"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_prk5g"]
+
+[sub_resource type="Resource" id="Resource_a4gd8"]
+script = ExtResource("1_2aajt")
+scaling = 1
+roll_scope = 1
+amount = 35
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_yejod")
+id = &"base:move/burn/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:264"
+
+[sub_resource type="Resource" id="Resource_p7we2"]
+script = ExtResource("1_2aajt")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 20
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_h51fr")
+id = &"base:move/burn/tier4/effect/01_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:264"
+
+[resource]
+script = ExtResource("4_prk5g")
+family_id = &"base:move_family/burn"
+tier = 4
+type_id = &"base:type/fire"
+legacy_class_id = 1
+legacy_visual_id = 1
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_burn"
+energy_cost = 30
+effects = Array[ExtResource("1_2aajt")]([SubResource("Resource_a4gd8"), SubResource("Resource_p7we2")])
+presentation_id = &"base:presentation/move/move_icon_burn"
+id = &"base:move/burn/tier4"
+display_name = "Burn  lv.4"
+legacy_numeric_id = 8
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_4kerg"]
+
+[resource]
+script = ExtResource("1_4kerg")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holybell_fire/node/0_0",
+"move_ids": ["base:move/mortify/tier1", "base:move/mortify/tier2", "base:move/mortify/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3384.0, 3385.0, 3386.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_fire/node/1_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3387.0, 3388.0, 3389.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holybell_fire/node/2_0",
+"move_ids": ["base:move/burn/tier2", "base:move/burn/tier3", "base:move/burn/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3390.0, 3391.0, 3392.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holybell_fire/node/0_1",
+"move_ids": ["base:move/intense_flame/tier1", "base:move/intense_flame/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3393.0, 3394.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_fire/node/1_1",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_fire/node/1_0"],
+"row": 1.0,
+"source_lines": [3395.0, 3396.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holybell_fire/node/2_1",
+"move_ids": ["base:move/wildfire/tier1", "base:move/wildfire/tier2", "base:move/wildfire/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3397.0, 3398.0, 3399.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holybell_fire/node/0_2",
+"move_ids": ["base:move/intense_flame/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_fire/node/0_1"],
+"row": 2.0,
+"source_lines": [3400.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_fire/node/1_2",
+"move_ids": ["base:move/touch_fire/tier3", "base:move/touch_fire/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3401.0, 3402.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holybell_fire/node/1_3",
+"move_ids": ["base:move/touch_fire/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holybell_fire/node/1_2"],
+"row": 3.0,
+"source_lines": [3403.0]
+}])
+id = &"base:talent_tree/holybell_fire"
+display_name = "Fire"
+legacy_class_name = "HolyBell_Fire"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3381"

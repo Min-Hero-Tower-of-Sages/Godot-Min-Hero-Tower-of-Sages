@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_b0bw7"]
+
+[resource]
+script = ExtResource("1_b0bw7")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/fireghost_normal/node/0_0",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3664.0, 3665.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireghost_normal/node/1_0",
+"move_ids": ["base:move/blood_ritual/tier1", "base:move/blood_ritual/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3666.0, 3667.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/fireghost_normal/node/2_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3668.0, 3669.0, 3670.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/fireghost_normal/node/0_1",
+"move_ids": ["base:move/tackle/tier3", "base:move/tackle/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/fireghost_normal/node/0_0"],
+"row": 1.0,
+"source_lines": [3671.0, 3672.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireghost_normal/node/1_1",
+"move_ids": ["base:move/blood_ritual/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/fireghost_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [3673.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/fireghost_normal/node/2_1",
+"move_ids": ["base:move/invigorate/tier1", "base:move/invigorate/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3674.0, 3675.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/fireghost_normal/node/0_2",
+"move_ids": ["base:move/mirror_coating/tier1", "base:move/mirror_coating/tier2", "base:move/mirror_coating/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3676.0, 3677.0, 3678.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireghost_normal/node/1_2",
+"move_ids": ["base:move/tire/tier3", "base:move/tire/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3679.0, 3680.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/fireghost_normal/node/1_3",
+"move_ids": ["base:move/tire/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/fireghost_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [3681.0]
+}])
+id = &"base:talent_tree/fireghost_normal"
+display_name = "Debuff"
+legacy_class_name = "FireGhost_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3661"

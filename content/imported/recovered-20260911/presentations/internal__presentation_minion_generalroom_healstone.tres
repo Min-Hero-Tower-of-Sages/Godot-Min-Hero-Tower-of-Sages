@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_g0dhn"]
+
+[resource]
+script = ExtResource("1_g0dhn")
+legacy_sprite_name = &"generalRoom_healStone"
+icon_offset = Vector2i(-2, 8)
+id = &"internal:presentation/minion/generalroom_healstone"
+display_name = "BMod 1 presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2624"
+source_mod = &"internal"

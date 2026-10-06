@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dtle4hdpb4ir"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_qwbpg"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_m7lxt"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_je3ha"]
+
+[sub_resource type="Resource" id="Resource_lapnu"]
+script = ExtResource("1_qwbpg")
+kind = 12
+target_scope = 0
+phase = 4
+amount = 9
+executor = ExtResource("2_m7lxt")
+id = &"base:move/diamond_skin/tier1/effect/00_armor_actor"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3475"
+
+[resource]
+script = ExtResource("3_je3ha")
+family_id = &"base:move_family/diamond_skin"
+legacy_class_id = 48
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_diamondSkin"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_qwbpg")]([SubResource("Resource_lapnu")])
+presentation_id = &"base:presentation/move/move_icon_diamond_skin"
+id = &"base:move/diamond_skin/tier1"
+display_name = "Diamond Skin"
+legacy_numeric_id = 305
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/evileye_3", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/evil_eye/tier5", &"base:move/coldfront/tier2", &"base:move/forceful_heal/tier1", &"base:move/tire/tier5", &"base:move/demoralize/tier3", &"base:move/quickness/tier3"])
+}, {
+"definition_id": &"base:minion/evileye_3", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/evil_eye/tier1", &"base:move/demonic_strike/tier5", &"base:move/blood_ritual/tier3", &"base:move/icy_blast/tier1", &"base:move/vicious/tier4", &"base:move/quickness/tier4"])
+}, {
+"definition_id": &"base:minion/evileye_3", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/evil_eye/tier1", &"base:move/spike/tier5", &"base:move/flare_up/tier2", &"base:move/concentration/tier5", &"base:move/touch_fire/tier4", &"base:move/icy_blast/tier2"])
+}, {
+"definition_id": &"base:minion/lichboss_3", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/haunt/tier2", &"base:move/mirror_coating/tier4", &"base:move/bone_chill/tier3", &"base:move/icy_blast/tier1", &"base:move/reflect_damage/tier3", &"base:move/invigorate/tier3", &"base:move/skin_trap/tier2"])
+}, {
+"definition_id": &"base:minion/worm_3", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/rock_slide/tier1", &"base:move/earthquake/tier1", &"base:move/taunt/tier3", &"base:move/perseverance/tier5", &"base:move/destabilize/tier2", &"base:move/mirror_skin/tier3", &"base:move/skillful/tier1", &"base:move/slow/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/28/room/3"
+source_floor_index = 58
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor59_trainer_3"
+display_name = "Floor 59 — source trainer 3"
+description = "Source start dialogue: I show you the force of the underworld!\nSource defeat dialogue: It appears you know demon minions are weak to water and holy attacks."
+legacy_class_name = "TrainerSystem.CreateFloor23_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:3003"
+battle_modifier_configuration = {"move_timer": {"interval": 2, "source_power": 1, "move_id": "base:move/fire_ram/tier5", "buff_move_id": "base:move/hulk_inspiration/tier1", "actor": {"instance_id": "floor59-timer-3", "definition_id": "internal:minion/bmod_2", "team": 1, "level": 59, "move_ids": ["base:move/fire_ram/tier5"]}}}

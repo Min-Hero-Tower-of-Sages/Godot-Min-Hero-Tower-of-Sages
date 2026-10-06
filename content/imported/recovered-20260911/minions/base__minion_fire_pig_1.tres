@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_cbdrp"]
+
+[resource]
+script = ExtResource("1_cbdrp")
+type_ids = Array[StringName]([&"base:type/fire", &"base:type/energy"])
+base_health = 30
+base_energy = 45
+base_attack = 40
+base_healing = 10
+base_speed = 40
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/burn/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/fire_ram/tier1", &"base:move/static_pummel/tier1", &"base:move/tackle/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/firepig_fire", &"base:talent_tree/firepig_electric", &"base:talent_tree/firepig_normal"])
+evolution_id = &"base:minion/fire_pig_2"
+evolution_level = 10
+presentation_id = &"base:presentation/minion/energyboar1"
+id = &"base:minion/fire_pig_1"
+display_name = "Zapig"
+legacy_numeric_id = 2
+legacy_class_name = "FirePig_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2175"

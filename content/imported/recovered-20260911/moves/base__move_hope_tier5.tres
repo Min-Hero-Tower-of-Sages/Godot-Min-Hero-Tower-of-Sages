@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bhw80313ti208"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_q2c3r"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_0ffds"]
+[ext_resource type="Script" uid="uid://b2adsq7wfencb" path="res://src/domain/battle/shield_effect_executor.gd" id="3_3bd3s"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_muw3p"]
+
+[sub_resource type="Resource" id="Resource_my5fm"]
+script = ExtResource("1_q2c3r")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 75
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_0ffds")
+id = &"base:move/hope/tier5/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2468"
+
+[sub_resource type="Resource" id="Resource_06xsm"]
+script = ExtResource("1_q2c3r")
+kind = 6
+target_scope = 2
+phase = 2
+scaling = 2
+amount = 15
+legacy_order = 1
+executor = ExtResource("3_3bd3s")
+id = &"base:move/hope/tier5/effect/01_shield_ally_targets"
+display_name = "Shield"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2468"
+
+[resource]
+script = ExtResource("4_muw3p")
+family_id = &"base:move_family/hope"
+tier = 5
+type_id = &"base:type/holy"
+legacy_class_id = 147
+legacy_visual_id = 147
+legacy_dot_visual_id = 147
+buff_icon_name = &"moveIcon_hope"
+energy_cost = 45
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_q2c3r")]([SubResource("Resource_my5fm"), SubResource("Resource_06xsm")])
+presentation_id = &"base:presentation/move/move_icon_hope"
+id = &"base:move/hope/tier5"
+display_name = "Focused Faith"
+legacy_numeric_id = 674
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

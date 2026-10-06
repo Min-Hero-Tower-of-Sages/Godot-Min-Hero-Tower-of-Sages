@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TypeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/type_definition.gd" id="1_okflm"]
+
+[resource]
+script = ExtResource("1_okflm")
+id = &"ice_floor:type/thaw"
+display_name = "Thaw"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\PresistentData\\StaticData.as"
+source_mod = &"ice_floor"

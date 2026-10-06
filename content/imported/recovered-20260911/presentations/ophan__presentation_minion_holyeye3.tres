@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_dmyqh"]
+
+[resource]
+script = ExtResource("1_dmyqh")
+legacy_sprite_name = &"HolyEye3"
+id = &"ophan:presentation/minion/holyeye3"
+display_name = "Ophance presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:469"
+source_mod = &"ophan"

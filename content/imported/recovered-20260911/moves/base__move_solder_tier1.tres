@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bwno3nwxbgv7j"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_jmtvd"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_3tb3g"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_jfhds"]
+
+[sub_resource type="Resource" id="Resource_dr5ku"]
+script = ExtResource("1_jmtvd")
+kind = 12
+amount = 6
+duration = 5
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_3tb3g")
+id = &"base:move/solder/tier1/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2774"
+
+[sub_resource type="Resource" id="Resource_hrcnu"]
+script = ExtResource("1_jmtvd")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 6
+duration = 5
+legacy_order = 1
+executor = ExtResource("2_3tb3g")
+id = &"base:move/solder/tier1/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2774"
+
+[resource]
+script = ExtResource("3_jfhds")
+family_id = &"base:move_family/solder"
+type_id = &"base:type/robot"
+legacy_class_id = 165
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_solder"
+energy_cost = 8
+cooldown_turns = 3
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_jmtvd")]([SubResource("Resource_dr5ku"), SubResource("Resource_hrcnu")])
+presentation_id = &"base:presentation/move/move_icon_solder"
+id = &"base:move/solder/tier1"
+display_name = "Solder"
+legacy_numeric_id = 760
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

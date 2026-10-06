@@ -1,0 +1,515 @@
+[gd_resource type="Resource" script_class="SourceMinimapLayouts" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/content/source_minimap_layouts.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+provenance = "StaticData.as :: SetupLevels / MiniMapDataObject.as constructor defaults; recovered 2026-09-08"
+layouts = [
+	{
+	"floor_index": 0,
+	"position": Vector2(-16, 3),
+	"scale": 0.62,
+	"pieces": [
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 79, "y": 24, "room_index": 0, "group_id": 1, "is_eggery": false, "override_scale": 1.5},
+		{"sprite_name": "miniMap_room1", "x": 181, "y": 113, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 181, "y": 84, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 107, "y": 62, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 78, "y": 62, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 150, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 157, "y": 38, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 186, "y": 106, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor1", "x": 128, "y": 59, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 99, "y": 66, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 161, "y": 29, "room_index": 10, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 186, "y": 135, "room_index": 11, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 74, "y": 2, "room_index": 12, "group_id": 1, "is_eggery": false, "override_scale": 1.5},
+		{"sprite_name": "miniMap_room1", "x": 157, "y": 7, "room_index": 13, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 1,
+	"position": Vector2(12, 18),
+	"scale": 0.65,
+	"pieces": [
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 90, "y": 80, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 85, "y": 59, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 46, "y": 14, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 124, "y": 59, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 124, "y": 88, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 85, "y": 14, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor2", "x": 51, "y": 35, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 128, "y": 80, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 90, "y": 5, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 85, "y": -18, "room_index": 10, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 2,
+	"position": Vector2(13, 12),
+	"scale": 0.82,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor3", "x": 60, "y": 45, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 55, "y": 68, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 55, "y": 25, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 119, "y": 47, "room_index": 3, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 26, "y": 25, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 86, "y": 25, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 47, "y": 28, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 90, "y": 17, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 86, "y": -4, "room_index": 9, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 3,
+	"position": Vector2(8, 2),
+	"scale": 0.85,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor4_1", "x": 29, "y": 7, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 24, "y": 23, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 78, "y": 52, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 100, "y": 73, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 124, "y": 52, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 115, "y": 65, "room_index": 6, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 23, "y": 69, "room_index": 7, "group_id": 2, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor4_3", "x": 18, "y": 42, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor4_2", "x": 100, "y": 58, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 120, "y": 58, "room_index": 10, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 115, "y": 38, "room_index": 11, "group_id": 1, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 4,
+	"position": Vector2(65, 36),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 5,
+	"position": Vector2(24, 23),
+	"scale": 0.75,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor5_1", "x": 48, "y": 66, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 32, "y": 69, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 97, "y": 69, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 64, "y": 47, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 97, "y": 26, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 27, "y": 4, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor5_2", "x": 30, "y": 24, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 31, "y": -4, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 27, "y": -24, "room_index": 10, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 6,
+	"position": Vector2(0, 19),
+	"scale": 0.8,
+	"pieces": [
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 77, "y": 80, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 73, "y": 59, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 46, "y": 36, "room_index": 2, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 116, "y": 37, "room_index": 3, "group_id": 2, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 145, "y": 37, "room_index": 4, "group_id": 2, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 87, "y": 15, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor6", "x": 67, "y": 34, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 137, "y": 41, "room_index": 8, "group_id": 2, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 91, "y": 7, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 87, "y": -14, "room_index": 10, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 7,
+	"position": Vector2(16, 20),
+	"scale": 0.8,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor7", "x": 41, "y": 29, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 94, "y": 13, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 94, "y": -16, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 78, "y": 67, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 65, "y": -16, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 39, "y": 20, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 99, "y": 5, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 86, "y": -12, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 47, "y": 12, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 39, "y": -9, "room_index": 10, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 8,
+	"position": Vector2(22, 24),
+	"scale": 0.75,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor8_1", "x": 34, "y": 42, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 64, "y": 47, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 90, "y": 26, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 38, "y": 26, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 17, "y": 55, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 64, "y": 4, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor8_2", "x": 56, "y": 21, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 69, "y": -4, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 64, "y": -24, "room_index": 9, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 9,
+	"position": Vector2(65, 36),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 10,
+	"position": Vector2(25, 17),
+	"scale": 0.67,
+	"pieces": [
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 41, "y": 6, "room_index": 0, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 36, "y": 15, "room_index": 1, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 36, "y": 62, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 89, "y": 62, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 89, "y": 91, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 88, "y": 13, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 63, "y": 40, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor8_2", "x": 55, "y": 57, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor9", "x": 81, "y": 32, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 92, "y": 4, "room_index": 10, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 93, "y": 83, "room_index": 11, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 88, "y": -17, "room_index": 12, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 11,
+	"position": Vector2(19, 28),
+	"scale": 0.68,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor10", "x": 50, "y": 19, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 33, "y": 23, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 89, "y": 23, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 61, "y": 45, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 61, "y": 74, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 115, "y": -4, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 89, "y": 0, "room_index": 7, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 66, "y": 66, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor9", "x": 108, "y": 15, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 120, "y": -12, "room_index": 10, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 115, "y": -33, "room_index": 11, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 12,
+	"position": Vector2(0, 0),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 68, "y": 6, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 37, "y": 39, "room_index": 1, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 64, "y": 39, "room_index": 2, "group_id": 2, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 92, "y": 39, "room_index": 3, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 92, "y": 68, "room_index": 4, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 9, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 10, "y": 39, "room_index": 6, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 64, "y": 15, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor11", "x": 15, "y": 56, "room_index": 8, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 97, "y": 60, "room_index": 9, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 18, "y": 31, "room_index": 10, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 10, "y": 10, "room_index": 11, "group_id": 3, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 13,
+	"position": Vector2(4, 19),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 40, "y": 50, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 48, "y": 46, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 30, "y": 10, "room_index": 2, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 30, "y": 39, "room_index": 3, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 58, "y": 10, "room_index": 4, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 30, "y": 39, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 73, "y": 20, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor9", "x": 66, "y": 38, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 78, "y": 12, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 50, "y": 14, "room_index": 9, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 34, "y": 31, "room_index": 10, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 73, "y": -9, "room_index": 11, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 14,
+	"position": Vector2(65, 36),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 15,
+	"position": Vector2(33, -1),
+	"scale": 0.7,
+	"pieces": [
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 68, "y": 7, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 83, "y": 56, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 42, "y": 56, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 62, "y": 97, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 87, "y": 97, "room_index": 4, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 16, "y": 97, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 63, "y": 15, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor13_1", "x": 45, "y": 33, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor13_2", "x": 44, "y": 74, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor13_3", "x": 21, "y": 112, "room_index": 10, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 21, "y": 90, "room_index": 11, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 16, "y": 70, "room_index": 12, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 16,
+	"position": Vector2(6, 11),
+	"scale": 0.9,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor14", "x": 42, "y": 42, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 38, "y": 26, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 65, "y": 26, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 93, "y": 26, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 93, "y": -3, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 72, "y": 49, "room_index": 6, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 97, "y": 18, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 76, "y": 42, "room_index": 8, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 72, "y": 22, "room_index": 9, "group_id": 1, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 17,
+	"position": Vector2(4, 12),
+	"scale": 0.87,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor15", "x": 30, "y": 35, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 55, "y": 58, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 114, "y": 64, "room_index": 2, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 86, "y": 21, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 115, "y": 21, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 59, "y": 21, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 86, "y": 64, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 107, "y": 25, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 64, "y": 13, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 90, "y": 85, "room_index": 10, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 118, "y": 56, "room_index": 11, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 59, "y": -8, "room_index": 12, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 18,
+	"position": Vector2(0, 0),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor16", "x": 32, "y": 20, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 58, "y": 2, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 101, "y": 27, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 101, "y": 51, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 130, "y": 51, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 58, "y": 23, "room_index": 6, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 15, "y": 50, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 122, "y": 54, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 63, "y": 43, "room_index": 9, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 63, "y": 16, "room_index": 10, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 58, "y": -4, "room_index": 11, "group_id": 1, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 19,
+	"position": Vector2(65, 36),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 20,
+	"position": Vector2(0, 21),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor17", "x": 63, "y": 26, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 43, "y": 30, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 95, "y": 28, "room_index": 2, "group_id": 2, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 98, "y": 46, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 15, "y": 30, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 59, "y": 8, "room_index": 6, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 59, "y": 35, "room_index": 7, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 35, "y": 34, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 64, "y": 56, "room_index": 9, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 64, "y": 28, "room_index": 10, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 59, "y": -13, "room_index": 11, "group_id": 1, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 21,
+	"position": Vector2(0, 0),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor18", "x": 30, "y": 14, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 28, "y": 62, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 87, "y": 13, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 87, "y": 40, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 116, "y": 40, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 72, "y": 46, "room_index": 6, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 108, "y": 44, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 75, "y": 39, "room_index": 8, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 72, "y": 19, "room_index": 9, "group_id": 1, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 22,
+	"position": Vector2(24, 25),
+	"scale": 0.8,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor19", "x": 30, "y": 20, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 55, "y": 60, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 35, "y": 3, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 75, "y": 35, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 84, "y": 60, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 58, "y": 3, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 76, "y": 61, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 59, "y": -5, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 58, "y": -25, "room_index": 9, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 23,
+	"position": Vector2(33, 12),
+	"scale": 0.62,
+	"pieces": [
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 49, "y": -10, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 45, "y": -2, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 48, "y": 37, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 49, "y": 80, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 49, "y": 108, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 89, "y": 35, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor20", "x": 31, "y": 18, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 54, "y": 101, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 89, "y": 27, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 89, "y": 6, "room_index": 10, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 24,
+	"position": Vector2(65, 36),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 25,
+	"position": Vector2(0, 15),
+	"scale": 0.9,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor10", "x": 51, "y": 3, "room_index": 0, "group_id": 5, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 28, "y": 7, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 28, "y": 36, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 97, "y": 12, "room_index": 3, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 28, "y": 65, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 107, "y": 21, "room_index": 6, "group_id": 4, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 97, "y": 64, "room_index": 7, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor21", "x": 94, "y": 32, "room_index": 8, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 32, "y": 28, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 32, "y": 57, "room_index": 10, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor13_3", "x": 66, "y": 37, "room_index": 11, "group_id": 4, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 112, "y": 14, "room_index": 12, "group_id": 4, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 107, "y": -6, "room_index": 13, "group_id": 4, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 26,
+	"position": Vector2(48, 29),
+	"scale": 0.52,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor22", "x": 0, "y": 0, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 35, "y": 71, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 69, "y": 25, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 24, "y": 25, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 35, "y": 98, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 24, "y": -15, "room_index": 6, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 92, "y": 25, "room_index": 7, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 29, "y": -23, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 39, "y": 91, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 24, "y": -44, "room_index": 10, "group_id": 0, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 27,
+	"position": Vector2(27, 15),
+	"scale": 0.9,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor23", "x": 18, "y": 9, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 56, "y": 11, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 83, "y": 11, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 42, "y": 50, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 83, "y": 40, "room_index": 4, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 42, "y": 51, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 65, "y": 50, "room_index": 6, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": -1, "y": 38, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 28, "y": -11, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 76, "y": 15, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor11", "x": 46, "y": 67, "room_index": 10, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 70, "y": 43, "room_index": 11, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 88, "y": 32, "room_index": 12, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 65, "y": 23, "room_index": 13, "group_id": 1, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 28,
+	"position": Vector2(-12, -2),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_hallway_floor24", "x": 45, "y": 18, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 76, "y": 17, "room_index": 1, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 104, "y": 17, "room_index": 2, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 104, "y": 45, "room_index": 3, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 104, "y": 17, "room_index": 4, "group_id": 2, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 5, "group_id": 3, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 75, "y": 49, "room_index": 6, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 52, "y": 49, "room_index": 7, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 96, "y": 22, "room_index": 8, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 109, "y": 38, "room_index": 9, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_hori", "x": 96, "y": 49, "room_index": 10, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hallway_floor11", "x": 55, "y": 66, "room_index": 11, "group_id": 0, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_hwaySmall_vert", "x": 78, "y": 42, "room_index": 12, "group_id": 1, "is_eggery": false, "override_scale": -99},
+		{"sprite_name": "miniMap_room1", "x": 75, "y": 22, "room_index": 13, "group_id": 1, "is_eggery": true, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 29,
+	"position": Vector2(65, 36),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+	]
+	},
+	{
+	"floor_index": 30,
+	"position": Vector2(65, 36),
+	"scale": 1,
+	"pieces": [
+		{"sprite_name": "miniMap_room1", "x": 0, "y": 0, "room_index": 0, "group_id": 0, "is_eggery": false, "override_scale": -99},
+	]
+	}
+]

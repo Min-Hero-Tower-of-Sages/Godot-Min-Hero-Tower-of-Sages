@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dtiu11s1e7qq4"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_4fwem"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_75dvv"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="3_bb06g"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_231cf"]
+
+[sub_resource type="Resource" id="Resource_iek73"]
+script = ExtResource("1_4fwem")
+scaling = 1
+roll_scope = 1
+amount = 50
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_75dvv")
+id = &"base:move/icy_blast/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1910"
+
+[sub_resource type="Resource" id="Resource_uyi6c"]
+script = ExtResource("1_4fwem")
+kind = 16
+roll_scope = 1
+chance_percent = 7
+legacy_order = 1
+executor = ExtResource("3_bb06g")
+id = &"base:move/icy_blast/tier3/effect/01_freeze_enemy_targets"
+display_name = "Freeze"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1910"
+
+[resource]
+script = ExtResource("4_231cf")
+family_id = &"base:move_family/icy_blast"
+tier = 3
+type_id = &"base:type/ice"
+legacy_class_id = 111
+legacy_visual_id = 111
+legacy_dot_visual_id = 111
+buff_icon_name = &"moveIcon_icyBlast"
+energy_cost = 19
+effects = Array[ExtResource("1_4fwem")]([SubResource("Resource_iek73"), SubResource("Resource_uyi6c")])
+presentation_id = &"base:presentation/move/move_icon_icy_blast"
+id = &"base:move/icy_blast/tier3"
+display_name = "Icy Blast  lv.3"
+legacy_numeric_id = 492
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

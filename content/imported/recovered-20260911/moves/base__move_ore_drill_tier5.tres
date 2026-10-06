@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c2xw61vfjsho0"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_0kcvh"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_u2ym5"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_72apn"]
+
+[sub_resource type="Resource" id="Resource_xfhqf"]
+script = ExtResource("1_0kcvh")
+scaling = 1
+roll_scope = 1
+amount = 100
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_u2ym5")
+id = &"base:move/ore_drill/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2724"
+
+[resource]
+script = ExtResource("3_72apn")
+family_id = &"base:move_family/ore_drill"
+tier = 5
+type_id = &"base:type/robot"
+legacy_class_id = 161
+legacy_visual_id = 161
+legacy_dot_visual_id = 161
+buff_icon_name = &"moveIcon_oreDrill"
+energy_cost = 45
+cooldown_turns = 1
+effects = Array[ExtResource("1_0kcvh")]([SubResource("Resource_xfhqf")])
+presentation_id = &"base:presentation/move/move_icon_ore_drill"
+id = &"base:move/ore_drill/tier5"
+display_name = "Copper Puncture"
+legacy_numeric_id = 744
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/raptor_3", "level": 60, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/claw/tier2", &"base:move/prehistoric_bite/tier5", &"base:move/reckless_grasp/tier4", &"base:move/ferocity/tier5", &"base:move/fire_ram/tier5", &"base:move/concentration/tier3"])
+}, {
+"definition_id": &"base:minion/raptor_3", "level": 60, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/claw/tier2", &"base:move/prehistoric_bite/tier5", &"base:move/reckless_grasp/tier4", &"base:move/ferocity/tier5", &"base:move/fire_ram/tier5", &"base:move/concentration/tier3"])
+}, {
+"definition_id": &"base:minion/raptor_3", "level": 60, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/claw/tier2", &"base:move/prehistoric_bite/tier5", &"base:move/reckless_grasp/tier4", &"base:move/ferocity/tier5", &"base:move/fire_ram/tier5", &"base:move/concentration/tier3"])
+}, {
+"definition_id": &"base:minion/raptor_3", "level": 60, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier2", &"base:move/prehistoric_bite/tier5", &"base:move/reckless_grasp/tier4", &"base:move/ferocity/tier5", &"base:move/fire_ram/tier5", &"base:move/concentration/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/expert"
+rewards = {"first_clear": {"floor_money_basis": 2000, "eggery_keys": 1, "random_gems": {"count": 1, "tier": 6}}}
+source_trainer_id = &"base:trainer/hard/8/room/5"
+source_floor_index = 38
+source_level_offset = 0
+source_trainer_type = &"TrainerType.EXPERT_TRAINER"
+id = &"base:encounter/floor39_trainer_5_expert"
+display_name = "Floor 39 — source trainer 5"
+description = "Source start dialogue: \nSource defeat dialogue: "
+legacy_class_name = "TrainerSystem.CreateFloor7_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2007"

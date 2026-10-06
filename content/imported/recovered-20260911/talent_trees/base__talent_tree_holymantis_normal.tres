@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_5dkkh"]
+
+[resource]
+script = ExtResource("1_5dkkh")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holymantis_normal/node/0_0",
+"move_ids": ["base:move/poison_tooth/tier1", "base:move/poison_tooth/tier3", "base:move/poison_tooth/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1179.0, 1180.0, 1181.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_normal/node/1_0",
+"move_ids": ["base:move/ice_enclosure/tier1", "base:move/ice_enclosure/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1182.0, 1183.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holymantis_normal/node/2_0",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier3", "base:move/ferocity/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1184.0, 1185.0, 1186.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holymantis_normal/node/0_1",
+"move_ids": ["base:move/cleanse_darkness/tier1", "base:move/cleanse_darkness/tier2", "base:move/cleanse_darkness/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1187.0, 1188.0, 1189.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_normal/node/1_1",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier3", "base:move/tackle/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1190.0, 1191.0, 1192.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holymantis_normal/node/2_1",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier3", "base:move/quickness/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1193.0, 1194.0, 1195.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holymantis_normal/node/0_2",
+"move_ids": ["base:move/cleanse_darkness/tier4", "base:move/cleanse_darkness/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_normal/node/0_1"],
+"row": 2.0,
+"source_lines": [1196.0, 1197.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_normal/node/1_2",
+"move_ids": ["base:move/mending_inspiration/tier2", "base:move/mending_inspiration/tier3", "base:move/mending_inspiration/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1198.0, 1199.0, 1200.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holymantis_normal/node/1_3",
+"move_ids": ["base:move/mending_inspiration/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holymantis_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [1201.0]
+}])
+id = &"base:talent_tree/holymantis_normal"
+display_name = "Inspire"
+legacy_class_name = "HolyMantis_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1176"

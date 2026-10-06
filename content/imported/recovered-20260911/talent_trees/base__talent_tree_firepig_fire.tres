@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_5730h"]
+
+[resource]
+script = ExtResource("1_5730h")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/firepig_fire/node/0_0",
+"move_ids": ["base:move/fire_bolt/tier1", "base:move/fire_bolt/tier2", "base:move/fire_bolt/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [158.0, 159.0, 160.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_fire/node/1_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [161.0, 162.0, 163.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_fire/node/2_0",
+"move_ids": ["base:move/fire_bash/tier1", "base:move/fire_bash/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [164.0, 165.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firepig_fire/node/0_1",
+"move_ids": ["base:move/fire_bolt/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_fire/node/0_0"],
+"row": 1.0,
+"source_lines": [166.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_fire/node/1_1",
+"move_ids": ["base:move/inflame/tier1", "base:move/inflame/tier2", "base:move/inflame/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [167.0, 168.0, 169.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_fire/node/2_1",
+"move_ids": ["base:move/fire_bash/tier3", "base:move/fire_bash/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_fire/node/2_0"],
+"row": 1.0,
+"source_lines": [170.0, 171.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firepig_fire/node/0_2",
+"move_ids": ["base:move/warmth/tier1", "base:move/warmth/tier2", "base:move/warmth/tier3", "base:move/warmth/tier4", "base:move/warmth/tier5"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [172.0, 173.0, 174.0, 175.0, 176.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_fire/node/1_2",
+"move_ids": ["base:move/fire_ram/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [177.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_fire/node/2_2",
+"move_ids": ["base:move/fire_bash/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_fire/node/2_1"],
+"row": 2.0,
+"source_lines": [178.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_fire/node/1_3",
+"move_ids": ["base:move/fire_ram/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_fire/node/1_2"],
+"row": 3.0,
+"source_lines": [179.0]
+}])
+id = &"base:talent_tree/firepig_fire"
+display_name = "Fire"
+legacy_class_name = "FirePig_fire"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:155"

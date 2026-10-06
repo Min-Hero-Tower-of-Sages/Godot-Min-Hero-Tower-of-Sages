@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_mk4ic"]
+
+[resource]
+script = ExtResource("1_mk4ic")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/lichboss_debuffs/node/0_0",
+"move_ids": ["base:move/haunt/tier2", "base:move/haunt/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3848.0, 3849.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/lichboss_debuffs/node/1_0",
+"move_ids": ["base:move/invigorate/tier1", "base:move/invigorate/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3850.0, 3851.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/lichboss_debuffs/node/2_0",
+"move_ids": ["base:move/flesh_sacrifice/tier1", "base:move/flesh_sacrifice/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3852.0, 3853.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/lichboss_debuffs/node/0_1",
+"move_ids": ["base:move/haunt/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/lichboss_debuffs/node/0_0"],
+"row": 1.0,
+"source_lines": [3854.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/lichboss_debuffs/node/1_1",
+"move_ids": ["base:move/invigorate/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/lichboss_debuffs/node/1_0"],
+"row": 1.0,
+"source_lines": [3855.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/lichboss_debuffs/node/2_1",
+"move_ids": ["base:move/skin_trap/tier1", "base:move/skin_trap/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3856.0, 3857.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/lichboss_debuffs/node/1_2",
+"move_ids": ["base:move/lifeless_touch/tier3", "base:move/lifeless_touch/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3858.0, 3859.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/lichboss_debuffs/node/2_2",
+"move_ids": ["base:move/demoralize/tier1", "base:move/demoralize/tier2", "base:move/demoralize/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3860.0, 3861.0, 3862.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/lichboss_debuffs/node/1_3",
+"move_ids": ["base:move/lifeless_touch/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/lichboss_debuffs/node/1_2"],
+"row": 3.0,
+"source_lines": [3863.0]
+}])
+id = &"base:talent_tree/lichboss_debuffs"
+display_name = "Debuff"
+legacy_class_name = "LichBoss_Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3845"

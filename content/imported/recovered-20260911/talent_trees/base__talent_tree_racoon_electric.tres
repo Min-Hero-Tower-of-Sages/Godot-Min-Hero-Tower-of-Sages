@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_qfp7n"]
+
+[resource]
+script = ExtResource("1_qfp7n")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/racoon_electric/node/0_0",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier2", "base:move/tackle/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1520.0, 1521.0, 1522.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/racoon_electric/node/1_0",
+"move_ids": ["base:move/batch_bolt/tier1", "base:move/batch_bolt/tier2", "base:move/batch_bolt/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1523.0, 1524.0, 1525.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/racoon_electric/node/2_0",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1526.0, 1527.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/racoon_electric/node/0_1",
+"move_ids": ["base:move/overload/tier1"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1528.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/racoon_electric/node/1_1",
+"move_ids": ["base:move/batch_bolt/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/racoon_electric/node/1_0"],
+"row": 1.0,
+"source_lines": [1529.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/racoon_electric/node/2_1",
+"move_ids": ["base:move/quickness/tier3", "base:move/quickness/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/racoon_electric/node/2_0"],
+"row": 1.0,
+"source_lines": [1530.0, 1531.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/racoon_electric/node/0_2",
+"move_ids": ["base:move/overload/tier2"],
+"prerequisite_node_ids": ["base:talent_tree/racoon_electric/node/0_1"],
+"row": 2.0,
+"source_lines": [1532.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/racoon_electric/node/1_2",
+"move_ids": ["base:move/spark/tier3", "base:move/spark/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1533.0, 1534.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/racoon_electric/node/2_2",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1535.0, 1536.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/racoon_electric/node/1_3",
+"move_ids": ["base:move/spark/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/racoon_electric/node/1_2"],
+"row": 3.0,
+"source_lines": [1537.0]
+}])
+id = &"base:talent_tree/racoon_electric"
+display_name = "Electric"
+legacy_class_name = "Racoon_Electric"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1517"

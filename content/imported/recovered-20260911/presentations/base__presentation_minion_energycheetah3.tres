@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_xe0e5"]
+
+[resource]
+script = ExtResource("1_xe0e5")
+legacy_sprite_name = &"energyCheetah3"
+icon_offset = Vector2i(14, 7)
+id = &"base:presentation/minion/energycheetah3"
+display_name = "Lightina presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1140"

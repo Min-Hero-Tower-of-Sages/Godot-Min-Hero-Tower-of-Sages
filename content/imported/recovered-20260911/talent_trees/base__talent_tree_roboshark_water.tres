@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_80ylv"]
+
+[resource]
+script = ExtResource("1_80ylv")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/roboshark_water/node/0_0",
+"move_ids": ["base:move/soak/tier1", "base:move/soak/tier2", "base:move/soak/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3061.0, 3062.0, 3063.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/roboshark_water/node/1_0",
+"move_ids": ["base:move/water_slam/tier1", "base:move/water_slam/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3064.0, 3065.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/roboshark_water/node/2_0",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3066.0, 3067.0, 3068.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/roboshark_water/node/0_1",
+"move_ids": ["base:move/soak/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/roboshark_water/node/0_0"],
+"row": 1.0,
+"source_lines": [3069.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/roboshark_water/node/1_1",
+"move_ids": ["base:move/bone_chill/tier1", "base:move/bone_chill/tier3", "base:move/bone_chill/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3070.0, 3071.0, 3072.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/roboshark_water/node/2_1",
+"move_ids": ["base:move/agility/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/roboshark_water/node/2_0"],
+"row": 1.0,
+"source_lines": [3073.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/roboshark_water/node/0_2",
+"move_ids": ["base:move/concentration/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3074.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/roboshark_water/node/1_2",
+"move_ids": ["base:move/fresh_stream/tier3", "base:move/fresh_stream/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3075.0, 3076.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/roboshark_water/node/2_2",
+"move_ids": ["base:move/waterjet/tier1", "base:move/waterjet/tier2", "base:move/waterjet/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3077.0, 3078.0, 3079.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/roboshark_water/node/1_3",
+"move_ids": ["base:move/fresh_stream/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/roboshark_water/node/1_2"],
+"row": 3.0,
+"source_lines": [3080.0]
+}])
+id = &"base:talent_tree/roboshark_water"
+display_name = "Water"
+legacy_class_name = "RoboShark_Water"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3058"

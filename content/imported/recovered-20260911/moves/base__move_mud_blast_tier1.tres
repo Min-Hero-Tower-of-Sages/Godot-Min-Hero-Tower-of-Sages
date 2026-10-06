@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://ddl8wew6kmhl4"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_cs3ym"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_pbxle"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_h4sb8"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_6mvhx"]
+
+[sub_resource type="Resource" id="Resource_2uhdr"]
+script = ExtResource("1_cs3ym")
+scaling = 1
+roll_scope = 1
+amount = 20
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_pbxle")
+id = &"base:move/mud_blast/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:883"
+
+[sub_resource type="Resource" id="Resource_64sfd"]
+script = ExtResource("1_cs3ym")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+chance_percent = 10
+stat_type_id = &"base:stat/speed"
+legacy_order = 1
+executor = ExtResource("3_h4sb8")
+id = &"base:move/mud_blast/tier1/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:883"
+
+[resource]
+script = ExtResource("4_6mvhx")
+family_id = &"base:move_family/mud_blast"
+type_id = &"base:type/earth"
+legacy_class_id = 60
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_mudBlast"
+energy_cost = 10
+accuracy_percent = 95
+target_count = 3
+enemy_target_count = 3
+effects = Array[ExtResource("1_cs3ym")]([SubResource("Resource_2uhdr"), SubResource("Resource_64sfd")])
+presentation_id = &"base:presentation/move/move_icon_mud_blast"
+visuals_have_buffer = false
+id = &"base:move/mud_blast/tier1"
+display_name = "Mud Blast"
+legacy_numeric_id = 180
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

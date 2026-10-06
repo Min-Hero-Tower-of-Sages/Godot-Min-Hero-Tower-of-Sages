@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_4orof"]
+
+[resource]
+script = ExtResource("1_4orof")
+legacy_sprite_name = &"normalTiger2"
+icon_offset = Vector2i(9, 5)
+id = &"base:presentation/minion/normaltiger2"
+display_name = "Tigertan presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:981"

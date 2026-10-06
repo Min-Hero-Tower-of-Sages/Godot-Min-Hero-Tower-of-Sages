@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_tbbt4"]
+
+[resource]
+script = ExtResource("1_tbbt4")
+type_ids = Array[StringName]([&"base:type/ice", &"base:type/water"])
+base_health = 75
+base_energy = 60
+base_attack = 55
+base_healing = 30
+base_speed = 30
+experience_gain_rate = 3
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/pound/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/waterjet/tier1", &"base:move/hailstone/tier1", &"base:move/invigorate/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/waterseal_water", &"base:talent_tree/waterseal_ice", &"base:talent_tree/waterseal_support"])
+presentation_id = &"base:presentation/minion/waterseal2"
+id = &"base:minion/waterseal_2"
+display_name = "Sealast"
+legacy_numeric_id = 29
+legacy_class_name = "WaterSeal_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1814"

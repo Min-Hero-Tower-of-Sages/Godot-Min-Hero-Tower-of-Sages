@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_hfghv"]
+
+[resource]
+script = ExtResource("1_hfghv")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/holyfox_holy/node/0_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2049.0, 2050.0, 2051.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holyfox_holy/node/1_0",
+"move_ids": ["base:move/holy_strike/tier1", "base:move/holy_strike/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2052.0, 2053.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holyfox_holy/node/2_0",
+"move_ids": ["base:move/claw/tier2", "base:move/claw/tier3", "base:move/claw/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2054.0, 2055.0, 2056.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holyfox_holy/node/0_1",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holyfox_holy/node/0_0"],
+"row": 1.0,
+"source_lines": [2057.0, 2058.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holyfox_holy/node/1_1",
+"move_ids": ["base:move/holy_strike/tier3", "base:move/holy_strike/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/holyfox_holy/node/1_0"],
+"row": 1.0,
+"source_lines": [2059.0, 2060.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holyfox_holy/node/2_1",
+"move_ids": ["base:move/blow_by/tier1", "base:move/blow_by/tier2", "base:move/blow_by/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2061.0, 2062.0, 2063.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/holyfox_holy/node/0_2",
+"move_ids": ["base:move/volley/tier1", "base:move/volley/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2064.0, 2065.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holyfox_holy/node/1_2",
+"move_ids": ["base:move/cleanse_darkness/tier3", "base:move/cleanse_darkness/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2066.0, 2067.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/holyfox_holy/node/2_2",
+"move_ids": ["base:move/blow_by/tier4", "base:move/blow_by/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holyfox_holy/node/2_1"],
+"row": 2.0,
+"source_lines": [2068.0, 2069.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/holyfox_holy/node/1_3",
+"move_ids": ["base:move/cleanse_darkness/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/holyfox_holy/node/1_2"],
+"row": 3.0,
+"source_lines": [2070.0]
+}])
+id = &"base:talent_tree/holyfox_holy"
+display_name = "Holy"
+legacy_class_name = "HolyFox_Holy"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2046"

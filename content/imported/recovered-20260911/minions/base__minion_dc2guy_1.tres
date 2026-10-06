@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_fjh2s"]
+
+[resource]
+script = ExtResource("1_fjh2s")
+type_ids = Array[StringName]([&"base:type/robot"])
+base_health = 50
+base_energy = 35
+base_attack = 80
+base_healing = 35
+base_speed = 75
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/pound/tier2", &"base:move/death_call/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/death_call/tier2", &"base:move/tire/tier1", &"base:move/crush/tier2"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/dc2guy_deathcall", &"base:talent_tree/dc2guy_debuffs", &"base:talent_tree/dc2guy_normal"])
+presentation_id = &"base:presentation/minion/robotdeathcall"
+id = &"base:minion/dc2guy_1"
+display_name = "Domisteam"
+legacy_numeric_id = 94
+legacy_class_name = "DeathCall2Robot_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1160"

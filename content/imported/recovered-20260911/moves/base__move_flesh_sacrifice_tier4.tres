@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dq5ds1tsb33x"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_5a8vn"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="2_navgl"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_b88w7"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_boyc8"]
+
+[sub_resource type="Resource" id="Resource_je231"]
+script = ExtResource("1_5a8vn")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 75
+executor = ExtResource("2_navgl")
+id = &"base:move/flesh_sacrifice/tier4/effect/00_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1164"
+
+[sub_resource type="Resource" id="Resource_ghjkj"]
+script = ExtResource("1_5a8vn")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 6
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("3_b88w7")
+id = &"base:move/flesh_sacrifice/tier4/effect/01_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1164"
+
+[resource]
+script = ExtResource("4_boyc8")
+family_id = &"base:move_family/flesh_sacrifice"
+tier = 4
+type_id = &"base:type/undead"
+legacy_class_id = 76
+legacy_visual_id = 76
+legacy_dot_visual_id = 76
+buff_icon_name = &"moveIcon_fleshSacrifice"
+cooldown_turns = 2
+target_side = 2
+enemy_target_count = 0
+ally_target_count = 1
+only_self = true
+effects = Array[ExtResource("1_5a8vn")]([SubResource("Resource_je231"), SubResource("Resource_ghjkj")])
+presentation_id = &"base:presentation/move/move_icon_flesh_sacrifice"
+id = &"base:move/flesh_sacrifice/tier4"
+display_name = "Flesh Sacrifice  lv.4"
+legacy_numeric_id = 368
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

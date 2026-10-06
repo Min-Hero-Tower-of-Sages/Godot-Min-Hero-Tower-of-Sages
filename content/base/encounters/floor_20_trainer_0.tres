@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/undeadeel_1", "level": 45, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/blaze/tier1", &"base:move/vicious/tier5", &"base:move/fire_blast/tier3", &"base:move/inflame/tier4", &"base:move/mud_blast/tier2", &"base:move/lich_burn/tier2"])
+}, {
+"definition_id": &"base:minion/worm_3", "level": 45, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/rock_slide/tier1", &"base:move/earthquake/tier1", &"base:move/taunt/tier3", &"base:move/perseverance/tier5", &"base:move/destabilize/tier2", &"base:move/mirror_skin/tier3", &"base:move/skillful/tier1", &"base:move/slow/tier2"])
+}, {
+"definition_id": &"base:minion/icedeer_1", "level": 45, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/icy_blast/tier1", &"base:move/ice_enclosure/tier5", &"base:move/ice_shield/tier3", &"base:move/cleric/tier5", &"base:move/ice_barrier/tier4", &"base:move/blow_by/tier1"])
+}, {
+"definition_id": &"base:minion/slenderman_1", "level": 45, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/haunt/tier1", &"base:move/crush/tier5", &"base:move/reflect_damage/tier3", &"base:move/fortitude/tier1", &"base:move/slow/tier5", &"base:move/blood_press/tier2", &"base:move/efficiency/tier2"])
+}, {
+"definition_id": &"base:minion/crow_2", "level": 45, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/peck/tier1", &"base:move/demonic_strike/tier5", &"base:move/lich_burn/tier3", &"base:move/hailstone/tier3", &"base:move/burn/tier3", &"base:move/vicious/tier4"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 486, "sage_seals": 1}}
+source_trainer_id = &"base:trainer/standard/19/0"
+source_floor_index = 19
+source_level_offset = 0
+source_trainer_type = &"TrainerType.TRAINER_GYM_4"
+id = &"base:encounter/floor20_trainer_0"
+display_name = "Floor 20 — source trainer 0"
+description = "Source start dialogue: Da Undead Sage welcomes ya!  I'll test your persistence, ya dig?\nSource defeat dialogue: Your persistence is strong mon!!\n...\nThe undead Sage Seal grants you the abiltiy to find random gem chests."
+legacy_class_name = "TrainerSystem.CreateFloor_Boss4"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1085"
+battle_modifier_configuration = {"resurrection": {"team": 1, "turns": 12}}

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bxnsmt4ykw1od"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_exews"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_cww8a"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_6olu0"]
+
+[sub_resource type="Resource" id="Resource_7k1pr"]
+script = ExtResource("1_exews")
+kind = 12
+amount = -33
+duration = 3
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_cww8a")
+id = &"base:move/bone_chill/tier1/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1974"
+
+[sub_resource type="Resource" id="Resource_o35q7"]
+script = ExtResource("1_exews")
+kind = 12
+target_scope = 2
+phase = 2
+amount = -33
+duration = 3
+legacy_order = 1
+executor = ExtResource("2_cww8a")
+id = &"base:move/bone_chill/tier1/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1974"
+
+[resource]
+script = ExtResource("3_6olu0")
+family_id = &"base:move_family/bone_chill"
+type_id = &"base:type/ice"
+legacy_class_id = 114
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_boneChill"
+energy_cost = 30
+effects = Array[ExtResource("1_exews")]([SubResource("Resource_7k1pr"), SubResource("Resource_o35q7")])
+presentation_id = &"base:presentation/move/move_icon_bone_chill"
+id = &"base:move/bone_chill/tier1"
+display_name = "Bone Chill"
+legacy_numeric_id = 505
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

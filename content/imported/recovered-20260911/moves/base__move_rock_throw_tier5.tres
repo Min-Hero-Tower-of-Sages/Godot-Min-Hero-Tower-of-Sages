@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c3eo87c6d7rya"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_3hxpc"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_vj5cp"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_1auqq"]
+
+[sub_resource type="Resource" id="Resource_8sewf"]
+script = ExtResource("1_3hxpc")
+scaling = 1
+roll_scope = 1
+amount = 80
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_vj5cp")
+id = &"base:move/rock_throw/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:745"
+
+[resource]
+script = ExtResource("3_1auqq")
+family_id = &"base:move_family/rock_throw"
+tier = 5
+type_id = &"base:type/earth"
+legacy_class_id = 53
+legacy_visual_id = 53
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_rockThrow"
+energy_cost = 35
+effects = Array[ExtResource("1_3hxpc")]([SubResource("Resource_8sewf")])
+presentation_id = &"base:presentation/move/move_icon_rock_throw"
+id = &"base:move/rock_throw/tier5"
+display_name = "Rock Tomb"
+legacy_numeric_id = 159
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

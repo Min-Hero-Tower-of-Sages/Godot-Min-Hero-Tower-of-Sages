@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://fi4xliptapyp"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_4wrpq"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="2_7vf46"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_3nf27"]
+
+[sub_resource type="Resource" id="Resource_e28wt"]
+script = ExtResource("1_4wrpq")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 3
+stat_type_id = &"base:stat/healing"
+executor = ExtResource("2_7vf46")
+id = &"base:move/righteous_zeal/tier3/effect/00_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2604"
+
+[sub_resource type="Resource" id="Resource_o87d7"]
+script = ExtResource("1_4wrpq")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 3
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("2_7vf46")
+id = &"base:move/righteous_zeal/tier3/effect/01_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2604"
+
+[sub_resource type="Resource" id="Resource_3vd85"]
+script = ExtResource("1_4wrpq")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 3
+stat_type_id = &"base:stat/speed"
+legacy_order = 2
+executor = ExtResource("2_7vf46")
+id = &"base:move/righteous_zeal/tier3/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2604"
+
+[resource]
+script = ExtResource("3_3nf27")
+family_id = &"base:move_family/righteous_zeal"
+tier = 3
+type_id = &"base:type/holy"
+legacy_class_id = 154
+legacy_visual_id = 154
+legacy_dot_visual_id = 154
+buff_icon_name = &"moveIcon_righteousZeal"
+energy_cost = 70
+target_side = 2
+enemy_target_count = 0
+ally_target_count = 1
+only_self = true
+effects = Array[ExtResource("1_4wrpq")]([SubResource("Resource_e28wt"), SubResource("Resource_o87d7"), SubResource("Resource_3vd85")])
+presentation_id = &"base:presentation/move/move_icon_righteous_zeal"
+id = &"base:move/righteous_zeal/tier3"
+display_name = "Righteous Zeal  lv.3"
+legacy_numeric_id = 707
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

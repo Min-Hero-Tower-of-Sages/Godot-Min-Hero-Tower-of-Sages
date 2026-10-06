@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_m1fpo"]
+
+[resource]
+script = ExtResource("1_m1fpo")
+type_ids = Array[StringName]([&"base:type/plant", &"base:type/water"])
+base_health = 60
+base_energy = 75
+base_attack = 60
+base_healing = 75
+base_speed = 45
+experience_gain_rate = 3
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/pound/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/overflow/tier1", &"base:move/swift_mend/tier1", &"base:move/spore_blast/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/watergrasshorse_water", &"base:talent_tree/watergrasshorse_grass", &"base:talent_tree/watergrasshorse_damage"])
+presentation_id = &"base:presentation/minion/waterhorse"
+id = &"base:minion/healinghorse_1"
+display_name = "Foramare"
+legacy_numeric_id = 30
+legacy_class_name = "WaterGrassHorse_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1833"

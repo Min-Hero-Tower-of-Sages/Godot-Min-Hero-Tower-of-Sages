@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_scume"]
+
+[resource]
+script = ExtResource("1_scume")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/griffen_flying/node/0_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2826.0, 2827.0, 2828.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/griffen_flying/node/1_0",
+"move_ids": ["base:move/wild_lance/tier1", "base:move/wild_lance/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2829.0, 2830.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/griffen_flying/node/2_0",
+"move_ids": ["base:move/icy_blast/tier1", "base:move/icy_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2831.0, 2832.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/griffen_flying/node/0_1",
+"move_ids": ["base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/griffen_flying/node/0_0"],
+"row": 1.0,
+"source_lines": [2833.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/griffen_flying/node/1_1",
+"move_ids": ["base:move/wild_lance/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/griffen_flying/node/1_0"],
+"row": 1.0,
+"source_lines": [2834.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/griffen_flying/node/2_1",
+"move_ids": ["base:move/volley/tier1", "base:move/volley/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2835.0, 2836.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/griffen_flying/node/0_2",
+"move_ids": ["base:move/ice_shield/tier1", "base:move/ice_shield/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2837.0, 2838.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/griffen_flying/node/1_2",
+"move_ids": ["base:move/cutting_wind/tier3", "base:move/cutting_wind/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2839.0, 2840.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/griffen_flying/node/2_2",
+"move_ids": ["base:move/volley/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/griffen_flying/node/2_1"],
+"row": 2.0,
+"source_lines": [2841.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/griffen_flying/node/1_3",
+"move_ids": ["base:move/cutting_wind/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/griffen_flying/node/1_2"],
+"row": 3.0,
+"source_lines": [2842.0]
+}])
+id = &"base:talent_tree/griffen_flying"
+display_name = "Flying"
+legacy_class_name = "Griffen_Flying"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2823"

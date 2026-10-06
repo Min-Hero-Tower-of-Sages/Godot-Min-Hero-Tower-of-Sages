@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://h1gtg6xs2qg0"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_v48rf"]
+[ext_resource type="Script" uid="uid://g81j5j6ogo3j" path="res://src/domain/battle/energy_effect_executor.gd" id="2_tsj38"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="3_7shk1"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="4_273bb"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="5_qqqe5"]
+
+[sub_resource type="Resource" id="Resource_blocc"]
+script = ExtResource("1_v48rf")
+kind = 2
+target_scope = 0
+phase = 0
+scaling = 3
+amount = 5
+executor = ExtResource("2_tsj38")
+id = &"base:move/water_slam/tier2/effect/00_energy_actor"
+display_name = "Energy"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1732"
+
+[sub_resource type="Resource" id="Resource_26l2n"]
+script = ExtResource("1_v48rf")
+scaling = 1
+roll_scope = 1
+amount = 45
+uses_type_effectiveness = true
+can_critical = true
+legacy_order = 1
+executor = ExtResource("3_7shk1")
+id = &"base:move/water_slam/tier2/effect/01_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1732"
+
+[sub_resource type="Resource" id="Resource_mo1et"]
+script = ExtResource("1_v48rf")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 1
+chance_percent = 10
+stat_type_id = &"base:stat/energy"
+legacy_order = 2
+executor = ExtResource("4_273bb")
+id = &"base:move/water_slam/tier2/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1732"
+
+[resource]
+script = ExtResource("5_qqqe5")
+family_id = &"base:move_family/water_slam"
+tier = 2
+type_id = &"base:type/water"
+legacy_class_id = 130
+legacy_visual_id = 130
+legacy_dot_visual_id = 130
+buff_icon_name = &"moveIcon_waterSlam"
+energy_cost = 20
+effects = Array[ExtResource("1_v48rf")]([SubResource("Resource_blocc"), SubResource("Resource_26l2n"), SubResource("Resource_mo1et")])
+presentation_id = &"base:presentation/move/move_icon_water_slam"
+id = &"base:move/water_slam/tier2"
+display_name = "Water Slam  lv.2"
+legacy_numeric_id = 586
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

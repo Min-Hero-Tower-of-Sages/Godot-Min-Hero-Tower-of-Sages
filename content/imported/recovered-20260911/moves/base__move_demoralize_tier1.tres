@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c5ku1i40k8iut"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_gfi5j"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="2_dbokg"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_okjki"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_ppbqu"]
+
+[sub_resource type="Resource" id="Resource_urubj"]
+script = ExtResource("1_gfi5j")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 40
+executor = ExtResource("2_dbokg")
+id = &"base:move/demoralize/tier1/effect/00_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1187"
+
+[sub_resource type="Resource" id="Resource_r5la7"]
+script = ExtResource("1_gfi5j")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/speed"
+legacy_order = 1
+executor = ExtResource("3_okjki")
+id = &"base:move/demoralize/tier1/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1187"
+
+[sub_resource type="Resource" id="Resource_bnpri"]
+script = ExtResource("1_gfi5j")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/attack"
+legacy_order = 2
+executor = ExtResource("3_okjki")
+id = &"base:move/demoralize/tier1/effect/02_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1187"
+
+[sub_resource type="Resource" id="Resource_545qv"]
+script = ExtResource("1_gfi5j")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/healing"
+legacy_order = 3
+executor = ExtResource("3_okjki")
+id = &"base:move/demoralize/tier1/effect/03_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1187"
+
+[resource]
+script = ExtResource("4_ppbqu")
+family_id = &"base:move_family/demoralize"
+type_id = &"base:type/undead"
+legacy_class_id = 83
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_demoralize"
+energy_cost = 10
+target_mode = 2
+random_targets = true
+effects = Array[ExtResource("1_gfi5j")]([SubResource("Resource_urubj"), SubResource("Resource_r5la7"), SubResource("Resource_bnpri"), SubResource("Resource_545qv")])
+presentation_id = &"base:presentation/move/move_icon_demoralize"
+id = &"base:move/demoralize/tier1"
+display_name = "Demoralize"
+legacy_numeric_id = 870
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

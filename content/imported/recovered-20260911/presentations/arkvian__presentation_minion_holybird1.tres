@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_6g8em"]
+
+[resource]
+script = ExtResource("1_6g8em")
+legacy_sprite_name = &"holyBirb1"
+icon_offset = Vector2i(10, 20)
+id = &"arkvian:presentation/minion/holybird1"
+display_name = "Arkvian presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:489"
+source_mod = &"arkvian"

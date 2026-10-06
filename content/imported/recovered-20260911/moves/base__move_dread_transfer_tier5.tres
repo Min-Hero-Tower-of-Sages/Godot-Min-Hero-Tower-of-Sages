@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://6faf3y1ue2p7"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_fqkaf"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_6oaxu"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="3_d3f03"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_nmj8t"]
+
+[sub_resource type="Resource" id="Resource_hhvff"]
+script = ExtResource("1_fqkaf")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 50
+random_bonus = 70
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_6oaxu")
+id = &"base:move/dread_transfer/tier5/effect/00_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1142"
+
+[sub_resource type="Resource" id="Resource_3im3s"]
+script = ExtResource("1_fqkaf")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 30
+legacy_order = 1
+executor = ExtResource("3_d3f03")
+id = &"base:move/dread_transfer/tier5/effect/01_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1142"
+
+[resource]
+script = ExtResource("4_nmj8t")
+family_id = &"base:move_family/dread_transfer"
+tier = 5
+type_id = &"base:type/undead"
+legacy_class_id = 81
+legacy_visual_id = 81
+legacy_dot_visual_id = 81
+buff_icon_name = &"moveIcon_deadTransfer"
+energy_cost = 25
+effects = Array[ExtResource("1_fqkaf")]([SubResource("Resource_hhvff"), SubResource("Resource_3im3s")])
+presentation_id = &"base:presentation/move/move_icon_dead_transfer"
+id = &"base:move/dread_transfer/tier5"
+display_name = "Dread Transfusion"
+legacy_numeric_id = 864
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

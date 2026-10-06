@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_w0t41"]
+
+[resource]
+script = ExtResource("1_w0t41")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/scarecrow_debuff/node/0_0",
+"move_ids": ["base:move/lifeless_touch/tier1", "base:move/lifeless_touch/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3964.0, 3965.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scarecrow_debuff/node/1_0",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3966.0, 3967.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scarecrow_debuff/node/2_0",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3968.0, 3969.0, 3970.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scarecrow_debuff/node/0_1",
+"move_ids": ["base:move/lifeless_touch/tier3", "base:move/lifeless_touch/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_debuff/node/0_0"],
+"row": 1.0,
+"source_lines": [3971.0, 3972.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scarecrow_debuff/node/1_1",
+"move_ids": ["base:move/mirror_skin/tier3", "base:move/mirror_skin/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_debuff/node/1_0"],
+"row": 1.0,
+"source_lines": [3973.0, 3974.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scarecrow_debuff/node/2_1",
+"move_ids": ["base:move/skin_trap/tier1", "base:move/skin_trap/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3975.0, 3976.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scarecrow_debuff/node/1_2",
+"move_ids": ["base:move/slow/tier3", "base:move/slow/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3977.0, 3978.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scarecrow_debuff/node/2_2",
+"move_ids": ["base:move/skin_trap/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_debuff/node/2_1"],
+"row": 2.0,
+"source_lines": [3979.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scarecrow_debuff/node/1_3",
+"move_ids": ["base:move/slow/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_debuff/node/1_2"],
+"row": 3.0,
+"source_lines": [3980.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scarecrow_debuff/node/2_3",
+"move_ids": ["base:move/skin_trap/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_debuff/node/2_2"],
+"row": 3.0,
+"source_lines": [3981.0]
+}])
+id = &"base:talent_tree/scarecrow_debuff"
+display_name = "Debuff"
+legacy_class_name = "ScareCrow_Debuff"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3961"

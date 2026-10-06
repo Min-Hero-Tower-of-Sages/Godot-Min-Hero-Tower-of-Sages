@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_igqir"]
+
+[resource]
+script = ExtResource("1_igqir")
+type_ids = Array[StringName]([&"base:type/demonic"])
+base_health = 35
+base_energy = 55
+base_attack = 70
+base_healing = 65
+base_speed = 85
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/evil_eye/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/evil_eye/tier2", &"base:move/demonic_strike/tier1", &"base:move/spike/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/evileye_debuffs", &"base:talent_tree/evileye_demonic", &"base:talent_tree/evileye_normal"])
+presentation_id = &"base:presentation/minion/demoniceyeball3"
+id = &"base:minion/evileye_3"
+display_name = "Leerpo"
+legacy_numeric_id = 72
+legacy_class_name = "EvilEye_stage3"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:747"

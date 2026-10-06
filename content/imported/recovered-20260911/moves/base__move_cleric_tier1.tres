@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://spbuqy8lq6tl"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_okh24"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_7oiin"]
+
+[sub_resource type="Resource" id="Resource_i6t3j"]
+script = ExtResource("1_okh24")
+kind = 18
+target_scope = 0
+phase = 4
+amount = 15
+stat_type_id = &"base:stat/healing"
+id = &"base:move/cleric/tier1/effect/00_stat_percent_actor"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3383"
+
+[resource]
+script = ExtResource("2_7oiin")
+family_id = &"base:move_family/cleric"
+legacy_class_id = 39
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_cleric"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_okh24")]([SubResource("Resource_i6t3j")])
+presentation_id = &"base:presentation/move/move_icon_cleric"
+id = &"base:move/cleric/tier1"
+display_name = "Contemplation"
+legacy_numeric_id = 260
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

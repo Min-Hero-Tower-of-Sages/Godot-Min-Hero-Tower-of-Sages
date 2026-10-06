@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/goo_2", "level": 29, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/ashen_reminder/tier5", &"base:move/infes/tier3", &"base:move/haunt/tier1", &"base:move/flesh_sacrifice/tier4", &"base:move/spark/tier3", &"base:move/ferocity/tier2"])
+}, {
+"definition_id": &"base:minion/goo_2", "level": 29, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/poison_tooth/tier5", &"base:move/wild_lance/tier3", &"base:move/ferocity/tier4", &"base:move/charge_pass/tier1", &"base:move/spark/tier3", &"base:move/infes/tier2"])
+}, {
+"definition_id": &"base:minion/scorpion_2", "level": 29, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier2", &"base:move/overload/tier4", &"base:move/charge_pass/tier4", &"base:move/vicious/tier5", &"base:move/rock_skin/tier2", &"base:move/rock_slide/tier1"])
+}, {
+"definition_id": &"base:minion/scorpion_2", "level": 29, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier1", &"base:move/spike/tier5", &"base:move/tackle/tier5", &"base:move/slow/tier4", &"base:move/mirror_skin/tier3", &"base:move/quickness/tier3"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 29, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 65, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/10/3"
+source_floor_index = 10
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor11_trainer_3"
+display_name = "Floor 11 — source trainer 3"
+description = "Source start dialogue: Electricity is so much fun to play with!\nSource defeat dialogue: Ouch!  Your skill is shocking."
+legacy_class_name = "TrainerSystem.CreateFloor9"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:629"

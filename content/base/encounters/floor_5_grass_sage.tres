@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/trex_1",
+"level": 15,
+"move_ids": Array[StringName]([&"base:move/wild_tackle/tier1", &"base:move/prehistoric_bite/tier1", &"base:move/inner_force/tier1", &"base:move/ferocity/tier5", &"base:move/reckless_grasp/tier5", &"base:move/fire_ram/tier5", &"base:move/crazed_blast/tier5", &"base:move/reckless_dash/tier3"]),
+"slot_index": 0,
+"source_level_offset": 0
+}, {
+"definition_id": &"base:minion/groundmole_1",
+"level": 15,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/rock_throw/tier1", &"base:move/stone_fall/tier5", &"base:move/rock_blast/tier3", &"base:move/quickness/tier1", &"base:move/ferocity/tier5", &"base:move/fire_blast/tier2", &"base:move/vicious/tier4", &"base:move/fire_bash/tier2"]),
+"slot_index": 1,
+"source_level_offset": 0
+}, {
+"definition_id": &"base:minion/grasssnake_2",
+"level": 15,
+"move_ids": Array[StringName]([&"base:move/poison_tooth/tier1", &"base:move/razor_vine/tier1", &"base:move/grassblade/tier5", &"base:move/vicious/tier3", &"base:move/drain/tier3", &"base:move/concentration/tier3", &"base:move/quickness/tier3", &"base:move/mirror_skin/tier2"]),
+"slot_index": 2,
+"source_level_offset": 0
+}, {
+"definition_id": &"base:minion/icetree_1",
+"level": 15,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/nourish/tier5", &"base:move/swift_mend/tier3", &"base:move/priest/tier5", &"base:move/serenity/tier1", &"base:move/ice_shield/tier4", &"base:move/agility/tier1"]),
+"slot_index": 3,
+"source_level_offset": 0
+}, {
+"definition_id": &"base:minion/waterbird_1",
+"level": 15,
+"move_ids": Array[StringName]([&"base:move/peck/tier2", &"base:move/soak/tier5", &"base:move/waterjet/tier5", &"base:move/ferocity/tier5", &"base:move/focus/tier3"]),
+"slot_index": 4,
+"source_level_offset": 0
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"sage_seals": 1, "floor_money_basis": 17}}
+battle_modifier_configuration = {"shield": {"player": 2, "enemy": 2}}
+source_trainer_id = &"base:trainer/standard/4/0"
+source_floor_index = 4
+source_level_offset = 0
+source_trainer_type = &"TrainerType.TRAINER_GYM_1"
+id = &"base:encounter/grass_floor5_sage"
+display_name = "Floor 5 — Tafel the Grass Sage"
+legacy_class_name = "TrainerSystem.CreateFloor_Boss1"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:352"

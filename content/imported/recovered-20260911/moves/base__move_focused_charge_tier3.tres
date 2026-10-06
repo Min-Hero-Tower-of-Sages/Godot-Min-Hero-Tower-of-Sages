@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://0bwcn8a7ko01"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_glbho"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_6f8gk"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_sxshd"]
+
+[sub_resource type="Resource" id="Resource_yky6s"]
+script = ExtResource("1_glbho")
+scaling = 1
+roll_scope = 1
+amount = 100
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_6f8gk")
+id = &"base:move/focused_charge/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1313"
+
+[resource]
+script = ExtResource("3_sxshd")
+family_id = &"base:move_family/focused_charge"
+tier = 3
+type_id = &"base:type/dino"
+legacy_class_id = 88
+legacy_visual_id = 88
+legacy_dot_visual_id = 88
+buff_icon_name = &"moveIcon_focusedCharge"
+energy_cost = 25
+charge_turns = 1
+effects = Array[ExtResource("1_glbho")]([SubResource("Resource_yky6s")])
+presentation_id = &"base:presentation/move/move_icon_focused_charge"
+id = &"base:move/focused_charge/tier3"
+display_name = "Focused Charge  lv.3"
+legacy_numeric_id = 377
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

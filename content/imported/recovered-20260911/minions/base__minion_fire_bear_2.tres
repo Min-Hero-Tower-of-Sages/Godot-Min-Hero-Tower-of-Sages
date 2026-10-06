@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_5l05c"]
+
+[resource]
+script = ExtResource("1_5l05c")
+type_ids = Array[StringName]([&"base:type/fire", &"base:type/earth"])
+base_health = 80
+base_energy = 40
+base_attack = 70
+base_healing = 15
+base_speed = 20
+experience_gain_rate = 3
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/sear/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/fire_bash/tier1", &"base:move/taunt/tier2", &"base:move/crush/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/firebear_fire", &"base:talent_tree/firebear_guard", &"base:talent_tree/firebear_normal"])
+presentation_id = &"base:presentation/minion/earthbear2"
+id = &"base:minion/fire_bear_2"
+display_name = "Blazebar"
+legacy_numeric_id = 43
+legacy_class_name = "FireBear_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2319"

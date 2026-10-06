@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_vxhbx"]
+
+[resource]
+script = ExtResource("1_vxhbx")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/batdemon_normal/node/0_0",
+"move_ids": ["base:move/tackle/tier2", "base:move/tackle/tier3", "base:move/tackle/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3354.0, 3355.0, 3356.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/batdemon_normal/node/1_0",
+"move_ids": ["base:move/claw/tier2", "base:move/claw/tier3", "base:move/claw/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3357.0, 3358.0, 3359.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/batdemon_normal/node/2_0",
+"move_ids": ["base:move/skillful/tier1", "base:move/skillful/tier2", "base:move/skillful/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3360.0, 3361.0, 3362.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/batdemon_normal/node/0_1",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3363.0, 3364.0, 3365.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/batdemon_normal/node/1_1",
+"move_ids": ["base:move/claw/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/batdemon_normal/node/1_0"],
+"row": 1.0,
+"source_lines": [3366.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/batdemon_normal/node/2_1",
+"move_ids": ["base:move/slow/tier1", "base:move/slow/tier2", "base:move/slow/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3367.0, 3368.0, 3369.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/batdemon_normal/node/0_2",
+"move_ids": ["base:move/agility/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/batdemon_normal/node/0_1"],
+"row": 2.0,
+"source_lines": [3370.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/batdemon_normal/node/1_2",
+"move_ids": ["base:move/deadly_inspiration/tier2", "base:move/deadly_inspiration/tier3", "base:move/deadly_inspiration/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3371.0, 3372.0, 3373.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/batdemon_normal/node/2_2",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3374.0, 3375.0, 3376.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/batdemon_normal/node/1_3",
+"move_ids": ["base:move/deadly_inspiration/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/batdemon_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [3377.0]
+}])
+id = &"base:talent_tree/batdemon_normal"
+display_name = "Inspire"
+legacy_class_name = "BatDemon_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3351"

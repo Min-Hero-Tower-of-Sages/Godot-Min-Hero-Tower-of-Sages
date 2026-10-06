@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_ylnws"]
+
+[resource]
+script = ExtResource("1_ylnws")
+id = &"base:talent_tree/gettesttalenttree"
+display_name = "Test"
+legacy_class_name = "GetTestTalentTree"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4384"

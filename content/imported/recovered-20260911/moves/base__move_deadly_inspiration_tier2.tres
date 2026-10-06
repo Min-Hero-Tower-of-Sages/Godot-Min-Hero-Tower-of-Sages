@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://ddi5kc6jtjk7t"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_cgk8w"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_n25sm"]
+
+[sub_resource type="Resource" id="Resource_xtdsn"]
+script = ExtResource("1_cgk8w")
+kind = 18
+target_scope = 4
+phase = 4
+amount = 10
+stat_type_id = &"base:stat/attack"
+id = &"base:move/deadly_inspiration/tier2/effect/00_stat_percent_allied_team"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3368"
+
+[resource]
+script = ExtResource("2_n25sm")
+family_id = &"base:move_family/deadly_inspiration"
+tier = 2
+legacy_class_id = 37
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_deadlyInspiration"
+is_global_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_cgk8w")]([SubResource("Resource_xtdsn")])
+presentation_id = &"base:presentation/move/move_icon_deadly_inspiration"
+id = &"base:move/deadly_inspiration/tier2"
+display_name = "Deadly Inspiration  lv.2"
+legacy_numeric_id = 251
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

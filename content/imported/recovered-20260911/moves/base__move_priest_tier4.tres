@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bejsfehr4fdyi"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_mj767"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_knwed"]
+
+[sub_resource type="Resource" id="Resource_h34de"]
+script = ExtResource("1_mj767")
+kind = 18
+target_scope = 0
+phase = 4
+amount = 30
+stat_type_id = &"base:stat/healing"
+id = &"base:move/priest/tier4/effect/00_stat_percent_actor"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3378"
+
+[resource]
+script = ExtResource("2_knwed")
+family_id = &"base:move_family/priest"
+tier = 4
+legacy_class_id = 38
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_priest"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_mj767")]([SubResource("Resource_h34de")])
+presentation_id = &"base:presentation/move/move_icon_priest"
+id = &"base:move/priest/tier4"
+display_name = "Meditation  lv.4"
+legacy_numeric_id = 258
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

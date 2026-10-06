@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://78fa4pop0feb"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_3gqqk"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_qsc60"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_uufl1"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_srgoa"]
+
+[sub_resource type="Resource" id="Resource_twr60"]
+script = ExtResource("1_3gqqk")
+scaling = 1
+roll_scope = 1
+amount = 75
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_qsc60")
+id = &"base:move/fire_blast/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:327"
+
+[sub_resource type="Resource" id="Resource_mjgn7"]
+script = ExtResource("1_3gqqk")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 30
+random_bonus = 30
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_uufl1")
+id = &"base:move/fire_blast/tier2/effect/01_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:327"
+
+[resource]
+script = ExtResource("4_srgoa")
+family_id = &"base:move_family/fire_blast"
+tier = 2
+type_id = &"base:type/fire"
+legacy_class_id = 5
+legacy_visual_id = 5
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_fireBlast"
+energy_cost = 40
+cooldown_turns = 5
+exhaust_turns = 1
+effects = Array[ExtResource("1_3gqqk")]([SubResource("Resource_twr60"), SubResource("Resource_mjgn7")])
+presentation_id = &"base:presentation/move/move_icon_fire_blast"
+id = &"base:move/fire_blast/tier2"
+display_name = "Fire Blast  lv.2"
+legacy_numeric_id = 26
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

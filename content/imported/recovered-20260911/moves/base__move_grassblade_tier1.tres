@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://jbqg5fokegqo"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_6w4lr"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_ofis0"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_3eom6"]
+
+[sub_resource type="Resource" id="Resource_qlb4o"]
+script = ExtResource("1_6w4lr")
+scaling = 1
+roll_scope = 1
+amount = 35
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_ofis0")
+id = &"base:move/grassblade/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1525"
+
+[resource]
+script = ExtResource("3_3eom6")
+family_id = &"base:move_family/grassblade"
+type_id = &"base:type/plant"
+legacy_class_id = 98
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_grassBlade"
+energy_cost = 5
+cooldown_turns = 1
+effects = Array[ExtResource("1_6w4lr")]([SubResource("Resource_qlb4o")])
+presentation_id = &"base:presentation/move/move_icon_grass_blade"
+id = &"base:move/grassblade/tier1"
+display_name = "Grassblade"
+legacy_numeric_id = 425
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

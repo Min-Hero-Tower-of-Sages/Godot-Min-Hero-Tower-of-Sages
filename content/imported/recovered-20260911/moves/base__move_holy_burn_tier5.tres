@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c5ags3u4aghx5"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_aecb7"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_t41ih"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_x0ts4"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_mu62v"]
+
+[sub_resource type="Resource" id="Resource_aui6s"]
+script = ExtResource("1_aecb7")
+scaling = 1
+roll_scope = 1
+amount = 20
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_t41ih")
+id = &"base:move/holy_burn/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2548"
+
+[sub_resource type="Resource" id="Resource_sqj7k"]
+script = ExtResource("1_aecb7")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 35
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_x0ts4")
+id = &"base:move/holy_burn/tier5/effect/01_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2548"
+
+[resource]
+script = ExtResource("4_mu62v")
+family_id = &"base:move_family/holy_burn"
+tier = 5
+type_id = &"base:type/holy"
+legacy_class_id = 151
+legacy_visual_id = 151
+legacy_dot_visual_id = 151
+buff_icon_name = &"moveIcon_holyBurn"
+energy_cost = 35
+effects = Array[ExtResource("1_aecb7")]([SubResource("Resource_aui6s"), SubResource("Resource_sqj7k")])
+presentation_id = &"base:presentation/move/move_icon_holy_burn"
+id = &"base:move/holy_burn/tier5"
+display_name = "Judgement"
+legacy_numeric_id = 694
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_a7rwn"]
+
+[resource]
+script = ExtResource("1_a7rwn")
+type_ids = Array[StringName]([&"base:type/demonic", &"base:type/flying"])
+base_health = 25
+base_energy = 40
+base_attack = 60
+base_healing = 60
+base_speed = 75
+gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/peck/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/cutting_wind/tier1", &"base:move/demonic_bargain/tier1", &"base:move/wildfire/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/harpy_flying", &"base:talent_tree/harpy_demonic", &"base:talent_tree/harpy_fire"])
+presentation_id = &"base:presentation/minion/flyingharpy"
+id = &"base:minion/harpy_1"
+display_name = "Harwing"
+legacy_numeric_id = 45
+legacy_class_name = "Harpy_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1494"

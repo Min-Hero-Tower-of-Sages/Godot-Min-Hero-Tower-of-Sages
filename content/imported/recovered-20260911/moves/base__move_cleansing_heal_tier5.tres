@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bcwtldl5xpnxy"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ju01u"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="2_60ctk"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_p4k7m"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_8jqbd"]
+
+[sub_resource type="Resource" id="Resource_vtp3u"]
+script = ExtResource("1_ju01u")
+kind = 17
+roll_scope = 2
+chance_percent = 50
+executor = ExtResource("2_60ctk")
+id = &"base:move/cleansing_heal/tier5/effect/00_clear_buffs_debuffs_enemy_targets"
+display_name = "Clear Buffs Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2627"
+
+[sub_resource type="Resource" id="Resource_5efsw"]
+script = ExtResource("1_ju01u")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 40
+uses_type_effectiveness = true
+can_critical = true
+legacy_order = 1
+executor = ExtResource("3_p4k7m")
+id = &"base:move/cleansing_heal/tier5/effect/01_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2627"
+
+[sub_resource type="Resource" id="Resource_8m61k"]
+script = ExtResource("1_ju01u")
+kind = 17
+target_scope = 2
+phase = 2
+roll_scope = 2
+chance_percent = 50
+legacy_order = 2
+executor = ExtResource("2_60ctk")
+id = &"base:move/cleansing_heal/tier5/effect/02_clear_buffs_debuffs_ally_targets"
+display_name = "Clear Buffs Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2627"
+
+[resource]
+script = ExtResource("4_8jqbd")
+family_id = &"base:move_family/cleansing_heal"
+tier = 5
+type_id = &"base:type/holy"
+legacy_class_id = 155
+legacy_visual_id = 155
+legacy_dot_visual_id = 155
+buff_icon_name = &"moveIcon_cleansingHeal"
+energy_cost = 45
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_ju01u")]([SubResource("Resource_vtp3u"), SubResource("Resource_5efsw"), SubResource("Resource_8m61k")])
+presentation_id = &"base:presentation/move/move_icon_cleansing_heal"
+id = &"base:move/cleansing_heal/tier5"
+display_name = "Washed Light"
+legacy_numeric_id = 714
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

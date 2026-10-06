@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_6vqkx"]
+
+[resource]
+script = ExtResource("1_6vqkx")
+type_ids = Array[StringName]([&"base:type/earth", &"base:type/normal"])
+base_health = 37
+base_energy = 30
+base_attack = 45
+base_healing = 20
+base_speed = 30
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/pound/tier1", &"base:move/rock_throw/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/stone_fall/tier1", &"base:move/rancid_bite/tier1", &"base:move/tackle/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/groundattacker_ground", &"base:talent_tree/groundattacker_mixed", &"base:talent_tree/groundattacker_normal"])
+evolution_id = &"base:minion/groundattacker_2"
+evolution_level = 20
+presentation_id = &"base:presentation/minion/earthbeetle1"
+id = &"base:minion/groundattacker_1"
+display_name = "Betehorn"
+legacy_numeric_id = 15
+legacy_class_name = "GroundAttacker_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1852"

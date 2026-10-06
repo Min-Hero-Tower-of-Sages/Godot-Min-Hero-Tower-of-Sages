@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_g2irj"]
+
+[resource]
+script = ExtResource("1_g2irj")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/chameleon_grass/node/0_0",
+"move_ids": ["base:move/razor_vine/tier1", "base:move/razor_vine/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1886.0, 1887.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/chameleon_grass/node/1_0",
+"move_ids": ["base:move/tree_slam/tier1", "base:move/tree_slam/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1888.0, 1889.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/chameleon_grass/node/2_0",
+"move_ids": ["base:move/pound/tier2", "base:move/pound/tier3", "base:move/pound/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1890.0, 1891.0, 1892.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/chameleon_grass/node/0_1",
+"move_ids": ["base:move/razor_vine/tier3", "base:move/razor_vine/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/chameleon_grass/node/0_0"],
+"row": 1.0,
+"source_lines": [1893.0, 1894.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/chameleon_grass/node/1_1",
+"move_ids": ["base:move/tree_slam/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/chameleon_grass/node/1_0"],
+"row": 1.0,
+"source_lines": [1895.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/chameleon_grass/node/2_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1896.0, 1897.0, 1898.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/chameleon_grass/node/0_2",
+"move_ids": ["base:move/drain/tier1", "base:move/drain/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1899.0, 1900.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/chameleon_grass/node/1_2",
+"move_ids": ["base:move/grassblade/tier3", "base:move/grassblade/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1901.0, 1902.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/chameleon_grass/node/2_2",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/chameleon_grass/node/2_1"],
+"row": 2.0,
+"source_lines": [1903.0, 1904.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/chameleon_grass/node/1_3",
+"move_ids": ["base:move/grassblade/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/chameleon_grass/node/1_2"],
+"row": 3.0,
+"source_lines": [1905.0]
+}])
+id = &"base:talent_tree/chameleon_grass"
+display_name = "Grass"
+legacy_class_name = "Chameleon_Grass"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1883"

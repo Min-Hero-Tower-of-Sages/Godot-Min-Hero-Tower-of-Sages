@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b7uj0g88fb03"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_m7dc2"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_7clu6"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_6kwlr"]
+
+[sub_resource type="Resource" id="Resource_cbgkp"]
+script = ExtResource("1_m7dc2")
+scaling = 1
+roll_scope = 1
+amount = 45
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_7clu6")
+id = &"base:move/prehistoric_bite/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1276"
+
+[resource]
+script = ExtResource("3_6kwlr")
+family_id = &"base:move_family/prehistoric_bite"
+tier = 3
+type_id = &"base:type/dino"
+legacy_class_id = 87
+legacy_visual_id = 87
+legacy_dot_visual_id = 87
+buff_icon_name = &"moveIcon_prehistoricBite"
+energy_cost = 18
+effects = Array[ExtResource("1_m7dc2")]([SubResource("Resource_cbgkp")])
+presentation_id = &"base:presentation/move/move_icon_prehistoric_bite"
+id = &"base:move/prehistoric_bite/tier3"
+display_name = "Prehistoric Bite  lv.3"
+legacy_numeric_id = 372
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

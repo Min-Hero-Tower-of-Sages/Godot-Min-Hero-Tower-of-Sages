@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/bluebell_1", "level": 60, "source_level_offset": -2, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/burn/tier4", &"base:move/touch_fire/tier5", &"base:move/vicious/tier5", &"base:move/intense_flame/tier3", &"base:move/mortify/tier2"])
+}, {
+"definition_id": &"base:minion/bluebell_1", "level": 60, "source_level_offset": -2, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/burn/tier4", &"base:move/touch_fire/tier5", &"base:move/vicious/tier5", &"base:move/intense_flame/tier3", &"base:move/mortify/tier2"])
+}, {
+"definition_id": &"base:minion/bluebell_1", "level": 60, "source_level_offset": -2, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/burn/tier4", &"base:move/touch_fire/tier5", &"base:move/vicious/tier5", &"base:move/intense_flame/tier3", &"base:move/mortify/tier2"])
+}, {
+"definition_id": &"base:minion/pinkbell_1", "level": 60, "source_level_offset": -2, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/burn/tier1", &"base:move/hope/tier5", &"base:move/ice_shield/tier2", &"base:move/cleansing_heal/tier4", &"base:move/cleric/tier5", &"base:move/brilliance/tier2"])
+}, {
+"definition_id": &"base:minion/pinkbell_1", "level": 60, "source_level_offset": -2, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/burn/tier1", &"base:move/hope/tier5", &"base:move/ice_shield/tier2", &"base:move/cleansing_heal/tier4", &"base:move/cleric/tier5", &"base:move/brilliance/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/19/room/1"
+source_floor_index = 49
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor50_trainer_1"
+display_name = "Floor 50 — source trainer 1"
+description = "Source start dialogue: Graves, death, bones, fun, lich, redrum, REDRUM\nSource defeat dialogue: hahahahahhahahaaaa"
+legacy_class_name = "TrainerSystem.CreateFloor16_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2523"
+battle_modifier_configuration = {"extra_minions": {"enemy": {"count": 9, "templates": [{"definition_id": "base:minion/bluebell_1", "level": 60, "move_ids": ["base:move/burn/tier4", "base:move/touch_fire/tier5", "base:move/vicious/tier5", "base:move/intense_flame/tier3", "base:move/mortify/tier2"], "source_derive_stats": true}]}, "player": {"count": 2, "templates": [{"definition_id": "base:minion/harpy_1", "level": 60, "move_ids": ["base:move/peck/tier1", "base:move/wildfire/tier5", "base:move/burn/tier4", "base:move/focus/tier1", "base:move/fire_ram/tier4", "base:move/vicious/tier5"], "source_derive_stats": true}]}}}

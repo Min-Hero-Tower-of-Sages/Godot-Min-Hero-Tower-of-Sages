@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_a71fx"]
+
+[resource]
+script = ExtResource("1_a71fx")
+type_ids = Array[StringName]([&"base:type/dino"])
+base_health = 35
+base_energy = 25
+base_attack = 38
+base_healing = 5
+base_speed = 20
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/wild_tackle/tier1", &"base:move/prehistoric_bite/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/inner_force/tier1", &"base:move/deadly_inspiration/tier1", &"base:move/hulk_inspiration/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/trex_dino", &"base:talent_tree/trex_buffs", &"base:talent_tree/trex_debuffs"])
+evolution_id = &"base:minion/trex_2"
+evolution_level = 25
+presentation_id = &"base:presentation/minion/dinorex1"
+id = &"base:minion/trex_1"
+display_name = "Rexabee"
+legacy_numeric_id = 85
+legacy_class_name = "TRex_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1670"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_50ob8"]
+
+[resource]
+script = ExtResource("1_50ob8")
+legacy_sprite_name = &"flyingSongbird3"
+icon_offset = Vector2i(-7, 7)
+id = &"base:presentation/minion/flyingsongbird3"
+display_name = "Falcona presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1774"

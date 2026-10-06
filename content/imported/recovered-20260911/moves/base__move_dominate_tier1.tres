@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://vreat81dr1xv"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_w4dcd"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_om7xm"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_ifcm1"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_sqlq8"]
+
+[sub_resource type="Resource" id="Resource_7xi06"]
+script = ExtResource("1_w4dcd")
+scaling = 1
+roll_scope = 1
+amount = 50
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_om7xm")
+id = &"base:move/dominate/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2889"
+
+[sub_resource type="Resource" id="Resource_hby65"]
+script = ExtResource("1_w4dcd")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 1
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("3_ifcm1")
+id = &"base:move/dominate/tier1/effect/01_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2889"
+
+[sub_resource type="Resource" id="Resource_mvm2q"]
+script = ExtResource("1_w4dcd")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 1
+stat_type_id = &"base:stat/speed"
+legacy_order = 2
+executor = ExtResource("3_ifcm1")
+id = &"base:move/dominate/tier1/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2889"
+
+[resource]
+script = ExtResource("4_sqlq8")
+family_id = &"base:move_family/dominate"
+type_id = &"base:type/titan"
+legacy_class_id = 171
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_dominate"
+energy_cost = 12
+cooldown_turns = 5
+effects = Array[ExtResource("1_w4dcd")]([SubResource("Resource_7xi06"), SubResource("Resource_hby65"), SubResource("Resource_mvm2q")])
+presentation_id = &"base:presentation/move/move_icon_dominate"
+id = &"base:move/dominate/tier1"
+display_name = "Dominate"
+legacy_numeric_id = 790
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

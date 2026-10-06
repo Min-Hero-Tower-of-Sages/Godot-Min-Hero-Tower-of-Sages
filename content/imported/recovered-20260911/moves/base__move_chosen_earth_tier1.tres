@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://defqpgs3w5ub1"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_82vow"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_t4o3e"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_u5lhp"]
+
+[sub_resource type="Resource" id="Resource_lruc7"]
+script = ExtResource("1_82vow")
+kind = 12
+amount = 19
+duration = 2
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_t4o3e")
+id = &"base:move/chosen_earth/tier1/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:968"
+
+[sub_resource type="Resource" id="Resource_0i0vy"]
+script = ExtResource("1_82vow")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 19
+duration = 2
+legacy_order = 1
+executor = ExtResource("2_t4o3e")
+id = &"base:move/chosen_earth/tier1/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:968"
+
+[resource]
+script = ExtResource("3_u5lhp")
+family_id = &"base:move_family/chosen_earth"
+type_id = &"base:type/earth"
+legacy_class_id = 64
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_chosenEarth"
+energy_cost = 5
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_82vow")]([SubResource("Resource_lruc7"), SubResource("Resource_0i0vy")])
+presentation_id = &"base:presentation/move/move_icon_chosen_earth"
+id = &"base:move/chosen_earth/tier1"
+display_name = "Chosen Earth"
+legacy_numeric_id = 200
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

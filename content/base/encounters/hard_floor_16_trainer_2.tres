@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/scarecrow_3", "level": 60, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/blood_press/tier5", &"base:move/demonic_strike/tier2", &"base:move/vicious/tier5", &"base:move/blood_ritual/tier4", &"base:move/rancid_bite/tier2"])
+}, {
+"definition_id": &"base:minion/scarecrow_3", "level": 60, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/infes/tier5", &"base:move/rancid_bite/tier3", &"base:move/mortify/tier3", &"base:move/mud_blast/tier1", &"base:move/vicious/tier5", &"base:move/quickness/tier1"])
+}, {
+"definition_id": &"base:minion/scarecrow_3", "level": 60, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/slow/tier5", &"base:move/lifeless_touch/tier4", &"base:move/mirror_skin/tier4", &"base:move/skin_trap/tier5", &"base:move/rancid_bite/tier1"])
+}, {
+"definition_id": &"base:minion/scarecrow_3", "level": 60, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/blood_press/tier5", &"base:move/demonic_strike/tier2", &"base:move/vicious/tier5", &"base:move/blood_ritual/tier4", &"base:move/rancid_bite/tier2"])
+}, {
+"definition_id": &"base:minion/worm_3", "level": 60, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/rock_slide/tier1", &"base:move/earthquake/tier1", &"base:move/taunt/tier3", &"base:move/perseverance/tier5", &"base:move/destabilize/tier2", &"base:move/mirror_skin/tier3", &"base:move/skillful/tier1", &"base:move/slow/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/hard/16/room/2"
+source_floor_index = 46
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor47_trainer_2"
+display_name = "Floor 47 — source trainer 2"
+description = "Source start dialogue: <Sighs>....Prehaps you will be a challenge...\nSource defeat dialogue: That was, eventful...you have excited me!"
+legacy_class_name = "TrainerSystem.CreateFloor13_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:2356"
+battle_modifier_configuration = {"move_timer": {"interval": 4, "source_power": 2, "move_id": "base:move/inner_force/tier5", "buff_move_id": "base:move/deadly_inspiration/tier1", "actor": {"instance_id": "floor47-timer-2", "definition_id": "internal:minion/bmod_3", "team": 1, "level": 59, "move_ids": ["base:move/inner_force/tier5"]}}}

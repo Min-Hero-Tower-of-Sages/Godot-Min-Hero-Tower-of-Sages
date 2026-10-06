@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/holystrongguy_1", "level": 54, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/pound/tier2", &"base:move/crusade/tier5", &"base:move/holy_strike/tier5", &"base:move/penance/tier5", &"base:move/vicious/tier5", &"base:move/fire_bash/tier1"])
+}, {
+"definition_id": &"base:minion/holystrongguy_1", "level": 54, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier2", &"base:move/crusade/tier5", &"base:move/holy_strike/tier5", &"base:move/penance/tier5", &"base:move/vicious/tier5", &"base:move/fire_bash/tier1"])
+}, {
+"definition_id": &"base:minion/bluebell_1", "level": 54, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/burn/tier4", &"base:move/touch_fire/tier5", &"base:move/vicious/tier5", &"base:move/intense_flame/tier3", &"base:move/mortify/tier2"])
+}, {
+"definition_id": &"base:minion/fireghost_1", "level": 54, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/burn/tier1", &"base:move/lich_burn/tier5", &"base:move/phantom_strike/tier5", &"base:move/focus/tier5", &"base:move/haunt/tier4"])
+}, {
+"definition_id": &"base:minion/fireghost_1", "level": 54, "source_level_offset": -1, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/burn/tier1", &"base:move/tire/tier5", &"base:move/efficiency/tier3", &"base:move/invigorate/tier2", &"base:move/tackle/tier2", &"base:move/mirror_coating/tier3", &"base:move/intense_flame/tier2", &"base:move/phantom_strike/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 2000, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/27/2"
+source_floor_index = 27
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor28_trainer_2"
+display_name = "Floor 28 — source trainer 2"
+description = "Source start dialogue: I see a victory in future, but who's I am not sure of...\nSource defeat dialogue: It is clear now, you are the victor."
+legacy_class_name = "TrainerSystem.CreateFloor23"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1494"
+battle_modifier_configuration = {"shield": {"enemy": 3, "player": 2}}

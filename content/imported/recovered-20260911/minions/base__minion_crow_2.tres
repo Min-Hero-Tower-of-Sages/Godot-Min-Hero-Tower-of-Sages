@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_um6gt"]
+
+[resource]
+script = ExtResource("1_um6gt")
+type_ids = Array[StringName]([&"base:type/demonic", &"base:type/flying"])
+base_health = 40
+base_energy = 55
+base_attack = 60
+base_healing = 35
+base_speed = 65
+experience_gain_rate = 2
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/peck/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/demonic_strike/tier1", &"base:move/peck/tier2", &"base:move/tire/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/crow_demonic", &"base:talent_tree/crow_flying", &"base:talent_tree/crow_normal"])
+evolution_id = &"base:minion/crow_3"
+evolution_level = 49
+presentation_id = &"base:presentation/minion/undeadcrow2"
+id = &"base:minion/crow_2"
+display_name = "Skulcrow"
+legacy_numeric_id = 68
+legacy_class_name = "Crow_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:668"

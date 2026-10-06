@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_nw5ep"]
+
+[resource]
+script = ExtResource("1_nw5ep")
+type_ids = Array[StringName]([&"base:type/dino", &"base:type/fire"])
+base_health = 20
+base_energy = 25
+base_attack = 38
+base_healing = 5
+base_speed = 40
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/claw/tier2", &"base:move/prehistoric_bite/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/reckless_grasp/tier1", &"base:move/fire_blast/tier1", &"base:move/energize/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/fireraptor_dino", &"base:talent_tree/fireraptor_fire", &"base:talent_tree/fireraptor_normal"])
+evolution_id = &"base:minion/raptor_2"
+evolution_level = 27
+presentation_id = &"base:presentation/minion/fireraptor1"
+id = &"base:minion/raptor_1"
+display_name = "Toregg"
+legacy_numeric_id = 88
+legacy_class_name = "FireDino_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2400"

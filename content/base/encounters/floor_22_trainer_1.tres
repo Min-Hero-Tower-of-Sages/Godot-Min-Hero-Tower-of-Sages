@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/groundattacker_2", "level": 49, "source_level_offset": -2, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/rock_throw/tier1", &"base:move/stone_fall/tier5", &"base:move/rock_blast/tier5", &"base:move/destabilize/tier3", &"base:move/ferocity/tier5", &"base:move/fire_blast/tier2"])
+}, {
+"definition_id": &"base:minion/landshark_1", "level": 49, "source_level_offset": -2, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier5", &"base:move/soak/tier5", &"base:move/refreshing_wave/tier3", &"base:move/cleric/tier5", &"base:move/reflect_damage/tier1"])
+}, {
+"definition_id": &"base:minion/landshark_1", "level": 49, "source_level_offset": -2, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/roar/tier5", &"base:move/soak/tier5", &"base:move/refreshing_wave/tier3", &"base:move/cleric/tier5", &"base:move/reflect_damage/tier1"])
+}, {
+"definition_id": &"base:minion/landshark_1", "level": 49, "source_level_offset": -2, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/waterjet/tier5", &"base:move/rock_blast/tier5", &"base:move/vicious/tier5", &"base:move/soak/tier3"])
+}, {
+"definition_id": &"base:minion/groundmole_3", "level": 49, "source_level_offset": -2, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/rock_throw/tier1", &"base:move/perseverance/tier5", &"base:move/taunt/tier5", &"base:move/rock_skin/tier5", &"base:move/crush/tier2", &"base:move/concentration/tier2", &"base:move/fortitude/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 759, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/21/1"
+source_floor_index = 21
+source_level_offset = -2
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor22_trainer_1"
+display_name = "Floor 22 — source trainer 1"
+description = "Source start dialogue: Fresh Air is just one of my favorite things!\nSource defeat dialogue: A good battle is another one of my favorite things!"
+legacy_class_name = "TrainerSystem.CreateFloor18"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1160"
+battle_modifier_configuration = {"shield": {"enemy": 1, "player": 1}, "move_timer": {"interval": 4, "source_power": 2, "move_id": "base:move/rainfall/tier4", "buff_move_id": "base:move/hulk_inspiration/tier4", "actor": {"instance_id": "floor22-timer-1", "definition_id": "internal:minion/bmod_3", "team": 1, "level": 47, "move_ids": ["base:move/rainfall/tier4"]}}}

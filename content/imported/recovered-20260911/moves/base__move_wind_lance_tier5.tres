@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bsg80k0p2ifpe"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_h5iln"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_hea0l"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_nvpj2"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_celeh"]
+
+[sub_resource type="Resource" id="Resource_0ax4e"]
+script = ExtResource("1_h5iln")
+scaling = 1
+roll_scope = 1
+amount = 100
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_hea0l")
+id = &"base:move/wind_lance/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2328"
+
+[sub_resource type="Resource" id="Resource_871h8"]
+script = ExtResource("1_h5iln")
+kind = 12
+amount = -10
+duration = 3
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_nvpj2")
+id = &"base:move/wind_lance/tier5/effect/01_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2328"
+
+[sub_resource type="Resource" id="Resource_55onc"]
+script = ExtResource("1_h5iln")
+kind = 12
+target_scope = 2
+phase = 2
+amount = -10
+duration = 3
+legacy_order = 2
+executor = ExtResource("3_nvpj2")
+id = &"base:move/wind_lance/tier5/effect/02_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2328"
+
+[resource]
+script = ExtResource("4_celeh")
+family_id = &"base:move_family/wind_lance"
+tier = 5
+type_id = &"base:type/flying"
+legacy_class_id = 139
+legacy_visual_id = 139
+legacy_dot_visual_id = 139
+buff_icon_name = &"moveIcon_windLance"
+energy_cost = 45
+effects = Array[ExtResource("1_h5iln")]([SubResource("Resource_0ax4e"), SubResource("Resource_871h8"), SubResource("Resource_55onc")])
+presentation_id = &"base:presentation/move/move_icon_wind_lance"
+id = &"base:move/wind_lance/tier5"
+display_name = "Wind Puncture"
+legacy_numeric_id = 634
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

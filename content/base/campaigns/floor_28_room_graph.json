@@ -1,0 +1,683 @@
+{
+  "floor_index": 27,
+  "source_floor_index": 27,
+  "source_room_order": [
+    "base:room/level_6_3_h1",
+    "base:room/level_6_3_a",
+    "base:room/level_6_3_b",
+    "base:room/level_6_3_e",
+    "base:room/level_6_3_f",
+    "base:room/floor_28_expert",
+    "base:room/level_6_3_g",
+    "base:room/level_6_3_c",
+    "base:room/level_6_3_d",
+    "base:room/level_6_3_h2",
+    "base:room/level_6_3_h3",
+    "base:room/level_6_3_h4",
+    "base:room/level_6_3_h5",
+    "base:room/level_6_3_eggery"
+  ],
+  "entry_room_id": "base:room/level_6_3_h1",
+  "rooms": [
+    {
+      "id": "base:room/level_6_3_h1",
+      "display_name": "Floor 28 — Level_6_3_H1",
+      "legacy_class_name": "LevelContainer_Level_6_3_H1",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_H1",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_H1.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_h1.json",
+      "room_index": 0,
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_6_3_d",
+          "target_spawn_id": "entry-1"
+        },
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_6_3_a",
+          "target_spawn_id": "entry-2"
+        },
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_6_3_c",
+          "target_spawn_id": "entry-3"
+        },
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_6_3_e",
+          "target_spawn_id": "entry-4"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-28-heal-0",
+          "kind": "heal_party",
+          "source_zone_id": 1,
+          "trigger_on_enter": true
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_a",
+      "display_name": "Floor 28 — Level_6_3_A",
+      "legacy_class_name": "LevelContainer_Level_6_3_A",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_A",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_A.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_a.json",
+      "room_index": 1,
+      "exits": [
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_6_3_h1",
+          "target_spawn_id": "entry-2"
+        },
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_6_3_h2",
+          "target_spawn_id": "entry-5"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor28_trainer_1"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 1,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1474",
+        "source_method": "CreateFloor23",
+        "source_floor_argument": 27
+      },
+      "interactions": [
+        {
+          "id": "floor-28-trainer-1",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 1,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor28_trainer_1",
+          "first_visit_text": "Ha har, Halloween is my favorite day...",
+          "lose_text": "...it feels like you stole a bag of candy from me...you meanie!"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_b",
+      "display_name": "Floor 28 — Level_6_3_B",
+      "legacy_class_name": "LevelContainer_Level_6_3_B",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_B",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_B.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_b.json",
+      "room_index": 2,
+      "exits": [
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_6_3_h2",
+          "target_spawn_id": "entry-6"
+        },
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_6_3_h5",
+          "target_spawn_id": "entry-7"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor28_trainer_2"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 2,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1494",
+        "source_method": "CreateFloor23",
+        "source_floor_argument": 27
+      },
+      "interactions": [
+        {
+          "id": "floor-28-trainer-2",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 2,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor28_trainer_2",
+          "first_visit_text": "I see a victory in future, but who's I am not sure of...",
+          "lose_text": "It is clear now, you are the victor."
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_e",
+      "display_name": "Floor 28 — Level_6_3_E",
+      "legacy_class_name": "LevelContainer_Level_6_3_E",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_E",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_E.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_e.json",
+      "room_index": 3,
+      "exits": [
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_6_3_h1",
+          "target_spawn_id": "entry-4"
+        },
+        {
+          "transition_id": 9,
+          "target_room_id": "base:room/level_6_3_h3",
+          "target_spawn_id": "entry-9"
+        },
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/floor_28_expert",
+          "target_spawn_id": "entry-expert",
+          "requires_tower_mode": "hard"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor28_trainer_3"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 3,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1484",
+        "source_method": "CreateFloor23",
+        "source_floor_argument": 27
+      },
+      "interactions": [
+        {
+          "id": "floor-28-trainer-3",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 3,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor28_trainer_3",
+          "first_visit_text": "I show you the force of the underworld!",
+          "lose_text": "It appears you know demon minions are weak to water and holy attacks."
+        }
+      ],
+      "source_spawns": [
+        {
+          "id": "expert-return",
+          "source_marker": "expert_roomTransitionObject"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_f",
+      "display_name": "Floor 28 — Level_6_3_F",
+      "legacy_class_name": "LevelContainer_Level_6_3_F",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_F",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_F.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_f.json",
+      "room_index": 4,
+      "exits": [
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_6_3_h5",
+          "target_spawn_id": "entry-8"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor28_trainer_4_hard"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 4,
+        "trainer_type": "TrainerType.HARD_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1504",
+        "source_method": "CreateFloor23",
+        "source_floor_argument": 27
+      },
+      "interactions": [
+        {
+          "id": "floor-28-trainer-4",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 4,
+          "trainer_type": "TrainerType.HARD_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor28_trainer_4_hard",
+          "first_visit_text": "",
+          "lose_text": ""
+        }
+      ]
+    },
+    {
+      "id": "base:room/floor_28_expert",
+      "display_name": "Floor 28 — ExpertRoom_undead",
+      "legacy_class_name": "ExpertRoom_undead",
+      "source_symbol": "TopDown.Levels.MainTower.ExpertRoom_undead",
+      "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/MainTower/ExpertRoom_undead.as",
+      "source_payload": "res://content/base/room_payloads/source/floor_28_expert.json",
+      "room_index": 5,
+      "exits": [
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/level_6_3_e",
+          "target_spawn_id": "expert-return",
+          "requires_tower_mode": "hard"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor28_trainer_5_expert"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 5,
+        "trainer_type": "TrainerType.EXPERT_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1511",
+        "source_method": "CreateFloor23",
+        "source_floor_argument": 27
+      },
+      "interactions": [
+        {
+          "id": "floor-28-trainer-5",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 5,
+          "trainer_type": "TrainerType.EXPERT_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor28_trainer_5_expert",
+          "first_visit_text": "",
+          "lose_text": "",
+          "requires_tower_mode": "hard"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_g",
+      "display_name": "Floor 28 — Level_6_3_G",
+      "legacy_class_name": "LevelContainer_Level_6_3_G",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_G",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_G.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_g.json",
+      "room_index": 6,
+      "exits": [
+        {
+          "transition_id": 11,
+          "target_room_id": "base:room/level_6_3_h4",
+          "target_spawn_id": "entry-11"
+        },
+        {
+          "transition_id": 10,
+          "target_room_id": "base:room/level_6_3_h3",
+          "target_spawn_id": "entry-10"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor28_trainer_6_boss"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 6,
+        "trainer_type": "TrainerType.BOSS_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1518",
+        "source_method": "CreateFloor23",
+        "source_floor_argument": 27
+      },
+      "interactions": [
+        {
+          "id": "floor-28-trainer-6",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 6,
+          "trainer_type": "TrainerType.BOSS_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor28_trainer_6_boss",
+          "first_visit_text": "To reach the highest level of sanctity one must have a pure soul.",
+          "lose_text": "Your soul is pure, this I feel.  Here's the third piece to the Sage Seal of Sanctity"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_c",
+      "display_name": "Floor 28 — Level_6_3_C",
+      "legacy_class_name": "LevelContainer_Level_6_3_C",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_C",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_C.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_c.json",
+      "room_index": 7,
+      "exits": [
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_6_3_h1",
+          "target_spawn_id": "entry-3"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_d",
+      "display_name": "Floor 28 — Level_6_3_D",
+      "legacy_class_name": "LevelContainer_Level_6_3_D",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_D",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_D.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_d.json",
+      "room_index": 8,
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_6_3_h1",
+          "target_spawn_id": "entry-1"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_h2",
+      "display_name": "Floor 28 — Level_6_3_H2",
+      "legacy_class_name": "LevelContainer_Level_6_3_H2",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_H2",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_H2.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_h2.json",
+      "room_index": 9,
+      "exits": [
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_6_3_a",
+          "target_spawn_id": "entry-5"
+        },
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_6_3_b",
+          "target_spawn_id": "entry-6"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_h3",
+      "display_name": "Floor 28 — Level_6_3_H3",
+      "legacy_class_name": "LevelContainer_Level_6_3_H3",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_H3",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_H3.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_h3.json",
+      "room_index": 10,
+      "exits": [
+        {
+          "transition_id": 9,
+          "target_room_id": "base:room/level_6_3_e",
+          "target_spawn_id": "entry-9"
+        },
+        {
+          "transition_id": 10,
+          "target_room_id": "base:room/level_6_3_g",
+          "target_spawn_id": "entry-10"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-28-heal-10",
+          "kind": "heal_party",
+          "source_zone_id": 1,
+          "trigger_on_enter": true
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_h4",
+      "display_name": "Floor 28 — Level_6_3_H4",
+      "legacy_class_name": "LevelContainer_Level_6_3_H4",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_H4",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_H4.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_h4.json",
+      "room_index": 11,
+      "exits": [
+        {
+          "transition_id": 11,
+          "target_room_id": "base:room/level_6_3_g",
+          "target_spawn_id": "entry-11"
+        },
+        {
+          "transition_id": 12,
+          "target_room_id": "base:room/level_6_3_eggery",
+          "target_spawn_id": "entry-12"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_h5",
+      "display_name": "Floor 28 — Level_6_3_H5",
+      "legacy_class_name": "LevelContainer_Level_6_3_H5",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_H5",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_H5.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_h5.json",
+      "room_index": 12,
+      "exits": [
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_6_3_b",
+          "target_spawn_id": "entry-7"
+        },
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_6_3_f",
+          "target_spawn_id": "entry-8"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_6_3_eggery",
+      "display_name": "Floor 28 — Level_6_3_Eggery",
+      "legacy_class_name": "LevelContainer_Level_6_3_Eggery",
+      "source_symbol": "Utilities.LevelContainer_Level_6_3_Eggery",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_3_Eggery.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_3_eggery.json",
+      "room_index": 13,
+      "exits": [
+        {
+          "transition_id": 12,
+          "target_room_id": "base:room/level_6_3_h4",
+          "target_spawn_id": "entry-12"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-28-egg-slot-0",
+          "kind": "egg_pick",
+          "source_zone_id": 0,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        },
+        {
+          "id": "floor-28-egg-slot-1",
+          "kind": "egg_pick",
+          "source_zone_id": 1,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        },
+        {
+          "id": "floor-28-egg-slot-2",
+          "kind": "egg_pick",
+          "source_zone_id": 2,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        },
+        {
+          "id": "floor-28-egg-slot-3",
+          "kind": "egg_pick",
+          "source_zone_id": 3,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        },
+        {
+          "id": "floor-28-egg-slot-4",
+          "kind": "egg_pick",
+          "source_zone_id": 4,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        },
+        {
+          "id": "floor-28-egg-slot-5",
+          "kind": "egg_pick",
+          "source_zone_id": 5,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        },
+        {
+          "id": "floor-28-egg-slot-6",
+          "kind": "egg_pick",
+          "source_zone_id": 6,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        },
+        {
+          "id": "floor-28-egg-slot-7",
+          "kind": "egg_pick",
+          "source_zone_id": 7,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        },
+        {
+          "id": "floor-28-egg-slot-8",
+          "kind": "egg_pick",
+          "source_zone_id": 8,
+          "candidates": [
+            "base:minion/bluebell_1",
+            "base:minion/pinkbell_1",
+            "base:minion/holystrongguy_1",
+            "base:minion/fireghost_1",
+            "base:minion/icedeer_1",
+            "base:minion/tiger_2"
+          ],
+          "weights": [
+            15.0,
+            15.0,
+            20.0,
+            25.0,
+            10.0,
+            15.0
+          ]
+        }
+      ]
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_6_3_h1",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    },
+    {
+      "room_id": "base:room/level_6_3_eggery",
+      "transition_id": 100,
+      "source_sprite": "roomTransitionObject_lobbyFromEggery",
+      "target_route": "lobby"
+    }
+  ],
+  "eggery_source": {
+    "source_floor_index": 27,
+    "source_minion_level_base": 54,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b0om8ouqt3iad"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_n8ift"]
+[ext_resource type="Script" uid="uid://b2adsq7wfencb" path="res://src/domain/battle/shield_effect_executor.gd" id="2_q5i45"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_qq62w"]
+
+[sub_resource type="Resource" id="Resource_5ntgt"]
+script = ExtResource("1_n8ift")
+kind = 6
+target_scope = 2
+phase = 2
+scaling = 2
+amount = 30
+executor = ExtResource("2_q5i45")
+id = &"base:move/ice_shield/tier1/effect/00_shield_ally_targets"
+display_name = "Shield"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2022"
+
+[resource]
+script = ExtResource("3_qq62w")
+family_id = &"base:move_family/ice_shield"
+type_id = &"base:type/ice"
+legacy_class_id = 116
+legacy_visual_id = 116
+legacy_dot_visual_id = 116
+buff_icon_name = &"moveIcon_iceShield"
+energy_cost = 10
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_n8ift")]([SubResource("Resource_5ntgt")])
+presentation_id = &"base:presentation/move/move_icon_ice_shield"
+id = &"base:move/ice_shield/tier1"
+display_name = "Ice Shield"
+legacy_numeric_id = 515
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

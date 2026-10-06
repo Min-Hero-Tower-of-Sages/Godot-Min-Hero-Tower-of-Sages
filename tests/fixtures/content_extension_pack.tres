@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="ContentPackDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/content_pack_definition.gd" id="1_pack"]
+[ext_resource type="Script" path="res://src/content/content_definition.gd" id="2_definition"]
+[ext_resource type="Script" path="res://src/content/type_definition.gd" id="3_type"]
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="4_minion"]
+[ext_resource type="Script" path="res://src/content/move_definition.gd" id="5_move"]
+[ext_resource type="Script" path="res://src/content/effect_definition.gd" id="6_effect"]
+[ext_resource type="Script" path="res://src/domain/battle/damage_effect_executor.gd" id="7_damage_executor"]
+[ext_resource type="Script" path="res://src/domain/battle/energy_effect_executor.gd" id="8_energy_executor"]
+[ext_resource type="Script" path="res://tests/fixtures/content_extension_energy_executor.gd" id="9_custom_executor"]
+
+[sub_resource type="Resource" id="Type_tests_neutral"]
+script = ExtResource("3_type")
+id = &"tests:type/neutral"
+display_name = "Fixture Neutral"
+source_mod = &"tests"
+
+[sub_resource type="Resource" id="Effect_tests_combo_damage"]
+script = ExtResource("6_effect")
+kind = 0
+amount = 4
+executor = ExtResource("7_damage_executor")
+id = &"tests:effect/combo_damage"
+display_name = "Fixture combo damage"
+source_mod = &"tests"
+
+[sub_resource type="Resource" id="Effect_tests_combo_energy"]
+script = ExtResource("6_effect")
+kind = 2
+target_scope = 0
+phase = 3
+amount = 2
+executor = ExtResource("8_energy_executor")
+id = &"tests:effect/combo_energy"
+display_name = "Fixture combo energy"
+source_mod = &"tests"
+
+[sub_resource type="Resource" id="Effect_tests_custom_energy"]
+script = ExtResource("6_effect")
+kind = 2
+target_scope = 0
+phase = 3
+amount = 3
+executor = ExtResource("9_custom_executor")
+id = &"tests:effect/custom_energy"
+display_name = "Fixture custom energy"
+source_mod = &"tests"
+
+[sub_resource type="Resource" id="Move_tests_combo"]
+script = ExtResource("5_move")
+family_id = &"tests:move_family/combo"
+type_id = &"tests:type/neutral"
+energy_cost = 1
+effects = Array[ExtResource("6_effect")]([SubResource("Effect_tests_combo_damage"), SubResource("Effect_tests_combo_energy")])
+id = &"tests:move/combo"
+display_name = "Fixture Combo"
+source_mod = &"tests"
+
+[sub_resource type="Resource" id="Move_tests_custom_energy"]
+script = ExtResource("5_move")
+family_id = &"tests:move_family/custom_energy"
+type_id = &"tests:type/neutral"
+energy_cost = 1
+target_side = 2
+effects = Array[ExtResource("6_effect")]([SubResource("Effect_tests_custom_energy")])
+id = &"tests:move/custom_energy"
+display_name = "Fixture Custom Energy"
+source_mod = &"tests"
+
+[sub_resource type="Resource" id="Minion_tests_probe"]
+script = ExtResource("4_minion")
+type_ids = Array[StringName]([&"tests:type/neutral"])
+base_health = 40
+base_energy = 10
+base_attack = 0
+base_healing = 0
+base_speed = 20
+initial_move_ids = Array[StringName]([&"tests:move/combo", &"tests:move/custom_energy"])
+presentation_id = &"base:presentation/minion/normalslime1"
+id = &"tests:minion/extension_probe"
+display_name = "Fixture Probe"
+source_mod = &"tests"
+
+[resource]
+script = ExtResource("1_pack")
+dependencies = Array[StringName]([&"base:pack/recovered"])
+definitions = Array[ExtResource("2_definition")]([SubResource("Type_tests_neutral"), SubResource("Effect_tests_combo_damage"), SubResource("Effect_tests_combo_energy"), SubResource("Effect_tests_custom_energy"), SubResource("Move_tests_combo"), SubResource("Move_tests_custom_energy"), SubResource("Minion_tests_probe")])
+id = &"tests:pack/content_extension_probe"
+display_name = "Test-only content extension probe"
+source_mod = &"tests"
+enabled_by_default = true

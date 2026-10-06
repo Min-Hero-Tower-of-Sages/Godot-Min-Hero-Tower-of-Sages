@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_1ak1l"]
+
+[resource]
+script = ExtResource("1_1ak1l")
+legacy_sprite_name = &"normalRaccoon2"
+icon_offset = Vector2i(4, -2)
+id = &"base:presentation/minion/normalraccoon2"
+display_name = "Kleptoon presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1651"

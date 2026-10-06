@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/worm_3", "level": 50, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier2", &"base:move/rock_slide/tier1", &"base:move/infes/tier5", &"base:move/rancid_bite/tier4", &"base:move/mud_blast/tier2", &"base:move/skillful/tier2", &"base:move/crush/tier1", &"base:move/ferocity/tier3"])
+}, {
+"definition_id": &"base:minion/worm_3", "level": 50, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/rock_slide/tier1", &"base:move/earthquake/tier1", &"base:move/taunt/tier3", &"base:move/perseverance/tier5", &"base:move/destabilize/tier2", &"base:move/mirror_skin/tier3", &"base:move/skillful/tier1", &"base:move/slow/tier2"])
+}, {
+"definition_id": &"base:minion/fire_frog_3", "level": 50, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/sear/tier1", &"base:move/fire_shot/tier5", &"base:move/inflame/tier4", &"base:move/rock_blast/tier2", &"base:move/vicious/tier5", &"base:move/intense_flame/tier3"])
+}, {
+"definition_id": &"base:minion/ground_plant_3", "level": 50, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/razor_vine/tier1", &"base:move/regrowth/tier5", &"base:move/efficiency/tier3", &"base:move/nourish/tier5", &"base:move/priest/tier5", &"base:move/energize/tier1"])
+}, {
+"definition_id": &"base:minion/fire_pig_3", "level": 50, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/burn/tier1", &"base:move/static_pummel/tier5", &"base:move/spark/tier4", &"base:move/quickness/tier4", &"base:move/vicious/tier3", &"base:move/fire_bash/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 949, "eggery_keys": 1}}
+source_trainer_id = &"base:trainer/standard/22/6"
+source_floor_index = 22
+source_level_offset = 0
+source_trainer_type = &"TrainerType.BOSS_TRAINER"
+id = &"base:encounter/floor23_trainer_6_boss"
+display_name = "Floor 23 — source trainer 6"
+description = "Source start dialogue: A Grand Sage must balance serenity and passion, it is one of the true tests of a Grand Sage.\nSource defeat dialogue: Your passion is a complement to your serenity.  Here is the third piece to the Sage Seal of Serenity."
+legacy_class_name = "TrainerSystem.CreateFloor19"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1264"
+battle_modifier_configuration = {"move_timer": {"interval": 6, "source_power": 2, "move_id": "base:move/inner_force/tier1", "buff_move_id": "base:move/agile_inspiration/tier3", "actor": {"instance_id": "floor23-timer-6", "definition_id": "internal:minion/bmod_3", "team": 1, "level": 50, "move_ids": ["base:move/inner_force/tier1"]}}}

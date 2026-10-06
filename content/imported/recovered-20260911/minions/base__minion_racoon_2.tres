@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_skkdi"]
+
+[resource]
+script = ExtResource("1_skkdi")
+type_ids = Array[StringName]([&"base:type/normal"])
+base_health = 40
+base_energy = 50
+base_attack = 50
+base_healing = 35
+base_speed = 65
+experience_gain_rate = 2
+gem_slots = 2
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/soak/tier1", &"base:move/sear/tier1", &"base:move/spark/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/racoon_water", &"base:talent_tree/racoon_fire", &"base:talent_tree/racoon_electric"])
+presentation_id = &"base:presentation/minion/normalraccoon2"
+id = &"base:minion/racoon_2"
+display_name = "Kleptoon"
+legacy_numeric_id = 24
+legacy_class_name = "Racoon_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1651"

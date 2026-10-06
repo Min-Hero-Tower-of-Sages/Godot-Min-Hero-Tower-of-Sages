@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b7bqxdj4tp08d"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_6jbrx"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_tlpy3"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_dkuo8"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="4_yv7ta"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="5_fgmt8"]
+
+[sub_resource type="Resource" id="Resource_prb61"]
+script = ExtResource("1_6jbrx")
+scaling = 1
+roll_scope = 1
+amount = 115
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_tlpy3")
+id = &"base:move/piercing_charge/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1364"
+
+[sub_resource type="Resource" id="Resource_lm4n1"]
+script = ExtResource("1_6jbrx")
+kind = 12
+amount = -20
+duration = 3
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_dkuo8")
+id = &"base:move/piercing_charge/tier4/effect/01_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1364"
+
+[sub_resource type="Resource" id="Resource_n33ey"]
+script = ExtResource("1_6jbrx")
+kind = 12
+target_scope = 2
+phase = 2
+amount = -20
+duration = 3
+legacy_order = 2
+executor = ExtResource("3_dkuo8")
+id = &"base:move/piercing_charge/tier4/effect/02_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1364"
+
+[sub_resource type="Resource" id="Resource_m4emh"]
+script = ExtResource("1_6jbrx")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/attack"
+legacy_order = 3
+executor = ExtResource("4_yv7ta")
+id = &"base:move/piercing_charge/tier4/effect/03_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1364"
+
+[sub_resource type="Resource" id="Resource_4xwen"]
+script = ExtResource("1_6jbrx")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/attack"
+legacy_order = 4
+executor = ExtResource("4_yv7ta")
+id = &"base:move/piercing_charge/tier4/effect/04_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1364"
+
+[resource]
+script = ExtResource("5_fgmt8")
+family_id = &"base:move_family/piercing_charge"
+tier = 4
+type_id = &"base:type/dino"
+legacy_class_id = 89
+legacy_visual_id = 89
+legacy_dot_visual_id = 89
+buff_icon_name = &"moveIcon_piercingCharge"
+energy_cost = 30
+charge_turns = 1
+effects = Array[ExtResource("1_6jbrx")]([SubResource("Resource_prb61"), SubResource("Resource_lm4n1"), SubResource("Resource_n33ey"), SubResource("Resource_m4emh"), SubResource("Resource_4xwen")])
+presentation_id = &"base:presentation/move/move_icon_piercing_charge"
+id = &"base:move/piercing_charge/tier4"
+display_name = "Piercing Charge  lv.4"
+legacy_numeric_id = 383
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

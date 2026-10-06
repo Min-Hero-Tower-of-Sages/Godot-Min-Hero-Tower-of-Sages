@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ContentPackDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/content_pack_definition.gd" id="1_pack"]
+[ext_resource type="Script" path="res://src/content/content_definition.gd" id="2_definition"]
+
+[resource]
+script = ExtResource("1_pack")
+dependencies = Array[StringName]([&"base:pack/recovered", &"base:pack/campaign_slice"])
+definitions = Array[ExtResource("2_definition")]([])
+source_room_graph_path = "res://content/base/campaigns/floor_28_room_graph.json"
+id = &"base:pack/floor_28_slice"
+display_name = "Standard tower — floor 28"

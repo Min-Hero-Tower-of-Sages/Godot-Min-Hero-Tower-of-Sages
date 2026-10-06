@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dkbvbk1j6y7jv"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_c7nls"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="2_72yxr"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="3_h3xwq"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_7jr2v"]
+
+[sub_resource type="Resource" id="Resource_f6xwm"]
+script = ExtResource("1_c7nls")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 10
+executor = ExtResource("2_72yxr")
+id = &"base:move/martyr/tier1/effect/00_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2573"
+
+[sub_resource type="Resource" id="Resource_oyjy8"]
+script = ExtResource("1_c7nls")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = 1
+stat_type_id = &"base:stat/healing"
+legacy_order = 1
+executor = ExtResource("3_h3xwq")
+id = &"base:move/martyr/tier1/effect/01_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2573"
+
+[resource]
+script = ExtResource("4_7jr2v")
+family_id = &"base:move_family/martyr"
+type_id = &"base:type/holy"
+legacy_class_id = 153
+legacy_visual_id = 188
+legacy_dot_visual_id = 188
+buff_icon_name = &"moveIcon_martyr"
+energy_cost = 0
+cooldown_turns = 3
+target_side = 2
+enemy_target_count = 0
+ally_target_count = 1
+only_self = true
+effects = Array[ExtResource("1_c7nls")]([SubResource("Resource_f6xwm"), SubResource("Resource_oyjy8")])
+presentation_id = &"base:presentation/move/move_icon_martyr"
+id = &"base:move/martyr/tier1"
+display_name = "Martyr"
+legacy_numeric_id = 700
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

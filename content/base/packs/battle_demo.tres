@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ContentPackDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/content_pack_definition.gd" id="1_pack"]
+[ext_resource type="Script" path="res://src/content/content_definition.gd" id="2_definition"]
+[ext_resource type="Resource" path="res://content/base/encounters/hard_floor_1_room_1.tres" id="3_encounter"]
+
+[resource]
+script = ExtResource("1_pack")
+dependencies = Array[StringName]([&"base:pack/recovered"])
+definitions = Array[ExtResource("2_definition")]([ExtResource("3_encounter")])
+id = &"base:pack/battle_demo"
+display_name = "Battle presentation source fixtures"
+source_mod = &"base"
+enabled_by_default = true

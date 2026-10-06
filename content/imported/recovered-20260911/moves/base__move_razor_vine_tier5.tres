@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://c8f7f6f33swks"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_tfnmr"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_pebix"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="3_0mktl"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_yq5up"]
+
+[sub_resource type="Resource" id="Resource_awrrj"]
+script = ExtResource("1_tfnmr")
+scaling = 1
+roll_scope = 1
+amount = 75
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_pebix")
+id = &"base:move/razor_vine/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1503"
+
+[sub_resource type="Resource" id="Resource_0bt5s"]
+script = ExtResource("1_tfnmr")
+kind = 1
+target_scope = 0
+phase = 3
+scaling = 2
+roll_scope = 1
+amount = 10
+legacy_order = 1
+executor = ExtResource("3_0mktl")
+id = &"base:move/razor_vine/tier5/effect/01_heal_actor"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1503"
+
+[resource]
+script = ExtResource("4_yq5up")
+family_id = &"base:move_family/razor_vine"
+tier = 5
+type_id = &"base:type/plant"
+legacy_class_id = 103
+legacy_visual_id = 103
+legacy_dot_visual_id = 103
+buff_icon_name = &"moveIcon_razorVine"
+energy_cost = 30
+effects = Array[ExtResource("1_tfnmr")]([SubResource("Resource_awrrj"), SubResource("Resource_0bt5s")])
+presentation_id = &"base:presentation/move/move_icon_razor_vine"
+id = &"base:move/razor_vine/tier5"
+display_name = "Blade Vine"
+legacy_numeric_id = 454
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

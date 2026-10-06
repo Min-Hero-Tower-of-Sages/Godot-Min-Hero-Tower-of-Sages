@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/effect_definition.gd" id="1_r1rk8"]
+[ext_resource type="Script" path="res://src/content/move_definition.gd" id="2_md3qb"]
+
+[resource]
+script = ExtResource("2_md3qb")
+family_id = &"base:move_family/group_reflect"
+tier = 2
+available = false
+energy_cost = 0
+id = &"base:move/group_reflect/tier2"
+display_name = "Group Reflect (unavailable)"
+description = "Declared in the source ID table but never constructed by the recovered move container."
+legacy_numeric_id = 136
+legacy_class_name = "group_reflect_t2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\States\\MinionMoveID.as"

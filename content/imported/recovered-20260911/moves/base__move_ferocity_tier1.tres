@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://ehf7lg2xihjm"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_0b2qq"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_rb84f"]
+
+[sub_resource type="Resource" id="Resource_detyx"]
+script = ExtResource("1_0b2qq")
+kind = 18
+target_scope = 0
+phase = 4
+amount = 15
+stat_type_id = &"base:stat/attack"
+id = &"base:move/ferocity/tier1/effect/00_stat_percent_actor"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3359"
+
+[resource]
+script = ExtResource("2_rb84f")
+family_id = &"base:move_family/ferocity"
+legacy_class_id = 36
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_ferocity"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_0b2qq")]([SubResource("Resource_detyx")])
+presentation_id = &"base:presentation/move/move_icon_ferocity"
+id = &"base:move/ferocity/tier1"
+display_name = "Ferocity"
+legacy_numeric_id = 245
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

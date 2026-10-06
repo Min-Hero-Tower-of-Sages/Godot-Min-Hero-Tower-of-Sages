@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_05624"]
+
+[resource]
+script = ExtResource("1_05624")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/waterbird_water/node/0_0",
+"move_ids": ["base:move/fresh_stream/tier1", "base:move/fresh_stream/tier2", "base:move/fresh_stream/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1631.0, 1632.0, 1633.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterbird_water/node/1_0",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1634.0, 1635.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterbird_water/node/2_0",
+"move_ids": ["base:move/waterjet/tier1", "base:move/waterjet/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1636.0, 1637.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterbird_water/node/0_1",
+"move_ids": ["base:move/rainfall/tier1", "base:move/rainfall/tier2", "base:move/rainfall/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1638.0, 1639.0, 1640.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterbird_water/node/1_1",
+"move_ids": ["base:move/ferocity/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/waterbird_water/node/1_0"],
+"row": 1.0,
+"source_lines": [1641.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterbird_water/node/2_1",
+"move_ids": ["base:move/waterjet/tier3", "base:move/waterjet/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/waterbird_water/node/2_0"],
+"row": 1.0,
+"source_lines": [1642.0, 1643.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterbird_water/node/0_2",
+"move_ids": ["base:move/soak/tier3", "base:move/soak/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1644.0, 1645.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterbird_water/node/1_2",
+"move_ids": ["base:move/ferocity/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterbird_water/node/1_1"],
+"row": 2.0,
+"source_lines": [1646.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterbird_water/node/2_2",
+"move_ids": ["base:move/waterjet/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterbird_water/node/2_1"],
+"row": 2.0,
+"source_lines": [1647.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterbird_water/node/0_3",
+"move_ids": ["base:move/soak/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterbird_water/node/0_2"],
+"row": 3.0,
+"source_lines": [1648.0]
+}])
+id = &"base:talent_tree/waterbird_water"
+display_name = "Water"
+legacy_class_name = "WaterBird_Water"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1628"

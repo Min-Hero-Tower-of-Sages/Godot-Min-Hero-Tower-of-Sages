@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ContentPackDefinition" format=3 uid="uid://dtuf0md1mbmwq"]
+
+[ext_resource type="Script" uid="uid://dvhem0li8fk8o" path="res://src/content/content_pack_definition.gd" id="1_pack"]
+[ext_resource type="Script" uid="uid://2g6xrgmdjdmg" path="res://src/content/content_definition.gd" id="2_definition"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_1_trainer_1.tres" id="3_encounter"]
+[ext_resource type="Resource" uid="uid://plg8wlvqh2qi" path="res://content/base/campaigns/standard_tower.tres" id="6_campaign"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_1_trainer_2.tres" id="9_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_1_trainer_3.tres" id="10_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_1_trainer_4_hard.tres" id="11_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_1_trainer_5_expert.tres" id="12_encounter"]
+[ext_resource type="Resource" path="res://content/base/encounters/floor_1_trainer_6_boss.tres" id="13_encounter"]
+
+[resource]
+script = ExtResource("1_pack")
+dependencies = Array[StringName]([&"base:pack/recovered"])
+definitions = Array[ExtResource("2_definition")]([ExtResource("3_encounter"), ExtResource("6_campaign"), ExtResource("9_encounter"), ExtResource("10_encounter"), ExtResource("11_encounter"), ExtResource("12_encounter"), ExtResource("13_encounter")])
+source_room_graph_path = "res://content/base/campaigns/floor_1_room_graph.json"
+id = &"base:pack/campaign_slice"
+display_name = "Standard tower — first floor campaign slice"

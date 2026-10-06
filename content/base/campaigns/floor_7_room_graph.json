@@ -1,0 +1,550 @@
+{
+  "floor_index": 6,
+  "source_floor_index": 6,
+  "source_room_order": [
+    "base:room/level_2_2_h1",
+    "base:room/level_2_2_a",
+    "base:room/level_2_2_b",
+    "base:room/level_2_2_c",
+    "base:room/level_2_2_d",
+    "base:room/floor_2_expert_room_electric",
+    "base:room/level_2_2_e",
+    "base:room/level_2_2_h2",
+    "base:room/level_2_2_h3",
+    "base:room/level_2_2_h4",
+    "base:room/level_2_2_eggery"
+  ],
+  "entry_room_id": "base:room/level_2_2_h1",
+  "expert_layout_source": {
+    "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/MainTower/ExpertRoom_fire.as",
+    "source_payload_status": "literal AddObject/drawRect calls normalized without geometry changes"
+  },
+  "normalized_embedded_payloads": [
+    {
+      "room_id": "base:room/level_2_2_eggery",
+      "source_binary": "development/extracted/full-20260908/binaryData/1543.bin",
+      "normalized_payload": "content/base/room_payloads/source/level_2_2_eggery.json",
+      "identity_source": "shared_embedded_binary_explicit_owner",
+      "owner_class_name": "Utilities.LevelContainer_Level_2_2_Eggery",
+      "source_payload_status": "source wrapper Utilities.LevelContainer_Level_2_2_Eggery explicitly embeds 1543.bin; payload id and owner are floor-local while geometry is retained"
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_2_2_h1",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    },
+    {
+      "room_id": "base:room/level_2_2_eggery",
+      "transition_id": 100,
+      "source_sprite": "roomTransitionObject_lobbyFromEggery",
+      "target_route": "lobby"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "base:room/level_2_2_h1",
+      "display_name": "Floor 7 — H1",
+      "legacy_class_name": "LevelContainer_Level_2_2_H1",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_H1",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_H1.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_h1.json",
+      "room_index": 0,
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_2_2_a",
+          "target_spawn_id": "entry-1"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_a",
+      "display_name": "Floor 7 — A",
+      "legacy_class_name": "LevelContainer_Level_2_2_A",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_A",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_A.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_a.json",
+      "room_index": 1,
+      "exits": [
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_2_2_h2",
+          "target_spawn_id": "entry-2"
+        },
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_2_2_h1",
+          "target_spawn_id": "entry-1"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor7_trainer_1"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 1,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as",
+        "source_method": "CreateFloor6",
+        "source_floor_argument": 6
+      },
+      "interactions": [
+        {
+          "id": "floor-7-trainer-1",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 1,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor7_trainer_1",
+          "first_visit_text": "Ooga booga, ooga booga, ooga booga!!",
+          "lose_text": "Well.....that certainly didn't work!"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_b",
+      "display_name": "Floor 7 — B",
+      "legacy_class_name": "LevelContainer_Level_2_2_B",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_B",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_B.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_b.json",
+      "room_index": 2,
+      "exits": [
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/floor_2_expert_room_electric",
+          "target_spawn_id": "entry-expert"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor7_trainer_2"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 2,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as",
+        "source_method": "CreateFloor6",
+        "source_floor_argument": 6
+      },
+      "interactions": [
+        {
+          "id": "floor-7-trainer-2",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 2,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor7_trainer_2",
+          "first_visit_text": "One must train very hard to reach the pinnacle.",
+          "lose_text": "You train well, very well."
+        }
+      ],
+      "source_spawns": [
+        {
+          "id": "expert-return",
+          "source_marker": "expert_roomTransitionObject"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_c",
+      "display_name": "Floor 7 — C",
+      "legacy_class_name": "LevelContainer_Level_2_2_C",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_C",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_C.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_c.json",
+      "room_index": 3,
+      "exits": [
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_2_2_h3",
+          "target_spawn_id": "entry-5"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor7_trainer_3"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 3,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as",
+        "source_method": "CreateFloor6",
+        "source_floor_argument": 6
+      },
+      "interactions": [
+        {
+          "id": "floor-7-trainer-3",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 3,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor7_trainer_3",
+          "first_visit_text": "Hehehehe, what bringggs you here!?",
+          "lose_text": "Arrgh, you're too strong! Stay away!"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_d",
+      "display_name": "Floor 7 — D",
+      "legacy_class_name": "LevelContainer_Level_2_2_D",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_D",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_D.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_d.json",
+      "room_index": 4,
+      "exits": [
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_2_2_h3",
+          "target_spawn_id": "entry-6"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor7_trainer_4_hard"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 4,
+        "trainer_type": "TrainerType.HARD_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as",
+        "source_method": "CreateFloor6",
+        "source_floor_argument": 6
+      },
+      "interactions": [
+        {
+          "id": "floor-7-trainer-4",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 4,
+          "trainer_type": "TrainerType.HARD_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor7_trainer_4_hard"
+        }
+      ]
+    },
+    {
+      "id": "base:room/floor_2_expert_room_electric",
+      "display_name": "Floor 7 — expert trial room",
+      "legacy_class_name": "ExpertRoom_fire",
+      "source_symbol": "TopDown.Levels.MainTower.ExpertRoom_fire",
+      "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/MainTower/ExpertRoom_fire.as",
+      "source_payload": "res://content/base/room_payloads/source/expert_room_floor7_fire.json",
+      "room_index": 5,
+      "encounter_ids": [
+        "base:encounter/floor7_trainer_5_expert"
+      ],
+      "exits": [
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/level_2_2_b",
+          "target_spawn_id": "expert-return"
+        }
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 5,
+        "trainer_type": "TrainerType.EXPERT_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as",
+        "source_method": "CreateFloor6",
+        "source_floor_argument": 6
+      },
+      "interactions": [
+        {
+          "id": "floor-7-trainer-5",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 5,
+          "trainer_type": "TrainerType.EXPERT_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor7_trainer_5_expert"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_e",
+      "display_name": "Floor 7 — E",
+      "legacy_class_name": "LevelContainer_Level_2_2_E",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_E",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_E.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_e.json",
+      "room_index": 6,
+      "exits": [
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_2_2_h2",
+          "target_spawn_id": "entry-7"
+        },
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_2_2_h4",
+          "target_spawn_id": "entry-8"
+        }
+      ],
+      "encounter_ids": [
+        "base:encounter/floor7_trainer_6_boss"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 6,
+        "trainer_type": "TrainerType.BOSS_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as",
+        "source_method": "CreateFloor6",
+        "source_floor_argument": 6
+      },
+      "interactions": [
+        {
+          "id": "floor-7-trainer-6",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 6,
+          "trainer_type": "TrainerType.BOSS_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor7_trainer_6_boss",
+          "first_visit_text": "I can see your passion is truely deepening!",
+          "lose_text": "Excellent!  Here is the second piece of the Sage Seal of Passion!"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_h2",
+      "display_name": "Floor 7 — H2",
+      "legacy_class_name": "LevelContainer_Level_2_2_H2",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_H2",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_H2.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_h2.json",
+      "room_index": 7,
+      "exits": [
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_2_2_a",
+          "target_spawn_id": "entry-2"
+        },
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_2_2_e",
+          "target_spawn_id": "entry-7"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_h3",
+      "display_name": "Floor 7 — H3",
+      "legacy_class_name": "LevelContainer_Level_2_2_H3",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_H3",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_H3.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_h3.json",
+      "room_index": 8,
+      "exits": [
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_2_2_d",
+          "target_spawn_id": "entry-6"
+        },
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_2_2_c",
+          "target_spawn_id": "entry-5"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_h4",
+      "display_name": "Floor 7 — hatchery passage",
+      "legacy_class_name": "LevelContainer_Level_2_2_H4",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_H4",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_H4.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_h4.json",
+      "room_index": 9,
+      "exits": [
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_2_2_e",
+          "target_spawn_id": "entry-8"
+        },
+        {
+          "transition_id": 9,
+          "target_room_id": "base:room/level_2_2_eggery",
+          "target_spawn_id": "entry-9"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_2_eggery",
+      "display_name": "Floor 7 — Eggery",
+      "legacy_class_name": "LevelContainer_Level_2_2_Eggery",
+      "source_symbol": "Utilities.LevelContainer_Level_2_2_Eggery",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_2_Eggery.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_2_eggery.json",
+      "room_index": 10,
+      "exits": [
+        {
+          "transition_id": 9,
+          "target_room_id": "base:room/level_2_2_h4",
+          "target_spawn_id": "entry-9"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-7-egg-slot-0",
+          "kind": "egg_pick",
+          "source_zone_id": 0,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        },
+        {
+          "id": "floor-7-egg-slot-1",
+          "kind": "egg_pick",
+          "source_zone_id": 1,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        },
+        {
+          "id": "floor-7-egg-slot-2",
+          "kind": "egg_pick",
+          "source_zone_id": 2,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        },
+        {
+          "id": "floor-7-egg-slot-3",
+          "kind": "egg_pick",
+          "source_zone_id": 3,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        },
+        {
+          "id": "floor-7-egg-slot-4",
+          "kind": "egg_pick",
+          "source_zone_id": 4,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        },
+        {
+          "id": "floor-7-egg-slot-5",
+          "kind": "egg_pick",
+          "source_zone_id": 5,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        },
+        {
+          "id": "floor-7-egg-slot-6",
+          "kind": "egg_pick",
+          "source_zone_id": 6,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        },
+        {
+          "id": "floor-7-egg-slot-7",
+          "kind": "egg_pick",
+          "source_zone_id": 7,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        },
+        {
+          "id": "floor-7-egg-slot-8",
+          "kind": "egg_pick",
+          "source_zone_id": 8,
+          "candidates": [
+            "base:minion/fire_frog_2",
+            "base:minion/demonic_cat_2",
+            "base:minion/chameleon_1"
+          ],
+          "weights": [
+            50,
+            30,
+            20
+          ]
+        }
+      ]
+    }
+  ],
+  "eggery_source": {
+    "source_location": "development/extracted/full-20260908/script/scripts/PresistentData/StaticData.as",
+    "source_method": "SetupTheEggeryInfo",
+    "source_floor_index": 6,
+    "source_minion_level_base": 21,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ],
+    "source_candidates": [
+      {
+        "source_minion": "fire_frog_2",
+        "weight": 50
+      },
+      {
+        "source_minion": "demonic_cat_2",
+        "weight": 30
+      },
+      {
+        "source_minion": "chameleon_1",
+        "weight": 20
+      }
+    ]
+  }
+}

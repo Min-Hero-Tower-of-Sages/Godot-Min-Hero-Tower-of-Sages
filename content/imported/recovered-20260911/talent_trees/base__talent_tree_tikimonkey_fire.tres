@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_ikpcg"]
+
+[resource]
+script = ExtResource("1_ikpcg")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/tikimonkey_fire/node/0_0",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2202.0, 2203.0, 2204.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tikimonkey_fire/node/1_0",
+"move_ids": ["base:move/burn/tier2", "base:move/burn/tier3", "base:move/burn/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2205.0, 2206.0, 2207.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tikimonkey_fire/node/2_0",
+"move_ids": ["base:move/inflame/tier1", "base:move/inflame/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2208.0, 2209.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tikimonkey_fire/node/0_1",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tikimonkey_fire/node/0_0"],
+"row": 1.0,
+"source_lines": [2210.0, 2211.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tikimonkey_fire/node/1_1",
+"move_ids": ["base:move/fire_blast/tier1", "base:move/fire_blast/tier2", "base:move/fire_blast/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2212.0, 2213.0, 2214.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tikimonkey_fire/node/2_1",
+"move_ids": ["base:move/inflame/tier3", "base:move/inflame/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/tikimonkey_fire/node/2_0"],
+"row": 1.0,
+"source_lines": [2215.0, 2216.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tikimonkey_fire/node/0_2",
+"move_ids": ["base:move/wildfire/tier1", "base:move/wildfire/tier2", "base:move/wildfire/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2217.0, 2218.0, 2219.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tikimonkey_fire/node/1_2",
+"move_ids": ["base:move/blaze/tier3", "base:move/blaze/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2220.0, 2221.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tikimonkey_fire/node/1_3",
+"move_ids": ["base:move/blaze/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tikimonkey_fire/node/1_2"],
+"row": 3.0,
+"source_lines": [2222.0]
+}])
+id = &"base:talent_tree/tikimonkey_fire"
+display_name = "Fire"
+legacy_class_name = "TikiMonkey_Fire"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2199"

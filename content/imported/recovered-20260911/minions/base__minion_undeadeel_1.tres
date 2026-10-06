@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_3tspx"]
+
+[resource]
+script = ExtResource("1_3tspx")
+type_ids = Array[StringName]([&"base:type/undead", &"base:type/water"])
+base_health = 85
+base_energy = 75
+base_attack = 85
+base_healing = 45
+base_speed = 35
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/pound/tier3"])
+specialization_move_ids = Array[StringName]([&"base:move/water_slam/tier1", &"base:move/rancid_bite/tier1", &"base:move/energizing_inspiration/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/undeadeel_water", &"base:talent_tree/undeadeel_undead", &"base:talent_tree/undeadeel_inspire"])
+presentation_id = &"base:presentation/minion/undeadeel"
+id = &"base:minion/undeadeel_1"
+display_name = "Eeliforce"
+legacy_numeric_id = 96
+legacy_class_name = "UndeadEel_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1001"

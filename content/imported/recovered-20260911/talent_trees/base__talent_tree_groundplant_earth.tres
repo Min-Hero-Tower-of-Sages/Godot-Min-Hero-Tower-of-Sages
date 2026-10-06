@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_pohr2"]
+
+[resource]
+script = ExtResource("1_pohr2")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/groundplant_earth/node/0_0",
+"move_ids": ["base:move/energize/tier1", "base:move/energize/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [604.0, 605.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_earth/node/1_0",
+"move_ids": ["base:move/rock_throw/tier1", "base:move/rock_throw/tier2", "base:move/rock_throw/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [606.0, 607.0, 608.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_earth/node/2_0",
+"move_ids": ["base:move/earthquake/tier1", "base:move/earthquake/tier2", "base:move/earthquake/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [609.0, 610.0, 611.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/groundplant_earth/node/0_1",
+"move_ids": ["base:move/concentration/tier1", "base:move/concentration/tier2", "base:move/concentration/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [612.0, 613.0, 614.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_earth/node/1_1",
+"move_ids": ["base:move/chosen_earth/tier1", "base:move/chosen_earth/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [615.0, 616.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_earth/node/2_1",
+"move_ids": ["base:move/taunt/tier1", "base:move/taunt/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [617.0, 618.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/groundplant_earth/node/0_2",
+"move_ids": ["base:move/destabilize/tier1", "base:move/destabilize/tier2", "base:move/destabilize/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [619.0, 620.0, 621.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_earth/node/1_2",
+"move_ids": ["base:move/mud_blast/tier3", "base:move/mud_blast/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [622.0, 623.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_earth/node/2_2",
+"move_ids": ["base:move/mirror_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [624.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/groundplant_earth/node/0_3",
+"move_ids": ["base:move/destabilize/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/groundplant_earth/node/0_2"],
+"row": 3.0,
+"source_lines": [625.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_earth/node/1_3",
+"move_ids": ["base:move/mud_blast/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/groundplant_earth/node/1_2"],
+"row": 3.0,
+"source_lines": [626.0]
+}])
+id = &"base:talent_tree/groundplant_earth"
+display_name = "Earth"
+legacy_class_name = "GroundPlant_Earth"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:601"

@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_4i65u"]
+
+[resource]
+script = ExtResource("1_4i65u")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/undeadeel_inspire/node/0_0",
+"move_ids": ["base:move/poison_tooth/tier1", "base:move/poison_tooth/tier3", "base:move/poison_tooth/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4190.0, 4191.0, 4192.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_inspire/node/1_0",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier3", "base:move/tackle/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4193.0, 4194.0, 4195.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_inspire/node/2_0",
+"move_ids": ["base:move/reflect_damage/tier1", "base:move/reflect_damage/tier2", "base:move/reflect_damage/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4196.0, 4197.0, 4198.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/undeadeel_inspire/node/0_1",
+"move_ids": ["base:move/invigorate/tier1", "base:move/invigorate/tier2", "base:move/invigorate/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4199.0, 4200.0, 4201.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_inspire/node/1_1",
+"move_ids": ["base:move/tackle/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_inspire/node/1_0"],
+"row": 1.0,
+"source_lines": [4202.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_inspire/node/2_1",
+"move_ids": ["base:move/perseverance/tier1", "base:move/perseverance/tier2", "base:move/perseverance/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4203.0, 4204.0, 4205.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_inspire/node/1_2",
+"move_ids": ["base:move/energizing_inspiration/tier3", "base:move/energizing_inspiration/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4206.0, 4207.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_inspire/node/2_2",
+"move_ids": ["base:move/perseverance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_inspire/node/2_1"],
+"row": 2.0,
+"source_lines": [4208.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_inspire/node/1_3",
+"move_ids": ["base:move/energizing_inspiration/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_inspire/node/1_2"],
+"row": 3.0,
+"source_lines": [4209.0]
+}])
+id = &"base:talent_tree/undeadeel_inspire"
+display_name = "Inspire"
+legacy_class_name = "UndeadEel_Inspire"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4187"

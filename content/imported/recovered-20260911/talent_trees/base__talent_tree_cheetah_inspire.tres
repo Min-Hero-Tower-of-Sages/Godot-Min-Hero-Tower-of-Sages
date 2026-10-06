@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_enu28"]
+
+[resource]
+script = ExtResource("1_enu28")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/cheetah_inspire/node/0_0",
+"move_ids": ["base:move/claw/tier3", "base:move/claw/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2566.0, 2567.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/cheetah_inspire/node/1_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2568.0, 2569.0, 2570.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/cheetah_inspire/node/2_0",
+"move_ids": ["base:move/tackle/tier1", "base:move/tackle/tier2", "base:move/tackle/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2571.0, 2572.0, 2573.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/cheetah_inspire/node/0_1",
+"move_ids": ["base:move/claw/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/cheetah_inspire/node/0_0"],
+"row": 1.0,
+"source_lines": [2574.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/cheetah_inspire/node/1_1",
+"move_ids": ["base:move/evil_eye/tier1", "base:move/evil_eye/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2575.0, 2576.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/cheetah_inspire/node/2_1",
+"move_ids": ["base:move/tackle/tier4", "base:move/tackle/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/cheetah_inspire/node/2_0"],
+"row": 1.0,
+"source_lines": [2577.0, 2578.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/cheetah_inspire/node/1_2",
+"move_ids": ["base:move/agile_inspiration/tier2", "base:move/agile_inspiration/tier3", "base:move/agile_inspiration/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2579.0, 2580.0, 2581.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/cheetah_inspire/node/2_2",
+"move_ids": ["base:move/static_pummel/tier1", "base:move/static_pummel/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2582.0, 2583.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/cheetah_inspire/node/1_3",
+"move_ids": ["base:move/agile_inspiration/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/cheetah_inspire/node/1_2"],
+"row": 3.0,
+"source_lines": [2584.0]
+}])
+id = &"base:talent_tree/cheetah_inspire"
+display_name = "Inspire"
+legacy_class_name = "Cheetah_Inspire"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2563"

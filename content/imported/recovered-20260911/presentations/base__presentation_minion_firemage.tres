@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_vdv63"]
+
+[resource]
+script = ExtResource("1_vdv63")
+legacy_sprite_name = &"fireMage"
+icon_offset = Vector2i(21, -6)
+id = &"base:presentation/minion/firemage"
+display_name = "Banesha presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:766"

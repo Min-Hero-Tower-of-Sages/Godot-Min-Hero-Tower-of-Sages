@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_4wg1l"]
+
+[resource]
+script = ExtResource("1_4wg1l")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/0_0",
+"move_ids": ["base:move/priest/tier1", "base:move/priest/tier2", "base:move/priest/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1828.0, 1829.0, 1830.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/1_0",
+"move_ids": ["base:move/regrowth/tier1", "base:move/regrowth/tier2", "base:move/regrowth/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1831.0, 1832.0, 1833.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/2_0",
+"move_ids": ["base:move/drain/tier1", "base:move/drain/tier2", "base:move/drain/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1834.0, 1835.0, 1836.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/0_1",
+"move_ids": ["base:move/hope/tier1", "base:move/hope/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1837.0, 1838.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/1_1",
+"move_ids": ["base:move/skillful/tier1", "base:move/skillful/tier2", "base:move/skillful/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1839.0, 1840.0, 1841.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/2_1",
+"move_ids": ["base:move/resurgence/tier1", "base:move/resurgence/tier2", "base:move/resurgence/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1842.0, 1843.0, 1844.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/0_2",
+"move_ids": ["base:move/hope/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/watergrasshorse_grass/node/0_1"],
+"row": 2.0,
+"source_lines": [1845.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/1_2",
+"move_ids": ["base:move/swift_mend/tier3", "base:move/swift_mend/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1846.0, 1847.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/2_2",
+"move_ids": ["base:move/serenity/tier1", "base:move/serenity/tier2", "base:move/serenity/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1848.0, 1849.0, 1850.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/watergrasshorse_grass/node/1_3",
+"move_ids": ["base:move/swift_mend/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/watergrasshorse_grass/node/1_2"],
+"row": 3.0,
+"source_lines": [1851.0]
+}])
+id = &"base:talent_tree/watergrasshorse_grass"
+display_name = "Grass"
+legacy_class_name = "WaterGrassHorse_Grass"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1825"

@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://d0m4bvq3d01kr"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ey47x"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_8nfkd"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_kqm2j"]
+
+[sub_resource type="Resource" id="Resource_q6t13"]
+script = ExtResource("1_ey47x")
+scaling = 1
+roll_scope = 1
+amount = 30
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_8nfkd")
+id = &"base:move/volley/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2399"
+
+[resource]
+script = ExtResource("3_kqm2j")
+family_id = &"base:move_family/volley"
+tier = 3
+type_id = &"base:type/flying"
+legacy_class_id = 144
+legacy_visual_id = 144
+legacy_dot_visual_id = 144
+buff_icon_name = &"moveIcon_volley"
+energy_cost = 25
+target_mode = 1
+target_count = 5
+enemy_target_count = 5
+effects = Array[ExtResource("1_ey47x")]([SubResource("Resource_q6t13")])
+presentation_id = &"base:presentation/move/move_icon_volley"
+visuals_have_buffer = false
+id = &"base:move/volley/tier3"
+display_name = "Volley  lv.3"
+legacy_numeric_id = 657
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

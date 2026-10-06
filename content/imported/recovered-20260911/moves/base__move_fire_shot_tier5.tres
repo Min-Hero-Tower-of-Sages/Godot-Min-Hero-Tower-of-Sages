@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://wix8r80h1hcg"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_p1ddr"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_k1yoa"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_fwgx6"]
+
+[sub_resource type="Resource" id="Resource_3g6lb"]
+script = ExtResource("1_p1ddr")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 50
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_k1yoa")
+id = &"base:move/fire_shot/tier5/effect/00_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:527"
+
+[resource]
+script = ExtResource("3_fwgx6")
+family_id = &"base:move_family/fire_shot"
+tier = 5
+type_id = &"base:type/fire"
+legacy_class_id = 12
+legacy_visual_id = 12
+legacy_dot_visual_id = 12
+buff_icon_name = &"moveIcon_fireball"
+energy_cost = 75
+target_mode = 2
+target_count = 3
+enemy_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_p1ddr")]([SubResource("Resource_3g6lb")])
+presentation_id = &"base:presentation/move/move_icon_fireball"
+visuals_have_buffer = false
+id = &"base:move/fire_shot/tier5"
+display_name = "Flame Cannon"
+legacy_numeric_id = 64
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

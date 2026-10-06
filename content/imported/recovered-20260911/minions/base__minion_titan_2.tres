@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_uy0l5"]
+
+[resource]
+script = ExtResource("1_uy0l5")
+type_ids = Array[StringName]([&"base:type/titan"])
+base_health = 85
+base_energy = 70
+base_attack = 85
+base_healing = 80
+base_speed = 75
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/titan_slash/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/dominate/tier1", &"base:move/taunt/tier2", &"base:move/titan_light/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/titan2_titan", &"base:talent_tree/titan2_guard", &"base:talent_tree/titan2_healer"])
+presentation_id = &"base:presentation/minion/titan2"
+id = &"base:minion/titan_2"
+display_name = "Seiryu"
+legacy_numeric_id = 101
+legacy_class_name = "Titan2_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2605"

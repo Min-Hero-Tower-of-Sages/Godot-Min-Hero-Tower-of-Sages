@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_hwmpo"]
+
+[resource]
+script = ExtResource("1_hwmpo")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/imammoth_thaw/node/0_0",
+"move_ids": ["base:move/coldfront/tier1", "base:move/coldfront/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [83.0, 84.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/imammoth_thaw/node/1_0",
+"move_ids": ["ice_floor:move/ihorn/tier2", "ice_floor:move/ihorn/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [85.0, 86.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/imammoth_thaw/node/2_0",
+"move_ids": ["base:move/mystic_ice/tier1", "base:move/mystic_ice/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [87.0, 88.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/imammoth_thaw/node/0_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [89.0, 90.0, 91.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/imammoth_thaw/node/1_1",
+"move_ids": ["ice_floor:move/ihorn/tier4", "ice_floor:move/ihorn/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/imammoth_thaw/node/1_0"],
+"row": 1.0,
+"source_lines": [92.0, 93.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/imammoth_thaw/node/2_1",
+"move_ids": ["ice_floor:move/istrike/tier2", "ice_floor:move/istrike/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [94.0, 95.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/imammoth_thaw/node/0_2",
+"move_ids": ["base:move/vicious/tier4", "base:move/vicious/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/imammoth_thaw/node/0_1"],
+"row": 2.0,
+"source_lines": [96.0, 97.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/imammoth_thaw/node/1_2",
+"move_ids": ["ice_floor:move/ibreath/tier3", "ice_floor:move/ibreath/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [98.0, 99.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/imammoth_thaw/node/2_2",
+"move_ids": ["ice_floor:move/istrike/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/imammoth_thaw/node/2_1"],
+"row": 2.0,
+"source_lines": [100.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/imammoth_thaw/node/1_3",
+"move_ids": ["ice_floor:move/ibreath/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/imammoth_thaw/node/1_2"],
+"row": 3.0,
+"source_lines": [101.0]
+}])
+id = &"base:talent_tree/imammoth_thaw"
+display_name = "Thaw"
+legacy_class_name = "iMammoth_Thaw"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:80"

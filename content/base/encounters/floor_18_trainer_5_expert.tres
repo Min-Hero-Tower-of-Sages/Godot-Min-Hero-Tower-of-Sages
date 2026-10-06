@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/trex_2", "level": 43, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/wild_tackle/tier1", &"base:move/prehistoric_bite/tier1", &"base:move/inner_force/tier1", &"base:move/ferocity/tier5", &"base:move/reckless_grasp/tier5", &"base:move/fire_ram/tier5", &"base:move/crazed_blast/tier5", &"base:move/reckless_dash/tier3"])
+}, {
+"definition_id": &"base:minion/racoon_2", "level": 43, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/soak/tier5", &"base:move/concentration/tier3", &"base:move/hailstone/tier3", &"base:move/efficiency/tier1", &"base:move/mirror_skin/tier3", &"base:move/vicious/tier2", &"base:move/quickness/tier1"])
+}, {
+"definition_id": &"base:minion/racoon_2", "level": 43, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/sear/tier5", &"base:move/vicious/tier4", &"base:move/touch_fire/tier4", &"base:move/fire_blast/tier1", &"base:move/quickness/tier2", &"base:move/inflame/tier2"])
+}, {
+"definition_id": &"base:minion/holymantris_1", "level": 43, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/nourish/tier2", &"base:move/serenity/tier5", &"base:move/priest/tier5", &"base:move/swift_mend/tier1", &"base:move/cleric/tier5", &"base:move/hope/tier1"])
+}, {
+"definition_id": &"base:minion/groundmole_3", "level": 43, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/rock_throw/tier1", &"base:move/perseverance/tier5", &"base:move/taunt/tier5", &"base:move/rock_skin/tier5", &"base:move/crush/tier2", &"base:move/concentration/tier2", &"base:move/fortitude/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/expert"
+rewards = {"first_clear": {"floor_money_basis": 311, "eggery_keys": 1, "random_gems": {"count": 1, "tier": 4}}}
+source_trainer_id = &"base:trainer/standard/17/5"
+source_floor_index = 17
+source_level_offset = 0
+source_trainer_type = &"TrainerType.EXPERT_TRAINER"
+id = &"base:encounter/floor18_trainer_5_expert"
+display_name = "Floor 18 — source trainer 5"
+description = "Source start dialogue: \nSource defeat dialogue: "
+legacy_class_name = "TrainerSystem.CreateFloor15"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1007"

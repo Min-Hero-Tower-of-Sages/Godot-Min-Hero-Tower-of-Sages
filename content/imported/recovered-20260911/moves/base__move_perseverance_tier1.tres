@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b8jqahilkrrj6"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_vggv8"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_2pw5d"]
+
+[sub_resource type="Resource" id="Resource_wsud6"]
+script = ExtResource("1_vggv8")
+kind = 18
+target_scope = 0
+phase = 4
+amount = 15
+stat_type_id = &"base:stat/health"
+id = &"base:move/perseverance/tier1/effect/00_stat_percent_actor"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3311"
+
+[resource]
+script = ExtResource("2_2pw5d")
+family_id = &"base:move_family/perseverance"
+legacy_class_id = 29
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_persaverance"
+is_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_vggv8")]([SubResource("Resource_wsud6")])
+presentation_id = &"base:presentation/move/move_icon_persaverance"
+id = &"base:move/perseverance/tier1"
+display_name = "Perseverance"
+legacy_numeric_id = 210
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dsrn53t0cvlsp"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_kyfoe"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_a5p3b"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_mjua3"]
+
+[sub_resource type="Resource" id="Resource_goth3"]
+script = ExtResource("1_kyfoe")
+scaling = 1
+roll_scope = 1
+amount = 200
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_a5p3b")
+id = &"base:move/hurricane/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2357"
+
+[resource]
+script = ExtResource("3_mjua3")
+family_id = &"base:move_family/hurricane"
+tier = 5
+type_id = &"base:type/flying"
+legacy_class_id = 141
+legacy_visual_id = 141
+legacy_dot_visual_id = 141
+buff_icon_name = &"moveIcon_hurricane"
+energy_cost = 125
+effects = Array[ExtResource("1_kyfoe")]([SubResource("Resource_goth3")])
+presentation_id = &"base:presentation/move/move_icon_hurricane"
+id = &"base:move/hurricane/tier5"
+display_name = "Punishing Cyclone"
+legacy_numeric_id = 644
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

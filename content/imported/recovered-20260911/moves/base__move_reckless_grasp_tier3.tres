@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bvx0xfwolr6dw"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_e3jim"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_8pppt"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="3_0godj"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_r5hkl"]
+
+[sub_resource type="Resource" id="Resource_2smpd"]
+script = ExtResource("1_e3jim")
+scaling = 1
+roll_scope = 1
+amount = 55
+random_bonus = 25
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_8pppt")
+id = &"base:move/reckless_grasp/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1473"
+
+[sub_resource type="Resource" id="Resource_0yusl"]
+script = ExtResource("1_e3jim")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 20
+legacy_order = 1
+executor = ExtResource("3_0godj")
+id = &"base:move/reckless_grasp/tier3/effect/01_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1473"
+
+[resource]
+script = ExtResource("4_r5hkl")
+family_id = &"base:move_family/reckless_grasp"
+tier = 3
+type_id = &"base:type/dino"
+legacy_class_id = 91
+legacy_visual_id = 91
+legacy_dot_visual_id = 91
+buff_icon_name = &"moveIcon_recklessGrasp"
+energy_cost = 20
+effects = Array[ExtResource("1_e3jim")]([SubResource("Resource_2smpd"), SubResource("Resource_0yusl")])
+presentation_id = &"base:presentation/move/move_icon_reckless_grasp"
+id = &"base:move/reckless_grasp/tier3"
+display_name = "Reckless Grasp  lv.3"
+legacy_numeric_id = 392
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

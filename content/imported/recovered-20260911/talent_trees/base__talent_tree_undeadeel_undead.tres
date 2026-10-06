@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_pp5n1"]
+
+[resource]
+script = ExtResource("1_pp5n1")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/undeadeel_undead/node/0_0",
+"move_ids": ["base:move/mortify/tier1", "base:move/mortify/tier3", "base:move/mortify/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4165.0, 4166.0, 4167.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_undead/node/1_0",
+"move_ids": ["base:move/infes/tier1", "base:move/infes/tier2", "base:move/infes/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4168.0, 4169.0, 4170.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_undead/node/2_0",
+"move_ids": ["base:move/skillful/tier1", "base:move/skillful/tier2", "base:move/skillful/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4171.0, 4172.0, 4173.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/undeadeel_undead/node/0_1",
+"move_ids": ["base:move/demoralize/tier1", "base:move/demoralize/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4174.0, 4175.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_undead/node/1_1",
+"move_ids": ["base:move/infes/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_undead/node/1_0"],
+"row": 1.0,
+"source_lines": [4176.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/undeadeel_undead/node/2_1",
+"move_ids": ["base:move/flesh_sacrifice/tier1", "base:move/flesh_sacrifice/tier3", "base:move/flesh_sacrifice/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4177.0, 4178.0, 4179.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/undeadeel_undead/node/0_2",
+"move_ids": ["base:move/demoralize/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_undead/node/0_1"],
+"row": 2.0,
+"source_lines": [4180.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_undead/node/1_2",
+"move_ids": ["base:move/rancid_bite/tier3", "base:move/rancid_bite/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4181.0, 4182.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/undeadeel_undead/node/1_3",
+"move_ids": ["base:move/rancid_bite/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/undeadeel_undead/node/1_2"],
+"row": 3.0,
+"source_lines": [4183.0]
+}])
+id = &"base:talent_tree/undeadeel_undead"
+display_name = "Undead"
+legacy_class_name = "UndeadEel_Undead"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4162"

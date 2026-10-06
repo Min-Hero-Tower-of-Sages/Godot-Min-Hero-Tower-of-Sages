@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="RoomDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/room_definition.gd" id="1_room"]
+[ext_resource type="Resource" path="res://content/base/room_payloads/floor_1_room_h0_payload.tres" id="2_payload"]
+
+[resource]
+script = ExtResource("1_room")
+payload = ExtResource("2_payload")
+source_payload_path = "res://content/base/room_payloads/packaged/rooms-20260908/level_1_1_h0.json"
+source_room_symbol = &"Utilities.LevelContainer_Level_1_1_H0"
+exits = Array[Dictionary]([{
+"transition_id": 1,
+"target_room_id": &"base:room/level_1_1_a",
+"target_spawn_id": &"entry-1",
+"source_position": Vector2(300.1, 117.85),
+"source_scale": Vector2(1.4869995, 0.6712799)
+}, {
+"transition_id": 13,
+"target_room_id": &"base:room/level_1_1_courtyard",
+"target_spawn_id": &"entry-13",
+"source_position": Vector2(297.9, 732.8),
+"source_scale": Vector2(1.6107635, 0.47387695)
+}])
+spawn_ids = Array[StringName]([&"entry-1", &"entry-13"])
+spawn_positions = {"entry-1": Vector2(330.3, 181.35), "entry-13": Vector2(328.3, 682.3)}
+interactions = Array[Dictionary]([])
+minimap_metadata = {
+"floor_index": 0,
+"room_index": 11,
+"source_dimensions": Vector2(699.95, 796.1),
+"source_payload": "development/normalized/rooms-20260908/level_1_1_h0.json"
+}
+id = &"base:room/level_1_1_h0"
+display_name = "Floor 1 — sage hall"
+legacy_class_name = "LevelContainer_Level_1_1_H0"
+source_location = "development/extracted/full-20260908/binaryData/277_Utilities.LevelContainer_Level_1_1_H0.bin"

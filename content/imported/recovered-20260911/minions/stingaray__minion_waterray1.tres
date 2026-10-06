@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_a7qyi"]
+
+[resource]
+script = ExtResource("1_a7qyi")
+type_ids = Array[StringName]([&"base:type/water"])
+base_health = 26
+base_energy = 57
+base_attack = 60
+base_healing = 30
+base_speed = 54
+experience_gain_rate = 2
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/spark/tier1", &"base:move/water_slam/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/fresh_stream/tier1", &"base:move/overload/tier1", &"base:move/reflect_damage/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/roboshark_water", &"base:talent_tree/waterhorse_electric", &"base:talent_tree/jellyfish_normal"])
+evolution_id = &"stingaray:minion/waterray2"
+evolution_level = 29
+presentation_id = &"stingaray:presentation/minion/waterray1"
+id = &"stingaray:minion/waterray1"
+display_name = "Stingaray"
+legacy_class_name = "waterRay_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:530"
+source_mod = &"stingaray"

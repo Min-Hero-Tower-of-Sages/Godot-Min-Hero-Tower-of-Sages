@@ -1,0 +1,59 @@
+{
+  "floor_index": 29,
+  "source_floor_index": 29,
+  "source_room_order": [
+    "base:room/level_6_gym"
+  ],
+  "entry_room_id": "base:room/level_6_gym",
+  "rooms": [
+    {
+      "id": "base:room/level_6_gym",
+      "display_name": "Floor 30 — Level_6_gym",
+      "legacy_class_name": "LevelContainer_Level_6_gym",
+      "source_symbol": "Utilities.LevelContainer_Level_6_gym",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_6_gym.as",
+      "source_payload": "res://content/base/room_payloads/source/level_6_gym.json",
+      "room_index": 0,
+      "exits": [],
+      "encounter_ids": [
+        "base:encounter/floor30_trainer_0"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 0,
+        "trainer_type": "TrainerType.TRAINER_GYM_6",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1590",
+        "source_method": "CreateFloor_Boss6",
+        "source_floor_argument": 29
+      },
+      "interactions": [
+        {
+          "id": "floor-30-trainer-0",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 0,
+          "trainer_type": "TrainerType.TRAINER_GYM_6",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor30_trainer_0",
+          "first_visit_text": "There is deep power in sanctity, and I will show it to you.  For I am the Daco Sage.",
+          "lose_text": "Your sanctity is apparent, your victory is well earned.\n...\nThe Sanctity Sage Seal grants you the option to pick a third choice in the hatchery."
+        }
+      ]
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_6_gym",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    }
+  ],
+  "eggery_source": {
+    "source_floor_index": 29,
+    "source_minion_level_base": 55,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ]
+  }
+}

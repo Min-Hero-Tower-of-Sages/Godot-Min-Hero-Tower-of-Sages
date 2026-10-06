@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cnim1ltim38i4"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_6tkcn"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_7u4g8"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="3_auu1o"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="4_ycmih"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="5_nb2po"]
+
+[sub_resource type="Resource" id="Resource_p4ynf"]
+script = ExtResource("1_6tkcn")
+scaling = 1
+roll_scope = 1
+amount = 30
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_7u4g8")
+id = &"ice_floor:move/ihorn/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:110"
+
+[sub_resource type="Resource" id="Resource_i6lfs"]
+script = ExtResource("1_6tkcn")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 15
+legacy_order = 1
+executor = ExtResource("3_auu1o")
+id = &"ice_floor:move/ihorn/tier3/effect/01_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:110"
+
+[sub_resource type="Resource" id="Resource_tfvtr"]
+script = ExtResource("1_6tkcn")
+kind = 3
+target_scope = 0
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/speed"
+legacy_order = 2
+executor = ExtResource("4_ycmih")
+id = &"ice_floor:move/ihorn/tier3/effect/02_stat_stage_actor"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:110"
+
+[resource]
+script = ExtResource("5_nb2po")
+family_id = &"ice_floor:move_family/ihorn"
+tier = 3
+type_id = &"ice_floor:type/thaw"
+legacy_class_id = 183
+legacy_visual_id = 183
+legacy_dot_visual_id = 183
+buff_icon_name = &"moveIcon_iHorn"
+energy_cost = 10
+effects = Array[ExtResource("1_6tkcn")]([SubResource("Resource_p4ynf"), SubResource("Resource_i6lfs"), SubResource("Resource_tfvtr")])
+presentation_id = &"ice_floor:presentation/move/move_icon_i_horn"
+id = &"ice_floor:move/ihorn/tier3"
+display_name = "Arctic Horn  lv.3"
+legacy_numeric_id = 905
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"
+source_mod = &"ice_floor"

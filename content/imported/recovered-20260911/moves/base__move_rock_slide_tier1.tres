@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cublm0apkktln"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_bnhnh"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_c116x"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_l3vv5"]
+
+[sub_resource type="Resource" id="Resource_bk3mh"]
+script = ExtResource("1_bnhnh")
+scaling = 1
+roll_scope = 1
+amount = 20
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_c116x")
+id = &"base:move/rock_slide/tier1/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:750"
+
+[resource]
+script = ExtResource("3_l3vv5")
+family_id = &"base:move_family/rock_slide"
+type_id = &"base:type/earth"
+legacy_class_id = 54
+legacy_visual_id = 188
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_rockSlide"
+energy_cost = 8
+target_mode = 2
+target_count = 3
+enemy_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_bnhnh")]([SubResource("Resource_bk3mh")])
+presentation_id = &"base:presentation/move/move_icon_rock_slide"
+visuals_have_buffer = false
+id = &"base:move/rock_slide/tier1"
+display_name = "Rock Slide"
+legacy_numeric_id = 160
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

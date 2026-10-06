@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_alw6h"]
+
+[resource]
+script = ExtResource("1_alw6h")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/batdemon_demonic/node/0_0",
+"move_ids": ["base:move/blood_ritual/tier1", "base:move/blood_ritual/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3328.0, 3329.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/batdemon_demonic/node/1_0",
+"move_ids": ["base:move/crazed_blast/tier1", "base:move/crazed_blast/tier2", "base:move/crazed_blast/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3330.0, 3331.0, 3332.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/batdemon_demonic/node/2_0",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier3", "base:move/reckless_dash/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3333.0, 3334.0, 3335.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/batdemon_demonic/node/0_1",
+"move_ids": ["base:move/blood_ritual/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/batdemon_demonic/node/0_0"],
+"row": 1.0,
+"source_lines": [3336.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/batdemon_demonic/node/1_1",
+"move_ids": ["base:move/crazed_blast/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/batdemon_demonic/node/1_0"],
+"row": 1.0,
+"source_lines": [3337.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/batdemon_demonic/node/2_1",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier2", "base:move/ferocity/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3338.0, 3339.0, 3340.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/batdemon_demonic/node/0_2",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3341.0, 3342.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/batdemon_demonic/node/1_2",
+"move_ids": ["base:move/demonic_force/tier3", "base:move/demonic_force/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3343.0, 3344.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/batdemon_demonic/node/2_2",
+"move_ids": ["base:move/ferocity/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/batdemon_demonic/node/2_1"],
+"row": 2.0,
+"source_lines": [3345.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/batdemon_demonic/node/0_3",
+"move_ids": ["base:move/vicious/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/batdemon_demonic/node/0_2"],
+"row": 3.0,
+"source_lines": [3346.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/batdemon_demonic/node/1_3",
+"move_ids": ["base:move/demonic_force/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/batdemon_demonic/node/1_2"],
+"row": 3.0,
+"source_lines": [3347.0]
+}])
+id = &"base:talent_tree/batdemon_demonic"
+display_name = "Demonic"
+legacy_class_name = "BatDemon_Demonic"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3325"

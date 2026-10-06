@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://d2qwau4rgl6yp"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_i2ygg"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_xddm3"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_1yw5f"]
+
+[sub_resource type="Resource" id="Resource_6paph"]
+script = ExtResource("1_i2ygg")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 25
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_xddm3")
+id = &"base:move/rainfall/tier4/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1793"
+
+[resource]
+script = ExtResource("3_1yw5f")
+family_id = &"base:move_family/rainfall"
+tier = 4
+type_id = &"base:type/water"
+legacy_class_id = 133
+legacy_visual_id = 133
+legacy_dot_visual_id = 133
+buff_icon_name = &"moveIcon_rainfall"
+energy_cost = 28
+target_side = 1
+target_mode = 1
+target_count = 5
+enemy_target_count = 0
+ally_target_count = 5
+effects = Array[ExtResource("1_i2ygg")]([SubResource("Resource_6paph")])
+presentation_id = &"base:presentation/move/move_icon_rainfall"
+visuals_have_buffer = false
+id = &"base:move/rainfall/tier4"
+display_name = "Rainfall  lv.4"
+legacy_numeric_id = 603
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

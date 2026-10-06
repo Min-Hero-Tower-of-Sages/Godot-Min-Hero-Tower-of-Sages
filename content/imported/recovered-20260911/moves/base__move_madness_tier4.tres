@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://ckslhbfk2ofi8"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_4cmmd"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_dav7m"]
+[ext_resource type="Script" uid="uid://smr8wxyrn8ho" path="res://src/domain/battle/self_damage_effect_executor.gd" id="3_xb37n"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_x516l"]
+
+[sub_resource type="Resource" id="Resource_d0pfi"]
+script = ExtResource("1_4cmmd")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 1
+random_bonus = 220
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_dav7m")
+id = &"base:move/madness/tier4/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2202"
+
+[sub_resource type="Resource" id="Resource_y8l81"]
+script = ExtResource("1_4cmmd")
+kind = 13
+target_scope = 0
+phase = 3
+scaling = 1
+roll_scope = 1
+amount = 17
+legacy_order = 1
+executor = ExtResource("3_xb37n")
+id = &"base:move/madness/tier4/effect/01_self_damage_actor"
+display_name = "Self Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2202"
+
+[resource]
+script = ExtResource("4_x516l")
+family_id = &"base:move_family/madness"
+tier = 4
+type_id = &"base:type/demonic"
+legacy_class_id = 119
+legacy_visual_id = 119
+legacy_dot_visual_id = 119
+buff_icon_name = &"moveIcon_madness"
+energy_cost = 25
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_4cmmd")]([SubResource("Resource_d0pfi"), SubResource("Resource_y8l81")])
+presentation_id = &"base:presentation/move/move_icon_madness"
+id = &"base:move/madness/tier4"
+display_name = "Madness  lv.4"
+legacy_numeric_id = 533
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

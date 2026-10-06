@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_ron2s"]
+
+[resource]
+script = ExtResource("1_ron2s")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/grasssnake_normal/node/0_0",
+"move_ids": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [943.0, 944.0, 945.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grasssnake_normal/node/1_0",
+"move_ids": ["base:move/spike/tier1", "base:move/spike/tier2", "base:move/spike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [946.0, 947.0, 948.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grasssnake_normal/node/2_0",
+"move_ids": ["base:move/poison_tooth/tier2", "base:move/poison_tooth/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [949.0, 950.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/grasssnake_normal/node/0_1",
+"move_ids": ["base:move/invigorate/tier1", "base:move/invigorate/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [951.0, 952.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grasssnake_normal/node/1_1",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [953.0, 954.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grasssnake_normal/node/2_1",
+"move_ids": ["base:move/poison_tooth/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/grasssnake_normal/node/2_0"],
+"row": 1.0,
+"source_lines": [955.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/grasssnake_normal/node/0_2",
+"move_ids": ["base:move/tackle/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [956.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/grasssnake_normal/node/1_2",
+"move_ids": ["base:move/mirror_skin/tier3", "base:move/mirror_skin/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/grasssnake_normal/node/1_1"],
+"row": 2.0,
+"source_lines": [957.0, 958.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/grasssnake_normal/node/2_2",
+"move_ids": ["base:move/concentration/tier1", "base:move/concentration/tier2", "base:move/concentration/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [959.0, 960.0, 961.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/grasssnake_normal/node/0_3",
+"move_ids": ["base:move/tackle/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/grasssnake_normal/node/0_2"],
+"row": 3.0,
+"source_lines": [962.0]
+}])
+id = &"base:talent_tree/grasssnake_normal"
+display_name = "Normal"
+legacy_class_name = "GrassSnake_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:940"

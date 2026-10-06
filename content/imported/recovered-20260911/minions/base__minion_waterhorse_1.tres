@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_7ai5k"]
+
+[resource]
+script = ExtResource("1_7ai5k")
+type_ids = Array[StringName]([&"base:type/water", &"base:type/energy"])
+base_health = 60
+base_energy = 50
+base_attack = 75
+base_healing = 60
+base_speed = 85
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/spike/tier2"])
+specialization_move_ids = Array[StringName]([&"base:move/waterjet/tier1", &"base:move/overload/tier1", &"base:move/reflect_damage/tier2"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/waterhorse_water", &"base:talent_tree/waterhorse_electric", &"base:talent_tree/waterhorse_normal"])
+presentation_id = &"base:presentation/minion/waterkirin"
+id = &"base:minion/waterhorse_1"
+display_name = "Dracolt"
+legacy_numeric_id = 99
+legacy_class_name = "WaterHorse_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1456"

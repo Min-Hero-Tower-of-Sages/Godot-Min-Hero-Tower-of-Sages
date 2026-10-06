@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_5pa06"]
+
+[resource]
+script = ExtResource("1_5pa06")
+legacy_sprite_name = &"dinoRex3"
+icon_offset = Vector2i(8, -18)
+id = &"base:presentation/minion/dinorex3"
+display_name = "Rexathor presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1712"

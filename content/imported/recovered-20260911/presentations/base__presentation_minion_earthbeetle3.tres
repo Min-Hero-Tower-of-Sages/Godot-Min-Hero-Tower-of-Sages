@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_ru1x7"]
+
+[resource]
+script = ExtResource("1_ru1x7")
+legacy_sprite_name = &"earthBeetle3"
+icon_offset = Vector2i(-31, -4)
+id = &"base:presentation/minion/earthbeetle3"
+display_name = "Betehulk presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1894"

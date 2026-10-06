@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_lp3wa"]
+
+[resource]
+script = ExtResource("1_lp3wa")
+legacy_sprite_name = &"waterKirin"
+icon_offset = Vector2i(6, 0)
+id = &"base:presentation/minion/waterkirin"
+display_name = "Dracolt presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1456"

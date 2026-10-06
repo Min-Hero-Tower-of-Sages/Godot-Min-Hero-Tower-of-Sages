@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b2usw4nbr2tb2"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_rq1id"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_6x3bb"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_ubhro"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_ftp0s"]
+
+[sub_resource type="Resource" id="Resource_pdebq"]
+script = ExtResource("1_rq1id")
+scaling = 1
+roll_scope = 1
+amount = 125
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_6x3bb")
+id = &"base:move/meteor_strike/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1390"
+
+[sub_resource type="Resource" id="Resource_kgkvx"]
+script = ExtResource("1_rq1id")
+kind = 12
+amount = -20
+duration = 3
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_ubhro")
+id = &"base:move/meteor_strike/tier4/effect/01_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1390"
+
+[sub_resource type="Resource" id="Resource_rt16x"]
+script = ExtResource("1_rq1id")
+kind = 12
+target_scope = 2
+phase = 2
+amount = -20
+duration = 3
+legacy_order = 2
+executor = ExtResource("3_ubhro")
+id = &"base:move/meteor_strike/tier4/effect/02_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1390"
+
+[resource]
+script = ExtResource("4_ftp0s")
+family_id = &"base:move_family/meteor_strike"
+tier = 4
+type_id = &"base:type/dino"
+legacy_class_id = 94
+legacy_visual_id = 94
+legacy_dot_visual_id = 94
+buff_icon_name = &"moveIcon_meteorStrike"
+energy_cost = 75
+charge_turns = 3
+target_mode = 1
+target_count = 5
+enemy_target_count = 5
+effects = Array[ExtResource("1_rq1id")]([SubResource("Resource_pdebq"), SubResource("Resource_kgkvx"), SubResource("Resource_rt16x")])
+presentation_id = &"base:presentation/move/move_icon_meteor_strike"
+id = &"base:move/meteor_strike/tier4"
+display_name = "Meteor Strike  lv.4"
+legacy_numeric_id = 408
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

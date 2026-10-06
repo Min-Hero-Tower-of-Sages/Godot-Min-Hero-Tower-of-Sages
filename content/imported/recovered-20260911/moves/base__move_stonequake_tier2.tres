@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b3srd17kga8t2"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_bn1rp"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_51hkh"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_vmvji"]
+
+[sub_resource type="Resource" id="Resource_dkij1"]
+script = ExtResource("1_bn1rp")
+scaling = 1
+roll_scope = 1
+amount = 25
+random_bonus = 25
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_51hkh")
+id = &"base:move/stonequake/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:936"
+
+[resource]
+script = ExtResource("3_vmvji")
+family_id = &"base:move_family/stonequake"
+tier = 2
+type_id = &"base:type/earth"
+legacy_class_id = 62
+legacy_visual_id = 62
+legacy_dot_visual_id = 62
+buff_icon_name = &"moveIcon_stonequake"
+energy_cost = 25
+cooldown_turns = 1
+target_mode = 1
+target_count = 5
+hit_each_target = false
+enemy_target_count = 5
+effects = Array[ExtResource("1_bn1rp")]([SubResource("Resource_dkij1")])
+presentation_id = &"base:presentation/move/move_icon_stonequake"
+id = &"base:move/stonequake/tier2"
+display_name = "Stonequake  lv.2"
+legacy_numeric_id = 191
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

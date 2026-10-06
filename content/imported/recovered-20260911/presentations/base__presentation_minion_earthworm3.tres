@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_m16tc"]
+
+[resource]
+script = ExtResource("1_m16tc")
+legacy_sprite_name = &"earthWorm3"
+icon_offset = Vector2i(-8, 7)
+id = &"base:presentation/minion/earthworm3"
+display_name = "Riffra presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2566"

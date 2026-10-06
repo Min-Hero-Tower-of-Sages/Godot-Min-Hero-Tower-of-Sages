@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cl65jfh4368mj"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_j8atn"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_uogqj"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_nnk1h"]
+
+[sub_resource type="Resource" id="Resource_3hivl"]
+script = ExtResource("1_j8atn")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 60
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_uogqj")
+id = &"base:move/refreshing_wave/tier4/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1808"
+
+[resource]
+script = ExtResource("3_nnk1h")
+family_id = &"base:move_family/refreshing_wave"
+tier = 4
+type_id = &"base:type/water"
+legacy_class_id = 134
+legacy_visual_id = 134
+legacy_dot_visual_id = 134
+buff_icon_name = &"moveIcon_refreshingWave"
+energy_cost = 100
+target_side = 1
+target_mode = 1
+target_count = 5
+enemy_target_count = 0
+ally_target_count = 5
+effects = Array[ExtResource("1_j8atn")]([SubResource("Resource_3hivl")])
+presentation_id = &"base:presentation/move/move_icon_refreshing_wave"
+visuals_have_buffer = false
+id = &"base:move/refreshing_wave/tier4"
+display_name = "Refreshing Wave  lv.4"
+legacy_numeric_id = 608
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

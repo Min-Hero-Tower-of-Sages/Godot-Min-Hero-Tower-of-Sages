@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://hnqobul5omea"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_wk7sa"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_7jfoh"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_m0igi"]
+
+[sub_resource type="Resource" id="Resource_dpw7w"]
+script = ExtResource("1_wk7sa")
+scaling = 1
+roll_scope = 1
+amount = 90
+random_bonus = 35
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_7jfoh")
+id = &"base:move/bone_crunch/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1300"
+
+[resource]
+script = ExtResource("3_m0igi")
+family_id = &"base:move_family/bone_crunch"
+tier = 5
+type_id = &"base:type/dino"
+legacy_class_id = 92
+legacy_visual_id = 92
+legacy_dot_visual_id = 92
+buff_icon_name = &"moveIcon_boneCrunch"
+energy_cost = 50
+effects = Array[ExtResource("1_wk7sa")]([SubResource("Resource_dpw7w")])
+presentation_id = &"base:presentation/move/move_icon_bone_crunch"
+id = &"base:move/bone_crunch/tier5"
+display_name = "Fossil Breaker"
+legacy_numeric_id = 399
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

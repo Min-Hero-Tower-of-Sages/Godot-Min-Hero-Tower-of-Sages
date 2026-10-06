@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/groundattacker_1",
+"level": 10,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/rock_throw/tier1", &"base:move/tackle/tier5", &"base:move/grind/tier5", &"base:move/mirror_skin/tier5", &"base:move/destabilize/tier1", &"base:move/quickness/tier4"]),
+"slot_index": 0,
+"source_level_offset": 0
+}, {
+"definition_id": &"base:minion/groundmole_1",
+"level": 10,
+"move_ids": Array[StringName]([&"base:move/claw/tier2", &"base:move/rock_throw/tier1", &"base:move/reflect_damage/tier2", &"base:move/crush/tier2", &"base:move/fortitude/tier2", &"base:move/efficiency/tier1", &"base:move/mirror_skin/tier5", &"base:move/tackle/tier5", &"base:move/destabilize/tier1", &"base:move/taunt/tier2"]),
+"slot_index": 1,
+"source_level_offset": 0
+}, {
+"definition_id": &"base:minion/grasssnake_1",
+"level": 10,
+"move_ids": Array[StringName]([]),
+"slot_index": 2,
+"source_level_offset": 0
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 9, "eggery_keys": 1}}
+battle_modifier_configuration = {"shield": {"player": 1, "enemy": 1}}
+source_trainer_id = &"base:trainer/standard/1/6"
+source_floor_index = 1
+source_level_offset = 0
+source_trainer_type = &"TrainerType.BOSS_TRAINER"
+id = &"base:encounter/grass_floor2_trainer_6_boss"
+display_name = "Floor 2 — Sage of Courage trial"
+legacy_class_name = "TrainerSystem.CreateFloor2"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:238"

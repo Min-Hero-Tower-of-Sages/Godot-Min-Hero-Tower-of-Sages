@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_br4id"]
+
+[resource]
+script = ExtResource("1_br4id")
+type_ids = Array[StringName]([&"base:type/normal"])
+base_health = 40
+base_energy = 45
+base_attack = 40
+base_healing = 35
+base_speed = 50
+experience_gain_rate = 2
+gem_slots = 1
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/roar/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/reckless_dash/tier1", &"base:move/chosen_earth/tier2", &"base:move/poison_tooth/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/tiger_speed", &"base:talent_tree/tiger_gaurd", &"base:talent_tree/tiger_normal"])
+evolution_id = &"base:minion/tiger_2"
+evolution_level = 17
+presentation_id = &"base:presentation/minion/normaltiger1"
+id = &"base:minion/tiger_1"
+display_name = "Ticub"
+legacy_numeric_id = 0
+legacy_class_name = "Tiger_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:960"

@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bpm2cycyig7yc"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_2lqql"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_6qi3d"]
+[ext_resource type="Script" uid="uid://dxlpxmv8fu2db" path="res://src/domain/battle/condition_effect_executor.gd" id="3_ssyyj"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_wpwxf"]
+
+[sub_resource type="Resource" id="Resource_t6gsp"]
+script = ExtResource("1_2lqql")
+scaling = 1
+roll_scope = 1
+amount = 40
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_6qi3d")
+id = &"base:move/cutting_wind/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2373"
+
+[sub_resource type="Resource" id="Resource_t08uv"]
+script = ExtResource("1_2lqql")
+kind = 17
+roll_scope = 2
+chance_percent = 50
+legacy_order = 1
+executor = ExtResource("3_ssyyj")
+id = &"base:move/cutting_wind/tier5/effect/01_clear_buffs_debuffs_enemy_targets"
+display_name = "Clear Buffs Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2373"
+
+[sub_resource type="Resource" id="Resource_7p3xx"]
+script = ExtResource("1_2lqql")
+kind = 17
+target_scope = 2
+phase = 2
+roll_scope = 2
+chance_percent = 50
+legacy_order = 2
+executor = ExtResource("3_ssyyj")
+id = &"base:move/cutting_wind/tier5/effect/02_clear_buffs_debuffs_ally_targets"
+display_name = "Clear Buffs Debuffs"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2373"
+
+[resource]
+script = ExtResource("4_wpwxf")
+family_id = &"base:move_family/cutting_wind"
+tier = 5
+type_id = &"base:type/flying"
+legacy_class_id = 142
+legacy_visual_id = 142
+legacy_dot_visual_id = 142
+buff_icon_name = &"moveIcon_cuttingWind"
+energy_cost = 45
+effects = Array[ExtResource("1_2lqql")]([SubResource("Resource_t6gsp"), SubResource("Resource_t08uv"), SubResource("Resource_7p3xx")])
+presentation_id = &"base:presentation/move/move_icon_cutting_wind"
+id = &"base:move/cutting_wind/tier5"
+display_name = "Slicing Blast"
+legacy_numeric_id = 649
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

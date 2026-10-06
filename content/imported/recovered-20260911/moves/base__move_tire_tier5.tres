@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bovhp7blswudk"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_1t4kx"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="2_tdu10"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_nbdnu"]
+
+[sub_resource type="Resource" id="Resource_ru4gq"]
+script = ExtResource("1_1t4kx")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -5
+stat_type_id = &"base:stat/energy"
+executor = ExtResource("2_tdu10")
+id = &"base:move/tire/tier5/effect/00_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3258"
+
+[resource]
+script = ExtResource("3_nbdnu")
+family_id = &"base:move_family/tire"
+tier = 5
+type_id = &"base:type/normal"
+legacy_class_id = 28
+legacy_visual_id = 28
+legacy_dot_visual_id = 28
+buff_icon_name = &"moveIcon_tire"
+energy_cost = 50
+effects = Array[ExtResource("1_1t4kx")]([SubResource("Resource_ru4gq")])
+presentation_id = &"base:presentation/move/move_icon_tire"
+id = &"base:move/tire/tier5"
+display_name = "Exhaust"
+legacy_numeric_id = 144
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

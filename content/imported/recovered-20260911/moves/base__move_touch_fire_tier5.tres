@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cimy2cixr4mur"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_swpfu"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_uf6q5"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_j3cki"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_owmkj"]
+
+[sub_resource type="Resource" id="Resource_1bckd"]
+script = ExtResource("1_swpfu")
+scaling = 1
+roll_scope = 1
+amount = 25
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_uf6q5")
+id = &"base:move/touch_fire/tier5/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:500"
+
+[sub_resource type="Resource" id="Resource_v5sc0"]
+script = ExtResource("1_swpfu")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 50
+random_bonus = 50
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_j3cki")
+id = &"base:move/touch_fire/tier5/effect/01_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:500"
+
+[resource]
+script = ExtResource("4_owmkj")
+family_id = &"base:move_family/touch_fire"
+tier = 5
+type_id = &"base:type/fire"
+legacy_class_id = 11
+legacy_visual_id = 11
+legacy_dot_visual_id = 11
+buff_icon_name = &"moveIcon_touchFire"
+energy_cost = 65
+effects = Array[ExtResource("1_swpfu")]([SubResource("Resource_1bckd"), SubResource("Resource_v5sc0")])
+presentation_id = &"base:presentation/move/move_icon_touch_fire"
+id = &"base:move/touch_fire/tier5"
+display_name = "Afterburn"
+legacy_numeric_id = 59
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

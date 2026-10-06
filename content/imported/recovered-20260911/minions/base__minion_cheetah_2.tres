@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_wj0vk"]
+
+[resource]
+script = ExtResource("1_wj0vk")
+type_ids = Array[StringName]([&"base:type/energy"])
+base_health = 30
+base_energy = 40
+base_attack = 50
+base_healing = 30
+base_speed = 70
+experience_gain_rate = 3
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/spark/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/charge_blast/tier1", &"base:move/charge_pass/tier1", &"base:move/agile_inspiration/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/cheetah_electric", &"base:talent_tree/cheetah_support", &"base:talent_tree/cheetah_inspire"])
+evolution_id = &"base:minion/cheetah_3"
+evolution_level = 39
+presentation_id = &"base:presentation/minion/energycheetah2"
+id = &"base:minion/cheetah_2"
+display_name = "Cheecha"
+legacy_numeric_id = 48
+legacy_class_name = "Cheetah_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1119"

@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_khpg1"]
+
+[resource]
+script = ExtResource("1_khpg1")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/icetree_grass/node/0_0",
+"move_ids": ["base:move/pound/tier2", "base:move/pound/tier3", "base:move/pound/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1292.0, 1293.0, 1294.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icetree_grass/node/1_0",
+"move_ids": ["base:move/razor_vine/tier1", "base:move/razor_vine/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1295.0, 1296.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icetree_grass/node/2_0",
+"move_ids": ["base:move/focus/tier1", "base:move/focus/tier2", "base:move/focus/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1297.0, 1298.0, 1299.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icetree_grass/node/0_1",
+"move_ids": ["base:move/timber/tier1", "base:move/timber/tier2", "base:move/timber/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1300.0, 1301.0, 1302.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icetree_grass/node/1_1",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2", "base:move/efficiency/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1303.0, 1304.0, 1305.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icetree_grass/node/2_1",
+"move_ids": ["base:move/regrowth/tier1", "base:move/regrowth/tier2", "base:move/regrowth/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1306.0, 1307.0, 1308.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icetree_grass/node/0_2",
+"move_ids": ["base:move/timber/tier4", "base:move/timber/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icetree_grass/node/0_1"],
+"row": 2.0,
+"source_lines": [1309.0, 1310.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icetree_grass/node/1_2",
+"move_ids": ["base:move/tree_slam/tier3", "base:move/tree_slam/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1311.0, 1312.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icetree_grass/node/1_3",
+"move_ids": ["base:move/tree_slam/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icetree_grass/node/1_2"],
+"row": 3.0,
+"source_lines": [1313.0]
+}])
+id = &"base:talent_tree/icetree_grass"
+display_name = "Grass"
+legacy_class_name = "IceTree_Grass"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1289"

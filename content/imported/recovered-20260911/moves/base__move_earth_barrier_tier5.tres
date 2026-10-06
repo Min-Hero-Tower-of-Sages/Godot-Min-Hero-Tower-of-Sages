@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://6yqpedfw5han"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_wa3cy"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_ndryc"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_qa2ir"]
+
+[sub_resource type="Resource" id="Resource_7p42v"]
+script = ExtResource("1_wa3cy")
+kind = 12
+amount = 20
+duration = 3
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_ndryc")
+id = &"base:move/earth_barrier/tier5/effect/00_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:810"
+
+[sub_resource type="Resource" id="Resource_gvxex"]
+script = ExtResource("1_wa3cy")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 20
+duration = 3
+legacy_order = 1
+executor = ExtResource("2_ndryc")
+id = &"base:move/earth_barrier/tier5/effect/01_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:810"
+
+[resource]
+script = ExtResource("3_qa2ir")
+family_id = &"base:move_family/earth_barrier"
+tier = 5
+type_id = &"base:type/earth"
+legacy_class_id = 56
+legacy_visual_id = 188
+legacy_dot_visual_id = 1
+buff_icon_name = &"moveIcon_earthBarrier"
+energy_cost = 35
+target_side = 1
+target_mode = 2
+target_count = 3
+enemy_target_count = 0
+ally_target_count = 3
+random_targets = true
+effects = Array[ExtResource("1_wa3cy")]([SubResource("Resource_7p42v"), SubResource("Resource_gvxex")])
+presentation_id = &"base:presentation/move/move_icon_earth_barrier"
+visuals_have_buffer = false
+id = &"base:move/earth_barrier/tier5"
+display_name = "Rock Barricade"
+legacy_numeric_id = 174
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

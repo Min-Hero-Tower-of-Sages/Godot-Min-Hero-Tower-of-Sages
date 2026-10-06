@@ -1,0 +1,202 @@
+[gd_resource type="Resource" script_class="CampaignDefinition" format=3 uid="uid://plg8wlvqh2qi"]
+
+[ext_resource type="Script" uid="uid://bl7jv12cdeyxh" path="res://src/content/campaign_definition.gd" id="1_campaign"]
+
+[resource]
+script = ExtResource("1_campaign")
+floors = Array[Dictionary]([{
+"eggery_minion_base_level": 7,
+"floor_index": 0,
+"room_ids": Array[StringName]([&"base:room/level_1_1_entryhallway", &"base:room/level_1_1_a", &"base:room/level_1_1_b", &"base:room/level_1_1_c", &"base:room/level_1_1_d", &"base:room/level_1_1_e", &"base:room/level_1_1_h1", &"base:room/level_1_1_h2", &"base:room/level_1_1_h3", &"base:room/level_1_1_h4", &"base:room/level_1_1_h0", &"base:room/level_1_1_courtyard", &"base:room/level_1_1_eggery", &"base:room/floor_1_expert_room_grass"]),
+"start_room_id": &"base:room/level_1_1_entryhallway",
+"start_spawn_id": &"start"
+}, {
+"eggery_minion_base_level": 10,
+"floor_index": 1,
+"room_ids": Array[StringName]([&"base:room/level_1_2_h1", &"base:room/level_1_2_a", &"base:room/level_1_2_b", &"base:room/level_1_2_d", &"base:room/level_1_2_e", &"base:room/level_1_2_c", &"base:room/level_1_2_h2", &"base:room/level_1_2_h3", &"base:room/level_1_2_h4", &"base:room/level_1_2_eggery", &"base:room/floor_2_expert_room_grass"]),
+"start_room_id": &"base:room/level_1_2_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 13,
+"floor_index": 2,
+"room_ids": Array[StringName]([&"base:room/level_1_3_h1", &"base:room/level_1_3_a", &"base:room/level_1_3_b", &"base:room/level_1_3_e", &"base:room/level_1_3_c", &"base:room/level_1_3_d", &"base:room/level_1_3_h2", &"base:room/level_1_3_h3", &"base:room/level_1_3_eggery", &"base:room/floor_3_expert_room_grass"]),
+"start_room_id": &"base:room/level_1_3_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 22,
+"floor_index": 3,
+"room_ids": Array[StringName]([&"base:room/level_1_4_h1", &"base:room/level_1_4_a", &"base:room/level_1_4_b", &"base:room/level_1_4_e", &"base:room/level_1_4_c", &"base:room/level_1_4_d", &"base:room/level_1_4_f", &"base:room/level_1_4_h2", &"base:room/level_1_4_h3", &"base:room/level_1_4_h4", &"base:room/level_1_4_eggery", &"base:room/floor_4_expert_room_fire"]),
+"start_room_id": &"base:room/level_1_4_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 15,
+"floor_index": 4,
+"room_ids": Array[StringName]([&"base:room/level_1_gym"]),
+"start_room_id": &"base:room/level_1_gym",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 20,
+"floor_index": 5,
+"room_ids": Array[StringName]([&"base:room/level_2_1_h1", &"base:room/level_2_1_a", &"base:room/level_2_1_b", &"base:room/level_2_1_c", &"base:room/level_2_1_d", &"base:room/floor_2_expert_room_fire", &"base:room/level_2_1_e", &"base:room/level_2_1_h2", &"base:room/level_2_1_h3", &"base:room/level_2_1_eggery"]),
+"start_room_id": &"base:room/level_2_1_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 21,
+"floor_index": 6,
+"room_ids": Array[StringName]([&"base:room/level_2_2_h1", &"base:room/level_2_2_a", &"base:room/level_2_2_b", &"base:room/level_2_2_c", &"base:room/level_2_2_d", &"base:room/floor_2_expert_room_electric", &"base:room/level_2_2_e", &"base:room/level_2_2_h2", &"base:room/level_2_2_h3", &"base:room/level_2_2_h4", &"base:room/level_2_2_eggery"]),
+"start_room_id": &"base:room/level_2_2_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 24,
+"floor_index": 7,
+"room_ids": Array[StringName]([&"base:room/level_2_3_h1", &"base:room/level_2_3_a", &"base:room/level_2_3_b", &"base:room/level_2_3_d", &"base:room/level_2_3_c", &"base:room/floor_2_expert_room_undead", &"base:room/level_2_3_e", &"base:room/level_2_3_h2", &"base:room/level_2_3_h3", &"base:room/level_2_3_h4", &"base:room/level_2_3_eggery"]),
+"start_room_id": &"base:room/level_2_3_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 33,
+"floor_index": 8,
+"room_ids": Array[StringName]([&"base:room/level_2_4_h1", &"base:room/level_2_4_a", &"base:room/level_2_4_b", &"base:room/level_2_4_c", &"base:room/level_2_4_d", &"base:room/floor_2_4_expert_room_fire", &"base:room/level_2_4_e", &"base:room/level_2_4_h2", &"base:room/level_2_4_h3", &"base:room/level_2_4_eggery"]),
+"start_room_id": &"base:room/level_2_4_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 26,
+"floor_index": 9,
+"room_ids": Array[StringName]([&"base:room/level_2_gym"]),
+"start_room_id": &"base:room/level_2_gym",
+"start_spawn_id": "entry-0"
+}, {
+"eggery_minion_base_level": 29,
+"floor_index": 10,
+"room_ids": Array[StringName]([&"base:room/level_3_1_h1", &"base:room/level_3_1_a", &"base:room/level_3_1_b", &"base:room/level_3_1_d", &"base:room/level_3_1_e", &"base:room/floor_11_expert", &"base:room/level_3_1_f", &"base:room/level_3_1_c", &"base:room/level_3_1_h2", &"base:room/level_3_1_h3", &"base:room/level_3_1_h4", &"base:room/level_3_1_h5", &"base:room/level_3_1_eggery"]),
+"start_room_id": &"base:room/level_3_1_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 32,
+"floor_index": 11,
+"room_ids": Array[StringName]([&"base:room/level_3_2_h1", &"base:room/level_3_2_a", &"base:room/level_3_2_b", &"base:room/level_3_2_c", &"base:room/level_3_2_d", &"base:room/floor_12_expert", &"base:room/level_3_2_f", &"base:room/level_3_2_e", &"base:room/level_3_2_h2", &"base:room/level_3_2_h3", &"base:room/level_3_2_h4", &"base:room/level_3_2_eggery"]),
+"start_room_id": &"base:room/level_3_2_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 35,
+"floor_index": 12,
+"room_ids": Array[StringName]([&"base:room/level_3_3_h1", &"base:room/level_3_3_c", &"base:room/level_3_3_b", &"base:room/level_3_3_d", &"base:room/level_3_3_e", &"base:room/floor_13_expert", &"base:room/level_3_3_f", &"base:room/level_3_3_a", &"base:room/level_3_3_h2", &"base:room/level_3_3_h3", &"base:room/level_3_3_h4", &"base:room/level_3_3_eggery"]),
+"start_room_id": &"base:room/level_3_3_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 41,
+"floor_index": 13,
+"room_ids": Array[StringName]([&"base:room/level_3_4_h1", &"base:room/level_3_4_a", &"base:room/level_3_4_b", &"base:room/level_3_4_c", &"base:room/level_3_4_d", &"base:room/floor_14_expert", &"base:room/level_3_4_e", &"base:room/level_3_4_h2", &"base:room/level_3_4_h3", &"base:room/level_3_4_h4", &"base:room/level_3_4_h5", &"base:room/level_3_4_eggery"]),
+"start_room_id": &"base:room/level_3_4_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 37,
+"floor_index": 14,
+"room_ids": Array[StringName]([&"base:room/level_3_gym"]),
+"start_room_id": &"base:room/level_3_gym",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 39,
+"floor_index": 15,
+"room_ids": Array[StringName]([&"base:room/level_4_1_h1", &"base:room/level_4_1_b", &"base:room/level_4_1_c", &"base:room/level_4_1_d", &"base:room/level_4_1_e", &"base:room/floor_16_expert", &"base:room/level_4_1_f", &"base:room/level_4_1_a", &"base:room/level_4_1_h2", &"base:room/level_4_1_h3", &"base:room/level_4_1_h4", &"base:room/level_4_1_h5", &"base:room/level_4_1_eggery"]),
+"start_room_id": &"base:room/level_4_1_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 41,
+"floor_index": 16,
+"room_ids": Array[StringName]([&"base:room/level_4_2_h1", &"base:room/level_4_2_a", &"base:room/level_4_2_b", &"base:room/level_4_2_c", &"base:room/level_4_2_e", &"base:room/floor_17_expert", &"base:room/level_4_2_d", &"base:room/level_4_2_h2", &"base:room/level_4_2_h3", &"base:room/level_4_2_eggery"]),
+"start_room_id": &"base:room/level_4_2_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 43,
+"floor_index": 17,
+"room_ids": Array[StringName]([&"base:room/level_4_3_h1", &"base:room/level_4_3_a", &"base:room/level_4_3_c", &"base:room/level_4_3_d", &"base:room/level_4_3_e", &"base:room/floor_18_expert", &"base:room/level_4_3_f", &"base:room/level_4_3_b", &"base:room/level_4_3_h2", &"base:room/level_4_3_h3", &"base:room/level_4_3_h4", &"base:room/level_4_3_h5", &"base:room/level_4_3_eggery"]),
+"start_room_id": &"base:room/level_4_3_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 48,
+"floor_index": 18,
+"room_ids": Array[StringName]([&"base:room/level_4_4_h1", &"base:room/level_4_4_a", &"base:room/level_4_4_c", &"base:room/level_4_4_d", &"base:room/level_4_4_e", &"base:room/floor_19_expert", &"base:room/level_4_4_f", &"base:room/level_4_4_b", &"base:room/level_4_4_h2", &"base:room/level_4_4_h3", &"base:room/level_4_4_h4", &"base:room/level_4_4_eggery"]),
+"start_room_id": &"base:room/level_4_4_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 45,
+"floor_index": 19,
+"room_ids": Array[StringName]([&"base:room/level_4_gym"]),
+"start_room_id": &"base:room/level_4_gym",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 47,
+"floor_index": 20,
+"room_ids": Array[StringName]([&"base:room/level_5_1_h1", &"base:room/level_5_1_a", &"base:room/level_5_1_c", &"base:room/level_5_1_d", &"base:room/level_5_1_b", &"base:room/level_5_1_f", &"base:room/level_5_1_e", &"base:room/level_5_1_h2", &"base:room/level_5_1_h3", &"base:room/level_5_1_h4", &"base:room/level_5_1_eggery"]),
+"start_room_id": &"base:room/level_5_1_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 49,
+"floor_index": 21,
+"room_ids": Array[StringName]([&"base:room/level_5_2_h1", &"base:room/level_5_2_a", &"base:room/level_5_2_b", &"base:room/level_5_2_c", &"base:room/level_5_2_e", &"base:room/level_5_2_d", &"base:room/level_5_2_h2", &"base:room/level_5_2_h3", &"base:room/level_5_2_eggery"]),
+"start_room_id": &"base:room/level_5_2_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 50,
+"floor_index": 22,
+"room_ids": Array[StringName]([&"base:room/level_5_3_h1", &"base:room/level_5_3_a", &"base:room/level_5_3_c", &"base:room/level_5_3_e", &"base:room/level_5_3_b", &"base:room/floor_23_expert", &"base:room/level_5_3_d", &"base:room/level_5_3_h2", &"base:room/level_5_3_h3", &"base:room/level_5_3_eggery"]),
+"start_room_id": &"base:room/level_5_3_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 51,
+"floor_index": 23,
+"room_ids": Array[StringName]([&"base:room/level_5_4_h1", &"base:room/level_5_4_a", &"base:room/level_5_4_b", &"base:room/level_5_4_d", &"base:room/level_5_4_e", &"base:room/floor_24_expert", &"base:room/level_5_4_c", &"base:room/level_5_4_h2", &"base:room/level_5_4_h3", &"base:room/level_5_4_h4", &"base:room/level_5_4_eggery"]),
+"start_room_id": &"base:room/level_5_4_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 51,
+"floor_index": 24,
+"room_ids": Array[StringName]([&"base:room/level_5_gym"]),
+"start_room_id": &"base:room/level_5_gym",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 52,
+"floor_index": 25,
+"room_ids": Array[StringName]([&"base:room/level_6_1_h1", &"base:room/level_6_1_a", &"base:room/level_6_1_b", &"base:room/level_6_1_d", &"base:room/level_6_1_c", &"base:room/floor_26_expert", &"base:room/level_6_1_f", &"base:room/level_6_1_e", &"base:room/level_6_1_h2", &"base:room/level_6_1_h3", &"base:room/level_6_1_h4", &"base:room/level_6_1_h5", &"base:room/level_6_1_h6", &"base:room/level_6_1_eggery"]),
+"start_room_id": &"base:room/level_6_1_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 53,
+"floor_index": 26,
+"room_ids": Array[StringName]([&"base:room/level_6_2_h1", &"base:room/level_6_2_b", &"base:room/level_6_2_e", &"base:room/level_6_2_a", &"base:room/level_6_2_c", &"base:room/floor_27_expert", &"base:room/level_6_2_d", &"base:room/level_6_2_f", &"base:room/level_6_2_h2", &"base:room/level_6_2_h3", &"base:room/level_6_2_eggery"]),
+"start_room_id": &"base:room/level_6_2_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 54,
+"floor_index": 27,
+"room_ids": Array[StringName]([&"base:room/level_6_3_h1", &"base:room/level_6_3_a", &"base:room/level_6_3_b", &"base:room/level_6_3_e", &"base:room/level_6_3_f", &"base:room/floor_28_expert", &"base:room/level_6_3_g", &"base:room/level_6_3_c", &"base:room/level_6_3_d", &"base:room/level_6_3_h2", &"base:room/level_6_3_h3", &"base:room/level_6_3_h4", &"base:room/level_6_3_h5", &"base:room/level_6_3_eggery"]),
+"start_room_id": &"base:room/level_6_3_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 55,
+"floor_index": 28,
+"room_ids": Array[StringName]([&"base:room/level_6_4_h1", &"base:room/level_6_4_a", &"base:room/level_6_4_b", &"base:room/level_6_4_d", &"base:room/level_6_4_c", &"base:room/floor_29_expert", &"base:room/level_6_4_f", &"base:room/level_6_4_e", &"base:room/level_6_4_h2", &"base:room/level_6_4_h3", &"base:room/level_6_4_h4", &"base:room/level_6_4_h5", &"base:room/level_6_4_h6", &"base:room/level_6_4_eggery"]),
+"start_room_id": &"base:room/level_6_4_h1",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 55,
+"floor_index": 29,
+"room_ids": Array[StringName]([&"base:room/level_6_gym"]),
+"start_room_id": &"base:room/level_6_gym",
+"start_spawn_id": &"entry-0"
+}, {
+"eggery_minion_base_level": 58,
+"floor_index": 30,
+"room_ids": Array[StringName]([&"base:room/level_7_gym"]),
+"start_room_id": &"base:room/level_7_gym",
+"start_spawn_id": &"entry-0"
+}])
+starting_room_id = &"base:room/level_1_1_entryhallway"
+mode_configuration = {
+"floor_count": 31,
+"mode": &"standard"
+}
+id = &"base:campaign/standard_tower"
+display_name = "Tower of Sages — standard tower"
+legacy_class_name = "StandardTower"
+source_location = "development/extracted/full-20260908/script/scripts/PresistentData/StaticData.as:1046"

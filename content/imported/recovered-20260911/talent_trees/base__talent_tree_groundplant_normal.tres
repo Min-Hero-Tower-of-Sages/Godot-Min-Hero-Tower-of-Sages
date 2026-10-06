@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_7eo2f"]
+
+[resource]
+script = ExtResource("1_7eo2f")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/groundplant_normal/node/0_0",
+"move_ids": ["base:move/pound/tier2", "base:move/pound/tier3", "base:move/pound/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [633.0, 634.0, 635.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_normal/node/1_0",
+"move_ids": ["base:move/crush/tier1", "base:move/crush/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [636.0, 637.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_normal/node/2_0",
+"move_ids": ["base:move/poison_ivy/tier1", "base:move/poison_ivy/tier2", "base:move/poison_ivy/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [638.0, 639.0, 640.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/groundplant_normal/node/0_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [641.0, 642.0, 643.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_normal/node/1_1",
+"move_ids": ["base:move/brilliance/tier1"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [644.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_normal/node/2_1",
+"move_ids": ["base:move/grassblade/tier1", "base:move/grassblade/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [645.0, 646.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/groundplant_normal/node/0_2",
+"move_ids": ["base:move/slow/tier1", "base:move/slow/tier2", "base:move/slow/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [647.0, 648.0, 649.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_normal/node/1_2",
+"move_ids": ["base:move/tire/tier2", "base:move/tire/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [650.0, 651.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/groundplant_normal/node/2_2",
+"move_ids": ["base:move/grassblade/tier3", "base:move/grassblade/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/groundplant_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [652.0, 653.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/groundplant_normal/node/1_3",
+"move_ids": ["base:move/tire/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/groundplant_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [654.0]
+}])
+id = &"base:talent_tree/groundplant_normal"
+display_name = "Debuff"
+legacy_class_name = "GroundPlant_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:630"

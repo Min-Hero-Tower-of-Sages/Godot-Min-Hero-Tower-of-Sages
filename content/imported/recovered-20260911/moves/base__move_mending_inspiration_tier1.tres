@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b2il1grxlafry"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_ptd8p"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="2_caqls"]
+
+[sub_resource type="Resource" id="Resource_jy8go"]
+script = ExtResource("1_ptd8p")
+kind = 18
+target_scope = 4
+phase = 4
+amount = 5
+stat_type_id = &"base:stat/healing"
+id = &"base:move/mending_inspiration/tier1/effect/00_stat_percent_allied_team"
+display_name = "Stat Percent"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3391"
+
+[resource]
+script = ExtResource("2_caqls")
+family_id = &"base:move_family/mending_inspiration"
+legacy_class_id = 40
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_mendingInspiration"
+is_global_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_ptd8p")]([SubResource("Resource_jy8go")])
+presentation_id = &"base:presentation/move/move_icon_mending_inspiration"
+id = &"base:move/mending_inspiration/tier1"
+display_name = "Mending Inspiration"
+legacy_numeric_id = 265
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

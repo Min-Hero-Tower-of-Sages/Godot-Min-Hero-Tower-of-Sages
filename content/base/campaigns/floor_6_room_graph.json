@@ -1,0 +1,556 @@
+{
+  "floor_index": 5,
+  "source_floor_index": 5,
+  "source_room_order": [
+    "base:room/level_2_1_h1",
+    "base:room/level_2_1_a",
+    "base:room/level_2_1_b",
+    "base:room/level_2_1_c",
+    "base:room/level_2_1_d",
+    "base:room/floor_2_expert_room_fire",
+    "base:room/level_2_1_e",
+    "base:room/level_2_1_h2",
+    "base:room/level_2_1_h3",
+    "base:room/level_2_1_eggery"
+  ],
+  "entry_room_id": "base:room/level_2_1_h1",
+  "normalized_embedded_payloads": [
+    {
+      "room_id": "base:room/level_2_1_eggery",
+      "source_binary": "development/extracted/full-20260908/binaryData/1046.bin",
+      "normalized_payload": "development/normalized/embedded-eggery-floor6-2026-10-01/level_2_1_eggery.json",
+      "identity_source": "explicit_embedded_owner",
+      "source_payload_status": "embedded_binary_normalized_with_explicit_symbol_owner"
+    }
+  ],
+  "script_authored_payloads": [
+    {
+      "room_id": "base:room/floor_2_expert_room_fire",
+      "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/MainTower/ExpertRoom_fire.as",
+      "normalized_payload": "development/normalized/script-authored-floor6-expert-2026-10-02/floor_2_expert_room_fire.json",
+      "layout_source": "literal drawRect and AddObject calls",
+      "source_payload_status": "script_authored_layout_converted_without_geometry_changes"
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_2_1_h1",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    },
+    {
+      "room_id": "base:room/level_2_1_eggery",
+      "transition_id": 100,
+      "source_sprite": "roomTransitionObject_lobbyFromEggery",
+      "target_route": "lobby"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "base:room/level_2_1_h1",
+      "display_name": "Floor 6 — north entrance",
+      "legacy_class_name": "LevelContainer_Level_2_1_H1",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_H1",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_H1.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_1_h1.json",
+      "room_index": 0,
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_2_1_a",
+          "target_spawn_id": "entry-1"
+        },
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_2_1_b",
+          "target_spawn_id": "entry-2"
+        },
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_2_1_c",
+          "target_spawn_id": "entry-3"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_1_a",
+      "display_name": "Floor 6 — fire path",
+      "legacy_class_name": "LevelContainer_Level_2_1_A",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_A",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_A.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_1_a.json",
+      "room_index": 1,
+      "encounter_ids": [
+        "base:encounter/grass_floor6_trainer_1"
+      ],
+      "exits": [
+        {
+          "transition_id": 1,
+          "target_room_id": "base:room/level_2_1_h1",
+          "target_spawn_id": "entry-1"
+        }
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 1,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:367",
+        "source_method": "CreateFloor5",
+        "source_floor_argument": 5
+      },
+      "interactions": [
+        {
+          "id": "floor-6-trainer-1",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 1,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "first_visit_text": "I've got da Vudu mon.",
+          "encounter_id": "base:encounter/grass_floor6_trainer_1",
+          "lose_text": "You killed da Vudu mon!"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_1_b",
+      "display_name": "Floor 6 — firewood clearing",
+      "legacy_class_name": "LevelContainer_Level_2_1_B",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_B",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_B.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_1_b.json",
+      "room_index": 2,
+      "encounter_ids": [
+        "base:encounter/grass_floor6_trainer_2"
+      ],
+      "exits": [
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_2_1_h1",
+          "target_spawn_id": "entry-2"
+        }
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 2,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:376",
+        "source_method": "CreateFloor5",
+        "source_floor_argument": 5
+      },
+      "interactions": [
+        {
+          "id": "floor-6-trainer-2",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 2,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "first_visit_text": "ARE YOU READY FOR THE PAIN!!",
+          "encounter_id": "base:encounter/grass_floor6_trainer_2",
+          "lose_text": "OUCH! I felt the pain on that one..."
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_1_c",
+      "display_name": "Floor 6 — southern crossing",
+      "legacy_class_name": "LevelContainer_Level_2_1_C",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_C",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_C.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_1_c.json",
+      "room_index": 3,
+      "encounter_ids": [
+        "base:encounter/grass_floor6_trainer_3"
+      ],
+      "exits": [
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_2_1_h1",
+          "target_spawn_id": "entry-3"
+        },
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_2_1_h2",
+          "target_spawn_id": "entry-4"
+        },
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/floor_2_expert_room_fire",
+          "target_spawn_id": "entry-expert"
+        }
+      ],
+      "source_spawns": [
+        {
+          "id": "expert-return",
+          "source_marker": "expert_roomTransitionObject"
+        }
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 3,
+        "trainer_type": "TrainerType.NORMAL_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:385",
+        "source_method": "CreateFloor5",
+        "source_floor_argument": 5
+      },
+      "interactions": [
+        {
+          "id": "floor-6-trainer-3",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 3,
+          "trainer_type": "TrainerType.NORMAL_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "first_visit_text": "I'm burning to battle you!",
+          "encounter_id": "base:encounter/grass_floor6_trainer_3",
+          "lose_text": "Way to put out my fire."
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_1_d",
+      "display_name": "Floor 6 — ember passage",
+      "legacy_class_name": "LevelContainer_Level_2_1_D",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_D",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_D.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_1_d.json",
+      "room_index": 4,
+      "encounter_ids": [
+        "base:encounter/grass_floor6_trainer_4_hard"
+      ],
+      "exits": [
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_2_1_h2",
+          "target_spawn_id": "entry-5"
+        }
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 4,
+        "trainer_type": "TrainerType.HARD_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:394",
+        "source_method": "CreateFloor5",
+        "source_floor_argument": 5
+      },
+      "interactions": [
+        {
+          "id": "floor-6-trainer-4",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 4,
+          "trainer_type": "TrainerType.HARD_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/grass_floor6_trainer_4_hard",
+          "first_visit_text": "",
+          "lose_text": ""
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_1_e",
+      "display_name": "Floor 6 — passion chamber",
+      "legacy_class_name": "LevelContainer_Level_2_1_E",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_E",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_E.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_1_e.json",
+      "room_index": 6,
+      "encounter_ids": [
+        "base:encounter/grass_floor6_trainer_6_boss"
+      ],
+      "exits": [
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_2_1_h2",
+          "target_spawn_id": "entry-6"
+        },
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_2_1_h3",
+          "target_spawn_id": "entry-7"
+        }
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 6,
+        "trainer_type": "TrainerType.BOSS_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:408",
+        "source_method": "CreateFloor5",
+        "source_floor_argument": 5
+      },
+      "interactions": [
+        {
+          "id": "floor-6-trainer-6",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 6,
+          "trainer_type": "TrainerType.BOSS_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "first_visit_text": "A Grand Sage needs passion!  I will test the depth of your passion!",
+          "encounter_id": "base:encounter/grass_floor6_trainer_6_boss",
+          "lose_text": "You are quite passionate!  Here is a piece of the Seal of Passion!"
+        }
+      ]
+    },
+    {
+      "id": "base:room/floor_2_expert_room_fire",
+      "display_name": "Floor 6 — expert trial room",
+      "legacy_class_name": "ExpertRoom_fire",
+      "source_symbol": "TopDown.Levels.MainTower.ExpertRoom_fire",
+      "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/MainTower/ExpertRoom_fire.as",
+      "source_payload": "res://content/base/room_payloads/packaged/script-authored-floor6-expert-2026-10-02/floor_2_expert_room_fire.json",
+      "room_index": 5,
+      "encounter_ids": [
+        "base:encounter/grass_floor6_trainer_5_expert"
+      ],
+      "exits": [
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/level_2_1_c",
+          "target_spawn_id": "expert-return"
+        }
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 5,
+        "trainer_type": "TrainerType.EXPERT_TRAINER",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:401",
+        "source_method": "CreateFloor5",
+        "source_floor_argument": 5
+      },
+      "interactions": [
+        {
+          "id": "floor-6-trainer-5",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 5,
+          "trainer_type": "TrainerType.EXPERT_TRAINER",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/grass_floor6_trainer_5_expert",
+          "first_visit_text": "",
+          "lose_text": ""
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_1_h2",
+      "display_name": "Floor 6 — central passage",
+      "legacy_class_name": "LevelContainer_Level_2_1_H2",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_H2",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_H2.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_1_h2.json",
+      "room_index": 7,
+      "exits": [
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_2_1_c",
+          "target_spawn_id": "entry-4"
+        },
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_2_1_d",
+          "target_spawn_id": "entry-5"
+        },
+        {
+          "transition_id": 6,
+          "target_room_id": "base:room/level_2_1_e",
+          "target_spawn_id": "entry-6"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_1_h3",
+      "display_name": "Floor 6 — upper passage",
+      "legacy_class_name": "LevelContainer_Level_2_1_H3",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_H3",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_H3.as",
+      "source_payload": "res://content/base/room_payloads/source/level_2_1_h3.json",
+      "room_index": 8,
+      "exits": [
+        {
+          "transition_id": 7,
+          "target_room_id": "base:room/level_2_1_e",
+          "target_spawn_id": "entry-7"
+        },
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_2_1_eggery",
+          "target_spawn_id": "entry-8"
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_2_1_eggery",
+      "display_name": "Floor 6 — Eggery",
+      "legacy_class_name": "LevelContainer_Level_2_1_Eggery",
+      "source_symbol": "Utilities.LevelContainer_Level_2_1_Eggery",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_2_1_Eggery.as",
+      "source_payload": "res://content/base/room_payloads/packaged/embedded-eggery-floor6-2026-10-01/level_2_1_eggery.json",
+      "room_index": 9,
+      "exits": [
+        {
+          "transition_id": 8,
+          "target_room_id": "base:room/level_2_1_h3",
+          "target_spawn_id": "entry-8"
+        }
+      ],
+      "interactions": [
+        {
+          "id": "floor-6-egg-slot-0",
+          "kind": "egg_pick",
+          "source_zone_id": 0,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        },
+        {
+          "id": "floor-6-egg-slot-1",
+          "kind": "egg_pick",
+          "source_zone_id": 1,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        },
+        {
+          "id": "floor-6-egg-slot-2",
+          "kind": "egg_pick",
+          "source_zone_id": 2,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        },
+        {
+          "id": "floor-6-egg-slot-3",
+          "kind": "egg_pick",
+          "source_zone_id": 3,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        },
+        {
+          "id": "floor-6-egg-slot-4",
+          "kind": "egg_pick",
+          "source_zone_id": 4,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        },
+        {
+          "id": "floor-6-egg-slot-5",
+          "kind": "egg_pick",
+          "source_zone_id": 5,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        },
+        {
+          "id": "floor-6-egg-slot-6",
+          "kind": "egg_pick",
+          "source_zone_id": 6,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        },
+        {
+          "id": "floor-6-egg-slot-7",
+          "kind": "egg_pick",
+          "source_zone_id": 7,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        },
+        {
+          "id": "floor-6-egg-slot-8",
+          "kind": "egg_pick",
+          "source_zone_id": 8,
+          "candidates": [
+            "base:minion/tikimonkey_2",
+            "base:minion/ground_plant_2",
+            "base:minion/racoon_1"
+          ],
+          "weights": [
+            40,
+            40,
+            20
+          ]
+        }
+      ]
+    }
+  ],
+  "eggery_source": {
+    "source_location": "development/extracted/full-20260908/script/scripts/PresistentData/StaticData.as",
+    "source_method": "SetupTheEggeryInfo",
+    "source_floor_index": 5,
+    "source_minion_level_base": 18,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ],
+    "source_candidates": [
+      {
+        "source_minion": "DEX_ID_tikiMonkey_2",
+        "weight": 40
+      },
+      {
+        "source_minion": "DEX_ID_ground_plant_2",
+        "weight": 40
+      },
+      {
+        "source_minion": "DEX_ID_racoon_1",
+        "weight": 20
+      }
+    ]
+  }
+}

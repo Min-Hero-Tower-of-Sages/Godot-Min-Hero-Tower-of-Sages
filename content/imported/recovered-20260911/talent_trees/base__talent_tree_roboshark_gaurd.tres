@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_wsdtw"]
+
+[resource]
+script = ExtResource("1_wsdtw")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/roboshark_gaurd/node/0_0",
+"move_ids": ["base:move/taunt/tier1", "base:move/taunt/tier3", "base:move/taunt/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3087.0, 3088.0, 3089.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/roboshark_gaurd/node/1_0",
+"move_ids": ["base:move/steel_spike/tier1", "base:move/steel_spike/tier2", "base:move/steel_spike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3090.0, 3091.0, 3092.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/roboshark_gaurd/node/2_0",
+"move_ids": ["base:move/spike/tier1", "base:move/spike/tier2", "base:move/spike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3093.0, 3094.0, 3095.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/roboshark_gaurd/node/0_1",
+"move_ids": ["base:move/metal_mold/tier1", "base:move/metal_mold/tier2", "base:move/metal_mold/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3096.0, 3097.0, 3098.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/roboshark_gaurd/node/1_1",
+"move_ids": ["base:move/steel_spike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/roboshark_gaurd/node/1_0"],
+"row": 1.0,
+"source_lines": [3099.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/roboshark_gaurd/node/2_1",
+"move_ids": ["base:move/diamond_skin/tier1", "base:move/diamond_skin/tier2", "base:move/diamond_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3100.0, 3101.0, 3102.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/roboshark_gaurd/node/0_2",
+"move_ids": ["base:move/metal_mold/tier4", "base:move/metal_mold/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/roboshark_gaurd/node/0_1"],
+"row": 2.0,
+"source_lines": [3103.0, 3104.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/roboshark_gaurd/node/1_2",
+"move_ids": ["base:move/solder/tier3", "base:move/solder/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3105.0, 3106.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/roboshark_gaurd/node/2_2",
+"move_ids": ["base:move/diamond_skin/tier4", "base:move/diamond_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/roboshark_gaurd/node/2_1"],
+"row": 2.0,
+"source_lines": [3107.0, 3108.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/roboshark_gaurd/node/1_3",
+"move_ids": ["base:move/solder/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/roboshark_gaurd/node/1_2"],
+"row": 3.0,
+"source_lines": [3109.0]
+}])
+id = &"base:talent_tree/roboshark_gaurd"
+display_name = "Guard"
+legacy_class_name = "RoboShark_Gaurd"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3084"

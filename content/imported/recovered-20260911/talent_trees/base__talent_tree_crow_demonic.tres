@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_sf4wv"]
+
+[resource]
+script = ExtResource("1_sf4wv")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/crow_demonic/node/0_0",
+"move_ids": ["base:move/hailstone/tier1", "base:move/hailstone/tier2", "base:move/hailstone/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3461.0, 3462.0, 3463.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/crow_demonic/node/1_0",
+"move_ids": ["base:move/lich_burn/tier1", "base:move/lich_burn/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3464.0, 3465.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/crow_demonic/node/2_0",
+"move_ids": ["base:move/burn/tier1", "base:move/burn/tier2", "base:move/burn/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3466.0, 3467.0, 3468.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/crow_demonic/node/0_1",
+"move_ids": ["base:move/vicious/tier1", "base:move/vicious/tier2", "base:move/vicious/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3469.0, 3470.0, 3471.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/crow_demonic/node/1_1",
+"move_ids": ["base:move/lich_burn/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/crow_demonic/node/1_0"],
+"row": 1.0,
+"source_lines": [3472.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/crow_demonic/node/2_1",
+"move_ids": ["base:move/crazed_blast/tier1", "base:move/crazed_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3473.0, 3474.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/crow_demonic/node/0_2",
+"move_ids": ["base:move/vicious/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/crow_demonic/node/0_1"],
+"row": 2.0,
+"source_lines": [3475.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/crow_demonic/node/1_2",
+"move_ids": ["base:move/demonic_strike/tier3", "base:move/demonic_strike/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3476.0, 3477.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/crow_demonic/node/2_2",
+"move_ids": ["base:move/evil_eye/tier1", "base:move/evil_eye/tier2", "base:move/evil_eye/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3478.0, 3479.0, 3480.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/crow_demonic/node/1_3",
+"move_ids": ["base:move/demonic_strike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/crow_demonic/node/1_2"],
+"row": 3.0,
+"source_lines": [3481.0]
+}])
+id = &"base:talent_tree/crow_demonic"
+display_name = "Demonic"
+legacy_class_name = "Crow_Demonic"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3458"

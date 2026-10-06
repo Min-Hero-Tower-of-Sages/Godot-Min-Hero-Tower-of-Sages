@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_farvm"]
+
+[resource]
+script = ExtResource("1_farvm")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/tiger_gaurd/node/0_0",
+"move_ids": ["base:move/fortitude/tier1", "base:move/fortitude/tier2", "base:move/fortitude/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4085.0, 4086.0, 4087.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tiger_gaurd/node/1_0",
+"move_ids": ["base:move/rock_throw/tier1", "base:move/rock_throw/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4088.0, 4089.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tiger_gaurd/node/2_0",
+"move_ids": ["base:move/taunt/tier2", "base:move/taunt/tier3", "base:move/taunt/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4090.0, 4091.0, 4092.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/tiger_gaurd/node/0_1",
+"move_ids": ["base:move/fortitude/tier4", "base:move/fortitude/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tiger_gaurd/node/0_0"],
+"row": 1.0,
+"source_lines": [4093.0, 4094.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tiger_gaurd/node/1_1",
+"move_ids": ["base:move/rock_throw/tier3", "base:move/rock_throw/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/tiger_gaurd/node/1_0"],
+"row": 1.0,
+"source_lines": [4095.0, 4096.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tiger_gaurd/node/2_1",
+"move_ids": ["base:move/destabilize/tier1", "base:move/destabilize/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4097.0, 4098.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tiger_gaurd/node/1_2",
+"move_ids": ["base:move/chosen_earth/tier3", "base:move/chosen_earth/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4099.0, 4100.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/tiger_gaurd/node/2_2",
+"move_ids": ["base:move/destabilize/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/tiger_gaurd/node/2_1"],
+"row": 2.0,
+"source_lines": [4101.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/tiger_gaurd/node/1_3",
+"move_ids": ["base:move/chosen_earth/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/tiger_gaurd/node/1_2"],
+"row": 3.0,
+"source_lines": [4102.0]
+}])
+id = &"base:talent_tree/tiger_gaurd"
+display_name = "Guard"
+legacy_class_name = "Tiger_Gaurd"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4082"

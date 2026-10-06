@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_ycphh"]
+
+[resource]
+script = ExtResource("1_ycphh")
+type_ids = Array[StringName]([&"base:type/flying", &"base:type/plant"])
+base_health = 70
+base_energy = 60
+base_attack = 75
+base_healing = 65
+base_speed = 75
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/tackle/tier3"])
+specialization_move_ids = Array[StringName]([&"base:move/spore_blast/tier1", &"base:move/hurricane/tier1", &"base:move/reckless_dash/tier3"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/flyinggrasssuperminion_grass", &"base:talent_tree/flyinggrasssuperminion_flying", &"base:talent_tree/flyinggrasssuperminion_normal"])
+presentation_id = &"base:presentation/minion/featheredserpent"
+id = &"base:minion/flyinggrasssuperminion_1"
+display_name = "Mayataz"
+legacy_numeric_id = 98
+legacy_class_name = "FlyingGrassSuperMinion_stage1"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2156"

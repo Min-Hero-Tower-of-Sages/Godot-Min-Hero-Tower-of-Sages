@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/flyinggrasssuperminion_1", "level": 58, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier3", &"base:move/spore_blast/tier1", &"base:move/ferocity/tier5", &"base:move/drain/tier5", &"base:move/cleric/tier5", &"base:move/skillful/tier3"])
+}, {
+"definition_id": &"base:minion/flyinggrasssuperminion_1", "level": 58, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/tackle/tier3", &"base:move/spore_blast/tier5", &"base:move/ferocity/tier5", &"base:move/tree_slam/tier3", &"base:move/stone_fall/tier5", &"base:move/thunderstorm/tier3"])
+}, {
+"definition_id": &"base:minion/flyinggrasssuperminion_1", "level": 58, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/tackle/tier3", &"base:move/hurricane/tier5", &"base:move/skillful/tier5", &"base:move/concentration/tier3", &"base:move/ferocity/tier5", &"base:move/agility/tier1"])
+}, {
+"definition_id": &"base:minion/holymantris_1", "level": 58, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/nourish/tier2", &"base:move/serenity/tier5", &"base:move/priest/tier5", &"base:move/swift_mend/tier1", &"base:move/cleric/tier5", &"base:move/hope/tier1"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 2000, "eggery_keys": 1}}
+source_trainer_id = &"base:trainer/hard/1/room/6"
+source_floor_index = 31
+source_level_offset = 0
+source_trainer_type = &"TrainerType.BOSS_TRAINER"
+id = &"base:encounter/floor32_trainer_6_boss"
+display_name = "Floor 32 — source trainer 6"
+description = "Source start dialogue: I'd like to test your skill in combat.\nSource defeat dialogue: Well done!  Here is a key to the hatchery."
+legacy_class_name = "TrainerSystem.CreateFloor1_hardMode"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1662"

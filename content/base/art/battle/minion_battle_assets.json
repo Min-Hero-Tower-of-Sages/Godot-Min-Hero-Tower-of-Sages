@@ -1,0 +1,923 @@
+{
+  "format_version": 1,
+  "presentations": {
+    "ophan:presentation/minion/holyeye1": {
+      "sprite_name": "HolyEye1",
+      "resource_path": "res://content/base/art/battle/minions/HolyEye1.png",
+      "symbol_character_ids": [
+        1688
+      ],
+      "source_export": "development/extracted/full-20260908/image/1688_Utilities.SpriteHandler_HolyEye1.png"
+    },
+    "ophan:presentation/minion/holyeye2": {
+      "sprite_name": "HolyEye2",
+      "resource_path": "res://content/base/art/battle/minions/HolyEye2.png",
+      "symbol_character_ids": [
+        1687
+      ],
+      "source_export": "development/extracted/full-20260908/image/1687_Utilities.SpriteHandler_HolyEye2.png"
+    },
+    "ophan:presentation/minion/holyeye3": {
+      "sprite_name": "HolyEye3",
+      "resource_path": "res://content/base/art/battle/minions/HolyEye3.png",
+      "symbol_character_ids": [
+        1689
+      ],
+      "source_export": "development/extracted/full-20260908/image/1689_Utilities.SpriteHandler_HolyEye3.png"
+    },
+    "base:presentation/minion/demonicbatdog": {
+      "sprite_name": "demonicBatDog",
+      "resource_path": "res://content/base/art/battle/minions/demonicBatDog.png",
+      "symbol_character_ids": [
+        142
+      ],
+      "source_export": "development/extracted/full-20260908/image/142_Utilities.SpriteHandler_demonicBatDog.png"
+    },
+    "base:presentation/minion/demoniccat1": {
+      "sprite_name": "demonicCat1",
+      "resource_path": "res://content/base/art/battle/minions/demonicCat1.png",
+      "symbol_character_ids": [
+        1249
+      ],
+      "source_export": "development/extracted/full-20260908/image/1249_Utilities.SpriteHandler_demonicCat1.png"
+    },
+    "base:presentation/minion/demoniccat2": {
+      "sprite_name": "demonicCat2",
+      "resource_path": "res://content/base/art/battle/minions/demonicCat2.png",
+      "symbol_character_ids": [
+        1251
+      ],
+      "source_export": "development/extracted/full-20260908/image/1251_Utilities.SpriteHandler_demonicCat2.png"
+    },
+    "base:presentation/minion/demoniceyeball1": {
+      "sprite_name": "demonicEyeball1",
+      "resource_path": "res://content/base/art/battle/minions/demonicEyeball1.png",
+      "symbol_character_ids": [
+        1399
+      ],
+      "source_export": "development/extracted/full-20260908/image/1399_Utilities.SpriteHandler_demonicEyeball1.png"
+    },
+    "base:presentation/minion/demoniceyeball2": {
+      "sprite_name": "demonicEyeball2",
+      "resource_path": "res://content/base/art/battle/minions/demonicEyeball2.png",
+      "symbol_character_ids": [
+        1400
+      ],
+      "source_export": "development/extracted/full-20260908/image/1400_Utilities.SpriteHandler_demonicEyeball2.png"
+    },
+    "base:presentation/minion/demoniceyeball3": {
+      "sprite_name": "demonicEyeball3",
+      "resource_path": "res://content/base/art/battle/minions/demonicEyeball3.png",
+      "symbol_character_ids": [
+        1401
+      ],
+      "source_export": "development/extracted/full-20260908/image/1401_Utilities.SpriteHandler_demonicEyeball3.png"
+    },
+    "base:presentation/minion/dinorex1": {
+      "sprite_name": "dinoRex1",
+      "resource_path": "res://content/base/art/battle/minions/dinoRex1.png",
+      "symbol_character_ids": [
+        1049
+      ],
+      "source_export": "development/extracted/full-20260908/image/1049_Utilities.SpriteHandler_dinoRex1.png"
+    },
+    "base:presentation/minion/dinorex2": {
+      "sprite_name": "dinoRex2",
+      "resource_path": "res://content/base/art/battle/minions/dinoRex2.png",
+      "symbol_character_ids": [
+        1050
+      ],
+      "source_export": "development/extracted/full-20260908/image/1050_Utilities.SpriteHandler_dinoRex2.png"
+    },
+    "base:presentation/minion/dinorex3": {
+      "sprite_name": "dinoRex3",
+      "resource_path": "res://content/base/art/battle/minions/dinoRex3.png",
+      "symbol_character_ids": [
+        1051
+      ],
+      "source_export": "development/extracted/full-20260908/image/1051_Utilities.SpriteHandler_dinoRex3.png"
+    },
+    "zanyu:presentation/minion/dirtfish": {
+      "sprite_name": "dirtFish",
+      "resource_path": "res://content/base/art/battle/minions/dirtFish.png",
+      "symbol_character_ids": [
+        1681
+      ],
+      "source_export": "development/extracted/full-20260908/image/1681_Utilities.SpriteHandler_dirtFish.png"
+    },
+    "base:presentation/minion/earthbear1": {
+      "sprite_name": "earthBear1",
+      "resource_path": "res://content/base/art/battle/minions/earthBear1.png",
+      "symbol_character_ids": [
+        115
+      ],
+      "source_export": "development/extracted/full-20260908/image/115_Utilities.SpriteHandler_earthBear1.png"
+    },
+    "base:presentation/minion/earthbear2": {
+      "sprite_name": "earthBear2",
+      "resource_path": "res://content/base/art/battle/minions/earthBear2.png",
+      "symbol_character_ids": [
+        116
+      ],
+      "source_export": "development/extracted/full-20260908/image/116_Utilities.SpriteHandler_earthBear2.png"
+    },
+    "base:presentation/minion/earthbeetle1": {
+      "sprite_name": "earthBeetle1",
+      "resource_path": "res://content/base/art/battle/minions/earthBeetle1.png",
+      "symbol_character_ids": [
+        1670
+      ],
+      "source_export": "development/extracted/full-20260908/image/1670_Utilities.SpriteHandler_earthBeetle1.png"
+    },
+    "base:presentation/minion/earthbeetle2": {
+      "sprite_name": "earthBeetle2",
+      "resource_path": "res://content/base/art/battle/minions/earthBeetle2.png",
+      "symbol_character_ids": [
+        1672
+      ],
+      "source_export": "development/extracted/full-20260908/image/1672_Utilities.SpriteHandler_earthBeetle2.png"
+    },
+    "base:presentation/minion/earthbeetle3": {
+      "sprite_name": "earthBeetle3",
+      "resource_path": "res://content/base/art/battle/minions/earthBeetle3.png",
+      "symbol_character_ids": [
+        1673
+      ],
+      "source_export": "development/extracted/full-20260908/image/1673_Utilities.SpriteHandler_earthBeetle3.png"
+    },
+    "base:presentation/minion/earthmole1": {
+      "sprite_name": "earthMole1",
+      "resource_path": "res://content/base/art/battle/minions/earthMole1.png",
+      "symbol_character_ids": [
+        1068
+      ],
+      "source_export": "development/extracted/full-20260908/image/1068_Utilities.SpriteHandler_earthMole1.png"
+    },
+    "base:presentation/minion/earthmole2": {
+      "sprite_name": "earthMole2",
+      "resource_path": "res://content/base/art/battle/minions/earthMole2.png",
+      "symbol_character_ids": [
+        1069
+      ],
+      "source_export": "development/extracted/full-20260908/image/1069_Utilities.SpriteHandler_earthMole2.png"
+    },
+    "base:presentation/minion/earthmole3": {
+      "sprite_name": "earthMole3",
+      "resource_path": "res://content/base/art/battle/minions/earthMole3.png",
+      "symbol_character_ids": [
+        1074
+      ],
+      "source_export": "development/extracted/full-20260908/image/1074_Utilities.SpriteHandler_earthMole3.png"
+    },
+    "base:presentation/minion/earthtortoisewhite": {
+      "sprite_name": "earthTortoiseWhite",
+      "resource_path": "res://content/base/art/battle/minions/earthTortoiseWhite.png",
+      "symbol_character_ids": [
+        926
+      ],
+      "source_export": "development/extracted/full-20260908/image/926_Utilities.SpriteHandler_earthTortoiseWhite.png"
+    },
+    "base:presentation/minion/earthworm1": {
+      "sprite_name": "earthWorm1",
+      "resource_path": "res://content/base/art/battle/minions/earthWorm1.png",
+      "symbol_character_ids": [
+        1313
+      ],
+      "source_export": "development/extracted/full-20260908/image/1313_Utilities.SpriteHandler_earthWorm1.png"
+    },
+    "base:presentation/minion/earthworm2": {
+      "sprite_name": "earthWorm2",
+      "resource_path": "res://content/base/art/battle/minions/earthWorm2.png",
+      "symbol_character_ids": [
+        1311
+      ],
+      "source_export": "development/extracted/full-20260908/image/1311_Utilities.SpriteHandler_earthWorm2.png"
+    },
+    "base:presentation/minion/earthworm3": {
+      "sprite_name": "earthWorm3",
+      "resource_path": "res://content/base/art/battle/minions/earthWorm3.png",
+      "symbol_character_ids": [
+        1314
+      ],
+      "source_export": "development/extracted/full-20260908/image/1314_Utilities.SpriteHandler_earthWorm3.png"
+    },
+    "base:presentation/minion/energyboar1": {
+      "sprite_name": "energyBoar1",
+      "resource_path": "res://content/base/art/battle/minions/energyBoar1.png",
+      "symbol_character_ids": [
+        1206
+      ],
+      "source_export": "development/extracted/full-20260908/image/1206_Utilities.SpriteHandler_energyBoar1.png"
+    },
+    "base:presentation/minion/energyboar2": {
+      "sprite_name": "energyBoar2",
+      "resource_path": "res://content/base/art/battle/minions/energyBoar2.png",
+      "symbol_character_ids": [
+        1204
+      ],
+      "source_export": "development/extracted/full-20260908/image/1204_Utilities.SpriteHandler_energyBoar2.png"
+    },
+    "base:presentation/minion/energyboar3": {
+      "sprite_name": "energyBoar3",
+      "resource_path": "res://content/base/art/battle/minions/energyBoar3.png",
+      "symbol_character_ids": [
+        1202
+      ],
+      "source_export": "development/extracted/full-20260908/image/1202_Utilities.SpriteHandler_energyBoar3.png"
+    },
+    "base:presentation/minion/energycheetah1": {
+      "sprite_name": "energyCheetah1",
+      "resource_path": "res://content/base/art/battle/minions/energyCheetah1.png",
+      "symbol_character_ids": [
+        229
+      ],
+      "source_export": "development/extracted/full-20260908/image/229_Utilities.SpriteHandler_energyCheetah1.png"
+    },
+    "base:presentation/minion/energycheetah2": {
+      "sprite_name": "energyCheetah2",
+      "resource_path": "res://content/base/art/battle/minions/energyCheetah2.png",
+      "symbol_character_ids": [
+        232
+      ],
+      "source_export": "development/extracted/full-20260908/image/232_Utilities.SpriteHandler_energyCheetah2.png"
+    },
+    "base:presentation/minion/energycheetah3": {
+      "sprite_name": "energyCheetah3",
+      "resource_path": "res://content/base/art/battle/minions/energyCheetah3.png",
+      "symbol_character_ids": [
+        231
+      ],
+      "source_export": "development/extracted/full-20260908/image/231_Utilities.SpriteHandler_energyCheetah3.png"
+    },
+    "base:presentation/minion/energyjellyfish1": {
+      "sprite_name": "energyJellyfish1",
+      "resource_path": "res://content/base/art/battle/minions/energyJellyfish1.png",
+      "symbol_character_ids": [
+        1416
+      ],
+      "source_export": "development/extracted/full-20260908/image/1416_Utilities.SpriteHandler_energyJellyfish1.png"
+    },
+    "base:presentation/minion/energyjellyfish2": {
+      "sprite_name": "energyJellyfish2",
+      "resource_path": "res://content/base/art/battle/minions/energyJellyfish2.png",
+      "symbol_character_ids": [
+        1417
+      ],
+      "source_export": "development/extracted/full-20260908/image/1417_Utilities.SpriteHandler_energyJellyfish2.png"
+    },
+    "base:presentation/minion/energyscorpion1": {
+      "sprite_name": "energyScorpion1",
+      "resource_path": "res://content/base/art/battle/minions/energyScorpion1.png",
+      "symbol_character_ids": [
+        1211
+      ],
+      "source_export": "development/extracted/full-20260908/image/1211_Utilities.SpriteHandler_energyScorpion1.png"
+    },
+    "base:presentation/minion/energyscorpion2": {
+      "sprite_name": "energyScorpion2",
+      "resource_path": "res://content/base/art/battle/minions/energyScorpion2.png",
+      "symbol_character_ids": [
+        1209
+      ],
+      "source_export": "development/extracted/full-20260908/image/1209_Utilities.SpriteHandler_energyScorpion2.png"
+    },
+    "base:presentation/minion/energyscorpion3": {
+      "sprite_name": "energyScorpion3",
+      "resource_path": "res://content/base/art/battle/minions/energyScorpion3.png",
+      "symbol_character_ids": [
+        1213
+      ],
+      "source_export": "development/extracted/full-20260908/image/1213_Utilities.SpriteHandler_energyScorpion3.png"
+    },
+    "base:presentation/minion/featheredserpent": {
+      "sprite_name": "featheredSerpent",
+      "resource_path": "res://content/base/art/battle/minions/featheredSerpent.png",
+      "symbol_character_ids": [
+        1677
+      ],
+      "source_export": "development/extracted/full-20260908/image/1677_Utilities.SpriteHandler_featheredSerpent.png"
+    },
+    "base:presentation/minion/firemage": {
+      "sprite_name": "fireMage",
+      "resource_path": "res://content/base/art/battle/minions/fireMage.png",
+      "symbol_character_ids": [
+        1032
+      ],
+      "source_export": "development/extracted/full-20260908/image/1032_Utilities.SpriteHandler_fireMage.png"
+    },
+    "base:presentation/minion/firemonkey1": {
+      "sprite_name": "fireMonkey1",
+      "resource_path": "res://content/base/art/battle/minions/fireMonkey1.png",
+      "symbol_character_ids": [
+        1348
+      ],
+      "source_export": "development/extracted/full-20260908/image/1348_Utilities.SpriteHandler_fireMonkey1.png"
+    },
+    "base:presentation/minion/firemonkey2": {
+      "sprite_name": "fireMonkey2",
+      "resource_path": "res://content/base/art/battle/minions/fireMonkey2.png",
+      "symbol_character_ids": [
+        1346
+      ],
+      "source_export": "development/extracted/full-20260908/image/1346_Utilities.SpriteHandler_fireMonkey2.png"
+    },
+    "base:presentation/minion/fireraptor1": {
+      "sprite_name": "fireRaptor1",
+      "resource_path": "res://content/base/art/battle/minions/fireRaptor1.png",
+      "symbol_character_ids": [
+        366
+      ],
+      "source_export": "development/extracted/full-20260908/image/366_Utilities.SpriteHandler_fireRaptor1.png"
+    },
+    "base:presentation/minion/fireraptor2": {
+      "sprite_name": "fireRaptor2",
+      "resource_path": "res://content/base/art/battle/minions/fireRaptor2.png",
+      "symbol_character_ids": [
+        360
+      ],
+      "source_export": "development/extracted/full-20260908/image/360_Utilities.SpriteHandler_fireRaptor2.png"
+    },
+    "base:presentation/minion/fireraptor3": {
+      "sprite_name": "fireRaptor3",
+      "resource_path": "res://content/base/art/battle/minions/fireRaptor3.png",
+      "symbol_character_ids": [
+        361
+      ],
+      "source_export": "development/extracted/full-20260908/image/361_Utilities.SpriteHandler_fireRaptor3.png"
+    },
+    "base:presentation/minion/firetoad1": {
+      "sprite_name": "fireToad1",
+      "resource_path": "res://content/base/art/battle/minions/fireToad1.png",
+      "symbol_character_ids": [
+        1634
+      ],
+      "source_export": "development/extracted/full-20260908/image/1634_Utilities.SpriteHandler_fireToad1.png"
+    },
+    "base:presentation/minion/firetoad2": {
+      "sprite_name": "fireToad2",
+      "resource_path": "res://content/base/art/battle/minions/fireToad2.png",
+      "symbol_character_ids": [
+        1652
+      ],
+      "source_export": "development/extracted/full-20260908/image/1652_Utilities.SpriteHandler_fireToad2.png"
+    },
+    "base:presentation/minion/firetoad3": {
+      "sprite_name": "fireToad3",
+      "resource_path": "res://content/base/art/battle/minions/fireToad3.png",
+      "symbol_character_ids": [
+        1653
+      ],
+      "source_export": "development/extracted/full-20260908/image/1653_Utilities.SpriteHandler_fireToad3.png"
+    },
+    "base:presentation/minion/flyinggriffin1": {
+      "sprite_name": "flyingGriffin1",
+      "resource_path": "res://content/base/art/battle/minions/flyingGriffin1.png",
+      "symbol_character_ids": [
+        1642
+      ],
+      "source_export": "development/extracted/full-20260908/image/1642_Utilities.SpriteHandler_flyingGriffin1.png"
+    },
+    "base:presentation/minion/flyinggriffin2": {
+      "sprite_name": "flyingGriffin2",
+      "resource_path": "res://content/base/art/battle/minions/flyingGriffin2.png",
+      "symbol_character_ids": [
+        1641
+      ],
+      "source_export": "development/extracted/full-20260908/image/1641_Utilities.SpriteHandler_flyingGriffin2.png"
+    },
+    "base:presentation/minion/flyingharpy": {
+      "sprite_name": "flyingHarpy",
+      "resource_path": "res://content/base/art/battle/minions/flyingHarpy.png",
+      "symbol_character_ids": [
+        1106
+      ],
+      "source_export": "development/extracted/full-20260908/image/1106_Utilities.SpriteHandler_flyingHarpy.png"
+    },
+    "base:presentation/minion/flyingowl1": {
+      "sprite_name": "flyingOwl1",
+      "resource_path": "res://content/base/art/battle/minions/flyingOwl1.png",
+      "symbol_character_ids": [
+        1005
+      ],
+      "source_export": "development/extracted/full-20260908/image/1005_Utilities.SpriteHandler_flyingOwl1.png"
+    },
+    "base:presentation/minion/flyingowl2": {
+      "sprite_name": "flyingOwl2",
+      "resource_path": "res://content/base/art/battle/minions/flyingOwl2.png",
+      "symbol_character_ids": [
+        1006
+      ],
+      "source_export": "development/extracted/full-20260908/image/1006_Utilities.SpriteHandler_flyingOwl2.png"
+    },
+    "base:presentation/minion/flyingsongbird1": {
+      "sprite_name": "flyingSongbird1",
+      "resource_path": "res://content/base/art/battle/minions/flyingSongbird1.png",
+      "symbol_character_ids": [
+        1277
+      ],
+      "source_export": "development/extracted/full-20260908/image/1277_Utilities.SpriteHandler_flyingSongbird1.png"
+    },
+    "base:presentation/minion/flyingsongbird2": {
+      "sprite_name": "flyingSongbird2",
+      "resource_path": "res://content/base/art/battle/minions/flyingSongbird2.png",
+      "symbol_character_ids": [
+        1278
+      ],
+      "source_export": "development/extracted/full-20260908/image/1278_Utilities.SpriteHandler_flyingSongbird2.png"
+    },
+    "base:presentation/minion/flyingsongbird3": {
+      "sprite_name": "flyingSongbird3",
+      "resource_path": "res://content/base/art/battle/minions/flyingSongbird3.png",
+      "symbol_character_ids": [
+        1267
+      ],
+      "source_export": "development/extracted/full-20260908/image/1267_Utilities.SpriteHandler_flyingSongbird3.png"
+    },
+    "internal:presentation/minion/generalroom_healstone": {
+      "sprite_name": "generalRoom_healStone",
+      "resource_path": "res://content/base/art/battle/minions/generalRoom_healStone.png",
+      "symbol_character_ids": [
+        421
+      ],
+      "source_export": "development/extracted/full-20260908/image/421_Utilities.SpriteHandler_generalRoom_healStone.png"
+    },
+    "base:presentation/minion/holybluebell": {
+      "sprite_name": "holyBlueBell",
+      "resource_path": "res://content/base/art/battle/minions/holyBlueBell.png",
+      "symbol_character_ids": [
+        499
+      ],
+      "source_export": "development/extracted/full-20260908/image/499_Utilities.SpriteHandler_holyBlueBell.png"
+    },
+    "base:presentation/minion/holyfox": {
+      "sprite_name": "holyFox",
+      "resource_path": "res://content/base/art/battle/minions/holyFox.png",
+      "symbol_character_ids": [
+        561
+      ],
+      "source_export": "development/extracted/full-20260908/image/561_Utilities.SpriteHandler_holyFox.png"
+    },
+    "base:presentation/minion/holymantis": {
+      "sprite_name": "holyMantis",
+      "resource_path": "res://content/base/art/battle/minions/holyMantis.png",
+      "symbol_character_ids": [
+        1002
+      ],
+      "source_export": "development/extracted/full-20260908/image/1002_Utilities.SpriteHandler_holyMantis.png"
+    },
+    "base:presentation/minion/holypinkbell": {
+      "sprite_name": "holyPinkBell",
+      "resource_path": "res://content/base/art/battle/minions/holyPinkBell.png",
+      "symbol_character_ids": [
+        1561
+      ],
+      "source_export": "development/extracted/full-20260908/image/1561_Utilities.SpriteHandler_holyPinkBell.png"
+    },
+    "base:presentation/minion/icestag": {
+      "sprite_name": "iceStag",
+      "resource_path": "res://content/base/art/battle/minions/iceStag.png",
+      "symbol_character_ids": [
+        997
+      ],
+      "source_export": "development/extracted/full-20260908/image/997_Utilities.SpriteHandler_iceStag.png"
+    },
+    "base:presentation/minion/icetree1": {
+      "sprite_name": "iceTree1",
+      "resource_path": "res://content/base/art/battle/minions/iceTree1.png",
+      "symbol_character_ids": [
+        1361
+      ],
+      "source_export": "development/extracted/full-20260908/image/1361_Utilities.SpriteHandler_iceTree1.png"
+    },
+    "base:presentation/minion/icetree2": {
+      "sprite_name": "iceTree2",
+      "resource_path": "res://content/base/art/battle/minions/iceTree2.png",
+      "symbol_character_ids": [
+        1362
+      ],
+      "source_export": "development/extracted/full-20260908/image/1362_Utilities.SpriteHandler_iceTree2.png"
+    },
+    "base:presentation/minion/normalarmadillo": {
+      "sprite_name": "normalArmadillo",
+      "resource_path": "res://content/base/art/battle/minions/normalArmadillo.png",
+      "symbol_character_ids": [
+        1577
+      ],
+      "source_export": "development/extracted/full-20260908/image/1577_Utilities.SpriteHandler_normalArmadillo.png"
+    },
+    "base:presentation/minion/normalarmadillo1": {
+      "sprite_name": "normalArmadillo1",
+      "resource_path": "res://content/base/art/battle/minions/normalArmadillo1.png",
+      "symbol_character_ids": [
+        816
+      ],
+      "source_export": "development/extracted/full-20260908/image/816_Utilities.SpriteHandler_normalArmadillo1.png"
+    },
+    "base:presentation/minion/normalraccoon1": {
+      "sprite_name": "normalRaccoon1",
+      "resource_path": "res://content/base/art/battle/minions/normalRaccoon1.png",
+      "symbol_character_ids": [
+        1166
+      ],
+      "source_export": "development/extracted/full-20260908/image/1166_Utilities.SpriteHandler_normalRaccoon1.png"
+    },
+    "base:presentation/minion/normalraccoon2": {
+      "sprite_name": "normalRaccoon2",
+      "resource_path": "res://content/base/art/battle/minions/normalRaccoon2.png",
+      "symbol_character_ids": [
+        1159
+      ],
+      "source_export": "development/extracted/full-20260908/image/1159_Utilities.SpriteHandler_normalRaccoon2.png"
+    },
+    "base:presentation/minion/normalslime1": {
+      "sprite_name": "normalSlime1",
+      "resource_path": "res://content/base/art/battle/minions/normalSlime1.png",
+      "symbol_character_ids": [
+        564
+      ],
+      "source_export": "development/extracted/full-20260908/image/564_Utilities.SpriteHandler_normalSlime1.png"
+    },
+    "base:presentation/minion/normalslime2": {
+      "sprite_name": "normalSlime2",
+      "resource_path": "res://content/base/art/battle/minions/normalSlime2.png",
+      "symbol_character_ids": [
+        562
+      ],
+      "source_export": "development/extracted/full-20260908/image/562_Utilities.SpriteHandler_normalSlime2.png"
+    },
+    "base:presentation/minion/normalslime3": {
+      "sprite_name": "normalSlime3",
+      "resource_path": "res://content/base/art/battle/minions/normalSlime3.png",
+      "symbol_character_ids": [
+        556
+      ],
+      "source_export": "development/extracted/full-20260908/image/556_Utilities.SpriteHandler_normalSlime3.png"
+    },
+    "base:presentation/minion/normaltiger1": {
+      "sprite_name": "normalTiger1",
+      "resource_path": "res://content/base/art/battle/minions/normalTiger1.png",
+      "symbol_character_ids": [
+        1120
+      ],
+      "source_export": "development/extracted/full-20260908/image/1120_Utilities.SpriteHandler_normalTiger1.png"
+    },
+    "base:presentation/minion/normaltiger2": {
+      "sprite_name": "normalTiger2",
+      "resource_path": "res://content/base/art/battle/minions/normalTiger2.png",
+      "symbol_character_ids": [
+        1117
+      ],
+      "source_export": "development/extracted/full-20260908/image/1117_Utilities.SpriteHandler_normalTiger2.png"
+    },
+    "base:presentation/minion/plantgorilla1": {
+      "sprite_name": "plantGorilla1",
+      "resource_path": "res://content/base/art/battle/minions/plantGorilla1.png",
+      "symbol_character_ids": [
+        1611
+      ],
+      "source_export": "development/extracted/full-20260908/image/1611_Utilities.SpriteHandler_plantGorilla1.png"
+    },
+    "base:presentation/minion/plantgorilla2": {
+      "sprite_name": "plantGorilla2",
+      "resource_path": "res://content/base/art/battle/minions/plantGorilla2.png",
+      "symbol_character_ids": [
+        1612
+      ],
+      "source_export": "development/extracted/full-20260908/image/1612_Utilities.SpriteHandler_plantGorilla2.png"
+    },
+    "base:presentation/minion/plantlizard": {
+      "sprite_name": "plantLizard",
+      "resource_path": "res://content/base/art/battle/minions/plantLizard.png",
+      "symbol_character_ids": [
+        1667
+      ],
+      "source_export": "development/extracted/full-20260908/image/1667_Utilities.SpriteHandler_plantLizard.png"
+    },
+    "base:presentation/minion/plantsquid1": {
+      "sprite_name": "plantSquid1",
+      "resource_path": "res://content/base/art/battle/minions/plantSquid1.png",
+      "symbol_character_ids": [
+        281
+      ],
+      "source_export": "development/extracted/full-20260908/image/281_Utilities.SpriteHandler_plantSquid1.png"
+    },
+    "base:presentation/minion/plantsquid2": {
+      "sprite_name": "plantSquid2",
+      "resource_path": "res://content/base/art/battle/minions/plantSquid2.png",
+      "symbol_character_ids": [
+        282
+      ],
+      "source_export": "development/extracted/full-20260908/image/282_Utilities.SpriteHandler_plantSquid2.png"
+    },
+    "base:presentation/minion/plantsquid3": {
+      "sprite_name": "plantSquid3",
+      "resource_path": "res://content/base/art/battle/minions/plantSquid3.png",
+      "symbol_character_ids": [
+        279
+      ],
+      "source_export": "development/extracted/full-20260908/image/279_Utilities.SpriteHandler_plantSquid3.png"
+    },
+    "base:presentation/minion/plantviper1": {
+      "sprite_name": "plantViper1",
+      "resource_path": "res://content/base/art/battle/minions/plantViper1.png",
+      "symbol_character_ids": [
+        1060
+      ],
+      "source_export": "development/extracted/full-20260908/image/1060_Utilities.SpriteHandler_plantViper1.png"
+    },
+    "base:presentation/minion/plantviper2": {
+      "sprite_name": "plantViper2",
+      "resource_path": "res://content/base/art/battle/minions/plantViper2.png",
+      "symbol_character_ids": [
+        1059
+      ],
+      "source_export": "development/extracted/full-20260908/image/1059_Utilities.SpriteHandler_plantViper2.png"
+    },
+    "base:presentation/minion/plantviper3": {
+      "sprite_name": "plantViper3",
+      "resource_path": "res://content/base/art/battle/minions/plantViper3.png",
+      "symbol_character_ids": [
+        1061
+      ],
+      "source_export": "development/extracted/full-20260908/image/1061_Utilities.SpriteHandler_plantViper3.png"
+    },
+    "base:presentation/minion/robotanteater": {
+      "sprite_name": "robotAnteater",
+      "resource_path": "res://content/base/art/battle/minions/robotAnteater.png",
+      "symbol_character_ids": [
+        1248
+      ],
+      "source_export": "development/extracted/full-20260908/image/1248_Utilities.SpriteHandler_robotAnteater.png"
+    },
+    "base:presentation/minion/robotanteater1": {
+      "sprite_name": "robotAnteater1",
+      "resource_path": "res://content/base/art/battle/minions/robotAnteater1.png",
+      "symbol_character_ids": [
+        804
+      ],
+      "source_export": "development/extracted/full-20260908/image/804_Utilities.SpriteHandler_robotAnteater1.png"
+    },
+    "base:presentation/minion/robotbull": {
+      "sprite_name": "robotBull",
+      "resource_path": "res://content/base/art/battle/minions/robotBull.png",
+      "symbol_character_ids": [
+        979
+      ],
+      "source_export": "development/extracted/full-20260908/image/979_Utilities.SpriteHandler_robotBull.png"
+    },
+    "base:presentation/minion/robotdeathcall": {
+      "sprite_name": "robotDeathCall",
+      "resource_path": "res://content/base/art/battle/minions/robotDeathCall.png",
+      "symbol_character_ids": [
+        303
+      ],
+      "source_export": "development/extracted/full-20260908/image/303_Utilities.SpriteHandler_robotDeathCall.png"
+    },
+    "base:presentation/minion/robothummingbird": {
+      "sprite_name": "robotHummingbird",
+      "resource_path": "res://content/base/art/battle/minions/robotHummingbird.png",
+      "symbol_character_ids": [
+        399
+      ],
+      "source_export": "development/extracted/full-20260908/image/399_Utilities.SpriteHandler_robotHummingbird.png"
+    },
+    "base:presentation/minion/robotshark": {
+      "sprite_name": "robotShark",
+      "resource_path": "res://content/base/art/battle/minions/robotShark.png",
+      "symbol_character_ids": [
+        847
+      ],
+      "source_export": "development/extracted/full-20260908/image/847_Utilities.SpriteHandler_robotShark.png"
+    },
+    "base:presentation/minion/titan1": {
+      "sprite_name": "titan1",
+      "resource_path": "res://content/base/art/battle/minions/titan1.png",
+      "symbol_character_ids": [
+        1678
+      ],
+      "source_export": "development/extracted/full-20260908/image/1678_Utilities.SpriteHandler_titan1.png"
+    },
+    "base:presentation/minion/titan2": {
+      "sprite_name": "titan2",
+      "resource_path": "res://content/base/art/battle/minions/titan2.png",
+      "symbol_character_ids": [
+        1675
+      ],
+      "source_export": "development/extracted/full-20260908/image/1675_Utilities.SpriteHandler_titan2.png"
+    },
+    "base:presentation/minion/undeadcrow1": {
+      "sprite_name": "undeadCrow1",
+      "resource_path": "res://content/base/art/battle/minions/undeadCrow1.png",
+      "symbol_character_ids": [
+        1631
+      ],
+      "source_export": "development/extracted/full-20260908/image/1631_Utilities.SpriteHandler_undeadCrow1.png"
+    },
+    "base:presentation/minion/undeadcrow2": {
+      "sprite_name": "undeadCrow2",
+      "resource_path": "res://content/base/art/battle/minions/undeadCrow2.png",
+      "symbol_character_ids": [
+        1590
+      ],
+      "source_export": "development/extracted/full-20260908/image/1590_Utilities.SpriteHandler_undeadCrow2.png"
+    },
+    "base:presentation/minion/undeadcrow3": {
+      "sprite_name": "undeadCrow3",
+      "resource_path": "res://content/base/art/battle/minions/undeadCrow3.png",
+      "symbol_character_ids": [
+        1592
+      ],
+      "source_export": "development/extracted/full-20260908/image/1592_Utilities.SpriteHandler_undeadCrow3.png"
+    },
+    "base:presentation/minion/undeadeel": {
+      "sprite_name": "undeadEel",
+      "resource_path": "res://content/base/art/battle/minions/undeadEel.png",
+      "symbol_character_ids": [
+        814
+      ],
+      "source_export": "development/extracted/full-20260908/image/814_Utilities.SpriteHandler_undeadEel.png"
+    },
+    "base:presentation/minion/undeadgolem": {
+      "sprite_name": "undeadGolem",
+      "resource_path": "res://content/base/art/battle/minions/undeadGolem.png",
+      "symbol_character_ids": [
+        274
+      ],
+      "source_export": "development/extracted/full-20260908/image/274_Utilities.SpriteHandler_undeadGolem.png"
+    },
+    "base:presentation/minion/undeadlich1": {
+      "sprite_name": "undeadLich1",
+      "resource_path": "res://content/base/art/battle/minions/undeadLich1.png",
+      "symbol_character_ids": [
+        1321
+      ],
+      "source_export": "development/extracted/full-20260908/image/1321_Utilities.SpriteHandler_undeadLich1.png"
+    },
+    "base:presentation/minion/undeadlich2": {
+      "sprite_name": "undeadLich2",
+      "resource_path": "res://content/base/art/battle/minions/undeadLich2.png",
+      "symbol_character_ids": [
+        1322
+      ],
+      "source_export": "development/extracted/full-20260908/image/1322_Utilities.SpriteHandler_undeadLich2.png"
+    },
+    "base:presentation/minion/undeadlich3": {
+      "sprite_name": "undeadLich3",
+      "resource_path": "res://content/base/art/battle/minions/undeadLich3.png",
+      "symbol_character_ids": [
+        1319
+      ],
+      "source_export": "development/extracted/full-20260908/image/1319_Utilities.SpriteHandler_undeadLich3.png"
+    },
+    "base:presentation/minion/undeadscarecrow1": {
+      "sprite_name": "undeadScarecrow1",
+      "resource_path": "res://content/base/art/battle/minions/undeadScarecrow1.png",
+      "symbol_character_ids": [
+        786
+      ],
+      "source_export": "development/extracted/full-20260908/image/786_Utilities.SpriteHandler_undeadScarecrow1.png"
+    },
+    "base:presentation/minion/undeadscarecrow2": {
+      "sprite_name": "undeadScarecrow2",
+      "resource_path": "res://content/base/art/battle/minions/undeadScarecrow2.png",
+      "symbol_character_ids": [
+        781
+      ],
+      "source_export": "development/extracted/full-20260908/image/781_Utilities.SpriteHandler_undeadScarecrow2.png"
+    },
+    "base:presentation/minion/undeadscarecrow3": {
+      "sprite_name": "undeadScarecrow3",
+      "resource_path": "res://content/base/art/battle/minions/undeadScarecrow3.png",
+      "symbol_character_ids": [
+        783
+      ],
+      "source_export": "development/extracted/full-20260908/image/783_Utilities.SpriteHandler_undeadScarecrow3.png"
+    },
+    "base:presentation/minion/undeadwarrior": {
+      "sprite_name": "undeadWarrior",
+      "resource_path": "res://content/base/art/battle/minions/undeadWarrior.png",
+      "symbol_character_ids": [
+        251
+      ],
+      "source_export": "development/extracted/full-20260908/image/251_Utilities.SpriteHandler_undeadWarrior.png"
+    },
+    "base:presentation/minion/waterdog1": {
+      "sprite_name": "waterDog1",
+      "resource_path": "res://content/base/art/battle/minions/waterDog1.png",
+      "symbol_character_ids": [
+        700
+      ],
+      "source_export": "development/extracted/full-20260908/image/700_Utilities.SpriteHandler_waterDog1.png"
+    },
+    "base:presentation/minion/waterdog2": {
+      "sprite_name": "waterDog2",
+      "resource_path": "res://content/base/art/battle/minions/waterDog2.png",
+      "symbol_character_ids": [
+        699
+      ],
+      "source_export": "development/extracted/full-20260908/image/699_Utilities.SpriteHandler_waterDog2.png"
+    },
+    "base:presentation/minion/waterhorse": {
+      "sprite_name": "waterHorse",
+      "resource_path": "res://content/base/art/battle/minions/waterHorse.png",
+      "symbol_character_ids": [
+        309
+      ],
+      "source_export": "development/extracted/full-20260908/image/309_Utilities.SpriteHandler_waterHorse.png"
+    },
+    "base:presentation/minion/waterkirin": {
+      "sprite_name": "waterKirin",
+      "resource_path": "res://content/base/art/battle/minions/waterKirin.png",
+      "symbol_character_ids": [
+        939
+      ],
+      "source_export": "development/extracted/full-20260908/image/939_Utilities.SpriteHandler_waterKirin.png"
+    },
+    "base:presentation/minion/waterlandshark": {
+      "sprite_name": "waterLandShark",
+      "resource_path": "res://content/base/art/battle/minions/waterLandShark.png",
+      "symbol_character_ids": [
+        319
+      ],
+      "source_export": "development/extracted/full-20260908/image/319_Utilities.SpriteHandler_waterLandShark.png"
+    },
+    "stingaray:presentation/minion/waterray1": {
+      "sprite_name": "waterRay1",
+      "resource_path": "res://content/base/art/battle/minions/waterRay1.png",
+      "symbol_character_ids": [
+        1683
+      ],
+      "source_export": "development/extracted/full-20260908/image/1683_Utilities.SpriteHandler_waterRay1.png"
+    },
+    "stingaray:presentation/minion/waterray2": {
+      "sprite_name": "waterRay2",
+      "resource_path": "res://content/base/art/battle/minions/waterRay2.png",
+      "symbol_character_ids": [
+        1684
+      ],
+      "source_export": "development/extracted/full-20260908/image/1684_Utilities.SpriteHandler_waterRay2.png"
+    },
+    "base:presentation/minion/waterseal1": {
+      "sprite_name": "waterSeal1",
+      "resource_path": "res://content/base/art/battle/minions/waterSeal1.png",
+      "symbol_character_ids": [
+        1174
+      ],
+      "source_export": "development/extracted/full-20260908/image/1174_Utilities.SpriteHandler_waterSeal1.png"
+    },
+    "base:presentation/minion/waterseal2": {
+      "sprite_name": "waterSeal2",
+      "resource_path": "res://content/base/art/battle/minions/waterSeal2.png",
+      "symbol_character_ids": [
+        1173
+      ],
+      "source_export": "development/extracted/full-20260908/image/1173_Utilities.SpriteHandler_waterSeal2.png"
+    },
+    "arkvian:presentation/minion/holybird1": {
+      "sprite_name": "holyBirb1",
+      "resource_path": "",
+      "symbol_character_ids": [],
+      "source_export": ""
+    },
+    "arkvian:presentation/minion/holybird2": {
+      "sprite_name": "holyBirb2",
+      "resource_path": "",
+      "symbol_character_ids": [],
+      "source_export": ""
+    },
+    "ice_floor:presentation/minion/imammoth": {
+      "sprite_name": "iMammoth",
+      "resource_path": "",
+      "symbol_character_ids": [],
+      "source_export": ""
+    },
+    "ice_floor:presentation/minion/iseal": {
+      "sprite_name": "iSeal",
+      "resource_path": "",
+      "symbol_character_ids": [],
+      "source_export": ""
+    },
+    "ice_floor:presentation/minion/isloth": {
+      "sprite_name": "iSloth",
+      "resource_path": "",
+      "symbol_character_ids": [],
+      "source_export": ""
+    },
+    "ice_floor:presentation/minion/iunicorn": {
+      "sprite_name": "iUnicorn",
+      "resource_path": "",
+      "symbol_character_ids": [],
+      "source_export": ""
+    }
+  },
+  "support_sprites": {
+    "battleScreenMenus_healthFillBar_background": {
+      "sprite_name": "battleScreenMenus_healthFillBar_background",
+      "resource_path": "res://content/base/art/battle/minions/battleScreenMenus_healthFillBar_background.png",
+      "symbol_character_ids": [
+        209
+      ],
+      "source_export": "development/extracted/full-20260908/image/209_Utilities.SpriteHandler_battleScreenMenus_healthFillBar_background.png"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_cwf0l"]
+
+[resource]
+script = ExtResource("1_cwf0l")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/cheetah_support/node/0_0",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2540.0, 2541.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/cheetah_support/node/1_0",
+"move_ids": ["base:move/overload/tier1", "base:move/overload/tier2", "base:move/overload/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2542.0, 2543.0, 2544.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/cheetah_support/node/2_0",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2545.0, 2546.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/cheetah_support/node/0_1",
+"move_ids": ["base:move/reckless_dash/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/cheetah_support/node/0_0"],
+"row": 1.0,
+"source_lines": [2547.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/cheetah_support/node/1_1",
+"move_ids": ["base:move/roar/tier1", "base:move/roar/tier2", "base:move/roar/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2548.0, 2549.0, 2550.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/cheetah_support/node/2_1",
+"move_ids": ["base:move/agility/tier3", "base:move/agility/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/cheetah_support/node/2_0"],
+"row": 1.0,
+"source_lines": [2551.0, 2552.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/cheetah_support/node/0_2",
+"move_ids": ["base:move/slow/tier1", "base:move/slow/tier2"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2553.0, 2554.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/cheetah_support/node/1_2",
+"move_ids": ["base:move/charge_pass/tier3", "base:move/charge_pass/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2555.0, 2556.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/cheetah_support/node/2_2",
+"move_ids": ["base:move/agility/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/cheetah_support/node/2_1"],
+"row": 2.0,
+"source_lines": [2557.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/cheetah_support/node/0_3",
+"move_ids": ["base:move/stun/tier1"],
+"prerequisite_node_ids": ["base:talent_tree/cheetah_support/node/0_2"],
+"row": 3.0,
+"source_lines": [2558.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/cheetah_support/node/1_3",
+"move_ids": ["base:move/charge_pass/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/cheetah_support/node/1_2"],
+"row": 3.0,
+"source_lines": [2559.0]
+}])
+id = &"base:talent_tree/cheetah_support"
+display_name = "Support"
+legacy_class_name = "Cheetah_Support"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2537"

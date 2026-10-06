@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/tikimonkey_2", "level": 35, "source_level_offset": -1, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/blaze/tier1", &"base:move/vicious/tier5", &"base:move/fire_blast/tier3", &"base:move/inflame/tier4", &"base:move/mud_blast/tier2", &"base:move/lich_burn/tier2"])
+}, {
+"definition_id": &"base:minion/tikimonkey_2", "level": 35, "source_level_offset": -1, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/sear/tier1", &"base:move/chosen_earth/tier5", &"base:move/agility/tier3", &"base:move/earthy_fortitude/tier3", &"base:move/hulk_inspiration/tier1", &"base:move/platinum/tier2", &"base:move/skillful/tier3", &"base:move/roar/tier1"])
+}, {
+"definition_id": &"base:minion/fire_frog_3", "level": 35, "source_level_offset": -1, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/sear/tier1", &"base:move/fire_shot/tier5", &"base:move/inflame/tier4", &"base:move/rock_blast/tier2", &"base:move/vicious/tier5", &"base:move/intense_flame/tier3"])
+}, {
+"definition_id": &"base:minion/fire_bear_2", "level": 35, "source_level_offset": -1, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/sear/tier1", &"base:move/fire_bash/tier5", &"base:move/fire_blast/tier2", &"base:move/kindle/tier3", &"base:move/ferocity/tier5", &"base:move/wildfire/tier3"])
+}])
+ai_profile_id = &"base:ai/trainer/normal"
+rewards = {"first_clear": {"floor_money_basis": 102, "floor_keys": 1}}
+source_trainer_id = &"base:trainer/standard/12/3"
+source_floor_index = 12
+source_level_offset = -1
+source_trainer_type = &"TrainerType.NORMAL_TRAINER"
+id = &"base:encounter/floor13_trainer_3"
+display_name = "Floor 13 — source trainer 3"
+description = "Source start dialogue: My eyes are aflame for a good fight!\nSource defeat dialogue: That burns good!"
+legacy_class_name = "TrainerSystem.CreateFloor11"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:746"
+battle_modifier_configuration = {"move_timer": {"interval": 6, "source_power": 2, "move_id": "base:move/inner_force/tier5", "buff_move_id": "base:move/agile_inspiration/tier2", "actor": {"instance_id": "floor13-timer-3", "definition_id": "internal:minion/bmod_3", "team": 1, "level": 34, "move_ids": ["base:move/inner_force/tier5"]}}}

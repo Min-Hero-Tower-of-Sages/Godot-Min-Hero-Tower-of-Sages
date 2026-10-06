@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dqyobj7an2o4r"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_likt2"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="2_lrfv0"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_acewq"]
+
+[sub_resource type="Resource" id="Resource_rai3o"]
+script = ExtResource("1_likt2")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = 2
+stat_type_id = &"base:stat/health"
+executor = ExtResource("2_lrfv0")
+id = &"base:move/metal_mold/tier5/effect/00_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2805"
+
+[sub_resource type="Resource" id="Resource_4rf8t"]
+script = ExtResource("1_likt2")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -2
+stat_type_id = &"base:stat/attack"
+legacy_order = 1
+executor = ExtResource("2_lrfv0")
+id = &"base:move/metal_mold/tier5/effect/01_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2805"
+
+[sub_resource type="Resource" id="Resource_r7gmw"]
+script = ExtResource("1_likt2")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -2
+stat_type_id = &"base:stat/speed"
+legacy_order = 2
+executor = ExtResource("2_lrfv0")
+id = &"base:move/metal_mold/tier5/effect/02_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2805"
+
+[resource]
+script = ExtResource("3_acewq")
+family_id = &"base:move_family/metal_mold"
+tier = 5
+type_id = &"base:type/robot"
+legacy_class_id = 166
+legacy_visual_id = 166
+legacy_dot_visual_id = 166
+buff_icon_name = &"moveIcon_metalMold"
+energy_cost = 35
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_likt2")]([SubResource("Resource_rai3o"), SubResource("Resource_4rf8t"), SubResource("Resource_r7gmw")])
+presentation_id = &"base:presentation/move/move_icon_metal_mold"
+id = &"base:move/metal_mold/tier5"
+display_name = "Metal Construct"
+legacy_numeric_id = 769
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

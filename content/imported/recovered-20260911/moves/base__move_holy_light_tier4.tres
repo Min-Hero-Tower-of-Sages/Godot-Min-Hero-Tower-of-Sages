@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://bdpjrerhgvw7e"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_iq7gl"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_kvqph"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_1re5p"]
+
+[sub_resource type="Resource" id="Resource_2wous"]
+script = ExtResource("1_iq7gl")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 75
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_kvqph")
+id = &"base:move/holy_light/tier4/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2487"
+
+[resource]
+script = ExtResource("3_1re5p")
+family_id = &"base:move_family/holy_light"
+tier = 4
+type_id = &"base:type/holy"
+legacy_class_id = 148
+legacy_visual_id = 148
+legacy_dot_visual_id = 148
+buff_icon_name = &"moveIcon_holyLight"
+energy_cost = 30
+cooldown_turns = 1
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_iq7gl")]([SubResource("Resource_2wous")])
+presentation_id = &"base:presentation/move/move_icon_holy_light"
+id = &"base:move/holy_light/tier4"
+display_name = "Holy Light  lv.4"
+legacy_numeric_id = 678
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

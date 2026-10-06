@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://b46kb340154cq"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_wab4a"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_32gjd"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_xus7m"]
+
+[sub_resource type="Resource" id="Resource_xaamb"]
+script = ExtResource("1_wab4a")
+kind = 7
+target_scope = 4
+phase = 4
+amount = 5
+executor = ExtResource("2_32gjd")
+id = &"base:move/mirror_coating/tier1/effect/00_reflect_allied_team"
+display_name = "Reflect"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3501"
+
+[resource]
+script = ExtResource("3_xus7m")
+family_id = &"base:move_family/mirror_coating"
+legacy_class_id = 50
+legacy_visual_id = 180
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_mirrorCoating"
+is_global_passive = true
+energy_cost = 0
+effects = Array[ExtResource("1_wab4a")]([SubResource("Resource_xaamb")])
+presentation_id = &"base:presentation/move/move_icon_mirror_coating"
+id = &"base:move/mirror_coating/tier1"
+display_name = "Mirror Coating"
+legacy_numeric_id = 315
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

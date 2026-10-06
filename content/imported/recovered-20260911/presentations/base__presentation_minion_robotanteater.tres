@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionPresentationDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_presentation_definition.gd" id="1_3ws04"]
+
+[resource]
+script = ExtResource("1_3ws04")
+legacy_sprite_name = &"robotAnteater"
+icon_offset = Vector2i(9, -2)
+id = &"base:presentation/minion/robotanteater"
+display_name = "Ant-8r presentation"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1040"

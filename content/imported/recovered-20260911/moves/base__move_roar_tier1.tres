@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cvpxec4jirj1o"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_b4s66"]
+[ext_resource type="Script" uid="uid://bk0dwt30mck55" path="res://src/domain/battle/stat_stage_effect_executor.gd" id="2_fi0lr"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_aft1q"]
+
+[sub_resource type="Resource" id="Resource_0av61"]
+script = ExtResource("1_b4s66")
+kind = 3
+target_scope = 3
+phase = 3
+roll_scope = 1
+amount = -1
+stat_type_id = &"base:stat/attack"
+executor = ExtResource("2_fi0lr")
+id = &"base:move/roar/tier1/effect/00_stat_stage_both_target_groups"
+display_name = "Stat Stage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3130"
+
+[resource]
+script = ExtResource("3_aft1q")
+family_id = &"base:move_family/roar"
+type_id = &"base:type/normal"
+legacy_class_id = 20
+legacy_visual_id = 20
+legacy_dot_visual_id = 189
+buff_icon_name = &"moveIcon_roar"
+energy_cost = 3
+effects = Array[ExtResource("1_b4s66")]([SubResource("Resource_0av61")])
+presentation_id = &"base:presentation/move/move_icon_roar"
+id = &"base:move/roar/tier1"
+display_name = "Roar"
+legacy_numeric_id = 105
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

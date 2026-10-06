@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://gx3citvmpcrj"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_momce"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_sqay2"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_1m7qq"]
+
+[sub_resource type="Resource" id="Resource_d4x3k"]
+script = ExtResource("1_momce")
+scaling = 1
+roll_scope = 1
+amount = 50
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_sqay2")
+id = &"base:move/death_call/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2814"
+
+[resource]
+script = ExtResource("3_1m7qq")
+family_id = &"base:move_family/death_call"
+tier = 2
+type_id = &"base:type/robot"
+legacy_class_id = 167
+legacy_visual_id = 167
+legacy_dot_visual_id = 167
+buff_icon_name = &"moveIcon_deathCall"
+energy_cost = 40
+cooldown_turns = 3
+target_count = 3
+enemy_target_count = 3
+effects = Array[ExtResource("1_momce")]([SubResource("Resource_d4x3k")])
+presentation_id = &"base:presentation/move/move_icon_death_call"
+visuals_have_buffer = false
+id = &"base:move/death_call/tier2"
+display_name = "Death Call  lv.2"
+legacy_numeric_id = 771
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

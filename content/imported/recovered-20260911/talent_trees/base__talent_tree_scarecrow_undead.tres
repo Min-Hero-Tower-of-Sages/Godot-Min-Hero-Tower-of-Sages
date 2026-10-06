@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_oqi5o"]
+
+[resource]
+script = ExtResource("1_oqi5o")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/scarecrow_undead/node/0_0",
+"move_ids": ["base:move/rancid_bite/tier1", "base:move/rancid_bite/tier2", "base:move/rancid_bite/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3940.0, 3941.0, 3942.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scarecrow_undead/node/1_0",
+"move_ids": ["base:move/mortify/tier1", "base:move/mortify/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3943.0, 3944.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scarecrow_undead/node/2_0",
+"move_ids": ["base:move/focus/tier1", "base:move/focus/tier2", "base:move/focus/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [3945.0, 3946.0, 3947.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scarecrow_undead/node/0_1",
+"move_ids": ["base:move/mud_blast/tier1", "base:move/mud_blast/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [3948.0, 3949.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scarecrow_undead/node/1_1",
+"move_ids": ["base:move/mortify/tier3"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_undead/node/1_0"],
+"row": 1.0,
+"source_lines": [3950.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/scarecrow_undead/node/2_1",
+"move_ids": ["base:move/focus/tier4", "base:move/focus/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_undead/node/2_0"],
+"row": 1.0,
+"source_lines": [3951.0, 3952.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/scarecrow_undead/node/0_2",
+"move_ids": ["base:move/mud_blast/tier3", "base:move/mud_blast/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_undead/node/0_1"],
+"row": 2.0,
+"source_lines": [3953.0, 3954.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scarecrow_undead/node/1_2",
+"move_ids": ["base:move/infes/tier3", "base:move/infes/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [3955.0, 3956.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/scarecrow_undead/node/1_3",
+"move_ids": ["base:move/infes/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/scarecrow_undead/node/1_2"],
+"row": 3.0,
+"source_lines": [3957.0]
+}])
+id = &"base:talent_tree/scarecrow_undead"
+display_name = "Undead"
+legacy_class_name = "ScareCrow_Undead"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:3937"

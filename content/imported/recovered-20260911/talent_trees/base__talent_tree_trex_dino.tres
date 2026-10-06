@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_gne26"]
+
+[resource]
+script = ExtResource("1_gne26")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/trex_dino/node/0_0",
+"move_ids": ["base:move/ferocity/tier1", "base:move/ferocity/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1544.0, 1545.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/trex_dino/node/1_0",
+"move_ids": ["base:move/reckless_grasp/tier1", "base:move/reckless_grasp/tier3", "base:move/reckless_grasp/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1546.0, 1547.0, 1548.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/trex_dino/node/2_0",
+"move_ids": ["base:move/fire_ram/tier1", "base:move/fire_ram/tier3", "base:move/fire_ram/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1549.0, 1550.0, 1551.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/trex_dino/node/0_1",
+"move_ids": ["base:move/ferocity/tier3", "base:move/ferocity/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/trex_dino/node/0_0"],
+"row": 1.0,
+"source_lines": [1552.0, 1553.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/trex_dino/node/1_1",
+"move_ids": ["base:move/crazed_blast/tier1", "base:move/crazed_blast/tier3", "base:move/crazed_blast/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1554.0, 1555.0, 1556.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/trex_dino/node/2_1",
+"move_ids": ["base:move/demoralizing_charge/tier1", "base:move/demoralizing_charge/tier3", "base:move/demoralizing_charge/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1557.0, 1558.0, 1559.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/trex_dino/node/0_2",
+"move_ids": ["base:move/ferocity/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/trex_dino/node/0_1"],
+"row": 2.0,
+"source_lines": [1560.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/trex_dino/node/1_2",
+"move_ids": ["base:move/inner_force/tier3", "base:move/inner_force/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1561.0, 1562.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/trex_dino/node/2_2",
+"move_ids": ["base:move/concentration/tier1", "base:move/concentration/tier2", "base:move/concentration/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1563.0, 1564.0, 1565.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/trex_dino/node/1_3",
+"move_ids": ["base:move/inner_force/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/trex_dino/node/1_2"],
+"row": 3.0,
+"source_lines": [1566.0]
+}])
+id = &"base:talent_tree/trex_dino"
+display_name = "Dino"
+legacy_class_name = "TRex_Dino"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1541"

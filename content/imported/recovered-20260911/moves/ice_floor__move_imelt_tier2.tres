@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://5wr4kg2qjpeg"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_4q3rs"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_i21gj"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_lcjd7"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_2l1om"]
+
+[sub_resource type="Resource" id="Resource_16uam"]
+script = ExtResource("1_4q3rs")
+scaling = 1
+roll_scope = 1
+amount = 25
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_i21gj")
+id = &"ice_floor:move/imelt/tier2/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:228"
+
+[sub_resource type="Resource" id="Resource_5qp5y"]
+script = ExtResource("1_4q3rs")
+kind = 12
+amount = 10
+duration = 3
+blocked_by_battle_mod_shield = true
+legacy_order = 1
+executor = ExtResource("3_lcjd7")
+id = &"ice_floor:move/imelt/tier2/effect/01_armor_enemy_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:228"
+
+[sub_resource type="Resource" id="Resource_mvyn1"]
+script = ExtResource("1_4q3rs")
+kind = 12
+target_scope = 2
+phase = 2
+amount = 10
+duration = 3
+legacy_order = 2
+executor = ExtResource("3_lcjd7")
+id = &"ice_floor:move/imelt/tier2/effect/02_armor_ally_targets"
+display_name = "Armor"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:228"
+
+[resource]
+script = ExtResource("4_2l1om")
+family_id = &"ice_floor:move_family/imelt"
+tier = 2
+type_id = &"ice_floor:type/thaw"
+legacy_class_id = 184
+legacy_visual_id = 184
+legacy_dot_visual_id = 184
+buff_icon_name = &"moveIcon_iMelt"
+energy_cost = 15
+effects = Array[ExtResource("1_4q3rs")]([SubResource("Resource_16uam"), SubResource("Resource_5qp5y"), SubResource("Resource_mvyn1")])
+presentation_id = &"ice_floor:presentation/move/move_icon_i_melt"
+id = &"ice_floor:move/imelt/tier2"
+display_name = "Melt  lv.2"
+legacy_numeric_id = 909
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"
+source_mod = &"ice_floor"

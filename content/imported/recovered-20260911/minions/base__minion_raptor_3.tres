@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_8kxyd"]
+
+[resource]
+script = ExtResource("1_8kxyd")
+type_ids = Array[StringName]([&"base:type/dino", &"base:type/fire"])
+base_health = 45
+base_energy = 35
+base_attack = 85
+base_healing = 15
+base_speed = 80
+experience_gain_rate = 4
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/claw/tier2", &"base:move/prehistoric_bite/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/reckless_grasp/tier1", &"base:move/fire_blast/tier1", &"base:move/energize/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/fireraptor_dino", &"base:talent_tree/fireraptor_fire", &"base:talent_tree/fireraptor_normal"])
+presentation_id = &"base:presentation/minion/fireraptor3"
+id = &"base:minion/raptor_3"
+display_name = "Flamator"
+legacy_numeric_id = 90
+legacy_class_name = "FireDino_stage3"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2442"

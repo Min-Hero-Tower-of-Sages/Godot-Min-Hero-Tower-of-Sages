@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/encounter_definition.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+team_entries = Array[Dictionary]([{
+"definition_id": &"base:minion/healinghorse_1", "level": 29, "source_level_offset": 0, "slot_index": 0,
+"move_ids": Array[StringName]([&"base:move/pound/tier1", &"base:move/swift_mend/tier5", &"base:move/priest/tier4", &"base:move/resurgence/tier3", &"base:move/serenity/tier3", &"base:move/cleric/tier4", &"base:move/hope/tier1"])
+}, {
+"definition_id": &"base:minion/armadillo_2", "level": 29, "source_level_offset": 0, "slot_index": 1,
+"move_ids": Array[StringName]([&"base:move/spike/tier1", &"base:move/taunt/tier5", &"base:move/diamond_skin/tier5", &"base:move/rock_throw/tier1", &"base:move/burn/tier1", &"base:move/perseverance/tier5", &"base:move/mirror_skin/tier1"])
+}, {
+"definition_id": &"base:minion/goo_2", "level": 29, "source_level_offset": 0, "slot_index": 2,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/ashen_reminder/tier5", &"base:move/infes/tier3", &"base:move/haunt/tier1", &"base:move/flesh_sacrifice/tier4", &"base:move/spark/tier3", &"base:move/ferocity/tier2"])
+}, {
+"definition_id": &"base:minion/anteater_2", "level": 29, "source_level_offset": 0, "slot_index": 3,
+"move_ids": Array[StringName]([&"base:move/claw/tier1", &"base:move/twin_missile/tier1", &"base:move/download/tier5", &"base:move/cog_fallout/tier1", &"base:move/vicious/tier5", &"base:move/perseverance/tier3", &"base:move/fire_bash/tier2", &"base:move/spark/tier1"])
+}, {
+"definition_id": &"base:minion/goo_2", "level": 29, "source_level_offset": 0, "slot_index": 4,
+"move_ids": Array[StringName]([&"base:move/tackle/tier1", &"base:move/poison_tooth/tier5", &"base:move/wild_lance/tier3", &"base:move/ferocity/tier4", &"base:move/charge_pass/tier1", &"base:move/spark/tier3", &"base:move/infes/tier2"])
+}])
+ai_profile_id = &"base:ai/trainer/boss"
+rewards = {"first_clear": {"floor_money_basis": 65, "eggery_keys": 1}}
+source_trainer_id = &"base:trainer/standard/10/6"
+source_floor_index = 10
+source_level_offset = 0
+source_trainer_type = &"TrainerType.BOSS_TRAINER"
+id = &"base:encounter/floor11_trainer_6_boss"
+display_name = "Floor 11 — source trainer 6"
+description = "Source start dialogue: A Grand Sage needs deep knowledge of minions and the world they live in.\nSource defeat dialogue: I can see the knowledge in your actions.  Here is a piece of the Sage Seal of Knowledge."
+legacy_class_name = "TrainerSystem.CreateFloor9"
+source_location = "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:652"

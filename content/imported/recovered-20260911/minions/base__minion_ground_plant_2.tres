@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_6gewx"]
+
+[resource]
+script = ExtResource("1_6gewx")
+type_ids = Array[StringName]([&"base:type/plant"])
+base_health = 40
+base_energy = 55
+base_attack = 35
+base_healing = 50
+base_speed = 30
+experience_gain_rate = 2
+gem_slots = 2
+locked_gem_slots = 1
+initial_move_ids = Array[StringName]([&"base:move/pound/tier1", &"base:move/razor_vine/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/regrowth/tier1", &"base:move/mud_blast/tier1", &"base:move/tire/tier1"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/groundplant_healing", &"base:talent_tree/groundplant_earth", &"base:talent_tree/groundplant_normal"])
+evolution_id = &"base:minion/ground_plant_3"
+evolution_level = 33
+presentation_id = &"base:presentation/minion/plantsquid2"
+id = &"base:minion/ground_plant_2"
+display_name = "Octagrass"
+legacy_numeric_id = 38
+legacy_class_name = "EarthPlant_stage2"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:2483"

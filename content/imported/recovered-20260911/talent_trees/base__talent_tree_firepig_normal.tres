@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_74rjl"]
+
+[resource]
+script = ExtResource("1_74rjl")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/firepig_normal/node/0_0",
+"move_ids": ["base:move/efficiency/tier1", "base:move/efficiency/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [211.0, 212.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_normal/node/1_0",
+"move_ids": ["base:move/roar/tier1", "base:move/roar/tier2", "base:move/roar/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [213.0, 214.0, 215.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_normal/node/2_0",
+"move_ids": ["base:move/reckless_dash/tier1", "base:move/reckless_dash/tier2", "base:move/reckless_dash/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [216.0, 217.0, 218.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firepig_normal/node/0_1",
+"move_ids": ["base:move/efficiency/tier3", "base:move/efficiency/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_normal/node/0_0"],
+"row": 1.0,
+"source_lines": [219.0, 220.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_normal/node/1_1",
+"move_ids": ["base:move/poison_tooth/tier1", "base:move/poison_tooth/tier2", "base:move/poison_tooth/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [221.0, 222.0, 223.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_normal/node/2_1",
+"move_ids": ["base:move/reckless_dash/tier4", "base:move/reckless_dash/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_normal/node/2_0"],
+"row": 1.0,
+"source_lines": [224.0, 225.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/firepig_normal/node/0_2",
+"move_ids": ["base:move/efficiency/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_normal/node/0_1"],
+"row": 2.0,
+"source_lines": [226.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_normal/node/1_2",
+"move_ids": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [227.0, 228.0, 229.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_normal/node/2_2",
+"move_ids": ["base:move/tackle/tier2", "base:move/tackle/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [230.0, 231.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/firepig_normal/node/1_3",
+"move_ids": ["base:move/mirror_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [232.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/firepig_normal/node/2_3",
+"move_ids": ["base:move/tackle/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/firepig_normal/node/2_2"],
+"row": 3.0,
+"source_lines": [233.0]
+}])
+id = &"base:talent_tree/firepig_normal"
+display_name = "Normal"
+legacy_class_name = "FirePig_normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:208"

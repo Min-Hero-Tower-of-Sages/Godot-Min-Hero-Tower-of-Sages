@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_jg4jq"]
+
+[resource]
+script = ExtResource("1_jg4jq")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/titan2_guard/node/0_0",
+"move_ids": ["base:move/mud_blast/tier3", "base:move/mud_blast/tier4", "base:move/mud_blast/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4331.0, 4332.0, 4333.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_guard/node/1_0",
+"move_ids": ["base:move/perseverance/tier2", "base:move/perseverance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4334.0, 4335.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_guard/node/2_0",
+"move_ids": ["base:move/burn/tier3", "base:move/burn/tier4", "base:move/burn/tier5"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [4336.0, 4337.0, 4338.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/titan2_guard/node/0_1",
+"move_ids": ["base:move/earth_shield/tier3", "base:move/earth_shield/tier4", "base:move/earth_shield/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4339.0, 4340.0, 4341.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_guard/node/1_1",
+"move_ids": ["base:move/perseverance/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/titan2_guard/node/1_0"],
+"row": 1.0,
+"source_lines": [4342.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_guard/node/2_1",
+"move_ids": ["base:move/fire_ram/tier3", "base:move/fire_ram/tier4", "base:move/fire_ram/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [4343.0, 4344.0, 4345.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_guard/node/1_2",
+"move_ids": ["base:move/taunt/tier3", "base:move/taunt/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4346.0, 4347.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_guard/node/2_2",
+"move_ids": ["base:move/diamond_skin/tier3", "base:move/diamond_skin/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [4348.0, 4349.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/titan2_guard/node/1_3",
+"move_ids": ["base:move/taunt/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/titan2_guard/node/1_2"],
+"row": 3.0,
+"source_lines": [4350.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/titan2_guard/node/2_3",
+"move_ids": ["base:move/diamond_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/titan2_guard/node/2_2"],
+"row": 3.0,
+"source_lines": [4351.0]
+}])
+id = &"base:talent_tree/titan2_guard"
+display_name = "Guard"
+legacy_class_name = "Titan2_Guard"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:4328"

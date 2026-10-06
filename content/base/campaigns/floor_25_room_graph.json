@@ -1,0 +1,59 @@
+{
+  "floor_index": 24,
+  "source_floor_index": 24,
+  "source_room_order": [
+    "base:room/level_5_gym"
+  ],
+  "entry_room_id": "base:room/level_5_gym",
+  "rooms": [
+    {
+      "id": "base:room/level_5_gym",
+      "display_name": "Floor 25 — Level_5_gym",
+      "legacy_class_name": "LevelContainer_Level_5_gym",
+      "source_symbol": "Utilities.LevelContainer_Level_5_gym",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_gym.as",
+      "source_payload": "res://content/base/room_payloads/source/level_5_gym.json",
+      "room_index": 0,
+      "exits": [],
+      "encounter_ids": [
+        "base:encounter/floor25_trainer_0"
+      ],
+      "trainer_binding": {
+        "trainer_room_id": 0,
+        "trainer_type": "TrainerType.TRAINER_GYM_5",
+        "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Trainers/TrainerSystem.as:1341",
+        "source_method": "CreateFloor_Boss5",
+        "source_floor_argument": 24
+      },
+      "interactions": [
+        {
+          "id": "floor-25-trainer-0",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "trainer_room_id": 0,
+          "trainer_type": "TrainerType.TRAINER_GYM_5",
+          "source_trigger": "buttonZoneObject",
+          "encounter_id": "base:encounter/floor25_trainer_0",
+          "first_visit_text": "One must have respect for life, if one want's serenity.  I am the Talo Sage, let us test your respect for life.",
+          "lose_text": "Your respect for life is strong, it is with great pleasure I award you the talo Sage Seal.\n...\nWith the talo Sage seal you have received a super strong gem."
+        }
+      ]
+    }
+  ],
+  "external_transitions": [
+    {
+      "room_id": "base:room/level_5_gym",
+      "transition_id": 101,
+      "source_sprite": "roomTransitionObject_startingRoomToLobby",
+      "target_route": "lobby"
+    }
+  ],
+  "eggery_source": {
+    "source_floor_index": 24,
+    "source_minion_level_base": 51,
+    "source_minion_level_random_offset": [
+      0,
+      2
+    ]
+  }
+}

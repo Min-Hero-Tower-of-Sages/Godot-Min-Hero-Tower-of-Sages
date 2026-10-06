@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_xhx32"]
+
+[resource]
+script = ExtResource("1_xhx32")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/icebird_flying/node/0_0",
+"move_ids": ["base:move/focus/tier1", "base:move/focus/tier2", "base:move/focus/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1235.0, 1236.0, 1237.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_flying/node/1_0",
+"move_ids": ["base:move/volley/tier1", "base:move/volley/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1238.0, 1239.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_flying/node/2_0",
+"move_ids": ["base:move/wind_lance/tier1", "base:move/wind_lance/tier2", "base:move/wind_lance/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1240.0, 1241.0, 1242.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icebird_flying/node/0_1",
+"move_ids": ["base:move/peck/tier3", "base:move/peck/tier4"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1243.0, 1244.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_flying/node/1_1",
+"move_ids": ["base:move/blow_by/tier1", "base:move/blow_by/tier2", "base:move/blow_by/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1245.0, 1246.0, 1247.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_flying/node/2_1",
+"move_ids": ["base:move/agility/tier1", "base:move/agility/tier2", "base:move/agility/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1248.0, 1249.0, 1250.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icebird_flying/node/0_2",
+"move_ids": ["base:move/flurry/tier2", "base:move/flurry/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1251.0, 1252.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_flying/node/1_2",
+"move_ids": ["base:move/hurricane/tier1", "base:move/hurricane/tier2", "base:move/hurricane/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1253.0, 1254.0, 1255.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/icebird_flying/node/2_2",
+"move_ids": ["base:move/agility/tier4", "base:move/agility/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_flying/node/2_1"],
+"row": 2.0,
+"source_lines": [1256.0, 1257.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/icebird_flying/node/0_3",
+"move_ids": ["base:move/flurry/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_flying/node/0_2"],
+"row": 3.0,
+"source_lines": [1258.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/icebird_flying/node/1_3",
+"move_ids": ["base:move/hurricane/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/icebird_flying/node/1_2"],
+"row": 3.0,
+"source_lines": [1259.0]
+}])
+id = &"base:talent_tree/icebird_flying"
+display_name = "Flying"
+legacy_class_name = "IceBird_Flying"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1232"

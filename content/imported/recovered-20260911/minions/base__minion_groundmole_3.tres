@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MinionDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/minion_definition.gd" id="1_hu272"]
+
+[resource]
+script = ExtResource("1_hu272")
+type_ids = Array[StringName]([&"base:type/earth"])
+base_health = 90
+base_energy = 35
+base_attack = 40
+base_healing = 15
+base_speed = 20
+experience_gain_rate = 3
+gem_slots = 3
+initial_move_ids = Array[StringName]([&"base:move/claw/tier1", &"base:move/rock_throw/tier1"])
+specialization_move_ids = Array[StringName]([&"base:move/stone_fall/tier1", &"base:move/perseverance/tier1", &"base:move/reflect_damage/tier2"])
+talent_tree_ids = Array[StringName]([&"base:talent_tree/groundmole_damage", &"base:talent_tree/groundmole_gaurd", &"base:talent_tree/groundmole_normal"])
+presentation_id = &"base:presentation/minion/earthmole3"
+id = &"base:minion/groundmole_3"
+display_name = "Sumole"
+legacy_numeric_id = 10
+legacy_class_name = "GroundMole_stage3"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\AllMinionsContainer.as:1956"

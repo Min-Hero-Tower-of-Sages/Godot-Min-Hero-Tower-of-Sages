@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://db2bxtfnpc1yj"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_xrpx4"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_s83c7"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_yvybv"]
+
+[sub_resource type="Resource" id="Resource_efjw3"]
+script = ExtResource("1_xrpx4")
+scaling = 1
+roll_scope = 1
+amount = 95
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_s83c7")
+id = &"base:move/titan_blast/tier3/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2877"
+
+[resource]
+script = ExtResource("3_yvybv")
+family_id = &"base:move_family/titan_blast"
+tier = 3
+type_id = &"base:type/titan"
+legacy_class_id = 170
+legacy_visual_id = 170
+legacy_dot_visual_id = 170
+buff_icon_name = &"moveIcon_titanBlast"
+energy_cost = 28
+cooldown_turns = 5
+effects = Array[ExtResource("1_xrpx4")]([SubResource("Resource_efjw3")])
+presentation_id = &"base:presentation/move/move_icon_titan_blast"
+id = &"base:move/titan_blast/tier3"
+display_name = "Titan Blast  lv.3"
+legacy_numeric_id = 787
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

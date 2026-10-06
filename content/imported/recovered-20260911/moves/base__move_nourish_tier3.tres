@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://dgwi7c2f33boc"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_dsx5p"]
+[ext_resource type="Script" uid="uid://hgjvfsmsanll" path="res://src/domain/battle/heal_effect_executor.gd" id="2_q56a7"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="3_gpl5b"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="4_nhxlk"]
+
+[sub_resource type="Resource" id="Resource_q2j64"]
+script = ExtResource("1_dsx5p")
+kind = 1
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 1
+amount = 15
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_q56a7")
+id = &"base:move/nourish/tier3/effect/00_heal_ally_targets"
+display_name = "Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1598"
+
+[sub_resource type="Resource" id="Resource_q4fur"]
+script = ExtResource("1_dsx5p")
+kind = 11
+target_scope = 2
+phase = 2
+scaling = 2
+roll_scope = 4
+amount = 25
+duration = 3
+legacy_order = 1
+executor = ExtResource("3_gpl5b")
+id = &"base:move/nourish/tier3/effect/01_periodic_heal_ally_targets"
+display_name = "Periodic Heal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1598"
+
+[resource]
+script = ExtResource("4_nhxlk")
+family_id = &"base:move_family/nourish"
+tier = 3
+type_id = &"base:type/plant"
+legacy_class_id = 100
+legacy_visual_id = 100
+legacy_dot_visual_id = 100
+buff_icon_name = &"moveIcon_nourish"
+energy_cost = 20
+target_side = 1
+enemy_target_count = 0
+ally_target_count = 1
+effects = Array[ExtResource("1_dsx5p")]([SubResource("Resource_q2j64"), SubResource("Resource_q4fur")])
+presentation_id = &"base:presentation/move/move_icon_nourish"
+id = &"base:move/nourish/tier3"
+display_name = "Nourish  lv.3"
+legacy_numeric_id = 437
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

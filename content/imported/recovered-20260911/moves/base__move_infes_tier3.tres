@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://e7t2u7bjkyq0"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_u2pd7"]
+[ext_resource type="Script" uid="uid://cvqstxajxf40x" path="res://src/domain/battle/periodic_effect_executor.gd" id="2_bqxic"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_dlpmo"]
+
+[sub_resource type="Resource" id="Resource_b1u74"]
+script = ExtResource("1_u2pd7")
+kind = 10
+scaling = 1
+roll_scope = 4
+amount = 20
+random_bonus = 30
+duration = 3
+uses_type_effectiveness = true
+blocked_by_battle_mod_shield = true
+executor = ExtResource("2_bqxic")
+id = &"base:move/infes/tier3/effect/00_periodic_damage_enemy_targets"
+display_name = "Periodic Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1056"
+
+[resource]
+script = ExtResource("3_dlpmo")
+family_id = &"base:move_family/infes"
+tier = 3
+type_id = &"base:type/undead"
+legacy_class_id = 74
+legacy_visual_id = 74
+legacy_dot_visual_id = 74
+buff_icon_name = &"moveIcon_infest"
+energy_cost = 20
+effects = Array[ExtResource("1_u2pd7")]([SubResource("Resource_b1u74")])
+presentation_id = &"base:presentation/move/move_icon_infest"
+id = &"base:move/infes/tier3"
+display_name = "Infest  lv.3"
+legacy_numeric_id = 357
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="MoveDefinition" format=3 uid="uid://cjjggvijrchb6"]
+
+[ext_resource type="Script" uid="uid://u31ipixti8pe" path="res://src/content/effect_definition.gd" id="1_cicva"]
+[ext_resource type="Script" uid="uid://c62p1m5lsk3ab" path="res://src/domain/battle/damage_effect_executor.gd" id="2_leo7h"]
+[ext_resource type="Script" uid="uid://djodvc4pg8il1" path="res://src/content/move_definition.gd" id="3_l6fhv"]
+
+[sub_resource type="Resource" id="Resource_nuqtg"]
+script = ExtResource("1_cicva")
+scaling = 1
+roll_scope = 1
+amount = 30
+uses_type_effectiveness = true
+can_critical = true
+executor = ExtResource("2_leo7h")
+id = &"base:move/earthquake/tier4/effect/00_damage_enemy_targets"
+display_name = "Damage"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:921"
+
+[resource]
+script = ExtResource("3_l6fhv")
+family_id = &"base:move_family/earthquake"
+tier = 4
+type_id = &"base:type/earth"
+legacy_class_id = 61
+legacy_visual_id = 61
+legacy_dot_visual_id = 61
+buff_icon_name = &"moveIcon_earthquake"
+energy_cost = 50
+target_mode = 1
+target_count = 5
+hit_each_target = false
+enemy_target_count = 5
+effects = Array[ExtResource("1_cicva")]([SubResource("Resource_nuqtg")])
+presentation_id = &"base:presentation/move/move_icon_earthquake"
+id = &"base:move/earthquake/tier4"
+display_name = "Earthquake  lv.4"
+legacy_numeric_id = 188
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as"

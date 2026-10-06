@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_3qwj7"]
+
+[resource]
+script = ExtResource("1_3qwj7")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/waterbird_support/node/0_0",
+"move_ids": ["base:move/invigorate/tier1", "base:move/invigorate/tier2", "base:move/invigorate/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1681.0, 1682.0, 1683.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterbird_support/node/1_0",
+"move_ids": ["base:move/ice_shield/tier1", "base:move/ice_shield/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1684.0, 1685.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterbird_support/node/2_0",
+"move_ids": ["base:move/claw/tier2", "base:move/claw/tier3", "base:move/claw/tier4"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [1686.0, 1687.0, 1688.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterbird_support/node/0_1",
+"move_ids": ["base:move/tire/tier1", "base:move/tire/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1689.0, 1690.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterbird_support/node/1_1",
+"move_ids": ["base:move/reflect_damage/tier1", "base:move/reflect_damage/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1691.0, 1692.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterbird_support/node/2_1",
+"move_ids": ["base:move/perseverance/tier3", "base:move/perseverance/tier4", "base:move/perseverance/tier5"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [1693.0, 1694.0, 1695.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterbird_support/node/0_2",
+"move_ids": ["base:move/diamond_skin/tier1", "base:move/diamond_skin/tier2", "base:move/diamond_skin/tier3"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1696.0, 1697.0, 1698.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/waterbird_support/node/1_2",
+"move_ids": ["base:move/reflect_damage/tier4", "base:move/reflect_damage/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterbird_support/node/1_1"],
+"row": 2.0,
+"source_lines": [1699.0, 1700.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterbird_support/node/2_2",
+"move_ids": ["base:move/slow/tier3", "base:move/slow/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [1701.0, 1702.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/waterbird_support/node/0_3",
+"move_ids": ["base:move/ice_enclosure/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterbird_support/node/0_2"],
+"row": 3.0,
+"source_lines": [1703.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/waterbird_support/node/2_3",
+"move_ids": ["base:move/slow/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/waterbird_support/node/2_2"],
+"row": 3.0,
+"source_lines": [1704.0]
+}])
+id = &"base:talent_tree/waterbird_support"
+display_name = "Support"
+legacy_class_name = "WaterBird_Support"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:1678"

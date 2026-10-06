@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="TalentTreeDefinition" format=3]
+
+[ext_resource type="Script" path="res://src/content/talent_tree_definition.gd" id="1_hfeoh"]
+
+[resource]
+script = ExtResource("1_hfeoh")
+nodes = Array[Dictionary]([{
+"column": 0.0,
+"id": "base:talent_tree/dogeel_normal/node/0_0",
+"move_ids": ["base:move/spike/tier1", "base:move/spike/tier2", "base:move/spike/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2720.0, 2721.0, 2722.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dogeel_normal/node/1_0",
+"move_ids": ["base:move/wild_lance/tier1", "base:move/wild_lance/tier2"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2723.0, 2724.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dogeel_normal/node/2_0",
+"move_ids": ["base:move/pound/tier1", "base:move/pound/tier2", "base:move/pound/tier3"],
+"prerequisite_node_ids": [],
+"row": 0.0,
+"source_lines": [2725.0, 2726.0, 2727.0]
+}, {
+"column": 0.0,
+"id": "base:talent_tree/dogeel_normal/node/0_1",
+"move_ids": ["base:move/spike/tier4", "base:move/spike/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/dogeel_normal/node/0_0"],
+"row": 1.0,
+"source_lines": [2728.0, 2729.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dogeel_normal/node/1_1",
+"move_ids": ["base:move/crush/tier1", "base:move/crush/tier2", "base:move/crush/tier3"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2730.0, 2731.0, 2732.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dogeel_normal/node/2_1",
+"move_ids": ["base:move/slow/tier1", "base:move/slow/tier2"],
+"prerequisite_node_ids": [],
+"row": 1.0,
+"source_lines": [2733.0, 2734.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dogeel_normal/node/1_2",
+"move_ids": ["base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3", "base:move/mirror_skin/tier4"],
+"prerequisite_node_ids": [],
+"row": 2.0,
+"source_lines": [2735.0, 2736.0, 2737.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dogeel_normal/node/2_2",
+"move_ids": ["base:move/slow/tier3", "base:move/slow/tier4"],
+"prerequisite_node_ids": ["base:talent_tree/dogeel_normal/node/2_1"],
+"row": 2.0,
+"source_lines": [2738.0, 2739.0]
+}, {
+"column": 1.0,
+"id": "base:talent_tree/dogeel_normal/node/1_3",
+"move_ids": ["base:move/mirror_skin/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/dogeel_normal/node/1_2"],
+"row": 3.0,
+"source_lines": [2740.0]
+}, {
+"column": 2.0,
+"id": "base:talent_tree/dogeel_normal/node/2_3",
+"move_ids": ["base:move/slow/tier5"],
+"prerequisite_node_ids": ["base:talent_tree/dogeel_normal/node/2_2"],
+"row": 3.0,
+"source_lines": [2741.0]
+}])
+id = &"base:talent_tree/dogeel_normal"
+display_name = "Reflect"
+legacy_class_name = "DogEel_Normal"
+source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\BaseTalentTreeContainer.as:2717"
