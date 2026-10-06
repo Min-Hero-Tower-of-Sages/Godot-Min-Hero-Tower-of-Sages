@@ -27,6 +27,9 @@ trees, credentials, personal saves and diagnostic captures/logs.
 The preset embeds the PCK and explicitly includes runtime JSON. Unsigned builds
 can trigger Windows trust prompts; do not ask recipients to disable security
 software. Review `ASSET_NOTICES.md` before public distribution.
+The export helper keeps temporary pack serialization inside `build/`, rejects
+logged export errors even with a zero exit code, and checks the standalone
+player with isolated settings/saves before creating the release ZIP.
 
 ## Publish
 
