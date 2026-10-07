@@ -20,7 +20,8 @@ bring: one of your saves, or **Fresh start** (the new-campaign starters, as a
 boy or girl). You don't need a save of your own to join.
 
 While connected, the menu's **Multiplayer** panel lists the players (★ host,
-⚔ in a battle; in versus also their floor and stars). It also opens the
+⚔ in a battle; in versus also their floor and stars). It also opens
+**Battle replays** (see [BATTLE_REPLAYS.md](BATTLE_REPLAYS.md)) and the
 **Minion Keeper** from anywhere, and lets you leave (or, for the host, change
 settings and close the game). The top-left corner shows the same roster while
 you explore. Everyone sees everyone else walking live, with a colored name
@@ -107,6 +108,17 @@ Minions you deposit into the shared Minion Keeper move into the host's storage.
 Minions you withdraw join your party. The host's game autosaves whenever the
 shared storage changes, so a minion is never duplicated or lost.
 
+### When a game ends
+
+If the host closes their game, guests land on the title screen with a
+**Game closed** card; if the connection drops, the card says **Connection
+lost** instead (the host announces a deliberate close just before
+disconnecting, so the two can be told apart). Both remind the guest that their
+own saves were never changed. When the other side of a shared battle leaves,
+the battle shows a **Battle ended** card for a few seconds, then returns to
+the game. Every battle, multiplayer ones included, is also kept in
+**Battle replays**.
+
 ## Architecture
 
 | File | Role |
@@ -117,7 +129,7 @@ shared storage changes, so a minion is never duplicated or lost.
 | `src/application/multiplayer_double_battle.gd` | Duo double battle setup: partner's team, duplicated enemies, slot layout, who controls which minion. Unit tested. |
 | `src/application/multiplayer_shell_controller.gd` | Shell glue: HUD, toasts, the menu panel, following the host, spectating, arena, storage lock, join/host panels. |
 | `src/presentation/remote_player_avatar.gd` | Another player's sprite and name tag. |
-| `src/presentation/multiplayer_{join,host,profiles,prompt}_view.gd`, `multiplayer_arena_picker.gd`, `multiplayer_ui.gd` | Panels and the consent prompt, styled with colors sampled from the source in-game menu. |
+| `src/presentation/multiplayer_{join,host,profiles,prompt,notice}_view.gd`, `multiplayer_arena_picker.gd`, `multiplayer_ui.gd` | Panels and the consent prompt, styled with colors sampled from the source in-game menu. |
 | `src/presentation/main.gd` | Battle roles `battler` / `spectator` / `pvp` / `ally` (lockstep), per-minion controllers. |
 | `src/presentation/campaign_minimap_view.gd`, `campaign_floor_select_view.gd` | Other players' markers. |
 

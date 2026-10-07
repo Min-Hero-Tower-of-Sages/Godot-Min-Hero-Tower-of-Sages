@@ -13,6 +13,7 @@ const HOST_VIEW := preload("res://src/presentation/multiplayer_host_view.gd")
 const ARENA_PICKER := preload("res://src/presentation/multiplayer_arena_picker.gd")
 const PROFILES_VIEW := preload("res://src/presentation/multiplayer_profiles_view.gd")
 const PROMPT_VIEW := preload("res://src/presentation/multiplayer_prompt_view.gd")
+const NOTICE_VIEW := preload("res://src/presentation/multiplayer_notice_view.gd")
 const TRAINER_DIALOGUE := preload("res://src/application/source_trainer_dialogue.gd")
 const BATTLE_SCENE: PackedScene = preload("res://scenes/main.tscn")
 const TOAST_SECONDS := 3.5
@@ -578,31 +579,40 @@ func build_menu_panel(popup: Control) -> void:
 	MultiplayerUi.title(panel, "Multiplayer", Vector2(14.0, 12.0), inner, 20)
 	if not net.is_active():
 		MultiplayerUi.label(panel, "Open this campaign so friends can join from their title screen and play in your world.", Vector2(14.0, 48.0), Vector2(inner, 120.0), 14, MultiplayerUi.MUTED)
+		_replays_button(panel, Vector2(14.0, size.y - 94.0), inner)
 		MultiplayerUi.button(panel, "Open to friends", Vector2(14.0, size.y - 52.0), Vector2(inner, 34.0), show_host_view, 16).name = "OpenMultiplayerButton"
 		return
 	MultiplayerUi.label(panel, net.status_text(), Vector2(14.0, 42.0), Vector2(inner, 40.0), 13, MultiplayerUi.GOLD).name = "StatusLabel"
 	var roster := RichTextLabel.new()
 	roster.name = "Roster"
 	roster.bbcode_enabled = true
-	roster.scroll_active = false
-	roster.position = Vector2(14.0, 84.0)
-	roster.size = Vector2(inner, size.y - 84.0 - 142.0)
-	roster.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	roster.position = Vector2(14.0, 78.0)
+	roster.size = Vector2(inner, size.y - 78.0 - 158.0)
+	# A long roster scrolls instead of running under the buttons.
+	roster.scroll_active = true
+	roster.mouse_filter = Control.MOUSE_FILTER_PASS
 	roster.add_theme_font_override("normal_font", MultiplayerUi.FONT)
 	roster.add_theme_font_size_override("normal_font_size", 15)
 	roster.add_theme_color_override("default_color", MultiplayerUi.INK)
 	roster.text = "\n".join(_roster_lines("#a8b0be"))
 	panel.add_child(roster)
-	var y := size.y - 136.0
-	MultiplayerUi.button(panel, "Minion Keeper", Vector2(14.0, y), Vector2(inner, 34.0), open_storage, 16).name = "StorageButton"
-	y += 42.0
+	# Four rows of slightly shorter buttons leave the roster room for four names.
+	var y := size.y - 152.0
+	_replays_button(panel, Vector2(14.0, y), inner, 30.0)
+	y += 36.0
+	MultiplayerUi.button(panel, "Minion Keeper", Vector2(14.0, y), Vector2(inner, 30.0), open_storage, 16).name = "StorageButton"
+	y += 36.0
 	if net.is_host():
-		MultiplayerUi.button(panel, "Invite & settings", Vector2(14.0, y), Vector2(inner, 34.0), show_host_view, 16).name = "HostSettingsButton"
+		MultiplayerUi.button(panel, "Invite & settings", Vector2(14.0, y), Vector2(inner, 30.0), show_host_view, 16).name = "HostSettingsButton"
 	else:
 		var kept := "%s keeps your run in this race." if net.is_versus() else "%s keeps your team in this world."
-		MultiplayerUi.label(panel, kept % net.player_name(1), Vector2(14.0, y), Vector2(inner, 34.0), 13, MultiplayerUi.MUTED)
-	y += 42.0
-	MultiplayerUi.button(panel, "Close game" if net.is_host() else "Leave game", Vector2(14.0, y), Vector2(inner, 34.0), _leave_from_menu, 16).name = "LeaveButton"
+		MultiplayerUi.label(panel, kept % net.player_name(1), Vector2(14.0, y), Vector2(inner, 30.0), 13, MultiplayerUi.MUTED)
+	y += 36.0
+	MultiplayerUi.button(panel, "Close game" if net.is_host() else "Leave game", Vector2(14.0, y), Vector2(inner, 30.0), _leave_from_menu, 16).name = "LeaveButton"
+
+## Battle replays live in this panel too: it is the menu's only side panel.
+func _replays_button(panel: Control, at: Vector2, width: float, height: float = 34.0) -> void:
+	MultiplayerUi.button(panel, "Battle replays", at, Vector2(width, height), shell._battle_history.show_history.bind(true), 16).name = "BattleReplaysButton"
 
 func _leave_from_menu() -> void:
 	if net.is_host():
@@ -660,4 +670,14 @@ func _on_disconnected(reason: String) -> void:
 	_refresh_hud()
 	shell._room_transition_active = false
 	shell._show_title_screen()
-	shell._show_notice(reason)
+	shell._clear_dialog()
+	var view: Control = NOTICE_VIEW.new()
+	view.name = "DisconnectNotice"
+	shell.interaction_dialog = view
+	shell._attach_interaction_dialog()
+	view.configure(net.last_disconnect_kind, reason, true)
+	view.closed.connect(func() -> void:
+		if shell.interaction_dialog == view:
+			shell._clear_dialog()
+	)
+	SourceMenuTransition.enter(view)

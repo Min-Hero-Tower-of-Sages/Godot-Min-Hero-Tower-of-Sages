@@ -36,6 +36,9 @@ and the mouse for battle selections and menus.
   double battles): open your game from the
   **Multiplayer** panel beside the in-game menu, friends join from the title
   screen. See [docs/MULTIPLAYER.md](docs/MULTIPLAYER.md).
+- Battle replays: every battle is recorded. Watch it again or share it as a
+  code from **Battle replays** (title screen or in-game menu). See
+  [docs/BATTLE_REPLAYS.md](docs/BATTLE_REPLAYS.md).
 
 Content integration does **not** mean every presentation detail or mechanic
 has been certified. See [docs/PARITY_WORK_TRACKER.md](docs/PARITY_WORK_TRACKER.md),

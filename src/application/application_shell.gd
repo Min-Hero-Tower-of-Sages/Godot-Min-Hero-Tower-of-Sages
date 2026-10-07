@@ -5,6 +5,7 @@ const ROOM_SCENE: PackedScene = preload("res://scenes/campaign_room_view.tscn")
 const FONT: Font = preload("res://content/base/fonts/BurbinCasual.ttf")
 const NEW_CAMPAIGN_INTRO := preload("res://src/presentation/source_new_campaign_intro.gd")
 const MULTIPLAYER_CONTROLLER := preload("res://src/application/multiplayer_shell_controller.gd")
+const BATTLE_HISTORY_CONTROLLER := preload("res://src/application/battle_history_controller.gd")
 
 const TITLE_BACKGROUND := "res://content/base/art/source_symbols/1242_Utilities.SpriteHandler_mainMenu_titleScreen_background.png"
 const TITLE_LOGO := "res://content/base/art/source_symbols/353_Utilities.SpriteHandler_mainMenu_titleLogo.png"
@@ -90,6 +91,7 @@ var party_swap_selected_party := -1
 var party_swap_selected_storage := -1
 var party_manager_hint: Label
 var _multiplayer: MultiplayerShellController
+var _battle_history: BattleHistoryController
 ## Resolved at runtime so this script compiles before autoloads exist.
 var net: Node:
 	get: return get_node_or_null("/root/NetSession")
@@ -110,6 +112,10 @@ func _ready() -> void:
 	_multiplayer.name = "Multiplayer"
 	_multiplayer.shell = self
 	add_child(_multiplayer)
+	_battle_history = BATTLE_HISTORY_CONTROLLER.new()
+	_battle_history.name = "BattleHistory"
+	_battle_history.shell = self
+	add_child(_battle_history)
 	_show_title_screen()
 
 func show_catalog_menu(menu_id: StringName, context: Dictionary = {}) -> bool:
@@ -384,21 +390,25 @@ func _reveal_title_save_slots(screen: Control, immediate: bool) -> void:
 		if immediate:
 			_activate_save_card_later(card, 0.0)
 	# Below the save cards (they end at y 398) and above Credits (y 469),
-	# skinned with the save card's own stone art so it reads as part of the list.
-	var join_target := Vector2(240.0, 412.0)
-	var join := _title_card_button(existing_slots, "Join a friend's game", join_target, Vector2(229.0, 42.0))
+	# skinned with the save card's own stone art so they read as part of the list.
+	var join := _title_card_button(existing_slots, "Join a friend's game", Vector2(140.0, 412.0), Vector2(229.0, 42.0))
 	join.name = "JoinMultiplayerButton"
 	join.pressed.connect(_multiplayer.show_join_view)
+	var replays := _title_card_button(existing_slots, "Battle replays", Vector2(377.0, 412.0), Vector2(183.0, 42.0))
+	replays.name = "BattleReplaysButton"
+	replays.pressed.connect(_battle_history.show_history.bind(false))
 	if not immediate:
-		# Slides up after the last card, like the cards themselves.
-		join.position = join_target + Vector2(0.0, 30.0)
-		join.modulate.a = 0.0
-		join.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		var join_tween := create_tween()
-		join_tween.tween_interval(0.3 * float(SaveRepository.SLOT_COUNT))
-		join_tween.tween_property(join, "position", join_target, 0.6)
-		join_tween.parallel().tween_property(join, "modulate:a", 1.0, 0.6)
-		join_tween.tween_callback(func() -> void: join.mouse_filter = Control.MOUSE_FILTER_STOP)
+		for extra in [join, replays]:
+			# Slides up after the last card, like the cards themselves.
+			var target: Vector2 = extra.position
+			extra.position = target + Vector2(0.0, 30.0)
+			extra.modulate.a = 0.0
+			extra.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			var extra_tween := create_tween()
+			extra_tween.tween_interval(0.3 * float(SaveRepository.SLOT_COUNT))
+			extra_tween.tween_property(extra, "position", target, 0.6)
+			extra_tween.parallel().tween_property(extra, "modulate:a", 1.0, 0.6)
+			extra_tween.tween_callback(func() -> void: extra.mouse_filter = Control.MOUSE_FILTER_STOP)
 	screen.set_meta("title_save_slots_visible", true)
 
 ## A button drawn with the save card art (nine-sliced), in the cards' ink.

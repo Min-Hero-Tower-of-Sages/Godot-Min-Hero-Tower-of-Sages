@@ -168,6 +168,27 @@ var _net_command_queue: Array[Dictionary] = []
 var _net_aborted := false
 var _net_snapshot_reply: Dictionary = {}
 
+## Battle history: every fight records itself as a BattleReplay and is saved
+## to the history when it ends (or, unfinished, when the scene closes).
+var _recording: Dictionary = {}
+var _recording_saved := false
+var _turns_played := 0
+## Replay playback (net_role &"replay"): the recorded human commands are fed
+## back in order; AI turns are recomputed by the engine as they were live.
+var replay_data: Dictionary = {}
+var _replay_cursor := 0
+var _replay_hud: Control
+var _replay_finished := false
+const REPLAY_HUD_SCRIPT := preload("res://src/presentation/battle_replay_hud.gd")
+## The "choosing a move" beat before each recorded turn plays.
+const REPLAY_TURN_BEAT_SECONDS := 0.45
+## Battle clock. Presentation deadlines use it instead of the system clock so
+## a replay played at 2x/4x (or paused at 0x) scales every wait together.
+## Live battles never change speed, so it is then exactly the system clock.
+var _clock_speed := 1.0
+var _clock_base_real := 0
+var _clock_base_virtual := 0
+
 func _ready() -> void:
 	battle_modifier_layer = Control.new()
 	battle_modifier_layer.name = "BattleModifierLayer"
@@ -248,6 +269,82 @@ func begin_network_battle(spec: Dictionary) -> void:
 	_connect_network_battle(net)
 	await _start_battle()
 
+## Watch a recorded battle (see BattleReplay). Leaves with network_battle_finished.
+func begin_replay(replay: Dictionary) -> void:
+	replay_data = replay
+	net_role = &"replay"
+	net_spec = {
+		"key": "",
+		"seed": int(replay.seed),
+		"setup": replay.setup,
+		"rules": replay.rules,
+		"encounter_id": String(replay.get("encounter_id", "")),
+		"names": replay.get("names", {}),
+	}
+	_double_teams = replay.get("double_teams", [])
+	_local_teams = []
+	# Show the recorder's side on the left, as they saw it.
+	_team_flip = 1 if int(replay.get("pov", 0)) == 1 else 0
+	campaign_mode = false
+	start_overlay.visible = false
+	forfeit_button.visible = false
+	_replay_hud = REPLAY_HUD_SCRIPT.new()
+	_replay_hud.name = "ReplayHud"
+	_replay_hud.z_index = 1200
+	add_child(_replay_hud)
+	_replay_hud.configure(replay)
+	_replay_hud.speed_changed.connect(set_playback_speed)
+	_replay_hud.restart_requested.connect(_restart_replay)
+	_replay_hud.exit_requested.connect(_exit_replay)
+	# The replay bar takes the top of the screen; the turn banner sits below it.
+	(event_text.get_parent() as Control).position.y += 44.0
+	set_playback_speed(1.0)
+	var campaign_runtime: Variant = get_node_or_null("/root/CampaignRuntime")
+	var content_version := String(campaign_runtime.catalog.content_version) if campaign_runtime != null and campaign_runtime.catalog != null else ""
+	if String(replay.get("content", content_version)) != content_version:
+		_replay_hud.show_notice("Recorded on another version of the game: it may play out differently.")
+	await _start_battle()
+
+func _restart_replay() -> void:
+	_replay_hud.hide_end()
+	set_playback_speed(_replay_hud.current_speed())
+	await _start_battle()
+
+func _exit_replay() -> void:
+	set_playback_speed(1.0)
+	busy = true
+	network_battle_finished.emit()
+
+## The next recorded human command, after a short "choosing" beat.
+func _next_replay_command(decision: Dictionary) -> BattleCommand:
+	await get_tree().create_timer(REPLAY_TURN_BEAT_SECONDS).timeout
+	if not is_inside_tree() or _replay_finished:
+		return null
+	var commands: Array = replay_data.get("commands", [])
+	if _replay_cursor >= commands.size():
+		_end_replay("The recording stops here.", "This battle was not finished.")
+		return null
+	var entry: Dictionary = commands[_replay_cursor]
+	if int(entry.get("r", -1)) != int(decision.revision):
+		_end_replay("The recording stops here.", "This replay no longer matches the game.")
+		return null
+	var check := int(entry.get("c", 0))
+	if check != 0 and BattleReplay.state_check(controller.engine.snapshot()) != check:
+		_replay_hud.show_notice("This replay plays out differently on this version of the game.")
+	_replay_cursor += 1
+	return BattleReplay.to_command(entry)
+
+func _end_replay(headline: String, detail: String) -> void:
+	if _replay_finished:
+		return
+	_replay_finished = true
+	busy = true
+	move_panel.visible = false
+	_hide_current_turn_indicator()
+	event_text.get_parent().visible = false
+	audio_controller.fade_music_to(0.0, 1.5)
+	_replay_hud.show_end(headline, detail)
+
 ## Campaign battler: publish this fight so other players spectate (or, with
 ## `extras` naming actor_controllers, help fight) it.
 func share_campaign_battle(battle_key: String, extras: Dictionary = {}) -> void:
@@ -283,10 +380,42 @@ func _on_network_battle_aborted(battle_key: String, reason: String) -> void:
 		return # A campaign battle simply continues against its AI trainer.
 	busy = true
 	move_panel.visible = false
-	event_text.get_parent().visible = true
-	event_text.text = reason
-	await get_tree().create_timer(2.0).timeout
+	move_tooltip.hide()
+	forfeit_confirmation.visible = false
+	_set_forfeit_enabled(false)
+	_clear_target_states()
+	_hide_current_turn_indicator()
+	event_text.get_parent().visible = false
+	audio_controller.fade_music_to(0.0, 1.5)
+	_show_battle_ended_card(reason)
+	await get_tree().create_timer(3.0).timeout
 	network_battle_finished.emit()
+
+## The other side of a shared battle is gone: a slate card like the
+## multiplayer panels, instead of a line in the turn banner.
+func _show_battle_ended_card(reason: String) -> void:
+	var layer := Control.new()
+	layer.name = "BattleEndedCard"
+	layer.z_index = 1200
+	add_child(layer)
+	var card_size := Vector2(360.0, 112.0)
+	var panel := MultiplayerUi.modal(layer, card_size)
+	(layer.get_child(0) as ColorRect).color = Color(0.0, 0.0, 0.0, 0.35)
+	var stripe := ColorRect.new()
+	stripe.color = MultiplayerUi.ERROR
+	stripe.position = Vector2(4.0, 4.0)
+	stripe.size = Vector2(6.0, card_size.y - 8.0)
+	panel.add_child(stripe)
+	var caption := MultiplayerUi.title(panel, "Battle ended", Vector2(24.0, 12.0), card_size.x - 40.0, 20)
+	caption.add_theme_color_override("font_color", MultiplayerUi.ERROR)
+	MultiplayerUi.label(panel, reason, Vector2(24.0, 44.0), Vector2(card_size.x - 40.0, 24.0), 17, MultiplayerUi.INK)
+	MultiplayerUi.label(panel, "Taking you back to your game…", Vector2(24.0, 74.0), Vector2(card_size.x - 40.0, 20.0), 13, MultiplayerUi.MUTED)
+	panel.pivot_offset = card_size * 0.5
+	panel.scale = Vector2(0.85, 0.85)
+	panel.modulate.a = 0.0
+	var reveal := create_tween().set_parallel(true)
+	reveal.tween_property(panel, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	reveal.tween_property(panel, "modulate:a", 1.0, 0.2)
 
 func _on_network_battle_snapshot(battle_key: String, revision: int, snapshot: Dictionary) -> void:
 	if battle_key == String(net_spec.get("key", "")):
@@ -325,12 +454,15 @@ func _await_network_turn(decision: Dictionary) -> BattleCommand:
 		await _network_command_arrived
 	return null
 
-## Submit a locally chosen command and stream it to every other player.
+## Submit a locally chosen command, record it, and stream it to every other player.
 func _submit_local_command(command: BattleCommand) -> BattleResponse:
 	var net := _net()
-	var pre_snapshot: Dictionary = controller.engine.snapshot() if net != null and not net_role.is_empty() else {}
+	var shared := net != null and not net_role.is_empty()
+	var pre_snapshot: Dictionary = controller.engine.snapshot() if shared or not _recording.is_empty() else {}
 	var response := controller.submit(command)
-	if response.accepted and not pre_snapshot.is_empty():
+	if response.accepted and not _recording.is_empty():
+		BattleReplay.record_command(_recording, command, pre_snapshot)
+	if response.accepted and shared:
 		var targets: Array = []
 		for target_id in command.target_ids:
 			targets.append(String(target_id))
@@ -379,6 +511,25 @@ func _process(_delta: float) -> void:
 func _exit_tree() -> void:
 	_cancel_battle_music_start()
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	if net_role == &"replay":
+		Engine.time_scale = 1.0
+	# Left before the end (disconnect, quit): keep what was played.
+	if not _recording_saved and not (_recording.get("commands", []) as Array).is_empty():
+		_save_recording()
+
+func _now_usec() -> int:
+	if _clock_base_real == 0:
+		return Time.get_ticks_usec()
+	return _clock_base_virtual + int(float(Time.get_ticks_usec() - _clock_base_real) * _clock_speed)
+
+## Replay speed: 0 pauses, 1/2/4 play. Timers and tweens follow Engine.time_scale;
+## absolute presentation deadlines follow the rebased battle clock.
+func set_playback_speed(speed: float) -> void:
+	var now := _now_usec()
+	_clock_base_virtual = now
+	_clock_base_real = Time.get_ticks_usec()
+	_clock_speed = speed
+	Engine.time_scale = speed
 
 func _cancel_battle_music_start() -> void:
 	if _battle_music_start_tween != null and _battle_music_start_tween.is_running():
@@ -454,6 +605,9 @@ func _start_battle() -> void:
 	presenter.visual_state.clear()
 	_clear_combatant_views()
 	_pending_extra_minion_animation_ids.clear()
+	_turns_played = 0
+	_replay_cursor = 0
+	_replay_finished = false
 	var campaign_runtime: Variant = get_node_or_null("/root/CampaignRuntime")
 	catalog = campaign_runtime.catalog if (campaign_mode or not net_role.is_empty()) and campaign_runtime != null else RecoveredCatalog
 	for required_pack in [BATTLE_DEMO_PACK, CAMPAIGN_SLICE_PACK]:
@@ -468,7 +622,7 @@ func _start_battle() -> void:
 	if not catalog_errors.is_empty():
 		_show_startup_fatal("Content error: %s" % ", ".join(catalog_errors))
 		return
-	if net_role in [&"spectator", &"pvp", &"ally"]:
+	if net_role in [&"spectator", &"pvp", &"ally", &"replay"]:
 		await _start_network_battle()
 		return
 	if campaign_mode and campaign_runtime != null and campaign_runtime.session != null and campaign_runtime.session.state != null:
@@ -504,12 +658,12 @@ func _start_battle() -> void:
 	var battle_seed := 20260911
 	if campaign_mode and campaign_runtime != null and campaign_runtime.session.state != null:
 		battle_seed += int(campaign_runtime.session.state.battle_sequence)
+	# Spectators and replays rebuild this exact battle from its wire form; start
+	# from that form too so every engine sees identical Variant types.
+	setup = bytes_to_var(var_to_bytes(setup))
+	rules.configuration = bytes_to_var(var_to_bytes(rules.configuration))
 	var net := _net()
 	if campaign_mode and net != null and not String(net_spec.get("key", "")).is_empty():
-		# Spectators rebuild this exact battle; start from the wire form too so
-		# both engines see identical Variant types.
-		setup = bytes_to_var(var_to_bytes(setup))
-		rules.configuration = bytes_to_var(var_to_bytes(rules.configuration))
 		net_role = &"battler"
 		_connect_network_battle(net)
 		net_spec.merge({
@@ -528,6 +682,8 @@ func _start_battle() -> void:
 	if not response.accepted:
 		_show_startup_fatal("Battle could not start: %s" % response.message)
 		return
+	if campaign_mode:
+		_begin_campaign_recording(setup, rules, battle_seed)
 	await _present_battle_entry(response, rules)
 
 func _trainer_display_name() -> String:
@@ -538,23 +694,67 @@ func _trainer_display_name() -> String:
 func _start_network_battle() -> void:
 	var encounter_id := String(net_spec.get("encounter_id", ""))
 	source_encounter = catalog.get_definition(StringName(encounter_id)) as EncounterDefinition if not encounter_id.is_empty() else null
-	var rule_data: Dictionary = net_spec.get("rules", {})
-	var rules := RuleSetDefinition.new()
-	rules.id = StringName(rule_data.get("id", "base:rules/multiplayer"))
-	rules.display_name = String(rule_data.get("display_name", "Multiplayer battle"))
-	rules.party_size = int(rule_data.get("party_size", 5))
-	rules.configuration = (rule_data.get("configuration", {}) as Dictionary).duplicate(true)
+	var rules := BattleReplay.make_rules(net_spec.get("rules", {}))
 	_ai_teams = rules.configuration.get("ai_teams", [1])
 	controller = BattleController.new()
 	campaign_settlement.clear()
 	var setup: Dictionary = (net_spec.get("setup", {}) as Dictionary).duplicate(true)
 	var response := controller.start(setup, catalog, rules, BattleRng.new(int(net_spec.get("seed", 0))))
 	if not response.accepted:
-		_show_startup_fatal("Shared battle could not start: %s" % response.message)
+		_show_startup_fatal(("This replay could not start: %s" if net_role == &"replay" else "Shared battle could not start: %s") % response.message)
 		await get_tree().create_timer(2.0).timeout
 		network_battle_finished.emit()
 		return
+	if net_role != &"replay":
+		_begin_network_recording()
 	await _present_battle_entry(response, rules)
+
+# --- Battle history ------------------------------------------------------------------------
+
+func _begin_campaign_recording(setup: Dictionary, rules: RuleSetDefinition, battle_seed: int) -> void:
+	var campaign_runtime: Variant = get_node_or_null("/root/CampaignRuntime")
+	var state = campaign_runtime.session.state if campaign_runtime != null and campaign_runtime.session != null else null
+	var net := _net()
+	var own_name := "You"
+	if net != null:
+		own_name = String(net.local_name)
+	elif state != null:
+		own_name = String(state.character.get("name", "You"))
+	var double := bool(_net_extras.get("double", false))
+	if double and net != null:
+		for peer_id in (_net_extras.get("actor_controllers", {}) as Dictionary).values():
+			own_name += " & " + String(net.player_name(int(peer_id)))
+			break
+	var extras := {"content": String(catalog.content_version), "encounter_id": String(source_encounter.id), "double_teams": _double_teams, "role": "fighter"}
+	if state != null and not bool(state.progression.get("in_tower_lobby", false)):
+		extras["floor"] = int(state.progression.get("floor_index", 0))
+	var rule_data := {"id": String(rules.id), "display_name": rules.display_name, "party_size": rules.party_size, "configuration": rules.configuration}
+	_start_recording(BattleReplay.create("double" if double else "trainer", battle_seed, setup, rule_data, {0: own_name, 1: _trainer_display_name()}, 0, extras))
+
+## Arena fights, double battle partners and watched battles, from the published spec.
+func _begin_network_recording() -> void:
+	var names: Dictionary = (net_spec.get("names", {}) as Dictionary).duplicate(true)
+	var net := _net()
+	if net_role == &"ally" and net != null:
+		names[0] = "%s & %s" % [String(names.get(0, "Partner")), String(net.local_name)]
+	var kind := "double" if bool(net_spec.get("double", false)) else String(net_spec.get("kind", "pvp"))
+	var extras := {"content": String(catalog.content_version), "encounter_id": String(net_spec.get("encounter_id", "")), "double_teams": _double_teams, "role": "watcher" if net_role == &"spectator" else "fighter"}
+	var pov := 1 if _local_teams == [1] else 0
+	_start_recording(BattleReplay.create(kind, int(net_spec.get("seed", 0)), net_spec.get("setup", {}), net_spec.get("rules", {}), names, pov, extras))
+
+func _start_recording(replay: Dictionary) -> void:
+	_recording = replay
+	_recording_saved = false
+
+func _finish_recording(result: BattleResult) -> void:
+	if _recording.is_empty() or _recording_saved:
+		return
+	BattleReplay.record_result(_recording, result, _turns_played)
+	_save_recording()
+
+func _save_recording() -> void:
+	_recording_saved = true
+	BattleHistoryRepository.new().add(_recording)
 
 func _present_battle_entry(response: BattleResponse, rules: RuleSetDefinition) -> void:
 	active_battle_modifiers = (rules.configuration.get("battle_modifiers", {}) as Dictionary).duplicate(true)
@@ -567,7 +767,7 @@ func _present_battle_entry(response: BattleResponse, rules: RuleSetDefinition) -
 	_battle_music_start_tween = create_tween()
 	_battle_music_start_tween.tween_interval(1.0)
 	_battle_music_start_tween.tween_callback(audio_controller.play_battle_music)
-	var entry_started_usec := Time.get_ticks_usec()
+	var entry_started_usec := _now_usec()
 	_sync_from_engine()
 	_sync_battle_modifier_visuals(active_battle_modifiers)
 	var entry_events: Array[BattleEvent] = []
@@ -728,6 +928,19 @@ func _continue_battle() -> void:
 		var ai_response := controller.submit_ai_turn()
 		await _handle_response(ai_response)
 		return
+	if net_role == &"replay":
+		_set_forfeit_enabled(false)
+		busy = true
+		_clear_target_states()
+		var recorded := await _next_replay_command(decision)
+		if recorded == null:
+			return
+		var replayed := controller.submit(recorded)
+		if not replayed.accepted:
+			_end_replay("The recording stops here.", "This replay no longer matches the game.")
+			return
+		await _handle_response(replayed)
+		return
 	if not _is_local_decision(decision):
 		_set_forfeit_enabled(false)
 		busy = true
@@ -739,7 +952,11 @@ func _continue_battle() -> void:
 		if remote_command == null:
 			return
 		event_text.get_parent().visible = false
-		await _handle_response(controller.submit(remote_command))
+		var pre_snapshot: Dictionary = controller.engine.snapshot() if not _recording.is_empty() else {}
+		var remote_response := controller.submit(remote_command)
+		if remote_response.accepted and not _recording.is_empty():
+			BattleReplay.record_command(_recording, remote_command, pre_snapshot)
+		await _handle_response(remote_response)
 		return
 	_set_forfeit_enabled(true)
 	_build_move_buttons(decision)
@@ -942,7 +1159,7 @@ func _animate_move_selector_out() -> void:
 		_move_selector_exit_deadline_usec = 0
 	)
 	_move_selector_tweens.append(panel_tween)
-	_move_selector_exit_deadline_usec = Time.get_ticks_usec() + int((fade_delay + 0.3) * 1000000.0)
+	_move_selector_exit_deadline_usec = _now_usec() + int((fade_delay + 0.3) * 1000000.0)
 
 func _reset_move_selector_animation() -> void:
 	_hide_move_selection_hint(true)
@@ -1119,6 +1336,9 @@ func _handle_response(response: BattleResponse) -> void:
 		busy = false
 		await _continue_battle()
 		return
+	_turns_played += 1
+	if _replay_hud != null:
+		_replay_hud.set_turn(_turns_played)
 	var last_skipped_turn: BattleEvent = null
 	for event in response.events:
 		if event.kind in [&"turn_skipped", &"frozen_turn_skipped", &"stunned_turn_skipped", &"exhausted_turn_skipped"]:
@@ -1129,7 +1349,7 @@ func _handle_response(response: BattleResponse) -> void:
 		_set_event_text(last_skipped_turn)
 	_sync_from_engine()
 	if play_extra_minion_entry:
-		await _wait_until_usec(Time.get_ticks_usec() + int(BATTLE_REPLACEMENT_HANDOFF_SECONDS * 1000000.0))
+		await _wait_until_usec(_now_usec() + int(BATTLE_REPLACEMENT_HANDOFF_SECONDS * 1000000.0))
 	busy = false
 	await _continue_battle()
 
@@ -1194,7 +1414,7 @@ func _present(events: Array[BattleEvent]) -> void:
 		if periodic_phase_started and event.kind not in [&"periodic_tick", &"periodic_expired", &"periodic_health_applied"]:
 			# A response can also contain an automatic charged turn or a new
 			# round. Finish the grouped tick phase before presenting either.
-			var periodic_wait_usec := visual_completion_deadline_usec - Time.get_ticks_usec()
+			var periodic_wait_usec := visual_completion_deadline_usec - _now_usec()
 			if periodic_wait_usec > 0:
 				await get_tree().create_timer(float(periodic_wait_usec) / 1000000.0).timeout
 			periodic_phase_started = false
@@ -1205,7 +1425,7 @@ func _present(events: Array[BattleEvent]) -> void:
 			# the first DOT to overlap the final actor's attack.
 			var attack_finish_usec := maxi(move_visual_completion_deadline_usec, visual_completion_deadline_usec)
 			attack_finish_usec = maxi(attack_finish_usec, _modifier_visual_completion_usec)
-			var attack_wait_usec := attack_finish_usec - Time.get_ticks_usec()
+			var attack_wait_usec := attack_finish_usec - _now_usec()
 			if attack_wait_usec > 0:
 				await get_tree().create_timer(float(attack_wait_usec) / 1000000.0).timeout
 			periodic_phase_started = true
@@ -1226,7 +1446,7 @@ func _present(events: Array[BattleEvent]) -> void:
 			# boundary, independently of physical/sound contact callbacks.
 			# Full VFX lifetime still gates the next actor below.
 			var hit_deadline_usec := int(impact_deadlines_usec.get(String(event.target_id), active_move_impact_deadline_usec))
-			var remaining_usec := hit_deadline_usec - Time.get_ticks_usec()
+			var remaining_usec := hit_deadline_usec - _now_usec()
 			if remaining_usec > 0:
 				await get_tree().create_timer(float(remaining_usec) / 1000000.0).timeout
 			if not redirection_presented:
@@ -1261,17 +1481,17 @@ func _present(events: Array[BattleEvent]) -> void:
 		if event.kind == &"move_used":
 			for target_id in move_impact_delays:
 				var impact_delay := float(move_impact_delays[target_id])
-				var scheduled_impact_usec := Time.get_ticks_usec() + int(impact_delay * 1000000.0)
+				var scheduled_impact_usec := _now_usec() + int(impact_delay * 1000000.0)
 				impact_deadlines_usec[String(target_id)] = scheduled_impact_usec
 				active_move_impact_deadline_usec = maxi(active_move_impact_deadline_usec, scheduled_impact_usec)
 			if event.kind == &"move_used" and _last_move_visual_duration_seconds > 0.0:
 				move_visual_completion_deadline_usec = maxi(
 					move_visual_completion_deadline_usec,
-					Time.get_ticks_usec() + int(_last_move_visual_duration_seconds * 1000000.0),
+					_now_usec() + int(_last_move_visual_duration_seconds * 1000000.0),
 				)
 			# BaseMoveSystem queues ApplyEffects(.2), then an unconditional
 			# .4s tail. This is not conditional on HP/shield actually changing.
-			visual_completion_deadline_usec = maxi(visual_completion_deadline_usec, maxi(Time.get_ticks_usec(), active_move_impact_deadline_usec) + 600000)
+			visual_completion_deadline_usec = maxi(visual_completion_deadline_usec, maxi(_now_usec(), active_move_impact_deadline_usec) + 600000)
 		elif event.kind in [&"periodic_tick", &"periodic_applied", &"periodic_refreshed"]:
 			# Gate the next actor on the complete authored animation, not its
 			# contact point. Tick health itself starts immediately, as in source.
@@ -1281,7 +1501,7 @@ func _present(events: Array[BattleEvent]) -> void:
 		var previous_shield_fill_x := event_view._shield_visual_target_x if event_view != null else 0.0
 		_apply_event_values(event)
 		if event.kind == &"battle_mod_timer_triggered":
-			timer_cast_ready_usec = Time.get_ticks_usec() + 700000
+			timer_cast_ready_usec = _now_usec() + 700000
 		if event_view != null and (not is_equal_approx(previous_health_fill_x, event_view._health_visual_target_x) or not is_equal_approx(previous_shield_fill_x, event_view._shield_visual_target_x)):
 			# Health/shield tweens start at event application. Wait for their actual
 			# completion deadline instead of adding another 0.6s after all effects.
@@ -1297,19 +1517,19 @@ func _present(events: Array[BattleEvent]) -> void:
 	visual_completion_deadline_usec = maxi(visual_completion_deadline_usec, _turn_indicator_fade_deadline_usec)
 	await _wait_until_usec(visual_completion_deadline_usec)
 	_modifier_visual_completion_usec = 0
-	if Time.get_ticks_usec() >= _move_selector_exit_deadline_usec:
+	if _now_usec() >= _move_selector_exit_deadline_usec:
 		_move_selector_exit_deadline_usec = 0
-	if Time.get_ticks_usec() >= _turn_indicator_fade_deadline_usec:
+	if _now_usec() >= _turn_indicator_fade_deadline_usec:
 		_turn_indicator_fade_deadline_usec = 0
 
 func _visual_deadline_after(current_deadline_usec: int, duration_seconds: float) -> int:
-	return maxi(current_deadline_usec, Time.get_ticks_usec() + int(duration_seconds * 1000000.0))
+	return maxi(current_deadline_usec, _now_usec() + int(duration_seconds * 1000000.0))
 
 func _wait_until_usec(deadline_usec: int) -> void:
 	# SceneTreeTimer can consume the creating frame's delta after a slow import
 	# or shader frame. Recheck the absolute deadline before releasing the actor.
-	while deadline_usec > Time.get_ticks_usec():
-		await get_tree().create_timer(float(deadline_usec - Time.get_ticks_usec()) / 1000000.0).timeout
+	while deadline_usec > _now_usec():
+		await get_tree().create_timer(float(deadline_usec - _now_usec()) / 1000000.0).timeout
 
 func _play_event_audio(event: BattleEvent) -> void:
 	match event.kind:
@@ -1398,19 +1618,19 @@ func _animate_queued_move(event: BattleEvent, targets: Array[StringName]) -> Dic
 	if stat_callouts.is_empty(): return delays
 	var remaining_wait := 0.0
 	for delay in delays.values(): remaining_wait = maxf(remaining_wait, float(delay))
-	var cleanup_deadline := Time.get_ticks_usec() + roundi(_last_move_visual_duration_seconds * 1000000.0)
-	await _wait_until_usec(Time.get_ticks_usec() + roundi(remaining_wait * 1000000.0))
+	var cleanup_deadline := _now_usec() + roundi(_last_move_visual_duration_seconds * 1000000.0)
+	await _wait_until_usec(_now_usec() + roundi(remaining_wait * 1000000.0))
 	for callout in stat_callouts:
-		await _wait_until_usec(Time.get_ticks_usec() + roundi(float(callout.lead_seconds) * 1000000.0))
+		await _wait_until_usec(_now_usec() + roundi(float(callout.lead_seconds) * 1000000.0))
 		var recipient := combatant_views.get(String(callout.target_id)) as BattleCombatantView
 		if recipient != null:
 			var positive := int(callout.amount) > 0
 			var stat_name := String(callout.stat_type_id).get_slice("/", 1).capitalize()
 			recipient.show_status_badge(BattleCombatantView.STAT_INCREASE_BADGE if positive else BattleCombatantView.STAT_DECREASE_BADGE, stat_name)
 			audio_controller.play_sound("battle_buff" if positive else "battle_debuff", 0.5 if positive else 0.4)
-		cleanup_deadline = maxi(cleanup_deadline, Time.get_ticks_usec() + 800000)
-		await _wait_until_usec(Time.get_ticks_usec() + 300000)
-	_last_move_visual_duration_seconds = maxf(0.0, float(cleanup_deadline - Time.get_ticks_usec()) / 1000000.0)
+		cleanup_deadline = maxi(cleanup_deadline, _now_usec() + 800000)
+		await _wait_until_usec(_now_usec() + 300000)
+	_last_move_visual_duration_seconds = maxf(0.0, float(cleanup_deadline - _now_usec()) / 1000000.0)
 	return {"": 0.0}
 
 func _animate_attack_queue(event: BattleEvent, targets: Array[StringName]) -> Dictionary:
@@ -1433,7 +1653,7 @@ func _animate_attack_queue(event: BattleEvent, targets: Array[StringName]) -> Di
 	var family := String(vfx_catalog.profile_for(_resolved_visual_id(move)).get("family", ""))
 	if not move.visuals_have_buffer or visual_targets.is_empty() or family == "screen_shake":
 		_play_move_actor_lunge(event.actor_id)
-		await _wait_until_usec(Time.get_ticks_usec() + 100000)
+		await _wait_until_usec(_now_usec() + 100000)
 		var delays := _animate_event(event, visual_targets)
 		# ApplyEffects is one queue operation, after the final visual wait.
 		var final_delay := 0.0
@@ -1448,13 +1668,13 @@ func _animate_attack_queue(event: BattleEvent, targets: Array[StringName]) -> Di
 	var final_cleanup_deadline := 0
 	for target_id in visual_targets:
 		_play_move_actor_lunge(event.actor_id)
-		await _wait_until_usec(Time.get_ticks_usec() + 100000)
+		await _wait_until_usec(_now_usec() + 100000)
 		_last_move_visual_duration_seconds = 0.0
-		var cast_time := Time.get_ticks_usec()
+		var cast_time := _now_usec()
 		var effect_delay := _animate_move_visual(event, target_id)
 		final_cleanup_deadline = maxi(final_cleanup_deadline, cast_time + roundi(_last_move_visual_duration_seconds * 1000000.0))
 		await _wait_until_usec(cast_time + roundi(effect_delay * 1000000.0))
-	_last_move_visual_duration_seconds = maxf(0.0, float(final_cleanup_deadline - Time.get_ticks_usec()) / 1000000.0)
+	_last_move_visual_duration_seconds = maxf(0.0, float(final_cleanup_deadline - _now_usec()) / 1000000.0)
 	var delays := {"": 0.0}
 	for target_id in targets:
 		delays[String(target_id)] = 0.0
@@ -1465,12 +1685,12 @@ func _animate_status_queued_move(event: BattleEvent, move: MoveDefinition, targe
 	var last_effect_wait := 0.0
 	if not move.visuals_have_buffer:
 		_play_move_actor_lunge(event.actor_id)
-		await _wait_until_usec(Time.get_ticks_usec() + 100000)
+		await _wait_until_usec(_now_usec() + 100000)
 	for target_id in targets:
 		if move.visuals_have_buffer:
 			_play_move_actor_lunge(event.actor_id)
-			await _wait_until_usec(Time.get_ticks_usec() + 100000)
-		var cast_time := Time.get_ticks_usec()
+			await _wait_until_usec(_now_usec() + 100000)
+		var cast_time := _now_usec()
 		_last_move_visual_duration_seconds = 0.0
 		last_effect_wait = _animate_move_visual(event, target_id)
 		cleanup_deadline = maxi(cleanup_deadline, cast_time + roundi(_last_move_visual_duration_seconds * 1000000.0))
@@ -1485,13 +1705,13 @@ func _animate_status_queued_move(event: BattleEvent, move: MoveDefinition, targe
 					target.show_status_badge(BattleCombatantView.STUNNED_BADGE if kind == "stunned" else BattleCombatantView.FROZEN_BADGE)
 					audio_controller.play_sound("battle_spark" if kind == "stunned" else "battle_whoosh_wind", 1.0)
 			last_effect_wait = 0.8
-			cleanup_deadline = maxi(cleanup_deadline, Time.get_ticks_usec() + 800000)
-			await _wait_until_usec(Time.get_ticks_usec() + 800000)
+			cleanup_deadline = maxi(cleanup_deadline, _now_usec() + 800000)
+			await _wait_until_usec(_now_usec() + 800000)
 	# The unbuffered source queue adds a final wait using the last visual,
 	# even when that visual is a status callout already queued above.
 	if not move.visuals_have_buffer:
-		await _wait_until_usec(Time.get_ticks_usec() + roundi(last_effect_wait * 1000000.0))
-	_last_move_visual_duration_seconds = maxf(0.0, float(cleanup_deadline - Time.get_ticks_usec()) / 1000000.0)
+		await _wait_until_usec(_now_usec() + roundi(last_effect_wait * 1000000.0))
+	_last_move_visual_duration_seconds = maxf(0.0, float(cleanup_deadline - _now_usec()) / 1000000.0)
 	return {"": 0.0}
 
 func _animate_queued_miss(event: BattleEvent, move: MoveDefinition, targets: Array[StringName]) -> Dictionary:
@@ -1499,12 +1719,12 @@ func _animate_queued_miss(event: BattleEvent, move: MoveDefinition, targets: Arr
 	var final_cleanup_deadline := 0
 	if not move.visuals_have_buffer:
 		_play_move_actor_lunge(event.actor_id)
-		await _wait_until_usec(Time.get_ticks_usec() + 100000)
+		await _wait_until_usec(_now_usec() + 100000)
 	for target_id in targets:
 		if move.visuals_have_buffer:
 			_play_move_actor_lunge(event.actor_id)
-			await _wait_until_usec(Time.get_ticks_usec() + 100000)
-		var cast_time := Time.get_ticks_usec()
+			await _wait_until_usec(_now_usec() + 100000)
+		var cast_time := _now_usec()
 		var target := combatant_views.get(String(target_id)) as BattleCombatantView
 		var effect_delay := 0.8 # VisualMoveMiss.m_moveTime-.1
 		var duration := 0.8 # Miss artwork cleans up before its .9s move time.
@@ -1522,7 +1742,7 @@ func _animate_queued_miss(event: BattleEvent, move: MoveDefinition, targets: Arr
 			await _wait_until_usec(cast_time + roundi(effect_delay * 1000000.0))
 	if not move.visuals_have_buffer:
 		await _wait_until_usec(final_cleanup_deadline)
-	_last_move_visual_duration_seconds = maxf(0.0, float(final_cleanup_deadline - Time.get_ticks_usec()) / 1000000.0)
+	_last_move_visual_duration_seconds = maxf(0.0, float(final_cleanup_deadline - _now_usec()) / 1000000.0)
 	return {"": 0.0}
 
 func _play_move_actor_lunge(actor_id: StringName) -> void:
@@ -1656,7 +1876,7 @@ func _animate_visual_instance(visual_id: int, target_view: BattleCombatantView, 
 		for child in move_vfx_layer.get_children():
 			if not previous_objects.has(child):
 				objects.append(child)
-		_cleanup_visual_instance_at(Time.get_ticks_usec() + roundi(source_duration * 1000000.0), objects)
+		_cleanup_visual_instance_at(_now_usec() + roundi(source_duration * 1000000.0), objects)
 		return contact
 	# Native families above anchor to the attacked minion, not the caster.
 	# The move-timer BMod is intentionally absent from combatant_views and
@@ -2146,7 +2366,7 @@ func _apply_event_values(event: BattleEvent) -> void:
 		return
 	if event.kind == &"battle_mod_resurrected":
 		_hide_resurrection_tombstone(target_id)
-		_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, Time.get_ticks_usec() + 1000000)
+		_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, _now_usec() + 1000000)
 	if view == null:
 		return
 	var values := PresentationState.apply_event(view.state_cache, event)
@@ -2177,7 +2397,7 @@ func _set_presented_battle_mod_shield(view: BattleCombatantView, active: bool) -
 	if changed:
 		# StartRound/CheckForWinLose waits 1s before choosing the next actor;
 		# the shield itself rises/fades over .8s during that boundary.
-		_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, Time.get_ticks_usec() + 1000000)
+		_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, _now_usec() + 1000000)
 
 func _resurrection_turns_for(instance_id: StringName) -> int:
 	if controller == null or controller.engine == null:
@@ -2233,7 +2453,7 @@ func _show_resurrection_tombstone(instance_id: StringName, turns_left: int) -> v
 		marker_tween.kill()
 	root.visible = true
 	root.modulate.a = 0.0
-	_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, Time.get_ticks_usec() + 1000000)
+	_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, _now_usec() + 1000000)
 	marker_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	marker_tween.tween_property(root, "modulate:a", 1.0, 0.5)
 	marker["tween"] = marker_tween
@@ -2439,7 +2659,7 @@ func _animate_move_timer_icon() -> void:
 	_move_timer_icon_tween.tween_property(icon, "scale", Vector2(2.0, 2.0), 0.5)
 	_move_timer_icon_tween.tween_property(icon, "rotation_degrees", 720.0, 2.3)
 	_move_timer_icon_tween.tween_property(icon, "scale", Vector2(0.8, 0.8), 0.5)
-	_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, Time.get_ticks_usec() + 3300000)
+	_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, _now_usec() + 3300000)
 
 func _set_extra_minion_remaining(team: int, remaining: int) -> void:
 	if team < 0 or team > 1:
@@ -2556,7 +2776,7 @@ func _present_replacement_spawn(event: BattleEvent) -> bool:
 	if view == null: return false
 	view.play_extra_minion_spawn_animation()
 	_pending_extra_minion_animation_ids.erase(StringName(instance_id))
-	_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, Time.get_ticks_usec() + int(BATTLE_REPLACEMENT_HANDOFF_SECONDS * 1000000.0))
+	_modifier_visual_completion_usec = maxi(_modifier_visual_completion_usec, _now_usec() + int(BATTLE_REPLACEMENT_HANDOFF_SECONDS * 1000000.0))
 	return true
 
 func _sync_from_engine() -> void:
@@ -2689,6 +2909,10 @@ func _show_result(result) -> void:
 	cancel_target.visible = false
 	_clear_target_states()
 	_hide_current_turn_indicator()
+	_finish_recording(result)
+	if net_role == &"replay":
+		_show_replay_result(result)
+		return
 	if net_role in [&"spectator", &"pvp"]:
 		_show_network_result(result)
 		return
@@ -2795,6 +3019,14 @@ func _show_network_result(result) -> void:
 	reveal.tween_interval(2.6)
 	await reveal.finished
 	network_battle_finished.emit()
+
+func _show_replay_result(result) -> void:
+	var winner := int(result.winning_team)
+	var detail := "after %d turns" % _turns_played
+	if result.reason == &"forfeit":
+		detail = "%s forfeited · %s" % [BattleReplay.team_name(replay_data, 1 - winner), detail]
+	await get_tree().create_timer(0.8).timeout
+	_end_replay("%s wins!" % BattleReplay.team_name(replay_data, winner), detail)
 
 func _begin_campaign_progression(battle_won: bool) -> void:
 	if not campaign_mode or campaign_progression_presenter == null:
@@ -3146,7 +3378,7 @@ func _hide_current_turn_indicator() -> void:
 	_turn_indicator_tween = create_tween()
 	var fade_tween := _turn_indicator_tween
 	fade_tween.tween_property(current_turn_indicator, "modulate:a", 0.0, 0.3)
-	_turn_indicator_fade_deadline_usec = Time.get_ticks_usec() + 300000
+	_turn_indicator_fade_deadline_usec = _now_usec() + 300000
 	fade_tween.tween_callback(func() -> void:
 		if _turn_indicator_tween == fade_tween:
 			current_turn_indicator.visible = false

@@ -130,6 +130,12 @@ func _play_sound_after(sound_id: String, volume: float, delay: float) -> void:
 	_play_sound_after_delay(sound_id, volume, delay)
 
 func _play_sound_after_delay(sound_id: String, volume: float, delay: float) -> void:
+	if Engine.time_scale != 1.0:
+		# A replay playing faster (or paused): follow game time like the visuals.
+		await get_tree().create_timer(delay).timeout
+		if is_inside_tree():
+			play_sound(sound_id, volume)
+		return
 	var deadline_usec := Time.get_ticks_usec() + int(delay * 1000000.0)
 	while deadline_usec > Time.get_ticks_usec():
 		await get_tree().create_timer(float(deadline_usec - Time.get_ticks_usec()) / 1000000.0).timeout

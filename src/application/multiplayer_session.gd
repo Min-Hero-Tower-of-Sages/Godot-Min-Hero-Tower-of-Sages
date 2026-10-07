@@ -44,7 +44,7 @@ signal campaign_replaced
 
 enum Mode { OFFLINE, HOST, GUEST }
 
-const PROTOCOL_VERSION := 3
+const PROTOCOL_VERSION := 4
 const MODE_COOP := "coop"
 const MODE_FOLLOW := "follow"
 const MODE_VERSUS := "versus"
@@ -77,6 +77,11 @@ const NAME_COLORS: Array[Color] = [
 const SNAPSHOT_HISTORY := 12
 
 var mode: Mode = Mode.OFFLINE
+## Why the last session ended, for the disconnect screen: "closed" (the host
+## closed their game), "lost" (the connection dropped), or "" (we left).
+var last_disconnect_kind := ""
+## Guest: the host announced it is closing, so the drop that follows is not a loss.
+var _host_closing := false
 var local_name := ""
 ## peer_id -> {"name", "gender", "color"}; includes the local player.
 var players: Dictionary = {}
@@ -120,6 +125,7 @@ var _retiring: Array[Dictionary] = []
 const RETIRE_TIMEOUT_MSEC := 1500
 var _request_sequence := 0
 var _request_replies: Dictionary = {}
+var _last_process_usec := 0
 var _battle_sequence := 0
 var _released_participants: Dictionary = {}
 var _pvp_pending: Dictionary = {}
@@ -457,6 +463,8 @@ func leave(reason: String = "") -> void:
 	elif is_host():
 		_store_host_race()
 		_profiles.save_if_dirty()
+		# Sent before the reliable queue drains, so guests know it was on purpose.
+		_rpc_host_closing.rpc()
 	if _peer != null:
 		_retire_peer(_peer)
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
@@ -496,6 +504,7 @@ func _poll_retiring() -> void:
 
 func _reset() -> void:
 	mode = Mode.OFFLINE
+	_host_closing = false
 	_peer = null
 	players.clear()
 	_presence.clear()
@@ -535,7 +544,17 @@ func _fail_join(message: String) -> void:
 	join_finished.emit(false, message)
 
 func _on_server_disconnected() -> void:
-	leave("The host closed the game or the connection was lost.")
+	var host := player_name(1)
+	if _host_closing:
+		last_disconnect_kind = "closed"
+		leave("%s closed their game." % host)
+	else:
+		last_disconnect_kind = "lost"
+		leave("The connection to %s's game was lost." % host)
+
+@rpc("authority", "call_remote", "reliable", CHANNEL_WORLD)
+func _rpc_host_closing() -> void:
+	_host_closing = true
 
 func _on_peer_connected(_peer_id: int) -> void:
 	pass # Guests are only registered once their hello is accepted.
@@ -740,7 +759,13 @@ func presence_of(peer_id: int) -> Dictionary:
 
 # --- Per-frame work ---------------------------------------------------------------
 
-func _process(delta: float) -> void:
+func _process(scaled_delta: float) -> void:
+	# A paused or slowed battle replay (Engine.time_scale below 1) must never
+	# slow presence, world sync or saving: never count less than real time.
+	var now := Time.get_ticks_usec()
+	var real_delta := 0.0 if _last_process_usec == 0 else float(now - _last_process_usec) / 1000000.0
+	_last_process_usec = now
+	var delta := maxf(scaled_delta, real_delta)
 	if not _retiring.is_empty():
 		_poll_retiring()
 	if not is_active() or not _pending_join.is_empty():
