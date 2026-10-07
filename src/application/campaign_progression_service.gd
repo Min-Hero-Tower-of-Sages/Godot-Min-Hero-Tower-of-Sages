@@ -87,16 +87,31 @@ static func prepare_battle(state, encounter: EncounterDefinition) -> Dictionary:
 	}
 	return {"ok": true, "battle_id": battle_id, "context": state.pending_battle.duplicate(true)}
 
-static func build_battle_setup(state, catalog: ContentCatalog, encounter: EncounterDefinition) -> Dictionary:
-	if state == null or catalog == null or encounter == null:
-		return _error("invalid_context", "campaign state, catalog, and encounter are required")
-	if state.pending_battle.is_empty() or String(state.pending_battle.get("encounter_id", "")) != String(encounter.id):
-		return _error("battle_not_prepared", "prepare this encounter before building its battle setup")
-	refresh_minion_pedia(state)
-	var seen_minions: Array = state.progression.get("seen_minion_ids", []).duplicate()
-	for enemy_entry in encounter.team_entries:
-		_append_unique_id(seen_minions, StringName(enemy_entry.get("definition_id", "")))
-	state.progression["seen_minion_ids"] = seen_minions
+const STARTERS := [
+	{"id": &"base:minion/fire_pig_1", "instance": "starter-zapig", "level": 4, "experience": 4350},
+	{"id": &"base:minion/tiger_1", "instance": "starter-ticub", "level": 5, "experience": 5300},
+]
+
+## The new-campaign party; instance IDs are `id_prefix` + the starter name.
+## Definitions missing from the catalog are skipped (callers check the size).
+static func starter_party(catalog: ContentCatalog, id_prefix: String) -> Array[OwnedMinionState]:
+	var party: Array[OwnedMinionState] = []
+	for starter in STARTERS:
+		var definition := catalog.get_definition(starter.id) as MinionDefinition
+		if definition == null:
+			continue
+		var owned := OwnedMinionState.new()
+		owned.instance_id = StringName(id_prefix + String(starter.instance))
+		owned.definition_id = definition.id
+		owned.level = int(starter.level)
+		owned.experience = int(starter.experience)
+		owned.learned_move_ids.assign(definition.initial_move_ids)
+		party.append(owned)
+	return party
+
+## Battle combatant entries for the owned party (team 0), with the same gem,
+## star-upgrade and IV stat math as a campaign trainer battle.
+static func party_setup_combatants(state, catalog: ContentCatalog) -> Dictionary:
 	var setup_combatants: Array[Dictionary] = []
 	for index in state.party.size():
 		var owned: OwnedMinionState = state.party[index]
@@ -135,6 +150,23 @@ static func build_battle_setup(state, catalog: ContentCatalog, encounter: Encoun
 			"max_attack_stat": (LegacyMinionStats.max_attack_stat(definition, attack_iv, attack_bonus_multiplier) + float(GemEquipmentService.gem_stat_bonus(owned, &"attack", state.owned_gems)) * attack_bonus_multiplier) * _star_stat_multiplier(state, &"attack"),
 			"max_healing_stat": (LegacyMinionStats.max_healing_stat(definition, healing_iv, healing_bonus_multiplier) + float(GemEquipmentService.gem_stat_bonus(owned, &"healing", state.owned_gems)) * healing_bonus_multiplier) * _star_stat_multiplier(state, &"healing"),
 		})
+	return {"ok": true, "combatants": setup_combatants}
+
+static func build_battle_setup(state, catalog: ContentCatalog, encounter: EncounterDefinition) -> Dictionary:
+	if state == null or catalog == null or encounter == null:
+		return _error("invalid_context", "campaign state, catalog, and encounter are required")
+	if state.pending_battle.is_empty() or String(state.pending_battle.get("encounter_id", "")) != String(encounter.id):
+		return _error("battle_not_prepared", "prepare this encounter before building its battle setup")
+	refresh_minion_pedia(state)
+	var seen_minions: Array = state.progression.get("seen_minion_ids", []).duplicate()
+	for enemy_entry in encounter.team_entries:
+		_append_unique_id(seen_minions, StringName(enemy_entry.get("definition_id", "")))
+	state.progression["seen_minion_ids"] = seen_minions
+	var party_setup := party_setup_combatants(state, catalog)
+	if not party_setup.ok:
+		return party_setup
+	var setup_combatants: Array[Dictionary] = []
+	setup_combatants.assign(party_setup.combatants)
 	var source_trainer := String(encounter.source_trainer_id).begins_with("base:trainer/standard/") or String(encounter.source_trainer_id).begins_with("base:trainer/hard/")
 	# Rebuilding the same pending encounter (including a rejected save retry)
 	# must not reroll its enemy talents or constructor stat bonus.
@@ -839,6 +871,45 @@ static func _award_experience(state, encounter: EncounterDefinition, catalog: Co
 			"health_increase": health_increase,
 		}
 	return awards
+
+## Multiplayer double battle, partner side: the partner's minions (prefixed
+## `ally_prefix` in the battle) keep their final health/energy and earn XP from
+## the duplicated trainer team. World effects (completion, stars, rewards,
+## keys) belong to the player who started the fight, so none happen here. A
+## loss heals the party in place instead of returning to a checkpoint.
+static func apply_ally_battle_result(state, result: BattleResult, encounter: EncounterDefinition, catalog: ContentCatalog, ally_prefix: String) -> Dictionary:
+	if state == null or result == null or encounter == null or result.is_empty():
+		return _error("invalid_result", "completed battle result and encounter are required")
+	var battle_id := "ally:%s" % String(result.battle_id)
+	if battle_id in state.applied_battle_ids:
+		return {"ok": true, "already_applied": true, "battle_id": battle_id}
+	var owned_by_id: Dictionary = {}
+	for owned in state.party:
+		owned_by_id[ally_prefix + String(owned.instance_id)] = owned
+	for participant in result.participants:
+		var owned := owned_by_id.get(String(participant.get("instance_id", ""))) as OwnedMinionState
+		if owned == null or int(participant.get("team", -1)) != 0:
+			continue
+		var changes: Dictionary = participant.get("persistent_changes", {})
+		if changes.has("health"):
+			owned.persistent_health = maxi(0, int(changes.health))
+		if changes.has("energy"):
+			owned.persistent_energy = maxi(0, int(changes.energy))
+	var won := result.winning_team == 0
+	var forfeited := result.reason == &"forfeit"
+	var awards: Dictionary = {}
+	if not forfeited and catalog != null:
+		# The XP roll is seeded from the pending battle ID; use this battle's.
+		var pending: Dictionary = state.pending_battle
+		state.pending_battle = {"battle_id": battle_id}
+		awards = _award_experience(state, encounter, catalog, won, result)
+		state.pending_battle = pending
+	if not won and catalog != null:
+		var rested := rest_party(state, catalog)
+		if not rested.ok:
+			return rested
+	state.applied_battle_ids.append(battle_id)
+	return {"ok": true, "already_applied": false, "battle_id": battle_id, "experience_awards": awards, "won": won}
 
 static func _extra_experience_value(rate: int) -> int:
 	match rate:

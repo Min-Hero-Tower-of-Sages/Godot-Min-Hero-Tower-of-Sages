@@ -32,6 +32,10 @@ and the mouse for battle selections and menus.
 - Campaign movement, trainers, battles, progression, hatchery, party/talents,
   stars, settings and lobby merchants.
 - Recovered artwork, font and music/sound bindings.
+- Live multiplayer (co-op free roam, follow-the-host, or a versus race; duo
+  double battles): open your game from the
+  **Multiplayer** panel beside the in-game menu, friends join from the title
+  screen. See [docs/MULTIPLAYER.md](docs/MULTIPLAYER.md).
 
 Content integration does **not** mean every presentation detail or mechanic
 has been certified. See [docs/PARITY_WORK_TRACKER.md](docs/PARITY_WORK_TRACKER.md),

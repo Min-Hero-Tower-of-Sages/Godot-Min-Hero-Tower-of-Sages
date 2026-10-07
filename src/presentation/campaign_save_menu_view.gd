@@ -2,6 +2,9 @@ extends Control
 
 signal cancelled
 signal saved(return_to_lobby: bool)
+## Resolved at runtime so this script compiles before autoloads exist.
+var net: Node:
+	get: return get_node_or_null("/root/NetSession")
 
 var _session: CampaignSession
 var _panel: Control
@@ -78,8 +81,11 @@ func _set_busy(value: bool) -> void:
 	_busy = value
 	_save_button.disabled = value
 	_cancel_button.disabled = value
-	_lobby_button.disabled = value or not _lobby_available
-	_lobby_button.modulate.a = 1.0 if _lobby_available else 0.3
+	# Going to the lobby changes floor, which only the host may do (except in
+	# versus, where every racer runs their own tower).
+	var lobby_allowed: bool = _lobby_available and (not net.is_guest() or net.is_versus())
+	_lobby_button.disabled = value or not lobby_allowed
+	_lobby_button.modulate.a = 1.0 if lobby_allowed else 0.3
 
 func _cancel() -> void:
 	if not _busy:

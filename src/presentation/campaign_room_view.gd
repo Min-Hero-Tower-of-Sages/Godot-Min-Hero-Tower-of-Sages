@@ -18,6 +18,15 @@ const STANDARD_TOWER_FLOOR_COUNT := 31 # StaticData.NUM_OF_FLOORS_IN_THE_STANDAR
 const ROOM_ART_DIRECTORY := "res://content/base/art/rooms/"
 const ROOM_DEPTH_REFERENCE := preload("res://content/base/room_payloads/floor_1_room_a_payload.tres")
 const ACTION_INDICATOR := preload("res://src/presentation/source_action_indicator.gd")
+const REMOTE_AVATAR := preload("res://src/presentation/remote_player_avatar.gd")
+const LOBBY_ROOM_ID := &"base:room/main_tower_lobby"
+## Multiplayer arena: the lobby's right-hand side door (the unused Ice Floor
+## entrance). The zone starts at x 2985, just past the wall line (x 2970) and
+## inside the door frame (x 2966-3016), and spans the whole open stretch of
+## that wall (y 1035-1368), so it fires on stepping into the doorway and never
+## from the room in front of it.
+const ARENA_ZONE_CENTER := Vector2(3020.0, 1201.0)
+const ARENA_ZONE_HALF_EXTENTS := Vector2(35.0, 167.0)
 
 var room: RoomDefinition
 var _world: Node2D
@@ -33,6 +42,9 @@ var _prompt: Control
 var _player_gender: StringName = &"male"
 var _facing_pose: StringName = &"front"
 var _facing_left := false
+var _walking := false
+var _remote_avatars: Dictionary = {}
+var _local_name_tag: Label
 var _movement_accumulator := 0.0
 var _nearby_interactions: Array[Dictionary] = []
 var _room_interactions: Array[Dictionary] = []
@@ -107,6 +119,14 @@ func player_facing() -> StringName:
 		return &"left" if _facing_left else &"right"
 	return &"down"
 
+## Pose snapshot sent to other players (see NetSession.update_local_presence).
+func player_presence() -> Dictionary:
+	return {"pose": String(_facing_pose), "walking": _walking and _controls_enabled, "left": _facing_left}
+
+## Re-arm exits after the shell declined a transition (multiplayer guests).
+func release_transition_lock() -> void:
+	_transition_locked = false
+
 func restore_player_facing(direction: StringName) -> void:
 	match direction:
 		&"up": _set_player_pose(&"back", false, false)
@@ -135,6 +155,41 @@ func dialogue_layout_for_zone(zone_id: int) -> Dictionary:
 
 func _ready() -> void:
 	_create_hud()
+
+func _process(_delta: float) -> void:
+	_sync_remote_avatars()
+
+func _sync_remote_avatars() -> void:
+	var net: Node = get_node_or_null("/root/NetSession")
+	var active: bool = net != null and net.is_active() and room != null and _world != null
+	if is_instance_valid(_local_name_tag):
+		_local_name_tag.visible = active
+		if active:
+			_local_name_tag.text = net.local_name
+			_local_name_tag.add_theme_color_override("font_color", net.player_color(net.local_peer_id()))
+	var seen: Dictionary = {}
+	if active:
+		for peer_id in net.other_player_ids():
+			var presence: Dictionary = net.presence_of(peer_id)
+			if presence.is_empty() or presence.room != room.id:
+				continue
+			seen[peer_id] = true
+			var avatar = _remote_avatars.get(peer_id)
+			if not is_instance_valid(avatar):
+				avatar = REMOTE_AVATAR.new()
+				avatar.name = "RemotePlayer_%d" % peer_id
+				_world.add_child(avatar)
+				# Draw beside the local player: above floor art, below foreground.
+				_world.move_child(avatar, _player.get_index())
+				_remote_avatars[peer_id] = avatar
+			var info: Dictionary = net.players.get(peer_id, {})
+			avatar.configure(peer_id, net.player_name(peer_id), StringName(info.get("gender", "male")), net.player_color(peer_id))
+			avatar.apply_presence(presence)
+	for peer_id in _remote_avatars.keys():
+		if not seen.has(peer_id):
+			if is_instance_valid(_remote_avatars[peer_id]):
+				_remote_avatars[peer_id].queue_free()
+			_remote_avatars.erase(peer_id)
 
 func _physics_process(delta: float) -> void:
 	if _player == null or not _controls_enabled:
@@ -448,6 +503,7 @@ func _clear_world() -> void:
 	if _world != null and is_instance_valid(_world):
 		remove_child(_world)
 		_world.queue_free()
+	_remote_avatars.clear()
 	_world = Node2D.new()
 	_world.name = "World"
 	_world.y_sort_enabled = false
@@ -478,6 +534,9 @@ func _clear_world() -> void:
 	_player_sprite = AnimatedSprite2D.new()
 	_player_sprite.name = "CharacterSprite"
 	_player.add_child(_player_sprite)
+	_local_name_tag = REMOTE_AVATAR.make_name_tag()
+	_local_name_tag.visible = false
+	_player.add_child(_local_name_tag)
 	_foreground_art = Node2D.new()
 	_foreground_art.name = "SourceForegroundArt"
 	_foreground_art.z_index = 2
@@ -614,7 +673,7 @@ func _build_world(payload: Variant, character: Dictionary, campaign_context: Dic
 	var gender := String(character.get("gender", "male")).to_lower()
 	_player_gender = StringName("female" if gender == "female" else "male")
 	_player_sprite.centered = false
-	_player_sprite.sprite_frames = _create_player_frames(_player_gender)
+	_player_sprite.sprite_frames = create_player_frames(_player_gender)
 	_player_sprite.z_index = 1
 	_set_player_pose(&"front", false, false)
 
@@ -844,6 +903,18 @@ func _build_interaction_triggers(payload: Variant) -> void:
 		chest_area.body_entered.connect(_on_interaction_entered.bind(chest_interaction))
 		chest_area.body_exited.connect(_on_interaction_exited.bind(chest_interaction))
 
+	var net: Node = get_node_or_null("/root/NetSession")
+	if room.id == LOBBY_ROOM_ID and net != null and net.is_active():
+		_room_interactions.append({
+			"id": &"multiplayer-arena",
+			"kind": &"pvp_arena",
+			"source_position": ARENA_ZONE_CENTER,
+			"_zone_center": ARENA_ZONE_CENTER,
+			"_zone_half_extents": ARENA_ZONE_HALF_EXTENTS,
+			"_zone_rotation": 0.0,
+			"trigger_on_enter": true,
+		})
+
 func _chest_id(chest_kind: String, source_index: int) -> String:
 	return "chest-%s-%d" % [chest_kind, source_index]
 
@@ -978,15 +1049,16 @@ func _update_action_indicator() -> void:
 func _set_player_pose(pose: StringName, walking: bool, face_left: bool) -> void:
 	_facing_pose = pose
 	_facing_left = face_left
+	_walking = walking
 	var animation_name := pose if walking else StringName("idle_%s" % String(pose))
 	if _player_sprite.sprite_frames != null and _player_sprite.sprite_frames.has_animation(animation_name):
 		if _player_sprite.animation != animation_name or not _player_sprite.is_playing():
 			_player_sprite.play(animation_name)
 	_player_sprite.flip_h = face_left
-	_player_sprite.position = _player_sprite_offset(pose, walking, face_left)
+	_player_sprite.position = player_sprite_offset(_player_gender, pose, walking, face_left)
 
-func _player_sprite_offset(pose: StringName, walking: bool, face_left: bool) -> Vector2:
-	if _player_gender == &"male":
+static func player_sprite_offset(gender: StringName, pose: StringName, walking: bool, face_left: bool) -> Vector2:
+	if gender == &"male":
 		match pose:
 			&"back": return Vector2.ZERO
 			&"side": return Vector2(8.0 if face_left else 7.0, 7.0)
@@ -996,7 +1068,7 @@ func _player_sprite_offset(pose: StringName, walking: bool, face_left: bool) -> 
 		&"side": return Vector2(-7.0, 7.0)
 		_: return Vector2(3.0, 5.0) if walking else Vector2(4.0, 8.0)
 
-func _create_player_frames(gender: StringName) -> SpriteFrames:
+static func create_player_frames(gender: StringName) -> SpriteFrames:
 	var frames := SpriteFrames.new()
 	if frames.has_animation(&"default"):
 		frames.remove_animation(&"default")

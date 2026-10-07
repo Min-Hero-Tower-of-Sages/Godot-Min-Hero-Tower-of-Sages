@@ -13,6 +13,11 @@ var campaign: CampaignDefinition
 var state
 var save_repository := SaveRepository.new()
 var save_slot: int = 1
+## Optional Callable(Dictionary) -> Dictionary that receives every validated
+## save payload instead of the save repository, and returns the save result.
+## A multiplayer guest sends its progress to the host this way; its own save
+## slots are never touched while it plays in someone else's world.
+var save_redirect: Callable
 var _pending_egg_preview: OwnedMinionState
 var _pending_egg_preview_slot: int = -1
 
@@ -55,6 +60,7 @@ func start_new(campaign_id: StringName, new_party: Array[OwnedMinionState], char
 		return save_result
 	state = created
 	save_slot = slot
+	save_redirect = Callable()
 	_clear_pending_egg_preview()
 	return {"ok": true, "state": state}
 
@@ -77,9 +83,33 @@ func load(slot: int) -> Dictionary:
 	state = candidate
 	campaign = loaded_campaign
 	save_slot = slot
+	save_redirect = Callable()
 	_clear_pending_egg_preview()
 	loaded.state = candidate
 	return loaded
+
+## Play a state that lives outside the save slots (a multiplayer guest).
+## `id_slot` only numbers new minion/gem IDs; every save goes to `redirect`.
+func load_detached(data: Dictionary, id_slot: int, redirect: Callable) -> Dictionary:
+	if catalog == null:
+		return _error("missing_catalog", "set a content catalog before loading a campaign")
+	var candidate = StateScript.new()
+	candidate.load_dictionary(data)
+	var errors := candidate.validation_errors(catalog)
+	if not errors.is_empty():
+		return _error("invalid_campaign_state", "
+".join(errors))
+	var loaded_campaign := catalog.get_definition(candidate.campaign_id) as CampaignDefinition
+	if loaded_campaign == null:
+		return _error("missing_campaign", "state references missing campaign %s" % candidate.campaign_id)
+	if catalog.get_definition(candidate.current_room_id) is not RoomDefinition:
+		return _error("missing_room", "state references missing current room %s" % candidate.current_room_id)
+	state = candidate
+	campaign = loaded_campaign
+	save_slot = id_slot
+	save_redirect = redirect
+	_clear_pending_egg_preview()
+	return {"ok": true, "state": state}
 
 func repair_legacy_start_spawns() -> Dictionary:
 	if catalog == null:
@@ -1156,7 +1186,10 @@ func _save_candidate(candidate) -> Dictionary:
 	var errors: PackedStringArray = candidate.validation_errors(catalog)
 	if not errors.is_empty():
 		return _error("invalid_campaign_state", "\n".join(errors))
-	return save_repository.save_slot(save_slot, candidate.to_dictionary(catalog.content_version))
+	var payload: Dictionary = candidate.to_dictionary(catalog.content_version)
+	if save_redirect.is_valid():
+		return save_redirect.call(payload)
+	return save_repository.save_slot(save_slot, payload)
 
 func _eggery_pick_count(sage_seals: int) -> int:
 	if sage_seals > 5:
@@ -1262,6 +1295,24 @@ func apply_battle_result(result: BattleResult) -> Dictionary:
 	var candidate = StateScript.new()
 	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
 	var applied := ProgressionService.apply_battle_result(candidate, result, encounter, catalog)
+	if not applied.ok or applied.already_applied:
+		return applied
+	var saved := _save_candidate(candidate)
+	if not saved.ok:
+		return saved
+	state = candidate
+	return applied
+
+## Partner side of a multiplayer double battle (see ProgressionService).
+func apply_ally_battle_result(result: BattleResult, encounter_id: StringName, ally_prefix: String) -> Dictionary:
+	if state == null or catalog == null:
+		return _error("no_campaign", "there is no active campaign")
+	var encounter := catalog.get_definition(encounter_id) as EncounterDefinition
+	if encounter == null:
+		return _error("missing_encounter", "double battle encounter %s is missing" % encounter_id)
+	var candidate = StateScript.new()
+	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	var applied := ProgressionService.apply_ally_battle_result(candidate, result, encounter, catalog, ally_prefix)
 	if not applied.ok or applied.already_applied:
 		return applied
 	var saved := _save_candidate(candidate)

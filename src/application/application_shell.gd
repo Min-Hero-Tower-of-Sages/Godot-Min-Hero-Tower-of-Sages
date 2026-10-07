@@ -4,6 +4,7 @@ const BATTLE_SCENE: PackedScene = preload("res://scenes/main.tscn")
 const ROOM_SCENE: PackedScene = preload("res://scenes/campaign_room_view.tscn")
 const FONT: Font = preload("res://content/base/fonts/BurbinCasual.ttf")
 const NEW_CAMPAIGN_INTRO := preload("res://src/presentation/source_new_campaign_intro.gd")
+const MULTIPLAYER_CONTROLLER := preload("res://src/application/multiplayer_shell_controller.gd")
 
 const TITLE_BACKGROUND := "res://content/base/art/source_symbols/1242_Utilities.SpriteHandler_mainMenu_titleScreen_background.png"
 const TITLE_LOGO := "res://content/base/art/source_symbols/353_Utilities.SpriteHandler_mainMenu_titleLogo.png"
@@ -88,6 +89,10 @@ var selected_gender := "male"
 var party_swap_selected_party := -1
 var party_swap_selected_storage := -1
 var party_manager_hint: Label
+var _multiplayer: MultiplayerShellController
+## Resolved at runtime so this script compiles before autoloads exist.
+var net: Node:
+	get: return get_node_or_null("/root/NetSession")
 
 func _ready() -> void:
 	_settings = CampaignSettingsService.new()
@@ -101,6 +106,10 @@ func _ready() -> void:
 	room_hud_canvas.add_child(_reward_presenter)
 	_seal_fusion = preload("res://src/presentation/source_sage_seal_presenter.gd").new()
 	room_hud_canvas.add_child(_seal_fusion)
+	_multiplayer = MULTIPLAYER_CONTROLLER.new()
+	_multiplayer.name = "Multiplayer"
+	_multiplayer.shell = self
+	add_child(_multiplayer)
 	_show_title_screen()
 
 func show_catalog_menu(menu_id: StringName, context: Dictionary = {}) -> bool:
@@ -374,7 +383,51 @@ func _reveal_title_save_slots(screen: Control, immediate: bool) -> void:
 			_activate_save_card_later(card, 0.6 + 0.3 * float(slot - 1))
 		if immediate:
 			_activate_save_card_later(card, 0.0)
+	# Below the save cards (they end at y 398) and above Credits (y 469),
+	# skinned with the save card's own stone art so it reads as part of the list.
+	var join_target := Vector2(240.0, 412.0)
+	var join := _title_card_button(existing_slots, "Join a friend's game", join_target, Vector2(229.0, 42.0))
+	join.name = "JoinMultiplayerButton"
+	join.pressed.connect(_multiplayer.show_join_view)
+	if not immediate:
+		# Slides up after the last card, like the cards themselves.
+		join.position = join_target + Vector2(0.0, 30.0)
+		join.modulate.a = 0.0
+		join.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var join_tween := create_tween()
+		join_tween.tween_interval(0.3 * float(SaveRepository.SLOT_COUNT))
+		join_tween.tween_property(join, "position", join_target, 0.6)
+		join_tween.parallel().tween_property(join, "modulate:a", 1.0, 0.6)
+		join_tween.tween_callback(func() -> void: join.mouse_filter = Control.MOUSE_FILTER_STOP)
 	screen.set_meta("title_save_slots_visible", true)
+
+## A button drawn with the save card art (nine-sliced), in the cards' ink.
+func _title_card_button(parent: Control, text: String, at: Vector2, button_size: Vector2) -> Button:
+	var button := Button.new()
+	button.text = text
+	button.position = at
+	button.size = button_size
+	button.focus_mode = Control.FOCUS_NONE
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	button.add_theme_font_override("font", FONT)
+	button.add_theme_font_size_override("font_size", 19)
+	var ink := Color8(69, 71, 116)
+	for state in ["font_color", "font_focus_color", "font_hover_color", "font_pressed_color"]:
+		button.add_theme_color_override(state, ink)
+	button.add_theme_color_override("font_hover_color", Color8(96, 98, 158))
+	var art := load(SLOT_FILLED) as Texture2D
+	for state in ["normal", "hover", "pressed", "focus"]:
+		var skin := StyleBoxTexture.new()
+		skin.texture = art
+		skin.set_texture_margin_all(14.0)
+		if state == "hover":
+			skin.modulate_color = Color(1.08, 1.08, 1.12)
+		elif state == "pressed":
+			skin.modulate_color = Color(0.9, 0.9, 0.96)
+		button.add_theme_stylebox_override(state, skin)
+	parent.add_child(button)
+	preload("res://src/presentation/source_menu_button_audio.gd").bind_button(button)
+	return button
 
 func _create_title_save_card(parent: Control, slot: int, is_used: bool, loaded: Dictionary, at: Vector2) -> Control:
 	var card := Control.new()
@@ -839,6 +892,7 @@ func _show_room_from_state(spawn_id: StringName = &"", spawn_position: Vector2 =
 		_show_title_screen()
 		return
 	var state = runtime.session.state
+	_multiplayer.place_guest_with_host()
 	if bool(state.progression.get("in_tower_lobby", false)) and state.current_room_id != &"base:room/main_tower_lobby":
 		_show_tower_lobby_screen()
 		return
@@ -974,6 +1028,8 @@ func _on_room_transition_requested(exit_data: Dictionary) -> void:
 		return
 	if _room_transition_active:
 		return
+	if not _multiplayer.allow_room_transition(exit_data):
+		return
 	_room_transition_active = true
 	if current_room != null and is_instance_valid(current_room):
 		current_room.set_controls_enabled(false)
@@ -1038,6 +1094,11 @@ func _on_room_interaction_requested(interaction: Dictionary) -> void:
 	if _room_transition_active or runtime == null or runtime.session == null or current_room == null:
 		return
 	var interaction_kind := StringName(interaction.get("kind", ""))
+	if interaction_kind == &"pvp_arena":
+		_multiplayer.show_arena_picker()
+		return
+	if not _multiplayer.allow_interaction(interaction_kind):
+		return
 	if interaction_kind == &"eggery_exit_blocked":
 		_show_player_dialogue("You still need to choose an egg!")
 		return
@@ -1055,7 +1116,8 @@ func _on_room_interaction_requested(interaction: Dictionary) -> void:
 			else:
 				message = String(interaction.get("locked_text", ""))
 		elif interaction_kind == &"minion_storage":
-			if runtime.session.state.party.size() + runtime.session.state.storage.size() > 5:
+			# Shared storage may hold other players' minions: always open in multiplayer.
+			if runtime.session.state.party.size() + runtime.session.state.storage.size() > 5 or net.is_active():
 				after = _show_storage_manager
 			else:
 				message = String(interaction.get("locked_text", ""))
@@ -1483,6 +1545,12 @@ func _begin_trainer_battle(encounter_id: StringName, player_position: Vector2) -
 	if _room_transition_active:
 		return
 	_clear_dialog()
+	var battle_slot: Dictionary = await _multiplayer.request_trainer_battle(String(encounter_id))
+	if not battle_slot.get("ok", false) or _room_transition_active:
+		_multiplayer.cancel_trainer_battle()
+		if is_instance_valid(current_room):
+			current_room.set_controls_enabled(interaction_dialog == null)
+		return
 	_trainer_return_location.clear()
 	var trainer_return_location: Dictionary = {}
 	if runtime != null and runtime.session != null and runtime.session.state != null and current_room != null:
@@ -1496,6 +1564,7 @@ func _begin_trainer_battle(encounter_id: StringName, player_position: Vector2) -
 		}
 	var prepared: Dictionary = runtime.prepare_trainer_battle(encounter_id, player_position)
 	if not prepared.get("ok", false):
+		_multiplayer.cancel_trainer_battle()
 		room_status.text = "Battle could not start: %s" % prepared.get("message", "unknown error")
 		return
 	room_status.text = ""
@@ -1515,6 +1584,7 @@ func _begin_trainer_battle(encounter_id: StringName, player_position: Vector2) -
 	current_battle.campaign_return_requested.connect(_on_campaign_return_requested)
 	current_battle.campaign_forfeit_return_requested.connect(_on_campaign_forfeit_return_requested)
 	current_battle.campaign_defeat_return_requested.connect(_on_campaign_defeat_return_requested)
+	_multiplayer.share_trainer_battle(current_battle, battle_slot)
 	current_battle.call("begin_campaign_battle")
 	_campaign_audio.fade_music_to(0.0, 0.5)
 	await _fade_campaign_screen_out()
@@ -1732,6 +1802,7 @@ func _show_campaign_menu() -> void:
 	for index in symbols.size():
 		SourceMenuArt.button(panel, "menus_topDownMenuPopUp_%s" % symbols[index], Vector2(17, 19 + 39 * index), actions[index])
 	SourceMenuArt.button(panel, "menus_topDownMenuPopUp_resume", Vector2(17, 269), _close_source_menu.bind(_clear_dialog))
+	_multiplayer.build_menu_panel(panel)
 	if _settings.tips_enabled:
 		if _hud_progress.has_affordable_star_upgrade(runtime.session.state):
 			SourceMenuArt.image(panel, "tutorial_newStars_side", Vector2(-42, 90))
@@ -2009,6 +2080,8 @@ func _show_campaign_talents(member_id: StringName) -> void:
 
 func _show_storage_manager() -> void:
 	if runtime == null or runtime.session == null or runtime.session.state == null:
+		return
+	if not _multiplayer.storage_ready():
 		return
 	_clear_dialog()
 	var view := CampaignStorageMenuView.new()
@@ -2481,6 +2554,7 @@ func _leave_to_title() -> void:
 		if not result.get("ok", false):
 			room_status.text = "Save failed: %s" % result.get("message", "unknown error")
 			return
+	net.leave()
 	_show_title_screen()
 
 func _show_notice(message: String) -> void:

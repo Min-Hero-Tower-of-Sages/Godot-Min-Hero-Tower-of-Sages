@@ -255,6 +255,7 @@ func _build_floor_rows() -> void:
 		_root.add_child(tile)
 		_floor_rows.append(tile)
 		_build_floor_tile(tile, floor_index, unlocked and migrated)
+		_add_player_tags(tile, CampaignTowerModeService.tower_floor_index(floor_index, _mode))
 		if not unlocked or not migrated:
 			continue
 		var info := Control.new()
@@ -264,6 +265,31 @@ func _build_floor_rows() -> void:
 		_root.add_child(info)
 		_info_rows.append(info)
 		_build_floor_info(info, floor_index, floor_data, current_floor, star_ratings, unlocked, migrated)
+
+## Multiplayer: names of the other players on this floor, left of its tile.
+func _add_player_tags(tile: Control, global_floor: int) -> void:
+	var net: Node = get_node_or_null("/root/NetSession")
+	if net == null or not net.is_active():
+		return
+	var names: Array[int] = []
+	for peer_id in net.other_player_ids():
+		var where: Dictionary = net.player_location(peer_id)
+		if not where.is_empty() and not bool(where.get("lobby", false)) and int(where.get("floor", -1)) == global_floor:
+			names.append(peer_id)
+	for index in mini(names.size(), 3):
+		var tag := Label.new()
+		tag.text = net.player_name(names[index]) if index < 2 or names.size() == 3 else "+%d more" % (names.size() - 2)
+		tag.position = Vector2(-112.0, 18.0 + 20.0 * float(index))
+		tag.size = Vector2(106.0, 20.0)
+		tag.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		tag.clip_text = true
+		tag.add_theme_font_override("font", MultiplayerUi.FONT)
+		tag.add_theme_font_size_override("font_size", 15)
+		tag.add_theme_color_override("font_color", net.player_color(names[index]) if index < 2 or names.size() == 3 else Color.WHITE)
+		tag.add_theme_color_override("font_outline_color", Color(0.06, 0.05, 0.1, 0.95))
+		tag.add_theme_constant_override("outline_size", 4)
+		tag.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		tile.add_child(tag)
 
 func _build_floor_tile(parent: Control, floor_index: int, unlocked: bool) -> void:
 	var room_asset := _floor_room_asset(floor_index)

@@ -108,22 +108,9 @@ func _ready() -> void:
 func start_new_campaign(slot: int, character_name: String, gender: StringName) -> Dictionary:
 	if session == null:
 		return _error("runtime_not_ready", "campaign runtime has not initialized")
-	var party: Array[OwnedMinionState] = []
-	var starters := [
-		{"id": &"base:minion/fire_pig_1", "instance": "starter-zapig", "level": 4, "experience": 4350},
-		{"id": &"base:minion/tiger_1", "instance": "starter-ticub", "level": 5, "experience": 5300},
-	]
-	for starter in starters:
-		var definition := catalog.get_definition(starter.id) as MinionDefinition
-		if definition == null:
-			return _error("missing_starter", "starter definition %s is missing" % starter.id)
-		var owned := OwnedMinionState.new()
-		owned.instance_id = StringName("slot-%d-%s" % [slot, starter.instance])
-		owned.definition_id = definition.id
-		owned.level = int(starter.level)
-		owned.experience = int(starter.experience)
-		owned.learned_move_ids.assign(definition.initial_move_ids)
-		party.append(owned)
+	var party := CampaignProgressionService.starter_party(catalog, "slot-%d-" % slot)
+	if party.size() != CampaignProgressionService.STARTERS.size():
+		return _error("missing_starter", "a starter minion definition is missing")
 	var resolved_name := character_name.strip_edges()
 	if resolved_name.is_empty():
 		resolved_name = "Vala" if gender == &"female" else "Ryder"
@@ -152,6 +139,17 @@ func load_campaign(slot: int) -> Dictionary:
 			var returned: Dictionary = session.complete_defeat_return()
 			if not returned.ok: return returned
 			result["recovered_defeat_return"] = true
+		active_campaign_battle = false
+		campaign_return_pending = false
+		prepared_battle_setup.clear()
+	return result
+
+## A multiplayer guest's state, built by the host; saves go to `redirect`.
+func load_detached_campaign(data: Dictionary, id_slot: int, redirect: Callable) -> Dictionary:
+	if session == null:
+		return _error("runtime_not_ready", "campaign runtime has not initialized")
+	var result: Dictionary = session.load_detached(data, id_slot, redirect)
+	if result.ok:
 		active_campaign_battle = false
 		campaign_return_pending = false
 		prepared_battle_setup.clear()

@@ -45,10 +45,21 @@ const PLAYER_ANCHORS: Array[Vector2] = [
 const ENEMY_ANCHORS: Array[Vector2] = [
 	Vector2(424, 294), Vector2(520, 381), Vector2(450, 497), Vector2(614, 312), Vector2(618, 468),
 ]
+## Multiplayer double battle: ten minions per side. Slots 0-4 form the front
+## column (the starting player, or the original enemies), slots 5-9 the back
+## column (the partner, or the duplicated enemies). Enemy anchors mirror these.
+const DOUBLE_PLAYER_ANCHORS: Array[Vector2] = [
+	Vector2(300, 262), Vector2(276, 322), Vector2(300, 382), Vector2(276, 442), Vector2(300, 502),
+	Vector2(170, 247), Vector2(146, 307), Vector2(170, 367), Vector2(146, 427), Vector2(170, 487),
+]
+const DOUBLE_MIRROR_X := 713.0
+const DOUBLE_SCALE := 0.68
 
 var instance_id: StringName
 var team: int
 var slot_index: int
+## Where this minion stands (and returns to after a lunge).
+var home_anchor := Vector2.ZERO
 var minion_definition: MinionDefinition
 var minion_sprite: Sprite2D
 var battle_mod_shield_sprite: Sprite2D
@@ -92,7 +103,7 @@ var _condition_tint_tween: Tween
 func play_source_move_lunge() -> void:
 	if _move_lunge_tween != null and _move_lunge_tween.is_running():
 		_move_lunge_tween.kill()
-	var anchor_x := legacy_anchor(team, slot_index).x
+	var anchor_x := home_anchor.x
 	position.x = anchor_x
 	_move_lunge_tween = create_tween()
 	_move_lunge_tween.tween_property(self, "position:x", anchor_x + (20.0 if team == 0 else -20.0), 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -103,12 +114,23 @@ static func legacy_anchor(team_index: int, slot: int) -> Vector2:
 		return Vector2.ZERO
 	return PLAYER_ANCHORS[slot] if team_index == 0 else ENEMY_ANCHORS[slot]
 
+static func double_anchor(team_index: int, slot: int) -> Vector2:
+	if slot < 0 or slot >= DOUBLE_PLAYER_ANCHORS.size():
+		return Vector2.ZERO
+	var anchor := DOUBLE_PLAYER_ANCHORS[slot]
+	return anchor if team_index == 0 else Vector2(DOUBLE_MIRROR_X - anchor.x, anchor.y)
+
 func setup(combatant_data: Dictionary, definition: MinionDefinition, sprite_texture: Texture2D) -> void:
 	instance_id = StringName(combatant_data.get("instance_id", ""))
 	team = int(combatant_data.get("team", 0))
 	slot_index = int(combatant_data.get("slot_index", 0))
 	minion_definition = definition
-	position = legacy_anchor(team, slot_index)
+	if bool(combatant_data.get("double_layout", false)):
+		home_anchor = double_anchor(team, slot_index)
+		scale = Vector2.ONE * DOUBLE_SCALE
+	else:
+		home_anchor = legacy_anchor(team, slot_index)
+	position = home_anchor
 	z_index = int(position.y)
 
 	minion_sprite = Sprite2D.new()

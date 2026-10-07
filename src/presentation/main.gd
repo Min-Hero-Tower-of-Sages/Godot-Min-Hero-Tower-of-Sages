@@ -4,6 +4,9 @@ signal battle_entry_animation_finished
 signal campaign_return_requested
 signal campaign_defeat_return_requested
 signal campaign_forfeit_return_requested
+## Spectated or arena battle finished; the shell returns everyone to the room.
+signal network_battle_finished
+signal _network_command_arrived
 
 const RecoveredCatalog = preload("res://content/imported/recovered-20260911/catalog.tres")
 const VFX_CATALOG_SCRIPT = preload("res://src/presentation/battle_vfx_catalog.gd")
@@ -144,6 +147,26 @@ var _campaign_victory_return_pending := false
 var _battle_result_presented := false
 var _move_selection_hint: TextureRect
 var _move_hint_tween: Tween
+## Multiplayer lockstep. Every machine runs the same engine from the same
+## setup/rules/seed; only human commands travel. Roles: "" offline,
+## &"battler" (campaign fight others watch or join), &"spectator", &"pvp",
+## &"ally" (the partner in a duo double battle, controlling only its own
+## minions, listed in net_spec.actor_controllers).
+var net_role: StringName = &""
+var net_spec: Dictionary = {}
+var _local_teams: Array = [0]
+## Extra spec fields the battler publishes (double battle partner, names).
+var _net_extras: Dictionary = {}
+## Engine teams with more than five minions (double battle): those sides use
+## the denser ten-place layout with smaller minions.
+var _double_teams: Array = []
+var _ai_teams: Array = [1]
+## 1 when the local player controls engine team 1: views are mirrored so the
+## local team always stands on the left, while the engine stays untouched.
+var _team_flip := 0
+var _net_command_queue: Array[Dictionary] = []
+var _net_aborted := false
+var _net_snapshot_reply: Dictionary = {}
 
 func _ready() -> void:
 	battle_modifier_layer = Control.new()
@@ -202,6 +225,151 @@ func begin_campaign_battle() -> void:
 	campaign_mode = true
 	start_overlay.visible = false
 	await _start_battle()
+
+## Start a battle published by another player (spectating, or an arena fight).
+func begin_network_battle(spec: Dictionary) -> void:
+	var net: Node = get_node_or_null("/root/NetSession")
+	net_spec = spec.duplicate(true)
+	_double_teams = spec.get("double_teams", [])
+	_local_teams.clear()
+	var controllers: Dictionary = spec.get("controllers", {})
+	for team in controllers:
+		if net != null and int(controllers[team]) == net.local_peer_id():
+			_local_teams.append(int(team))
+	net_role = &"pvp" if not _local_teams.is_empty() else &"spectator"
+	var actor_controllers: Dictionary = spec.get("actor_controllers", {})
+	if _local_teams.is_empty() and net != null and actor_controllers.values().any(func(peer: Variant) -> bool: return int(peer) == net.local_peer_id()):
+		net_role = &"ally"
+		_local_teams = [0]
+	_team_flip = 1 if _local_teams == [1] else 0
+	campaign_mode = false
+	start_overlay.visible = false
+	forfeit_button.visible = net_role in [&"pvp", &"ally"]
+	_connect_network_battle(net)
+	await _start_battle()
+
+## Campaign battler: publish this fight so other players spectate (or, with
+## `extras` naming actor_controllers, help fight) it.
+func share_campaign_battle(battle_key: String, extras: Dictionary = {}) -> void:
+	net_spec = {"key": battle_key}
+	_net_extras = extras.duplicate(true)
+	_double_teams = extras.get("double_teams", [])
+
+func _connect_network_battle(net: Node) -> void:
+	if net == null or net.battle_command_received.is_connected(_on_network_battle_command):
+		return
+	net.battle_command_received.connect(_on_network_battle_command)
+	net.battle_aborted.connect(_on_network_battle_aborted)
+	net.battle_snapshot_received.connect(_on_network_battle_snapshot)
+	# Commands that arrived during the screen fade, before this scene listened.
+	_net_command_queue.append_array(net.buffered_battle_commands(String(net_spec.get("key", ""))))
+
+func _net() -> Node:
+	var net: Node = get_node_or_null("/root/NetSession")
+	return net if net != null and net.is_active() else null
+
+func _on_network_battle_command(battle_key: String, command: Dictionary) -> void:
+	if battle_key != String(net_spec.get("key", "")):
+		return
+	_net_command_queue.append(command)
+	_network_command_arrived.emit()
+
+func _on_network_battle_aborted(battle_key: String, reason: String) -> void:
+	if battle_key != String(net_spec.get("key", "")) or _net_aborted:
+		return
+	_net_aborted = true
+	_network_command_arrived.emit()
+	if net_role == &"battler":
+		return # A campaign battle simply continues against its AI trainer.
+	busy = true
+	move_panel.visible = false
+	event_text.get_parent().visible = true
+	event_text.text = reason
+	await get_tree().create_timer(2.0).timeout
+	network_battle_finished.emit()
+
+func _on_network_battle_snapshot(battle_key: String, revision: int, snapshot: Dictionary) -> void:
+	if battle_key == String(net_spec.get("key", "")):
+		_net_snapshot_reply = {"revision": revision, "snapshot": snapshot}
+		_network_command_arrived.emit()
+
+## Wait for the remote owner of `decision` to choose. Verifies both machines
+## agree on the pre-command state and re-syncs from the sender if they drift.
+func _await_network_turn(decision: Dictionary) -> BattleCommand:
+	var revision := int(decision.revision)
+	while not _net_aborted:
+		for index in _net_command_queue.size():
+			var queued: Dictionary = _net_command_queue[index]
+			if int(queued.get("revision", -1)) != revision:
+				continue
+			_net_command_queue.remove_at(index)
+			var expected := int(queued.get("check", 0))
+			var net := _net()
+			if net != null and expected != 0 and MultiplayerWorldSync.fingerprint(controller.engine.snapshot()) != expected:
+				push_warning("Multiplayer battle drift at revision %d; restoring sender state" % revision)
+				_net_snapshot_reply.clear()
+				net.request_battle_snapshot(String(net_spec.key), revision, int(queued.get("sender", 0)))
+				var deadline := Time.get_ticks_msec() + 5000
+				while _net_snapshot_reply.is_empty() and Time.get_ticks_msec() < deadline and not _net_aborted:
+					await get_tree().create_timer(0.1).timeout
+				if not _net_snapshot_reply.is_empty():
+					controller.engine.restore(_net_snapshot_reply.snapshot)
+					_sync_from_engine()
+			var targets: Array[StringName] = []
+			for raw_id in queued.get("targets", []):
+				targets.append(StringName(raw_id))
+			var kind := BattleCommand.Kind.FORFEIT if String(queued.get("kind", "")) == "forfeit" else BattleCommand.Kind.USE_MOVE
+			return BattleCommand.new(StringName(queued.actor), kind, StringName(queued.get("move", "")), targets, revision)
+		# Commands are applied strictly in revision order; drop anything older.
+		_net_command_queue = _net_command_queue.filter(func(entry: Dictionary) -> bool: return int(entry.get("revision", -1)) >= revision)
+		await _network_command_arrived
+	return null
+
+## Submit a locally chosen command and stream it to every other player.
+func _submit_local_command(command: BattleCommand) -> BattleResponse:
+	var net := _net()
+	var pre_snapshot: Dictionary = controller.engine.snapshot() if net != null and not net_role.is_empty() else {}
+	var response := controller.submit(command)
+	if response.accepted and not pre_snapshot.is_empty():
+		var targets: Array = []
+		for target_id in command.target_ids:
+			targets.append(String(target_id))
+		net.send_battle_command(String(net_spec.key), {
+			"revision": command.expected_revision,
+			"actor": String(command.actor_id),
+			"kind": "forfeit" if command.kind == BattleCommand.Kind.FORFEIT else "move",
+			"move": String(command.move_id),
+			"targets": targets,
+		}, pre_snapshot)
+	return response
+
+## Whose turn this is: the actor's own controller in a double battle,
+## otherwise whoever controls its team.
+func _is_local_decision(decision: Dictionary) -> bool:
+	var owners: Dictionary = net_spec.get("actor_controllers", {})
+	var actor := String(decision.get("actor_id", ""))
+	if owners.has(actor):
+		var net := _net()
+		return net != null and int(owners[actor]) == net.local_peer_id()
+	return int(decision.team) in _local_teams and net_role != &"ally"
+
+func _decision_owner_name(decision: Dictionary) -> String:
+	var owners: Dictionary = net_spec.get("actor_controllers", {})
+	var actor := String(decision.get("actor_id", ""))
+	var net := _net()
+	if net != null:
+		if owners.has(actor):
+			return net.player_name(int(owners[actor]))
+		if net_role == &"ally" and int(decision.team) == 0:
+			return net.player_name(int(net_spec.get("controllers", {}).get(0, 1)))
+	return _network_player_name(int(decision.team))
+
+func _display_team(engine_team: int) -> int:
+	return engine_team ^ _team_flip if engine_team in [0, 1] else engine_team
+
+func _network_player_name(team: int) -> String:
+	var names: Dictionary = net_spec.get("names", {})
+	return String(names.get(team, "Team %d" % (team + 1)))
 
 func _process(_delta: float) -> void:
 	if move_tooltip != null and move_tooltip.visible:
@@ -287,7 +455,7 @@ func _start_battle() -> void:
 	_clear_combatant_views()
 	_pending_extra_minion_animation_ids.clear()
 	var campaign_runtime: Variant = get_node_or_null("/root/CampaignRuntime")
-	catalog = campaign_runtime.catalog if campaign_mode and campaign_runtime != null else RecoveredCatalog
+	catalog = campaign_runtime.catalog if (campaign_mode or not net_role.is_empty()) and campaign_runtime != null else RecoveredCatalog
 	for required_pack in [BATTLE_DEMO_PACK, CAMPAIGN_SLICE_PACK]:
 		var already_loaded := false
 		for pack in catalog.packs:
@@ -299,6 +467,9 @@ func _start_battle() -> void:
 	var catalog_errors := catalog.ensure_index()
 	if not catalog_errors.is_empty():
 		_show_startup_fatal("Content error: %s" % ", ".join(catalog_errors))
+		return
+	if net_role in [&"spectator", &"pvp", &"ally"]:
+		await _start_network_battle()
 		return
 	if campaign_mode and campaign_runtime != null and campaign_runtime.session != null and campaign_runtime.session.state != null:
 		var pending_context: Dictionary = campaign_runtime.session.state.pending_battle
@@ -333,10 +504,59 @@ func _start_battle() -> void:
 	var battle_seed := 20260911
 	if campaign_mode and campaign_runtime != null and campaign_runtime.session.state != null:
 		battle_seed += int(campaign_runtime.session.state.battle_sequence)
+	var net := _net()
+	if campaign_mode and net != null and not String(net_spec.get("key", "")).is_empty():
+		# Spectators rebuild this exact battle; start from the wire form too so
+		# both engines see identical Variant types.
+		setup = bytes_to_var(var_to_bytes(setup))
+		rules.configuration = bytes_to_var(var_to_bytes(rules.configuration))
+		net_role = &"battler"
+		_connect_network_battle(net)
+		net_spec.merge({
+			"kind": "trainer",
+			"seed": battle_seed,
+			"setup": setup,
+			"rules": {"id": String(rules.id), "display_name": rules.display_name, "party_size": rules.party_size, "configuration": rules.configuration},
+			"controllers": {0: net.local_peer_id()},
+			"names": {0: net.local_name, 1: _trainer_display_name()},
+			"encounter_id": String(source_encounter.id),
+		}, true)
+		net_spec.merge(_net_extras, true)
+		net.publish_battle_spec(net_spec)
+	_ai_teams = rules.configuration.get("ai_teams", [1])
 	var response := controller.start(setup, catalog, rules, BattleRng.new(battle_seed))
 	if not response.accepted:
 		_show_startup_fatal("Battle could not start: %s" % response.message)
 		return
+	await _present_battle_entry(response, rules)
+
+func _trainer_display_name() -> String:
+	var dialogue: Dictionary = preload("res://src/application/source_trainer_dialogue.gd").for_encounter(source_encounter)
+	return String(dialogue.get("trainer_name", "Trainer"))
+
+## Spectator/arena start: everything comes from the published spec.
+func _start_network_battle() -> void:
+	var encounter_id := String(net_spec.get("encounter_id", ""))
+	source_encounter = catalog.get_definition(StringName(encounter_id)) as EncounterDefinition if not encounter_id.is_empty() else null
+	var rule_data: Dictionary = net_spec.get("rules", {})
+	var rules := RuleSetDefinition.new()
+	rules.id = StringName(rule_data.get("id", "base:rules/multiplayer"))
+	rules.display_name = String(rule_data.get("display_name", "Multiplayer battle"))
+	rules.party_size = int(rule_data.get("party_size", 5))
+	rules.configuration = (rule_data.get("configuration", {}) as Dictionary).duplicate(true)
+	_ai_teams = rules.configuration.get("ai_teams", [1])
+	controller = BattleController.new()
+	campaign_settlement.clear()
+	var setup: Dictionary = (net_spec.get("setup", {}) as Dictionary).duplicate(true)
+	var response := controller.start(setup, catalog, rules, BattleRng.new(int(net_spec.get("seed", 0))))
+	if not response.accepted:
+		_show_startup_fatal("Shared battle could not start: %s" % response.message)
+		await get_tree().create_timer(2.0).timeout
+		network_battle_finished.emit()
+		return
+	await _present_battle_entry(response, rules)
+
+func _present_battle_entry(response: BattleResponse, rules: RuleSetDefinition) -> void:
 	active_battle_modifiers = (rules.configuration.get("battle_modifiers", {}) as Dictionary).duplicate(true)
 	_original_player_ids.clear()
 	for initial_state in controller.engine.snapshot().state.combatants:
@@ -498,7 +718,7 @@ func _continue_battle() -> void:
 	if decision.is_empty():
 		return
 	_update_current_turn_indicator(StringName(decision.actor_id))
-	if int(decision.team) == 1:
+	if int(decision.team) in _ai_teams:
 		_set_forfeit_enabled(false)
 		busy = true
 		_animate_move_selector_out()
@@ -507,6 +727,19 @@ func _continue_battle() -> void:
 		await get_tree().create_timer(0.1).timeout
 		var ai_response := controller.submit_ai_turn()
 		await _handle_response(ai_response)
+		return
+	if not _is_local_decision(decision):
+		_set_forfeit_enabled(false)
+		busy = true
+		_animate_move_selector_out()
+		_clear_target_states()
+		event_text.get_parent().visible = true
+		event_text.text = "%s is choosing a move…" % _decision_owner_name(decision)
+		var remote_command := await _await_network_turn(decision)
+		if remote_command == null:
+			return
+		event_text.get_parent().visible = false
+		await _handle_response(controller.submit(remote_command))
 		return
 	_set_forfeit_enabled(true)
 	_build_move_buttons(decision)
@@ -853,7 +1086,7 @@ func _submit_pending_move() -> void:
 	var command := BattleCommand.new(StringName(decision.actor_id), BattleCommand.Kind.USE_MOVE, StringName(pending_move.move_id), selected_targets, int(decision.revision))
 	pending_move.clear()
 	selected_targets.clear()
-	await _handle_response(controller.submit(command))
+	await _handle_response(_submit_local_command(command))
 
 func _forfeit() -> void:
 	if busy or forfeit_button.disabled:
@@ -878,7 +1111,7 @@ func _confirm_forfeit() -> void:
 	_animate_move_selector_out()
 	var decision := controller.engine.get_decision()
 	var command := BattleCommand.new(StringName(decision.actor_id), BattleCommand.Kind.FORFEIT, &"", [], int(decision.revision))
-	await _handle_response(controller.submit(command))
+	await _handle_response(_submit_local_command(command))
 
 func _handle_response(response: BattleResponse) -> void:
 	if not response.accepted:
@@ -1898,7 +2131,7 @@ func _apply_event_values(event: BattleEvent) -> void:
 			_hide_resurrection_tombstone(replaced_id)
 		return
 	if event.kind == &"battle_mod_shields_assigned":
-		var shield_team := int(event.values.get("team", -1))
+		var shield_team := _display_team(int(event.values.get("team", -1)))
 		var selected: Array = event.values.get("target_ids", [])
 		for raw_view in combatant_views.values():
 			var shielded_view := raw_view as BattleCombatantView
@@ -2301,7 +2534,13 @@ func _create_combatant_view(state: Dictionary) -> BattleCombatantView:
 		return null
 	var view := COMBATANT_VIEW_SCRIPT.new() as BattleCombatantView
 	combatant_layer.add_child(view)
-	view.setup(state, definition, texture)
+	var displayed_state := state
+	var dense := int(state.get("team", 0)) in _double_teams
+	if _team_flip != 0 or dense:
+		displayed_state = state.duplicate()
+		displayed_state["team"] = _display_team(int(state.get("team", 0)))
+		displayed_state["double_layout"] = dense
+	view.setup(displayed_state, definition, texture)
 	combatant_views[String(state.instance_id)] = view
 	return view
 
@@ -2450,6 +2689,12 @@ func _show_result(result) -> void:
 	cancel_target.visible = false
 	_clear_target_states()
 	_hide_current_turn_indicator()
+	if net_role in [&"spectator", &"pvp"]:
+		_show_network_result(result)
+		return
+	if net_role == &"ally":
+		_show_ally_result(result)
+		return
 	if campaign_mode:
 		var campaign_runtime: Variant = get_node_or_null("/root/CampaignRuntime")
 		if campaign_runtime == null or not campaign_runtime.active_campaign_battle:
@@ -2503,6 +2748,53 @@ func _show_result(result) -> void:
 	else:
 		audio_controller.fade_music_to(0.4, 4.0)
 		_play_defeat_presentation()
+
+## Double battle partner: its own minions keep their health and earn XP (the
+## partner who started the fight records the win for the shared world).
+func _show_ally_result(result) -> void:
+	var campaign_runtime: Variant = get_node_or_null("/root/CampaignRuntime")
+	var won := int(result.winning_team) == 0
+	var detail := ""
+	if campaign_runtime != null and campaign_runtime.session != null and campaign_runtime.session.state != null:
+		var settled: Dictionary = campaign_runtime.session.apply_ally_battle_result(result, StringName(net_spec.get("encounter_id", "")), MultiplayerDoubleBattle.ALLY_PREFIX)
+		if settled.get("ok", false):
+			var gained := 0
+			for award in (settled.get("experience_awards", {}) as Dictionary).values():
+				gained += int(award.get("experience", 0))
+			if gained > 0:
+				detail = "\nYour team gained %d XP." % gained
+		else:
+			detail = "\nYour team could not be updated: %s" % settled.get("message", "unknown error")
+	result_title.text = ("Victory together!" if won else "Battle forfeited" if result.reason == &"forfeit" else "Defeated together") + detail
+	audio_controller.fade_music_to(0.0, 1.5)
+	restart_button.visible = false
+	result_overlay.modulate.a = 0.0
+	result_overlay.visible = true
+	var reveal := create_tween()
+	reveal.tween_property(result_overlay, "modulate:a", 1.0, 0.4)
+	reveal.tween_interval(2.6)
+	await reveal.finished
+	network_battle_finished.emit()
+
+## Spectators and arena fighters see who won, then everyone returns together.
+func _show_network_result(result) -> void:
+	var winner := int(result.winning_team)
+	var winner_name := _network_player_name(winner)
+	if net_role == &"pvp" and winner in _local_teams:
+		result_title.text = "You won!"
+	else:
+		result_title.text = "%s wins!" % winner_name
+	if result.reason == &"forfeit":
+		result_title.text += "\n(%s forfeited)" % _network_player_name(1 - winner)
+	audio_controller.fade_music_to(0.0, 1.5)
+	restart_button.visible = false
+	result_overlay.modulate.a = 0.0
+	result_overlay.visible = true
+	var reveal := create_tween()
+	reveal.tween_property(result_overlay, "modulate:a", 1.0, 0.4)
+	reveal.tween_interval(2.6)
+	await reveal.finished
+	network_battle_finished.emit()
 
 func _begin_campaign_progression(battle_won: bool) -> void:
 	if not campaign_mode or campaign_progression_presenter == null:
@@ -2871,7 +3163,7 @@ func _combatant_state(instance_id: StringName) -> Dictionary:
 func _first_living_opponent(team: int) -> BattleCombatantView:
 	var candidates: Array[BattleCombatantView] = []
 	for state in controller.engine.snapshot().state.combatants:
-		if int(state.team) == team or bool(state.get("defeated", false)):
+		if _display_team(int(state.team)) == team or bool(state.get("defeated", false)):
 			continue
 		var view := combatant_views.get(String(state.instance_id)) as BattleCombatantView
 		if view != null:

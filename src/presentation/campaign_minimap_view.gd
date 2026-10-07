@@ -27,6 +27,11 @@ var _close_button: Button
 var _presented_room_id: StringName
 var _room_transition: Tween
 var _base_map_scale := 1.0
+## Multiplayer: a colored dot on the room of every other player on this floor.
+var _player_marker_layer: Control
+var _player_marker_timer := 0.0
+const PLAYER_MARKER_REFRESH := 0.25
+const PLAYER_MARKER_SIZE := 7.0
 
 func configure(catalog: ContentCatalog, state: CampaignState, campaign: CampaignDefinition, embedded: bool = false) -> void:
 	var current_room := catalog.get_definition(state.current_room_id) as RoomDefinition if catalog != null and state != null else null
@@ -55,6 +60,45 @@ func _ready() -> void:
 		grab_focus()
 	if _catalog != null and _state != null and _campaign != null:
 		_build_view()
+
+func _process(delta: float) -> void:
+	_player_marker_timer += delta
+	if _player_marker_timer >= PLAYER_MARKER_REFRESH:
+		_player_marker_timer = 0.0
+		_refresh_player_markers()
+
+## Other players' rooms, from the location each player reports (it survives
+## battles, unlike presence). Only rooms of the floor this map shows count.
+func _refresh_player_markers() -> void:
+	if not is_instance_valid(_player_marker_layer):
+		return
+	for child in _player_marker_layer.get_children():
+		child.queue_free()
+	var net: Node = get_node_or_null("/root/NetSession")
+	if net == null or not net.is_active():
+		return
+	var per_room: Dictionary = {}
+	for peer_id in net.other_player_ids():
+		var room_id := String(net.player_location(peer_id).get("room", ""))
+		var room := _room_by_id.get(room_id) as RoomDefinition
+		if room == null:
+			continue
+		var room_index := int(room.minimap_metadata.get("room_index", -1))
+		for entry in _map_piece_nodes:
+			var piece := entry.node as TextureRect
+			if int(entry.room_index) != room_index or piece.modulate.a <= 0.01:
+				continue
+			var count := int(per_room.get(room_index, 0))
+			per_room[room_index] = count + 1
+			var dot := ColorRect.new()
+			var size := PLAYER_MARKER_SIZE / maxf(0.01, _map_scaler.scale.x)
+			dot.size = Vector2.ONE * size
+			dot.position = piece.position + piece.size * 0.5 - dot.size * 0.5 + Vector2(size * 1.2 * float(count), 0.0)
+			dot.color = net.player_color(peer_id)
+			dot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			dot.tooltip_text = net.player_name(peer_id)
+			_player_marker_layer.add_child(dot)
+			break
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if _embedded:
@@ -150,6 +194,10 @@ func _build_view() -> void:
 			_eggery_piece.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			_eggery_piece.modulate.a = piece.modulate.a
 			_map_scaler.add_child(_eggery_piece)
+	_player_marker_layer = Control.new()
+	_player_marker_layer.name = "PlayerMarkers"
+	_player_marker_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_map_scaler.add_child(_player_marker_layer)
 	_entered_new_room(current_room)
 	if _embedded:
 		return
