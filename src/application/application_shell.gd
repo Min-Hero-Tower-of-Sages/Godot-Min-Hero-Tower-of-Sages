@@ -73,6 +73,8 @@ var _source_dialogue_arrow: TextureRect
 var _source_dialogue_yes: Callable
 var _source_dialogue_no: Callable
 var _source_dialogue_choices: Array[TextureButton] = []
+## StandardChatBox.m_isArrowOnYes: the arrow starts on No.
+var _source_dialogue_arrow_on_yes := false
 var _source_dialogue_bubble_position := Vector2.ZERO
 var _source_dialogue_scale := Vector2.ONE
 var _source_dialogue_scroll_step := SPEECH_TEXT_SCROLL_STEP
@@ -1372,7 +1374,7 @@ func _measure_source_dialogue_after_layout(font_size: int) -> void:
 	_update_source_dialogue_arrow()
 
 func _update_source_dialogue_arrow() -> void:
-	if _source_dialogue_arrow != null and is_instance_valid(_source_dialogue_arrow):
+	if _source_dialogue_arrow != null and is_instance_valid(_source_dialogue_arrow) and _source_dialogue_choices.is_empty():
 		_source_dialogue_arrow.visible = _source_dialogue_can_scroll()
 	if _source_dialogue_label == null or _source_dialogue_is_animating or _source_dialogue_can_scroll() or not _source_dialogue_choices.is_empty():
 		return
@@ -1387,6 +1389,43 @@ func _update_source_dialogue_arrow() -> void:
 			button.scale = _source_dialogue_scale
 			button.focus_mode = Control.FOCUS_NONE
 			_source_dialogue_choices.append(button)
+	if not _source_dialogue_choices.is_empty():
+		_source_dialogue_arrow_on_yes = false
+		_point_source_dialogue_arrow()
+
+## StandardChatBox.SetTheExtraVisualsForTheChatBoxToWhereTheyNeedToBe: with
+## Yes/No shown, the scroll arrow turns 270 degrees into a pointer at x 204,
+## y 97 (Yes) or 119 (No); UP/W and DOWN/S move it, SPACE/ENTER confirm it.
+func _point_source_dialogue_arrow() -> void:
+	if _source_dialogue_arrow == null or not is_instance_valid(_source_dialogue_arrow):
+		return
+	# Drawn over the Yes/No buttons, as StandardChatBox adds it after them.
+	_source_dialogue_arrow.get_parent().move_child(_source_dialogue_arrow, -1)
+	_source_dialogue_arrow.rotation_degrees = 270.0
+	_source_dialogue_arrow.position = _source_dialogue_bubble_position + Vector2(204.0, 97.0 if _source_dialogue_arrow_on_yes else 119.0) * _source_dialogue_scale
+	_source_dialogue_arrow.visible = true
+
+## StandardChatBox.Update's keys while Yes/No are shown. True when used.
+func _handle_source_dialogue_choice_key(event: InputEventKey) -> bool:
+	if _source_dialogue_choices.is_empty() or _source_dialogue_is_animating:
+		return false
+	if event.keycode in [KEY_UP, KEY_W] or event.physical_keycode == KEY_W:
+		_source_dialogue_arrow_on_yes = true
+		_point_source_dialogue_arrow()
+	elif event.keycode in [KEY_DOWN, KEY_S] or event.physical_keycode == KEY_S:
+		_source_dialogue_arrow_on_yes = false
+		_point_source_dialogue_arrow()
+	elif event.keycode == KEY_Y and _source_dialogue_yes.is_valid():
+		_choose_source_dialogue_option(_source_dialogue_yes)
+	elif event.keycode == KEY_N and _source_dialogue_no.is_valid():
+		_choose_source_dialogue_option(_source_dialogue_no)
+	elif event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER] or event.is_action_pressed("ui_accept"):
+		var chosen := _source_dialogue_yes if _source_dialogue_arrow_on_yes else _source_dialogue_no
+		if chosen.is_valid():
+			_choose_source_dialogue_option(chosen)
+	else:
+		return false
+	return true
 
 func _choose_source_dialogue_option(action: Callable) -> void:
 	if _source_dialogue_is_animating or not is_instance_valid(interaction_dialog):
@@ -1429,6 +1468,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if _source_dialogue_label == null or not event is InputEventKey or not event.pressed or event.echo:
+		return
+	if _handle_source_dialogue_choice_key(event):
+		get_viewport().set_input_as_handled()
 		return
 	if not event.is_action_pressed("interact") and not event.is_action_pressed("ui_accept") and event.keycode not in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER, KEY_E] and event.physical_keycode != KEY_E:
 		return
@@ -2680,6 +2722,7 @@ func _clear_dialog(immediate: bool = false) -> void:
 	_source_dialogue_yes = Callable()
 	_source_dialogue_no = Callable()
 	_source_dialogue_choices.clear()
+	_source_dialogue_arrow_on_yes = false
 	_source_dialogue_scale = Vector2.ONE
 	_source_dialogue_scroll_step = SPEECH_TEXT_SCROLL_STEP
 	_source_dialogue_content_height = 0.0

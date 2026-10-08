@@ -159,8 +159,15 @@ static func build_battle_setup(state, catalog: ContentCatalog, encounter: Encoun
 		return _error("battle_not_prepared", "prepare this encounter before building its battle setup")
 	refresh_minion_pedia(state)
 	var seen_minions: Array = state.progression.get("seen_minion_ids", []).duplicate()
+	# Species met for the first time in this fight: the battle keeps their
+	# name and types hidden until the next time they are faced.
+	var first_seen: Array = []
 	for enemy_entry in encounter.team_entries:
-		_append_unique_id(seen_minions, StringName(enemy_entry.get("definition_id", "")))
+		var enemy_id := StringName(enemy_entry.get("definition_id", ""))
+		if not seen_minions.has(enemy_id) and not seen_minions.has(String(enemy_id)) and not first_seen.has(String(enemy_id)):
+			first_seen.append(String(enemy_id))
+		_append_unique_id(seen_minions, enemy_id)
+	state.pending_battle["first_seen_minion_ids"] = first_seen
 	state.progression["seen_minion_ids"] = seen_minions
 	var party_setup := party_setup_combatants(state, catalog)
 	if not party_setup.ok:

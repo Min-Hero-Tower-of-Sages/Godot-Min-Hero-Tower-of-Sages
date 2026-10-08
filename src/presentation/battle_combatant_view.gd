@@ -173,6 +173,9 @@ func setup(combatant_data: Dictionary, definition: MinionDefinition, sprite_text
 	# sliding behind a fixed-width mask. TextureProgressBar clips the fill from
 	# the left and makes small-HP changes appear to jump by large pixel steps.
 	health_bar.modulate.a = 0.0
+	# Invisible value holder: it must not take the mouse (and its arrow cursor)
+	# from the battle, which handles health bar clicks itself.
+	health_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(health_bar)
 	health_fill_clip = Control.new()
 	health_fill_clip.name = "HealthFillClip"
@@ -558,6 +561,16 @@ func apply_campaign_evolution(definition: MinionDefinition, sprite_texture: Text
 		state_cache["max_energy"] = max_energy
 		state_cache["energy"] = float(maxi(0, persistent_energy)) if persistent_energy >= 0 else float(max_energy)
 
+## Hidden until the battle intro calls its turn to teleport in.
+func hold_for_entry() -> void:
+	for tween in _teleport_tweens:
+		if tween != null and tween.is_running():
+			tween.kill()
+	_teleport_tweens.clear()
+	for piece in teleport_animation_pieces:
+		piece.visible = false
+	visible = false
+
 func play_extra_minion_spawn_animation() -> void:
 	_play_teleport_in()
 
@@ -719,6 +732,14 @@ func set_target_state(is_targetable: bool, is_selected: bool) -> void:
 	target_selected = is_selected
 	if selected_indicator != null:
 		selected_indicator.visible = is_selected
+
+## The health bar (with a little slack, it is thin) under `canvas_point`:
+## clicking it opens the minion's stats.
+func health_bar_contains_canvas_point(canvas_point: Vector2) -> bool:
+	if health_background_sprite == null or health_background_sprite.texture == null or not visible or modulate.a <= 0.05:
+		return false
+	var local_point: Vector2 = health_background_sprite.get_global_transform_with_canvas().affine_inverse() * canvas_point
+	return Rect2(Vector2.ZERO, health_background_sprite.texture.get_size()).grow(4.0).has_point(local_point)
 
 func contains_canvas_point(canvas_point: Vector2) -> bool:
 	if minion_sprite == null or minion_sprite.texture == null:

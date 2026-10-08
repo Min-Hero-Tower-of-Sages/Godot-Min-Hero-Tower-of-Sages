@@ -139,6 +139,15 @@ var selected_targets: Array[StringName] = []
 var _last_move_visual_duration_seconds := 0.0
 var busy := false
 var move_tooltip: BattleMoveTooltip
+## Your minion's stats, opened by clicking its health bar (never the enemy's).
+var stats_panel: BattleStatsPanel
+## The decision the move selector was opened for, and whose moves it shows
+## (empty while closed by a click on empty ground).
+var _selector_decision: Dictionary = {}
+var _selector_minion_id: StringName = &""
+## Last pointer position seen by _input (viewport coordinates).
+var _mouse_point := Vector2(-1.0, -1.0)
+var _stats_signature := 0
 var campaign_mode := false
 var campaign_settlement: Dictionary = {}
 var campaign_progression_presenter: BattleProgressionPresenter
@@ -190,6 +199,8 @@ var _clock_base_real := 0
 var _clock_base_virtual := 0
 
 func _ready() -> void:
+	# Hovered (passing clicks on) so its cursor shape is the one shown.
+	mouse_filter = Control.MOUSE_FILTER_PASS
 	battle_modifier_layer = Control.new()
 	battle_modifier_layer.name = "BattleModifierLayer"
 	battle_modifier_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -204,6 +215,10 @@ func _ready() -> void:
 	move_tooltip = MOVE_TOOLTIP_SCRIPT.new() as BattleMoveTooltip
 	add_child(move_tooltip)
 	move_tooltip.z_index = 1100
+	stats_panel = BattleStatsPanel.new()
+	stats_panel.name = "StatsPanel"
+	stats_panel.z_index = 1100
+	add_child(stats_panel)
 	_create_victory_popup()
 	_create_defeat_transition()
 	presenter.seconds_per_event = 0.10
@@ -507,6 +522,7 @@ func _process(_delta: float) -> void:
 	if move_tooltip != null and move_tooltip.visible:
 		move_tooltip.follow_mouse(get_global_mouse_position(), size)
 	_update_target_cursor()
+	_refresh_stats_panel()
 
 func _exit_tree() -> void:
 	_cancel_battle_music_start()
@@ -538,9 +554,17 @@ func _cancel_battle_music_start() -> void:
 
 func _update_target_cursor() -> void:
 	var cursor_shape := Input.CURSOR_ARROW
+	var mouse_point := _mouse_point
+	if _inspectable_view_at(mouse_point) != null:
+		cursor_shape = Input.CURSOR_POINTING_HAND
+	else:
+		# One of your minions whose moves a click would open.
+		var minion := _selector_click_target(mouse_point).get("minion") as BattleCombatantView
+		if minion != null and _selector_would_open(minion):
+			cursor_shape = Input.CURSOR_POINTING_HAND
 	if not busy and not pending_move.is_empty() and not forfeit_confirmation.visible:
-		var mouse_position := get_viewport().get_mouse_position()
-		var pointer_over_cancel := cancel_target.visible and cancel_target.get_global_rect().has_point(get_viewport().get_mouse_position())
+		var mouse_position := _mouse_point
+		var pointer_over_cancel := cancel_target.visible and cancel_target.get_global_rect().has_point(mouse_position)
 		if not pointer_over_cancel:
 			for raw_id in pending_move.get("target_ids", []):
 				var target_view := combatant_views.get(String(raw_id)) as BattleCombatantView
@@ -548,8 +572,26 @@ func _update_target_cursor() -> void:
 					cursor_shape = Input.CURSOR_POINTING_HAND
 					break
 	Input.set_default_cursor_shape(cursor_shape)
+	# The battle root is the hovered Control (see _ready): the GUI shows its
+	# cursor, instead of the arrow of whatever screen hosts the battle.
+	var shown := int(cursor_shape) as Control.CursorShape
+	if mouse_default_cursor_shape != shown:
+		mouse_default_cursor_shape = shown
+		# Godot re-reads the shape only on the next mouse event otherwise.
+		get_viewport().update_mouse_cursor_state()
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		# Before the GUI handles this motion, so it shows the new shape at once.
+		_mouse_point = event.position
+		_update_target_cursor()
+		return
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if stats_panel.visible and stats_panel.get_global_rect().has_point(event.position):
+			return # The panel's own Details button takes it.
+		if _handle_stats_click(event.position) or _handle_selector_click(event.position):
+			get_viewport().set_input_as_handled()
+			return
 	if busy or forfeit_confirmation.visible or pending_move.is_empty():
 		return
 	if not event is InputEventMouseButton or not event.pressed or event.button_index != MOUSE_BUTTON_LEFT:
@@ -575,6 +617,7 @@ func _input(event: InputEvent) -> void:
 
 func _start_battle() -> void:
 	busy = true
+	stats_panel.close()
 	restart_button.disabled = false
 	if campaign_progression_presenter != null:
 		campaign_progression_presenter.cancel_sequence()
@@ -691,6 +734,71 @@ func _trainer_display_name() -> String:
 	return String(dialogue.get("trainer_name", "Trainer"))
 
 ## Spectator/arena start: everything comes from the published spec.
+# --- Minion stats -----------------------------------------------------------------------------
+
+## Your minions (the left side: your team, your side of a double battle,
+## the recorder's side of a replay) show their stats. An enemy shows only its
+## name and types, and only once you have faced that species before (it is
+## in your Minion-pedia). A spectator inspects nobody.
+func _inspectable_view_at(canvas_point: Vector2) -> BattleCombatantView:
+	if net_role == &"spectator" or _battle_result_presented or forfeit_confirmation.visible:
+		return null
+	var hovered := get_viewport().gui_get_hovered_control()
+	if hovered is BaseButton or (hovered != null and move_panel.is_ancestor_of(hovered)):
+		return null
+	for view in combatant_views.values():
+		var candidate := view as BattleCombatantView
+		if candidate == null or candidate.state_cache.is_empty() or not candidate.health_bar_contains_canvas_point(canvas_point):
+			continue
+		if candidate.team == 0 or _faced_before(candidate.minion_definition):
+			return candidate
+	return null
+
+func _faced_before(definition: MinionDefinition) -> bool:
+	if definition == null or net_role == &"replay":
+		return false
+	var runtime: Variant = get_node_or_null("/root/CampaignRuntime")
+	var state = runtime.session.state if runtime != null and runtime.session != null else null
+	if state == null:
+		return false
+	var id := String(definition.id)
+	if id not in state.progression.get("seen_minion_ids", []):
+		return false
+	# Added to the pedia at the start of this very fight: not faced before.
+	return not (campaign_mode and id in state.pending_battle.get("first_seen_minion_ids", []))
+
+## A click on an inspectable health bar opens (or closes) its panel; any other
+## click closes it and carries on as usual. True when the click was used.
+func _handle_stats_click(canvas_point: Vector2) -> bool:
+	var view := _inspectable_view_at(canvas_point)
+	if view == null:
+		if stats_panel.visible:
+			stats_panel.close()
+		return false
+	if stats_panel.visible and stats_panel.instance_id == view.instance_id:
+		stats_panel.close()
+		return true
+	move_tooltip.hide()
+	if view.team == 0:
+		stats_panel.show_own(view, catalog)
+	else:
+		stats_panel.show_enemy(view, catalog)
+	_stats_signature = hash(view.state_cache)
+	return true
+
+## Follow the minion as the turn is animated (health, stages...).
+func _refresh_stats_panel() -> void:
+	if stats_panel == null or not stats_panel.visible:
+		return
+	var view := combatant_views.get(String(stats_panel.instance_id)) as BattleCombatantView
+	if view == null or not is_instance_valid(view):
+		stats_panel.close()
+		return
+	var signature := hash(view.state_cache)
+	if signature != _stats_signature:
+		_stats_signature = signature
+		stats_panel.refresh(view)
+
 func _start_network_battle() -> void:
 	var encounter_id := String(net_spec.get("encounter_id", ""))
 	source_encounter = catalog.get_definition(StringName(encounter_id)) as EncounterDefinition if not encounter_id.is_empty() else null
@@ -769,6 +877,7 @@ func _present_battle_entry(response: BattleResponse, rules: RuleSetDefinition) -
 	_battle_music_start_tween.tween_callback(audio_controller.play_battle_music)
 	var entry_started_usec := _now_usec()
 	_sync_from_engine()
+	_stagger_entry_teleports()
 	_sync_battle_modifier_visuals(active_battle_modifiers)
 	var entry_events: Array[BattleEvent] = []
 	var initial_shields: Array[BattleEvent] = []
@@ -789,6 +898,23 @@ func _present_battle_entry(response: BattleResponse, rules: RuleSetDefinition) -
 		await _present(initial_shields)
 	busy = false
 	await _continue_battle()
+
+## BattleScreenVisualController.PlayIntroAnimation: the minions teleport in
+## one by one, opponent then player for each slot, the first after 1 s and
+## then every 0.2 s. The views are built hidden behind the room's fade-out, so
+## starting all teleports at once left only their tails visible.
+func _stagger_entry_teleports() -> void:
+	for view in combatant_views.values():
+		var minion := view as BattleCombatantView
+		if minion == null or not minion.visible:
+			continue
+		var state := _combatant_state(minion.instance_id)
+		var order := int(state.get("slot_index", minion.slot_index)) * 2 + (0 if int(state.get("team", 0)) == 1 else 1)
+		minion.hold_for_entry()
+		get_tree().create_timer(1.0 + float(order) * 0.2).timeout.connect(func() -> void:
+			if is_instance_valid(minion) and minion.is_inside_tree():
+				minion.play_extra_minion_spawn_animation()
+		)
 
 func _run_campaign_intro_tutorial(entry_started_usec: int) -> void:
 	if not campaign_mode:
@@ -962,14 +1088,21 @@ func _continue_battle() -> void:
 	_build_move_buttons(decision)
 	await _run_decision_tutorial(decision)
 
-func _build_move_buttons(decision: Dictionary) -> void:
+## The move selector, for the acting minion (`shown_id` empty) or, as in the
+## source's BattleScreenVisualController.reportClick, for another of your
+## minions you clicked: its moves are shown greyed out and cannot be chosen
+## (MoveSelectorForPlayer.BringIn(false) desaturates the whole selector).
+func _build_move_buttons(decision: Dictionary, shown_id: StringName = &"") -> void:
 	_reset_move_selector_animation()
 	move_tooltip.hide()
 	_clear_buttons(move_buttons)
-	_position_move_panel(StringName(decision.actor_id))
+	var actor_id := StringName(decision.actor_id) if shown_id.is_empty() else shown_id
+	var interactive := actor_id == StringName(decision.actor_id)
+	_selector_decision = decision
+	_selector_minion_id = actor_id
+	_position_move_panel(actor_id)
 	move_panel.visible = true
-	move_panel.modulate.a = 1.0
-	var actor_id := StringName(decision.actor_id)
+	move_panel.modulate = Color(1.0, 1.0, 1.0, 1.0) if interactive else Color(0.58, 0.58, 0.62, 1.0)
 	var focus_ids: Array[StringName] = [actor_id]
 	_focus_combatants(focus_ids)
 	var actor_state := _combatant_state(actor_id)
@@ -977,12 +1110,12 @@ func _build_move_buttons(decision: Dictionary) -> void:
 	turn_title.add_theme_font_override("font", BURBIN_FONT)
 	energy_fill.max_value = maxf(1.0, float(actor_state.get("max_energy", 1)))
 	energy_fill.value = float(actor_state.get("energy", 0))
-	var has_other_legal_move: bool = decision.legal_moves.any(func(legal_move: Dictionary): return StringName(legal_move.move_id) != DESPERATION_MOVE_ID)
+	var has_other_legal_move: bool = not interactive or decision.legal_moves.any(func(legal_move: Dictionary): return StringName(legal_move.move_id) != DESPERATION_MOVE_ID)
 	var is_energy_limited := _is_energy_limited_fallback(actor_state)
 	out_of_energy_tip.visible = not has_other_legal_move and is_energy_limited
 	cooldown_tip.visible = not has_other_legal_move and not is_energy_limited
 	var legal_by_id: Dictionary = {}
-	for legal_move in decision.legal_moves:
+	for legal_move in decision.legal_moves if interactive else []:
 		legal_by_id[StringName(legal_move.move_id)] = legal_move
 	var displayed_move_ids: Array[StringName] = []
 	for move_id in actor_state.get("move_ids", []):
@@ -1000,6 +1133,10 @@ func _build_move_buttons(decision: Dictionary) -> void:
 			continue
 		var legal_move: Dictionary = legal_by_id.get(move_id, {})
 		var can_use := not legal_move.is_empty()
+		if not interactive:
+			# Greyed like the source's SetIsTheMoveActive: affordable and ready.
+			var preview_cooldowns: Dictionary = actor_state.get("cooldowns", {})
+			can_use = int(actor_state.get("energy", 0)) >= move.energy_cost and int(preview_cooldowns.get(move.id, preview_cooldowns.get(String(move.id), 0))) <= 0
 		var button := Button.new()
 		button.set_meta("move_id", move.id)
 		button.set_meta("usable", can_use)
@@ -1018,31 +1155,39 @@ func _build_move_buttons(decision: Dictionary) -> void:
 			button.add_theme_stylebox_override(state_name, StyleBoxEmpty.new())
 		button.mouse_entered.connect(_show_move_tooltip.bind(move))
 		button.mouse_exited.connect(_hide_move_tooltip)
-		if can_use:
+		if can_use and interactive:
 			button.pressed.connect(_choose_move.bind(legal_move.duplicate(true)))
+			button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		move_buttons.add_child(button)
 		var name_bubble := Label.new()
 		name_bubble.name = "MoveNameBubble"
 		name_bubble.text = move.display_name
-		var name_bubble_width := maxf(70.0, float(move.display_name.length()) * 6.0 + 12.0)
+		# VisualMoveButtonObject: BurbinCasual 10 in a 17px black bubble, as wide
+		# as the name plus 10 once the name is over 60px, otherwise 70.
+		var name_text_width := BURBIN_FONT.get_string_size(move.display_name, HORIZONTAL_ALIGNMENT_LEFT, -1.0, 10).x
+		var name_bubble_width := name_text_width + 10.0 if name_text_width > 60.0 else 70.0
 		var bubble_x := -21.0 - (name_bubble_width - 70.0) if current_move_slot % 3 == 0 else (-11.0 - (name_bubble_width - 70.0) * 0.5 if current_move_slot % 3 == 1 else -1.0)
 		var bubble_y := 49.0 if current_move_slot in [3, 4, 5] else -19.0
 		name_bubble.position = Vector2(bubble_x, bubble_y)
-		name_bubble.size = Vector2(name_bubble_width, 18.0)
+		name_bubble.size = Vector2(name_bubble_width, 17.0)
 		name_bubble.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		name_bubble.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		name_bubble.add_theme_font_override("font", BURBIN_FONT)
 		name_bubble.add_theme_font_size_override("font_size", 10)
-		name_bubble.add_theme_color_override("font_color", Color(0.92, 0.89, 0.82))
+		name_bubble.add_theme_color_override("font_color", Color8(235, 235, 235))
 		name_bubble.add_theme_stylebox_override("normal", _move_name_bubble_style())
 		name_bubble.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		button.add_child(name_bubble)
 		var name_arrow := ColorRect.new()
 		name_arrow.name = "MoveNameArrow"
-		name_arrow.color = Color(0.04, 0.04, 0.06, 0.94)
+		name_arrow.color = Color.BLACK
 		name_arrow.size = Vector2(7.0, 7.0)
 		name_arrow.position = Vector2(25.0, 44.0 if current_move_slot in [3, 4, 5] else -8.0)
 		name_arrow.rotation_degrees = 45.0
 		name_arrow.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		button.add_child(name_arrow)
+		# Behind the bubble, as VisualMoveButtonObject adds it first.
+		button.move_child(name_arrow, name_bubble.get_index())
 		var cooldowns: Dictionary = actor_state.get("cooldowns", {})
 		var turns_left := int(cooldowns.get(move.id, cooldowns.get(String(move.id), 0)))
 		if turns_left > 0:
@@ -1060,7 +1205,57 @@ func _build_move_buttons(decision: Dictionary) -> void:
 			move_slot += 1
 	event_text.text = "Your turn — choose a move"
 	_animate_move_selector_in()
-	_show_move_selection_hint()
+	if interactive:
+		_show_move_selection_hint()
+
+## While you choose a move (BattleScreenVisualController.reportClick): a click
+## on one of your minions opens its selector (only the acting one can choose),
+## a click on empty ground closes the selector and its grey layer. True when
+## the click was used.
+func _handle_selector_click(canvas_point: Vector2) -> bool:
+	var target := _selector_click_target(canvas_point)
+	if target.is_empty():
+		return false
+	var clicked := target.get("minion") as BattleCombatantView
+	if clicked != null:
+		if _selector_would_open(clicked):
+			_build_move_buttons(controller.engine.get_decision(), clicked.instance_id)
+		return true
+	if _selector_minion_id.is_empty():
+		return false
+	_selector_minion_id = &""
+	move_tooltip.hide()
+	_animate_move_selector_out()
+	_fade_battle_grey_out()
+	return true
+
+## What a click at `canvas_point` would hit while you choose a move: {} when
+## the selector logic does not take it, {"minion": view} on one of your living
+## minions, {"ground": true} elsewhere.
+func _selector_click_target(canvas_point: Vector2) -> Dictionary:
+	if busy or not pending_move.is_empty() or forfeit_confirmation.visible or _selector_decision.is_empty():
+		return {}
+	var decision := controller.engine.get_decision()
+	if decision.is_empty() or int(decision.revision) != int(_selector_decision.revision) or not _is_local_decision(decision):
+		return {}
+	var hovered := get_viewport().gui_get_hovered_control()
+	if hovered is BaseButton or (hovered != null and move_panel.is_ancestor_of(hovered) and hovered.mouse_filter != Control.MOUSE_FILTER_IGNORE):
+		return {}
+	# MoveSelectorForPlayer's collision background: drawRect(-60, -70, 240, 220)
+	# around the selector. A click there neither closes it nor picks a minion.
+	var selector_area := move_panel.get_global_transform_with_canvas() * Rect2(-60.0, -70.0, 240.0, 220.0)
+	if move_panel.visible and not _move_selector_exiting and selector_area.has_point(canvas_point):
+		return {}
+	var candidates: Array = combatant_views.values()
+	candidates.sort_custom(func(left: BattleCombatantView, right: BattleCombatantView) -> bool: return left.position.y > right.position.y)
+	for view in candidates:
+		var candidate := view as BattleCombatantView
+		if candidate.team == 0 and not bool(candidate.state_cache.get("defeated", false)) and int(candidate.state_cache.get("health", 1)) > 0 and candidate.contains_canvas_point(canvas_point):
+			return {"minion": candidate}
+	return {"ground": true}
+
+func _selector_would_open(view: BattleCombatantView) -> bool:
+	return view.instance_id != _selector_minion_id or not move_panel.visible or _move_selector_exiting
 
 func _show_move_selection_hint() -> void:
 	if not campaign_mode:
@@ -1097,14 +1292,19 @@ func _animate_move_selector_in() -> void:
 		if button == null or not bool(button.get_meta("selector_ordinary_move", false)):
 			continue
 		button.position = Vector2(-142.0, 69.0)
+		# A move sliding in under a still mouse must not pop its tooltip; the
+		# button takes the mouse once it has arrived.
+		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		var name_bubble := button.get_node_or_null("MoveNameBubble") as Label
 		var name_arrow := button.get_node_or_null("MoveNameArrow") as ColorRect
 		if name_bubble != null:
 			name_bubble.modulate.a = 0.0
 		if name_arrow != null:
 			name_arrow.modulate.a = 0.0
-		var movement := create_tween()
+		# Owned by the button: it can never call back into a freed button.
+		var movement := button.create_tween()
 		movement.tween_property(button, "position", button.get_meta("selector_final_position"), 0.3 + float(index) * 0.1).set_delay(float(index) * 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		movement.tween_property(button, "mouse_filter", Control.MOUSE_FILTER_STOP, 0.0)
 		_move_selector_tweens.append(movement)
 		var label_delay := 0.3 + float(index) * 0.2
 		if name_bubble != null:
@@ -1193,9 +1393,11 @@ func _position_move_panel(actor_id: StringName) -> void:
 	move_panel.position = view.position + Vector2(117.0, -114.0)
 
 func _move_name_bubble_style() -> StyleBoxFlat:
+	# drawRoundRect(..., 17, 20): solid black, 10px corner radius, no padding.
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.04, 0.04, 0.06, 0.94)
-	style.set_corner_radius_all(8)
+	style.bg_color = Color.BLACK
+	style.set_corner_radius_all(10)
+	style.set_content_margin_all(0.0)
 	return style
 
 func _choose_move(legal_move: Dictionary) -> void:
@@ -2909,6 +3111,7 @@ func _show_result(result) -> void:
 	cancel_target.visible = false
 	_clear_target_states()
 	_hide_current_turn_indicator()
+	stats_panel.close()
 	_finish_recording(result)
 	if net_role == &"replay":
 		_show_replay_result(result)

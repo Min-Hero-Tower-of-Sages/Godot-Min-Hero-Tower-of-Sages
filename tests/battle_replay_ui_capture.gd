@@ -115,6 +115,33 @@ func _run() -> void:
 	await _shot("7_replay_playing")
 	var battle: Node = shell.current_battle
 	var hud: Control = battle.get_node("ReplayHud")
+	# Your minion's stats, from a click on its health bar.
+	battle.set_playback_speed(0.0)
+	for minion_view in battle.combatant_views.values():
+		if minion_view.team == 0 and not minion_view.state_cache.is_empty():
+			var bar: Sprite2D = minion_view.health_background_sprite
+			battle.call("_handle_stats_click", bar.get_global_transform_with_canvas() * (bar.texture.get_size() * 0.5))
+			break
+	await _settle(0.4)
+	await _shot("7b_stats_panel")
+	(battle.stats_panel._details_button as Button).pressed.emit()
+	await _settle(0.2)
+	await _shot("7c_stats_details")
+	(battle.stats_panel._details_button as Button).pressed.emit()
+	battle.stats_panel.close()
+	# A known enemy (faced in an earlier fight): name and types only.
+	battle.net_role = &"pvp"
+	for minion_view in battle.combatant_views.values():
+		if minion_view.team == 1 and not minion_view.state_cache.is_empty():
+			runtime.session.state.progression["seen_minion_ids"] = [String(minion_view.minion_definition.id)]
+			var enemy_bar: Sprite2D = minion_view.health_background_sprite
+			battle.call("_handle_stats_click", enemy_bar.get_global_transform_with_canvas() * (enemy_bar.texture.get_size() * 0.5))
+			break
+	await _settle(0.4)
+	await _shot("7d_known_enemy")
+	battle.stats_panel.close()
+	battle.net_role = &"replay"
+	battle.set_playback_speed(1.0)
 	(hud.find_child("PauseButton", true, false) as Button).pressed.emit()
 	(hud.find_child("Speed4", true, false) as Button).pressed.emit()
 	hud.show_notice("Recorded on another version of the game: it may play out differently.")

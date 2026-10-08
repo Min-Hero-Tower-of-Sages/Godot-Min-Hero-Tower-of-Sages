@@ -36,6 +36,9 @@ and the mouse for battle selections and menus.
   double battles): open your game from the
   **Multiplayer** panel beside the in-game menu, friends join from the title
   screen. See [docs/MULTIPLAYER.md](docs/MULTIPLAYER.md).
+- In battle, click one of your minions' health bars to see its current stats
+  (health, energy, attack, healing, speed with buffs/debuffs, critical,
+  armor, conditions, effects, cooldowns). Enemy stats stay hidden.
 - Battle replays: every battle is recorded. Watch it again or share it as a
   code from **Battle replays** (title screen or in-game menu). See
   [docs/BATTLE_REPLAYS.md](docs/BATTLE_REPLAYS.md).

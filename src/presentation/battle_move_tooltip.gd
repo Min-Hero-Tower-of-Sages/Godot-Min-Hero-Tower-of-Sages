@@ -44,6 +44,9 @@ func _ready() -> void:
 	column.add_child(details)
 	type_icon = TextureRect.new()
 	type_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# The badge overhangs into the frame's footer; a RichTextLabel clips its
+	# children by default, which cut the badge's lower half off.
+	details.clip_contents = false
 	details.add_child(type_icon)
 	details.resized.connect(_position_type_icon)
 
