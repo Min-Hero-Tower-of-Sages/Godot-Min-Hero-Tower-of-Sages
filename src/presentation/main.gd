@@ -185,6 +185,10 @@ var _turns_played := 0
 ## Replay playback (net_role &"replay"): the recorded human commands are fed
 ## back in order; AI turns are recomputed by the engine as they were live.
 var replay_data: Dictionary = {}
+var settings_service: CampaignSettingsService
+var _audio_controls: Control
+var _music_toggle: TextureButton
+var _sound_toggle: TextureButton
 var _replay_cursor := 0
 var _replay_hud: Control
 var _replay_finished := false
@@ -199,6 +203,8 @@ var _clock_base_real := 0
 var _clock_base_virtual := 0
 
 func _ready() -> void:
+	preload("res://src/presentation/source_menu_button_audio.gd").bind_tree(self)
+	_create_audio_toggles()
 	# Hovered (passing clicks on) so its cursor shape is the one shown.
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	battle_modifier_layer = Control.new()
@@ -587,6 +593,8 @@ func _input(event: InputEvent) -> void:
 		_update_target_cursor()
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if is_instance_valid(_audio_controls) and _audio_controls.get_global_rect().has_point(event.position):
+			return # Leave corner audio controls to the GUI, not target picking.
 		if stats_panel.visible and stats_panel.get_global_rect().has_point(event.position):
 			return # The panel's own Details button takes it.
 		if _handle_stats_click(event.position) or _handle_selector_click(event.position):
@@ -3302,6 +3310,31 @@ func _on_restart_pressed() -> void:
 		campaign_return_requested.emit()
 		return
 	await _start_battle()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed or event.echo: return
+	# Trainer rematch choices use the shell's Yes/No dialogue handler. The
+	# standalone result card also supports Space/Enter without mouse focus.
+	if result_overlay.visible and restart_button.visible and not restart_button.disabled and event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER]:
+		get_viewport().set_input_as_handled()
+		_on_restart_pressed()
+
+func _create_audio_toggles() -> void:
+	if settings_service == null: settings_service = CampaignSettingsService.new()
+	_audio_controls = Control.new()
+	_audio_controls.name = "BattleAudioControls"
+	_audio_controls.size = Vector2(70, 34)
+	_audio_controls.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_audio_controls.z_index = 1400
+	add_child(_audio_controls)
+	_music_toggle = SourceMenuArt.button(_audio_controls, "menu_muteMusicButton_on", Vector2(4, 6), func() -> void: settings_service.set_music_enabled(not settings_service.music_enabled))
+	_sound_toggle = SourceMenuArt.button(_audio_controls, "menu_muteSoundButton_on", Vector2(36, 5), func() -> void: settings_service.set_sound_enabled(not settings_service.sound_enabled))
+	settings_service.settings_changed.connect(_refresh_audio_toggles)
+	_refresh_audio_toggles()
+
+func _refresh_audio_toggles() -> void:
+	_music_toggle.texture_normal = SourceMenuArt.texture("menu_muteMusicButton_on" if settings_service.music_enabled else "menu_muteMusicButton_off")
+	_sound_toggle.texture_normal = SourceMenuArt.texture("menu_muteSoundButton_on" if settings_service.sound_enabled else "menu_muteSoundButton_off")
 
 func _create_defeat_transition() -> void:
 	defeat_transition_layer = Control.new()

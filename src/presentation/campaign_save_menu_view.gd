@@ -62,7 +62,9 @@ func _build_view() -> void:
 	if not _session.state.progression.has("highest_beaten_floor"):
 		for index in _session.state.progression.get("unlocked_floor_indices", [0]):
 			highest = maxi(highest, int(index))
-	_lobby_available = highest > 1
+	# Source GetHighestFloor returns the unlocked frontier (2 after Floor 1),
+	# while highest_beaten_floor counts completed floors (1 at that point).
+	_lobby_available = highest >= 1
 	_cancel_button = SourceMenuArt.button(_panel, "menus_selectionPopUp_cancelButton", Vector2(15, 104), _cancel)
 	_cancel_button.name = "CancelButton"
 	_error = Label.new()

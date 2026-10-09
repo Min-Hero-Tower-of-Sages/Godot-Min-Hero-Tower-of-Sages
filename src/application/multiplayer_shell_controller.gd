@@ -421,6 +421,7 @@ func _start_network_battle(spec: Dictionary) -> void:
 	if is_instance_valid(shell.current_room):
 		shell.current_room.set_controls_enabled(false)
 	var battle: Node = BATTLE_SCENE.instantiate()
+	battle.settings_service = shell._settings
 	battle.visible = false
 	shell.screen_host.add_child(battle)
 	shell.current_battle = battle

@@ -3,6 +3,9 @@ extends RefCounted
 ## TCButton defaults: OnOver uses menu_tickSound(.5), Clicked uses
 ## menu_onPress(.65). Keep bindings single-use across menu rebuilds.
 static func bind_button(button: BaseButton) -> void:
+	# Flash TCButtons never take keyboard focus on click. Space belongs to
+	# exploration/dialogue, not the last mouse-operated music/menu button.
+	button.focus_mode = Control.FOCUS_NONE
 	if button.has_meta("source_menu_audio_bound"):
 		return
 	button.set_meta("source_menu_audio_bound", true)

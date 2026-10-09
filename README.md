@@ -28,6 +28,11 @@ and the mouse for battle selections and menus.
 ## Current scope
 
 - Title screen, three save slots, character creation and skippable new-save intro.
+- Flash `.sol` save import with a preview and empty-slot-only writes. See
+  [docs/FLASH_SAVE_IMPORT.md](docs/FLASH_SAVE_IMPORT.md).
+- Per-save creation-time mod selector, restored custom-minion hatchery tables,
+  Nuzlocke and No Regen. Ice Floor data is recovered but its reference campaign
+  was unfinished; see [docs/MOD_STATUS.md](docs/MOD_STATUS.md).
 - Standard tower content through the Grand Sage, plus the hard tower.
 - Campaign movement, trainers, battles, progression, hatchery, party/talents,
   stars, settings and lobby merchants.

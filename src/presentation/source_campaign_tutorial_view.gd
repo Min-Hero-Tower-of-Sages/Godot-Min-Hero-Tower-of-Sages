@@ -138,6 +138,7 @@ func _build_page() -> void:
 
 func _text(value: String, at: Vector2, width: float, font_size: int) -> Label:
 	var label := Label.new()
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.text = value
 	label.position = at + Vector2(2, 2)
 	label.size = Vector2(width, 30)
@@ -147,6 +148,7 @@ func _text(value: String, at: Vector2, width: float, font_size: int) -> Label:
 	label.add_theme_font_override("font", FONT)
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", TEXT_COLOR)
+	label.size = Vector2(width, 30)
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_content.add_child(label)
 	return label

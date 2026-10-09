@@ -20,6 +20,17 @@ var _up_buttons: Array[TextureButton] = []
 var _down_buttons: Array[TextureButton] = []
 var _found_floors: Dictionary = {}
 
+func _source_dex_id(definition: MinionDefinition) -> int:
+	if definition.legacy_numeric_id >= 0: return definition.legacy_numeric_id
+	var virtual_id := 102
+	# Flash assigns virtual Dex IDs in enabled-mod order, after vanilla records.
+	for flag in CampaignModService.MINION_FLAGS:
+		var id := StringName(CampaignModService.MINION_FLAGS[flag])
+		if definition.id == id: return virtual_id
+		var preceding := _catalog.get_definition(id) as MinionDefinition
+		if preceding != null and CampaignModService.minion_is_available(_state, preceding): virtual_id += 1
+	return virtual_id
+
 func configure(catalog: ContentCatalog, state: CampaignState) -> void:
 	_catalog = catalog
 	_state = state
@@ -29,10 +40,10 @@ func configure(catalog: ContentCatalog, state: CampaignState) -> void:
 	_found_floors.clear()
 	for pack in catalog.packs:
 		for definition in pack.definitions:
-			if definition is MinionDefinition:
+			if definition is MinionDefinition and CampaignModService.minion_is_available(state, definition):
 				_minions.append(definition)
 	_minions.sort_custom(func(a: MinionDefinition, b: MinionDefinition) -> bool:
-		return a.legacy_numeric_id < b.legacy_numeric_id if a.legacy_numeric_id != b.legacy_numeric_id else String(a.id) < String(b.id)
+		return _source_dex_id(a) < _source_dex_id(b)
 	)
 	for group in [state.party, state.storage]:
 		for member in group:
@@ -56,7 +67,8 @@ func configure(catalog: ContentCatalog, state: CampaignState) -> void:
 					if room == null or not String(room_id).ends_with("_eggery"):
 						continue
 					for interaction in room.interactions:
-						for minion_id in interaction.get("candidates", []):
+						var pool := CampaignModService.egg_pool(state, floor_index, interaction)
+						for minion_id in pool.get("candidates", []):
 							var key := String(minion_id)
 							var floors: Array = _found_floors.get(key, [])
 							if not floor_index + 1 in floors:
@@ -100,7 +112,7 @@ func _build() -> void:
 		row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_list_holder.add_child(row)
 		SourceMenuArt.button(row, "minionPedia_minionSelectBackground", Vector2.ZERO, _select.bind(index))
-		_text(row, "%03d   %s" % [definition.legacy_numeric_id + 1, definition.display_name if _seen.has(String(definition.id)) else "????????"], Vector2(7, 3), Vector2(250, 43), 21)
+		_text(row, "%03d   %s" % [_source_dex_id(definition) + 1, definition.display_name if _seen.has(String(definition.id)) else "????????"], Vector2(7, 3), Vector2(250, 43), 21)
 		SourceMenuArt.image(row, "minionPedia_seenIcon", Vector2(200, 10))
 		if _owned.has(String(definition.id)):
 			SourceMenuArt.image(row, "minionPedia_OwnedIcon", Vector2(200, 2))

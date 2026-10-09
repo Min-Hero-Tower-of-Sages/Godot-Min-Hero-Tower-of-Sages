@@ -270,10 +270,15 @@ static func apply_battle_result(state, result: BattleResult, encounter: Encounte
 			owned.persistent_energy = clampi(int(persistent_changes.energy), 0, maxi(0, energy_limit))
 		updated_participants += 1
 	var forfeited := result.reason == &"forfeit"
+	var fainted_ids: Array[StringName] = []
+	if CampaignModService.enabled(state, "nuzlocke"):
+		for owned in state.party:
+			if owned.persistent_health == 0: fainted_ids.append(owned.instance_id)
 	var finish_stat_context := battle_finish_stat_context(state, result) if not forfeited else {}
 	var stars_earned := _battle_star_rating(state, result) if result.winning_team == 0 and not forfeited else 0
 	var stars_added := _record_encounter_stars(state, encounter, stars_earned) if result.winning_team == 0 and not forfeited else 0
 	var experience_awards := _award_experience(state, encounter, catalog, result.winning_team == 0, result, finish_stat_context) if catalog != null and not forfeited else {}
+	CampaignModService.retire_fainted(state, fainted_ids)
 	var completed_before_battle: Dictionary = state.progression.get("completed_encounters", {})
 	var is_first_clear := not bool(completed_before_battle.get(String(encounter.id), false))
 	var completion_awards := _grant_first_clear_rewards(state, encounter) if result.winning_team == 0 else {}
@@ -460,7 +465,7 @@ static func _star_stat_multiplier_from(upgrades: Dictionary, stat_id: StringName
 	var percentage_per_rank := 4.0 if stat_id == &"healing" else 2.0
 	return 1.0 + float(maxi(0, int(upgrades.get(String(stat_id), 0)))) * percentage_per_rank / 100.0
 
-static func rest_party(state, catalog: ContentCatalog) -> Dictionary:
+static func rest_party(state, catalog: ContentCatalog, explicit_healing: bool = true) -> Dictionary:
 	if state == null or catalog == null:
 		return _error("invalid_context", "campaign state and catalog are required")
 	for owned in state.party:
@@ -470,7 +475,8 @@ static func rest_party(state, catalog: ContentCatalog) -> Dictionary:
 		# Heal in party-slot order, as DynamicData.HealAllOfAPlayersInPartyMinions
 		# does. A provider revived here contributes to later slots' calculations.
 		var stats := owned_display_stats(owned, definition, catalog, state)
-		owned.persistent_health = int(stats.health)
+		if explicit_healing or not CampaignModService.enabled(state, "no_natural_regen"):
+			owned.persistent_health = int(stats.health)
 		owned.persistent_energy = int(stats.energy)
 	return {"ok": true, "rested": state.party.size()}
 

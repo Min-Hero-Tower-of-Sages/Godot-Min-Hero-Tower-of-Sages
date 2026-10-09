@@ -76,7 +76,9 @@ func _render() -> void:
 				create_tween().tween_property(host, "modulate:a", 0.3, 0.3)
 		if _selected < 0 and not _session.state.owned_gems.is_empty() and not bool(_session.state.progression.get("gem_tutorial_seen", false)):
 			SourceMenuArt.image(_source_root, "tutorial_choosingAMinionBar", SOURCE_SETTLED_PANEL_POSITION + Vector2(382, 58))
-			_text(_source_root, "Choose a minion to add your gem to", SOURCE_SETTLED_PANEL_POSITION + Vector2(448, 161), Vector2(90, 90), 20)
+			var hint := _text(_source_root, "Choose a minion to add your gem to", SOURCE_SETTLED_PANEL_POSITION + Vector2(448, 161), Vector2(90, 150), 20)
+			hint.name = "GemTutorialHint"
+			hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		SourceMenuArt.button(_source_root, "menus_exitButton", SOURCE_SETTLED_PANEL_POSITION + Vector2(296, -22), func() -> void: closed.emit())
 		if _selected >= 0:
 			_build_options_popup(_session.state.party[_selected] as OwnedMinionState)
@@ -320,6 +322,7 @@ func _bar(parent: Control, symbol: String, at: Vector2, ratio: float, end_cap_sy
 
 func _text(parent: Control, value: String, at: Vector2, label_size: Vector2, font_size: int) -> Label:
 	var label := Label.new()
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.text = value
 	label.position = at + Vector2(2, 2) # Flash TextField content inset.
 	label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
@@ -327,7 +330,9 @@ func _text(parent: Control, value: String, at: Vector2, label_size: Vector2, fon
 	label.add_theme_font_override("font", FONT)
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", Color8(250, 250, 250))
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	# Text/font changes can expand a Label before wrapping is enabled. Restore
+	# the authored width afterwards instead of retaining that unwrapped width.
+	label.size = label_size
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(label)
 	return label

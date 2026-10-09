@@ -59,6 +59,7 @@ var _automatic_contact_ids: Dictionary = {}
 var _transition_locked := false
 var _controls_enabled := true
 var _campaign_context: Dictionary = {}
+var _ambient_emitters: Array[Dictionary] = []
 
 ## Configure from a room resource and the already-resolved source-space spawn.
 ## `spawn_position` is in the original Flash level's top-left-origin coordinates.
@@ -192,6 +193,7 @@ func _sync_remote_avatars() -> void:
 			_remote_avatars.erase(peer_id)
 
 func _physics_process(delta: float) -> void:
+	_update_ambient_sounds()
 	if _player == null or not _controls_enabled:
 		return
 	_movement_accumulator += delta
@@ -263,11 +265,11 @@ func _try_move_axis(displacement: Vector2) -> void:
 		_player.position += displacement
 	else:
 		for shape in _collision.get_children():
-			if shape is CollisionShape2D and not shape.disabled and bool(shape.get_meta("eggery_exit_blockade", false)):
+			if shape is CollisionShape2D and not shape.disabled and (bool(shape.get_meta("eggery_exit_blockade", false)) or bool(shape.get_meta("courtyard_exit_blockade", false))):
 				var rectangle := shape.shape as RectangleShape2D
 				# Translate the wall back instead of advancing the blocked player.
 				if _source_zone_overlaps_player(shape.position - displacement, rectangle.size * 0.5, shape.rotation):
-					interaction_requested.emit({"kind": &"eggery_exit_blocked"})
+					interaction_requested.emit({"kind": &"eggery_exit_blocked" if bool(shape.get_meta("eggery_exit_blockade", false)) else &"courtyard_exit_blocked"})
 					return
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -500,6 +502,7 @@ func _play_room_source_sound(sound_id: String, volume: float) -> void:
 	player.play()
 
 func _clear_world() -> void:
+	_ambient_emitters.clear()
 	if _world != null and is_instance_valid(_world):
 		remove_child(_world)
 		_world.queue_free()
@@ -560,6 +563,11 @@ func _build_world(payload: Variant, character: Dictionary, campaign_context: Dic
 	for index in range(objects.size()):
 		var attributes: Dictionary = objects[index]
 		var sprite_name := String(attributes.get("spriteName", "")).strip_edges()
+		if sprite_name == "sound3D_river":
+			_add_ambient_sound("riverTrack", attributes, 650.0, 0.7)
+			continue
+		if sprite_name == "eggery_fireplace":
+			_add_ambient_sound("tower_fireplace", attributes, 1000.0, 0.35)
 		if _is_semantic_marker(sprite_name) or sprite_name.is_empty():
 			continue
 		if sprite_name in ["generalRoom_topTorch", "generalRoom_sideTorch", "generalRoom_bottomTorch"]:
@@ -591,6 +599,7 @@ func _build_world(payload: Variant, character: Dictionary, campaign_context: Dic
 			continue
 		var egg_slot := _egg_slot_from_sprite_name(sprite_name)
 		var sprite := _make_source_art_sprite(texture, "SourceObject_%03d" % index, attributes, egg_slot >= 0, _art)
+		_animate_river_sprite(sprite, sprite_name)
 		var displayed_sprite: Sprite2D = sprite.get_child(0) as Sprite2D if egg_slot >= 0 else sprite
 		if sprite_name in ["room_goldChest", "room_gemChest"]:
 			var chest_kind := "gold" if sprite_name == "room_goldChest" else "gem"
@@ -642,6 +651,7 @@ func _build_world(payload: Variant, character: Dictionary, campaign_context: Dic
 		if depth_activation != null or egg_slot >= 0:
 			var overlay_attributes := attributes.duplicate(true)
 			var overlay := _make_source_art_sprite(texture, "SourceForeground_%03d" % index, overlay_attributes, egg_slot >= 0, _foreground_art)
+			_animate_river_sprite(overlay, sprite_name)
 			if sprite_name in ["room_goldChest", "room_gemChest"]:
 				var chest_kind := "gold" if sprite_name == "room_goldChest" else "gem"
 				_chest_sprites_by_id[_chest_id(chest_kind, index)].append(overlay)
@@ -695,6 +705,63 @@ func _add_source_room_animation(symbol: String, frame_count: int, attributes: Di
 	animation.rotation_degrees = _source_rotation(attributes)
 	_art.add_child(animation)
 	animation.play()
+
+func _animate_river_sprite(sprite: Sprite2D, symbol: String) -> void:
+	if not symbol.begins_with("plantRoom_river_sparkle") and not symbol.begins_with("plantRoom_river_splash"): return
+	var impact := symbol.begins_with("plantRoom_river_splash")
+	var delay := 2.0 if impact else 1.0
+	if symbol.ends_with("2"): delay = 3.0
+	elif symbol.ends_with("3"): delay = 4.0
+	var origin := sprite.position
+	var initial_scale := sprite.scale
+	sprite.set_meta("source_river_animation", true)
+	var start := sprite.create_tween()
+	start.tween_interval(delay)
+	start.tween_callback(func() -> void:
+		var loop := sprite.create_tween().set_loops()
+		if impact:
+			_set_river_splash_progress(0.0, sprite, origin, initial_scale)
+			loop.tween_method(_set_river_splash_progress.bind(sprite, origin, initial_scale), 0.0, 1.0, 0.6)
+			loop.tween_method(_set_river_splash_progress.bind(sprite, origin, initial_scale), 1.0, 2.0, 2.4)
+			loop.tween_interval(0.01)
+		else:
+			loop.set_parallel(true)
+			loop.tween_property(sprite, "position:y", origin.y + 2.0, 1.0)
+			loop.tween_property(sprite, "modulate:a", 1.0, 1.0)
+			loop.chain().tween_property(sprite, "position:y", origin.y, 1.0)
+			loop.parallel().tween_property(sprite, "modulate:a", 0.5, 1.0)
+	)
+
+func _set_river_splash_progress(progress: float, sprite: Sprite2D, origin: Vector2, initial_scale: Vector2) -> void:
+	var factor := lerpf(1.0, 1.1, progress) if progress <= 1.0 else lerpf(1.1, 1.3, progress - 1.0)
+	var alpha := lerpf(0.0, 0.8, progress) if progress <= 1.0 else lerpf(0.8, 0.0, progress - 1.0)
+	var center_offset := (sprite.texture.get_size() * initial_scale * 0.5).rotated(sprite.rotation)
+	sprite.scale = initial_scale * factor
+	sprite.position = origin + center_offset * (1.0 - factor)
+	sprite.modulate.a = alpha
+
+func _add_ambient_sound(sound_id: String, attributes: Dictionary, radius: float, volume: float) -> void:
+	var path := "res://content/base/audio/%s.mp3" % sound_id
+	if not ResourceLoader.exists(path): return
+	var stream := (load(path) as AudioStream).duplicate() as AudioStream
+	if stream is AudioStreamMP3: stream.loop = true
+	var player := AudioStreamPlayer.new()
+	player.name = "RoomAmbient_%s" % sound_id
+	player.stream = stream
+	player.bus = &"Music"
+	player.volume_db = -80.0
+	_world.add_child(player)
+	player.play()
+	_ambient_emitters.append({"player": player, "position": _source_position(attributes), "radius": radius, "volume": volume})
+
+func _update_ambient_sounds() -> void:
+	if not is_instance_valid(_player): return
+	var at := _player.position + PLAYER_COLLISION_TOP_LEFT + PLAYER_COLLISION_SIZE * 0.5
+	for emitter in _ambient_emitters:
+		var player := emitter.player as AudioStreamPlayer
+		if not is_instance_valid(player): continue
+		var gain := float(emitter.volume) * clampf(1.0 - at.distance_to(emitter.position) / float(emitter.radius), 0.0, 1.0)
+		player.volume_db = linear_to_db(maxf(0.0001, gain))
 
 func _egg_slot_from_sprite_name(sprite_name: String) -> int:
 	if sprite_name == "generalRoom_titanEgg":
@@ -761,6 +828,8 @@ func _build_collisions(payload: Variant) -> void:
 		body_shape.name = "SourceCollision_%03d" % index
 		if sprite_name == "wallRect_eggeryExit":
 			body_shape.set_meta("eggery_exit_blockade", true)
+		if sprite_name == "wallRect_courtyardExit":
+			body_shape.set_meta("courtyard_exit_blockade", true)
 		if source_door_locked:
 			body_shape.set_meta("door_kind", &"eggery" if sprite_name == "regularDoor_eggery" else &"boss")
 		var rectangle := RectangleShape2D.new()

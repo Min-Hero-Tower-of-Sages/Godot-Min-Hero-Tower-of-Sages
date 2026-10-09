@@ -1,0 +1,920 @@
+{
+  "1": {
+    "21": {
+      "candidates": [
+        "base:minion/icetree_1",
+        "zanyu:minion/dirtfish",
+        "base:minion/grasssnake_3",
+        "base:minion/landshark_1",
+        "base:minion/groundattacker_2",
+        "base:minion/flyinggrasssuperminion_1",
+        "base:minion/trex_2"
+      ],
+      "weights": [
+        9,
+        9,
+        23,
+        31,
+        19,
+        5,
+        5
+      ]
+    }
+  },
+  "2": {
+    "2": {
+      "candidates": [
+        "base:minion/waterseal_1",
+        "base:minion/waterbird_1",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        57,
+        37,
+        5
+      ]
+    },
+    "10": {
+      "candidates": [
+        "base:minion/goo_2",
+        "base:minion/scorpion_2",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        35,
+        35,
+        30
+      ]
+    }
+  },
+  "3": {
+    "2": {
+      "candidates": [
+        "base:minion/waterseal_1",
+        "base:minion/waterbird_1",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        57,
+        37,
+        5
+      ]
+    },
+    "10": {
+      "candidates": [
+        "base:minion/goo_2",
+        "base:minion/scorpion_2",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        35,
+        35,
+        30
+      ]
+    },
+    "21": {
+      "candidates": [
+        "base:minion/icetree_1",
+        "zanyu:minion/dirtfish",
+        "base:minion/grasssnake_3",
+        "base:minion/landshark_1",
+        "base:minion/groundattacker_2",
+        "base:minion/flyinggrasssuperminion_1",
+        "base:minion/trex_2"
+      ],
+      "weights": [
+        9,
+        9,
+        23,
+        31,
+        19,
+        5,
+        5
+      ]
+    }
+  },
+  "4": {
+    "3": {
+      "candidates": [
+        "base:minion/healinghorse_1",
+        "base:minion/holymantris_1",
+        "base:minion/trex_1",
+        "arkvian:minion/holybird1"
+      ],
+      "weights": [
+        45,
+        27,
+        18,
+        10
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "arkvian:minion/holybird2"
+      ],
+      "weights": [
+        15,
+        15,
+        15,
+        15,
+        25,
+        15,
+        15
+      ]
+    }
+  },
+  "5": {
+    "3": {
+      "candidates": [
+        "base:minion/healinghorse_1",
+        "base:minion/holymantris_1",
+        "base:minion/trex_1",
+        "arkvian:minion/holybird1"
+      ],
+      "weights": [
+        45,
+        27,
+        18,
+        10
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "arkvian:minion/holybird2"
+      ],
+      "weights": [
+        15,
+        15,
+        15,
+        15,
+        25,
+        15,
+        15
+      ]
+    },
+    "21": {
+      "candidates": [
+        "base:minion/icetree_1",
+        "zanyu:minion/dirtfish",
+        "base:minion/grasssnake_3",
+        "base:minion/landshark_1",
+        "base:minion/groundattacker_2",
+        "base:minion/flyinggrasssuperminion_1",
+        "base:minion/trex_2"
+      ],
+      "weights": [
+        9,
+        9,
+        23,
+        31,
+        19,
+        5,
+        5
+      ]
+    }
+  },
+  "6": {
+    "2": {
+      "candidates": [
+        "base:minion/waterseal_1",
+        "base:minion/waterbird_1",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        57,
+        37,
+        5
+      ]
+    },
+    "3": {
+      "candidates": [
+        "base:minion/healinghorse_1",
+        "base:minion/holymantris_1",
+        "base:minion/trex_1",
+        "arkvian:minion/holybird1"
+      ],
+      "weights": [
+        45,
+        27,
+        18,
+        10
+      ]
+    },
+    "10": {
+      "candidates": [
+        "base:minion/goo_2",
+        "base:minion/scorpion_2",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        35,
+        35,
+        30
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "arkvian:minion/holybird2"
+      ],
+      "weights": [
+        15,
+        15,
+        15,
+        15,
+        25,
+        15,
+        15
+      ]
+    }
+  },
+  "7": {
+    "2": {
+      "candidates": [
+        "base:minion/waterseal_1",
+        "base:minion/waterbird_1",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        57,
+        37,
+        5
+      ]
+    },
+    "3": {
+      "candidates": [
+        "base:minion/healinghorse_1",
+        "base:minion/holymantris_1",
+        "base:minion/trex_1",
+        "arkvian:minion/holybird1"
+      ],
+      "weights": [
+        45,
+        27,
+        18,
+        10
+      ]
+    },
+    "10": {
+      "candidates": [
+        "base:minion/goo_2",
+        "base:minion/scorpion_2",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        35,
+        35,
+        30
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "arkvian:minion/holybird2"
+      ],
+      "weights": [
+        15,
+        15,
+        15,
+        15,
+        25,
+        15,
+        15
+      ]
+    },
+    "21": {
+      "candidates": [
+        "base:minion/icetree_1",
+        "zanyu:minion/dirtfish",
+        "base:minion/grasssnake_3",
+        "base:minion/landshark_1",
+        "base:minion/groundattacker_2",
+        "base:minion/flyinggrasssuperminion_1",
+        "base:minion/trex_2"
+      ],
+      "weights": [
+        9,
+        9,
+        23,
+        31,
+        19,
+        5,
+        5
+      ]
+    }
+  },
+  "8": {
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "ophan:minion/holyeye2"
+      ],
+      "weights": [
+        13,
+        13,
+        13,
+        13,
+        20,
+        13,
+        15
+      ]
+    },
+    "22": {
+      "candidates": [
+        "base:minion/fire_frog_1",
+        "base:minion/groundmole_3",
+        "base:minion/worm_2",
+        "base:minion/worm_3",
+        "base:minion/fire_bear_1",
+        "base:minion/fire_bear_2",
+        "base:minion/tortoise_1",
+        "ophan:minion/holyeye1"
+      ],
+      "weights": [
+        9,
+        32,
+        4,
+        19,
+        4,
+        14,
+        9,
+        9
+      ]
+    }
+  },
+  "9": {
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "ophan:minion/holyeye2"
+      ],
+      "weights": [
+        13,
+        13,
+        13,
+        13,
+        20,
+        13,
+        15
+      ]
+    },
+    "21": {
+      "candidates": [
+        "base:minion/icetree_1",
+        "zanyu:minion/dirtfish",
+        "base:minion/grasssnake_3",
+        "base:minion/landshark_1",
+        "base:minion/groundattacker_2",
+        "base:minion/flyinggrasssuperminion_1",
+        "base:minion/trex_2"
+      ],
+      "weights": [
+        9,
+        9,
+        23,
+        31,
+        19,
+        5,
+        5
+      ]
+    },
+    "22": {
+      "candidates": [
+        "base:minion/fire_frog_1",
+        "base:minion/groundmole_3",
+        "base:minion/worm_2",
+        "base:minion/worm_3",
+        "base:minion/fire_bear_1",
+        "base:minion/fire_bear_2",
+        "base:minion/tortoise_1",
+        "ophan:minion/holyeye1"
+      ],
+      "weights": [
+        9,
+        32,
+        4,
+        19,
+        4,
+        14,
+        9,
+        9
+      ]
+    }
+  },
+  "10": {
+    "2": {
+      "candidates": [
+        "base:minion/waterseal_1",
+        "base:minion/waterbird_1",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        57,
+        37,
+        5
+      ]
+    },
+    "10": {
+      "candidates": [
+        "base:minion/goo_2",
+        "base:minion/scorpion_2",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        35,
+        35,
+        30
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "ophan:minion/holyeye2"
+      ],
+      "weights": [
+        13,
+        13,
+        13,
+        13,
+        20,
+        13,
+        15
+      ]
+    },
+    "22": {
+      "candidates": [
+        "base:minion/fire_frog_1",
+        "base:minion/groundmole_3",
+        "base:minion/worm_2",
+        "base:minion/worm_3",
+        "base:minion/fire_bear_1",
+        "base:minion/fire_bear_2",
+        "base:minion/tortoise_1",
+        "ophan:minion/holyeye1"
+      ],
+      "weights": [
+        9,
+        32,
+        4,
+        19,
+        4,
+        14,
+        9,
+        9
+      ]
+    }
+  },
+  "11": {
+    "2": {
+      "candidates": [
+        "base:minion/waterseal_1",
+        "base:minion/waterbird_1",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        57,
+        37,
+        5
+      ]
+    },
+    "10": {
+      "candidates": [
+        "base:minion/goo_2",
+        "base:minion/scorpion_2",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        35,
+        35,
+        30
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "ophan:minion/holyeye2"
+      ],
+      "weights": [
+        13,
+        13,
+        13,
+        13,
+        20,
+        13,
+        15
+      ]
+    },
+    "21": {
+      "candidates": [
+        "base:minion/icetree_1",
+        "zanyu:minion/dirtfish",
+        "base:minion/grasssnake_3",
+        "base:minion/landshark_1",
+        "base:minion/groundattacker_2",
+        "base:minion/flyinggrasssuperminion_1",
+        "base:minion/trex_2"
+      ],
+      "weights": [
+        9,
+        9,
+        23,
+        31,
+        19,
+        5,
+        5
+      ]
+    },
+    "22": {
+      "candidates": [
+        "base:minion/fire_frog_1",
+        "base:minion/groundmole_3",
+        "base:minion/worm_2",
+        "base:minion/worm_3",
+        "base:minion/fire_bear_1",
+        "base:minion/fire_bear_2",
+        "base:minion/tortoise_1",
+        "ophan:minion/holyeye1"
+      ],
+      "weights": [
+        9,
+        32,
+        4,
+        19,
+        4,
+        14,
+        9,
+        9
+      ]
+    }
+  },
+  "12": {
+    "3": {
+      "candidates": [
+        "base:minion/healinghorse_1",
+        "base:minion/holymantris_1",
+        "base:minion/trex_1",
+        "arkvian:minion/holybird1"
+      ],
+      "weights": [
+        45,
+        27,
+        18,
+        10
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "ophan:minion/holyeye2",
+        "arkvian:minion/holybird2"
+      ],
+      "weights": [
+        11,
+        11,
+        11,
+        11,
+        20,
+        11,
+        14,
+        11
+      ]
+    },
+    "22": {
+      "candidates": [
+        "base:minion/fire_frog_1",
+        "base:minion/groundmole_3",
+        "base:minion/worm_2",
+        "base:minion/worm_3",
+        "base:minion/fire_bear_1",
+        "base:minion/fire_bear_2",
+        "base:minion/tortoise_1",
+        "ophan:minion/holyeye1"
+      ],
+      "weights": [
+        9,
+        32,
+        4,
+        19,
+        4,
+        14,
+        9,
+        9
+      ]
+    }
+  },
+  "13": {
+    "3": {
+      "candidates": [
+        "base:minion/healinghorse_1",
+        "base:minion/holymantris_1",
+        "base:minion/trex_1",
+        "arkvian:minion/holybird1"
+      ],
+      "weights": [
+        45,
+        27,
+        18,
+        10
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "ophan:minion/holyeye2",
+        "arkvian:minion/holybird2"
+      ],
+      "weights": [
+        11,
+        11,
+        11,
+        11,
+        20,
+        11,
+        14,
+        11
+      ]
+    },
+    "21": {
+      "candidates": [
+        "base:minion/icetree_1",
+        "zanyu:minion/dirtfish",
+        "base:minion/grasssnake_3",
+        "base:minion/landshark_1",
+        "base:minion/groundattacker_2",
+        "base:minion/flyinggrasssuperminion_1",
+        "base:minion/trex_2"
+      ],
+      "weights": [
+        9,
+        9,
+        23,
+        31,
+        19,
+        5,
+        5
+      ]
+    },
+    "22": {
+      "candidates": [
+        "base:minion/fire_frog_1",
+        "base:minion/groundmole_3",
+        "base:minion/worm_2",
+        "base:minion/worm_3",
+        "base:minion/fire_bear_1",
+        "base:minion/fire_bear_2",
+        "base:minion/tortoise_1",
+        "ophan:minion/holyeye1"
+      ],
+      "weights": [
+        9,
+        32,
+        4,
+        19,
+        4,
+        14,
+        9,
+        9
+      ]
+    }
+  },
+  "14": {
+    "2": {
+      "candidates": [
+        "base:minion/waterseal_1",
+        "base:minion/waterbird_1",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        57,
+        37,
+        5
+      ]
+    },
+    "3": {
+      "candidates": [
+        "base:minion/healinghorse_1",
+        "base:minion/holymantris_1",
+        "base:minion/trex_1",
+        "arkvian:minion/holybird1"
+      ],
+      "weights": [
+        45,
+        27,
+        18,
+        10
+      ]
+    },
+    "10": {
+      "candidates": [
+        "base:minion/goo_2",
+        "base:minion/scorpion_2",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        35,
+        35,
+        30
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "ophan:minion/holyeye2",
+        "arkvian:minion/holybird2"
+      ],
+      "weights": [
+        11,
+        11,
+        11,
+        11,
+        20,
+        11,
+        14,
+        11
+      ]
+    },
+    "22": {
+      "candidates": [
+        "base:minion/fire_frog_1",
+        "base:minion/groundmole_3",
+        "base:minion/worm_2",
+        "base:minion/worm_3",
+        "base:minion/fire_bear_1",
+        "base:minion/fire_bear_2",
+        "base:minion/tortoise_1",
+        "ophan:minion/holyeye1"
+      ],
+      "weights": [
+        9,
+        32,
+        4,
+        19,
+        4,
+        14,
+        9,
+        9
+      ]
+    }
+  },
+  "15": {
+    "2": {
+      "candidates": [
+        "base:minion/waterseal_1",
+        "base:minion/waterbird_1",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        57,
+        37,
+        5
+      ]
+    },
+    "3": {
+      "candidates": [
+        "base:minion/healinghorse_1",
+        "base:minion/holymantris_1",
+        "base:minion/trex_1",
+        "arkvian:minion/holybird1"
+      ],
+      "weights": [
+        45,
+        27,
+        18,
+        10
+      ]
+    },
+    "10": {
+      "candidates": [
+        "base:minion/goo_2",
+        "base:minion/scorpion_2",
+        "stingaray:minion/waterray1"
+      ],
+      "weights": [
+        35,
+        35,
+        30
+      ]
+    },
+    "16": {
+      "candidates": [
+        "base:minion/evileye_1",
+        "base:minion/crow_1",
+        "base:minion/bluebell_1",
+        "base:minion/pinkbell_1",
+        "base:minion/fireghost_1",
+        "base:minion/holystrongguy_1",
+        "ophan:minion/holyeye2",
+        "arkvian:minion/holybird2"
+      ],
+      "weights": [
+        11,
+        11,
+        11,
+        11,
+        20,
+        11,
+        14,
+        11
+      ]
+    },
+    "21": {
+      "candidates": [
+        "base:minion/icetree_1",
+        "zanyu:minion/dirtfish",
+        "base:minion/grasssnake_3",
+        "base:minion/landshark_1",
+        "base:minion/groundattacker_2",
+        "base:minion/flyinggrasssuperminion_1",
+        "base:minion/trex_2"
+      ],
+      "weights": [
+        9,
+        9,
+        23,
+        31,
+        19,
+        5,
+        5
+      ]
+    },
+    "22": {
+      "candidates": [
+        "base:minion/fire_frog_1",
+        "base:minion/groundmole_3",
+        "base:minion/worm_2",
+        "base:minion/worm_3",
+        "base:minion/fire_bear_1",
+        "base:minion/fire_bear_2",
+        "base:minion/tortoise_1",
+        "ophan:minion/holyeye1"
+      ],
+      "weights": [
+        9,
+        32,
+        4,
+        19,
+        4,
+        14,
+        9,
+        9
+      ]
+    }
+  }
+}

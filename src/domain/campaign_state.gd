@@ -143,7 +143,7 @@ func validation_errors(catalog: ContentCatalog = null) -> PackedStringArray:
 		errors.append("campaign state has no campaign ID")
 	if current_room_id.is_empty():
 		errors.append("campaign state has no current room ID")
-	if party.is_empty() or party.size() > 5:
+	if (party.is_empty() and not bool(progression.get("nuzlocke_run_ended", false))) or party.size() > 5:
 		errors.append("active party must contain between one and five minions")
 	if battle_sequence < 0:
 		errors.append("battle sequence must not be negative")

@@ -7,6 +7,14 @@ the presentation and interaction details listed below.
 
 ## Current implementation batch
 
+- Flash import / mods (2026-10-09): read-only flat AMF0/AMF3 `.sol` reader,
+  numeric-ID/ModName conversion, preview and empty-slot import UI. Current-floor
+  one-time resumption restores keys/doors/picks without unsafe coordinates.
+  Trainer array indices use ID-minus-one. Restored seven creation toggles,
+  source hatchery tables, effective Minionpedia hints, No Regen preparation
+  and Nuzlocke retirement. Ice Floor remains unfinished, confirmed by the user.
+  Synthetic checks pass headless/rendered; real Flash save validation remains.
+
 - Repository/runtime packaging (2026-10-06): initialized local `main` for
   `Godot-Min-Hero-Tower-of-Sages`. Required extracted images now live under
   `content/base/art/source_symbols/`, with explicit aliases in `symbols.json`;

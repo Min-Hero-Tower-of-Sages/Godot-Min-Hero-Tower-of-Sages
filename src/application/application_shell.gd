@@ -385,6 +385,7 @@ func _reveal_title_save_slots(screen: Control, immediate: bool) -> void:
 			card.position = Vector2(230.0, 334.0)
 			card.modulate.a = 0.0
 			var slot_tween := create_tween()
+			card.set_meta("save_card_entrance", slot_tween)
 			slot_tween.tween_interval(0.3 * float(slot - 1))
 			slot_tween.tween_property(card, "position", target, 0.6)
 			slot_tween.parallel().tween_property(card, "modulate:a", 1.0, 0.6)
@@ -407,11 +408,22 @@ func _reveal_title_save_slots(screen: Control, immediate: bool) -> void:
 			extra.modulate.a = 0.0
 			extra.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			var extra_tween := create_tween()
+			extra.set_meta("save_card_entrance", extra_tween)
 			extra_tween.tween_interval(0.3 * float(SaveRepository.SLOT_COUNT))
 			extra_tween.tween_property(extra, "position", target, 0.6)
 			extra_tween.parallel().tween_property(extra, "modulate:a", 1.0, 0.6)
 			extra_tween.tween_callback(func() -> void: extra.mouse_filter = Control.MOUSE_FILTER_STOP)
 	screen.set_meta("title_save_slots_visible", true)
+
+func _show_flash_import(destination_slot: int = 0) -> void:
+	if runtime == null or _room_transition_active: return
+	if current_screen.find_child("FlashSaveImport", true, false) != null: return
+	var view := FlashSaveImportView.new()
+	view.name = "FlashSaveImport"
+	view.runtime = runtime
+	view.destination_slot = destination_slot
+	view.imported.connect(func(_slot: int) -> void: _show_save_slots())
+	current_screen.add_child(view)
 
 ## A button drawn with the save card art (nine-sliced), in the cards' ink.
 func _title_card_button(parent: Control, text: String, at: Vector2, button_size: Vector2) -> Button:
@@ -458,6 +470,27 @@ func _create_title_save_card(parent: Control, slot: int, is_used: bool, loaded: 
 		var new_slot := _label(card, "New Slot", Vector2(86.0, 21.0), Vector2(150.0, 30.0), 18, Color8(213, 215, 229))
 		new_slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		new_slot.add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
+		var import_button := _title_card_button(card, "Import", Vector2(185.0, 8.0), Vector2(55.0, 22.0))
+		import_button.name = "FlashSaveImportButton"
+		import_button.add_theme_font_size_override("font_size", 11)
+		for state_name in ["normal", "hover", "pressed", "focus"]:
+			var small_skin := import_button.get_theme_stylebox(state_name).duplicate() as StyleBoxTexture
+			var cropped_art := AtlasTexture.new()
+			cropped_art.atlas = load(SLOT_FILLED) as Texture2D
+			cropped_art.region = Rect2(9, 6, 230, 62)
+			small_skin.texture = cropped_art
+			small_skin.set_texture_margin_all(5.0)
+			small_skin.content_margin_left = 4.0
+			small_skin.content_margin_right = 4.0
+			small_skin.content_margin_top = 0.0
+			small_skin.content_margin_bottom = 0.0
+			import_button.add_theme_stylebox_override(state_name, small_skin)
+		# Apply the compact dimensions after replacing the large-card theme;
+		# lowering its minimum size does not shrink an already-expanded Button.
+		import_button.size = Vector2(49.0, 22.0)
+		import_button.tooltip_text = "Import a Flash .sol save into this empty slot"
+		import_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		import_button.pressed.connect(_show_flash_import.bind(slot))
 		return card
 	var state: Dictionary = loaded.get("state", {})
 	var character: Dictionary = state.get("character", {})
@@ -503,6 +536,9 @@ func _activate_save_card_later(card: Control, delay: float) -> void:
 		var delete_button := card.get_node_or_null("DeleteSaveButton") as TextureButton
 		if delete_button != null:
 			delete_button.mouse_filter = Control.MOUSE_FILTER_STOP
+		var import_button := card.get_node_or_null("FlashSaveImportButton") as Button
+		if import_button != null:
+			import_button.mouse_filter = Control.MOUSE_FILTER_STOP
 
 func _show_title_credits() -> void:
 	if current_screen == null or current_screen.get_node_or_null("TitleCredits") != null:
@@ -629,6 +665,7 @@ func _restore_title_after_creation(screen: Control) -> void:
 	if band != null:
 		var band_restore := create_tween()
 		band_restore.tween_property(band, "scale:y", 1.0, 0.5)
+		band_restore.parallel().tween_property(band, "position:y", 194.0, 0.5)
 	var slots := screen.get_node_or_null("TitleSaveSlots") as Control
 	if slots != null:
 		for card in slots.get_children():
@@ -740,15 +777,18 @@ func _show_character_creation() -> void:
 	screen.add_child(shade)
 	var creation_background := _texture_rect(CHARACTER_BACKGROUND)
 	if creation_background != null:
-		creation_background.position = Vector2(100.0, 130.0)
+		creation_background.name = "CreationCardBackground"
+		creation_background.position = Vector2(-5.0, 139.0)
 		screen.add_child(creation_background)
-	var panel_origin := Vector2(100.0, 130.0)
+	# Source MainMenuScreen places the creation card left of the mod sidebar.
+	var panel_origin := Vector2(-5.0, 139.0)
 	# The selection art is an outline behind the character icon, not an overlay.
 	# Adding it after the icon painted over the blue male artwork with white.
 	var gender_marker := _texture_rect(CHARACTER_GENDER_SELECTED)
 	if gender_marker != null:
 		gender_marker.name = "SelectedGenderMarker"
 		gender_marker.position = panel_origin + Vector2(143.0, 128.0)
+		gender_marker.set_meta("creation_origin", panel_origin)
 		screen.add_child(gender_marker)
 	var male := _texture_button(screen, CHARACTER_MALE_ICON, panel_origin + Vector2(143.0, 128.0))
 	var female := _texture_button(screen, CHARACTER_FEMALE_ICON, panel_origin + Vector2(188.0, 128.0))
@@ -784,6 +824,11 @@ func _show_character_creation() -> void:
 	var close := _texture_button(screen, CHARACTER_CLOSE_BUTTON, panel_origin + Vector2(450.0, 13.0))
 	if close != null:
 		close.pressed.connect(_show_save_slots)
+	var mods := CampaignModSelector.new()
+	# The creation PNG has six transparent pixels above its border; the mod
+	# PNG has two. Align the visible borders, not the texture origins.
+	mods.position = Vector2(478.0, 143.0)
+	screen.add_child(mods)
 	selected_gender = "male"
 	var entrance := create_tween()
 	entrance.tween_interval(0.5)
@@ -803,10 +848,15 @@ func _animate_title_for_creation(screen: Control) -> void:
 	if band != null:
 		var expand := create_tween()
 		expand.tween_property(band, "scale:y", 1.4, 1.2)
+		# Both visible cards span y=145..438. Keep equal shadow padding above
+		# and below them rather than centering on the old save-slot band.
+		expand.parallel().tween_property(band, "position:y", 182.5, 1.2)
 	var slots := screen.get_node_or_null("TitleSaveSlots") as Control
 	if slots != null:
 		for card in slots.get_children():
 			if card is Control:
+				var card_entrance: Variant = card.get_meta("save_card_entrance") if card.has_meta("save_card_entrance") else null
+				if card_entrance is Tween: card_entrance.kill()
 				(card as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
 				var fade_card := create_tween()
 				fade_card.tween_property(card, "modulate:a", 0.0, 0.5)
@@ -830,7 +880,8 @@ func _set_gender(gender: String) -> void:
 	if preview != null:
 		preview.texture = _load_texture(CHARACTER_FEMALE_PREVIEW if gender == "female" else CHARACTER_MALE_PREVIEW)
 	if marker != null:
-		marker.position = Vector2(288.0 if gender == "female" else 243.0, 258.0)
+		var origin: Vector2 = marker.get_meta("creation_origin", Vector2(-5.0, 139.0))
+		marker.position = origin + Vector2(188.0 if gender == "female" else 143.0, 128.0)
 
 func _sanitize_character_name(value: String) -> void:
 	if name_entry == null or value.is_empty():
@@ -854,7 +905,9 @@ func _create_campaign() -> void:
 		_show_notice("Slot %d already contains a campaign. Choose an empty slot." % selected_slot)
 		return
 	var character_name := name_entry.text.strip_edges() if name_entry != null else ""
-	var result: Dictionary = runtime.start_new_campaign(selected_slot, character_name, StringName(selected_gender))
+	var mod_selector := current_screen.find_child("ModSelector", true, false) as CampaignModSelector
+	var mod_flags: Dictionary = mod_selector.flags if mod_selector != null else {}
+	var result: Dictionary = runtime.start_new_campaign(selected_slot, character_name, StringName(selected_gender), mod_flags)
 	if not result.get("ok", false):
 		_show_notice("Could not start campaign: %s" % result.get("message", "unknown save error"))
 		return
@@ -1113,6 +1166,9 @@ func _on_room_interaction_requested(interaction: Dictionary) -> void:
 		return
 	if interaction_kind == &"eggery_exit_blocked":
 		_show_player_dialogue("You still need to choose an egg!")
+		return
+	if interaction_kind == &"courtyard_exit_blocked":
+		_show_player_dialogue("You should talk to the Grand Sage before continuing.")
 		return
 	if interaction_kind == &"floor_picker":
 		_show_floor_picker()
@@ -1630,6 +1686,7 @@ func _begin_trainer_battle(encounter_id: StringName, player_position: Vector2) -
 	# ScreenController starts the hidden destination before fading the old
 	# screen. Spawn animations therefore continue underneath the curtain.
 	current_battle = BATTLE_SCENE.instantiate()
+	current_battle.settings_service = _settings
 	current_battle.visible = false
 	screen_host.add_child(current_battle)
 	current_battle.audio_controller.music_owner = _campaign_audio
@@ -1878,15 +1935,24 @@ func _save_from_menu() -> void:
 	view.cancelled.connect(_close_source_menu.bind(_show_campaign_menu))
 	view.saved.connect(func(return_to_lobby: bool) -> void:
 		_close_source_menu(func() -> void:
-			_clear_dialog()
 			if return_to_lobby:
-				_show_room_from_state()
+				_transition_to_saved_lobby()
+			else:
+				_clear_dialog()
 		, true)
 	)
 	_attach_interaction_dialog()
 	view.configure(runtime.session)
 	_adopt_source_menu_backdrop(view)
 	SourceMenuTransition.enter(view, true)
+
+func _transition_to_saved_lobby() -> void:
+	_room_transition_active = true
+	_clear_dialog()
+	if is_instance_valid(current_room): current_room.set_controls_enabled(false)
+	await _fade_campaign_screen_out()
+	_show_room_from_state()
+	await _finish_campaign_screen_transition()
 
 func _show_settings_menu() -> void:
 	_clear_dialog()
@@ -2070,12 +2136,15 @@ func _show_legacy_floor_picker() -> void:
 	_text_button(screen, "Storage", Vector2(437, 455), Vector2(145, 38)).pressed.connect(_show_storage_manager)
 
 func _select_tower_floor(floor_index: int) -> void:
-	if runtime == null:
+	if runtime == null or _room_transition_active:
 		return
 	var result: Dictionary = runtime.select_tower_floor(floor_index)
 	if not result.get("ok", false):
 		_show_notice("Could not enter Floor %d: %s" % [floor_index + 1, result.get("message", "unknown error")])
 		return
+	_room_transition_active = true
+	if is_instance_valid(current_room): current_room.set_controls_enabled(false)
+	await _fade_campaign_screen_out()
 	# Room views are reused, so loading a floor does not clear overlays through
 	# _clear_game_screen. Retire the selector before reconfiguring the room.
 	# Disconnect immediately: queue_free alone leaves it callable this frame.
@@ -2085,6 +2154,7 @@ func _select_tower_floor(floor_index: int) -> void:
 		picker.hide()
 	_clear_dialog()
 	_show_room_from_state(StringName(result.get("spawn_id", "")), _as_vector2(result.get("position", Vector2.ZERO), Vector2.ZERO))
+	await _finish_campaign_screen_transition()
 
 func _select_tower_mode(mode: StringName) -> void:
 	var result: Dictionary = runtime.session.select_tower_mode(mode)

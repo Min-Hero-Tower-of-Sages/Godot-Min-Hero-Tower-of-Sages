@@ -105,7 +105,7 @@ func _ready() -> void:
 	if not spawn_migration.ok:
 		push_warning("Some legacy save spawn positions could not be repaired: %s" % "; ".join(spawn_migration.failures))
 
-func start_new_campaign(slot: int, character_name: String, gender: StringName) -> Dictionary:
+func start_new_campaign(slot: int, character_name: String, gender: StringName, mod_flags: Dictionary = {}) -> Dictionary:
 	if session == null:
 		return _error("runtime_not_ready", "campaign runtime has not initialized")
 	var party := CampaignProgressionService.starter_party(catalog, "slot-%d-" % slot)
@@ -114,7 +114,7 @@ func start_new_campaign(slot: int, character_name: String, gender: StringName) -
 	var resolved_name := character_name.strip_edges()
 	if resolved_name.is_empty():
 		resolved_name = "Vala" if gender == &"female" else "Ryder"
-	var result := session.start_new(&"base:campaign/standard_tower", party, {"name": resolved_name, "gender": String(gender)}, slot)
+	var result := session.start_new(&"base:campaign/standard_tower", party, {"name": resolved_name, "gender": String(gender)}, slot, false, mod_flags)
 	if result.ok:
 		active_campaign_battle = false
 		campaign_return_pending = false
@@ -157,6 +157,24 @@ func load_detached_campaign(data: Dictionary, id_slot: int, redirect: Callable) 
 
 func has_save(slot: int) -> bool:
 	return session != null and session.save_repository.load_slot(slot).ok
+
+func import_flash_candidate(slot: int, payload: Dictionary) -> Dictionary:
+	if session == null:
+		return _error("runtime_not_ready", "campaign runtime has not initialized")
+	var existing := session.save_repository.load_slot(slot)
+	if existing.ok or String(existing.get("code", "")) != "not_found":
+		return _error("slot_in_use", "Import only writes to an empty, readable save slot.")
+	for suffix in ["", ".bak", ".tmp"]:
+		if FileAccess.file_exists("user://save_slot_%d.json%s" % [slot, suffix]):
+			return _error("slot_in_use", "This slot has a save or recovery file. Choose another empty slot; import will not overwrite it.")
+	var candidate := CampaignState.new()
+	candidate.load_dictionary(payload)
+	var errors := candidate.validation_errors(catalog)
+	if not errors.is_empty(): return _error("invalid_import", "\n".join(errors))
+	if candidate.campaign_id != &"base:campaign/standard_tower" or candidate.current_room_id != &"base:room/main_tower_lobby" or not candidate.progression.has("flash_import"):
+		return _error("invalid_import", "Invalid Flash import candidate.")
+	# Saving is atomic; this does not replace the currently running session.
+	return session.save_repository.save_slot(slot, candidate.to_dictionary(catalog.content_version))
 
 func delete_campaign_save(slot: int) -> Dictionary:
 	if session == null:

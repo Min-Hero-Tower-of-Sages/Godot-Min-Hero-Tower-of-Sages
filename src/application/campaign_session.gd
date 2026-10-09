@@ -21,7 +21,7 @@ var save_redirect: Callable
 var _pending_egg_preview: OwnedMinionState
 var _pending_egg_preview_slot: int = -1
 
-func start_new(campaign_id: StringName, new_party: Array[OwnedMinionState], character_data: Dictionary = {}, slot: int = 1, overwrite_existing: bool = false) -> Dictionary:
+func start_new(campaign_id: StringName, new_party: Array[OwnedMinionState], character_data: Dictionary = {}, slot: int = 1, overwrite_existing: bool = false, mod_flags: Dictionary = {}) -> Dictionary:
 	if catalog == null:
 		return _error("missing_catalog", "set a content catalog before starting a campaign")
 	campaign = catalog.get_definition(campaign_id) as CampaignDefinition
@@ -41,9 +41,11 @@ func start_new(campaign_id: StringName, new_party: Array[OwnedMinionState], char
 	created.campaign_id = campaign_id
 	created.current_room_id = starting_room.id
 	created.character = character_data.duplicate(true)
+	created.active_mods = CampaignModService.normalize(mod_flags)
 	created.party.assign(new_party)
 	ProgressionService.refresh_minion_pedia(created)
 	created.progression["eggery_picks_remaining"] = 1
+	created.progression["floor_visit_reward_version"] = 2
 	created.progression["chest_seed"] = randi()
 	created.room_state = {"current_room_id": String(starting_room.id), "flags": {}}
 	created.safe_location = {
@@ -72,6 +74,10 @@ func load(slot: int) -> Dictionary:
 		return loaded
 	var candidate = StateScript.new()
 	candidate.load_dictionary(loaded.state)
+	var import_repair := FlashSaveImportService.repair_import_state(candidate, catalog)
+	if not import_repair.ok: return import_repair
+	var recovered_egg := _recover_interrupted_egg_preview(candidate)
+	var repaired_floor_visit := _repair_legacy_floor_visit(candidate)
 	var errors := candidate.validation_errors(catalog)
 	if not errors.is_empty():
 		return _error("invalid_campaign_state", "\n".join(errors))
@@ -80,6 +86,9 @@ func load(slot: int) -> Dictionary:
 		return _error("missing_campaign", "save references missing campaign %s" % candidate.campaign_id)
 	if catalog.get_definition(candidate.current_room_id) is not RoomDefinition:
 		return _error("missing_room", "save references missing current room %s" % candidate.current_room_id)
+	if import_repair.changed or recovered_egg or repaired_floor_visit:
+		var repaired_save := save_repository.save_slot(slot, candidate.to_dictionary(catalog.content_version))
+		if not repaired_save.ok: return repaired_save
 	state = candidate
 	campaign = loaded_campaign
 	save_slot = slot
@@ -309,6 +318,21 @@ func select_tower_floor(floor_index: int) -> Dictionary:
 	candidate.progression["map_unlocked"] = false
 	candidate.progression["eggery_picks_remaining"] = _eggery_pick_count(int(candidate.progression.get("sage_seals", 0)))
 	candidate.progression["eggery_taken_slots"] = []
+	var flash_resume: Dictionary = candidate.progression.get("flash_resume_floor", {})
+	var imported_pending := CampaignState._saved_integer_list(candidate.progression.get("flash_import_visit_flags_pending", []), 0, 61)
+	if not flash_resume.is_empty() and int(flash_resume.get("floor_index", -1)) == floor_index:
+		for key in ["floor_keys", "eggery_keys", "boss_door_unlocked", "eggery_door_unlocked", "eggery_picks_remaining", "map_unlocked"]:
+			candidate.progression[key] = flash_resume[key]
+		candidate.progression.erase("flash_resume_floor")
+	else:
+		# Source ResetFloorData resets trainer victories on EVERY fresh floor
+		# visit, not just the first visit after a Flash import. Best stars and
+		# unlocked floors remain permanent; door keys are earned again.
+		_reset_floor_trainer_visits(candidate, floor_index)
+	candidate.progression["floor_visit_reward_version"] = 2
+	if floor_index in imported_pending:
+		imported_pending.erase(floor_index)
+		candidate.progression["flash_import_visit_flags_pending"] = imported_pending
 	for floor_room_id in floor_data.get("room_ids", []):
 		if not String(floor_room_id).ends_with("_eggery"):
 			continue
@@ -944,13 +968,15 @@ func _pick_egg(interaction: Dictionary) -> Dictionary:
 	var taken: Array = current_room_state.get("eggery_taken_slots", state.progression.get("eggery_taken_slots", [])).duplicate()
 	if slot < 0 or slot >= 9 or slot in taken:
 		return _error("egg_already_claimed", "that egg has already been chosen")
-	var candidates: Array = interaction.get("candidates", [])
-	var weights: Array = interaction.get("weights", [])
+	var pool := CampaignModService.egg_pool(state, CampaignTowerModeService.source_floor_index(int(state.progression.get("floor_index", 0))), interaction)
+	var candidates: Array = pool.get("candidates", [])
+	var weights: Array = pool.get("weights", [])
 	if candidates.is_empty() or candidates.size() != weights.size():
 		return _error("invalid_egg_table", "hatchery egg table is missing candidates or weights")
 	var roll := randi_range(1, 100)
 	var running_weight := 0
-	var definition_id := StringName(candidates.back())
+	# Flash falls back to entry zero when authored integer weights total < 100.
+	var definition_id := StringName(candidates.front())
 	for index in candidates.size():
 		running_weight += int(weights[index])
 		if roll <= running_weight:
@@ -988,6 +1014,10 @@ func _pick_egg(interaction: Dictionary) -> Dictionary:
 	candidate_state.progression["eggery_taken_slots"] = taken.duplicate()
 	candidate_state.progression["eggery_picks_remaining"] = remaining - 1
 	candidate_state.progression["eggery_pick_sequence"] = sequence
+	# The revealed minion lives in memory until accepted. Persist a rollback
+	# marker with the spent pick so quitting during the reveal cannot consume
+	# an egg without ever granting (or explicitly declining) its minion.
+	candidate_state.progression["pending_egg_preview"] = {"room_id": String(current_room.id), "slot": slot, "previous_remaining": remaining}
 	var saved := _save_candidate(candidate_state)
 	if not saved.ok:
 		return saved
@@ -1055,6 +1085,7 @@ func finish_egg_selection(accepted_instance_id: StringName, party_slot: int = -1
 	candidate.room_state[String(current_room.id)] = room_state
 	candidate.progression["eggery_taken_slots"] = taken.duplicate()
 	candidate.progression["eggery_picks_remaining"] = 0
+	candidate.progression.erase("pending_egg_preview")
 	ProgressionService.refresh_minion_pedia(candidate)
 	var saved: Dictionary = _save_candidate(candidate)
 	if not saved.ok:
@@ -1073,6 +1104,12 @@ func discard_latest_egg_minion(instance_id: StringName) -> Dictionary:
 	if _pending_egg_preview != null:
 		if _pending_egg_preview.instance_id != instance_id:
 			return _error("egg_preview_mismatch", "the pending preview does not match the selected hatchery egg")
+		var declined = StateScript.new()
+		declined.load_dictionary(state.to_dictionary(catalog.content_version, true))
+		declined.progression.erase("pending_egg_preview")
+		var saved_decline := _save_candidate(declined)
+		if not saved_decline.ok: return saved_decline
+		state = declined
 		_clear_pending_egg_preview()
 		return {"ok": true, "instance_id": instance_id, "preview_discarded": true}
 	var candidate = StateScript.new()
@@ -1103,6 +1140,43 @@ func discard_latest_egg_minion(instance_id: StringName) -> Dictionary:
 func _clear_pending_egg_preview() -> void:
 	_pending_egg_preview = null
 	_pending_egg_preview_slot = -1
+
+func _recover_interrupted_egg_preview(candidate: CampaignState) -> bool:
+	var pending: Dictionary = candidate.progression.get("pending_egg_preview", {})
+	if pending.is_empty(): return false
+	var room_id := String(pending.get("room_id", ""))
+	var slot := int(pending.get("slot", -1))
+	var room_data: Dictionary = candidate.room_state.get(room_id, {}).duplicate(true)
+	var taken: Array = room_data.get("eggery_taken_slots", candidate.progression.get("eggery_taken_slots", [])).duplicate()
+	taken.erase(slot)
+	room_data["eggery_taken_slots"] = taken
+	candidate.room_state[room_id] = room_data
+	candidate.progression["eggery_taken_slots"] = taken.duplicate()
+	candidate.progression["eggery_picks_remaining"] = clampi(int(pending.get("previous_remaining", 1)), 1, 3)
+	candidate.progression.erase("pending_egg_preview")
+	return true
+
+func _reset_floor_trainer_visits(candidate: CampaignState, floor_index: int) -> void:
+	var completed: Dictionary = candidate.progression.get("completed_encounters", {}).duplicate()
+	for pack in catalog.packs:
+		for definition in pack.definitions:
+			if definition is EncounterDefinition and definition.source_floor_index == floor_index:
+				completed.erase(String(definition.id))
+	candidate.progression["completed_encounters"] = completed
+
+func _repair_legacy_floor_visit(candidate: CampaignState) -> bool:
+	if int(candidate.progression.get("floor_visit_reward_version", 0)) >= 2: return false
+	var floor_index := int(candidate.progression.get("floor_index", 0))
+	var highest := int(candidate.progression.get("highest_beaten_floor", 0))
+	for unlocked in candidate.progression.get("unlocked_floor_indices", [0]):
+		highest = maxi(highest, int(unlocked))
+	# Old builds could save a revisited completed floor with fresh locked doors,
+	# zero keys, but permanently-cleared trainers. Restore their visit rewards
+	# once; never alter best stars, floor unlocks, or a working open-door visit.
+	if not bool(candidate.progression.get("in_tower_lobby", false)) and highest > floor_index and int(candidate.progression.get("floor_keys", 0)) == 0 and not bool(candidate.progression.get("boss_door_unlocked", false)):
+		_reset_floor_trainer_visits(candidate, floor_index)
+	candidate.progression["floor_visit_reward_version"] = 2
+	return true
 
 func rename_minion(instance_id: StringName, new_name: String) -> Dictionary:
 	if state == null or catalog == null:
@@ -1221,6 +1295,8 @@ func _storage_minion_index(candidate, instance_id: StringName) -> int:
 func prepare_battle(encounter_id: StringName) -> Dictionary:
 	if state == null or catalog == null:
 		return _error("no_campaign", "there is no active campaign")
+	if bool(state.progression.get("nuzlocke_run_ended", false)):
+		return _error("nuzlocke_run_ended", "Your Nuzlocke roster has fainted. This run has ended.")
 	var room := catalog.get_definition(state.current_room_id) as RoomDefinition
 	var encounter := catalog.get_definition(encounter_id) as EncounterDefinition
 	if room == null or encounter == null:
@@ -1236,7 +1312,7 @@ func prepare_battle(encounter_id: StringName) -> Dictionary:
 	encounter = resolved.encounter as EncounterDefinition
 	var candidate = StateScript.new()
 	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
-	var rested := ProgressionService.rest_party(candidate, catalog)
+	var rested := ProgressionService.rest_party(candidate, catalog, false)
 	if not rested.ok:
 		return rested
 	var prepared := ProgressionService.prepare_battle(candidate, encounter)
