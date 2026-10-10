@@ -101,16 +101,17 @@ func _build_tabs() -> void:
 	_box_page = clampi(_box_page, 0, page_count - 1)
 	for index in MAX_BOXES:
 		var hit := Button.new()
-		hit.position = Vector2(52.0 + float(index) * 59.0, 27.0)
-		hit.size = Vector2(57.0, 22.0)
+		hit.name = "StorageBoxTab%d" % (index + 1)
+		hit.position = Vector2(61.0 + float(index) * 56.2, 22.0)
+		hit.size = Vector2(56.2, 29.0)
 		hit.flat = true
 		hit.focus_mode = Control.FOCUS_NONE
 		hit.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		hit.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
 		hit.add_theme_stylebox_override("hover", StyleBoxEmpty.new())
 		hit.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
-		# Source tab hit buttons are hidden; paging uses the two arrow buttons.
-		hit.visible = false
+		# Transparent hit targets must stay visible in Godot to receive clicks.
+		hit.z_index = 4
 		hit.pressed.connect(_change_box.bind(index))
 		_menu.add_child(hit)
 	var arrow := SourceMenuArt.texture("menus_minionStorage_nextContainerButton")
@@ -308,27 +309,30 @@ func _build_party_slot_picker() -> void:
 	if _party_slot_picker_id.is_empty():
 		return
 	var overlay := Control.new()
+	overlay.name = "StoragePartyReplacement"
 	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.z_index = 30
 	_menu.add_child(overlay)
-	var panel_texture := SourceMenuArt.texture("menus_minionStorage_partyBackground")
-	if panel_texture != null:
-		var panel := TextureRect.new()
-		panel.texture = panel_texture
-		panel.position = Vector2(186.0, 92.0)
-		panel.size = panel_texture.get_size()
-		panel.mouse_filter = Control.MOUSE_FILTER_STOP
-		overlay.add_child(panel)
-	_label(overlay, "Choose a party member to replace", Vector2(205.0, 102.0), Vector2(270.0, 30.0), 19, Color8(250, 244, 224))
+	var shade := ColorRect.new()
+	shade.size = SOURCE_SCREEN_SIZE
+	shade.color = Color(0, 0, 0, 0.65)
+	shade.mouse_filter = Control.MOUSE_FILTER_STOP
+	overlay.add_child(shade)
+	SourceMenuArt.image(overlay, "menus_backgroundMedium", Vector2(168, 57))
+	SourceMenuArt.image(overlay, "tutorial_choosingAMinionBar", Vector2(523, 103))
+	var hint := _label(overlay, "Choose a minion to swap", Vector2(587, 220), Vector2(90, 140), 20, Color8(250, 250, 250))
+	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.size = Vector2(90, 140)
 	for index in _session.state.party.size():
 		var owned := _session.state.party[index] as OwnedMinionState
 		var host := Control.new()
-		host.position = Vector2(186.0, 139.0 + index * 57.0)
-		host.size = Vector2(300.0, 55.0)
+		host.position = Vector2(186.0, 77.0 + index * 75.0)
+		host.size = Vector2(323.0, 76.0)
 		overlay.add_child(host)
 		if _row_builder.is_valid():
 			_row_builder.call(host, owned, Callable(self, "_replace_party_slot").bind(index))
-	SourceMenuArt.button(overlay, "menus_minionStorage_closeParty", Vector2(482.0, 85.0), Callable(self, "_cancel_party_slot_picker"))
+	SourceMenuArt.button(overlay, "menus_exitButton", Vector2(464, 35), Callable(self, "_cancel_party_slot_picker"))
 
 func _ask_release() -> void:
 	if _selected_id.is_empty() or (_session.state.party.size() <= 1 and _is_party_owned(_selected_id)):

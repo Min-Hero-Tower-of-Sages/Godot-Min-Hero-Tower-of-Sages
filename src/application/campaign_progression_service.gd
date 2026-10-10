@@ -391,6 +391,25 @@ static func spent_stars(state) -> int:
 static func available_stars(state) -> int:
 	return maxi(0, total_earned_stars(state) - spent_stars(state))
 
+## Maps are permanent and shared by the normal/hard counterpart of a floor.
+## Older port saves only kept the current visit's boolean; preserve that too.
+static func restore_floor_map(state) -> bool:
+	var original: Array = state.progression.get("map_unlocked_floor_indices", []).duplicate()
+	var maps: Array[int] = []
+	for value in original:
+		if (value is int or value is float) and int(value) >= 0 and int(value) < 62 and int(value) % 31 not in maps:
+			maps.append(int(value) % 31)
+	var floor_index := int(state.progression.get("floor_index", 0)) % 31
+	var in_lobby := bool(state.progression.get("in_tower_lobby", false))
+	# The old lobby save retained the last floor's true flag as well.
+	if bool(state.progression.get("map_unlocked", false)) and floor_index not in maps:
+		maps.append(floor_index)
+	var unlocked := not in_lobby and floor_index in maps
+	var changed := original != maps or bool(state.progression.get("map_unlocked", false)) != unlocked
+	state.progression["map_unlocked_floor_indices"] = maps
+	state.progression["map_unlocked"] = unlocked
+	return changed
+
 static func refresh_minion_pedia(state) -> void:
 	if state == null:
 		return

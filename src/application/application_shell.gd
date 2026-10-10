@@ -1095,6 +1095,16 @@ func _on_room_transition_requested(exit_data: Dictionary) -> void:
 		return
 	if not _multiplayer.allow_room_transition(exit_data):
 		return
+	if String(exit_data.get("target_route", "")) == "lobby" and not bool(exit_data.get("lobby_exit_confirmed", false)):
+		var confirmed_exit := exit_data.duplicate(true)
+		confirmed_exit["lobby_exit_confirmed"] = true
+		var actor_screen: Vector2 = current_room.player_screen_position() if is_instance_valid(current_room) else Vector2(226, 334)
+		var layout := {"dialogue_layout": {"position": actor_screen + Vector2(45, -30), "scale": Vector2.ONE}, "on_yes": func() -> void:
+			_clear_dialog()
+			_on_room_transition_requested(confirmed_exit), "on_no": _clear_dialog}
+		_show_source_dialogue(layout, "Inner Monologue", "Are you sure you want to return to the lobby? Your current floor progress will reset when you re-enter.")
+		if is_instance_valid(current_room): current_room.release_transition_lock()
+		return
 	_room_transition_active = true
 	if current_room != null and is_instance_valid(current_room):
 		current_room.set_controls_enabled(false)
@@ -2407,9 +2417,15 @@ func _build_source_party_row(parent: Control, at: Vector2, owned: OwnedMinionSta
 	var energy := max_energy if owned.persistent_energy < 0 else clampi(owned.persistent_energy, 0, max_energy)
 	_add_source_bar(row, "1481_Utilities.SpriteHandler_menus_minionInfo_healthBar_full.png", Vector2(72.0, 29.0), float(health) / float(max_health))
 	_add_source_bar(row, "1293_Utilities.SpriteHandler_menus_minionInfo_energyBar_full.png", Vector2(72.0, 42.0), float(energy) / float(max_energy) if max_energy > 0 else 0.0)
-	var gem_count := mini(4, definition.gem_slots) if definition != null else 0
+	var available_sockets: Array[int] = []
+	if definition != null:
+		for socket in 4:
+			var occupied := socket < owned.equipment_ids.size() and not owned.equipment_ids[socket].is_empty()
+			if CampaignGemEquipmentService.slot_is_available(owned, definition, socket) or occupied: available_sockets.append(socket)
+	var gem_count := available_sockets.size()
 	for gem_index in gem_count:
-		var has_gem := gem_index < owned.equipment_ids.size() and not String(owned.equipment_ids[gem_index]).is_empty()
+		var socket := available_sockets[gem_index]
+		var has_gem := socket < owned.equipment_ids.size() and not owned.equipment_ids[socket].is_empty()
 		var gem_asset := "1171_Utilities.SpriteHandler_menus_minionInfo_filledGemSlot.png" if has_gem else "1341_Utilities.SpriteHandler_menus_minionInfo_emptyGemSlot.png"
 		_add_source_art(row, gem_asset, Vector2(72.0 + gem_index * 20.0, 53.0), Vector2.ZERO)
 	var bonus_x := 76.0 + gem_count * 20.0

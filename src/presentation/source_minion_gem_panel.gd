@@ -25,14 +25,13 @@ static func build(page: Control, tooltip_parent: Control, owned: OwnedMinionStat
 			portrait.position = at
 			page.add_child(portrait)
 			portrait.configure(gem)
-		var available := index < definition.gem_slots
-		var locked := index >= definition.gem_slots and index < definition.gem_slots + definition.locked_gem_slots
-		var symbol := "menus_changeButton" if available else "menus_gemLockedButton" if locked else "menus_gemPremiumButton"
+		var available := CampaignGemEquipmentService.slot_is_available(owned, definition, index) or not gem.is_empty()
+		var symbol := "menus_changeButton" if available else "menus_gemLockedButton"
 		var action := SourceMenuArt.button(page, symbol, at + Vector2(65, 15), request.bind(owned.instance_id, index))
 		if action != null:
 			action.name = "GemSlotAction%d" % index
 			action.disabled = not available
-			action.tooltip_text = "Change gem" if available else "Gem slot locked" if locked else "Additional gem slot unavailable"
+			action.tooltip_text = "Change gem" if available else "Unlock by evolving or reaching level 60"
 		if available:
 			var hit := Button.new()
 			hit.name = "GemSocketHit%d" % index

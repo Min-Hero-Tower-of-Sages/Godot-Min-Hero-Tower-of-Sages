@@ -7,6 +7,23 @@ the presentation and interaction details listed below.
 
 ## Current implementation batch
 
+- Imported-save player report (2026-10-09): v3 import repair merges the saved
+  Flash owned/seen Dex history (including active-mod virtual IDs), preserves
+  discoveries made in Godot and does not repeat the v2 party heal. Maps persist
+  per source floor across revisits and both tower modes; earlier imports recover
+  them from their archived fields. Website-only gem sockets are locally usable,
+  maximum-level minions have all four, and equipped gems can always be removed.
+  Storage number tabs are clickable; party replacement uses the source medium
+  frame, dark modal guard, 75px row spacing and original swap hint/close button.
+  Gem tooltips clamp at screen edges even inside scaled menus; the cooldown
+  warning wraps within its fixed-width banner. Lobby exits ask
+  for confirmation before changing state; declining and portal arrivals suppress
+  retriggering until the player walks clear. Destabilize/quake motion now uses
+  serial offsets: the old parallel outward/return tweens cancelled one another.
+  The recovered gem formula permits +73 single-stat tier-9 gems; no balance
+  change made. Consolidated memory-only checks cover these paths; user visual
+  confirmation remains separate from fixture success.
+
 - Flash import / mods (2026-10-09): read-only flat AMF0/AMF3 `.sol` reader,
   numeric-ID/ModName conversion, preview and empty-slot import UI. Current-floor
   one-time resumption restores keys/doors/picks without unsafe coordinates.

@@ -59,4 +59,16 @@ func show_gem(gem: Dictionary) -> void:
 func _process(_delta: float) -> void:
 	if visible and get_parent() is Control:
 		var mouse: Vector2 = get_parent().get_local_mouse_position()
-		position = Vector2(mouse.x - size.x * 0.5 + 5, maxf(10, mouse.y - size.y))
+		_place_at_canvas_point(get_parent().get_global_transform_with_canvas() * mouse)
+
+func _place_at_canvas_point(screen_mouse: Vector2) -> void:
+	var parent_control := get_parent() as Control
+	# Equipped-gem tooltips can live inside a scaled source-art panel.
+	# Clamp in screen space, then convert back to the parent's coordinates.
+	var transform := parent_control.get_global_transform_with_canvas()
+	var screen_size := size * transform.get_scale().abs()
+	var viewport_size := get_viewport_rect().size
+	var screen_position := Vector2(screen_mouse.x - screen_size.x * 0.5 + 5, screen_mouse.y - screen_size.y)
+	screen_position.x = clampf(screen_position.x, 8, maxf(8, viewport_size.x - screen_size.x - 8))
+	screen_position.y = clampf(screen_position.y, 8, maxf(8, viewport_size.y - screen_size.y - 8))
+	position = transform.affine_inverse() * screen_position

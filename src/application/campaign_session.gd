@@ -78,6 +78,7 @@ func load(slot: int) -> Dictionary:
 	if not import_repair.ok: return import_repair
 	var recovered_egg := _recover_interrupted_egg_preview(candidate)
 	var repaired_floor_visit := _repair_legacy_floor_visit(candidate)
+	var repaired_map := ProgressionService.restore_floor_map(candidate)
 	var errors := candidate.validation_errors(catalog)
 	if not errors.is_empty():
 		return _error("invalid_campaign_state", "\n".join(errors))
@@ -86,7 +87,7 @@ func load(slot: int) -> Dictionary:
 		return _error("missing_campaign", "save references missing campaign %s" % candidate.campaign_id)
 	if catalog.get_definition(candidate.current_room_id) is not RoomDefinition:
 		return _error("missing_room", "save references missing current room %s" % candidate.current_room_id)
-	if import_repair.changed or recovered_egg or repaired_floor_visit:
+	if import_repair.changed or recovered_egg or repaired_floor_visit or repaired_map:
 		var repaired_save := save_repository.save_slot(slot, candidate.to_dictionary(catalog.content_version))
 		if not repaired_save.ok: return repaired_save
 	state = candidate
@@ -218,7 +219,9 @@ func enter_tower_lobby(from_eggery: bool = false) -> Dictionary:
 		return _error("no_campaign", "there is no active campaign")
 	var candidate = StateScript.new()
 	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	ProgressionService.restore_floor_map(candidate)
 	candidate.progression["in_tower_lobby"] = true
+	ProgressionService.restore_floor_map(candidate)
 	var lobby := catalog.get_definition(&"base:room/main_tower_lobby") as RoomDefinition
 	if lobby == null:
 		return _error("missing_lobby", "the source tower lobby is not registered")
@@ -315,7 +318,7 @@ func select_tower_floor(floor_index: int) -> Dictionary:
 	candidate.progression["eggery_keys"] = 0
 	candidate.progression["boss_door_unlocked"] = false
 	candidate.progression["eggery_door_unlocked"] = false
-	candidate.progression["map_unlocked"] = false
+	candidate.progression["map_unlocked"] = floor_index % 31 in candidate.progression.get("map_unlocked_floor_indices", [])
 	candidate.progression["eggery_picks_remaining"] = _eggery_pick_count(int(candidate.progression.get("sage_seals", 0)))
 	candidate.progression["eggery_taken_slots"] = []
 	var flash_resume: Dictionary = candidate.progression.get("flash_resume_floor", {})
@@ -346,6 +349,7 @@ func select_tower_floor(floor_index: int) -> Dictionary:
 	candidate.progression["floor_index"] = floor_index
 	candidate.progression["tower_mode"] = String(mode)
 	candidate.progression["in_tower_lobby"] = false
+	ProgressionService.restore_floor_map(candidate)
 	candidate.current_room_id = starting_room.id
 	candidate.room_state["current_room_id"] = String(starting_room.id)
 	var room_data: Dictionary = candidate.room_state.get(String(starting_room.id), {}).duplicate(true)
@@ -499,6 +503,7 @@ func interact(interaction_id: StringName, checkpoint_position: Variant = null, c
 					var map_state = StateScript.new()
 					map_state.load_dictionary(state.to_dictionary(catalog.content_version, true))
 					map_state.progression["map_unlocked"] = true
+					ProgressionService.restore_floor_map(map_state)
 					var map_saved := _save_candidate(map_state)
 					if not map_saved.ok:
 						return map_saved

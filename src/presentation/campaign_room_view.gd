@@ -57,6 +57,7 @@ var _sinking_egg_slots: Dictionary = {}
 var _chest_sprites_by_id: Dictionary = {}
 var _automatic_contact_ids: Dictionary = {}
 var _transition_locked := false
+var _arrival_contact_guards: Dictionary = {}
 var _controls_enabled := true
 var _campaign_context: Dictionary = {}
 var _ambient_emitters: Array[Dictionary] = []
@@ -79,6 +80,7 @@ func configure(room_definition: RoomDefinition, spawn_id: StringName, spawn_posi
 	_nearby_interactions.clear()
 	_room_interactions.clear()
 	_room_transitions.clear()
+	_arrival_contact_guards.clear()
 	_interaction_zones.clear()
 	_speech_bubble_positions.clear()
 	_height_layer_pairs.clear()
@@ -91,6 +93,7 @@ func configure(room_definition: RoomDefinition, spawn_id: StringName, spawn_posi
 	_build_transition_triggers(payload)
 	_build_interaction_triggers(payload)
 	_player.position = spawn_position
+	_guard_overlapping_transitions()
 	_apply_spawn_facing(spawn_id)
 	if not String(_campaign_context.get("restore_facing", "")).is_empty():
 		restore_player_facing(StringName(_campaign_context.restore_facing))
@@ -126,7 +129,22 @@ func player_presence() -> Dictionary:
 
 ## Re-arm exits after the shell declined a transition (multiplayer guests).
 func release_transition_lock() -> void:
+	_guard_overlapping_transitions()
 	_transition_locked = false
+
+## Do not reactivate an arrival portal (or a cancelled exit) until the player
+## has completely walked clear. A timer alone still traps slower players.
+func _guard_overlapping_transitions() -> void:
+	for transition in _room_transitions:
+		var area := transition.area as Area2D
+		if _transition_area_overlaps_player(area):
+			_arrival_contact_guards[String(transition.exit.get("_contact_guard_id", ""))] = true
+
+func _transition_area_overlaps_player(area: Area2D) -> bool:
+	if not is_instance_valid(area) or _player == null: return false
+	var shape := area.get_child(0) as CollisionShape2D
+	var rectangle := shape.shape as RectangleShape2D
+	return rectangle != null and _source_zone_overlaps_player(area.position, rectangle.size * 0.5, area.rotation)
 
 func restore_player_facing(direction: StringName) -> void:
 	match direction:
@@ -870,6 +888,7 @@ func _build_transition_triggers(payload: Variant) -> void:
 		var marker: Dictionary = marker_positions[transition_id]
 		var live_exit := exit_data.duplicate(true)
 		live_exit["source_teleport"] = bool(marker.get("teleport", false))
+		live_exit["_contact_guard_id"] = "Transition_%d" % transition_id
 		var zone := _make_trigger("Transition_%d" % transition_id, marker.position, TRANSITION_MARKER_BASE_SIZE, marker.scale, marker.rotation)
 		zone.body_entered.connect(_on_transition_entered.bind(live_exit))
 		_room_transitions.append({"area": zone, "exit": live_exit})
@@ -880,8 +899,10 @@ func _build_transition_triggers(payload: Variant) -> void:
 		var external_marker: Dictionary = external_marker_positions[source_sprite]
 		var external_transition_id := int(external_transition.get("transition_id", -1))
 		var zone := _make_trigger("ExternalTransition_%d" % external_transition_id, external_marker.position, TRANSITION_MARKER_BASE_SIZE, external_marker.scale, external_marker.rotation)
-		zone.body_entered.connect(_on_transition_entered.bind(external_transition.duplicate(true)))
-		_room_transitions.append({"area": zone, "exit": external_transition.duplicate(true)})
+		var external_exit := external_transition.duplicate(true)
+		external_exit["_contact_guard_id"] = "ExternalTransition_%d" % external_transition_id
+		zone.body_entered.connect(_on_transition_entered.bind(external_exit))
+		_room_transitions.append({"area": zone, "exit": external_exit})
 
 func _route_is_available(route: Dictionary) -> bool:
 	var progression: Dictionary = _campaign_context.get("progression", {})
@@ -1007,6 +1028,8 @@ func _make_trigger(trigger_name: String, origin: Vector2, base_size: Vector2, so
 func _on_transition_entered(body: Node2D, exit_data: Dictionary) -> void:
 	if body != _player or _transition_locked or not _controls_enabled or not _route_is_available(exit_data):
 		return
+	if _arrival_contact_guards.has(String(exit_data.get("_contact_guard_id", ""))):
+		return
 	_transition_locked = true
 	transition_requested.emit(exit_data.duplicate(true))
 
@@ -1017,14 +1040,15 @@ func _check_transition_contacts() -> void:
 	if _transition_locked or not _controls_enabled:
 		return
 	for transition in _room_transitions:
+		var area := transition.area as Area2D
+		var overlapping := _transition_area_overlaps_player(area)
+		var guard_id := String(transition.exit.get("_contact_guard_id", ""))
+		if _arrival_contact_guards.has(guard_id):
+			if not overlapping: _arrival_contact_guards.erase(guard_id)
+			continue
 		if not _route_is_available(transition.exit):
 			continue
-		var area := transition.area as Area2D
-		if not is_instance_valid(area):
-			continue
-		var shape := area.get_child(0) as CollisionShape2D
-		var rectangle := shape.shape as RectangleShape2D
-		if _source_zone_overlaps_player(area.position, rectangle.size * 0.5, area.rotation):
+		if overlapping:
 			_on_transition_entered(_player, transition.exit)
 			return
 

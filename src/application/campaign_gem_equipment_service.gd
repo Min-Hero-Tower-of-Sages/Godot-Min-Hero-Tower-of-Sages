@@ -5,6 +5,11 @@ const SLOT_COUNT := 4
 const INVENTORY_CAPACITY := 99 * 15
 const STAT_IDS: Array[StringName] = [&"health", &"energy", &"attack", &"healing", &"speed"]
 
+## Website-only sockets are available locally. Evolution-locked sockets keep
+## their authored restriction until the minion reaches the maximum level.
+static func slot_is_available(owned: OwnedMinionState, definition: MinionDefinition, slot: int) -> bool:
+	return definition != null and slot >= 0 and slot < SLOT_COUNT and (slot < definition.gem_slots or slot >= definition.gem_slots + definition.locked_gem_slots or owned.level >= 60)
+
 static func equip_gem(state, catalog: ContentCatalog, gem_instance_id: StringName, minion_instance_id: StringName, slot: int) -> Dictionary:
 	if state == null or catalog == null:
 		return _error("invalid_context", "campaign state and content catalog are required")
@@ -17,8 +22,7 @@ static func equip_gem(state, catalog: ContentCatalog, gem_instance_id: StringNam
 	var definition := catalog.get_definition(owned.definition_id) as MinionDefinition
 	if definition == null:
 		return _error("missing_minion_definition", "minion %s references missing content" % String(minion_instance_id))
-	var available_slots := mini(SLOT_COUNT, definition.gem_slots)
-	if slot < 0 or slot >= available_slots:
+	if not slot_is_available(owned, definition, slot):
 		return _error("gem_slot_locked", "minion %s has no unlocked gem socket at slot %d" % [String(minion_instance_id), slot])
 	var equipped_by := _equipped_minion_for(state, gem_instance_id)
 	if not equipped_by.is_empty():
@@ -45,7 +49,8 @@ static func unequip_gem(state, catalog: ContentCatalog, minion_instance_id: Stri
 	var definition := catalog.get_definition(owned.definition_id) as MinionDefinition
 	if definition == null:
 		return _error("missing_minion_definition", "minion %s references missing content" % String(minion_instance_id))
-	if slot < 0 or slot >= mini(SLOT_COUNT, definition.gem_slots):
+	# Never trap an imported equipped gem behind an evolution/website lock.
+	if slot < 0 or slot >= SLOT_COUNT:
 		return _error("gem_slot_locked", "minion %s has no unlocked gem socket at slot %d" % [String(minion_instance_id), slot])
 	var equipment := _normalized_equipment(owned.equipment_ids)
 	var gem_id := StringName(equipment[slot])

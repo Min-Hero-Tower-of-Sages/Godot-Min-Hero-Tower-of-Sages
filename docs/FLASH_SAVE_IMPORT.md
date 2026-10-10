@@ -29,8 +29,19 @@ does not scan browser profiles or change Flash files.
   retain their archived HP. Earlier imports receive this repair once on load;
   subsequent loads preserve damage taken in Godot.
 - Supported tutorial-seen flags are retained, including the first-gem prompt.
+- Minion-pedia owned/seen history is imported independently of the current
+  roster, including former evolution stages and enabled mod Dex entries.
+  Existing imported slots merge this history on their next load without
+  erasing discoveries or healing damage earned since the previous repair.
+- Purchased floor maps stay unlocked on repeat visits and on the corresponding
+  Hard Mode floor. Existing imports recover these flags from the archived
+  Flash fields automatically.
 - Equipped gems retain socket positions. Inventory gems retain their grid
   positions, tiers, five raw stats and twelve facets.
+- Website-only gem sockets are available locally, with no sponsor link required.
+  Evolution-locked sockets retain their restriction until evolution or level 60;
+  all four sockets work at maximum level. Equipped imported gems can always be
+  removed even if their original socket would otherwise be locked.
 - Integer money, star upgrades, best trainer ratings, trainer completion,
   floor unlocks, sage seals and supported mod flags are retained.
 - Original flat fields are archived in the Godot save for future migration.

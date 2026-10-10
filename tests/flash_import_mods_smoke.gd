@@ -52,7 +52,7 @@ func _ready() -> void:
 	var imported_stats := CampaignProgressionService.owned_display_stats(state.party[0], catalog.get_definition(state.party[0].definition_id), catalog, state)
 	assert(state.party[0].persistent_health == int(imported_stats.health))
 	assert(state.progression.gem_tutorial_seen and state.progression.battle_basics_tutorial_seen)
-	assert(state.progression.flash_import.version == 2)
+	assert(state.progression.flash_import.version == 3)
 	state.party[0].persistent_health = 7
 	assert(not Importer.repair_import_state(state, catalog).changed)
 	assert(state.party[0].persistent_health == 7)

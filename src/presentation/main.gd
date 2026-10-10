@@ -245,14 +245,20 @@ func _ready() -> void:
 	cooldown_style.border_color = Color8(245, 121, 121)
 	cooldown_style.set_border_width_all(3)
 	cooldown_style.set_corner_radius_all(10)
+	cooldown_style.content_margin_left = 8
+	cooldown_style.content_margin_right = 8
+	cooldown_style.content_margin_top = 3
+	cooldown_style.content_margin_bottom = 3
 	cooldown_tip.add_theme_stylebox_override("panel", cooldown_style)
 	var cooldown_text := cooldown_tip.get_node("CooldownText") as Label
+	cooldown_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	cooldown_text.add_theme_font_override("font", BURBIN_FONT)
 	cooldown_text.add_theme_font_size_override("font_size", 11)
 	cooldown_text.add_theme_color_override("font_color", Color.WHITE)
 	cooldown_text.add_theme_color_override("font_shadow_color", Color.BLACK)
 	cooldown_text.add_theme_constant_override("shadow_offset_x", 2)
 	cooldown_text.add_theme_constant_override("shadow_offset_y", 2)
+	cooldown_tip.size = Vector2(220, 40)
 	var confirmation_question := forfeit_confirmation.get_node("Question") as Label
 	confirmation_question.add_theme_font_override("font", BURBIN_FONT)
 	confirmation_question.add_theme_font_size_override("font_size", 16)
@@ -2160,18 +2166,20 @@ func _animate_source_screen_shake(profile: Dictionary) -> void:
 		start_positions.append(shaken_object.position.x)
 	_earthquake_base_positions = start_positions.duplicate()
 	_earthquake_tween = create_tween()
-	_earthquake_tween.set_parallel(true)
 	for shake_index in shake_count:
-		if shake_index > 0:
-			_earthquake_tween.chain().set_parallel(true)
 		var shake_duration := 0.05 + intensity * (float(shake_index) * 0.5)
-		for index in shaken_objects.size():
-			_earthquake_tween.tween_property(shaken_objects[index], "position:x", start_positions[index] + shake_distance, shake_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		_earthquake_tween.chain().set_parallel(true)
-		for index in shaken_objects.size():
-			_earthquake_tween.tween_property(shaken_objects[index], "position:x", start_positions[index], shake_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		# chain().set_parallel(true) re-enabled parallel mode for the *same*
+		# step: all opposing position tweens ran together and cancelled out.
+		# One serial offset tween moves all layers together, then returns them.
+		_earthquake_tween.tween_method(_apply_screen_shake_offset.bind(start_positions), 0.0, shake_distance, shake_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		_earthquake_tween.tween_method(_apply_screen_shake_offset.bind(start_positions), shake_distance, 0.0, shake_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	var source_move_time := (0.05 + intensity * (float(shake_count) * 0.5)) * float(shake_count) + 0.15
 	_last_move_visual_duration_seconds = maxf(_last_move_visual_duration_seconds, source_move_time)
+
+func _apply_screen_shake_offset(offset: float, origins: Array[float]) -> void:
+	var layers: Array[Control] = [arena_floor, combatant_layer, battle_modifier_layer]
+	for index in layers.size():
+		layers[index].position.x = origins[index] + offset
 
 func _animate_fade_through_target(texture: Texture2D, target_view: BattleCombatantView, profile: Dictionary) -> float:
 	var layer_inverse: Transform2D = move_vfx_layer.get_global_transform().affine_inverse()

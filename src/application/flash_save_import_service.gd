@@ -192,7 +192,7 @@ func convert_fields(data: Dictionary, catalog: ContentCatalog, character_name: S
 ## Never heal on subsequent loads: damage earned in the port must persist.
 static func repair_import_state(state: CampaignState, catalog: ContentCatalog) -> Dictionary:
 	var imported: Dictionary = state.progression.get("flash_import", {})
-	if imported.is_empty() or int(imported.get("version", 1)) >= 2:
+	if imported.is_empty() or int(imported.get("version", 1)) >= 3:
 		return {"ok": true, "changed": false}
 	var fields: Dictionary = imported.get("source_fields", {})
 	for index in TUTORIAL_FLAGS:
@@ -200,9 +200,44 @@ static func repair_import_state(state: CampaignState, catalog: ContentCatalog) -
 		var source_key := "m_hasTutorialsBeenSeen%d" % index
 		# Do not undo a tutorial acknowledged since the original import.
 		state.progression[flag] = bool(state.progression.get(flag, false)) or bool(fields.get(source_key, false))
-	var healed := CampaignProgressionService.rest_party(state, catalog, true)
-	if not healed.ok: return healed
-	imported["version"] = 2
+	if int(imported.get("version", 1)) < 2:
+		var healed := CampaignProgressionService.rest_party(state, catalog, true)
+		if not healed.ok: return healed
+	# Flash persists collection history separately from its current roster.
+	# Merge it, never replace discoveries made since importing.
+	var owned_ids: Array = state.progression.get("owned_minion_ids", []).duplicate()
+	var seen_ids: Array = state.progression.get("seen_minion_ids", []).duplicate()
+	var source_dex: Dictionary = {}
+	for pack in catalog.packs:
+		for definition in pack.definitions:
+			if definition is MinionDefinition and definition.source_mod == &"base" and definition.legacy_numeric_id >= 0:
+				source_dex[definition.legacy_numeric_id] = String(definition.id)
+	# Mod Dex IDs are allocated after 102 in enabled source-mod order.
+	var source_flags: Dictionary = {}
+	for key in fields:
+		if String(key).begins_with("m_isMod_"):
+			source_flags[String(ContentCatalog.canonical_mod_flag_id(StringName(String(key).trim_prefix("m_isMod_"))))] = bool(fields[key])
+	var next_dex := 102
+	for flag in Mods.MINION_FLAGS:
+		if bool(source_flags.get(flag, false)):
+			source_dex[next_dex] = String(Mods.MINION_FLAGS[flag])
+			next_dex += 1
+	for dex in source_dex:
+		var id: String = source_dex[dex]
+		if bool(fields.get("m_minionsOwned%d" % dex, false)) and id not in owned_ids: owned_ids.append(id)
+		if (bool(fields.get("m_minionsSeen%d" % dex, false)) or id in owned_ids) and id not in seen_ids: seen_ids.append(id)
+	state.progression["owned_minion_ids"] = owned_ids
+	state.progression["seen_minion_ids"] = seen_ids
+	var maps: Array = state.progression.get("map_unlocked_floor_indices", []).duplicate()
+	for index in 62:
+		if bool(fields.get("m_isMapUnlocked%d" % index, false)) and index % 31 not in maps: maps.append(index % 31)
+	state.progression["map_unlocked_floor_indices"] = maps
+	var resume: Dictionary = state.progression.get("flash_resume_floor", {})
+	if not resume.is_empty():
+		resume["map_unlocked"] = bool(resume.get("map_unlocked", false)) or int(resume.get("floor_index", 0)) % 31 in maps
+		state.progression["flash_resume_floor"] = resume
+	CampaignProgressionService.restore_floor_map(state)
+	imported["version"] = 3
 	state.progression["flash_import"] = imported
 	return {"ok": true, "changed": true}
 
@@ -226,7 +261,7 @@ func _validate_field_types(data: Dictionary) -> String:
 	var numeric := RegEx.new()
 	numeric.compile("^(m_curr(FloorOfTower|Money|KeysOnFloor|EggeryKeys)|m_numOfMinionsLeftToChoose|m_(bestTrainerStarCounts|starUpgradeAmounts)|minion[0-9]+(dexID|exp|statBonus|currHealth|move[0-9]+)|(?:minion[0-9]+)?gem[0-9]+(tier|stat[0-9]+|facet[0-9]+))")
 	var flags := RegEx.new()
-	flags.compile("^(m_(isMod_|hasBeaten|hasTutorialsBeenSeen|isMapUnlocked|hasUnlocked|hasTalkedTo)|minion[0-9]+(?:gem[0-9]+)?$|gem[0-9]+$)")
+	flags.compile("^(m_(isMod_|hasBeaten|hasTutorialsBeenSeen|isMapUnlocked|minionsOwned|minionsSeen|hasUnlocked|hasTalkedTo)|minion[0-9]+(?:gem[0-9]+)?$|gem[0-9]+$)")
 	for key in data:
 		var value: Variant = data[key]
 		if numeric.search(key) != null:
