@@ -120,7 +120,7 @@ def normalize_effects(move: dict, stat_names: dict[int, str]) -> list[dict]:
     def add(kind: str, scope: str, phase: str, amount: int = 0, random_bonus: int = 0,
             chance: int = 100, scaling: str = "none", stat: int | None = None,
             duration: int = 0, typed: bool = False, critical: bool = False,
-            shield_blocked: bool = False, roll_scope: str = "none") -> None:
+            shield_blocked: bool = False, roll_scope: str = "none", removal_policy: int = 0) -> None:
         sequence = len(effects)
         effects.append({
             "id": f'{move["id"]}/effect/{sequence:02d}_{kind}_{scope}', "kind": KIND[kind],
@@ -130,6 +130,7 @@ def normalize_effects(move: dict, stat_names: dict[int, str]) -> list[dict]:
             "duration": duration, "uses_type_effectiveness": typed, "can_critical": critical,
             "blocked_by_battle_mod_shield": shield_blocked, "legacy_order": sequence,
             "implementation_status": 1,
+            "removal_policy": removal_policy,
         })
 
     if move["is_passive"] or move["is_global_passive"]:
@@ -156,14 +157,15 @@ def normalize_effects(move: dict, stat_names: dict[int, str]) -> list[dict]:
     if move["armor"] != 0: add("armor", "enemy_targets", "enemy_target", move["armor"], duration=move["over_time_turns"], shield_blocked=True)
     if move["reflect_damage"] > 0: add("reflect", "enemy_targets", "enemy_target", move["reflect_damage"], duration=move["over_time_turns"], shield_blocked=True)
     if move["clear_buffs_debuffs_chance"] > 0:
-        add("clear_buffs_debuffs", "enemy_targets", "enemy_target", chance=move["clear_buffs_debuffs_chance"], roll_scope="per_target")
+        # Intentional Extended behavior: dispel enemies, cleanse allies.
+        add("clear_buffs_debuffs", "enemy_targets", "enemy_target", chance=move["clear_buffs_debuffs_chance"], roll_scope="per_target", removal_policy=1)
     if move["freeze_chance"] > 0: add("freeze", "enemy_targets", "enemy_target", chance=move["freeze_chance"], roll_scope="shared_move")
     if move["stun_chance"] > 0: add("stun", "enemy_targets", "enemy_target", chance=move["stun_chance"], roll_scope="shared_move")
     if move["healing"] != 0 or move["additional_healing"] != 0:
         add("heal", "ally_targets", "ally_target", move["healing"], move["additional_healing"], scaling="healing", typed=True, critical=True, roll_scope="shared_move")
     if move["shield"] > 0: add("shield", "ally_targets", "ally_target", move["shield"], scaling="healing")
     if move["clear_buffs_debuffs_chance"] > 0:
-        add("clear_buffs_debuffs", "ally_targets", "ally_target", chance=move["clear_buffs_debuffs_chance"], roll_scope="per_target")
+        add("clear_buffs_debuffs", "ally_targets", "ally_target", chance=move["clear_buffs_debuffs_chance"], roll_scope="per_target", removal_policy=2)
     if move["hot_healing"] != 0 or move["additional_hot_healing"] != 0:
         add("periodic_heal", "ally_targets", "ally_target", move["hot_healing"], move["additional_hot_healing"],
             move["over_time_chance"], "healing", duration=move["over_time_turns"], roll_scope="periodic_tick")

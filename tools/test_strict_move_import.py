@@ -39,6 +39,14 @@ class StrictMoveImportTests(unittest.TestCase):
         effects = importer.normalize_effects(move, {})
         self.assertEqual(["critical_chance"], [effect["kind_name"] for effect in effects])
 
+    def test_clearing_dispels_enemies_and_cleanses_allies_without_changing_chance(self):
+        move = importer.default_move()
+        move.update(id="base:move/cleansing_heal/tier1", clear_buffs_debuffs_chance=20)
+        effects = importer.normalize_effects(move, {})
+        self.assertEqual([1, 2], [effect["removal_policy"] for effect in effects])
+        self.assertEqual([20, 20], [effect["chance_percent"] for effect in effects])
+        self.assertEqual([1, 2], [effect["target_scope"] for effect in effects])
+
 
 if __name__ == "__main__":
     unittest.main()

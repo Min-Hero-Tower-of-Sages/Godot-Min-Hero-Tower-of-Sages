@@ -525,6 +525,7 @@ func _tick_periodic_effects() -> void:
 			var duration := 0
 			for effect in move.effects:
 				if effect == null or effect.kind not in [EffectDefinition.Kind.PERIODIC_DAMAGE, EffectDefinition.Kind.PERIODIC_HEAL, EffectDefinition.Kind.ARMOR, EffectDefinition.Kind.REFLECT]: continue
+				if not ConditionEffectExecutor.is_effect_active(status, effect): continue
 				duration = maxi(duration, effect.duration)
 				if effect.kind not in [EffectDefinition.Kind.PERIODIC_DAMAGE, EffectDefinition.Kind.PERIODIC_HEAL]: continue
 				var stat := LegacyModifiers.effective_attack(source, _content, _state.combatants) if effect.kind == EffectDefinition.Kind.PERIODIC_DAMAGE else LegacyModifiers.effective_healing(source, _content, _state.combatants)

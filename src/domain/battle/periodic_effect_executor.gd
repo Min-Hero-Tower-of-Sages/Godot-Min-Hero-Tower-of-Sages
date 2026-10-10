@@ -13,6 +13,7 @@ func execute(effect: EffectDefinition, context: Dictionary) -> void:
 		if StringName(status.get("kind", "")) == &"periodic" and StringName(status.get("move_id", "")) == move.id:
 			status.turns = 0
 			status.source_id = actor.instance_id
+			status.erase("suppressed_effect_ids")
 			target.statuses[index] = status
 			context.emit.call(&"periodic_refreshed", actor.instance_id, target.instance_id, {"move_id": String(move.id), "duration": effect.duration})
 			return

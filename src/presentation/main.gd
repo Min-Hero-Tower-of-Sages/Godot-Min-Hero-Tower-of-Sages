@@ -2598,7 +2598,7 @@ func _apply_event_values(event: BattleEvent) -> void:
 	view.update_from_state(values, true)
 	if event.kind in [&"frozen", &"stunned"]:
 		view.play_source_condition_tint(event.kind)
-	elif event.kind in [&"thawed", &"buffs_debuffs_cleared", &"battle_mod_resurrected"]:
+	elif event.kind in [&"thawed", &"battle_mod_resurrected"] or (event.kind == &"buffs_debuffs_cleared" and not bool(values.get("frozen", false)) and not bool(values.get("stunned", false))):
 		view.play_source_condition_tint(&"clear")
 	if event.kind in [&"periodic_applied", &"periodic_refreshed", &"periodic_expired", &"buffs_debuffs_cleared", &"defeated", &"battle_mod_resurrected"] or event.values.has("health"):
 		_refresh_presented_buff_icons()
@@ -3071,6 +3071,14 @@ func _refresh_buff_icons(states: Array) -> void:
 				continue
 			var status_move := catalog.get_definition(StringName(status.get("move_id", ""))) as MoveDefinition
 			if status_move != null:
+				if not status.get("suppressed_effect_ids", []).is_empty():
+					# Keep shared content immutable; this icon's tooltip describes only
+					# the components still present on this particular combatant.
+					status_move = status_move.duplicate() as MoveDefinition
+					var active_effects: Array[EffectDefinition] = []
+					for component in status_move.effects:
+						if component != null and ConditionEffectExecutor.is_effect_active(status, component): active_effects.append(component)
+					status_move.effects = active_effects
 				moves.append(status_move)
 		view.set_buff_icons(moves)
 
@@ -3095,6 +3103,9 @@ func _set_event_text(event: BattleEvent) -> void:
 				event_text.text = "%s was already at full health" % _combatant_label(event.target_id) if full_health else "%s could not recover any health" % _combatant_label(event.target_id)
 		&"periodic_applied", &"periodic_refreshed": event_text.text = "%s was affected by %s" % [_combatant_label(event.target_id), _move_name(StringName(event.values.get("move_id", "")))]
 		&"periodic_tick": event_text.text = "%s resolves at end of round" % _move_name(StringName(event.values.get("move_id", "")))
+		&"buffs_debuffs_cleared":
+			var removal_policy := int(event.values.get("removal_policy", EffectDefinition.RemovalPolicy.BOTH))
+			event_text.text = "%s's %s were cleared" % [_combatant_label(event.target_id), "buffs" if removal_policy == EffectDefinition.RemovalPolicy.BUFFS_ONLY else "debuffs" if removal_policy == EffectDefinition.RemovalPolicy.DEBUFFS_ONLY else "buffs and debuffs"]
 		&"periodic_health_applied":
 			var applied := int(event.values.get("applied", 0))
 			if applied < 0:

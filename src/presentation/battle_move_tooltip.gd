@@ -60,6 +60,11 @@ func show_move(move: MoveDefinition) -> void:
 		# than amount. The old amount==0 filter hid their descriptions.
 		if effect.kind in [EffectDefinition.Kind.STUN, EffectDefinition.Kind.FREEZE, EffectDefinition.Kind.CLEAR_BUFFS_DEBUFFS]:
 			var chance_label: String = {EffectDefinition.Kind.STUN: "Stun Chance", EffectDefinition.Kind.FREEZE: "Freeze Chance", EffectDefinition.Kind.CLEAR_BUFFS_DEBUFFS: "Buff/Debuff Clear Chance"}[effect.kind]
+			if effect.kind == EffectDefinition.Kind.CLEAR_BUFFS_DEBUFFS:
+				if effect.target_scope == EffectDefinition.TargetScope.ENEMY_TARGETS and move.enemy_target_count == 0: continue
+				if effect.target_scope == EffectDefinition.TargetScope.ALLY_TARGETS and move.ally_target_count == 0: continue
+				if effect.removal_policy == EffectDefinition.RemovalPolicy.BUFFS_ONLY: chance_label = "Remove Enemy Buffs"
+				elif effect.removal_policy == EffectDefinition.RemovalPolicy.DEBUFFS_ONLY: chance_label = "Cleanse Ally Debuffs"
 			rows.append(_row(chance_label, "%d%%" % effect.chance_percent, "#fff568"))
 			continue
 		if effect.kind == EffectDefinition.Kind.REVIVE:

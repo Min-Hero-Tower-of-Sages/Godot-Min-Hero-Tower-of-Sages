@@ -34,6 +34,8 @@ static func apply_event(previous: Dictionary, event: BattleEvent) -> Dictionary:
 					statuses.remove_at(index)
 			state["statuses"] = statuses
 		&"buffs_debuffs_cleared":
+			if event.values.has("removal_policy"):
+				return state # New events include the selectively filtered impact snapshot.
 			state["statuses"] = []
 			state["stat_stages"] = {}
 			state["stunned"] = false

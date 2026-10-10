@@ -198,6 +198,10 @@ func _save_moves(entries: Array, output: String, errors: Array[String]) -> int:
 			effect.phase = int(effect_entry.phase) as EffectDefinition.Phase
 			effect.scaling = int(effect_entry.scaling) as EffectDefinition.Scaling
 			effect.roll_scope = int(effect_entry.roll_scope) as EffectDefinition.RollScope
+			effect.removal_policy = int(effect_entry.get("removal_policy", 0)) as EffectDefinition.RemovalPolicy
+			if effect.kind == EffectDefinition.Kind.CLEAR_BUFFS_DEBUFFS:
+				if effect.removal_policy == EffectDefinition.RemovalPolicy.BUFFS_ONLY: effect.display_name = "Remove Buffs"
+				elif effect.removal_policy == EffectDefinition.RemovalPolicy.DEBUFFS_ONLY: effect.display_name = "Cleanse Debuffs"
 			effect.amount = int(effect_entry.amount)
 			effect.random_bonus = int(effect_entry.random_bonus)
 			effect.chance_percent = int(effect_entry.chance_percent)

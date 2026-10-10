@@ -10,6 +10,7 @@ enum TargetScope { ACTOR, ENEMY_TARGETS, ALLY_TARGETS, BOTH_TARGET_GROUPS, ALLIE
 enum Phase { BEFORE_ACCURACY, ENEMY_TARGET, ALLY_TARGET, ACTOR_AFTER_TARGETS, PASSIVE }
 enum Scaling { NONE, ATTACK, HEALING, ENERGY_STAT_PERCENT, HEALTH_STAT_PERCENT }
 enum RollScope { NONE, SHARED_MOVE, PER_TARGET, PER_EFFECT_TARGET, PERIODIC_TICK }
+enum RemovalPolicy { BOTH, BUFFS_ONLY, DEBUFFS_ONLY }
 enum ImplementationStatus { IMPLEMENTED, RUNTIME_PENDING }
 
 @export_group("Effect")
@@ -18,6 +19,7 @@ enum ImplementationStatus { IMPLEMENTED, RUNTIME_PENDING }
 @export var phase: Phase = Phase.ENEMY_TARGET
 @export var scaling: Scaling = Scaling.NONE
 @export var roll_scope: RollScope = RollScope.NONE
+@export var removal_policy: RemovalPolicy = RemovalPolicy.BOTH
 @export var amount: int = 0
 @export var random_bonus: int = 0
 @export_range(0, 100) var chance_percent: int = 100

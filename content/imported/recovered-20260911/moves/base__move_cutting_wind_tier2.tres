@@ -20,17 +20,19 @@ source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Mini
 [sub_resource type="Resource" id="Resource_yrl3g"]
 script = ExtResource("1_vu4fk")
 kind = 17
+removal_policy = 1
 roll_scope = 2
 chance_percent = 12
 legacy_order = 1
 executor = ExtResource("3_2jwgh")
 id = &"base:move/cutting_wind/tier2/effect/01_clear_buffs_debuffs_enemy_targets"
-display_name = "Clear Buffs Debuffs"
+display_name = "Remove Buffs"
 source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2364"
 
 [sub_resource type="Resource" id="Resource_7k45o"]
 script = ExtResource("1_vu4fk")
 kind = 17
+removal_policy = 2
 target_scope = 2
 phase = 2
 roll_scope = 2
@@ -38,7 +40,7 @@ chance_percent = 12
 legacy_order = 2
 executor = ExtResource("3_2jwgh")
 id = &"base:move/cutting_wind/tier2/effect/02_clear_buffs_debuffs_ally_targets"
-display_name = "Clear Buffs Debuffs"
+display_name = "Cleanse Debuffs"
 source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:2364"
 
 [resource]

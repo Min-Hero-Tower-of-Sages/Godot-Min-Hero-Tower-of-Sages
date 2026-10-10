@@ -55,7 +55,7 @@ static func _payload_total(combatant: CombatantState, content: ContentCatalog, k
 		var move := content.get_definition(StringName(status.get("move_id", ""))) as MoveDefinition
 		if move == null: continue
 		for effect in move.effects:
-			if effect != null and effect.kind == kind: result += effect.amount
+			if effect != null and effect.kind == kind and ConditionEffectExecutor.is_effect_active(status, effect): result += effect.amount
 	return result
 
 static func _owned_passive_total(combatant: CombatantState, content: ContentCatalog, kind: EffectDefinition.Kind, include_global: bool) -> float:
