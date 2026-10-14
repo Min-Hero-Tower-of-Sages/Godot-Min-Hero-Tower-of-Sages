@@ -925,9 +925,11 @@ func _stagger_entry_teleports() -> void:
 		var state := _combatant_state(minion.instance_id)
 		var order := int(state.get("slot_index", minion.slot_index)) * 2 + (0 if int(state.get("team", 0)) == 1 else 1)
 		minion.hold_for_entry()
+		var minion_ref: WeakRef = weakref(minion)
 		get_tree().create_timer(1.0 + float(order) * 0.2).timeout.connect(func() -> void:
-			if is_instance_valid(minion) and minion.is_inside_tree():
-				minion.play_extra_minion_spawn_animation()
+			var entering := minion_ref.get_ref() as BattleCombatantView
+			if entering != null and entering.is_inside_tree():
+				entering.play_extra_minion_spawn_animation()
 		)
 
 func _run_campaign_intro_tutorial(entry_started_usec: int) -> void:
@@ -1138,6 +1140,37 @@ func _build_move_buttons(decision: Dictionary, shown_id: StringName = &"") -> vo
 			displayed_move_ids.append(learned_move.id)
 	if not has_other_legal_move:
 		displayed_move_ids.append(DESPERATION_MOVE_ID)
+	var ordinary_count := displayed_move_ids.size() - (0 if has_other_legal_move else 1)
+	var expanded := ordinary_count > 12
+	move_panel.set_meta("expanded_moves", expanded)
+	var page_count := maxi(1, ceili(float(ordinary_count) / 16.0))
+	if StringName(move_panel.get_meta("page_actor", "")) != actor_id or int(move_panel.get_meta("page_revision", -1)) != int(decision.revision):
+		move_panel.set_meta("move_page", 0)
+	move_panel.set_meta("page_actor", actor_id)
+	move_panel.set_meta("page_revision", int(decision.revision))
+	var page_index := clampi(int(move_panel.get_meta("move_page", 0)), 0, page_count - 1)
+	move_panel.set_meta("move_page", page_index)
+	if expanded:
+		displayed_move_ids = displayed_move_ids.slice(page_index * 16, mini(ordinary_count, (page_index + 1) * 16))
+		if not has_other_legal_move: displayed_move_ids.append(DESPERATION_MOVE_ID)
+		var bounds := Rect2(-122.0, -278.0, 352.0, 416.0)
+		move_panel.set_meta("selector_bounds", bounds)
+		move_panel.position.x = clampf(move_panel.position.x, -bounds.position.x + 8.0, size.x - bounds.end.x - 8.0)
+		move_panel.position.y = clampf(move_panel.position.y, -bounds.position.y + 8.0, size.y - bounds.end.y - 8.0)
+		var backdrop := Panel.new()
+		backdrop.position = bounds.position
+		backdrop.size = bounds.size
+		backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var frame := StyleBoxFlat.new()
+		frame.bg_color = Color8(39, 43, 51, 242)
+		frame.border_color = Color8(162, 173, 188)
+		frame.set_border_width_all(2)
+		frame.set_corner_radius_all(8)
+		backdrop.add_theme_stylebox_override("panel", frame)
+		backdrop.z_index = -1
+		move_buttons.add_child(backdrop)
+	else:
+		move_panel.set_meta("selector_bounds", Rect2(-60.0, -70.0, 240.0, 220.0))
 	var move_slot := 0
 	var source_x := [-37.0, 41.0, 117.0, -37.0, 41.0, 117.0, -37.0, 41.0, 117.0, -37.0, 41.0, 117.0]
 	var source_y := [-21.0, -45.0, -21.0, 49.0, 73.0, 49.0, -91.0, -115.0, -91.0, -161.0, -185.0, -161.0]
@@ -1156,7 +1189,13 @@ func _build_move_buttons(decision: Dictionary, shown_id: StringName = &"") -> vo
 		button.set_meta("usable", can_use)
 		var is_desperation := move.id == DESPERATION_MOVE_ID
 		var current_move_slot := move_slot
-		var final_button_position := Vector2(-135.0, -60.0) if is_desperation else Vector2(source_x[mini(move_slot, 11)], source_y[mini(move_slot, 11)])
+		var final_button_position: Vector2
+		if is_desperation:
+			final_button_position = Vector2(-109.0, 42.0) if expanded else Vector2(-135.0, -60.0)
+		elif expanded:
+			final_button_position = Vector2(-104.0 + (move_slot % 4) * 88.0, -255.0 + floori(float(move_slot) / 4.0) * 76.0)
+		else:
+			final_button_position = Vector2(source_x[move_slot], source_y[move_slot])
 		button.position = final_button_position
 		button.set_meta("selector_final_position", final_button_position)
 		button.set_meta("selector_ordinary_move", not is_desperation)
@@ -1180,8 +1219,13 @@ func _build_move_buttons(decision: Dictionary, shown_id: StringName = &"") -> vo
 		# as the name plus 10 once the name is over 60px, otherwise 70.
 		var name_text_width := BURBIN_FONT.get_string_size(move.display_name, HORIZONTAL_ALIGNMENT_LEFT, -1.0, 10).x
 		var name_bubble_width := name_text_width + 10.0 if name_text_width > 60.0 else 70.0
+		if expanded: name_bubble_width = 82.0
 		var bubble_x := -21.0 - (name_bubble_width - 70.0) if current_move_slot % 3 == 0 else (-11.0 - (name_bubble_width - 70.0) * 0.5 if current_move_slot % 3 == 1 else -1.0)
 		var bubble_y := 49.0 if current_move_slot in [3, 4, 5] else -19.0
+		if expanded:
+			bubble_x = -14.0
+			bubble_y = -19.0
+			name_bubble.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		name_bubble.position = Vector2(bubble_x, bubble_y)
 		name_bubble.size = Vector2(name_bubble_width, 17.0)
 		name_bubble.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -1196,7 +1240,7 @@ func _build_move_buttons(decision: Dictionary, shown_id: StringName = &"") -> vo
 		name_arrow.name = "MoveNameArrow"
 		name_arrow.color = Color.BLACK
 		name_arrow.size = Vector2(7.0, 7.0)
-		name_arrow.position = Vector2(25.0, 44.0 if current_move_slot in [3, 4, 5] else -8.0)
+		name_arrow.position = Vector2(25.0, 44.0 if not expanded and current_move_slot in [3, 4, 5] else -8.0)
 		name_arrow.rotation_degrees = 45.0
 		name_arrow.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		button.add_child(name_arrow)
@@ -1217,10 +1261,34 @@ func _build_move_buttons(decision: Dictionary, shown_id: StringName = &"") -> vo
 			button.add_child(overlay)
 		if move.id != DESPERATION_MOVE_ID:
 			move_slot += 1
+	if expanded and page_count > 1:
+		var page_label := Label.new()
+		page_label.text = "%d / %d" % [page_index + 1, page_count]
+		page_label.position = Vector2(-52.0, 96.0)
+		page_label.size = Vector2(210.0, 28.0)
+		page_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		page_label.add_theme_font_override("font", BURBIN_FONT)
+		page_label.add_theme_font_size_override("font_size", 16)
+		page_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		move_buttons.add_child(page_label)
+		for direction in [-1, 1]:
+			var navigation := Button.new()
+			navigation.text = "◀" if direction < 0 else "▶"
+			navigation.position = Vector2(-104.0 if direction < 0 else 172.0, 96.0)
+			navigation.size = Vector2(42.0, 30.0)
+			navigation.focus_mode = Control.FOCUS_NONE
+			navigation.disabled = page_index + direction < 0 or page_index + direction >= page_count
+			navigation.pressed.connect(_change_move_page.bind(direction))
+			move_buttons.add_child(navigation)
 	event_text.text = "Your turn — choose a move"
 	_animate_move_selector_in()
 	if interactive:
 		_show_move_selection_hint()
+
+func _change_move_page(direction: int) -> void:
+	if busy or not pending_move.is_empty() or _move_selector_exiting: return
+	move_panel.set_meta("move_page", int(move_panel.get_meta("move_page", 0)) + direction)
+	_build_move_buttons(_selector_decision, _selector_minion_id)
 
 ## While you choose a move (BattleScreenVisualController.reportClick): a click
 ## on one of your minions opens its selector (only the acting one can choose),
@@ -1257,7 +1325,8 @@ func _selector_click_target(canvas_point: Vector2) -> Dictionary:
 		return {}
 	# MoveSelectorForPlayer's collision background: drawRect(-60, -70, 240, 220)
 	# around the selector. A click there neither closes it nor picks a minion.
-	var selector_area := move_panel.get_global_transform_with_canvas() * Rect2(-60.0, -70.0, 240.0, 220.0)
+	var selector_bounds: Rect2 = move_panel.get_meta("selector_bounds", Rect2(-60.0, -70.0, 240.0, 220.0))
+	var selector_area := move_panel.get_global_transform_with_canvas() * selector_bounds
 	if move_panel.visible and not _move_selector_exiting and selector_area.has_point(canvas_point):
 		return {}
 	var candidates: Array = combatant_views.values()
@@ -1317,10 +1386,11 @@ func _animate_move_selector_in() -> void:
 			name_arrow.modulate.a = 0.0
 		# Owned by the button: it can never call back into a freed button.
 		var movement := button.create_tween()
-		movement.tween_property(button, "position", button.get_meta("selector_final_position"), 0.3 + float(index) * 0.1).set_delay(float(index) * 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		var animation_index := mini(index, 5) if bool(move_panel.get_meta("expanded_moves", false)) else index
+		movement.tween_property(button, "position", button.get_meta("selector_final_position"), 0.3 + float(animation_index) * 0.1).set_delay(float(animation_index) * 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		movement.tween_property(button, "mouse_filter", Control.MOUSE_FILTER_STOP, 0.0)
 		_move_selector_tweens.append(movement)
-		var label_delay := 0.3 + float(index) * 0.2
+		var label_delay := 0.3 + float(animation_index) * 0.2
 		if name_bubble != null:
 			var bubble_tween := create_tween()
 			bubble_tween.tween_property(name_bubble, "modulate:a", 1.0, 0.2).set_delay(label_delay)
@@ -1351,7 +1421,8 @@ func _animate_move_selector_out() -> void:
 	for index in move_count:
 		var button := ordinary_buttons[index]
 		var movement := create_tween()
-		movement.tween_property(button, "position", Vector2(-142.0, 69.0), 0.3 + float(index) * 0.1).set_delay(float(index) * 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		var animation_index := mini(index, 5) if bool(move_panel.get_meta("expanded_moves", false)) else index
+		movement.tween_property(button, "position", Vector2(-142.0, 69.0), 0.3 + float(animation_index) * 0.1).set_delay(float(animation_index) * 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		_move_selector_tweens.append(movement)
 		var name_bubble := button.get_node_or_null("MoveNameBubble") as Label
 		var name_arrow := button.get_node_or_null("MoveNameArrow") as ColorRect
@@ -2641,7 +2712,8 @@ func _show_resurrection_tombstone(instance_id: StringName, turns_left: int) -> v
 	if root == null or not is_instance_valid(root):
 		root = Node2D.new()
 		root.name = "ResurrectionTombstone_%s" % String(instance_id)
-		root.z_index = 0
+		root.z_as_relative = false
+		root.z_index = 760
 		root.visible = false
 		var sprite := Sprite2D.new()
 		sprite.texture = RESURRECTION_TOMBSTONE_TEXTURE
@@ -2745,7 +2817,7 @@ func _create_move_timer_visuals(config: Dictionary) -> void:
 	buff_icon.name = "TimerBuffIcon"
 	buff_icon.texture = MOVE_TIMER_DEFAULT_BUFF_ICON
 	buff_icon.centered = true
-	buff_icon.position = Vector2(17.0, -47.0)
+	buff_icon.position = Vector2(17.0, -47.0) + buff_icon.texture.get_size() * 0.4
 	buff_icon.scale = Vector2(0.8, 0.8)
 	buff_icon.modulate.a = 0.0
 	buff_panel.add_child(buff_icon)
@@ -2754,6 +2826,7 @@ func _create_move_timer_visuals(config: Dictionary) -> void:
 	var passive_move := catalog.get_definition(passive_id) as MoveDefinition if not passive_id.is_empty() else null
 	if passive_move != null:
 		buff_icon.texture = _move_icon(passive_move)
+		if buff_icon.texture != null: buff_icon.position = Vector2(17.0, -47.0) + buff_icon.texture.get_size() * 0.4
 		var buff_info: Dictionary = _move_timer_buff_info(passive_move)
 		buff_text.text = String(buff_info.get("text", passive_move.display_name))
 		buff_text.add_theme_color_override("font_color", buff_info.get("color", Color8(237, 240, 245)))
@@ -2762,7 +2835,7 @@ func _create_move_timer_visuals(config: Dictionary) -> void:
 	timer_icon.name = "TimerMoveIcon"
 	timer_icon.texture = _move_icon(timer_move) if timer_move != null else MOVE_TIMER_DEFAULT_ICON
 	timer_icon.centered = true
-	timer_icon.position = Vector2(308.0, -12.0)
+	timer_icon.position = Vector2(308.0, -12.0) + timer_icon.texture.get_size() * 0.4
 	timer_icon.scale = Vector2(0.8, 0.8)
 	timer_icon.modulate.a = 0.0
 	root.add_child(timer_icon)
@@ -3576,6 +3649,7 @@ func _show_fatal(message: String) -> void:
 
 func _clear_buttons(container: Control) -> void:
 	for child in container.get_children():
+		container.remove_child(child)
 		child.queue_free()
 
 func _clear_combatant_views() -> void:

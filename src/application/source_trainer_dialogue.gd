@@ -12,4 +12,7 @@ static func for_encounter(encounter: EncounterDefinition) -> Dictionary:
 		var decoded: Variant = JSON.parse_string(FileAccess.get_file_as_string(DATA_PATH))
 		if decoded is Dictionary:
 			_entries = decoded
-	return _entries.get(String(encounter.source_trainer_id), {}).duplicate(true)
+	var entry: Dictionary = _entries.get(String(encounter.source_trainer_id), {}).duplicate(true)
+	if String(encounter.source_trainer_id).begins_with("base:trainer/hard/") and encounter.source_trainer_type in [&"TrainerType.HARD_TRAINER", &"TrainerType.EXPERT_TRAINER"] and String(entry.get("first_visit_text", "")).strip_edges().is_empty():
+		entry["first_visit_text"] = "In Hard Mode, we must fight!"
+	return entry

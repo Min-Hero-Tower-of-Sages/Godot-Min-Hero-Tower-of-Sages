@@ -58,7 +58,7 @@ def build_graph(floor_index: int, level_name: str, expert_type: str, expert_enco
     for symbol, objects in room_objects.items():
         for obj in objects:
             sprite = obj.get("attributes", {}).get("spriteName", "")
-            match = re.fullmatch(r"roomTransitionObject(\d+)", sprite)
+            match = re.fullmatch(r"(?:teleport_|telport_)?roomTransitionObject(\d+)", sprite)
             if match:
                 symbols_at_transition.setdefault(int(match.group(1)), []).append(symbol)
 
@@ -79,7 +79,7 @@ def build_graph(floor_index: int, level_name: str, expert_type: str, expert_enco
         exits: list[dict] = []
         for obj in room_objects[symbol]:
             sprite = obj.get("attributes", {}).get("spriteName", "")
-            match = re.fullmatch(r"roomTransitionObject(\d+)", sprite)
+            match = re.fullmatch(r"(?:teleport_|telport_)?roomTransitionObject(\d+)", sprite)
             if match:
                 transition = int(match.group(1))
                 targets = [other for other in symbols_at_transition.get(transition, []) if other != symbol]

@@ -119,6 +119,7 @@ static func load_rooms(graph_path: String, default_height_thresholds: Dictionary
 						interaction[field] = Vector2(float(coordinates[0]), float(coordinates[1]))
 				room.interactions.append(interaction)
 		_bind_source_doors(room, payload)
+		_bind_source_heal_zones(room, payload)
 		result.append(room)
 	for raw_external_transition in parsed.get("external_transitions", []):
 		if not raw_external_transition is Dictionary:
@@ -128,7 +129,54 @@ static func load_rooms(graph_path: String, default_height_thresholds: Dictionary
 			if room.id == source_room_id:
 				room.external_transitions.append(raw_external_transition.duplicate(true))
 				break
+	_bind_source_portals(result)
 	return result
+
+static func _bind_source_heal_zones(room: RoomDefinition, payload: RoomPayloadDefinition) -> void:
+	if not payload.objects.any(func(attributes: Dictionary) -> bool: return String(attributes.get("spriteName", "")) == "generalRoom_healStone"):
+		return
+	var zones: Array[Dictionary] = []
+	for attributes in payload.objects:
+		if String(attributes.get("spriteName", "")) == "buttonZoneObject1": zones.append(attributes)
+	if zones.is_empty(): return
+	var first_id := StringName("%s-source-heal" % room.id)
+	for index in range(room.interactions.size() - 1, -1, -1):
+		if StringName(room.interactions[index].get("kind", "")) == &"heal_party":
+			first_id = StringName(room.interactions[index].id)
+			room.interactions.remove_at(index)
+	# Several source rooms reuse interaction ID 1 for multiple button zones.
+	# Retain each zone's own geometry instead of the last dictionary entry.
+	for index in zones.size():
+		var attributes: Dictionary = zones[index]
+		room.interactions.append({
+			"id": first_id if index == 0 else StringName("%s-%d" % [first_id, index]),
+			"kind": &"heal_party", "source_zone_id": 1, "trigger_on_enter": true,
+			"use_source_geometry": true,
+			"source_position": Vector2(float(attributes.get("xPos", 0.0)), float(attributes.get("yPos", 0.0))),
+			"source_scale": Vector2(float(attributes.get("xScale", 1.0)), float(attributes.get("yScale", 1.0))),
+			"source_rotation": float(attributes.get("rotation", 0.0)),
+		})
+
+static func _bind_source_portals(rooms: Array[RoomDefinition]) -> void:
+	var hosts_by_transition: Dictionary = {}
+	for room in rooms:
+		for attributes in room.payload.objects:
+			var sprite := String(attributes.get("spriteName", "")).trim_prefix("teleport_").trim_prefix("telport_")
+			if not sprite.begins_with("roomTransitionObject"): continue
+			var suffix := sprite.trim_prefix("roomTransitionObject")
+			if not suffix.is_valid_int(): continue
+			var transition_id := int(suffix)
+			if not hosts_by_transition.has(transition_id): hosts_by_transition[transition_id] = []
+			if room not in hosts_by_transition[transition_id]: hosts_by_transition[transition_id].append(room)
+	for transition_id in hosts_by_transition:
+		var hosts: Array = hosts_by_transition[transition_id]
+		if hosts.size() != 2: continue
+		for origin in hosts:
+			if origin.exits.any(func(route: Dictionary) -> bool: return int(route.get("transition_id", -1)) == int(transition_id)): continue
+			var target: RoomDefinition = hosts[1] if origin == hosts[0] else hosts[0]
+			var spawn_id := StringName("entry-%d" % int(transition_id))
+			if not target.spawn_positions.has(String(spawn_id)): continue
+			origin.exits.append({"transition_id": int(transition_id), "target_room_id": target.id, "target_spawn_id": spawn_id})
 
 static func _source_bounds(attributes: Dictionary, base_size: Vector2) -> Rect2:
 	var origin := Vector2(float(attributes.get("xPos", 0.0)), float(attributes.get("yPos", 0.0)))

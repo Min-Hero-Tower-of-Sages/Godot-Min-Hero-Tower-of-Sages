@@ -78,6 +78,7 @@ func load(slot: int) -> Dictionary:
 	if not import_repair.ok: return import_repair
 	var recovered_egg := _recover_interrupted_egg_preview(candidate)
 	var repaired_floor_visit := _repair_legacy_floor_visit(candidate)
+	var repaired_hard_keys := _repair_hard_door_keys(candidate)
 	var repaired_map := ProgressionService.restore_floor_map(candidate)
 	var errors := candidate.validation_errors(catalog)
 	if not errors.is_empty():
@@ -87,7 +88,7 @@ func load(slot: int) -> Dictionary:
 		return _error("missing_campaign", "save references missing campaign %s" % candidate.campaign_id)
 	if catalog.get_definition(candidate.current_room_id) is not RoomDefinition:
 		return _error("missing_room", "save references missing current room %s" % candidate.current_room_id)
-	if import_repair.changed or recovered_egg or repaired_floor_visit or repaired_map:
+	if import_repair.changed or recovered_egg or repaired_floor_visit or repaired_hard_keys or repaired_map:
 		var repaired_save := save_repository.save_slot(slot, candidate.to_dictionary(catalog.content_version))
 		if not repaired_save.ok: return repaired_save
 	state = candidate
@@ -316,7 +317,8 @@ func select_tower_floor(floor_index: int) -> Dictionary:
 	# path even when the player chooses the same floor again.
 	candidate.progression["floor_keys"] = 0
 	candidate.progression["eggery_keys"] = 0
-	candidate.progression["boss_door_unlocked"] = false
+	candidate.progression["boss_door_unlocked"] = mode == &"hard"
+	candidate.progression["hard_door_keys_version"] = 1
 	candidate.progression["eggery_door_unlocked"] = false
 	candidate.progression["map_unlocked"] = floor_index % 31 in candidate.progression.get("map_unlocked_floor_indices", [])
 	candidate.progression["eggery_picks_remaining"] = _eggery_pick_count(int(candidate.progression.get("sage_seals", 0)))
@@ -436,7 +438,7 @@ func enter_room(target_room_id: StringName, transition_id: int = -1) -> Dictiona
 	if not _route_is_available(matching_exit):
 		return {"ok": false, "code": "locked_exit", "message": "that route is not available in the current tower mode"}
 	var required_flag := StringName(matching_exit.get("requires_progression_flag", ""))
-	if not required_flag.is_empty() and not bool(state.progression.get(String(required_flag), false)):
+	if not required_flag.is_empty() and not _progression_flag_open(required_flag):
 		return {"ok": false, "code": "locked_exit", "message": "that route is still locked", "required_flag": required_flag}
 	var entry_spawn_id := StringName(matching_exit.get("target_spawn_id", ""))
 	if not entry_spawn_id.is_empty() and entry_spawn_id not in next_room.spawn_ids:
@@ -511,7 +513,7 @@ func interact(interaction_id: StringName, checkpoint_position: Variant = null, c
 					return {"ok": true, "kind": &"map_granted", "message": String(interaction.get("first_visit_text", "Here is a map to help you with this floor."))}
 				return {"ok": true, "kind": &"map_hint", "message": String(interaction.get("return_text", "Use the map well."))}
 			&"unlock_boss_door":
-				if bool(state.progression.get("boss_door_unlocked", false)):
+				if int(state.progression.get("floor_index", 0)) >= CampaignTowerModeService.STANDARD_FLOOR_COUNT or bool(state.progression.get("boss_door_unlocked", false)):
 					return {"ok": true, "kind": &"door_already_open"}
 				var required_keys := int(interaction.get("required_floor_keys", 3))
 				var available_keys := int(state.progression.get("floor_keys", 0))
@@ -531,8 +533,12 @@ func interact(interaction_id: StringName, checkpoint_position: Variant = null, c
 				if bool(state.progression.get("eggery_door_unlocked", false)):
 					return {"ok": true, "kind": &"door_already_open"}
 				var eggery_keys := int(state.progression.get("eggery_keys", 0))
-				if eggery_keys < 1:
-					return {"ok": true, "kind": &"door_locked", "message": String(interaction.get("locked_text", "I need a key to open the hatchery.")), "keys_needed": 1 - eggery_keys}
+				var hard_floor := int(state.progression.get("floor_index", 0)) >= CampaignTowerModeService.STANDARD_FLOOR_COUNT
+				var required_eggery_keys := 3 if hard_floor else 1
+				var required_floor_keys := 3 if hard_floor else 0
+				var floor_keys := int(state.progression.get("floor_keys", 0))
+				if eggery_keys < required_eggery_keys or floor_keys < required_floor_keys:
+					return {"ok": true, "kind": &"door_locked", "message": String(interaction.get("locked_text", "I need more keys to open that door.")), "keys_needed": maxi(0, required_eggery_keys - eggery_keys) + maxi(0, required_floor_keys - floor_keys)}
 				var eggery_door_state = StateScript.new()
 				eggery_door_state.load_dictionary(state.to_dictionary(catalog.content_version, true))
 				# BossToEggeryDoorWall consumes the player's accumulated tower keys
@@ -1183,6 +1189,27 @@ func _repair_legacy_floor_visit(candidate: CampaignState) -> bool:
 	candidate.progression["floor_visit_reward_version"] = 2
 	return true
 
+func _repair_hard_door_keys(candidate: CampaignState) -> bool:
+	var floor_index := int(candidate.progression.get("floor_index", 0))
+	if floor_index < CampaignTowerModeService.STANDARD_FLOOR_COUNT: return false
+	var changed := false
+	# Older builds consumed the normal trainers' ring at the always-open hard
+	# boss door. Recover earned keys once when the hatchery has not been opened.
+	if int(candidate.progression.get("hard_door_keys_version", 0)) < 1:
+		if bool(candidate.progression.get("boss_door_unlocked", false)) and not bool(candidate.progression.get("eggery_door_unlocked", false)):
+			var completed: Dictionary = candidate.progression.get("completed_encounters", {})
+			var earned := 0
+			for encounter in CampaignTowerModeService.hard_encounters_for_floor(catalog, floor_index):
+				if bool(completed.get(String(encounter.id), false)):
+					earned += int(encounter.rewards.get("first_clear", {}).get("floor_keys", 0))
+			candidate.progression["floor_keys"] = maxi(earned, int(candidate.progression.get("floor_keys", 0)))
+		candidate.progression["hard_door_keys_version"] = 1
+		changed = true
+	if not bool(candidate.progression.get("boss_door_unlocked", false)):
+		candidate.progression["boss_door_unlocked"] = true
+		changed = true
+	return changed
+
 func rename_minion(instance_id: StringName, new_name: String) -> Dictionary:
 	if state == null or catalog == null:
 		return _error("no_campaign", "there is no active campaign")
@@ -1279,11 +1306,16 @@ func _eggery_pick_count(sage_seals: int) -> int:
 
 func _route_is_available(route: Dictionary) -> bool:
 	var required_flag := StringName(route.get("requires_progression_flag", ""))
-	if not required_flag.is_empty() and not bool(state.progression.get(String(required_flag), false)):
+	if not required_flag.is_empty() and not _progression_flag_open(required_flag):
 		return false
 	var required_mode := String(route.get("requires_tower_mode", ""))
 	var tower_mode := String(CampaignTowerModeService.mode_for_global_floor(int(state.progression.get("floor_index", 0)))) if state != null else "standard"
 	return required_mode.is_empty() or required_mode == tower_mode
+
+func _progression_flag_open(flag: StringName) -> bool:
+	if flag == &"boss_door_unlocked" and int(state.progression.get("floor_index", 0)) >= CampaignTowerModeService.STANDARD_FLOOR_COUNT:
+		return true
+	return bool(state.progression.get(String(flag), false))
 
 func _party_minion_index(candidate, instance_id: StringName) -> int:
 	for index in candidate.party.size():

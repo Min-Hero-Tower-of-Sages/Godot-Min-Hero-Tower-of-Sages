@@ -74,6 +74,8 @@ def build():
                 body = bodies[index][record["room"]]
                 kind = record["type"].removeprefix("TrainerType.")
                 dialogue[trainer_id] = {"trainer_name": quoted(body, "m_trainerName", names[kind]), "first_visit_text": record["start_text"], "after_win_text": record["lose_text"], "repeat_text": quoted(body, "m_whatTrainerSaysAtStart_alreadyBeaten", "You already beat me!   Retry for three stars?")}
+                if kind in {"HARD_TRAINER", "EXPERT_TRAINER"} and not dialogue[trainer_id]["first_visit_text"].strip():
+                    dialogue[trainer_id]["first_visit_text"] = "In Hard Mode, we must fight!"
     prefix = '[gd_resource type="Resource" script_class="ContentPackDefinition" format=3]\n\n[ext_resource type="Script" path="res://src/content/content_pack_definition.gd" id="1_pack"]\n[ext_resource type="Script" path="res://src/content/content_definition.gd" id="2_definition"]\n'
     prefix += "".join(f'[ext_resource type="Resource" path="res://{path.relative_to(ROOT).as_posix()}" id="{index + 3}_encounter"]\n' for index, path in enumerate(paths))
     refs = ", ".join(f'ExtResource("{index + 3}_encounter")' for index in range(len(paths)))

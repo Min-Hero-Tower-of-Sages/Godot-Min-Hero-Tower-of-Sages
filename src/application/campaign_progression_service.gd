@@ -443,14 +443,21 @@ static func reset_star_upgrades(state) -> Dictionary:
 
 static func _battle_star_rating(state, result: BattleResult) -> int:
 	var living := 0
-	var participant_health: Dictionary = {}
+	var active_slots: Dictionary = {}
 	for participant in result.participants:
-		if int(participant.get("team", -1)) != 0:
+		if int(participant.get("team", -1)) != 0 or bool(participant.get("retired", false)):
 			continue
 		var changes: Dictionary = participant.get("persistent_changes", {})
-		participant_health[String(participant.get("instance_id", ""))] = int(changes.get("health", 0))
-	for owned in state.party:
-		if int(participant_health.get(String(owned.instance_id), 1)) > 0:
+		var slot := int(participant.get("slot_index", -1))
+		if slot < 0:
+			for index in state.party.size():
+				if String(state.party[index].instance_id) == String(participant.get("instance_id", "")): slot = index
+		if slot >= 0:
+			active_slots[slot] = int(participant.get("remaining_health", changes.get("health", 0))) > 0
+	for index in state.party.size():
+		# Flash scores the active five slots before restoring replaced originals.
+		# A surviving stone minion occupies its predecessor's scoring slot.
+		if bool(active_slots.get(index, true)):
 			living += 1
 	var fallen: int = state.party.size() - living
 	if fallen <= 1:

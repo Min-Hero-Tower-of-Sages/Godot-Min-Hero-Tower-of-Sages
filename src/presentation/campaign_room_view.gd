@@ -603,7 +603,7 @@ func _build_world(payload: Variant, character: Dictionary, campaign_context: Dic
 				continue
 		if sprite_name == "room_expertTeleporter_glow" and not expert_glow_enabled:
 			continue
-		if sprite_name == "regularDoor" and bool(progression.get("boss_door_unlocked", false)):
+		if sprite_name == "regularDoor" and _boss_door_unlocked():
 			continue
 		if sprite_name == "regularDoor_eggery" and bool(progression.get("eggery_door_unlocked", false)):
 			continue
@@ -629,7 +629,7 @@ func _build_world(payload: Variant, character: Dictionary, campaign_context: Dic
 			if not _egg_sprites_by_slot.has(egg_slot):
 				_egg_sprites_by_slot[egg_slot] = []
 			_egg_sprites_by_slot[egg_slot].append(displayed_sprite)
-		if sprite_name == "generalRoom_specialDoor_open" and not bool(progression.get("boss_door_unlocked", false)):
+		if sprite_name == "generalRoom_specialDoor_open" and not _boss_door_unlocked():
 			_add_locked_door_overlay(attributes, "generalRoom_specialDoor_locked", index)
 		elif sprite_name == "generalRoom_eggeryDoor_open" and not bool(progression.get("eggery_door_unlocked", false)):
 			var eggery_lock_art := "generalRoom_eggeryDoor_locked_sixKeys" if expert_glow_enabled else "generalRoom_eggeryDoor_locked"
@@ -907,7 +907,7 @@ func _build_transition_triggers(payload: Variant) -> void:
 func _route_is_available(route: Dictionary) -> bool:
 	var progression: Dictionary = _campaign_context.get("progression", {})
 	var required_flag := String(route.get("requires_progression_flag", ""))
-	if not required_flag.is_empty() and not bool(progression.get(required_flag, false)):
+	if not required_flag.is_empty() and not (_boss_door_unlocked() if required_flag == "boss_door_unlocked" else bool(progression.get(required_flag, false))):
 		return false
 	var required_mode := String(route.get("requires_tower_mode", ""))
 	var tower_mode := String(_campaign_context.get("tower_mode", "standard"))
@@ -940,7 +940,9 @@ func _build_interaction_triggers(payload: Variant) -> void:
 			continue
 		var zone_index := int(interaction.get("source_zone_id", -1))
 		var zone_data: Dictionary
-		if _interaction_zones.has(zone_index):
+		if bool(interaction.get("use_source_geometry", false)):
+			zone_data = {"position": interaction.get("source_position", Vector2.ZERO), "scale": interaction.get("source_scale", Vector2.ONE), "rotation": float(interaction.get("source_rotation", 0.0))}
+		elif _interaction_zones.has(zone_index):
 			zone_data = _interaction_zones[zone_index]
 		else:
 			zone_data = {"position": interaction.get("source_position", Vector2.ZERO), "scale": interaction.get("source_scale", Vector2.ONE), "rotation": 0.0}
@@ -1240,7 +1242,8 @@ func _art_texture_name(sprite_name: String) -> String:
 	return sprite_name
 
 func _boss_door_unlocked() -> bool:
-	return bool(_campaign_context.get("progression", {}).get("boss_door_unlocked", false))
+	var progression: Dictionary = _campaign_context.get("progression", {})
+	return String(_campaign_context.get("tower_mode", "standard")) == "hard" or int(progression.get("floor_index", 0)) >= STANDARD_TOWER_FLOOR_COUNT or bool(progression.get("boss_door_unlocked", false))
 
 func _eggery_door_unlocked() -> bool:
 	return bool(_campaign_context.get("progression", {}).get("eggery_door_unlocked", false))

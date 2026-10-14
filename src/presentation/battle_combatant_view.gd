@@ -254,6 +254,8 @@ func setup(combatant_data: Dictionary, definition: MinionDefinition, sprite_text
 	selected_indicator = Sprite2D.new()
 	selected_indicator.texture = SELECTED_INDICATOR
 	selected_indicator.centered = false
+	selected_indicator.z_as_relative = false
+	selected_indicator.z_index = 950
 	selected_indicator.position = Vector2(-28.0, -sprite_height - 60.0)
 	selected_indicator.visible = false
 	add_child(selected_indicator)
