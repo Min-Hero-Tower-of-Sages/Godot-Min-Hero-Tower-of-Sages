@@ -274,8 +274,12 @@ func _present_owned_minion(run_id: int, owned: OwnedMinionState, award: Dictiona
 	bar.queue_free()
 	_bar_nodes.erase(bar)
 
+func _talent_mod_state() -> CampaignState:
+	var runtime := get_node_or_null("/root/CampaignRuntime")
+	return runtime.session.state if runtime != null and runtime.session != null else null
+
 func _present_talent_choice(run_id: int, owned: OwnedMinionState, definition: MinionDefinition, catalog: ContentCatalog, save_callback: Callable, close_when_spent: bool = true, origin_view: BattleCombatantView = null, audio_controller: BattleAudioController = null) -> void:
-	var choices := CampaignProgressionService.talent_choices(owned, definition, catalog)
+	var choices := CampaignProgressionService.talent_choices(owned, definition, catalog, _talent_mod_state())
 	if choices.is_empty() and close_when_spent:
 		return
 	_talent_selected_tree = CampaignProgressionService.talent_specialization_index(owned, definition)
@@ -296,7 +300,7 @@ func _present_talent_choice(run_id: int, owned: OwnedMinionState, definition: Mi
 			purchase = CampaignProgressionService.reset_talents(owned, definition)
 			_talent_selected_tree = -1
 		else:
-			purchase = CampaignProgressionService.purchase_talent_choice(owned, definition, catalog, selected_move_id)
+			purchase = CampaignProgressionService.purchase_talent_choice(owned, definition, catalog, selected_move_id, _talent_mod_state())
 			if purchase.ok and StringName(purchase.choice.get("kind", "")) == &"specialization":
 				_talent_selected_tree = int(purchase.choice.tree_index)
 		if purchase.ok:
@@ -304,7 +308,7 @@ func _present_talent_choice(run_id: int, owned: OwnedMinionState, definition: Mi
 				owned.learned_move_ids.assign(previous_moves)
 				owned.talent_node_ids.assign(previous_nodes)
 				break
-			choices = CampaignProgressionService.talent_choices(owned, definition, catalog)
+			choices = CampaignProgressionService.talent_choices(owned, definition, catalog, _talent_mod_state())
 			if choices.is_empty() and close_when_spent:
 				break
 			remove_child(modal) # Release its name before building the refreshed modal.
@@ -407,7 +411,7 @@ func _create_talent_modal(owned: OwnedMinionState, definition: MinionDefinition,
 			var move := catalog.get_definition(move_id) as MoveDefinition
 			if move == null:
 				continue
-			var tree := catalog.get_definition(definition.talent_tree_ids[tree_index]) as TalentTreeDefinition if tree_index < definition.talent_tree_ids.size() else null
+			var tree := CampaignModService.talent_tree(_talent_mod_state(), definition, tree_index, catalog) if tree_index < definition.talent_tree_ids.size() else null
 			var tree_name := tree.display_name if tree != null else "Specialization %d" % (tree_index + 1)
 			panel.add_child(_talent_label(tree_name, Vector2(-49.0 + float(tree_index) * 104.0, 120.0), Vector2(250.0, 28.0), 20))
 			var can_buy := choices.any(func(choice: Dictionary) -> bool: return StringName(choice.get("move_id", "")) == move_id)
@@ -428,7 +432,7 @@ func _create_talent_modal(owned: OwnedMinionState, definition: MinionDefinition,
 		var first_page := -1
 		var tabs_background := _add_talent_texture(panel, SOURCE_TALENT_TABS_LEFT, Vector2(19.0, 20.0))
 		for tree_index in definition.talent_tree_ids.size():
-			var tree := catalog.get_definition(definition.talent_tree_ids[tree_index]) as TalentTreeDefinition
+			var tree := CampaignModService.talent_tree(_talent_mod_state(), definition, tree_index, catalog)
 			if tree == null:
 				continue
 			var page := Control.new()
@@ -516,7 +520,7 @@ func _update_talent_points_label(label: Label, owned: OwnedMinionState, definiti
 	var spent_points := CampaignProgressionService.maximum_talent_points(owned.level) - available_points
 	var specialization_index := CampaignProgressionService.talent_specialization_index(owned, definition)
 	if specialization_index >= 0 and tree_index != specialization_index and spent_points < 10:
-		var tree := catalog.get_definition(definition.talent_tree_ids[tree_index]) as TalentTreeDefinition
+		var tree := CampaignModService.talent_tree(_talent_mod_state(), definition, tree_index, catalog)
 		label.text = "Reset to %s to add points here" % (tree.display_name.to_lower() if tree != null else "this specialization")
 		label.add_theme_font_size_override("font_size", 17)
 		label.add_theme_color_override("font_color", Color.hex(0xed5e5eff))
@@ -629,6 +633,12 @@ func _present_evolution(run_id: int, owned: OwnedMinionState, old_definition: Mi
 	var new_sprite := panel.get_node("NewSprite") as Sprite2D
 	var message := panel.get_node("Message") as Label
 	var close_button := panel.get_node("CloseButton") as TextureButton
+	if owned.is_shiny:
+		var shiny_material := MinionPaletteService.make_material_for_owned(owned, catalog)
+		old_sprite.material = shiny_material
+		new_sprite.material = shiny_material
+		var shiny_label := _modal_label("SHINY", Vector2(264.0, 42.0), Vector2(72.0, 20.0), 11, Color.hex(0xffd86fff), HORIZONTAL_ALIGNMENT_RIGHT)
+		panel.add_child(shiny_label)
 	# Use one timeline for the delays, motion and sounds. Mixing wall-clock
 	# delays with frame-time tweens drifted when the engine's frame time changed.
 	var movement := create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -710,7 +720,7 @@ func _presentation_texture(definition: MinionDefinition, catalog: ContentCatalog
 	if ResourceLoader.exists(source_path):
 		return load(source_path) as Texture2D
 	var legacy_path := "res://content/base/art/battle/%s.png" % String(presentation.legacy_sprite_name)
-	return load(legacy_path) as Texture2D if ResourceLoader.exists(legacy_path) else null
+	return load(legacy_path) as Texture2D if ResourceLoader.exists(legacy_path) else MinionPaletteService.texture_for_definition(definition.id)
 
 func _save_progression(save_callback: Callable) -> bool:
 	if save_callback.is_null():

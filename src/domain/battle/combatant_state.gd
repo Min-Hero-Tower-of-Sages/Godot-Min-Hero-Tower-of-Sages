@@ -3,6 +3,8 @@ extends RefCounted
 
 var instance_id: StringName
 var definition_id: StringName
+var is_shiny: bool = false
+var shiny_line_id: StringName = &""
 var team: int
 var slot_index: int = 0
 var level: int = 1
@@ -43,6 +45,8 @@ static func from_setup(data: Dictionary) -> CombatantState:
 	var state := CombatantState.new()
 	state.instance_id = StringName(data.get("instance_id", ""))
 	state.definition_id = StringName(data.get("definition_id", ""))
+	state.is_shiny = bool(data.get("is_shiny", false))
+	state.shiny_line_id = StringName(data.get("shiny_line_id", ""))
 	state.team = int(data.get("team", 0))
 	state.slot_index = int(data.get("slot_index", 0))
 	state.level = int(data.get("level", 1))
@@ -74,7 +78,9 @@ static func from_setup(data: Dictionary) -> CombatantState:
 
 func to_dict() -> Dictionary:
 	return {
-		"instance_id": String(instance_id), "definition_id": String(definition_id), "team": team, "slot_index": slot_index,
+		"instance_id": String(instance_id), "definition_id": String(definition_id),
+		"is_shiny": is_shiny, "shiny_line_id": String(shiny_line_id),
+		"team": team, "slot_index": slot_index,
 		"level": level, "type_ids": type_ids.duplicate(),
 		"move_ids": move_ids.duplicate(), "battle_bonus_global_move_ids": battle_bonus_global_move_ids.duplicate(), "max_health": max_health, "base_max_health": base_max_health, "health": health,
 		"max_energy": max_energy, "base_max_energy": base_max_energy, "energy": energy, "attack": attack, "healing": healing,

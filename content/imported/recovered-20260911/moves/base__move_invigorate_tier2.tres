@@ -7,12 +7,12 @@
 [sub_resource type="Resource" id="Resource_ddy2g"]
 script = ExtResource("1_7qlx8")
 kind = 2
-target_scope = 0
-phase = 0
+target_scope = 2
+phase = 2
 scaling = 3
 amount = 75
 executor = ExtResource("2_mmsg7")
-id = &"base:move/invigorate/tier2/effect/00_energy_actor"
+id = &"base:move/invigorate/tier2/effect/00_energy_ally_targets"
 display_name = "Energy"
 source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:3285"
 

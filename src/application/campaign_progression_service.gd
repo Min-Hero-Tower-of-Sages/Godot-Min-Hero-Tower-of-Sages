@@ -60,6 +60,7 @@ static func create_lobby_titan(state, catalog: ContentCatalog, definition_id: St
 	owned.definition_id = definition.id
 	owned.level = 60
 	owned.experience = 60000
+	CampaignShinyService.initialize_new(owned, state, catalog)
 	owned.learned_move_ids.assign(definition.initial_move_ids)
 	var stats := owned_display_stats(owned, definition, catalog, state)
 	owned.persistent_health = int(stats.get("health", definition.base_health))
@@ -132,6 +133,8 @@ static func party_setup_combatants(state, catalog: ContentCatalog) -> Dictionary
 		setup_combatants.append({
 			"instance_id": String(owned.instance_id),
 			"definition_id": String(owned.definition_id),
+			"is_shiny": owned.is_shiny,
+			"shiny_line_id": String(owned.shiny_line_id),
 			"team": 0,
 			"slot_index": index,
 			"level": owned.level,
@@ -386,7 +389,9 @@ static func spent_stars(state) -> int:
 		var rank := maxi(0, int(upgrades.get(String(key), 0)))
 		for purchase in rank:
 			spent += star_upgrade_cost(purchase)
-	return spent
+	# Free debug purchases retain their upgrade rank without debiting earned
+	# stars later when the debug toggle is disabled.
+	return maxi(0, spent - int(state.progression.get("debug_free_star_cost", 0)))
 
 static func available_stars(state) -> int:
 	return maxi(0, total_earned_stars(state) - spent_stars(state))
@@ -429,9 +434,11 @@ static func purchase_star_upgrade(state, upgrade_index: int) -> Dictionary:
 	var rank := maxi(0, int(upgrades.get(key, 0)))
 	var cost := star_upgrade_cost(rank)
 	var available := available_stars(state)
-	if available < cost:
+	var free := CampaignDebugService.enabled(state, "unlimited_stars")
+	if not free and available < cost:
 		return _error("insufficient_stars", "upgrade costs %d stars; only %d are available" % [cost, available])
 	upgrades[key] = rank + 1
+	if free: state.progression["debug_free_star_cost"] = int(state.progression.get("debug_free_star_cost", 0)) + cost
 	state.progression["star_upgrades"] = upgrades
 	return {"ok": true, "kind": &"star_upgrade_purchased", "upgrade": StringName(key), "rank": rank + 1, "cost": cost, "available_stars": available_stars(state)}
 
@@ -439,6 +446,7 @@ static func reset_star_upgrades(state) -> Dictionary:
 	if state == null:
 		return _error("invalid_context", "campaign state is required")
 	state.progression["star_upgrades"] = {}
+	state.progression.erase("debug_free_star_cost")
 	return {"ok": true, "kind": &"star_upgrades_reset", "available_stars": available_stars(state)}
 
 static func _battle_star_rating(state, result: BattleResult) -> int:
@@ -566,7 +574,7 @@ static func available_talent_points(owned: OwnedMinionState, definition: MinionD
 	var spent_points := maxi(0, known_moves - definition.initial_move_ids.size())
 	return maximum_talent_points(owned.level) - spent_points
 
-static func talent_choices(owned: OwnedMinionState, definition: MinionDefinition, catalog: ContentCatalog) -> Array[Dictionary]:
+static func talent_choices(owned: OwnedMinionState, definition: MinionDefinition, catalog: ContentCatalog, state = null) -> Array[Dictionary]:
 	var choices: Array[Dictionary] = []
 	if owned == null or definition == null or catalog == null or available_talent_points(owned, definition) <= 0:
 		return choices
@@ -586,7 +594,7 @@ static func talent_choices(owned: OwnedMinionState, definition: MinionDefinition
 		specialization_index = 0
 	var spent_points := maximum_talent_points(owned.level) - available_talent_points(owned, definition)
 	for tree_index in definition.talent_tree_ids.size():
-		var tree := catalog.get_definition(definition.talent_tree_ids[tree_index]) as TalentTreeDefinition
+		var tree := CampaignModService.talent_tree(state, definition, tree_index, catalog)
 		if tree == null or tree.nodes.is_empty():
 			continue
 		if tree_index != specialization_index and spent_points < 11:
@@ -670,12 +678,12 @@ static func _owned_node_rank(node: Dictionary, known_moves: Array[StringName]) -
 			rank = index + 1
 	return rank
 
-static func purchase_talent_choice(owned: OwnedMinionState, definition: MinionDefinition, catalog: ContentCatalog, requested_move_id: StringName) -> Dictionary:
+static func purchase_talent_choice(owned: OwnedMinionState, definition: MinionDefinition, catalog: ContentCatalog, requested_move_id: StringName, state = null) -> Dictionary:
 	if owned == null or definition == null or catalog == null:
 		return _error("invalid_context", "owned minion, definition, and catalog are required")
 	if owned.learned_move_ids.is_empty():
 		owned.learned_move_ids.assign(definition.initial_move_ids)
-	for choice in talent_choices(owned, definition, catalog):
+	for choice in talent_choices(owned, definition, catalog, state):
 		if StringName(choice.get("move_id", "")) != requested_move_id:
 			continue
 		if requested_move_id in owned.learned_move_ids:

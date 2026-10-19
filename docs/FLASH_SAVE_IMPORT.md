@@ -47,6 +47,31 @@ does not scan browser profiles or change Flash files.
 - Original flat fields are archived in the Godot save for future migration.
   The archive is data only and is never executed.
 
+## Mod selector
+
+The new-save Mod Menu groups options into Extra Minions (Zanyu, Stingaray,
+Arkvian, Ophan), Challenge Rules (Nuzlocke, No Regen), Experimental Content
+(Ice Content), and Gameplay Tweaks (Move Trees, Shinies, Debug Mode).
+Category buttons show enabled counts; submenus retain selections
+when returning and show descriptions below their toggles. Ice Content does not
+add a playable Ice Floor. Existing saved flag names remain unchanged. Hatchery
+table masks use explicit flag-to-bit mappings independent of menu ordering.
+
+Move Trees and Shinies are off by default. One Move Trees toggle enables both
+restored skill additions. Martyr adds a five-rank talent to
+Holymantis's Holy tree (column 0, row 2) and Foramare's Grass tree (column 0,
+row 3). Righteous Fate adds a five-rank talent to Arkvian/Arkclaw's Holy tree
+(column 0, row 2). These are per-species overlays in vacant positions, not
+changes to shared catalog trees. Normal talent point costs and branch/depth
+gates apply. Purchased moves use ordinary save, battle, reset and evolution
+handling; original nodes remain available. Enabling a skill does not enable
+the Arkvian minion content automatically.
+
+Shinies give newly acquired minions a 1-in-512 cosmetic variant chance.
+Imported and existing minions remain unchanged. Appearance is saved and
+retained through evolution; a hatchery egg's appearance chance is cached for
+the visit so an interrupted reveal does not reroll its shiny result.
+
 ## Safe resumption and limitations
 
 Import begins in the lobby, not potentially incompatible world coordinates.

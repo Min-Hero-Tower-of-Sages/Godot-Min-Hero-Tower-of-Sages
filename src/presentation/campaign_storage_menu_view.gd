@@ -142,6 +142,7 @@ func _build_grid() -> void:
 		var owned := entry.owned as OwnedMinionState
 		var presentation := _presentation_for(owned)
 		var icon_texture := _minion_texture(presentation)
+		if icon_texture == null: icon_texture = MinionPaletteService.texture_for_definition(owned.definition_id)
 		if icon_texture == null:
 			continue
 		var host := Control.new()
@@ -159,6 +160,8 @@ func _build_grid() -> void:
 		icon.texture = icon_texture
 		icon.centered = false
 		icon.scale = Vector2.ONE * 0.4
+		if owned.is_shiny:
+			icon.material = MinionPaletteService.make_material_for_owned(owned, _session.catalog)
 		host.add_child(icon)
 		if StringName(owned.instance_id) == _selected_id or StringName(owned.instance_id) == _swap_first_id:
 			if selection_texture != null:

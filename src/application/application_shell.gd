@@ -1970,7 +1970,7 @@ func _show_settings_menu() -> void:
 	interaction_dialog = view
 	view.closed.connect(_close_source_menu.bind(_show_campaign_menu))
 	_attach_interaction_dialog()
-	view.configure(_settings)
+	view.configure(_settings, runtime.session if runtime != null else null)
 	_adopt_source_menu_backdrop(view)
 	SourceMenuTransition.enter(view)
 
@@ -2323,7 +2323,7 @@ func _show_egg_reveal(result: Dictionary, egg_slot: int, ask_party: bool = false
 	var details := CampaignEggeryPresenter.new()
 	details.name = "HatcheryMinionDetails"
 	interaction_dialog.add_child(details)
-	details.present(result, presentation, actor_screen, get_viewport_rect().size)
+	details.present(result, presentation, actor_screen, get_viewport_rect().size, runtime.catalog)
 
 func _accept_egg_preview(result: Dictionary, egg_slot: int) -> void:
 	var owned := result.get("minion") as OwnedMinionState
@@ -2390,6 +2390,7 @@ func _build_source_party_row(parent: Control, at: Vector2, owned: OwnedMinionSta
 		if not ResourceLoader.exists(sprite_path):
 			sprite_path = "res://content/base/art/battle/%s.png" % String(presentation.legacy_sprite_name)
 		var sprite := _load_texture(sprite_path)
+		if sprite == null: sprite = MinionPaletteService.texture_for_definition(owned.definition_id)
 		if sprite != null:
 			var mask_texture := SourceMenuArt.texture("menus_minionIcon_mask")
 			if mask_texture != null:
@@ -2405,11 +2406,18 @@ func _build_source_party_row(parent: Control, at: Vector2, owned: OwnedMinionSta
 				icon.texture = sprite
 				icon.centered = false
 				icon.position = Vector2(presentation.icon_offset) - mask.position
+				if owned.is_shiny:
+					icon.material = MinionPaletteService.make_material_for_owned(owned, runtime.catalog)
 				mask.add_child(icon)
 	var display_name := owned.nickname if not owned.nickname.is_empty() else definition.display_name if definition != null else String(owned.definition_id)
 	var name_label := _label(row, display_name, Vector2(72.0, -1.0), Vector2(180.0, 32.0), 18, Color.hex(0xebebebff))
 	name_label.name = "SourceMinionName"
 	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if owned.is_shiny:
+		name_label.size.x = 145.0
+		var shiny_label := _label(row, "SHINY", Vector2(221.0, 3.0), Vector2(60.0, 18.0), 10, Color.hex(0xffd86fff))
+		shiny_label.name = "ShinyIndicator"
+		shiny_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var stats := CampaignProgressionService.owned_display_stats(owned, definition, runtime.session.catalog, runtime.session.state) if definition != null else {"health": 1, "energy": 0}
 	var max_health := maxi(1, int(stats.get("health", 1)))
 	var max_energy := maxi(0, int(stats.get("energy", 0)))
@@ -2660,7 +2668,8 @@ func _build_roster_entries(parent: Control, members: Array, is_party: bool) -> v
 			continue
 		var definition := runtime.catalog.get_definition(owned.definition_id) as MinionDefinition
 		var display_name := owned.nickname if not owned.nickname.is_empty() else definition.display_name if definition != null else String(owned.definition_id)
-		var button := _text_button(parent, "%d. %s   Lv. %d" % [index + 1, display_name, owned.level], Vector2.ZERO, Vector2(258.0, 40.0))
+		var shiny_suffix := "   SHINY" if owned.is_shiny else ""
+		var button := _text_button(parent, "%d. %s   Lv. %d%s" % [index + 1, display_name, owned.level, shiny_suffix], Vector2.ZERO, Vector2(258.0, 40.0))
 		button.custom_minimum_size = Vector2(258.0, 40.0)
 		button.pressed.connect(_select_party_manager_entry.bind(is_party, index))
 

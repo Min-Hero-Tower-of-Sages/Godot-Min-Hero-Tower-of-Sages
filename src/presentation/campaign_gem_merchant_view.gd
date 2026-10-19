@@ -43,7 +43,8 @@ func _refresh() -> void:
 	if bust != null:
 		bust.scale = Vector2.ONE * 0.7
 	_label("Money:", Vector2(109, 323), Vector2(150, 32), 24).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var money_label := _label(preload("res://src/presentation/campaign_currency_text.gd").format_amount(float(_session.state.progression.get("currency", 0))), Vector2(198, 323), Vector2(150, 32), 24)
+	var money_text := "Unlimited" if CampaignDebugService.enabled(_session.state, "unlimited_money") else preload("res://src/presentation/campaign_currency_text.gd").format_amount(float(_session.state.progression.get("currency", 0)))
+	var money_label := _label(money_text, Vector2(198, 323), Vector2(150, 32), 24)
 	money_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	money_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	money_label.clip_text = true
@@ -105,7 +106,7 @@ func _build_combiner() -> void:
 		else:
 			SourceMenuArt.image(_panel, "menus_emptyGemSocket", at)
 	var cost := int(preview.get("cost", 0))
-	var affordable := float(_session.state.progression.get("currency", 0)) >= cost
+	var affordable := CampaignDebugService.can_afford(_session.state, cost)
 	_action("menus_gemCombiner_CombineButton", Vector2(507, 386), "Combine($%d)" % cost if preview.get("ok", false) else "Combine", _combine, bool(preview.get("ok", false)) and affordable)
 	if _message == "Gems need to be of the same tier":
 		_warning("SameTierWarning", _message, Vector2(334, 283))
@@ -130,7 +131,7 @@ func _build_shop() -> void:
 	_action("menus_gemCombiner_buySellButton", Vector2(553, 224), "Sell ($%d)" % CampaignGemEconomyService.sell_price(int(selected.get("tier", 1))) if not selected.is_empty() else "Sell", _sell, not selected.is_empty())
 	var can_buy: bool = _stock_selection >= 0 and _stock_selection < stock.size() and not stock[_stock_selection].is_empty() and not stock[_stock_selection].get("purchased", false)
 	var cost := CampaignGemEconomyService.buy_price(int(stock[_stock_selection].get("tier", 1))) if can_buy else 0
-	_action("menus_gemCombiner_buySellButton", Vector2(553, 396), "Buy ($%d)" % cost if can_buy else "Buy", _buy, can_buy and float(_session.state.progression.get("currency", 0)) >= cost)
+	_action("menus_gemCombiner_buySellButton", Vector2(553, 396), "Buy ($%d)" % cost if can_buy else "Buy", _buy, can_buy and CampaignDebugService.can_afford(_session.state, cost))
 	_action("menus_gemCombiner_buySellButton", Vector2(343, 396), "Refresh", _refresh_stock, true)
 
 func _action(symbol: String, at: Vector2, text: String, action: Callable, enabled: bool) -> void:

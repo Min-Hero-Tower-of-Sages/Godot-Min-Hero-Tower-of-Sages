@@ -24,6 +24,7 @@ directories, SWF decompiler and Python are not needed simply to run the game.
 
 Controls: **WASD / arrow keys** to walk, **Space** to interact/advance dialogue,
 and the mouse for battle selections and menus.
+Press **T** during battle decisions to open the Type Guide.
 
 ## Current scope
 
@@ -44,6 +45,9 @@ and the mouse for battle selections and menus.
 - In battle, click one of your minions' health bars to see its current stats
   (health, energy, attack, healing, speed with buffs/debuffs, critical,
   armor, conditions, effects, cooldowns). Enemy stats stay hidden.
+- Type Guide from battle or Minion-pedia, with damage/healing matchups and
+  optional per-target effectiveness previews. See
+  [docs/TYPE_GUIDE.md](docs/TYPE_GUIDE.md).
 - Battle replays: every battle is recorded. Watch it again or share it as a
   code from **Battle replays** (title screen or in-game menu). See
   [docs/BATTLE_REPLAYS.md](docs/BATTLE_REPLAYS.md).

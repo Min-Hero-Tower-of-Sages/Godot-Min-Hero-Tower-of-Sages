@@ -120,7 +120,7 @@ static func double_anchor(team_index: int, slot: int) -> Vector2:
 	var anchor := DOUBLE_PLAYER_ANCHORS[slot]
 	return anchor if team_index == 0 else Vector2(DOUBLE_MIRROR_X - anchor.x, anchor.y)
 
-func setup(combatant_data: Dictionary, definition: MinionDefinition, sprite_texture: Texture2D) -> void:
+func setup(combatant_data: Dictionary, definition: MinionDefinition, sprite_texture: Texture2D, catalog: ContentCatalog = null) -> void:
 	instance_id = StringName(combatant_data.get("instance_id", ""))
 	team = int(combatant_data.get("team", 0))
 	slot_index = int(combatant_data.get("slot_index", 0))
@@ -134,8 +134,12 @@ func setup(combatant_data: Dictionary, definition: MinionDefinition, sprite_text
 	z_index = int(position.y)
 
 	minion_sprite = Sprite2D.new()
-	_condition_tint_material = ShaderMaterial.new()
-	_condition_tint_material.shader = CONDITION_TINT_SHADER
+	if bool(combatant_data.get("is_shiny", false)):
+		var shiny_line_id := StringName(combatant_data.get("shiny_line_id", ""))
+		_condition_tint_material = MinionPaletteService.make_material_for_line(shiny_line_id) if not shiny_line_id.is_empty() else MinionPaletteService.make_material(definition.id, catalog)
+	else:
+		_condition_tint_material = ShaderMaterial.new()
+		_condition_tint_material.shader = CONDITION_TINT_SHADER
 	_condition_tint_material.set_shader_parameter("rgb_multiplier", Vector3.ONE)
 	_condition_tint_material.set_shader_parameter("rgb_offset", Vector3.ZERO)
 	minion_sprite.material = _condition_tint_material

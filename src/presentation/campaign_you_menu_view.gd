@@ -68,7 +68,7 @@ func _refresh() -> void:
 	_label("Money", Vector2(115, 68), Vector2(150, 27), 20)
 	_label("Minion-Pedia", Vector2(115, 98), Vector2(150, 27), 20)
 	_label(name, Vector2(213, 38), Vector2(150, 27), 20, HORIZONTAL_ALIGNMENT_CENTER)
-	_label(preload("res://src/presentation/campaign_currency_text.gd").format_amount(money), Vector2(213, 68), Vector2(150, 27), 20, HORIZONTAL_ALIGNMENT_CENTER)
+	_label("Unlimited" if _session != null and CampaignDebugService.enabled(_session.state, "unlimited_money") else preload("res://src/presentation/campaign_currency_text.gd").format_amount(money), Vector2(213, 68), Vector2(150, 27), 20, HORIZONTAL_ALIGNMENT_CENTER)
 	_label(str(owned_ids.size()), Vector2(213, 98), Vector2(150, 27), 20, HORIZONTAL_ALIGNMENT_CENTER)
 	_label("Your Seals", Vector2(328, 22), Vector2(150, 26), 20, HORIZONTAL_ALIGNMENT_CENTER)
 	var seals := int(progression.get("sage_seals", 0))
@@ -79,7 +79,8 @@ func _refresh() -> void:
 	var character_art := "menus_gemCombiner_male_charIcon" if String(character.get("gender", "male")).to_lower() == "male" else "menus_gemCombiner_female_charIcon"
 	SourceMenuArt.image(_panel, character_art, Vector2(23, 22))
 	SourceMenuArt.image(_panel, "battleScreenVictoryStar", Vector2(546, 223))
-	var available_label := _label(str(summary.get("available", 0)), Vector2(395, 226), Vector2(150, 54), 40, HORIZONTAL_ALIGNMENT_RIGHT)
+	var unlimited_stars: bool = _session != null and CampaignDebugService.enabled(_session.state, "unlimited_stars")
+	var available_label := _label("Unlimited" if unlimited_stars else str(summary.get("available", 0)), Vector2(395, 226), Vector2(150, 54), 22 if unlimited_stars else 40, HORIZONTAL_ALIGNMENT_RIGHT)
 	available_label.name = "AvailableStars"
 	for index in UPGRADE_IDS.size():
 		var row_y := 182 if index < 4 else 292
@@ -90,7 +91,7 @@ func _refresh() -> void:
 		var upgrade := Control.new()
 		upgrade.name = "StarUpgradeGroup%d" % index
 		upgrade.position = Vector2(x, row_y)
-		upgrade.modulate.a = 1.0 if int(summary.get("available", 0)) >= cost else 0.5
+		upgrade.modulate.a = 1.0 if unlimited_stars or int(summary.get("available", 0)) >= cost else 0.5
 		_panel.add_child(upgrade)
 		var button := SourceMenuArt.button(upgrade, UPGRADE_ART[index], Vector2.ZERO, _purchase.bind(index))
 		if button == null:

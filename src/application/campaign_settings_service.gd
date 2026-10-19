@@ -10,6 +10,7 @@ const QUALITY_NAMES: Array[String] = ["Low", "Mid", "High"]
 var sound_enabled := true
 var music_enabled := true
 var tips_enabled := true
+var effectiveness_hints_enabled := true
 var quality_level := 2
 
 func _init() -> void:
@@ -21,11 +22,13 @@ func load_settings() -> void:
 		sound_enabled = bool(config.get_value(SECTION, "sound_enabled", true))
 		music_enabled = bool(config.get_value(SECTION, "music_enabled", true))
 		tips_enabled = bool(config.get_value(SECTION, "tips_enabled", true))
+		effectiveness_hints_enabled = bool(config.get_value(SECTION, "effectiveness_hints_enabled", true))
 		quality_level = clampi(int(config.get_value(SECTION, "quality_level", 2)), 0, 2)
 	else:
 		sound_enabled = true
 		music_enabled = true
 		tips_enabled = true
+		effectiveness_hints_enabled = true
 		quality_level = 2
 	_ensure_audio_buses()
 	apply_audio_settings()
@@ -47,6 +50,11 @@ func set_tips_enabled(enabled: bool) -> void:
 	if tips_enabled == enabled:
 		return
 	tips_enabled = enabled
+	_save_and_apply()
+
+func set_effectiveness_hints_enabled(enabled: bool) -> void:
+	if effectiveness_hints_enabled == enabled: return
+	effectiveness_hints_enabled = enabled
 	_save_and_apply()
 
 func set_quality_level(level: int) -> void:
@@ -105,6 +113,7 @@ func _save_and_apply() -> void:
 	config.set_value(SECTION, "sound_enabled", sound_enabled)
 	config.set_value(SECTION, "music_enabled", music_enabled)
 	config.set_value(SECTION, "tips_enabled", tips_enabled)
+	config.set_value(SECTION, "effectiveness_hints_enabled", effectiveness_hints_enabled)
 	config.set_value(SECTION, "quality_level", quality_level)
 	var result := config.save(SETTINGS_PATH)
 	if result != OK:

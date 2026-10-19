@@ -33,6 +33,16 @@ class StrictMoveImportTests(unittest.TestCase):
         self.assertEqual("before_accuracy", next(name for name, value in importer.PHASE.items() if value == effects[0]["phase"]))
         self.assertEqual("actor_after_targets", next(name for name, value in importer.PHASE.items() if value == effects[-1]["phase"]))
 
+    def test_support_energy_restoration_uses_ally_targets(self):
+        for family in ["invigorate", "watergize"]:
+            for tier in range(1, 6):
+                move = importer.default_move()
+                move.update(id=f"base:move/{family}/tier{tier}", energy_percent_restored=50,
+                            allies_hit=1, enemies_hit=0)
+                effect = importer.normalize_effects(move, {})[0]
+                self.assertEqual(importer.SCOPE["ally_targets"], effect["target_scope"])
+                self.assertEqual(importer.PHASE["ally_target"], effect["phase"])
+
     def test_passive_critical_chance_is_not_dropped(self):
         move = importer.default_move()
         move.update(id="base:move/focus/tier1", is_passive=True, extra_crit_chance=5)

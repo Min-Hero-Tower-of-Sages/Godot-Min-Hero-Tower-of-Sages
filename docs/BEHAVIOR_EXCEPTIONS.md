@@ -1,5 +1,23 @@
 # Required port exceptions
 
+## Restored skill options (approved 2026-10-14)
+
+The new-save mod selector includes optional, default-off talent additions:
+Martyr for Holymantis (Holy) and Foramare (Grass), and Righteous Fate for the
+Arkvian/Arkclaw line (Holy). All five recovered tiers use ordinary talent
+points and the original branch/depth gates. Per-species overlays occupy
+vacant nodes without replacing original skills or mutating shared trees.
+Learned moves persist through ordinary saves and evolution and are removed
+by the normal talent reset. Trainer loadouts are unchanged. These are Extended
+content additions, not original Flash parity. The mod category fixture covers
+species isolation, vacant positions, gating, purchases and save round-trips.
+
+Invigorate and Watergize/Empowering Water now restore recipient energy in the
+ally-target phase, using recipient maximum energy. Flash unconditionally
+restored caster energy before targeting. Other self-restoring move families
+retain their original behavior. All tiers and importer regeneration are covered
+by the ally energy fixture and importer tests.
+
 ## Selective cleansing and dispelling (approved 2026-10-10)
 
 The user approved separating beneficial and harmful conditions after a player

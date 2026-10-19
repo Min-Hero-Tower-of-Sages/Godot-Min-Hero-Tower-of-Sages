@@ -51,7 +51,7 @@ static func combine_gems(state, ids: Array[StringName]) -> Dictionary:
 		return preview
 	var cost := int(preview.cost)
 	var currency := int(state.progression.get("currency", 0))
-	if currency < cost:
+	if not CampaignDebugService.can_afford(state, cost):
 		return _error("insufficient_currency", "combining costs %d coins; only %d are available" % [cost, int(currency)])
 	var consumed: Dictionary = {}
 	var insertion_index: int = state.owned_gems.size()
@@ -67,8 +67,8 @@ static func combine_gems(state, ids: Array[StringName]) -> Dictionary:
 		elif not consumed.has(String(state.owned_gems[index].get("instance_id", ""))):
 			remaining.append(state.owned_gems[index])
 	state.owned_gems.assign(remaining)
-	state.progression["currency"] = currency - cost
-	return {"ok": true, "kind": &"gems_combined", "gem": result_gem.duplicate(true), "consumed_ids": ids.map(func(id: StringName) -> String: return String(id)), "cost": cost, "currency": int(currency - cost)}
+	state.progression["currency"] = currency - CampaignDebugService.charged_cost(state, cost)
+	return {"ok": true, "kind": &"gems_combined", "gem": result_gem.duplicate(true), "consumed_ids": ids.map(func(id: StringName) -> String: return String(id)), "cost": cost, "currency": int(state.progression["currency"])}
 
 static func sell_gem(state, gem_instance_id: StringName) -> Dictionary:
 	if state == null:
@@ -122,7 +122,7 @@ static func buy_shop_gem(state, index: int) -> Dictionary:
 	var currency := int(state.progression.get("currency", 0))
 	if price < 0:
 		return _error("invalid_gem_tier", "this shop gem has an unsupported tier")
-	if currency < price:
+	if not CampaignDebugService.can_afford(state, price):
 		return _error("insufficient_currency", "this gem costs %d coins; only %d are available" % [price, int(currency)])
 	var bought := gem.duplicate(true)
 	bought.erase("shop_id")
@@ -130,8 +130,8 @@ static func buy_shop_gem(state, index: int) -> Dictionary:
 	state.owned_gems.append(bought)
 	stock[index] = {}
 	state.progression["gem_shop_stock"] = stock
-	state.progression["currency"] = currency - price
-	return {"ok": true, "kind": &"shop_gem_bought", "gem": bought.duplicate(true), "price": price, "currency": int(currency - price), "slot": index}
+	state.progression["currency"] = currency - CampaignDebugService.charged_cost(state, price)
+	return {"ok": true, "kind": &"shop_gem_bought", "gem": bought.duplicate(true), "price": price, "currency": int(state.progression["currency"]), "slot": index}
 
 static func _make_gem(tier: int, raw_stats: Array[float]) -> Dictionary:
 	var gem := CampaignGemFactory.create_random(tier)

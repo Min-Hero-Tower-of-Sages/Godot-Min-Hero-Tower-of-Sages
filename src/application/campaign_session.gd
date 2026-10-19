@@ -42,7 +42,10 @@ func start_new(campaign_id: StringName, new_party: Array[OwnedMinionState], char
 	created.current_room_id = starting_room.id
 	created.character = character_data.duplicate(true)
 	created.active_mods = CampaignModService.normalize(mod_flags)
-	created.party.assign(new_party)
+	for owned in new_party:
+		var starter := owned.duplicate_state()
+		CampaignShinyService.initialize_new(starter, created, catalog)
+		created.party.append(starter)
 	ProgressionService.refresh_minion_pedia(created)
 	created.progression["eggery_picks_remaining"] = 1
 	created.progression["floor_visit_reward_version"] = 2
@@ -198,6 +201,10 @@ func save() -> Dictionary:
 	var saved: Dictionary = _save_candidate(candidate)
 	if saved.ok:
 		# Preserve live owned-minion references held by the progression presenter.
+		# Debug effects were applied to the saved candidate; commit the same
+		# effects in-place only after success so live HUD/owned references match.
+		CampaignDebugService.apply_party_levels(state, catalog)
+		CampaignDebugService.apply_keys(state)
 		# Only commit these derived history fields after the save succeeds.
 		state.progression["owned_minion_ids"] = candidate.progression["owned_minion_ids"]
 		state.progression["seen_minion_ids"] = candidate.progression["seen_minion_ids"]
@@ -343,6 +350,7 @@ func select_tower_floor(floor_index: int) -> Dictionary:
 			continue
 		var eggery_room_state: Dictionary = candidate.room_state.get(String(floor_room_id), {}).duplicate(true)
 		eggery_room_state.erase("eggery_taken_slots")
+		eggery_room_state.erase("eggery_shiny_slots")
 		candidate.room_state[String(floor_room_id)] = eggery_room_state
 		break
 	var rested := ProgressionService.rest_party(candidate, catalog)
@@ -1003,6 +1011,19 @@ func _pick_egg(interaction: Dictionary) -> Dictionary:
 	var owned := OwnedMinionState.new()
 	owned.instance_id = StringName("slot-%d-eggery-%d" % [save_slot, sequence])
 	owned.definition_id = definition.id
+	# Cache the appearance chance for this egg, independently of preview rollback.
+	# Returning after closing a reveal must not grant another shiny roll.
+	var shiny_slots: Dictionary = current_room_state.get("eggery_shiny_slots", {}).duplicate(true)
+	if not shiny_slots.has(str(slot)):
+		CampaignShinyService.initialize_new(owned, candidate_state, catalog)
+		shiny_slots[str(slot)] = owned.is_shiny
+	else:
+		owned.is_shiny = bool(shiny_slots[str(slot)])
+		if owned.is_shiny: owned.shiny_line_id = MinionPaletteService.line_id(owned.definition_id, catalog)
+	current_room_state["eggery_shiny_slots"] = shiny_slots
+	if CampaignDebugService.enabled(candidate_state, "force_shiny"):
+		CampaignShinyService.initialize_new(owned, candidate_state, catalog)
+		shiny_slots[str(slot)] = true
 	var minion_base_level := 7
 	var campaign := catalog.get_definition(candidate_state.campaign_id) as CampaignDefinition
 	var selected_floor_index := int(candidate_state.progression.get("floor_index", 0))
@@ -1288,7 +1309,28 @@ func swap_party_with_storage(party_index: int, storage_index: int) -> Dictionary
 	state = candidate
 	return {"ok": true, "party_index": party_index, "storage_index": storage_index, "party_member": candidate.party[party_index], "stored_minion": candidate.storage[storage_index]}
 
+func set_debug_option(option: String, value: bool) -> Dictionary:
+	if not CampaignDebugService.available(state):
+		return _error("debug_locked", "enable the Debug Mode mod to access debug settings")
+	if not state.pending_battle.is_empty():
+		return _error("battle_pending", "change debug options outside battle")
+	var known := false
+	for entry in CampaignDebugService.OPTIONS:
+		if entry.id == option: known = true
+	if not known: return _error("unknown_debug_option", "unknown debug setting")
+	var candidate = StateScript.new()
+	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	var options: Dictionary = candidate.progression.get("debug_options", {}).duplicate(true)
+	options[option] = value
+	candidate.progression["debug_options"] = options
+	var saved := _save_candidate(candidate)
+	if not saved.ok: return saved
+	state = candidate
+	return {"ok": true, "option": option, "enabled": value}
+
 func _save_candidate(candidate) -> Dictionary:
+	CampaignDebugService.apply_party_levels(candidate, catalog)
+	CampaignDebugService.apply_keys(candidate)
 	var errors: PackedStringArray = candidate.validation_errors(catalog)
 	if not errors.is_empty():
 		return _error("invalid_campaign_state", "\n".join(errors))

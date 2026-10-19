@@ -9,12 +9,12 @@
 [sub_resource type="Resource" id="Resource_yshku"]
 script = ExtResource("1_h8ksq")
 kind = 2
-target_scope = 0
-phase = 0
+target_scope = 2
+phase = 2
 scaling = 3
 amount = 10
 executor = ExtResource("2_b0j1h")
-id = &"base:move/watergize/tier5/effect/00_energy_actor"
+id = &"base:move/watergize/tier5/effect/00_energy_ally_targets"
 display_name = "Energy"
 source_location = "C:\\Dev\\basard\\Min Hero\\MinHeroMods\\source\\scripts\\Minions\\MinionMove\\AllBaseMovesContainer.as:1862"
 

@@ -148,7 +148,12 @@ def normalize_effects(move: dict, stat_names: dict[int, str]) -> list[dict]:
         return effects
 
     if move["energy_percent_restored"] > 0:
-        add("energy", "actor", "before_accuracy", move["energy_percent_restored"], scaling="energy_stat_percent")
+        # Extended bug fix: these support families restore their ally targets,
+        # rather than reproducing Flash's unconditional caster restoration.
+        ally_restore = move["id"].split("/")[-2] in {"invigorate", "watergize"}
+        add("energy", "ally_targets" if ally_restore else "actor",
+            "ally_target" if ally_restore else "before_accuracy",
+            move["energy_percent_restored"], scaling="energy_stat_percent")
     if move["damage"] != 0 or move["additional_damage"] != 0:
         add("damage", "enemy_targets", "enemy_target", move["damage"], move["additional_damage"], scaling="attack", typed=True, critical=True, roll_scope="shared_move")
     if move["dot_damage"] != 0 or move["additional_dot_damage"] != 0:

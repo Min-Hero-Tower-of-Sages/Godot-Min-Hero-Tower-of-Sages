@@ -147,6 +147,12 @@ var _selector_decision: Dictionary = {}
 var _selector_minion_id: StringName = &""
 ## Last pointer position seen by _input (viewport coordinates).
 var _mouse_point := Vector2(-1.0, -1.0)
+var type_guide: TypeGuideView
+var _type_guide_button: Button
+var _hovered_effectiveness_move: MoveDefinition
+var _effectiveness_layer: Control
+var _effectiveness_badges: Dictionary = {}
+var _effectiveness_signature := ""
 var _stats_signature := 0
 var campaign_mode := false
 var campaign_settlement: Dictionary = {}
@@ -531,10 +537,15 @@ func _network_player_name(team: int) -> String:
 	return String(names.get(team, "Team %d" % (team + 1)))
 
 func _process(_delta: float) -> void:
+	if is_instance_valid(type_guide) and (busy or _battle_result_presented): _close_type_guide()
+	if is_instance_valid(_type_guide_button):
+		_type_guide_button.visible = net_role != &"replay" # Keep replay transport controls unobstructed.
+		_type_guide_button.disabled = catalog == null or busy or forfeit_confirmation.visible or _battle_result_presented
 	if move_tooltip != null and move_tooltip.visible:
 		move_tooltip.follow_mouse(get_global_mouse_position(), size)
 	_update_target_cursor()
 	_refresh_stats_panel()
+	_refresh_effectiveness_hints()
 
 func _exit_tree() -> void:
 	_cancel_battle_music_start()
@@ -565,6 +576,10 @@ func _cancel_battle_music_start() -> void:
 	_battle_music_start_tween = null
 
 func _update_target_cursor() -> void:
+	if is_instance_valid(type_guide):
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		mouse_default_cursor_shape = Control.CURSOR_ARROW
+		return
 	var cursor_shape := Input.CURSOR_ARROW
 	var mouse_point := _mouse_point
 	if _inspectable_view_at(mouse_point) != null:
@@ -593,6 +608,8 @@ func _update_target_cursor() -> void:
 		get_viewport().update_mouse_cursor_state()
 
 func _input(event: InputEvent) -> void:
+	if is_instance_valid(type_guide): return
+	if event is InputEventMouseButton and is_instance_valid(_type_guide_button) and _type_guide_button.get_global_rect().has_point(event.position): return
 	if event is InputEventMouseMotion:
 		# Before the GUI handles this motion, so it shows the new shape at once.
 		_mouse_point = event.position
@@ -1465,11 +1482,130 @@ func _is_energy_limited_fallback(actor_state: Dictionary) -> bool:
 
 func _show_move_tooltip(move: MoveDefinition) -> void:
 	if not busy and not _move_selector_exiting:
+		_hovered_effectiveness_move = move
 		move_tooltip.show_move(move)
 		move_tooltip.follow_mouse(get_global_mouse_position(), size)
 
 func _hide_move_tooltip() -> void:
 	move_tooltip.hide()
+	_hovered_effectiveness_move = null
+
+func _open_type_guide() -> void:
+	if is_instance_valid(type_guide) or catalog == null or busy or forfeit_confirmation.visible or _battle_result_presented: return
+	var initial_type := &"base:type/fire"
+	if not pending_move.is_empty():
+		var move := catalog.get_definition(StringName(pending_move.move_id)) as MoveDefinition
+		if move != null: initial_type = move.type_id
+	elif _hovered_effectiveness_move != null: initial_type = _hovered_effectiveness_move.type_id
+	_hide_move_tooltip()
+	stats_panel.close()
+	_clear_effectiveness_hints()
+	type_guide = TypeGuideView.new()
+	type_guide.configure(catalog, initial_type)
+	type_guide.closed.connect(_close_type_guide)
+	add_child(type_guide)
+
+func _close_type_guide() -> void:
+	if not is_instance_valid(type_guide): return
+	remove_child(type_guide)
+	type_guide.queue_free()
+	type_guide = null
+	_update_target_cursor()
+
+func _clear_effectiveness_hints() -> void:
+	if not is_instance_valid(_effectiveness_layer): return
+	for child in _effectiveness_layer.get_children():
+		_effectiveness_layer.remove_child(child)
+		child.queue_free()
+	_effectiveness_badges.clear()
+	_effectiveness_signature = ""
+
+func _refresh_effectiveness_hints() -> void:
+	if not is_instance_valid(_effectiveness_layer): return
+	if busy or is_instance_valid(type_guide) or forfeit_confirmation.visible or _battle_result_presented or settings_service == null or not settings_service.effectiveness_hints_enabled:
+		if not _effectiveness_badges.is_empty(): _clear_effectiveness_hints()
+		if busy: _hovered_effectiveness_move = null
+		return
+	if pending_move.is_empty() and _hovered_effectiveness_move == null:
+		if not _effectiveness_badges.is_empty(): _clear_effectiveness_hints()
+		return
+	var decision := controller.engine.get_decision()
+	var legal: Dictionary = pending_move
+	var move: MoveDefinition
+	if not legal.is_empty(): move = catalog.get_definition(StringName(legal.move_id)) as MoveDefinition
+	elif _hovered_effectiveness_move != null and move_tooltip.visible and move_panel.visible and not _move_selector_exiting and StringName(decision.get("actor_id", "")) == _selector_minion_id:
+		move = _hovered_effectiveness_move
+		for entry in decision.get("legal_moves", []):
+			if StringName(entry.move_id) == move.id:
+				legal = entry
+				break
+	if move == null or legal.is_empty() or decision.is_empty() or not _is_local_decision(decision):
+		if not _effectiveness_badges.is_empty(): _clear_effectiveness_hints()
+		return
+	var actor := combatant_views.get(String(decision.actor_id)) as BattleCombatantView
+	if actor == null: return
+	var signature := "%s:%s:%s:%s" % [move.id, decision.revision, legal.get("target_ids", []), _selector_minion_id]
+	if signature != _effectiveness_signature:
+		_clear_effectiveness_hints()
+		_effectiveness_signature = signature
+		for raw_id in legal.get("target_ids", []):
+			var view := combatant_views.get(String(raw_id)) as BattleCombatantView
+			if view == null: continue
+			var known := view.team == 0 or _faced_before(view.minion_definition)
+			# A right-side network player's views are mirrored, while later state
+			# updates retain engine team numbers. Compare consistently in display space.
+			var target_state := view.state_cache.duplicate()
+			target_state["team"] = view.team
+			var rows := TypeEffectivenessPreview.hints(move, actor.instance_id, actor.team, target_state, catalog.get_type_chart(), known)
+			# Neutral needs no extra HUD; keep just advantages/resistances or ?.
+			rows = rows.filter(func(row: Dictionary) -> bool: return not row.has("multiplier") or not is_equal_approx(float(row.multiplier), 1.0))
+			if rows.is_empty(): continue
+			var panel := PanelContainer.new()
+			panel.name = "Matchup_%s" % String(raw_id)
+			panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			var style := StyleBoxFlat.new()
+			style.bg_color = Color8(48, 53, 65, 245)
+			style.border_color = Color8(190, 197, 211)
+			style.set_border_width_all(1)
+			style.set_corner_radius_all(3)
+			style.content_margin_left = 3
+			style.content_margin_right = 3
+			style.content_margin_top = 0
+			style.content_margin_bottom = 0
+			panel.add_theme_stylebox_override("panel", style)
+			var column := VBoxContainer.new()
+			column.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			column.add_theme_constant_override("separation", 0)
+			panel.add_child(column)
+			for row in rows:
+				var caption := Label.new()
+				caption.text = row.compact
+				caption.add_theme_font_override("font", BURBIN_FONT)
+				caption.add_theme_font_size_override("font_size", 12)
+				caption.add_theme_color_override("font_color", row.color)
+				caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				column.add_child(caption)
+			_effectiveness_layer.add_child(panel)
+			panel.reset_size()
+			_effectiveness_badges[String(raw_id)] = panel
+	_layout_effectiveness_hints()
+
+func _layout_effectiveness_hints() -> void:
+	for raw_id in _effectiveness_badges:
+		var view := combatant_views.get(String(raw_id)) as BattleCombatantView
+		if view == null or view.health_background_sprite == null: continue
+		var badge := _effectiveness_badges[raw_id] as PanelContainer
+		badge.size = badge.get_combined_minimum_size()
+		var bar := view.health_background_sprite
+		var bounds := bar.get_global_transform_with_canvas() * bar.get_rect()
+		# Pin the compact chip to this bar's upper-right corner. The old four-
+		# position collision fallback could move an enemy's long sentence left,
+		# over the caster. A tooltip may cover a chip, but cannot reassign it.
+		var at := Vector2(bounds.end.x - badge.size.x, bounds.position.y - badge.size.y - 2)
+		if at.y < 38: at.y = bounds.end.y + 2
+		at.x = clampf(at.x, 4, maxf(4, size.x - badge.size.x - 4))
+		at.y = clampf(at.y, 38, maxf(38, size.y - badge.size.y - 4))
+		badge.position = _effectiveness_layer.get_global_transform_with_canvas().affine_inverse() * at
 
 func _position_move_panel(actor_id: StringName) -> void:
 	var view := combatant_views.get(String(actor_id)) as BattleCombatantView
@@ -1497,6 +1633,7 @@ func _choose_move(legal_move: Dictionary) -> void:
 				event_text.text = "Could not save move guidance. Choose the move again to retry."
 				return
 	move_tooltip.hide()
+	_hovered_effectiveness_move = null
 	pending_move = legal_move
 	selected_targets.clear()
 	_animate_move_selector_out()
@@ -3051,7 +3188,7 @@ func _create_combatant_view(state: Dictionary) -> BattleCombatantView:
 		displayed_state = state.duplicate()
 		displayed_state["team"] = _display_team(int(state.get("team", 0)))
 		displayed_state["double_layout"] = dense
-	view.setup(displayed_state, definition, texture)
+	view.setup(displayed_state, definition, texture, catalog)
 	combatant_views[String(state.instance_id)] = view
 	return view
 
@@ -3405,6 +3542,10 @@ func _on_restart_pressed() -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
+	if event.keycode == KEY_T:
+		_open_type_guide()
+		get_viewport().set_input_as_handled()
+		return
 	# Trainer rematch choices use the shell's Yes/No dialogue handler. The
 	# standalone result card also supports Space/Enter without mouse focus.
 	if result_overlay.visible and restart_button.visible and not restart_button.disabled and event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER]:
@@ -3423,6 +3564,15 @@ func _create_audio_toggles() -> void:
 	_sound_toggle = SourceMenuArt.button(_audio_controls, "menu_muteSoundButton_on", Vector2(36, 5), func() -> void: settings_service.set_sound_enabled(not settings_service.sound_enabled))
 	settings_service.settings_changed.connect(_refresh_audio_toggles)
 	_refresh_audio_toggles()
+	_type_guide_button = TypeGuideView.text_button(self, "Type Guide", Vector2(75, 6), Vector2(88, 25), _open_type_guide, 14)
+	_type_guide_button.name = "TypeGuideButton"
+	_type_guide_button.tooltip_text = "Type Guide (T)"
+	_type_guide_button.z_index = 1400
+	_effectiveness_layer = Control.new()
+	_effectiveness_layer.name = "EffectivenessHints"
+	_effectiveness_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_effectiveness_layer.z_index = 1050
+	add_child(_effectiveness_layer)
 
 func _refresh_audio_toggles() -> void:
 	_music_toggle.texture_normal = SourceMenuArt.texture("menu_muteMusicButton_on" if settings_service.music_enabled else "menu_muteMusicButton_off")
@@ -3773,4 +3923,4 @@ func _presentation_texture(minion: MinionDefinition) -> Texture2D:
 	if ResourceLoader.exists(source_path):
 		return load(source_path) as Texture2D
 	var legacy_path := "res://content/base/art/battle/%s.png" % String(presentation.legacy_sprite_name)
-	return load(legacy_path) as Texture2D if ResourceLoader.exists(legacy_path) else null
+	return load(legacy_path) as Texture2D if ResourceLoader.exists(legacy_path) else MinionPaletteService.texture_for_definition(minion.id)

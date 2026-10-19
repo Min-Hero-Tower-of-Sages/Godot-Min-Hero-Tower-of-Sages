@@ -13,6 +13,8 @@ var learned_move_ids: Array[StringName] = []
 var equipment_ids: Array[StringName] = []
 var persistent_health: int = -1
 var persistent_energy: int = -1
+var is_shiny: bool = false
+var shiny_line_id: StringName = &""
 
 func to_dictionary() -> Dictionary:
 	return {
@@ -28,6 +30,8 @@ func to_dictionary() -> Dictionary:
 		"equipment_ids": equipment_ids.map(func(value: StringName) -> String: return String(value)),
 		"persistent_health": persistent_health,
 		"persistent_energy": persistent_energy,
+		"is_shiny": is_shiny,
+		"shiny_line_id": String(shiny_line_id),
 	}
 
 static func from_dictionary(data: Dictionary) -> OwnedMinionState:
@@ -44,6 +48,8 @@ static func from_dictionary(data: Dictionary) -> OwnedMinionState:
 	owned.equipment_ids.assign(data.get("equipment_ids", []))
 	owned.persistent_health = int(data.get("persistent_health", -1))
 	owned.persistent_energy = int(data.get("persistent_energy", -1))
+	owned.is_shiny = bool(data.get("is_shiny", false))
+	owned.shiny_line_id = StringName(data.get("shiny_line_id", ""))
 	return owned
 
 func duplicate_state() -> OwnedMinionState:
@@ -60,4 +66,6 @@ func duplicate_state() -> OwnedMinionState:
 	copy.equipment_ids = equipment_ids.duplicate()
 	copy.persistent_health = persistent_health
 	copy.persistent_energy = persistent_energy
+	copy.is_shiny = is_shiny
+	copy.shiny_line_id = shiny_line_id
 	return copy

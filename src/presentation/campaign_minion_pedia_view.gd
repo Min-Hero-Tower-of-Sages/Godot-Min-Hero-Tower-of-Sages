@@ -4,6 +4,7 @@ extends Control
 signal closed
 
 const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
+const PORTRAIT_RECT := Rect2(70, 80, 208, 207)
 var _catalog: ContentCatalog
 var _state: CampaignState
 var _minions: Array[MinionDefinition] = []
@@ -91,8 +92,32 @@ func _build() -> void:
 	add_child(_panel)
 	SourceMenuArt.image(_panel, "menus_backgroundLarge", Vector2.ZERO)
 	SourceMenuArt.image(_panel, "minionPedia_background", Vector2(21, 18))
-	SourceMenuArt.image(_panel, "minionPedia_minionBackground", Vector2(56, 56))
+	var portrait_frame := SourceMenuArt.image(_panel, "minionPedia_minionBackground", PORTRAIT_RECT.position)
+	portrait_frame.name = "MinionPortraitFrame"
+	portrait_frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	portrait_frame.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	portrait_frame.size = PORTRAIT_RECT.size
 	SourceMenuArt.button(_panel, "menus_returnButton", Vector2(3, 409), func() -> void: closed.emit())
+	var type_guide_button := TypeGuideView.text_button(_panel, "Type Guide", Vector2(64, 30), Vector2(220, 34), _open_type_guide, 18)
+	type_guide_button.name = "TypeGuideEntry"
+	# Like the source merchant actions, position the caption independently of
+	# Button's text centering. Burbin has substantial leading above its visible
+	# glyphs; centering that full line leaves descenders against the lower bevel.
+	type_guide_button.text = ""
+	var caption := Label.new()
+	caption.name = "Caption"
+	caption.text = "Type Guide"
+	caption.position = Vector2(4, 0)
+	caption.size = Vector2(212, 34)
+	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	caption.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	caption.add_theme_font_override("font", FONT)
+	caption.add_theme_font_size_override("font_size", 18)
+	caption.add_theme_color_override("font_color", Color8(249, 249, 249))
+	caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	type_guide_button.add_child(caption)
+	type_guide_button.mouse_entered.connect(func() -> void: caption.add_theme_color_override("font_color", Color8(255, 242, 177)))
+	type_guide_button.mouse_exited.connect(func() -> void: caption.add_theme_color_override("font_color", Color8(249, 249, 249)))
 	var clip := Control.new()
 	clip.position = Vector2(325, 24)
 	clip.size = Vector2(300, 419)
@@ -132,6 +157,23 @@ func _build() -> void:
 	if not _minions.is_empty():
 		_select(0)
 
+func _open_type_guide() -> void:
+	if get_node_or_null("TypeGuide") != null: return
+	var guide := TypeGuideView.new()
+	var initial_type := &"base:type/fire"
+	if not _minions.is_empty() and _seen.has(String(_minions[_selected].id)) and not _minions[_selected].type_ids.is_empty():
+		initial_type = _minions[_selected].type_ids[0]
+	guide.configure(_catalog, initial_type)
+	guide.closed.connect(func() -> void:
+		remove_child(guide)
+		guide.queue_free()
+		_panel.visible = true
+	)
+	# Nested guides own their frame; do not leave a second Pedia frame peeking
+	# around it. The existing selection/scroll state stays intact underneath.
+	_panel.visible = false
+	add_child(guide)
+
 func _select(index: int) -> void:
 	_selected = index
 	if _selection != null:
@@ -154,7 +196,11 @@ func _select(index: int) -> void:
 		portrait.name = "SourcePediaPortrait"
 		portrait.texture = texture
 		portrait.centered = false
-		portrait.position = Vector2(174 - texture.get_width() * 0.5, 247 - texture.get_height())
+		# The header has its own space above a slightly smaller portrait frame.
+		# Fit larger minions inside it without shifting the details/footer down.
+		var portrait_scale := minf(1.0, minf(184.0 / texture.get_width(), 157.0 / texture.get_height()))
+		portrait.scale = Vector2.ONE * portrait_scale
+		portrait.position = Vector2(174 - texture.get_width() * portrait_scale * 0.5, 260 - texture.get_height() * portrait_scale)
 		_description.add_child(portrait)
 	_text(_description, "Name:  %s" % (definition.display_name if known else "????????"), Vector2(64, 288), Vector2(244, 33), 20)
 	_text(_description, "Type: " if known else "Type:    ????????", Vector2(64, 318), Vector2(200, 30), 20)

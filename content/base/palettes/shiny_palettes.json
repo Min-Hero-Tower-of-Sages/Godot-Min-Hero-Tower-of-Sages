@@ -1,0 +1,1727 @@
+{
+  "schema_version": 1,
+  "lines": {
+    "arkvian:minion/holybird1": {
+      "palette_name": "Jade Teal",
+      "parameters": {
+        "hue_shift": 0.35,
+        "source_hue": 0.12,
+        "hue_width": 0.18,
+        "saturation_scale": 1,
+        "value_scale": 1,
+        "minimum_saturation": 0.18,
+        "minimum_value": 0.1
+      },
+      "rationale": "Locked approved scheme; shifts the golden feathers toward jade while retaining the white plumage and dark outlines.",
+      "stages": [
+        {
+          "id": "arkvian:minion/holybird1",
+          "name": "Arkvian",
+          "texture": "content/base/art/source_symbols/1685_Utilities.SpriteHandler_HolyBirb1.png"
+        },
+        {
+          "id": "arkvian:minion/holybird2",
+          "name": "Arkclaw",
+          "texture": "content/base/art/source_symbols/1686_Utilities.SpriteHandler_HolyBirb2.png"
+        }
+      ]
+    },
+    "base:minion/anteater_1": {
+      "palette_name": "Rose Brass",
+      "parameters": {
+        "hue_shift": 0.48,
+        "saturation_scale": 1.18,
+        "value_scale": 1.04,
+        "source_hue": 0.61,
+        "hue_width": 0.17,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the line's steel-blue plating into warm rose brass while leaving the red cables and dark mechanical outlines recognizable.",
+      "stages": [
+        {
+          "id": "base:minion/anteater_1",
+          "name": "Bab-8r",
+          "texture": "content/base/art/battle/minions/robotAnteater1.png"
+        },
+        {
+          "id": "base:minion/anteater_2",
+          "name": "Ant-8r",
+          "texture": "content/base/art/battle/minions/robotAnteater.png"
+        }
+      ]
+    },
+    "base:minion/armadillo_1": {
+      "palette_name": "Embersteel",
+      "parameters": {
+        "hue_shift": 0.35,
+        "source_hue": 0.72,
+        "hue_width": 0.18,
+        "saturation_scale": 1.24,
+        "value_scale": 1.02,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the lavender metal plates and spikes toward warm copper while keeping the pale armor highlights and dark circular details readable across both stages.",
+      "stages": [
+        {
+          "id": "base:minion/armadillo_1",
+          "name": "Chidilla",
+          "texture": "content/base/art/battle/minions/normalArmadillo1.png"
+        },
+        {
+          "id": "base:minion/armadillo_2",
+          "name": "Armordilla",
+          "texture": "content/base/art/battle/minions/normalArmadillo.png"
+        }
+      ]
+    },
+    "base:minion/batdemon_1": {
+      "palette_name": "Ashen Crimson",
+      "parameters": {
+        "hue_shift": 0,
+        "source_hue": 0.08,
+        "hue_width": 0.17,
+        "saturation_scale": 1.28,
+        "saturation_floor": 0.16,
+        "value_scale": 1.08,
+        "minimum_saturation": 0.08,
+        "minimum_value": 0.08,
+        "target_hue": 0.99,
+        "neutral_target_hue": 0.6,
+        "neutral_saturation": 0.15,
+        "neutral_value_scale": 1.4,
+        "neutral_saturation_max": 0.55,
+        "neutral_tint_strength": 1
+      },
+      "rationale": "Lifts the cool, low-saturation body and wing membranes into ash-gray with a faint blue cast, while shifting the warm horns, claws, and markings to crimson; the neutral mask excludes bright highlights and near-black outlines.",
+      "stages": [
+        {
+          "id": "base:minion/batdemon_1",
+          "name": "Cerberus",
+          "texture": "content/base/art/battle/minions/demonicBatDog.png"
+        }
+      ]
+    },
+    "base:minion/bluebell_1": {
+      "palette_name": "Jade Bell",
+      "parameters": {
+        "hue_shift": 0.2,
+        "saturation_scale": 1.15,
+        "value_scale": 1.03,
+        "source_hue": 0.13,
+        "hue_width": 0.16,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Recolors the bell's golden body and trim to vivid jade, keeping its blue flame and face as contrasting accents.",
+      "stages": [
+        {
+          "id": "base:minion/bluebell_1",
+          "name": "Destrabell",
+          "texture": "content/base/art/battle/minions/holyBlueBell.png"
+        }
+      ]
+    },
+    "base:minion/chameleon_1": {
+      "palette_name": "Aurora Shift",
+      "parameters": {
+        "hue_shift": 0.48,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "saturation_scale": 1.1,
+        "value_scale": 1.02,
+        "minimum_saturation": 0.16,
+        "minimum_value": 0.1
+      },
+      "rationale": "Rotates the vivid rainbow scales into a cohesive cool aurora of blues, violets, and greens while leaving low-saturation eye and claw details largely intact.",
+      "stages": [
+        {
+          "id": "base:minion/chameleon_1",
+          "name": "Chameleon",
+          "texture": "content/base/art/battle/minions/plantLizard.png"
+        }
+      ]
+    },
+    "base:minion/cheetah_1": {
+      "palette_name": "Roseflash",
+      "parameters": {
+        "hue_shift": -0.2,
+        "source_hue": 0.14,
+        "hue_width": 0.2,
+        "saturation_scale": 1.1,
+        "value_scale": 1,
+        "minimum_saturation": 0.16,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the line’s dominant golden fur into vivid rose while leaving the electric blue markings distinct.",
+      "stages": [
+        {
+          "id": "base:minion/cheetah_1",
+          "name": "Elecat",
+          "texture": "content/base/art/battle/minions/energyCheetah1.png"
+        },
+        {
+          "id": "base:minion/cheetah_2",
+          "name": "Cheecha",
+          "texture": "content/base/art/battle/minions/energyCheetah2.png"
+        },
+        {
+          "id": "base:minion/cheetah_3",
+          "name": "Lightina",
+          "texture": "content/base/art/battle/minions/energyCheetah3.png"
+        }
+      ]
+    },
+    "base:minion/crow_1": {
+      "palette_name": "Blood Moon",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.97,
+        "saturation_scale": 1.18,
+        "saturation_floor": 0.14,
+        "value_scale": 1.04,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "minimum_saturation": 0.15,
+        "minimum_value": 0.1
+      },
+      "rationale": "Sets chromatic areas to blood red across the egg and feather stages, while low-value bodies and neutral bone masks retain their contrast.",
+      "stages": [
+        {
+          "id": "base:minion/crow_1",
+          "name": "Egcrow",
+          "texture": "content/base/art/battle/minions/undeadCrow1.png"
+        },
+        {
+          "id": "base:minion/crow_2",
+          "name": "Skulcrow",
+          "texture": "content/base/art/battle/minions/undeadCrow2.png"
+        },
+        {
+          "id": "base:minion/crow_3",
+          "name": "Krobone",
+          "texture": "content/base/art/battle/minions/undeadCrow3.png"
+        }
+      ]
+    },
+    "base:minion/dc2guy_1": {
+      "palette_name": "Cobalt Circuit",
+      "parameters": {
+        "hue_shift": 0.38,
+        "source_hue": 0.13,
+        "hue_width": 0.19,
+        "saturation_scale": 1.18,
+        "value_scale": 1.03,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1,
+        "target_hue": 0.59
+      },
+      "rationale": "Recolors the prominent gold armor and circuitry to bright cobalt blue, preserving the gray joints, dark suit, and brown hat as contrasting details.",
+      "stages": [
+        {
+          "id": "base:minion/dc2guy_1",
+          "name": "Domisteam",
+          "texture": "content/base/art/battle/minions/robotDeathCall.png"
+        }
+      ]
+    },
+    "base:minion/demonic_cat_1": {
+      "palette_name": "Amethyst Shadow",
+      "parameters": {
+        "hue_shift": 0.42,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "saturation_scale": 1.2,
+        "value_scale": 1,
+        "minimum_saturation": 0.08,
+        "minimum_value": 0.07,
+        "target_hue": 0.78,
+        "neutral_tint_strength": 0.16
+      },
+      "rationale": "The preview shifted the eyes and neon accents blue but left the charcoal fur nearly unchanged. Map colored pixels to amethyst and use a mild midtone tint to carry that hue into the broad dark fur without tinting black outlines.",
+      "stages": [
+        {
+          "id": "base:minion/demonic_cat_1",
+          "name": "Kittyvile",
+          "texture": "content/base/art/battle/minions/demonicCat1.png"
+        },
+        {
+          "id": "base:minion/demonic_cat_2",
+          "name": "Pumafiend",
+          "texture": "content/base/art/battle/minions/demonicCat2.png"
+        }
+      ]
+    },
+    "base:minion/dogeel_1": {
+      "palette_name": "Amber Maw",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.11,
+        "saturation_scale": 1.22,
+        "saturation_floor": 0.12,
+        "value_scale": 1.02,
+        "source_hue": -1,
+        "hue_width": 0.2,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Maps the chromatic body and fins to amber-gold so both stages read warm and coordinated, with pale eyes and deep mouth shadows left intact.",
+      "stages": [
+        {
+          "id": "base:minion/dogeel_1",
+          "name": "Dogler",
+          "texture": "content/base/art/battle/minions/waterDog1.png"
+        },
+        {
+          "id": "base:minion/dogeel_2",
+          "name": "Houndler",
+          "texture": "content/base/art/battle/minions/waterDog2.png"
+        }
+      ]
+    },
+    "base:minion/evileye_1": {
+      "palette_name": "Viridian Gaze",
+      "parameters": {
+        "hue_shift": 0.47,
+        "source_hue": 0.04,
+        "hue_width": 0.2,
+        "saturation_scale": 1.17,
+        "value_scale": 1.02,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Moves the broad crimson membranes and tendrils toward deep teal, letting the many green irises remain bright focal points through all three forms.",
+      "stages": [
+        {
+          "id": "base:minion/evileye_1",
+          "name": "Leeru",
+          "texture": "content/base/art/battle/minions/demonicEyeball1.png"
+        },
+        {
+          "id": "base:minion/evileye_2",
+          "name": "Duleer",
+          "texture": "content/base/art/battle/minions/demonicEyeball2.png"
+        },
+        {
+          "id": "base:minion/evileye_3",
+          "name": "Leerpo",
+          "texture": "content/base/art/battle/minions/demonicEyeball3.png"
+        }
+      ]
+    },
+    "base:minion/fire_bear_1": {
+      "palette_name": "Arctic Ember",
+      "parameters": {
+        "hue_shift": 0.43,
+        "source_hue": 0.08,
+        "hue_width": 0.24,
+        "saturation_scale": 1.2,
+        "value_scale": 1,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.1,
+        "target_hue": 0.5,
+        "neutral_tint_strength": 0.14
+      },
+      "rationale": "The preview only recolored the lava seams. Map chromatic details to cyan and add a mild cyan tint to the broad gray midtones while retaining neutral highlights and dark outlines.",
+      "stages": [
+        {
+          "id": "base:minion/fire_bear_1",
+          "name": "Cubble",
+          "texture": "content/base/art/battle/minions/earthBear1.png"
+        },
+        {
+          "id": "base:minion/fire_bear_2",
+          "name": "Blazebar",
+          "texture": "content/base/art/battle/minions/earthBear2.png"
+        }
+      ]
+    },
+    "base:minion/fire_frog_1": {
+      "palette_name": "Glacier Flame",
+      "parameters": {
+        "hue_shift": 0.54,
+        "saturation_scale": 1.12,
+        "value_scale": 1.04,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "minimum_saturation": 0.16,
+        "minimum_value": 0.1
+      },
+      "rationale": "A strong all-hue turn converts the red-orange lava and dark volcanic tones to an icy cyan-blue fire palette across all three stages.",
+      "stages": [
+        {
+          "id": "base:minion/fire_frog_1",
+          "name": "Tadcoal",
+          "texture": "content/base/art/battle/minions/fireToad1.png"
+        },
+        {
+          "id": "base:minion/fire_frog_2",
+          "name": "Volcanoad",
+          "texture": "content/base/art/battle/minions/fireToad2.png"
+        },
+        {
+          "id": "base:minion/fire_frog_3",
+          "name": "Eruptoad",
+          "texture": "content/base/art/battle/minions/fireToad3.png"
+        }
+      ]
+    },
+    "base:minion/fire_pig_1": {
+      "palette_name": "Amethyst Violet",
+      "parameters": {
+        "hue_shift": 0.69,
+        "source_hue": 0.08,
+        "hue_width": 0.18,
+        "saturation_scale": 1,
+        "value_scale": 1,
+        "minimum_saturation": 0.18,
+        "minimum_value": 0.1
+      },
+      "rationale": "Locked approved scheme; shifts the orange-red fur and flame markings toward amethyst violet across all three stages while retaining neutral eyes and dark outlines.",
+      "stages": [
+        {
+          "id": "base:minion/fire_pig_1",
+          "name": "Zapig",
+          "texture": "content/base/art/battle/minions/energyBoar1.png"
+        },
+        {
+          "id": "base:minion/fire_pig_2",
+          "name": "Electroboar",
+          "texture": "content/base/art/battle/minions/energyBoar2.png"
+        },
+        {
+          "id": "base:minion/fire_pig_3",
+          "name": "Tazorback",
+          "texture": "content/base/art/battle/minions/energyBoar3.png"
+        }
+      ]
+    },
+    "base:minion/fireghost_1": {
+      "palette_name": "Sapphire Wisp",
+      "parameters": {
+        "hue_shift": 0.53,
+        "source_hue": 0.13,
+        "hue_width": 0.2,
+        "saturation_scale": 1.15,
+        "value_scale": 1,
+        "minimum_saturation": 0.16,
+        "minimum_value": 0.1
+      },
+      "rationale": "Changes the large golden hood and robe panels to sapphire-blue, leaving the dark robe and blue spectral flames legible.",
+      "stages": [
+        {
+          "id": "base:minion/fireghost_1",
+          "name": "Banesha",
+          "texture": "content/base/art/battle/minions/fireMage.png"
+        }
+      ]
+    },
+    "base:minion/flyinggrasssuperminion_1": {
+      "palette_name": "Orchid Serpent",
+      "parameters": {
+        "hue_shift": 0.45,
+        "saturation_scale": 1.14,
+        "value_scale": 1.02,
+        "source_hue": 0.32,
+        "hue_width": 0.15,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the large green scales into orchid-violet while retaining the red crest, yellow belly and blue jewelry as a lively multicolor design.",
+      "stages": [
+        {
+          "id": "base:minion/flyinggrasssuperminion_1",
+          "name": "Mayataz",
+          "texture": "content/base/art/battle/minions/featheredSerpent.png"
+        }
+      ]
+    },
+    "base:minion/goo_1": {
+      "palette_name": "Blackberry Slime",
+      "parameters": {
+        "hue_shift": 0.52,
+        "source_hue": 0.3,
+        "hue_width": 0.18,
+        "saturation_scale": 1.12,
+        "value_scale": 1.03,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Changes the bright green slime bodies to saturated blackberry purple while keeping their white eyes and dark mouths distinct across all three shapes.",
+      "stages": [
+        {
+          "id": "base:minion/goo_1",
+          "name": "Slime",
+          "texture": "content/base/art/battle/minions/normalSlime1.png"
+        },
+        {
+          "id": "base:minion/goo_2",
+          "name": "Gigaslime",
+          "texture": "content/base/art/battle/minions/normalSlime2.png"
+        },
+        {
+          "id": "base:minion/goo_3",
+          "name": "Destroslime",
+          "texture": "content/base/art/battle/minions/normalSlime3.png"
+        }
+      ]
+    },
+    "base:minion/grassgorilla_1": {
+      "palette_name": "Cobalt Canopy",
+      "parameters": {
+        "hue_shift": 0.3,
+        "source_hue": 0.31,
+        "hue_width": 0.2,
+        "saturation_scale": 1.1,
+        "value_scale": 0.95,
+        "minimum_saturation": 0.16,
+        "minimum_value": 0.1
+      },
+      "rationale": "Moves the broad green body and cactus armor toward cobalt while preserving the orange-red mane as a warm counterpoint.",
+      "stages": [
+        {
+          "id": "base:minion/grassgorilla_1",
+          "name": "Chimilla",
+          "texture": "content/base/art/battle/minions/plantGorilla1.png"
+        },
+        {
+          "id": "base:minion/grassgorilla_2",
+          "name": "Cactilla",
+          "texture": "content/base/art/battle/minions/plantGorilla2.png"
+        }
+      ]
+    },
+    "base:minion/grasssnake_1": {
+      "palette_name": "Rose Lime",
+      "parameters": {
+        "hue_shift": -0.32,
+        "saturation_scale": 1.14,
+        "value_scale": 1.03,
+        "source_hue": 0.27,
+        "hue_width": 0.14,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Recolors the dominant lime-green bodies to bright rose pink while preserving the orange frills and pale bellies.",
+      "stages": [
+        {
+          "id": "base:minion/grasssnake_1",
+          "name": "Sapent",
+          "texture": "content/base/art/battle/minions/plantViper1.png"
+        },
+        {
+          "id": "base:minion/grasssnake_2",
+          "name": "Cobrapent",
+          "texture": "content/base/art/battle/minions/plantViper2.png"
+        },
+        {
+          "id": "base:minion/grasssnake_3",
+          "name": "Quickapent",
+          "texture": "content/base/art/battle/minions/plantViper3.png"
+        }
+      ]
+    },
+    "base:minion/griffen_1": {
+      "palette_name": "Crimsoncrest",
+      "parameters": {
+        "hue_shift": 0.36,
+        "source_hue": 0.04,
+        "hue_width": 0.09,
+        "saturation_scale": 1.18,
+        "value_scale": 1.02,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1,
+        "target_hue": 0.99
+      },
+      "rationale": "Shifts the deep violet feathered crests toward ruby red, keeping the golden bodies and orange eyes as warm contrasting features in both stages.",
+      "stages": [
+        {
+          "id": "base:minion/griffen_1",
+          "name": "Beakif",
+          "texture": "content/base/art/battle/minions/flyingGriffin1.png"
+        },
+        {
+          "id": "base:minion/griffen_2",
+          "name": "Eaglin",
+          "texture": "content/base/art/battle/minions/flyingGriffin2.png"
+        }
+      ]
+    },
+    "base:minion/ground_plant_1": {
+      "palette_name": "Copper Orchid",
+      "parameters": {
+        "hue_shift": 0.33,
+        "source_hue": 0.77,
+        "hue_width": 0.2,
+        "saturation_scale": 1.15,
+        "value_scale": 1,
+        "minimum_saturation": 0.16,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the large purple plant bodies into copper-orange across the three forms while the lime leaves and pale spots remain contrasting details.",
+      "stages": [
+        {
+          "id": "base:minion/ground_plant_1",
+          "name": "Octaleaf",
+          "texture": "content/base/art/battle/minions/plantSquid1.png"
+        },
+        {
+          "id": "base:minion/ground_plant_2",
+          "name": "Octagrass",
+          "texture": "content/base/art/battle/minions/plantSquid2.png"
+        },
+        {
+          "id": "base:minion/ground_plant_3",
+          "name": "Octatree",
+          "texture": "content/base/art/battle/minions/plantSquid3.png"
+        }
+      ]
+    },
+    "base:minion/groundattacker_1": {
+      "palette_name": "Lime Obsidian",
+      "parameters": {
+        "hue_shift": -0.45,
+        "saturation_scale": 1.3,
+        "value_scale": 1.3,
+        "source_hue": 0.77,
+        "hue_width": 0.18,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.1
+      },
+      "rationale": "Changes the deep purple armor to sharp chartreuse, while its ivory horns and claws continue to frame the darker silhouette.",
+      "stages": [
+        {
+          "id": "base:minion/groundattacker_1",
+          "name": "Betehorn",
+          "texture": "content/base/art/battle/minions/earthBeetle1.png"
+        },
+        {
+          "id": "base:minion/groundattacker_2",
+          "name": "Betestone",
+          "texture": "content/base/art/battle/minions/earthBeetle2.png"
+        },
+        {
+          "id": "base:minion/groundattacker_3",
+          "name": "Betehulk",
+          "texture": "content/base/art/battle/minions/earthBeetle3.png"
+        }
+      ]
+    },
+    "base:minion/groundmole_1": {
+      "palette_name": "Glacier Burrow",
+      "parameters": {
+        "hue_shift": 0.53,
+        "source_hue": 0.05,
+        "hue_width": 0.19,
+        "saturation_scale": 1.15,
+        "value_scale": 1.03,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the broad earthy brown bodies toward icy blue while leaving the steel claws and sandy ground accents as material contrast through the line.",
+      "stages": [
+        {
+          "id": "base:minion/groundmole_1",
+          "name": "Tremole",
+          "texture": "content/base/art/battle/minions/earthMole1.png"
+        },
+        {
+          "id": "base:minion/groundmole_2",
+          "name": "Seizemole",
+          "texture": "content/base/art/battle/minions/earthMole2.png"
+        },
+        {
+          "id": "base:minion/groundmole_3",
+          "name": "Sumole",
+          "texture": "content/base/art/battle/minions/earthMole3.png"
+        }
+      ]
+    },
+    "base:minion/harpy_1": {
+      "palette_name": "Glacier Gale",
+      "parameters": {
+        "hue_shift": 0.44,
+        "source_hue": 0.07,
+        "hue_width": 0.22,
+        "saturation_scale": 1.15,
+        "value_scale": 1,
+        "minimum_saturation": 0.16,
+        "minimum_value": 0.1
+      },
+      "rationale": "Changes the large rust-red wings and body to cyan-teal; cream feather sections and dark outlines retain their contrast.",
+      "stages": [
+        {
+          "id": "base:minion/harpy_1",
+          "name": "Harwing",
+          "texture": "content/base/art/battle/minions/flyingHarpy.png"
+        }
+      ]
+    },
+    "base:minion/healinghorse_1": {
+      "palette_name": "Burgundy Moss",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.98,
+        "saturation_scale": 1.24,
+        "saturation_floor": 0.12,
+        "value_scale": 1.02,
+        "source_hue": -1,
+        "hue_width": 0.16,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Maps the teal body and green mane to deep burgundy, with pale markings kept as a high-value contrast.",
+      "stages": [
+        {
+          "id": "base:minion/healinghorse_1",
+          "name": "Foramare",
+          "texture": "content/base/art/battle/minions/waterHorse.png"
+        }
+      ]
+    },
+    "base:minion/holyfox_1": {
+      "palette_name": "Moonlit Foxfire",
+      "parameters": {
+        "hue_shift": 0.47,
+        "source_hue": 0.04,
+        "hue_width": 0.18,
+        "saturation_scale": 1.15,
+        "value_scale": 1.02,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Recolors the fox's vivid red-orange coat and tail to sapphire blue, while the cream chest and blue flame remain clear accents.",
+      "stages": [
+        {
+          "id": "base:minion/holyfox_1",
+          "name": "Firox",
+          "texture": "content/base/art/battle/minions/holyFox.png"
+        }
+      ]
+    },
+    "base:minion/holymantris_1": {
+      "palette_name": "Indigo Mantis",
+      "parameters": {
+        "hue_shift": -0.35,
+        "source_hue": 0.02,
+        "hue_width": 0.2,
+        "saturation_scale": 1.15,
+        "value_scale": 1,
+        "minimum_saturation": 0.15,
+        "minimum_value": 0.1
+      },
+      "rationale": "Recolors the prominent coral-red limbs and shell plates to indigo while preserving the pale body and cream accents.",
+      "stages": [
+        {
+          "id": "base:minion/holymantris_1",
+          "name": "Holymantis",
+          "texture": "content/base/art/battle/minions/holyMantis.png"
+        }
+      ]
+    },
+    "base:minion/holystrongguy_1": {
+      "palette_name": "Ruby Sentinel",
+      "parameters": {
+        "hue_shift": 0.42,
+        "saturation_scale": 1.18,
+        "value_scale": 1.03,
+        "source_hue": 0.6,
+        "hue_width": 0.16,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the blue body into ruby red while preserving the polished gold armor for a clear red-and-gold holy design.",
+      "stages": [
+        {
+          "id": "base:minion/holystrongguy_1",
+          "name": "Saintifi",
+          "texture": "content/base/art/battle/minions/undeadWarrior.png"
+        }
+      ]
+    },
+    "base:minion/hummingbird_1": {
+      "palette_name": "Jade Beacon",
+      "parameters": {
+        "hue_shift": 0.33,
+        "source_hue": -1,
+        "hue_width": 0.16,
+        "saturation_scale": 1.22,
+        "value_scale": 1.04,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1,
+        "target_hue": 0.4,
+        "neutral_tint_strength": 0.3
+      },
+      "rationale": "Jade eye and accent recoloring plus restrained jade tint in gray metal midtones; bright silver highlights remain neutral.",
+      "stages": [
+        {
+          "id": "base:minion/hummingbird_1",
+          "name": "Amliflier",
+          "texture": "content/base/art/battle/minions/robotHummingbird.png"
+        }
+      ]
+    },
+    "base:minion/icebird_1": {
+      "palette_name": "Copper Frost",
+      "parameters": {
+        "hue_shift": 0.52,
+        "source_hue": 0.59,
+        "hue_width": 0.22,
+        "saturation_scale": 1.25,
+        "value_scale": 1,
+        "minimum_saturation": 0.1,
+        "minimum_value": 0.08,
+        "target_hue": 0.09,
+        "neutral_tint_strength": 0.1
+      },
+      "rationale": "Maps the blue eyes and chest marks to copper-orange and gives the broad off-white feather midtones a slight warm tint; bright white highlights and dark outlines remain neutral.",
+      "stages": [
+        {
+          "id": "base:minion/icebird_1",
+          "name": "Archick",
+          "texture": "content/base/art/battle/minions/flyingOwl1.png"
+        },
+        {
+          "id": "base:minion/icebird_2",
+          "name": "Arcticowl",
+          "texture": "content/base/art/battle/minions/flyingOwl2.png"
+        }
+      ]
+    },
+    "base:minion/icedeer_1": {
+      "palette_name": "Celadon Frost",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.36,
+        "saturation_scale": 1.35,
+        "saturation_floor": 0.12,
+        "value_scale": 1.02,
+        "source_hue": -1,
+        "hue_width": 0.19,
+        "minimum_saturation": 0.08,
+        "minimum_value": 0.1,
+        "neutral_tint_strength": 0.12
+      },
+      "rationale": "Gives the blue frost antlers and muted body a celadon-green sheen; the neutral midtone tint catches pale ice while protecting white highlights and dark details.",
+      "stages": [
+        {
+          "id": "base:minion/icedeer_1",
+          "name": "Frostag",
+          "texture": "content/base/art/battle/minions/iceStag.png"
+        }
+      ]
+    },
+    "base:minion/icetree_1": {
+      "palette_name": "Golden Canopy",
+      "parameters": {
+        "hue_shift": 0.84,
+        "source_hue": 0.29,
+        "hue_width": 0.23,
+        "saturation_scale": 1.18,
+        "value_scale": 1.04,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1,
+        "target_hue": 0.12
+      },
+      "rationale": "Turns the dense green foliage toward amber and gold while preserving the white snow cap and brown limbs across both stages.",
+      "stages": [
+        {
+          "id": "base:minion/icetree_1",
+          "name": "Shrumpy",
+          "texture": "content/base/art/battle/minions/iceTree1.png"
+        },
+        {
+          "id": "base:minion/icetree_2",
+          "name": "Eldrest",
+          "texture": "content/base/art/battle/minions/iceTree2.png"
+        }
+      ]
+    },
+    "base:minion/jellyfish_1": {
+      "palette_name": "Limecurrent",
+      "parameters": {
+        "hue_shift": 0.44,
+        "source_hue": 0.87,
+        "hue_width": 0.22,
+        "saturation_scale": 1.2,
+        "value_scale": 1,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.08,
+        "target_hue": 0.31,
+        "neutral_tint_strength": 0.08
+      },
+      "rationale": "Maps the broad pink bell to lime-chartreuse and lightly tints the evolved form’s pale chromatic tentacle midtones, leaving bright white linework and blue water effects cool.",
+      "stages": [
+        {
+          "id": "base:minion/jellyfish_1",
+          "name": "Jellyjolt",
+          "texture": "content/base/art/battle/minions/energyJellyfish1.png"
+        },
+        {
+          "id": "base:minion/jellyfish_2",
+          "name": "Hydravolt",
+          "texture": "content/base/art/battle/minions/energyJellyfish2.png"
+        }
+      ]
+    },
+    "base:minion/landshark_1": {
+      "palette_name": "Copper Gills",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.08,
+        "saturation_scale": 1.28,
+        "saturation_floor": 0.16,
+        "value_scale": 1.04,
+        "source_hue": -1,
+        "hue_width": 0.17,
+        "minimum_saturation": 0.1,
+        "minimum_value": 0.1
+      },
+      "rationale": "Recolors the shark's blue-gray hide to copper and bronze while retaining its orange gills and dark features.",
+      "stages": [
+        {
+          "id": "base:minion/landshark_1",
+          "name": "Wafin",
+          "texture": "content/base/art/battle/minions/waterLandShark.png"
+        }
+      ]
+    },
+    "base:minion/lichboss_1": {
+      "palette_name": "Rose Specter",
+      "parameters": {
+        "hue_shift": 0.27,
+        "source_hue": 0.62,
+        "hue_width": 0.18,
+        "saturation_scale": 1.18,
+        "value_scale": 1.03,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Moves the blue cloth, spectral accents, and cool armor details toward rose magenta while retaining the gold armor and bone faces across all three forms.",
+      "stages": [
+        {
+          "id": "base:minion/lichboss_1",
+          "name": "Kel'ba",
+          "texture": "content/base/art/battle/minions/undeadLich1.png"
+        },
+        {
+          "id": "base:minion/lichboss_2",
+          "name": "Kel'ten",
+          "texture": "content/base/art/battle/minions/undeadLich2.png"
+        },
+        {
+          "id": "base:minion/lichboss_3",
+          "name": "Kel'Tuzar",
+          "texture": "content/base/art/battle/minions/undeadLich3.png"
+        }
+      ]
+    },
+    "base:minion/pinkbell_1": {
+      "palette_name": "Verdant Bell",
+      "parameters": {
+        "hue_shift": 0.19,
+        "source_hue": 0.14,
+        "hue_width": 0.22,
+        "saturation_scale": 1.15,
+        "value_scale": 1,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the bell’s broad yellow-gold body into fresh lime-green, retaining the magenta flame and band as a strong accent.",
+      "stages": [
+        {
+          "id": "base:minion/pinkbell_1",
+          "name": "Healabell",
+          "texture": "content/base/art/battle/minions/holyPinkBell.png"
+        }
+      ]
+    },
+    "base:minion/racoon_1": {
+      "palette_name": "Lilac Bandit",
+      "parameters": {
+        "hue_shift": -0.32,
+        "saturation_scale": 1.24,
+        "value_scale": 1.04,
+        "source_hue": 0.08,
+        "hue_width": 0.2,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.1
+      },
+      "rationale": "Pushes the brown fur and mask markings into lilac and plum, while the black paws, nose and blue eye accents stay legible.",
+      "stages": [
+        {
+          "id": "base:minion/racoon_1",
+          "name": "Tatail",
+          "texture": "content/base/art/battle/minions/normalRaccoon1.png"
+        },
+        {
+          "id": "base:minion/racoon_2",
+          "name": "Kleptoon",
+          "texture": "content/base/art/battle/minions/normalRaccoon2.png"
+        }
+      ]
+    },
+    "base:minion/raptor_1": {
+      "palette_name": "Sapphire Raptor",
+      "parameters": {
+        "hue_shift": 0.53,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "saturation_scale": 1.12,
+        "value_scale": 1.02,
+        "minimum_saturation": 0.15,
+        "minimum_value": 0.1
+      },
+      "rationale": "A broad hue turn converts the red-orange scales and shell markings to sapphire and teal tones, preserving the dark stripes and pale egg shell through the evolution.",
+      "stages": [
+        {
+          "id": "base:minion/raptor_1",
+          "name": "Toregg",
+          "texture": "content/base/art/battle/minions/fireRaptor1.png"
+        },
+        {
+          "id": "base:minion/raptor_2",
+          "name": "Smouldor",
+          "texture": "content/base/art/battle/minions/fireRaptor2.png"
+        },
+        {
+          "id": "base:minion/raptor_3",
+          "name": "Flamator",
+          "texture": "content/base/art/battle/minions/fireRaptor3.png"
+        }
+      ]
+    },
+    "base:minion/robobull_1": {
+      "palette_name": "Cyan Circuit",
+      "parameters": {
+        "hue_shift": 0.5,
+        "source_hue": 0.02,
+        "hue_width": 0.2,
+        "saturation_scale": 1.15,
+        "value_scale": 1,
+        "minimum_saturation": 0.16,
+        "minimum_value": 0.1
+      },
+      "rationale": "Recolors the bull’s large red armor panels to cyan, while the gold trim and dark joints preserve the mechanical detailing.",
+      "stages": [
+        {
+          "id": "base:minion/robobull_1",
+          "name": "Titoro",
+          "texture": "content/base/art/battle/minions/robotBull.png"
+        }
+      ]
+    },
+    "base:minion/roboshark_1": {
+      "palette_name": "Copper Circuit",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.08,
+        "saturation_scale": 1.28,
+        "saturation_floor": 0.16,
+        "value_scale": 1.04,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "minimum_saturation": 0.1,
+        "minimum_value": 0.1
+      },
+      "rationale": "Converts the metallic blue and cyan body into copper-orange plating, preserving dark joints and bright eye details.",
+      "stages": [
+        {
+          "id": "base:minion/roboshark_1",
+          "name": "Megalatron",
+          "texture": "content/base/art/battle/minions/robotShark.png"
+        }
+      ]
+    },
+    "base:minion/scarecrow_1": {
+      "palette_name": "Teal Harvest",
+      "parameters": {
+        "hue_shift": 0.47,
+        "source_hue": 0.03,
+        "hue_width": 0.19,
+        "saturation_scale": 1.16,
+        "value_scale": 1.03,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Shifts the red clothing and pumpkin details toward deep teal, with the straw limbs, brown hats, and dark outlines keeping the harvest silhouettes readable.",
+      "stages": [
+        {
+          "id": "base:minion/scarecrow_1",
+          "name": "Pumcin",
+          "texture": "content/base/art/battle/minions/undeadScarecrow1.png"
+        },
+        {
+          "id": "base:minion/scarecrow_2",
+          "name": "Scaredrow",
+          "texture": "content/base/art/battle/minions/undeadScarecrow2.png"
+        },
+        {
+          "id": "base:minion/scarecrow_3",
+          "name": "Scaredoom",
+          "texture": "content/base/art/battle/minions/undeadScarecrow3.png"
+        }
+      ]
+    },
+    "base:minion/scorpion_1": {
+      "palette_name": "Cyan Voltage",
+      "parameters": {
+        "hue_shift": 0.42,
+        "source_hue": 0.08,
+        "hue_width": 0.24,
+        "saturation_scale": 1.2,
+        "value_scale": 1,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the broad orange-yellow armor and stingers toward blue-cyan across all three forms; charcoal sections remain dark.",
+      "stages": [
+        {
+          "id": "base:minion/scorpion_1",
+          "name": "Shoktail",
+          "texture": "content/base/art/battle/minions/energyScorpion1.png"
+        },
+        {
+          "id": "base:minion/scorpion_2",
+          "name": "Emperun",
+          "texture": "content/base/art/battle/minions/energyScorpion2.png"
+        },
+        {
+          "id": "base:minion/scorpion_3",
+          "name": "Empawrath",
+          "texture": "content/base/art/battle/minions/energyScorpion3.png"
+        }
+      ]
+    },
+    "base:minion/slenderman_1": {
+      "palette_name": "Mauve Wraith",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.91,
+        "saturation_scale": 1.3,
+        "saturation_floor": 0.1,
+        "value_scale": 1.03,
+        "source_hue": -1,
+        "hue_width": 0.23,
+        "minimum_saturation": 0.06,
+        "minimum_value": 0.1,
+        "neutral_tint_strength": 0.42
+      },
+      "rationale": "Adds a rose-mauve tint to the pale body and pink face details; the opt-in neutral midtone tint makes the single-stage change visible while bright highlights and the dark face stay distinct.",
+      "stages": [
+        {
+          "id": "base:minion/slenderman_1",
+          "name": "Biomez",
+          "texture": "content/base/art/battle/minions/undeadGolem.png"
+        }
+      ]
+    },
+    "base:minion/tiger_1": {
+      "palette_name": "Moonstone Blue",
+      "parameters": {
+        "hue_shift": 0.5,
+        "source_hue": 0.08,
+        "hue_width": 0.18,
+        "saturation_scale": 1,
+        "value_scale": 1,
+        "minimum_saturation": 0.18,
+        "minimum_value": 0.1
+      },
+      "rationale": "Locked approved scheme; shifts the orange coat and stripes toward moonstone blue across both stages while retaining the pale muzzle, belly, and dark markings.",
+      "stages": [
+        {
+          "id": "base:minion/tiger_1",
+          "name": "Ticub",
+          "texture": "content/base/art/battle/minions/normalTiger1.png"
+        },
+        {
+          "id": "base:minion/tiger_2",
+          "name": "Tigertan",
+          "texture": "content/base/art/battle/minions/normalTiger2.png"
+        }
+      ]
+    },
+    "base:minion/tikimonkey_1": {
+      "palette_name": "Navy Tiki",
+      "parameters": {
+        "hue_shift": -0.46,
+        "source_hue": 0.08,
+        "hue_width": 0.24,
+        "saturation_scale": 1.15,
+        "value_scale": 1,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Moves the broad orange and red masks and fur into deep blue-violet across both stages, retaining the wooden and gold accents.",
+      "stages": [
+        {
+          "id": "base:minion/tikimonkey_1",
+          "name": "Vudu",
+          "texture": "content/base/art/battle/minions/fireMonkey1.png"
+        },
+        {
+          "id": "base:minion/tikimonkey_2",
+          "name": "Hudu",
+          "texture": "content/base/art/battle/minions/fireMonkey2.png"
+        }
+      ]
+    },
+    "base:minion/titan_1": {
+      "palette_name": "Ruby Gator",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.99,
+        "saturation_scale": 1.2,
+        "saturation_floor": 0.12,
+        "value_scale": 1.04,
+        "source_hue": -1,
+        "hue_width": 0.17,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.1
+      },
+      "rationale": "Turns the green crocodilian scales into ruby and burgundy while keeping gold ornaments and pale teeth as warm accents.",
+      "stages": [
+        {
+          "id": "base:minion/titan_1",
+          "name": "Sobek",
+          "texture": "content/base/art/battle/minions/titan1.png"
+        }
+      ]
+    },
+    "base:minion/titan_2": {
+      "palette_name": "Jade Regent",
+      "parameters": {
+        "hue_shift": -0.19,
+        "source_hue": 0.63,
+        "hue_width": 0.19,
+        "saturation_scale": 1.17,
+        "value_scale": 1.03,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Recolors the deep blue scales and armor to rich jade, keeping the gold trim and white mane as bright royal accents.",
+      "stages": [
+        {
+          "id": "base:minion/titan_2",
+          "name": "Seiryu",
+          "texture": "content/base/art/battle/minions/titan2.png"
+        }
+      ]
+    },
+    "base:minion/tortoise_1": {
+      "palette_name": "Rose Quartz Shell",
+      "parameters": {
+        "hue_shift": 0.29,
+        "source_hue": 0.59,
+        "hue_width": 0.24,
+        "saturation_scale": 1.25,
+        "value_scale": 1,
+        "minimum_saturation": 0.08,
+        "minimum_value": 0.08
+      },
+      "rationale": "Pushes the icy blue shell facets toward violet-rose; the broad cream shell plates stay neutral, so the recolor is concentrated in the colored ice details.",
+      "stages": [
+        {
+          "id": "base:minion/tortoise_1",
+          "name": "Tortastone",
+          "texture": "content/base/art/battle/minions/earthTortoiseWhite.png"
+        }
+      ]
+    },
+    "base:minion/trex_1": {
+      "palette_name": "Copper Fossil",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.08,
+        "saturation_scale": 1.24,
+        "saturation_floor": 0.12,
+        "value_scale": 1.04,
+        "source_hue": -1,
+        "hue_width": 0.16,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.1
+      },
+      "rationale": "Recolors the green dinosaur hide to copper-orange but leaves the beige claws, teeth and belly highlights intact.",
+      "stages": [
+        {
+          "id": "base:minion/trex_1",
+          "name": "Rexabee",
+          "texture": "content/base/art/battle/minions/dinoRex1.png"
+        },
+        {
+          "id": "base:minion/trex_2",
+          "name": "Tenasauras",
+          "texture": "content/base/art/battle/minions/dinoRex2.png"
+        },
+        {
+          "id": "base:minion/trex_3",
+          "name": "Rexathor",
+          "texture": "content/base/art/battle/minions/dinoRex3.png"
+        }
+      ]
+    },
+    "base:minion/undeadeel_1": {
+      "palette_name": "Molten Mire",
+      "parameters": {
+        "hue_shift": 0.34,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "saturation_scale": 1.18,
+        "value_scale": 1.03,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1,
+        "target_hue": 0.025,
+        "saturation_floor": 0.38
+      },
+      "rationale": "Maps the chromatic body and slime to ember-red/orange while preserving dark shadows and pale details.",
+      "stages": [
+        {
+          "id": "base:minion/undeadeel_1",
+          "name": "Eeliforce",
+          "texture": "content/base/art/battle/minions/undeadEel.png"
+        }
+      ]
+    },
+    "base:minion/waterbird_1": {
+      "palette_name": "Sunset Current",
+      "parameters": {
+        "hue_shift": 0.5,
+        "source_hue": 0.58,
+        "hue_width": 0.23,
+        "saturation_scale": 1.15,
+        "value_scale": 1,
+        "minimum_saturation": 0.15,
+        "minimum_value": 0.1
+      },
+      "rationale": "Shifts the line’s dominant blue and teal plumage to orange-red, including the large final-stage wings, while retaining yellow and pale markings.",
+      "stages": [
+        {
+          "id": "base:minion/waterbird_1",
+          "name": "Chirpla",
+          "texture": "content/base/art/battle/minions/flyingSongbird1.png"
+        },
+        {
+          "id": "base:minion/waterbird_2",
+          "name": "Airmony",
+          "texture": "content/base/art/battle/minions/flyingSongbird2.png"
+        },
+        {
+          "id": "base:minion/waterbird_3",
+          "name": "Falcona",
+          "texture": "content/base/art/battle/minions/flyingSongbird3.png"
+        }
+      ]
+    },
+    "base:minion/waterhorse_1": {
+      "palette_name": "Garnet Dragon",
+      "parameters": {
+        "hue_shift": 0.32,
+        "saturation_scale": 1.2,
+        "value_scale": 1.04,
+        "source_hue": 0.66,
+        "hue_width": 0.16,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.1
+      },
+      "rationale": "Changes the blue dragon's body and horns to garnet and crimson, while its golden mane remains a contrasting feature.",
+      "stages": [
+        {
+          "id": "base:minion/waterhorse_1",
+          "name": "Dracolt",
+          "texture": "content/base/art/battle/minions/waterKirin.png"
+        }
+      ]
+    },
+    "base:minion/waterseal_1": {
+      "palette_name": "Lilac Tide",
+      "parameters": {
+        "hue_shift": 0.34,
+        "source_hue": 0.56,
+        "hue_width": 0.18,
+        "saturation_scale": 1.16,
+        "value_scale": 1.04,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1,
+        "target_hue": 0.77
+      },
+      "rationale": "Shifts the blue water splashes and cool seal markings toward lilac, leaving the white bodies and brown-gray flippers untouched across both stages.",
+      "stages": [
+        {
+          "id": "base:minion/waterseal_1",
+          "name": "Sealo",
+          "texture": "content/base/art/battle/minions/waterSeal1.png"
+        },
+        {
+          "id": "base:minion/waterseal_2",
+          "name": "Sealast",
+          "texture": "content/base/art/battle/minions/waterSeal2.png"
+        }
+      ]
+    },
+    "base:minion/worm_1": {
+      "palette_name": "Cobalt Burrow",
+      "parameters": {
+        "hue_shift": 0.51,
+        "source_hue": 0.08,
+        "hue_width": 0.24,
+        "saturation_scale": 1.2,
+        "value_scale": 1,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.08
+      },
+      "rationale": "Recolors the broad tan and warm brown bodies to cobalt-blue across all three stages, keeping the green mouth and dark contour details distinct.",
+      "stages": [
+        {
+          "id": "base:minion/worm_1",
+          "name": "Wormif",
+          "texture": "content/base/art/battle/minions/earthWorm1.png"
+        },
+        {
+          "id": "base:minion/worm_2",
+          "name": "Rottar",
+          "texture": "content/base/art/battle/minions/earthWorm2.png"
+        },
+        {
+          "id": "base:minion/worm_3",
+          "name": "Riffra",
+          "texture": "content/base/art/battle/minions/earthWorm3.png"
+        }
+      ]
+    },
+    "ice_floor:minion/imammoth1": {
+      "palette_name": "Ember Aurora",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.1,
+        "saturation_scale": 1.28,
+        "saturation_floor": 0.18,
+        "value_scale": 1.04,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "minimum_saturation": 0.09,
+        "minimum_value": 0.1,
+        "neutral_tint_strength": 0.12
+      },
+      "rationale": "Maps the icy and thawed coats across all three stages to amber-orange, using a small neutral midtone tint to carry the warm palette into muted thaw colors while preserving highlights and outlines.",
+      "stages": [
+        {
+          "id": "ice_floor:minion/imammoth1",
+          "name": "Frosttusk",
+          "texture": "content/base/art/source_symbols/1725_Utilities.SpriteHandler_iMammoth1.png"
+        },
+        {
+          "id": "ice_floor:minion/imammoth2",
+          "name": "Tuskhorn",
+          "texture": "content/base/art/source_symbols/1726_Utilities.SpriteHandler_iMammoth2.png"
+        },
+        {
+          "id": "ice_floor:minion/imammoth3",
+          "name": "Thawhorn",
+          "texture": "content/base/art/source_symbols/1727_Utilities.SpriteHandler_iMammoth3.png"
+        }
+      ]
+    },
+    "ice_floor:minion/iseal1": {
+      "palette_name": "Prism Thaw",
+      "parameters": {
+        "hue_shift": 0.37,
+        "source_hue": -1,
+        "hue_width": 0.2,
+        "saturation_scale": 1.14,
+        "value_scale": 1.04,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1,
+        "target_hue": 0.91,
+        "saturation_floor": 0.35,
+        "neutral_tint_strength": 0.14
+      },
+      "rationale": "Unified rose-violet hue for both cyan ice and brown thawed bodies, with mild midtone tinting across all three stages.",
+      "stages": [
+        {
+          "id": "ice_floor:minion/iseal1",
+          "name": "Walfrost",
+          "texture": "content/base/art/source_symbols/1743_Utilities.SpriteHandler_iSeal1.png"
+        },
+        {
+          "id": "ice_floor:minion/iseal2",
+          "name": "Seafrost",
+          "texture": "content/base/art/source_symbols/1744_Utilities.SpriteHandler_iSeal2.png"
+        },
+        {
+          "id": "ice_floor:minion/iseal3",
+          "name": "Thawlrus",
+          "texture": "content/base/art/source_symbols/1745_Utilities.SpriteHandler_iSeal3.png"
+        }
+      ]
+    },
+    "ice_floor:minion/isloth1": {
+      "palette_name": "Rosefrost",
+      "parameters": {
+        "hue_shift": 0.34,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "saturation_scale": 1.12,
+        "value_scale": 1,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.08,
+        "target_hue": 0.92,
+        "neutral_tint_strength": 0.05,
+        "saturation_floor": 0.38
+      },
+      "rationale": "The preview turned the first two icy coats pink but the burgundy thaw stage green. Map chromatic coat colors across all three stages to rose; preserve white snow highlights and dark outlines.",
+      "stages": [
+        {
+          "id": "ice_floor:minion/isloth1",
+          "name": "Idlefrost",
+          "texture": "content/base/art/source_symbols/1747_Utilities.SpriteHandler_iSloth1.png"
+        },
+        {
+          "id": "ice_floor:minion/isloth2",
+          "name": "Slowfrost",
+          "texture": "content/base/art/source_symbols/1748_Utilities.SpriteHandler_iSloth2.png"
+        },
+        {
+          "id": "ice_floor:minion/isloth3",
+          "name": "Slowthaw",
+          "texture": "content/base/art/source_symbols/1749_Utilities.SpriteHandler_iSloth3.png"
+        }
+      ]
+    },
+    "ice_floor:minion/iunicorn1": {
+      "palette_name": "Rose Quartz",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.94,
+        "saturation_scale": 1.36,
+        "saturation_floor": 0.16,
+        "value_scale": 1.03,
+        "source_hue": -1,
+        "hue_width": 0.19,
+        "minimum_saturation": 0.08,
+        "minimum_value": 0.1,
+        "neutral_tint_strength": 0.15
+      },
+      "rationale": "Maps the pale ice and water across all three stages to rose quartz; the full chromatic mask and light neutral midtone tint catch the gray thaw stage while preserving bright highlights.",
+      "stages": [
+        {
+          "id": "ice_floor:minion/iunicorn1",
+          "name": "Frosticorn",
+          "texture": "content/base/art/source_symbols/1763_Utilities.SpriteHandler_iUnicorn1.png"
+        },
+        {
+          "id": "ice_floor:minion/iunicorn2",
+          "name": "Unithawl",
+          "texture": "content/base/art/source_symbols/1764_Utilities.SpriteHandler_iUnicorn2.png"
+        },
+        {
+          "id": "ice_floor:minion/iunicorn3",
+          "name": "Narthawl",
+          "texture": "content/base/art/source_symbols/1765_Utilities.SpriteHandler_iUnicorn3.png"
+        }
+      ]
+    },
+    "ophan:minion/holyeye1": {
+      "palette_name": "Celestial Azure",
+      "parameters": {
+        "hue_shift": 0.48,
+        "source_hue": -1,
+        "hue_width": 0.18,
+        "saturation_scale": 1.1,
+        "value_scale": 1.02,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.1
+      },
+      "rationale": "Rotates the golden rings and orbital frames into azure and indigo while retaining the pale eye centers and dark outlines through all three forms.",
+      "stages": [
+        {
+          "id": "ophan:minion/holyeye1",
+          "name": "Adophan",
+          "texture": "content/base/art/battle/minions/HolyEye1.png"
+        },
+        {
+          "id": "ophan:minion/holyeye2",
+          "name": "Ophan",
+          "texture": "content/base/art/battle/minions/HolyEye2.png"
+        },
+        {
+          "id": "ophan:minion/holyeye3",
+          "name": "Ophance",
+          "texture": "content/base/art/battle/minions/HolyEye3.png"
+        }
+      ]
+    },
+    "stingaray:minion/waterray1": {
+      "palette_name": "Lime Abyss",
+      "parameters": {
+        "hue_shift": -0.26,
+        "source_hue": 0.59,
+        "hue_width": 0.23,
+        "saturation_scale": 1.2,
+        "value_scale": 1,
+        "minimum_saturation": 0.12,
+        "minimum_value": 0.08
+      },
+      "rationale": "Moves the large blue dorsal and wing surfaces of both rays toward green-lime, leaving dark navy undersides and water effects for contrast.",
+      "stages": [
+        {
+          "id": "stingaray:minion/waterray1",
+          "name": "Stingaray",
+          "texture": "content/base/art/battle/minions/waterRay1.png"
+        },
+        {
+          "id": "stingaray:minion/waterray2",
+          "name": "Mantaray",
+          "texture": "content/base/art/battle/minions/waterRay2.png"
+        }
+      ]
+    },
+    "zanyu:minion/dirtfish": {
+      "palette_name": "Amber Current",
+      "parameters": {
+        "hue_shift": 0,
+        "target_hue": 0.1,
+        "saturation_scale": 1.3,
+        "saturation_floor": 0.16,
+        "value_scale": 1.04,
+        "source_hue": -1,
+        "hue_width": 0.19,
+        "minimum_saturation": 0.08,
+        "minimum_value": 0.1,
+        "neutral_tint_strength": 0.12
+      },
+      "rationale": "Brings the muted blue-gray fish and water into an amber-orange palette with a restrained neutral midtone tint; dark armor edges and bright water highlights remain readable.",
+      "stages": [
+        {
+          "id": "zanyu:minion/dirtfish",
+          "name": "Zanyu",
+          "texture": "content/base/art/battle/minions/dirtFish.png"
+        }
+      ]
+    }
+  },
+  "members": {
+    "arkvian:minion/holybird1": "arkvian:minion/holybird1",
+    "arkvian:minion/holybird2": "arkvian:minion/holybird1",
+    "base:minion/anteater_1": "base:minion/anteater_1",
+    "base:minion/anteater_2": "base:minion/anteater_1",
+    "base:minion/armadillo_1": "base:minion/armadillo_1",
+    "base:minion/armadillo_2": "base:minion/armadillo_1",
+    "base:minion/batdemon_1": "base:minion/batdemon_1",
+    "base:minion/bluebell_1": "base:minion/bluebell_1",
+    "base:minion/chameleon_1": "base:minion/chameleon_1",
+    "base:minion/cheetah_1": "base:minion/cheetah_1",
+    "base:minion/cheetah_2": "base:minion/cheetah_1",
+    "base:minion/cheetah_3": "base:minion/cheetah_1",
+    "base:minion/crow_1": "base:minion/crow_1",
+    "base:minion/crow_2": "base:minion/crow_1",
+    "base:minion/crow_3": "base:minion/crow_1",
+    "base:minion/dc2guy_1": "base:minion/dc2guy_1",
+    "base:minion/demonic_cat_1": "base:minion/demonic_cat_1",
+    "base:minion/demonic_cat_2": "base:minion/demonic_cat_1",
+    "base:minion/dogeel_1": "base:minion/dogeel_1",
+    "base:minion/dogeel_2": "base:minion/dogeel_1",
+    "base:minion/evileye_1": "base:minion/evileye_1",
+    "base:minion/evileye_2": "base:minion/evileye_1",
+    "base:minion/evileye_3": "base:minion/evileye_1",
+    "base:minion/fire_bear_1": "base:minion/fire_bear_1",
+    "base:minion/fire_bear_2": "base:minion/fire_bear_1",
+    "base:minion/fire_frog_1": "base:minion/fire_frog_1",
+    "base:minion/fire_frog_2": "base:minion/fire_frog_1",
+    "base:minion/fire_frog_3": "base:minion/fire_frog_1",
+    "base:minion/fire_pig_1": "base:minion/fire_pig_1",
+    "base:minion/fire_pig_2": "base:minion/fire_pig_1",
+    "base:minion/fire_pig_3": "base:minion/fire_pig_1",
+    "base:minion/fireghost_1": "base:minion/fireghost_1",
+    "base:minion/flyinggrasssuperminion_1": "base:minion/flyinggrasssuperminion_1",
+    "base:minion/goo_1": "base:minion/goo_1",
+    "base:minion/goo_2": "base:minion/goo_1",
+    "base:minion/goo_3": "base:minion/goo_1",
+    "base:minion/grassgorilla_1": "base:minion/grassgorilla_1",
+    "base:minion/grassgorilla_2": "base:minion/grassgorilla_1",
+    "base:minion/grasssnake_1": "base:minion/grasssnake_1",
+    "base:minion/grasssnake_2": "base:minion/grasssnake_1",
+    "base:minion/grasssnake_3": "base:minion/grasssnake_1",
+    "base:minion/griffen_1": "base:minion/griffen_1",
+    "base:minion/griffen_2": "base:minion/griffen_1",
+    "base:minion/ground_plant_1": "base:minion/ground_plant_1",
+    "base:minion/ground_plant_2": "base:minion/ground_plant_1",
+    "base:minion/ground_plant_3": "base:minion/ground_plant_1",
+    "base:minion/groundattacker_1": "base:minion/groundattacker_1",
+    "base:minion/groundattacker_2": "base:minion/groundattacker_1",
+    "base:minion/groundattacker_3": "base:minion/groundattacker_1",
+    "base:minion/groundmole_1": "base:minion/groundmole_1",
+    "base:minion/groundmole_2": "base:minion/groundmole_1",
+    "base:minion/groundmole_3": "base:minion/groundmole_1",
+    "base:minion/harpy_1": "base:minion/harpy_1",
+    "base:minion/healinghorse_1": "base:minion/healinghorse_1",
+    "base:minion/holyfox_1": "base:minion/holyfox_1",
+    "base:minion/holymantris_1": "base:minion/holymantris_1",
+    "base:minion/holystrongguy_1": "base:minion/holystrongguy_1",
+    "base:minion/hummingbird_1": "base:minion/hummingbird_1",
+    "base:minion/icebird_1": "base:minion/icebird_1",
+    "base:minion/icebird_2": "base:minion/icebird_1",
+    "base:minion/icedeer_1": "base:minion/icedeer_1",
+    "base:minion/icetree_1": "base:minion/icetree_1",
+    "base:minion/icetree_2": "base:minion/icetree_1",
+    "base:minion/jellyfish_1": "base:minion/jellyfish_1",
+    "base:minion/jellyfish_2": "base:minion/jellyfish_1",
+    "base:minion/landshark_1": "base:minion/landshark_1",
+    "base:minion/lichboss_1": "base:minion/lichboss_1",
+    "base:minion/lichboss_2": "base:minion/lichboss_1",
+    "base:minion/lichboss_3": "base:minion/lichboss_1",
+    "base:minion/pinkbell_1": "base:minion/pinkbell_1",
+    "base:minion/racoon_1": "base:minion/racoon_1",
+    "base:minion/racoon_2": "base:minion/racoon_1",
+    "base:minion/raptor_1": "base:minion/raptor_1",
+    "base:minion/raptor_2": "base:minion/raptor_1",
+    "base:minion/raptor_3": "base:minion/raptor_1",
+    "base:minion/robobull_1": "base:minion/robobull_1",
+    "base:minion/roboshark_1": "base:minion/roboshark_1",
+    "base:minion/scarecrow_1": "base:minion/scarecrow_1",
+    "base:minion/scarecrow_2": "base:minion/scarecrow_1",
+    "base:minion/scarecrow_3": "base:minion/scarecrow_1",
+    "base:minion/scorpion_1": "base:minion/scorpion_1",
+    "base:minion/scorpion_2": "base:minion/scorpion_1",
+    "base:minion/scorpion_3": "base:minion/scorpion_1",
+    "base:minion/slenderman_1": "base:minion/slenderman_1",
+    "base:minion/tiger_1": "base:minion/tiger_1",
+    "base:minion/tiger_2": "base:minion/tiger_1",
+    "base:minion/tikimonkey_1": "base:minion/tikimonkey_1",
+    "base:minion/tikimonkey_2": "base:minion/tikimonkey_1",
+    "base:minion/titan_1": "base:minion/titan_1",
+    "base:minion/titan_2": "base:minion/titan_2",
+    "base:minion/tortoise_1": "base:minion/tortoise_1",
+    "base:minion/trex_1": "base:minion/trex_1",
+    "base:minion/trex_2": "base:minion/trex_1",
+    "base:minion/trex_3": "base:minion/trex_1",
+    "base:minion/undeadeel_1": "base:minion/undeadeel_1",
+    "base:minion/waterbird_1": "base:minion/waterbird_1",
+    "base:minion/waterbird_2": "base:minion/waterbird_1",
+    "base:minion/waterbird_3": "base:minion/waterbird_1",
+    "base:minion/waterhorse_1": "base:minion/waterhorse_1",
+    "base:minion/waterseal_1": "base:minion/waterseal_1",
+    "base:minion/waterseal_2": "base:minion/waterseal_1",
+    "base:minion/worm_1": "base:minion/worm_1",
+    "base:minion/worm_2": "base:minion/worm_1",
+    "base:minion/worm_3": "base:minion/worm_1",
+    "ice_floor:minion/imammoth1": "ice_floor:minion/imammoth1",
+    "ice_floor:minion/imammoth2": "ice_floor:minion/imammoth1",
+    "ice_floor:minion/imammoth3": "ice_floor:minion/imammoth1",
+    "ice_floor:minion/iseal1": "ice_floor:minion/iseal1",
+    "ice_floor:minion/iseal2": "ice_floor:minion/iseal1",
+    "ice_floor:minion/iseal3": "ice_floor:minion/iseal1",
+    "ice_floor:minion/isloth1": "ice_floor:minion/isloth1",
+    "ice_floor:minion/isloth2": "ice_floor:minion/isloth1",
+    "ice_floor:minion/isloth3": "ice_floor:minion/isloth1",
+    "ice_floor:minion/iunicorn1": "ice_floor:minion/iunicorn1",
+    "ice_floor:minion/iunicorn2": "ice_floor:minion/iunicorn1",
+    "ice_floor:minion/iunicorn3": "ice_floor:minion/iunicorn1",
+    "ophan:minion/holyeye1": "ophan:minion/holyeye1",
+    "ophan:minion/holyeye2": "ophan:minion/holyeye1",
+    "ophan:minion/holyeye3": "ophan:minion/holyeye1",
+    "stingaray:minion/waterray1": "stingaray:minion/waterray1",
+    "stingaray:minion/waterray2": "stingaray:minion/waterray1",
+    "zanyu:minion/dirtfish": "zanyu:minion/dirtfish"
+  }
+}
