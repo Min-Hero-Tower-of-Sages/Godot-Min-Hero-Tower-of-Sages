@@ -58,6 +58,8 @@ var _chest_sprites_by_id: Dictionary = {}
 var _automatic_contact_ids: Dictionary = {}
 var _transition_locked := false
 var _arrival_contact_guards: Dictionary = {}
+var _last_transition_free_position := Vector2.ZERO
+var _movement_press_order: Array[StringName] = []
 var _controls_enabled := true
 var _campaign_context: Dictionary = {}
 var _ambient_emitters: Array[Dictionary] = []
@@ -93,6 +95,8 @@ func configure(room_definition: RoomDefinition, spawn_id: StringName, spawn_posi
 	_build_transition_triggers(payload)
 	_build_interaction_triggers(payload)
 	_player.position = spawn_position
+	_last_transition_free_position = spawn_position
+	_movement_press_order.clear()
 	_guard_overlapping_transitions()
 	_apply_spawn_facing(spawn_id)
 	if not String(_campaign_context.get("restore_facing", "")).is_empty():
@@ -131,6 +135,14 @@ func player_presence() -> Dictionary:
 func release_transition_lock() -> void:
 	_guard_overlapping_transitions()
 	_transition_locked = false
+
+## A declined exit must not become a walk-through hole. Restore the last
+## position outside the portal, so approaching it again asks again normally.
+func cancel_pending_transition() -> void:
+	_player.position = _last_transition_free_position
+	_transition_locked = false
+	_update_height_layers()
+	_refresh_nearby_interactions(false)
 
 ## Do not reactivate an arrival portal (or a cancelled exit) until the player
 ## has completely walked clear. A timer alone still traps slower players.
@@ -219,6 +231,19 @@ func _physics_process(delta: float) -> void:
 		_source_movement_tick()
 		_movement_accumulator -= SOURCE_MOVEMENT_TICK
 
+func _input(event: InputEvent) -> void:
+	if not _controls_enabled or _transition_locked or event.is_echo(): return
+	for direction in [&"left", &"right", &"up", &"down"]:
+		var action := StringName("move_%s" % direction)
+		if event.is_action_pressed(action):
+			_movement_press_order.erase(direction)
+			_movement_press_order.append(direction)
+
+func _opposed_direction(first: StringName, second: StringName) -> StringName:
+	for index in range(_movement_press_order.size() - 1, -1, -1):
+		if _movement_press_order[index] in [first, second]: return _movement_press_order[index]
+	return player_facing()
+
 func _source_movement_tick() -> void:
 	if _transition_locked:
 		_set_player_pose(_facing_pose, false, _facing_left)
@@ -227,13 +252,18 @@ func _source_movement_tick() -> void:
 	var right := _movement_pressed(&"move_right", KEY_D, KEY_RIGHT)
 	var up := _movement_pressed(&"move_up", KEY_W, KEY_UP)
 	var down := _movement_pressed(&"move_down", KEY_S, KEY_DOWN)
-	# The source controller returns early when either opposing pair is held.
+	# Opposing keys still stop movement, but neither direction gets a fixed
+	# left/up priority: face the most recently pressed key in that pair.
 	if left and right:
-		_set_player_pose(&"side", false, true)
+		restore_player_facing(_opposed_direction(&"left", &"right"))
 		return
 	if up and down:
-		_set_player_pose(&"back", false, false)
+		restore_player_facing(_opposed_direction(&"up", &"down"))
 		return
+	# Keep a rollback point before stepping into an exit confirmation. Arrival
+	# portals retain their separate walk-clear guards for teleport safety.
+	if not _room_transitions.any(func(transition: Dictionary) -> bool: return _transition_area_overlaps_player(transition.area)):
+		_last_transition_free_position = _player.position
 	var moving := left or right or up or down
 	var upgrades: Dictionary = _campaign_context.get("progression", {}).get("star_upgrades", {})
 	var movement_step := SOURCE_MOVEMENT_STEP * (1.0 + 0.1 * maxi(0, int(upgrades.get("movement_speed", 0))))

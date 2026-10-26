@@ -48,6 +48,18 @@ allowance but retain its shiny result. Starting a fresh floor visit clears the
 slot cache. Existing minions are never retroactively randomized. Authored enemy
 teams remain normal unless their setup explicitly supplies a shiny identity.
 
+For deliberate recoloring, gated Debug Mode has a separate **Make Current
+Minions Shiny** action for the entire party and storage. The 100% Shiny toggle
+continues to affect only new acquisitions; simply enabling it never changes
+the starters you already own.
+
+The default-off **Extra Minions → Starter Eggs** option makes Ticub and Zapig
+available again in the Floor 1-1 hatchery, including its Hard Mode counterpart.
+Each has a 10% egg chance; the ordinary hatchery candidates retain their
+relative weights across the remaining 80%. This is an Extended addition, not
+a recovered Flash mod. It changes no other floors or egg allowances, uses the
+usual shiny roll, and supplies the same locations to Minion-pedia hints.
+
 Cerberus uses Ashen Crimson: cool ash-gray midtones and crimson warm accents,
 with separate neutral hue/saturation/value controls to keep its body visibly
 different. No new artwork is required.

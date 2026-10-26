@@ -127,13 +127,13 @@ floors = Array[Dictionary]([{
 }, {
 "eggery_minion_base_level": 47,
 "floor_index": 20,
-"room_ids": Array[StringName]([&"base:room/level_5_1_h1", &"base:room/level_5_1_a", &"base:room/level_5_1_c", &"base:room/level_5_1_d", &"base:room/level_5_1_b", &"base:room/level_5_1_f", &"base:room/level_5_1_e", &"base:room/level_5_1_h2", &"base:room/level_5_1_h3", &"base:room/level_5_1_h4", &"base:room/level_5_1_eggery"]),
+"room_ids": Array[StringName]([&"base:room/level_5_1_h1", &"base:room/level_5_1_a", &"base:room/level_5_1_c", &"base:room/level_5_1_d", &"base:room/level_5_1_b", &"base:room/floor_21_expert", &"base:room/level_5_1_f", &"base:room/level_5_1_e", &"base:room/level_5_1_h2", &"base:room/level_5_1_h3", &"base:room/level_5_1_h4", &"base:room/level_5_1_eggery"]),
 "start_room_id": &"base:room/level_5_1_h1",
 "start_spawn_id": &"entry-0"
 }, {
 "eggery_minion_base_level": 49,
 "floor_index": 21,
-"room_ids": Array[StringName]([&"base:room/level_5_2_h1", &"base:room/level_5_2_a", &"base:room/level_5_2_b", &"base:room/level_5_2_c", &"base:room/level_5_2_e", &"base:room/level_5_2_d", &"base:room/level_5_2_h2", &"base:room/level_5_2_h3", &"base:room/level_5_2_eggery"]),
+"room_ids": Array[StringName]([&"base:room/level_5_2_h1", &"base:room/level_5_2_a", &"base:room/level_5_2_b", &"base:room/level_5_2_c", &"base:room/level_5_2_e", &"base:room/floor_22_expert", &"base:room/level_5_2_d", &"base:room/level_5_2_h2", &"base:room/level_5_2_h3", &"base:room/level_5_2_eggery"]),
 "start_room_id": &"base:room/level_5_2_h1",
 "start_spawn_id": &"entry-0"
 }, {

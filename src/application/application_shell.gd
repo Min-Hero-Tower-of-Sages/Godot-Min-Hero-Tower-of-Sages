@@ -1101,9 +1101,8 @@ func _on_room_transition_requested(exit_data: Dictionary) -> void:
 		var actor_screen: Vector2 = current_room.player_screen_position() if is_instance_valid(current_room) else Vector2(226, 334)
 		var layout := {"dialogue_layout": {"position": actor_screen + Vector2(45, -30), "scale": Vector2.ONE}, "on_yes": func() -> void:
 			_clear_dialog()
-			_on_room_transition_requested(confirmed_exit), "on_no": _clear_dialog}
+			_on_room_transition_requested(confirmed_exit), "on_no": _cancel_lobby_exit}
 		_show_source_dialogue(layout, "Inner Monologue", "Are you sure you want to return to the lobby? Your current floor progress will reset when you re-enter.")
-		if is_instance_valid(current_room): current_room.release_transition_lock()
 		return
 	_room_transition_active = true
 	if current_room != null and is_instance_valid(current_room):
@@ -1131,6 +1130,10 @@ func _on_room_transition_requested(exit_data: Dictionary) -> void:
 	if current_room != null and is_instance_valid(current_room):
 		current_room.set_controls_enabled(true)
 	_room_transition_active = false
+
+func _cancel_lobby_exit() -> void:
+	if is_instance_valid(current_room): current_room.cancel_pending_transition()
+	_clear_dialog()
 
 func _ensure_room_transition_curtain() -> ColorRect:
 	if room_transition_curtain != null and is_instance_valid(room_transition_curtain):

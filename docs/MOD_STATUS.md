@@ -1,6 +1,7 @@
-# Mod integration status — 2026-10-09
+# Mod integration status — 2026-10-20
 
-The new-save character screen restores the original seven-option mod sidebar.
+The new-save character screen groups the recovered and Extended mod options
+into Extra Minions, Challenge Rules, Experimental Content and Gameplay Tweaks.
 Settings belong to the save, not the process or shared content resources.
 Existing saves are not automatically changed or given mods.
 
@@ -10,9 +11,13 @@ Existing saves are not automatically changed or given mods.
 | Stingaray | Water Ray acquisition in source Floors 1-3 and 3-1 |
 | Arkvian | Holy Bird / Arkclaw acquisition in source Floors 1-4 and 4-2; legacy Holy Birb spelling translated |
 | Ophan | Source hatchery branches in Floors 4-2 and 5-3, with the recovered later branch retained |
+| Starter Eggs | Extended opt-in: Ticub and Zapig each have a 10% hatchery chance in Floor 1-1, including Hard Mode; ordinary candidates share the remaining 80%. Uses normal shiny rolls and Pedia acquisition hints. |
 | Ice Floor | Twelve recovered forms and thirty move tiers remain registered; toggle exposes data in the Minionpedia and Flash imports retain these minions. No playable Ice Floor route is claimed. |
 | Nuzlocke | Fainted active minions are retired after battle, including equipped gems. A non-playable memorial is retained. If the party is wiped, surviving storage minions fill it; an empty total roster ends the run and blocks further battles. |
 | No Regen | Pre-battle preparation refills energy but preserves health. Explicit healing, defeat recovery and floor entry still restore health. |
+| Move Trees | Optional Martyr talents for Holymantis/Foramare and Righteous Fate for Arkvian/Arkclaw; see BEHAVIOR_EXCEPTIONS.md. |
+| Shinies | 1-in-512 new-acquisition chance; saved, programmatic evolution-line palettes. See SHINY_PALETTES.md. |
+| Debug Mode | Unlocks gated per-save settings and the explicit current-roster shiny action. See DEBUG_MODE.md. |
 
 The user confirmed Ice Floor was incomplete in the Flash releases. The
 recovered lobby condition is inverted and IceFloorEntry invokes the ordinary

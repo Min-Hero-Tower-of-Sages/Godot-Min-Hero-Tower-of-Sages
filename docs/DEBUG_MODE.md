@@ -26,6 +26,14 @@ All five settings begin off and are saved per campaign in `debug_options`.
   or complete trainers. Disabling stops replenishment but does not remove keys
   already granted.
 
+**Make Current Minions Shiny** is a separate one-time button below the toggles.
+It makes all current party and storage minions shiny, including Ticub/Zapig
+starters and imported minions. It uses each minion's saved evolution-line
+palette, leaves existing shiny identities intact, and does not change future
+shiny odds or enable the 100% Shiny toggle. The action is permanent and saves
+immediately using the same candidate/save/commit transaction. Rejected saves
+change nothing; battles and unfinished egg reveals block the action.
+
 Option changes use the normal candidate/save/commit transaction. Rejected saves
 leave live flags, levels and resources unchanged. Options cannot be changed
 during a pending battle. Disabling the Debug Mode gate makes saved debug option
@@ -34,3 +42,6 @@ flags inactive. Old saves/imports without this mod do not expose the menu.
 `tests/campaign_debug_smoke.gd` checks gating, save rejection, persistent flags,
 level changes, money charging, forced acquisitions and the rendered UI using an
 in-memory save repository and isolated application settings.
+`tests/starter_shiny_floor4_smoke.gd` additionally covers the current-roster
+action, saved storage appearances, rejection/battle guards and future-roll
+independence.

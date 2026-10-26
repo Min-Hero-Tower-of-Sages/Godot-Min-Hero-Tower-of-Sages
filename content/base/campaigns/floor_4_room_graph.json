@@ -5,11 +5,11 @@
     "base:room/level_1_4_h1",
     "base:room/level_1_4_a",
     "base:room/level_1_4_b",
-    "base:room/level_1_4_e",
+    "base:room/level_1_4_d",
     "base:room/level_1_4_c",
     "base:room/floor_4_expert_room_fire",
-    "base:room/level_1_4_d",
     "base:room/level_1_4_f",
+    "base:room/level_1_4_e",
     "base:room/level_1_4_h2",
     "base:room/level_1_4_h3",
     "base:room/level_1_4_h4",
@@ -30,14 +30,7 @@
       "target_route": "lobby"
     }
   ],
-  "source_binding_anomalies": [
-    {
-      "encounter_id": "base:encounter/grass_floor4_trainer_3",
-      "trainer_room_id": 3,
-      "intended_room_id": "base:room/level_1_4_e",
-      "reason": "TrainerSystem defines trainer 3 for source room index 3, but the normalized E payload and its embedded LevelContainer contain no buttonZoneObject; no interaction trigger or position is inferred."
-    }
-  ],
+  "source_binding_anomalies": [],
   "eggery_source": {
     "source_location": "development/extracted/full-20260908/script/scripts/PresistentData/StaticData.as",
     "source_method": "SetupTheEggeryInfo",
@@ -151,10 +144,7 @@
       "source_symbol": "Utilities.LevelContainer_Level_1_4_E",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_E.as",
       "source_payload": "res://content/base/room_payloads/source/level_1_4_e.json",
-      "room_index": 3,
-      "encounter_ids": [
-        "base:encounter/grass_floor4_trainer_3"
-      ],
+      "room_index": 7,
       "exits": [
         {
           "transition_id": 11,
@@ -200,9 +190,9 @@
       "source_symbol": "Utilities.LevelContainer_Level_1_4_D",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_D.as",
       "source_payload": "res://content/base/room_payloads/source/level_1_4_d.json",
-      "room_index": 6,
+      "room_index": 3,
       "encounter_ids": [
-        "base:encounter/grass_floor4_trainer_6_boss"
+        "base:encounter/grass_floor4_trainer_3"
       ],
       "exits": [
         {
@@ -219,12 +209,12 @@
       ],
       "interactions": [
         {
-          "id": "floor-4-trainer-6-boss",
+          "id": "floor-4-trainer-3",
           "kind": "trainer",
           "source_zone_id": 0,
-          "encounter_id": "base:encounter/grass_floor4_trainer_6_boss",
-          "trainer_room_id": 6,
-          "first_visit_text": "I will show you the true strength of the minions you are about to get."
+          "encounter_id": "base:encounter/grass_floor4_trainer_3",
+          "trainer_room_id": 3,
+          "first_visit_text": "One does not simply win a battle."
         }
       ],
       "source_only_exit_id": 99,
@@ -242,7 +232,10 @@
       "source_symbol": "Utilities.LevelContainer_Level_1_4_F",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_1_4_F.as",
       "source_payload": "res://content/base/room_payloads/source/level_1_4_f.json",
-      "room_index": 7,
+      "room_index": 6,
+      "encounter_ids": [
+        "base:encounter/grass_floor4_trainer_6_boss"
+      ],
       "exits": [
         {
           "transition_id": 7,
@@ -256,6 +249,14 @@
         }
       ],
       "interactions": [
+        {
+          "id": "floor-4-trainer-6-boss",
+          "kind": "trainer",
+          "source_zone_id": 0,
+          "encounter_id": "base:encounter/grass_floor4_trainer_6_boss",
+          "trainer_room_id": 6,
+          "first_visit_text": "I will show you the true strength of the minions you are about to get."
+        },
         {
           "id": "floor-4-eggery-door",
           "kind": "unlock_eggery_door",

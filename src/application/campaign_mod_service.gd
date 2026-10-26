@@ -11,10 +11,11 @@ const OPTIONS := [
 	{"name": "No Regen", "flags": ["no_natural_regen"], "description": "No natural health refill within a floor. Explicit healing and entering another floor still restore health."},
 	{"name": "Move Trees", "flags": ["restored_moves", "restored_martyr", "restored_righteous_fate"], "description": "Martyr for Holymantis/Foramare; Righteous Fate for Arkvian/Arkclaw. Adds talents using normal skill points."},
 	{"name": "Shinies", "flags": ["shinies"], "description": "New minions have a 1 in 512 shiny chance. Cosmetic only. Their palette is saved and retained on evolution."},
-	{"name": "Debug Mode", "flags": ["debug_mode"], "description": "Unlocks a debug mod menu in Settings: unlimited money, level-60 party minions and guaranteed shiny rolls."},
+	{"name": "Debug Mode", "flags": ["debug_mode"], "description": "Unlock debug tools in Settings: money, stars, keys, level-60 party and shiny options."},
+	{"name": "Starter Eggs", "flags": ["starter_eggs"], "description": "Find Ticub and Zapig in Floor 1-1 hatchery (also Hard Mode): 10% each. Other minions share 80%."},
 ]
 const CATEGORIES := [
-	{"id": "minions", "name": "Extra Minions", "groups": ["dirtFish", "waterRay1", "holyBird1", "HolyEye1"], "description": "Add minion families to tower hatcheries. Select a mod to see where it can be found."},
+	{"id": "minions", "name": "Extra Minions", "groups": ["dirtFish", "waterRay1", "holyBird1", "HolyEye1", "starter_eggs"], "description": "Add minion families to tower hatcheries. Select a mod to see where it can be found."},
 	{"id": "challenges", "name": "Challenge Rules", "groups": ["nuzlocke", "no_natural_regen"], "description": "Optional rules for a tougher run. Read each rule before enabling it."},
 	{"id": "experimental", "name": "Experimental Content", "groups": ["iceFloor"], "description": "Recovered, unfinished content. Read its limitations before enabling it."},
 	{"id": "gameplay", "name": "Gameplay Tweaks", "groups": ["restored_moves", "shinies", "debug_mode"], "description": "Move-tree additions, shiny variants and optional access to debug settings."},
@@ -44,7 +45,7 @@ static func normalize(flags: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
 	for key in flags:
 		var canonical := String(ContentCatalog.canonical_mod_flag_id(StringName(key)))
-		if canonical in MINION_FLAGS or canonical in ["iceFloor", "nuzlocke", "no_natural_regen", "restored_moves", "restored_martyr", "restored_righteous_fate", "shinies", "debug_mode"]:
+		if canonical in MINION_FLAGS or canonical in ["iceFloor", "nuzlocke", "no_natural_regen", "restored_moves", "restored_martyr", "restored_righteous_fate", "shinies", "debug_mode", "starter_eggs"]:
 			result[canonical] = bool(flags[key])
 	return result
 
@@ -90,9 +91,25 @@ static func egg_pool(state, source_floor: int, fallback: Dictionary) -> Dictiona
 	var mask := 0
 	for flag in EGG_POOL_BITS:
 		if enabled(state, flag): mask |= int(EGG_POOL_BITS[flag])
-	if mask == 0: return fallback
 	var table: Dictionary = _egg_tables.get(str(mask), {})
-	return table.get(str(source_floor), fallback).duplicate(true)
+	var pool: Dictionary = table.get(str(source_floor), fallback).duplicate(true) if mask != 0 else fallback.duplicate(true)
+	# Extended acquisition option, not a recovered Flash table. Keep the
+	# source RNG's integer-percent weights and ordinary minions available.
+	if enabled(state, "starter_eggs") and source_floor == 0 and not pool.get("candidates", []).is_empty():
+		var weights: Array = pool.get("weights", []).duplicate()
+		var total := 0
+		for weight in weights: total += maxi(0, int(weight))
+		if weights.size() == pool.candidates.size() and total > 0:
+			var assigned := 0
+			for index in weights.size():
+				var scaled := int(maxi(0, int(weights[index])) * 80.0 / total)
+				weights[index] = scaled
+				assigned += scaled
+			weights[0] = int(weights[0]) + 80 - assigned
+			pool.candidates.append_array(["base:minion/tiger_1", "base:minion/fire_pig_1"])
+			weights.append_array([10, 10])
+			pool["weights"] = weights
+	return pool
 
 static func retire_fainted(state, fainted_ids: Array[StringName]) -> void:
 	if fainted_ids.is_empty(): return

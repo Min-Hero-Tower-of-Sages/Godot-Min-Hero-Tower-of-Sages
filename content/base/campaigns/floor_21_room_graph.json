@@ -7,6 +7,7 @@
     "base:room/level_5_1_c",
     "base:room/level_5_1_d",
     "base:room/level_5_1_b",
+    "base:room/floor_21_expert",
     "base:room/level_5_1_f",
     "base:room/level_5_1_e",
     "base:room/level_5_1_h2",
@@ -112,6 +113,12 @@
           "transition_id": 9,
           "target_room_id": "base:room/level_5_1_h1",
           "target_spawn_id": "entry-9"
+        },
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/floor_21_expert",
+          "target_spawn_id": "entry-expert",
+          "requires_tower_mode": "hard"
         }
       ],
       "encounter_ids": [
@@ -223,23 +230,19 @@
       ]
     },
     {
-      "id": "base:room/level_5_1_f",
-      "display_name": "Floor 21 — Level_5_1_F",
-      "legacy_class_name": "LevelContainer_Level_5_1_F",
-      "source_symbol": "Utilities.LevelContainer_Level_5_1_F",
-      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_1_F.as",
-      "source_payload": "res://content/base/room_payloads/source/level_5_1_f.json",
+      "id": "base:room/floor_21_expert",
+      "display_name": "Floor 21 — Room1_1_expertRoom",
+      "legacy_class_name": "Room1_1_expertRoom",
+      "source_symbol": "TopDown.Levels.Grass.Floor1_1.Room1_1_expertRoom",
+      "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/Grass/Floor1_1/Room1_1_expertRoom.as",
+      "source_payload": "res://content/base/room_payloads/source/floor_21_expert.json",
       "room_index": 5,
       "exits": [
         {
-          "transition_id": 5,
-          "target_room_id": "base:room/level_5_1_eggery",
-          "target_spawn_id": "entry-5"
-        },
-        {
-          "transition_id": 4,
-          "target_room_id": "base:room/level_5_1_h4",
-          "target_spawn_id": "entry-4"
+          "transition_id": 99,
+          "target_room_id": "base:room/level_5_1_c",
+          "target_spawn_id": "expert-return",
+          "requires_tower_mode": "hard"
         }
       ],
       "encounter_ids": [
@@ -262,28 +265,29 @@
           "source_trigger": "buttonZoneObject",
           "encounter_id": "base:encounter/floor21_trainer_5_expert",
           "first_visit_text": "",
-          "lose_text": ""
+          "lose_text": "",
+          "requires_tower_mode": "hard"
         }
       ]
     },
     {
-      "id": "base:room/level_5_1_e",
-      "display_name": "Floor 21 — Level_5_1_E",
-      "legacy_class_name": "LevelContainer_Level_5_1_E",
-      "source_symbol": "Utilities.LevelContainer_Level_5_1_E",
-      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_1_E.as",
-      "source_payload": "res://content/base/room_payloads/source/level_5_1_e.json",
+      "id": "base:room/level_5_1_f",
+      "display_name": "Floor 21 — Level_5_1_F",
+      "legacy_class_name": "LevelContainer_Level_5_1_F",
+      "source_symbol": "Utilities.LevelContainer_Level_5_1_F",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_1_F.as",
+      "source_payload": "res://content/base/room_payloads/source/level_5_1_f.json",
       "room_index": 6,
       "exits": [
         {
-          "transition_id": 2,
-          "target_room_id": "base:room/level_5_1_h3",
-          "target_spawn_id": "entry-2"
+          "transition_id": 5,
+          "target_room_id": "base:room/level_5_1_eggery",
+          "target_spawn_id": "entry-5"
         },
         {
-          "transition_id": 3,
+          "transition_id": 4,
           "target_room_id": "base:room/level_5_1_h4",
-          "target_spawn_id": "entry-3"
+          "target_spawn_id": "entry-4"
         }
       ],
       "encounter_ids": [
@@ -311,13 +315,34 @@
       ]
     },
     {
+      "id": "base:room/level_5_1_e",
+      "display_name": "Floor 21 — Level_5_1_E",
+      "legacy_class_name": "LevelContainer_Level_5_1_E",
+      "source_symbol": "Utilities.LevelContainer_Level_5_1_E",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_1_E.as",
+      "source_payload": "res://content/base/room_payloads/source/level_5_1_e.json",
+      "room_index": 7,
+      "exits": [
+        {
+          "transition_id": 2,
+          "target_room_id": "base:room/level_5_1_h3",
+          "target_spawn_id": "entry-2"
+        },
+        {
+          "transition_id": 3,
+          "target_room_id": "base:room/level_5_1_h4",
+          "target_spawn_id": "entry-3"
+        }
+      ]
+    },
+    {
       "id": "base:room/level_5_1_h2",
       "display_name": "Floor 21 — Level_5_1_H2",
       "legacy_class_name": "LevelContainer_Level_5_1_H2",
       "source_symbol": "Utilities.LevelContainer_Level_5_1_H2",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_1_H2.as",
       "source_payload": "res://content/base/room_payloads/source/level_5_1_h2.json",
-      "room_index": 7,
+      "room_index": 8,
       "exits": [
         {
           "transition_id": 7,
@@ -346,7 +371,7 @@
       "source_symbol": "Utilities.LevelContainer_Level_5_1_H3",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_1_H3.as",
       "source_payload": "res://content/base/room_payloads/source/level_5_1_h3.json",
-      "room_index": 8,
+      "room_index": 9,
       "exits": [
         {
           "transition_id": 1,
@@ -367,7 +392,7 @@
       "source_symbol": "Utilities.LevelContainer_Level_5_1_H4",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_1_H4.as",
       "source_payload": "res://content/base/room_payloads/source/level_5_1_h4.json",
-      "room_index": 9,
+      "room_index": 10,
       "exits": [
         {
           "transition_id": 4,
@@ -388,7 +413,7 @@
       "source_symbol": "Utilities.LevelContainer_Level_5_1_Eggery",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_1_Eggery.as",
       "source_payload": "res://content/base/room_payloads/source/level_5_1_eggery.json",
-      "room_index": 10,
+      "room_index": 11,
       "exits": [
         {
           "transition_id": 5,
@@ -412,14 +437,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         },
         {
@@ -437,14 +462,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         },
         {
@@ -462,14 +487,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         },
         {
@@ -487,14 +512,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         },
         {
@@ -512,14 +537,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         },
         {
@@ -537,14 +562,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         },
         {
@@ -562,14 +587,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         },
         {
@@ -587,14 +612,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         },
         {
@@ -612,14 +637,14 @@
             "base:minion/icebird_1"
           ],
           "weights": [
-            5.0,
-            15.0,
-            30.0,
-            15.0,
-            10.0,
-            10.0,
-            5.0,
-            10.0
+            5,
+            15,
+            30,
+            15,
+            10,
+            10,
+            5,
+            10
           ]
         }
       ]

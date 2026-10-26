@@ -1309,6 +1309,25 @@ func swap_party_with_storage(party_index: int, storage_index: int) -> Dictionary
 	state = candidate
 	return {"ok": true, "party_index": party_index, "storage_index": storage_index, "party_member": candidate.party[party_index], "stored_minion": candidate.storage[storage_index]}
 
+func make_current_minions_shiny() -> Dictionary:
+	if not CampaignDebugService.available(state):
+		return _error("debug_locked", "enable the Debug Mode mod to access debug actions")
+	if not state.pending_battle.is_empty() or not state.progression.get("pending_egg_preview", {}).is_empty():
+		return _error("action_pending", "finish the battle or egg reveal before changing minion appearances")
+	var candidate = StateScript.new()
+	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	var changed := 0
+	for owned in candidate.party + candidate.storage:
+		if owned.is_shiny: continue
+		owned.is_shiny = true
+		owned.shiny_line_id = MinionPaletteService.line_id(owned.definition_id, catalog)
+		changed += 1
+	if changed == 0: return {"ok": true, "changed_count": 0}
+	var saved := _save_candidate(candidate)
+	if not saved.ok: return saved
+	state = candidate
+	return {"ok": true, "changed_count": changed}
+
 func set_debug_option(option: String, value: bool) -> Dictionary:
 	if not CampaignDebugService.available(state):
 		return _error("debug_locked", "enable the Debug Mode mod to access debug settings")

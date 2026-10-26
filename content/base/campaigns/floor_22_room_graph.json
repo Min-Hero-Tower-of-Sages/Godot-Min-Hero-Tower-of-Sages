@@ -7,6 +7,7 @@
     "base:room/level_5_2_b",
     "base:room/level_5_2_c",
     "base:room/level_5_2_e",
+    "base:room/floor_22_expert",
     "base:room/level_5_2_d",
     "base:room/level_5_2_h2",
     "base:room/level_5_2_h3",
@@ -66,6 +67,12 @@
           "transition_id": 1,
           "target_room_id": "base:room/level_5_2_h1",
           "target_spawn_id": "entry-1"
+        },
+        {
+          "transition_id": 99,
+          "target_room_id": "base:room/floor_22_expert",
+          "target_spawn_id": "entry-expert",
+          "requires_tower_mode": "hard"
         }
       ],
       "encounter_ids": [
@@ -221,23 +228,19 @@
       ]
     },
     {
-      "id": "base:room/level_5_2_d",
-      "display_name": "Floor 22 — Level_5_2_D",
-      "legacy_class_name": "LevelContainer_Level_5_2_D",
-      "source_symbol": "Utilities.LevelContainer_Level_5_2_D",
-      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_2_D.as",
-      "source_payload": "res://content/base/room_payloads/source/level_5_2_d.json",
+      "id": "base:room/floor_22_expert",
+      "display_name": "Floor 22 — Room1_1_expertRoom",
+      "legacy_class_name": "Room1_1_expertRoom",
+      "source_symbol": "TopDown.Levels.Grass.Floor1_1.Room1_1_expertRoom",
+      "source_location": "development/extracted/full-20260908/script/scripts/TopDown/Levels/Grass/Floor1_1/Room1_1_expertRoom.as",
+      "source_payload": "res://content/base/room_payloads/source/floor_22_expert.json",
       "room_index": 5,
       "exits": [
         {
-          "transition_id": 6,
-          "target_room_id": "base:room/level_5_2_h1",
-          "target_spawn_id": "entry-6"
-        },
-        {
-          "transition_id": 7,
-          "target_room_id": "base:room/level_5_2_h3",
-          "target_spawn_id": "entry-7"
+          "transition_id": 99,
+          "target_room_id": "base:room/level_5_2_a",
+          "target_spawn_id": "expert-return",
+          "requires_tower_mode": "hard"
         }
       ],
       "encounter_ids": [
@@ -260,28 +263,29 @@
           "source_trigger": "buttonZoneObject",
           "encounter_id": "base:encounter/floor22_trainer_5_expert",
           "first_visit_text": "",
-          "lose_text": ""
+          "lose_text": "",
+          "requires_tower_mode": "hard"
         }
       ]
     },
     {
-      "id": "base:room/level_5_2_h2",
-      "display_name": "Floor 22 — Level_5_2_H2",
-      "legacy_class_name": "LevelContainer_Level_5_2_H2",
-      "source_symbol": "Utilities.LevelContainer_Level_5_2_H2",
-      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_2_H2.as",
-      "source_payload": "res://content/base/room_payloads/source/level_5_2_h2.json",
+      "id": "base:room/level_5_2_d",
+      "display_name": "Floor 22 — Level_5_2_D",
+      "legacy_class_name": "LevelContainer_Level_5_2_D",
+      "source_symbol": "Utilities.LevelContainer_Level_5_2_D",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_2_D.as",
+      "source_payload": "res://content/base/room_payloads/source/level_5_2_d.json",
       "room_index": 6,
       "exits": [
         {
-          "transition_id": 4,
-          "target_room_id": "base:room/level_5_2_c",
-          "target_spawn_id": "entry-4"
+          "transition_id": 6,
+          "target_room_id": "base:room/level_5_2_h1",
+          "target_spawn_id": "entry-6"
         },
         {
-          "transition_id": 5,
-          "target_room_id": "base:room/level_5_2_e",
-          "target_spawn_id": "entry-5"
+          "transition_id": 7,
+          "target_room_id": "base:room/level_5_2_h3",
+          "target_spawn_id": "entry-7"
         }
       ],
       "encounter_ids": [
@@ -305,7 +309,30 @@
           "encounter_id": "base:encounter/floor22_trainer_6_boss",
           "first_visit_text": "A demonstration of serenity is inner peace.",
           "lose_text": "I have seen your inner peace.  Here is another piece of the Sage Seal of Serenity."
+        }
+      ]
+    },
+    {
+      "id": "base:room/level_5_2_h2",
+      "display_name": "Floor 22 — Level_5_2_H2",
+      "legacy_class_name": "LevelContainer_Level_5_2_H2",
+      "source_symbol": "Utilities.LevelContainer_Level_5_2_H2",
+      "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_2_H2.as",
+      "source_payload": "res://content/base/room_payloads/source/level_5_2_h2.json",
+      "room_index": 7,
+      "exits": [
+        {
+          "transition_id": 4,
+          "target_room_id": "base:room/level_5_2_c",
+          "target_spawn_id": "entry-4"
         },
+        {
+          "transition_id": 5,
+          "target_room_id": "base:room/level_5_2_e",
+          "target_spawn_id": "entry-5"
+        }
+      ],
+      "interactions": [
         {
           "id": "floor-22-heal-6",
           "kind": "heal_party",
@@ -321,7 +348,7 @@
       "source_symbol": "Utilities.LevelContainer_Level_5_2_H3",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_2_H3.as",
       "source_payload": "res://content/base/room_payloads/source/level_5_2_h3.json",
-      "room_index": 7,
+      "room_index": 8,
       "exits": [
         {
           "transition_id": 7,
@@ -342,7 +369,7 @@
       "source_symbol": "Utilities.LevelContainer_Level_5_2_Eggery",
       "source_location": "development/extracted/full-20260908/script/scripts/Utilities/LevelContainer_Level_5_2_Eggery.as",
       "source_payload": "res://content/base/room_payloads/source/level_5_2_eggery.json",
-      "room_index": 8,
+      "room_index": 9,
       "exits": [
         {
           "transition_id": 8,
@@ -364,12 +391,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         },
         {
@@ -385,12 +412,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         },
         {
@@ -406,12 +433,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         },
         {
@@ -427,12 +454,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         },
         {
@@ -448,12 +475,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         },
         {
@@ -469,12 +496,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         },
         {
@@ -490,12 +517,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         },
         {
@@ -511,12 +538,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         },
         {
@@ -532,12 +559,12 @@
             "base:minion/trex_2"
           ],
           "weights": [
-            10.0,
-            25.0,
-            35.0,
-            20.0,
-            5.0,
-            5.0
+            10,
+            25,
+            35,
+            20,
+            5,
+            5
           ]
         }
       ]

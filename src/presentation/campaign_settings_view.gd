@@ -242,18 +242,28 @@ func _build_debug_controls() -> void:
 			toggle.name = "DebugToggle_%s" % option.id
 			toggle.tooltip_text = option.description
 			toggle.disabled = not _session.state.pending_battle.is_empty()
+	var shiny_action := TypeGuideView.text_button(_panel, "Make Current Minions Shiny", Vector2(36, 264), Vector2(290, 34), _make_current_minions_shiny, 16)
+	shiny_action.name = "MakeCurrentMinionsShiny"
+	shiny_action.tooltip_text = "One-time action: make all current party and storage minions shiny. Saved immediately; does not affect future rolls."
+	shiny_action.disabled = not _session.state.pending_battle.is_empty() or not _session.state.progression.get("pending_egg_preview", {}).is_empty()
 	var description := Label.new()
 	description.name = "DebugDescription"
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	description.position = Vector2(36, 267)
-	description.size = Vector2(290, 70)
+	description.position = Vector2(36, 306)
+	description.size = Vector2(290, 43)
 	description.clip_text = true
 	description.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	description.add_theme_font_override("font", MENU_FONT)
 	description.add_theme_font_size_override("font_size", 12)
+	description.add_theme_constant_override("line_spacing", 0)
 	description.add_theme_color_override("font_color", Color8(244, 221, 145))
-	description.text = _debug_message if not _debug_message.is_empty() else "Saved with this campaign. Granted levels/upgrades remain when disabled. 100% Shiny affects new minions."
+	description.text = _debug_message if not _debug_message.is_empty() else "100% Shiny: future minions only.\nButton: current party + storage; permanent."
 	_panel.add_child(description)
+
+func _make_current_minions_shiny() -> void:
+	var result := _session.make_current_minions_shiny()
+	_debug_message = ("Made %d current minions shiny." % int(result.changed_count)) if result.ok else String(result.get("message", "Could not save shiny appearances"))
+	_build_view()
 
 func _toggle_debug(option: String) -> void:
 	var result := _session.set_debug_option(option, not CampaignDebugService.enabled(_session.state, option))
