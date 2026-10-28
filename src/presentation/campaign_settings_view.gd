@@ -20,6 +20,7 @@ var _source_root: Control
 var _session: CampaignSession
 var _debug_page := false
 var _debug_message := ""
+var _mod_page := false
 
 func configure(settings_service: CampaignSettingsService, campaign_session: CampaignSession = null) -> void:
 	settings = settings_service
@@ -36,7 +37,7 @@ func _ready() -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") or (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE):
-		if _debug_page: _back_to_settings()
+		if _debug_page or _mod_page: _back_to_settings()
 		else: closed.emit()
 		get_viewport().set_input_as_handled()
 
@@ -52,6 +53,13 @@ func _build_view() -> void:
 		return
 	if not settings.settings_changed.is_connected(_refresh_controls):
 		settings.settings_changed.connect(_refresh_controls)
+	if _mod_page and _session != null and _session.state != null:
+		var mods := CampaignModMenuView.new()
+		mods.name = "SavedModMenu"
+		add_child(mods)
+		mods.configure(_session)
+		mods.closed.connect(_back_to_settings)
+		return
 	var viewport_size := get_viewport_rect().size
 	var shade := ColorRect.new()
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -117,8 +125,11 @@ func _build_view() -> void:
 		hints_toggle.tooltip_text = "Preview type effectiveness while hovering a move or choosing its targets."
 		_toggle_buttons["type_hints"] = hints_toggle
 	if _session != null and CampaignDebugService.available(_session.state):
-		var debug_button := _add_text_button(_panel, "Debug Mode", Vector2(86, 290), Vector2(196, 34), _open_debug)
+		var debug_button := TypeGuideView.text_button(_panel, "Debug Mode", Vector2(86, 306), Vector2(196, 29), _open_debug, 18)
 		debug_button.name = "DebugMenuButton"
+	if _session != null and _session.state != null:
+		var mods_button := TypeGuideView.text_button(_panel, "Mod Menu", Vector2(86, 270), Vector2(196, 29), _open_mods, 18)
+		mods_button.name = "SavedModMenuButton"
 	var return_button := _source_button("menus_returnButton", Vector2(2.0, 356.0), Callable(self, "_close_menu"))
 	var close_button := _source_button("menus_exitButton", Vector2(296.0, -22.0), Callable(self, "_close_menu"))
 	if return_button == null:
@@ -140,7 +151,7 @@ func _step_quality(step: int) -> void:
 	_refresh_controls()
 
 func _refresh_controls() -> void:
-	if _debug_page: return
+	if _debug_page or _mod_page: return
 	if settings == null or _panel == null or not is_instance_valid(_panel):
 		return
 	var values := {
@@ -229,6 +240,13 @@ func _open_debug() -> void:
 
 func _back_to_settings() -> void:
 	_debug_page = false
+	_mod_page = false
+	_build_view()
+
+func _open_mods() -> void:
+	if _session == null or _session.state == null: return
+	_debug_page = false
+	_mod_page = true
 	_build_view()
 
 func _build_debug_controls() -> void:

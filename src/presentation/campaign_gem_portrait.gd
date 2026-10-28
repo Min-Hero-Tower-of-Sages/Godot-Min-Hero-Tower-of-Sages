@@ -40,3 +40,30 @@ func configure(gem: Dictionary) -> void:
 	outline.texture = shape_texture
 	outline.centered = false
 	mask.add_child(outline)
+	if CampaignSkillGemService.is_skill(gem):
+		var icon := SourceMenuArt.image(self, String(gem.get("skill_icon", "")), Vector2(14, 12))
+		if icon != null:
+			icon.name = "SkillGemIcon"
+			icon.scale = Vector2.ONE * 0.38
+			icon.modulate.a = 0.95
+		if icon == null:
+			var unknown := Label.new()
+			unknown.text = "?"
+			unknown.position = Vector2(17, 7)
+			unknown.add_theme_font_override("font", preload("res://content/base/fonts/BurbinCasual.ttf"))
+			unknown.add_theme_font_size_override("font_size", 25)
+			unknown.add_theme_color_override("font_outline_color", Color8(25, 28, 37))
+			unknown.add_theme_constant_override("outline_size", 4)
+			unknown.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			add_child(unknown)
+		var rank := Label.new()
+		rank.name = "SkillGemLevel"
+		rank.text = str(int(gem.get("skill_level", 1)))
+		rank.position = Vector2(35, 31)
+		rank.add_theme_font_override("font", preload("res://content/base/fonts/BurbinCasual.ttf"))
+		rank.add_theme_font_size_override("font_size", 16)
+		rank.add_theme_color_override("font_color", Color8(255, 238, 154))
+		rank.add_theme_color_override("font_outline_color", Color8(25, 28, 37))
+		rank.add_theme_constant_override("outline_size", 5)
+		rank.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(rank)

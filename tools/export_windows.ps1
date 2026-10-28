@@ -1,21 +1,22 @@
 param(
     [string]$GodotExecutable = 'godot',
-    [string]$ProjectRoot = (Split-Path -Parent $PSScriptRoot)
+    [string]$ProjectRoot = (Split-Path -Parent $PSScriptRoot),
+    [string]$OutputDirectory = 'build/windows'
 )
 $ErrorActionPreference = 'Stop'
 $rootPath = [IO.Path]::GetFullPath($ProjectRoot)
 $resolvedGodot = (Get-Command $GodotExecutable -ErrorAction Stop).Source
-$outputDirectory = Join-Path $rootPath 'build/windows'
-New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
+$outputPath = if ([IO.Path]::IsPathRooted($OutputDirectory)) { [IO.Path]::GetFullPath($OutputDirectory) } else { Join-Path $rootPath $OutputDirectory }
+New-Item -ItemType Directory -Path $outputPath -Force | Out-Null
 [IO.File]::WriteAllText((Join-Path $rootPath 'build/.gdignore'), '', [Text.UTF8Encoding]::new($false))
-$exePath = Join-Path $outputDirectory 'MinHero.exe'
-$stdoutPath = Join-Path $outputDirectory 'export.stdout.log'
-$stderrPath = Join-Path $outputDirectory 'export.stderr.log'
+$exePath = Join-Path $outputPath 'MinHeroExtended.exe'
+$stdoutPath = Join-Path $outputPath 'export.stdout.log'
+$stderrPath = Join-Path $outputPath 'export.stderr.log'
 $exportTemp = Join-Path $rootPath 'build/export-temp'
 New-Item -ItemType Directory -Path $exportTemp -Force | Out-Null
 # Windows GUI executables need explicit -Wait. Matching export templates
 # must be installed via the editor's Manage Export Templates dialog.
-$arguments = '--headless --path "{0}" --export-release "Windows Desktop" "{1}"' -f $rootPath, $exePath
+$arguments = '--headless --path "{0}" --export-release "Min Hero Extended" "{1}"' -f $rootPath, $exePath
 $previousTemp = $env:TEMP
 $previousTmp = $env:TMP
 try {
@@ -27,7 +28,7 @@ try {
     $process = Start-Process -FilePath $resolvedGodot -ArgumentList $arguments -WindowStyle Hidden -Wait -PassThru -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath
 } finally { $env:TEMP = $previousTemp; $env:TMP = $previousTmp }
 $exportErrors = [IO.File]::ReadAllText($stderrPath)
-if ($process.ExitCode -ne 0 -or $exportErrors -match '(?m)^ERROR:' -or -not (Test-Path -LiteralPath $exePath)) {
+if ($process.ExitCode -ne 0 -or $exportErrors -match '(?m)^ERROR:|SCRIPT ERROR:' -or -not (Test-Path -LiteralPath $exePath)) {
     Get-Content -LiteralPath $stderrPath
     throw "Windows export failed (exit $($process.ExitCode)). See $stdoutPath and $stderrPath."
 }
@@ -35,8 +36,8 @@ if ($process.ExitCode -ne 0 -or $exportErrors -match '(?m)^ERROR:' -or -not (Tes
 # the actual exported player can read it, using an isolated save/settings profile.
 $bootProfile = Join-Path $rootPath 'build/release-boot-profile'
 New-Item -ItemType Directory -Path $bootProfile -Force | Out-Null
-$bootStdout = Join-Path $outputDirectory 'boot.stdout.log'
-$bootStderr = Join-Path $outputDirectory 'boot.stderr.log'
+$bootStdout = Join-Path $outputPath 'boot.stdout.log'
+$bootStderr = Join-Path $outputPath 'boot.stderr.log'
 $previousAppData = $env:APPDATA
 $previousLocalAppData = $env:LOCALAPPDATA
 try {
@@ -48,12 +49,13 @@ if ($boot.ExitCode -ne 0 -or [IO.File]::ReadAllText($bootStderr) -match '(?m)^ER
     Get-Content -LiteralPath $bootStderr
     throw "Exported player startup failed. No release ZIP was generated; see $bootStderr."
 }
-$archivePath = Join-Path $outputDirectory 'MinHero-windows-x86_64.zip'
+$archiveName = 'MinHeroExtended-windows-x86_64.zip'
+$archivePath = Join-Path $outputPath $archiveName
 $releaseFiles = @($exePath, (Join-Path $rootPath 'ASSET_NOTICES.md'))
 # Explicit files only: never include old builds, logs or personal saves.
 Compress-Archive -LiteralPath $releaseFiles -DestinationPath $archivePath -Force
 $hash = (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash.ToLowerInvariant()
-[IO.File]::WriteAllText($archivePath + '.sha256', "$hash  MinHero-windows-x86_64.zip`n", [Text.UTF8Encoding]::new($false))
+[IO.File]::WriteAllText($archivePath + '.sha256', "$hash  $archiveName`n", [Text.UTF8Encoding]::new($false))
 Write-Output "Windows export: $exePath"
 Write-Output "GitHub Release asset: $archivePath"
 Write-Output "Verify the exported build outside the editor before publishing."

@@ -87,7 +87,7 @@ func _open_category(index: int) -> void:
 
 func _toggle(index: int) -> void:
 	var option: Dictionary = CampaignModService.OPTIONS[index]
-	var value := not bool(flags.get(option.flags[0], false))
+	var value := not CampaignModService.group_enabled(flags, option.flags[0])
 	for flag in option.flags: flags[flag] = value
 	_describe(option.description)
 	_refresh()
@@ -95,7 +95,7 @@ func _toggle(index: int) -> void:
 func _refresh() -> void:
 	for index in _buttons.size():
 		var option: Dictionary = CampaignModService.OPTIONS[_option_indices[index]]
-		var on := bool(flags.get(option.flags[0], false))
+		var on := CampaignModService.group_enabled(flags, option.flags[0])
 		var art := SourceMenuArt.texture("menus_settings_onButton" if on else "menus_settings_offButton")
 		_buttons[index].texture_normal = art
 		_buttons[index].texture_hover = art
@@ -104,7 +104,7 @@ func _refresh() -> void:
 		var category: Dictionary = CampaignModService.CATEGORIES[index]
 		var count := 0
 		for group in category.groups:
-			if bool(flags.get(group, false)): count += 1
+			if CampaignModService.group_enabled(flags, group): count += 1
 		_category_buttons[index].text = "%s  %d/%d" % [category.name, count, category.groups.size()]
 
 func _describe(text: String) -> void:

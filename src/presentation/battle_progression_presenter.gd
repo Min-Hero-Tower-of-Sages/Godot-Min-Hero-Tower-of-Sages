@@ -75,13 +75,14 @@ func _ready() -> void:
 	z_index = 1300
 	visible = false
 
-func begin_sequence(party: Array, awards: Dictionary, catalog: ContentCatalog, combatant_views: Dictionary, battle_won: bool, audio_controller: BattleAudioController, save_callback: Callable = Callable(), show_first_defeat_tutorial: bool = false, owned_gems: Array[Dictionary] = [], star_upgrades: Dictionary = {}, finish_stat_context: Dictionary = {}) -> void:
+func begin_sequence(party: Array, awards: Dictionary, catalog: ContentCatalog, combatant_views: Dictionary, battle_won: bool, audio_controller: BattleAudioController, save_callback: Callable = Callable(), show_first_defeat_tutorial: bool = false, owned_gems: Array[Dictionary] = [], star_upgrades: Dictionary = {}, finish_stat_context: Dictionary = {}, active_mods: Dictionary = {}) -> void:
 	cancel_sequence()
 	_campaign_talent_mode = false
 	_owned_gems = owned_gems
 	_star_upgrades = star_upgrades
 	_display_stat_state.party.assign(party)
 	_display_stat_state.owned_gems.assign(owned_gems)
+	_display_stat_state.active_mods = active_mods.duplicate(true)
 	_display_stat_state.progression["star_upgrades"] = star_upgrades
 	_display_stat_catalog = catalog
 	_display_stat_context = finish_stat_context.duplicate(true)

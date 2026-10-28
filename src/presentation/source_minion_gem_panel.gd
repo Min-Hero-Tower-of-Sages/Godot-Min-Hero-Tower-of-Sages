@@ -3,7 +3,7 @@ extends RefCounted
 const GEM_TOOLTIP := preload("res://src/presentation/source_gem_tooltip.gd")
 
 ## MinionDetailsMinionGemsObject is shared by party and storage in the source.
-static func build(page: Control, tooltip_parent: Control, owned: OwnedMinionState, definition: MinionDefinition, state: CampaignState, request: Callable) -> void:
+static func build(page: Control, tooltip_parent: Control, owned: OwnedMinionState, definition: MinionDefinition, state: CampaignState, request: Callable, catalog: ContentCatalog = null) -> void:
 	if definition == null:
 		return
 	var tooltip := GEM_TOOLTIP.new()
@@ -47,5 +47,5 @@ static func build(page: Control, tooltip_parent: Control, owned: OwnedMinionStat
 			preload("res://src/presentation/source_menu_button_audio.gd").bind_button(hit)
 			hit.pressed.connect(request.bind(owned.instance_id, index))
 			if not gem.is_empty():
-				hit.mouse_entered.connect(tooltip.show_gem.bind(gem))
+				hit.mouse_entered.connect(tooltip.show_gem.bind(gem, catalog))
 				hit.mouse_exited.connect(tooltip.hide)

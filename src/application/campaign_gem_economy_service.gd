@@ -22,6 +22,8 @@ static func combine_preview(gems: Array[Dictionary]) -> Dictionary:
 	var unique_ids: Dictionary = {}
 	var combined_raw: Array[float] = [0.0, 0.0, 0.0, 0.0, 0.0]
 	for gem in gems:
+		if CampaignSkillGemService.is_skill(gem):
+			return _error("skill_gem_material", "Skill gems cannot be combined or used in Random Forge.")
 		if int(gem.get("tier", 0)) != tier:
 			return _error("gem_tier_mismatch", "all three gems must have the same tier")
 		var instance_id := String(gem.get("instance_id", ""))
@@ -35,7 +37,7 @@ static func combine_preview(gems: Array[Dictionary]) -> Dictionary:
 			combined_raw[stat_index] += float(raw_stats[stat_index])
 	return {"ok": true, "gem": _make_gem(tier + 1, combined_raw), "cost": int(COMBINE_COSTS[tier])}
 
-static func combine_gems(state, ids: Array[StringName]) -> Dictionary:
+static func combine_gems(state, ids: Array[StringName], catalog: ContentCatalog = null, forge: bool = false) -> Dictionary:
 	if state == null or ids.size() != 3:
 		return _error("combine_needs_three_gems", "select exactly three gems to combine")
 	var input: Array[Dictionary] = []
@@ -46,7 +48,9 @@ static func combine_gems(state, ids: Array[StringName]) -> Dictionary:
 		if _is_equipped(state, id):
 			return _error("gem_equipped", "equipped gems cannot be used as combine materials")
 		input.append(state.owned_gems[index])
-	var preview := combine_preview(input)
+	var preview := CampaignSkillGemService.forge_preview(state, catalog, input) if forge and catalog != null else combine_preview(input)
+	if forge and catalog == null:
+		return _error("missing_catalog", "Random Forge requires a content catalog.")
 	if not preview.ok:
 		return preview
 	var cost := int(preview.cost)
@@ -60,6 +64,9 @@ static func combine_gems(state, ids: Array[StringName]) -> Dictionary:
 		insertion_index = mini(insertion_index, _gem_index(state, id))
 	var remaining: Array[Dictionary] = []
 	var result_gem: Dictionary = preview.gem.duplicate(true)
+	if forge:
+		result_gem = CampaignSkillGemService.create(catalog, int(preview.gem.skill_level), StringName(preview.gem.type_id), null, int(preview.gem.tier), preview.colors, preview.gem.type_id == "base:type/none")
+		if result_gem.is_empty(): return _error("empty_skill_pool", "No available skills match this recipe.")
 	result_gem["instance_id"] = _new_gem_id(state, "combined")
 	for index in state.owned_gems.size():
 		if index == insertion_index:

@@ -275,7 +275,7 @@ func _stats(page: Control, owned: OwnedMinionState, definition: MinionDefinition
 		SourceMenuArt.image(page, "menus_minionType_%s" % type_name, Vector2(127 + index * 82, 53))
 
 func _moves(page: Control, owned: OwnedMinionState) -> void:
-	var moves := CampaignProgressionService.highest_tier_move_ids(owned.learned_move_ids, _session.catalog)
+	var moves := CampaignProgressionService.effective_move_ids(owned, _session.catalog, _session.state)
 	_move_page = clampi(_move_page, 0, maxi(0, ceili(float(moves.size()) / 4.0) - 1))
 	for index in 4:
 		var move_index := _move_page * 4 + index
@@ -312,7 +312,7 @@ func _build_move_page_button(parent: Control, at: Vector2, enabled: bool, action
 		button.scale.x = -1.0
 
 func _gems(page: Control, owned: OwnedMinionState, definition: MinionDefinition) -> void:
-	preload("res://src/presentation/source_minion_gem_panel.gd").build(page, _source_root, owned, definition, _session.state, Callable(self, "_open_gems"))
+	preload("res://src/presentation/source_minion_gem_panel.gd").build(page, _source_root, owned, definition, _session.state, Callable(self, "_open_gems"), _session.catalog)
 
 func _open_gems(member_id: StringName, socket: int) -> void:
 	gems_requested.emit(member_id, socket)

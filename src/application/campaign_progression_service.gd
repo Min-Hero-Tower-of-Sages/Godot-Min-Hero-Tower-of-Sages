@@ -122,10 +122,7 @@ static func party_setup_combatants(state, catalog: ContentCatalog) -> Dictionary
 		var stats := owned_stats(owned, definition, -1, state.owned_gems, state.progression.get("star_upgrades", {}))
 		var raw_stats := owned_stats(owned, definition, -1, state.owned_gems, state.progression.get("star_upgrades", {}), false)
 		var persistent_maxima := owned_display_stats(owned, definition, catalog, state)
-		var move_ids := owned.learned_move_ids.duplicate()
-		if move_ids.is_empty():
-			move_ids = definition.initial_move_ids.duplicate()
-		move_ids = highest_tier_move_ids(move_ids, catalog)
+		var move_ids := effective_move_ids(owned, catalog, state)
 		var attack_bonus_multiplier := 1.05 if owned.stat_bonus == &"attack" else 1.0
 		var healing_bonus_multiplier := 1.05 if owned.stat_bonus == &"healing" else 1.0
 		var attack_iv := float(owned.ivs.get("attack", owned.ivs.get(&"attack", 0.0)))
@@ -284,7 +281,7 @@ static func apply_battle_result(state, result: BattleResult, encounter: Encounte
 	CampaignModService.retire_fainted(state, fainted_ids)
 	var completed_before_battle: Dictionary = state.progression.get("completed_encounters", {})
 	var is_first_clear := not bool(completed_before_battle.get(String(encounter.id), false))
-	var completion_awards := _grant_first_clear_rewards(state, encounter) if result.winning_team == 0 else {}
+	var completion_awards := _grant_first_clear_rewards(state, encounter, catalog) if result.winning_team == 0 else {}
 	var show_first_defeat_tutorial := false
 	if result.winning_team == 0:
 		state.progression["deaths_since_victory"] = 0
@@ -553,11 +550,11 @@ static func owned_display_stats(owned: OwnedMinionState, definition: MinionDefin
 		member.defeated = teammate.persistent_health == 0
 		var species := catalog.get_definition(teammate.definition_id) as MinionDefinition
 		if species == null: continue
-		member.move_ids = highest_tier_move_ids(teammate.learned_move_ids if not teammate.learned_move_ids.is_empty() else species.initial_move_ids, catalog)
+		member.move_ids = effective_move_ids(teammate, catalog, state)
 		members[member.instance_id] = member
 	var selected := CombatantState.new()
 	selected.team = 0
-	selected.move_ids = highest_tier_move_ids(owned.learned_move_ids if not owned.learned_move_ids.is_empty() else definition.initial_move_ids, catalog)
+	selected.move_ids = effective_move_ids(owned, catalog, state)
 	for stat in stats:
 		var stat_id := StringName("base:stat/%s" % stat)
 		var stage_values: Dictionary = battle_context.get("stat_stages_by_id", {}).get(String(owned.instance_id), {})
@@ -718,6 +715,13 @@ static func evolve_owned_minion(owned: OwnedMinionState, catalog: ContentCatalog
 		owned.persistent_energy = clampi(old_energy, 0, int(new_stats.energy))
 	return {"ok": true, "old_definition": old_definition, "new_definition": new_definition, "stats": new_stats}
 
+static func effective_move_ids(owned: OwnedMinionState, catalog: ContentCatalog, state) -> Array[StringName]:
+	var move_ids := owned.learned_move_ids.duplicate()
+	var definition := catalog.get_definition(owned.definition_id) as MinionDefinition
+	if move_ids.is_empty() and definition != null: move_ids.assign(definition.initial_move_ids)
+	move_ids.append_array(CampaignSkillGemService.equipped_moves(state, catalog, owned))
+	return highest_tier_move_ids(move_ids, catalog)
+
 static func highest_tier_move_ids(move_ids: Array[StringName], catalog: ContentCatalog) -> Array[StringName]:
 	var result: Array[StringName] = []
 	var family_positions: Dictionary = {}
@@ -748,7 +752,7 @@ static func _find_talent_node(tree: TalentTreeDefinition, node_id: StringName) -
 			return node
 	return {}
 
-static func _grant_first_clear_rewards(state, encounter: EncounterDefinition) -> Dictionary:
+static func _grant_first_clear_rewards(state, encounter: EncounterDefinition, catalog: ContentCatalog = null) -> Dictionary:
 	var completed: Dictionary = state.progression.get("completed_encounters", {})
 	if bool(completed.get(String(encounter.id), false)):
 		return {"money": 0, "floor_keys": 0, "eggery_keys": 0, "sage_seals": 0}
@@ -789,11 +793,17 @@ static func _grant_first_clear_rewards(state, encounter: EncounterDefinition) ->
 	# were authored in encounter data but previously dropped during settlement.
 	if encounter.source_trainer_type in [&"TrainerType.HARD_TRAINER", &"TrainerType.EXPERT_TRAINER"]:
 		var tier := CampaignGemFactory.tier_for_floor(int(state.progression.get("floor_index", 0)))
-		gems.append(CampaignGemFactory.grant(state, tier, String(encounter.id)))
+		if catalog != null and CampaignModService.enabled(state, "skill_gems") and int(state.progression.get("floor_index", 0)) >= 31:
+			gems.append(CampaignSkillGemService.grant(state, catalog, 3, String(encounter.id)))
+		else:
+			gems.append(CampaignGemFactory.grant(state, tier, String(encounter.id)))
 	elif encounter.source_trainer_type == &"TrainerType.TRAINER_GYM_5" and sage_seals > 0:
 		# BattleScreen.AddSageSeal(5) grants a tier-10 gem only when this
 		# seal raises the frontier. Its second source argument is unused.
-		gems.append(CampaignGemFactory.grant(state, 10, String(encounter.id)))
+		if CampaignModService.enabled(state, "skill_gems"):
+			state.progression["random_forge_unlocked"] = true
+		else:
+			gems.append(CampaignGemFactory.grant(state, 10, String(encounter.id)))
 	return {"money": money, "floor_keys": keys, "eggery_keys": eggery_keys, "sage_seals": sage_seals, "sage_seal_pieces": seal_pieces, "gems": gems, "source_trainer_type": String(encounter.source_trainer_type)}
 
 static func _unlock_next_tower_floor(state, catalog: ContentCatalog) -> void:

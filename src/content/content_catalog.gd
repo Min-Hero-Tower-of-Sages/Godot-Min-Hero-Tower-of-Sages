@@ -74,6 +74,11 @@ func _bind_standard_map_trainers() -> void:
 			var has_map := false
 			for existing in room.interactions:
 				if StringName(existing.get("kind", "")) == &"map_station" and int(existing.get("source_zone_id", -1)) == int(interaction.get("source_zone_id", -1)):
+					# The authored Floor 1 map interaction predates the paired
+					# hard trainer and has no mode restriction. Without this,
+					# it wins contact priority and makes that trainer unreachable.
+					if not existing.has("requires_tower_mode"):
+						existing["requires_tower_mode"] = "standard"
 					has_map = true
 					break
 			if has_map:

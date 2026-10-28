@@ -153,6 +153,7 @@
           "id": "floor-1-map-station",
           "kind": "map_station",
           "source_zone_id": 0,
+          "requires_tower_mode": "standard",
           "first_visit_text": "Here is a map to help you with this floor.",
           "return_text": "Use the map well.",
           "trainer_name": "Qui-tel Trainer"

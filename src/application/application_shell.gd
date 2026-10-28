@@ -1771,7 +1771,7 @@ func _restore_campaign_victory_room(settlement: Dictionary, return_location: Dic
 	if bool(return_location.get("first_visit", false)) and is_instance_valid(current_room):
 		var encounter_id := StringName(return_location.get("encounter_id", ""))
 		var encounter := runtime.catalog.get_definition(encounter_id) as EncounterDefinition
-		var dialogue: Dictionary = preload("res://src/application/source_trainer_dialogue.gd").for_encounter(encounter)
+		var dialogue: Dictionary = preload("res://src/application/source_trainer_dialogue.gd").for_encounter(encounter, runtime.session.state)
 		var after_win := String(dialogue.get("after_win_text", ""))
 		if not after_win.is_empty():
 			for interaction in current_room.room.interactions:

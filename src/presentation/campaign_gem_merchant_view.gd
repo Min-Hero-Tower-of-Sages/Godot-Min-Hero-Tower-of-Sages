@@ -6,6 +6,8 @@ var _mode: StringName = &"shop"
 var _materials: Array[StringName] = []
 var _stock_selection := -1
 var _audio: BattleAudioController
+var _skill_forge := false
+var _recipe_open := false
 
 func configure_merchant(session, mode: StringName, audio: BattleAudioController = null) -> void:
 	_session = session
@@ -35,16 +37,30 @@ func _refresh() -> void:
 	_source_root.add_child(_panel)
 	_create_tooltip()
 	SourceMenuArt.image(_panel, "menus_backgroundLarge", Vector2.ZERO)
-	SourceMenuArt.image(_panel, "menus_sponsorMoreGames_background", Vector2(23, 20))
+	if _mode == &"combine" and CampaignModService.enabled(_session.state, "skill_gems"):
+		var inset := NinePatchRect.new()
+		inset.texture = SourceMenuArt.texture("menus_gemCombiner_npcsGemsBackground")
+		inset.position = Vector2(23, 20)
+		inset.size = Vector2(302, 250)
+		inset.patch_margin_left = 5
+		inset.patch_margin_right = 5
+		inset.patch_margin_top = 5
+		inset.patch_margin_bottom = 5
+		inset.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_panel.add_child(inset)
+	else:
+		SourceMenuArt.image(_panel, "menus_sponsorMoreGames_background", Vector2(23, 20))
 	SourceMenuArt.image(_panel, "menus_gemCombiner_characterDetailsBackground", Vector2(20, 277))
 	SourceMenuArt.image(_panel, "menus_gemCombiner_npcsGemsBackground", Vector2(334, 278))
 	var gender := String(_session.state.character.get("gender", "male")).to_lower()
 	var bust := SourceMenuArt.image(_panel, "menus_%sBust_icon" % gender, Vector2(27, 302))
 	if bust != null:
 		bust.scale = Vector2.ONE * 0.7
-	_label("Money:", Vector2(109, 323), Vector2(150, 32), 24).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var money_text := "Unlimited" if CampaignDebugService.enabled(_session.state, "unlimited_money") else preload("res://src/presentation/campaign_currency_text.gd").format_amount(float(_session.state.progression.get("currency", 0)))
-	var money_label := _label(money_text, Vector2(198, 323), Vector2(150, 32), 24)
+	var balance := "Money: %s" % money_text
+	var font_size := 24
+	while font_size > 12 and FONT.get_string_size(balance, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > 186: font_size -= 1
+	var money_label := _label(balance, Vector2(132, 323), Vector2(186, 34), font_size)
 	money_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	money_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	money_label.clip_text = true
@@ -58,6 +74,7 @@ func _refresh() -> void:
 		_build_shop()
 	if _message != "Gems need to be of the same tier":
 		_label(_message, Vector2(335, 265), Vector2(310, 32), 12).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	if _recipe_open: _build_recipe_reference()
 
 func _inventory() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
@@ -75,6 +92,10 @@ func _select_gem(id: StringName) -> void:
 		_selected_gem = &"" if _selected_gem == id else id
 	else:
 		var gem := _gem_by_id(id)
+		if CampaignSkillGemService.is_skill(gem):
+			_message = "Skill gems cannot be combined."
+			_refresh()
+			return
 		if _materials.size() >= 3:
 			return
 		if not _materials.is_empty() and int(_gem_by_id(_materials[0]).get("tier", 1)) != int(gem.get("tier", 1)):
@@ -96,7 +117,9 @@ func _build_combiner() -> void:
 	var gems: Array[Dictionary] = []
 	for id in _materials:
 		gems.append(_gem_by_id(id))
-	var preview: Dictionary = CampaignGemEconomyService.combine_preview(gems)
+	var preview: Dictionary = CampaignSkillGemService.forge_preview(_session.state, _session.catalog, gems) if _skill_forge else CampaignGemEconomyService.combine_preview(gems)
+	if CampaignModService.enabled(_session.state, "skill_gems"):
+		_build_forge_information()
 	for index in 4:
 		var at := Vector2(342 + index * 64 if index < 3 else 584, 302)
 		var gem: Dictionary = gems[index] if index < gems.size() else preview.get("gem", {}) if index == 3 else {}
@@ -107,7 +130,8 @@ func _build_combiner() -> void:
 			SourceMenuArt.image(_panel, "menus_emptyGemSocket", at)
 	var cost := int(preview.get("cost", 0))
 	var affordable := CampaignDebugService.can_afford(_session.state, cost)
-	_action("menus_gemCombiner_CombineButton", Vector2(507, 386), "Combine($%d)" % cost if preview.get("ok", false) else "Combine", _combine, bool(preview.get("ok", false)) and affordable)
+	var verb := "Forge" if _skill_forge else "Combine"
+	_action("menus_gemCombiner_CombineButton", Vector2(507, 386), "%s($%d)" % [verb, cost] if preview.get("ok", false) else verb, _combine, bool(preview.get("ok", false)) and affordable)
 	if _message == "Gems need to be of the same tier":
 		_warning("SameTierWarning", _message, Vector2(334, 283))
 	if preview.get("ok", false) and not affordable:
@@ -191,12 +215,78 @@ func _return_from_merchant() -> void:
 	closed.emit()
 
 func _combine() -> void:
-	var result: Dictionary = _session.combine_gems(_materials, _page)
+	var result: Dictionary = _session.combine_gems(_materials, _page, _skill_forge)
 	if result.get("ok", false):
 		_materials.clear()
 		_play_sound("menu_buyingItem", 0.6)
-	_message = "" if result.get("ok", false) else String(result.get("message", "Could not combine gems."))
+	_message = "Forged %s" % CampaignSkillGemService.label(result.gem) if result.get("ok", false) and _skill_forge else "" if result.get("ok", false) else String(result.get("message", "Could not combine gems."))
 	_refresh()
+
+func _set_forge(value: bool) -> void:
+	if value and not CampaignSkillGemService.forge_unlocked(_session.state): return
+	_skill_forge = value
+	_message = ""
+	_refresh()
+
+func _build_forge_information() -> void:
+	var stat_tab := TypeGuideView.tab_button(_panel, "Stat Gems", Vector2(30, 31), Vector2(142, 35), _set_forge.bind(false))
+	var skill_tab := TypeGuideView.tab_button(_panel, "Random Forge", Vector2(172, 31), Vector2(145, 35), _set_forge.bind(true))
+	stat_tab.name = "StatGemTab"
+	skill_tab.name = "SkillGemTab"
+	for button in [stat_tab, skill_tab]: button.toggle_mode = true
+	stat_tab.set_pressed_no_signal(not _skill_forge)
+	skill_tab.set_pressed_no_signal(_skill_forge)
+	skill_tab.disabled = not CampaignSkillGemService.forge_unlocked(_session.state)
+	skill_tab.tooltip_text = "Defeat the Talo Sage to unlock Random Forge." if skill_tab.disabled else "Forge a random skill from three stat gems."
+	_label("Three stat gems · same tier", Vector2(36, 74), Vector2(275, 24), 17)
+	_label("Gem color", Vector2(36, 104), Vector2(120, 22), 14)
+	_label("Tier → skill level", Vector2(182, 104), Vector2(129, 22), 14)
+	var bands := ["1–3 → Lv.1", "4–5 → Lv.2", "6–7 → Lv.3", "8–9 → Lv.4", "10 → Lv.5"]
+	for index in 5:
+		var color_label := _label(CampaignSkillGemService.COLOR_NAMES[index], Vector2(36, 131 + index * 21), Vector2(57, 21), 14)
+		color_label.add_theme_color_override("font_color", Color(STAT_COLORS[index]))
+		var badge := SourceMenuArt.image(_panel, "menus_minionType_%s" % CampaignSkillGemService.COLOR_TYPES[index], Vector2(95, 135 + index * 21))
+		if badge != null: badge.scale = Vector2.ONE * 0.77
+		_label(bands[index], Vector2(185, 131 + index * 21), Vector2(118, 21), 14)
+	var info := "Skill hidden until forged" if _skill_forge else "Forge unlocks after Talo" if skill_tab.disabled else "Choose a crafting tab"
+	_label(info, Vector2(36, 241), Vector2(185, 24), 13)
+	TypeGuideView.text_button(_panel, "Recipes", Vector2(236, 237), Vector2(74, 26), _show_recipes, 13).name = "ForgeRecipes"
+
+func _show_recipes() -> void:
+	_recipe_open = true
+	_refresh()
+
+func _close_recipes() -> void:
+	_recipe_open = false
+	_refresh()
+
+func _build_recipe_reference() -> void:
+	var shade := ColorRect.new()
+	shade.name = "ForgeRecipeModal"
+	shade.size = Vector2(700, 525)
+	shade.color = Color(0, 0, 0, 0.65)
+	shade.z_index = 100
+	_source_root.add_child(shade)
+	var sheet := Control.new()
+	sheet.position = Vector2(5, 40)
+	sheet.size = Vector2(690, 468)
+	shade.add_child(sheet)
+	SourceMenuArt.image(sheet, "menus_backgroundLarge", Vector2.ZERO)
+	SourceMenuArt.image(sheet, "minionPedia_background", Vector2(21, 18))
+	_label("Random Forge · Recipes", Vector2(30, 27), Vector2(620, 38), 27, sheet).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_label("Three gems of the same tier. Their colors choose the skill's type.", Vector2(38, 70), Vector2(615, 27), 17, sheet)
+	var row := 0
+	for recipe in CampaignSkillGemService.RECIPES:
+		var at := Vector2(40 + (row % 2) * 315, 113 + (row / 2) * 42)
+		var names: Array[String] = []
+		for color in recipe.split(","): names.append(CampaignSkillGemService.COLOR_NAMES[int(color)])
+		_label("/".join(names) + " →", at, Vector2(208, 28), 16, sheet)
+		var badge := SourceMenuArt.image(sheet, "menus_minionType_%s" % CampaignSkillGemService.RECIPES[recipe], at + Vector2(210, 8))
+		if badge != null: badge.scale = Vector2.ONE * 0.9
+		row += 1
+	_label("One color: its own type. Other mixes: a non-elemental stat skill.\nTiers 1–3: Lv.1   4–5: Lv.2   6–7: Lv.3   8–9: Lv.4   10: Lv.5\nSkills cap at their highest rank. Skill gems cannot be combined.", Vector2(40, 337), Vector2(600, 70), 15, sheet)
+	SourceMenuArt.button(sheet, "menus_returnButton", Vector2(3, 409), _close_recipes)
+	SourceMenuArt.button(sheet, "menus_exitButton", Vector2(624, -22), _close_recipes)
 
 func _sell() -> void:
 	var result: Dictionary = _session.sell_gem(_selected_gem)

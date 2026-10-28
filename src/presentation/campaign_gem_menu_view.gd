@@ -83,6 +83,7 @@ func _refresh() -> void:
 			close.name = "GemClose"
 	SourceMenuArt.button(_panel, "menus_returnButton", Vector2(3, 291), func() -> void: closed.emit())
 	var member := _member()
+	var feedback := _message
 	if member != null:
 		var equipped := _equipped_gem(member, _socket)
 		if not equipped.is_empty():
@@ -95,9 +96,16 @@ func _refresh() -> void:
 		if equip != null:
 			equip.name = "GemEquip"
 			equip.disabled = _selected_gem.is_empty()
+			if not equip.disabled:
+				var selected: Dictionary = CampaignGemEquipmentService._find_gem(_session.state, _selected_gem)
+				var compatibility := CampaignSkillGemService.can_equip(_session.state, _session.catalog, selected, _session.catalog.get_definition(member.definition_id))
+				if not compatibility.ok:
+					equip.disabled = true
+					feedback = String(compatibility.message)
+					equip.tooltip_text = feedback
 			equip.modulate.a = 0.3 if equip.disabled else 1.0
 	_build_inventory()
-	_label(_message, Vector2(20, 244), Vector2(300, 43), 14)
+	_label(feedback, Vector2(20, 244), Vector2(300, 43), 14)
 	SourceMenuArt.button(_panel, "menus_gemCombiner_CombineButton", Vector2(507, 220), _sort)
 	var title := _label("Sort Gems", Vector2(511, 229), Vector2(150, 25), 18)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -183,6 +191,7 @@ func _portrait(parent: Control, gem: Dictionary, at: Vector2, factor: float) -> 
 
 func _label(text: String, at: Vector2, label_size: Vector2, font_size: int, parent: Control = null) -> Label:
 	var label := Label.new()
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.text = text
 	label.position = at + Vector2(2, 2)
 	label.size = label_size
@@ -190,6 +199,7 @@ func _label(text: String, at: Vector2, label_size: Vector2, font_size: int, pare
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", Color8(240, 240, 240))
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.size = label_size
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	(parent if parent != null else _panel).add_child(label)
 	return label
@@ -250,7 +260,7 @@ func _create_tooltip() -> void:
 	_source_root.add_child(_tooltip)
 
 func _show_tooltip(gem: Dictionary) -> void:
-	_tooltip.show_gem(gem)
+	_tooltip.show_gem(gem, _session.catalog)
 
 func _hide_tooltip() -> void:
 	_tooltip.hide()

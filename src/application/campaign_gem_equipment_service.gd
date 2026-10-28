@@ -24,6 +24,9 @@ static func equip_gem(state, catalog: ContentCatalog, gem_instance_id: StringNam
 		return _error("missing_minion_definition", "minion %s references missing content" % String(minion_instance_id))
 	if not slot_is_available(owned, definition, slot):
 		return _error("gem_slot_locked", "minion %s has no unlocked gem socket at slot %d" % [String(minion_instance_id), slot])
+	var compatible := CampaignSkillGemService.can_equip(state, catalog, gem, definition)
+	if not compatible.ok:
+		return compatible
 	var equipped_by := _equipped_minion_for(state, gem_instance_id)
 	if not equipped_by.is_empty():
 		return _error("gem_already_equipped", "gem %s is already equipped by %s" % [String(gem_instance_id), equipped_by])
@@ -193,6 +196,7 @@ static func gem_stat_bonus(owned: OwnedMinionState, stat_id: StringName, owned_g
 	return total
 
 static func _extra_stat(gem: Dictionary, stat_index: int) -> int:
+	if CampaignSkillGemService.is_skill(gem): return 0
 	var tier := maxi(1, int(gem.get("tier", 1)))
 	var raw_stats: Array = gem.get("raw_stats", [])
 	if raw_stats.size() == STAT_IDS.size():

@@ -42,9 +42,10 @@ func _run() -> void:
 		assert(page.get_node("EmptyGemSocket1").visible)
 		assert(page.get_node("GemSlotAction0").texture_normal == SourceMenuArt.texture("menus_changeButton"))
 		assert(page.get_node("GemSlotAction1").texture_normal == SourceMenuArt.texture("menus_gemLockedButton"))
-		assert(page.get_node("GemSlotAction2").texture_normal == SourceMenuArt.texture("menus_gemPremiumButton"))
-		assert(page.get_node("GemSlotAction1").disabled and page.get_node("GemSlotAction2").disabled)
+		assert(page.get_node("GemSlotAction2").texture_normal == SourceMenuArt.texture("menus_changeButton"), "Website-only sockets are available locally")
+		assert(page.get_node("GemSlotAction1").disabled and not page.get_node("GemSlotAction2").disabled)
 		assert(page.get_node_or_null("GemSocketHit1") == null, "Locked socket must not open equipment selection")
+		assert(page.get_node_or_null("GemSocketHit2") != null, "Former website socket opens ordinary equipment selection")
 		var hit := page.get_node("GemSocketHit0") as Button
 		assert(hit.position == Vector2(22, 63) and hit.size == native_size)
 		var requests: Array = []
@@ -73,5 +74,5 @@ func _run() -> void:
 	inventory.queue_free()
 	await process_frame
 	await process_frame
-	print("PASS: shared party/storage native sockets, occupied artwork, locked/premium distinctions, socket selection, colored gem stats and inventory tooltip reuse")
+	print("PASS: shared party/storage native sockets, occupied artwork, evolution locks/local website sockets, socket selection, colored gem stats and inventory tooltip reuse")
 	quit(0)

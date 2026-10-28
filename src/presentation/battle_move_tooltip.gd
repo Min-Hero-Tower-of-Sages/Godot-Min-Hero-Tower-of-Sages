@@ -56,6 +56,9 @@ func show_move(move: MoveDefinition) -> void:
 	for effect in move.effects:
 		if effect == null:
 			continue
+		if not move.is_passive and not move.is_global_passive:
+			if effect.target_scope == EffectDefinition.TargetScope.ENEMY_TARGETS and move.enemy_target_count == 0: continue
+			if effect.target_scope == EffectDefinition.TargetScope.ALLY_TARGETS and move.ally_target_count == 0: continue
 		# These effects carry their useful value in chance/duration rather
 		# than amount. The old amount==0 filter hid their descriptions.
 		if effect.kind in [EffectDefinition.Kind.STUN, EffectDefinition.Kind.FREEZE, EffectDefinition.Kind.CLEAR_BUFFS_DEBUFFS]:

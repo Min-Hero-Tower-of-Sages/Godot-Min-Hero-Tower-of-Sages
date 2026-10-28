@@ -246,7 +246,7 @@ func _build_stats(page: Control, owned: OwnedMinionState, definition: MinionDefi
 		SourceMenuArt.image(page, "menus_minionType_%s" % type_name, Vector2(127.0 + index * 82.0, 53.0))
 
 func _build_moves(page: Control, owned: OwnedMinionState) -> void:
-	var moves := CampaignProgressionService.highest_tier_move_ids(owned.learned_move_ids, _session.catalog)
+	var moves := CampaignProgressionService.effective_move_ids(owned, _session.catalog, _session.state)
 	var page_count := maxi(1, ceili(float(moves.size()) / 4.0))
 	_move_page = clampi(_move_page, 0, page_count - 1)
 	for index in 4:
@@ -283,7 +283,7 @@ func _build_move_page_button(parent: Control, at: Vector2, enabled: bool, direct
 			button.scale.x = -1.0
 
 func _build_gems(page: Control, owned: OwnedMinionState, definition: MinionDefinition) -> void:
-	preload("res://src/presentation/source_minion_gem_panel.gd").build(page, _menu, owned, definition, _session.state, Callable(self, "_request_gems"))
+	preload("res://src/presentation/source_minion_gem_panel.gd").build(page, _menu, owned, definition, _session.state, Callable(self, "_request_gems"), _session.catalog)
 
 func _build_footer() -> void:
 	SourceMenuArt.button(_menu, "menus_returnButton", Vector2(3.0, 409.0), func() -> void: closed.emit())

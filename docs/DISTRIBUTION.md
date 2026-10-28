@@ -13,7 +13,7 @@ trees, credentials, personal saves and diagnostic captures/logs.
 
 1. Install standard Godot 4.7.2 and matching export templates.
 2. Allow Godot to import the project once.
-3. Export the `Windows Desktop` release preset, or run:
+3. Export the `Min Hero Extended` release preset, or run:
 
    ```powershell
    ./tools/export_windows.ps1 -GodotExecutable 'C:\path\to\Godot.exe'
@@ -21,8 +21,10 @@ trees, credentials, personal saves and diagnostic captures/logs.
 
 4. Launch the exported executable independently of the editor. Check title,
    loading, new-save intro, room entry and a battle before calling it share-ready.
-5. Upload `build/windows/MinHero-windows-x86_64.zip` as a GitHub Release asset,
-   not a Git commit. Include the SHA-256 file. Do not bundle personal saves.
+5. Upload `build/windows/MinHeroExtended.exe` as a GitHub Release asset, matching
+   the current release format. The helper also creates
+   `MinHeroExtended-windows-x86_64.zip` (with asset notices) and its SHA-256 file
+   if a ZIP is wanted. Build assets do not belong in source commits.
 
 The preset embeds the PCK and explicitly includes runtime JSON. Unsigned builds
 can trigger Windows trust prompts; do not ask recipients to disable security
@@ -30,6 +32,9 @@ software. Review `ASSET_NOTICES.md` before public distribution.
 The export helper keeps temporary pack serialization inside `build/`, rejects
 logged export errors even with a zero exit code, and checks the standalone
 player with isolated settings/saves before creating the release ZIP.
+Use `-OutputDirectory 'build/releases/extended-v1.3.0'` for an isolated release
+build. Tag the exact source commit used for export with `gh release create
+--target <commit>`, especially when releasing from a non-default branch.
 
 ## Publish
 

@@ -2,6 +2,8 @@ extends PanelContainer
 
 const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
 const STAT_COLORS := ["#fc7979", "#ca8ada", "#f6834c", "#fff764", "#72ade6"]
+var _skill_details: BattleMoveTooltip
+var _stat_style: StyleBox
 
 func _init() -> void:
 	z_index = 80
@@ -16,6 +18,7 @@ func _init() -> void:
 	style.content_margin_top = 1
 	style.content_margin_bottom = 10
 	add_theme_stylebox_override("panel", style)
+	_stat_style = style
 	var column := VBoxContainer.new()
 	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	column.add_theme_constant_override("separation", 0)
@@ -41,7 +44,31 @@ func _init() -> void:
 	column.add_child(description)
 	hide()
 
-func show_gem(gem: Dictionary) -> void:
+func show_gem(gem: Dictionary, catalog: ContentCatalog = null) -> void:
+	var skill := CampaignSkillGemService.is_skill(gem)
+	get_child(0).visible = not skill
+	if _skill_details != null: _skill_details.hide()
+	add_theme_stylebox_override("panel", StyleBoxEmpty.new() if skill else _stat_style)
+	if skill:
+		if _skill_details == null:
+			_skill_details = BattleMoveTooltip.new()
+			add_child(_skill_details)
+		var move := catalog.get_definition(StringName(gem.get("move_id", ""))) as MoveDefinition if catalog != null else null
+		if move != null:
+			_skill_details.show_move(move)
+			_skill_details.title.text = CampaignSkillGemService.label(gem)
+			_skill_details.details.text += "\n[color=#ffec9a]%s[/color]" % ("Any minion can equip" if CampaignSkillGemService.universal(move) else "Cannot equip if weak to this type")
+			if move.is_global_passive: _skill_details.details.text += "\n[color=#c5c9d5]Party bonus while the holder lives[/color]"
+			_skill_details.details.text += "\n " # Reserve the source type badge's footer.
+		else:
+			_skill_details.title.text = "Unknown Skill · Lv.%d" % int(gem.get("skill_level", 1))
+			_skill_details.details.text = "[color=#ffec9a]%s[/color]\nRevealed after forging" % CampaignSkillGemService.type_label(StringName(gem.get("type_id", "base:type/none")))
+			_skill_details.type_icon.hide()
+		_skill_details.show()
+		_skill_details.reset_size()
+		reset_size()
+		show()
+		return
 	var title := get_child(0).get_node("Title") as Label
 	var description := get_child(0).get_node("Description") as RichTextLabel
 	title.text = "Gem  (tier %d)" % int(gem.get("tier", 1)) if not gem.is_empty() else "Move Gem"

@@ -13,12 +13,13 @@ const OPTIONS := [
 	{"name": "Shinies", "flags": ["shinies"], "description": "New minions have a 1 in 512 shiny chance. Cosmetic only. Their palette is saved and retained on evolution."},
 	{"name": "Debug Mode", "flags": ["debug_mode"], "description": "Unlock debug tools in Settings: money, stars, keys, level-60 party and shiny options."},
 	{"name": "Starter Eggs", "flags": ["starter_eggs"], "description": "Find Ticub and Zapig in Floor 1-1 hatchery (also Hard Mode): 10% each. Other minions share 80%."},
+	{"name": "Skill Gems", "flags": ["skill_gems"], "description": "Equip gems to gain skills. Rare field finds and Hard Sage rewards. Defeat Talo to unlock Random Forge."},
 ]
 const CATEGORIES := [
 	{"id": "minions", "name": "Extra Minions", "groups": ["dirtFish", "waterRay1", "holyBird1", "HolyEye1", "starter_eggs"], "description": "Add minion families to tower hatcheries. Select a mod to see where it can be found."},
 	{"id": "challenges", "name": "Challenge Rules", "groups": ["nuzlocke", "no_natural_regen"], "description": "Optional rules for a tougher run. Read each rule before enabling it."},
 	{"id": "experimental", "name": "Experimental Content", "groups": ["iceFloor"], "description": "Recovered, unfinished content. Read its limitations before enabling it."},
-	{"id": "gameplay", "name": "Gameplay Tweaks", "groups": ["restored_moves", "shinies", "debug_mode"], "description": "Move-tree additions, shiny variants and optional access to debug settings."},
+	{"id": "gameplay", "name": "Gameplay Tweaks", "groups": ["restored_moves", "shinies", "skill_gems", "debug_mode"], "description": "Move-tree additions, skill gems, shiny variants and optional access to debug settings."},
 ]
 # Bits belong to the recovered egg-table format, not presentation ordering.
 const EGG_POOL_BITS := {"dirtFish": 1, "waterRay1": 2, "holyBird1": 4, "HolyEye1": 8}
@@ -45,12 +46,48 @@ static func normalize(flags: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
 	for key in flags:
 		var canonical := String(ContentCatalog.canonical_mod_flag_id(StringName(key)))
-		if canonical in MINION_FLAGS or canonical in ["iceFloor", "nuzlocke", "no_natural_regen", "restored_moves", "restored_martyr", "restored_righteous_fate", "shinies", "debug_mode", "starter_eggs"]:
+		if canonical in MINION_FLAGS or canonical in ["iceFloor", "nuzlocke", "no_natural_regen", "restored_moves", "restored_martyr", "restored_righteous_fate", "shinies", "debug_mode", "starter_eggs", "skill_gems"]:
 			result[canonical] = bool(flags[key])
 	return result
 
 static func enabled(state, flag: String) -> bool:
 	return state != null and bool(state.active_mods.get(flag, false))
+
+static func group_enabled(flags: Dictionary, group: String) -> bool:
+	var index := option_index(group)
+	if index < 0: return false
+	# Imported saves may have only one legacy flag in a multi-flag option.
+	for flag in OPTIONS[index].flags:
+		if bool(flags.get(flag, false)): return true
+	return false
+
+static func change_status(state, group: String, value: bool) -> Dictionary:
+	if state == null: return _change_error("no_campaign", "Load a save before changing mods.")
+	if option_index(group) < 0: return _change_error("unknown_mod", "That mod is not available.")
+	if not state.pending_battle.is_empty(): return _change_error("battle_pending", "Finish the battle before changing mods.")
+	if not state.pending_defeat_return.is_empty(): return _change_error("defeat_return_pending", "Finish returning to the checkpoint before changing mods.")
+	if not state.progression.get("pending_egg_preview", {}).is_empty(): return _change_error("egg_preview_pending", "Accept or decline the egg before changing mods.")
+	if not value and group_enabled(state.active_mods, group):
+		if group == "nuzlocke": return _change_error("permanent_mod", "Nuzlocke stays on once enabled for this save.")
+		if group == "restored_moves":
+			for owned in state.party + state.storage:
+				for move_id in owned.learned_move_ids:
+					if String(move_id).begins_with("base:move/martyr/") or String(move_id).begins_with("base:move/righteous_fate/"):
+						return _change_error("mod_talents_owned", "Reset the added Martyr/Righteous Fate talents in party or storage before switching Move Trees off.")
+	return {"ok": true}
+
+static func change_rule(group: String) -> String:
+	match group:
+		"nuzlocke": return "One-way: stays on once enabled. Applies to future battles. Lost minions cannot be restored."
+		"restored_moves": return "Switch off after resetting purchased Martyr/Righteous Fate talents in party and storage."
+		"skill_gems": return "Switch either way. Off suspends equipped skills and new skill-gem drops; existing gems stay removable and sellable."
+		"shinies": return "Switch either way. Changes future shiny rolls; existing minions and cached egg rolls keep their appearance."
+		"debug_mode": return "Switch either way. Off clears debug toggles. Granted levels, shinies, upgrades and keys remain."
+		"no_natural_regen": return "Switch either way. Changes future natural healing; does not refill the party immediately."
+		_: return "Switch either way. Changes future hatchery choices; owned minions, evolutions and recorded discoveries stay available."
+
+static func _change_error(code: String, message: String) -> Dictionary:
+	return {"ok": false, "code": code, "message": message}
 
 # Per-minion overlays: Arkvian shares Holymantis's base Holy tree, so never
 # mutate the catalog tree or an addition would leak to other species/saves.
@@ -80,6 +117,10 @@ static func minion_is_available(state, definition: MinionDefinition) -> bool:
 	if state != null:
 		for owned in state.party + state.storage:
 			if owned.definition_id == definition.id: return true
+		if String(definition.id) in MINION_FLAGS.values():
+			for key in ["owned_minion_ids", "seen_minion_ids"]:
+				for id in state.progression.get(key, []):
+					if StringName(id) == definition.id: return true
 	for flag in MINION_FLAGS:
 		if String(definition.id) == String(MINION_FLAGS[flag]): return enabled(state, flag)
 	return false # Internal trainer-only records and the excluded Eevee fixture.

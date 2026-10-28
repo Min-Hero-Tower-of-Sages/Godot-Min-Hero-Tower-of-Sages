@@ -51,11 +51,18 @@ does not scan browser profiles or change Flash files.
 
 The new-save Mod Menu groups options into Extra Minions (Zanyu, Stingaray,
 Arkvian, Ophan), Challenge Rules (Nuzlocke, No Regen), Experimental Content
-(Ice Content), and Gameplay Tweaks (Move Trees, Shinies, Debug Mode).
+(Ice Content), and Gameplay Tweaks (Move Trees, Shinies, Skill Gems, Debug Mode).
 Category buttons show enabled counts; submenus retain selections
 when returning and show descriptions below their toggles. Ice Content does not
 add a playable Ice Floor. Existing saved flag names remain unchanged. Hatchery
 table masks use explicit flag-to-bit mappings independent of menu ordering.
+
+Existing saves, including imported saves, can use **Settings → Mod Menu**.
+Changes save immediately through the campaign's normal save transaction.
+Skill Gems, Shinies, No Regen, Debug Mode and extra-minion options switch
+either way while retaining acquired content. Move Trees can be disabled after
+resetting purchased added talents in party/storage. Nuzlocke stays on once
+enabled for that save. See [In-save mod switching](SAVED_MODS.md) for details.
 
 Move Trees and Shinies are off by default. One Move Trees toggle enables both
 restored skill additions. Martyr adds a five-rank talent to
@@ -66,6 +73,10 @@ changes to shared catalog trees. Normal talent point costs and branch/depth
 gates apply. Purchased moves use ordinary save, battle, reset and evolution
 handling; original nodes remain available. Enabling a skill does not enable
 the Arkvian minion content automatically.
+
+Skill Gems is also off by default. It adds equipment-granted skills, rare field
+gem finds, Hard Sage/Expert Sage rewards in Hard Mode and a Random Forge tab
+after Talo. See [Skill Gems](SKILL_GEMS.md) for recipes and equipment rules.
 
 Shinies give newly acquired minions a 1-in-512 cosmetic variant chance.
 Imported and existing minions remain unchanged. Appearance is saved and

@@ -3486,7 +3486,8 @@ func _begin_campaign_progression(battle_won: bool) -> void:
 		bool(campaign_settlement.get("show_first_defeat_tutorial", false)),
 		campaign_runtime.session.state.owned_gems,
 		campaign_runtime.session.state.progression.get("star_upgrades", {}),
-		campaign_settlement.get("finish_stat_context", {})
+		campaign_settlement.get("finish_stat_context", {}),
+		campaign_runtime.session.state.active_mods
 	)
 
 func _restore_player_replacement_views() -> void:

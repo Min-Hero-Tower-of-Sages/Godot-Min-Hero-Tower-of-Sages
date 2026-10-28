@@ -7,7 +7,8 @@ not an official release or a claim of complete visual/behavioral parity.
 ## Play
 
 Download the Windows build from this repository's **Releases** page when a
-release is available. Extract the release ZIP and run `MinHero.exe`.
+release is available. Download and run `MinHeroExtended.exe`, or extract it
+from the release ZIP if one is supplied.
 Godot is not required to play. Saves/settings are stored in Godot's per-user
 application-data directory, not in this repository.
 
@@ -31,9 +32,12 @@ Press **T** during battle decisions to open the Type Guide.
 - Title screen, three save slots, character creation and skippable new-save intro.
 - Flash `.sol` save import with a preview and empty-slot-only writes. See
   [docs/FLASH_SAVE_IMPORT.md](docs/FLASH_SAVE_IMPORT.md).
-- Per-save creation-time mod selector, restored custom-minion hatchery tables,
+- Per-save mod selector at creation and in **Settings → Mod Menu**, restored custom-minion hatchery tables,
   Nuzlocke and No Regen. Ice Floor data is recovered but its reference campaign
   was unfinished; see [docs/MOD_STATUS.md](docs/MOD_STATUS.md).
+- Optional Skill Gems and Random Forge after Talo. Enable them on an existing
+  save through Settings. See [docs/SKILL_GEMS.md](docs/SKILL_GEMS.md) and
+  [docs/SAVED_MODS.md](docs/SAVED_MODS.md).
 - Standard tower content through the Grand Sage, plus the hard tower.
 - Campaign movement, trainers, battles, progression, hatchery, party/talents,
   stars, settings and lobby merchants.
@@ -56,16 +60,16 @@ Content integration does **not** mean every presentation detail or mechanic
 has been certified. See [docs/PARITY_WORK_TRACKER.md](docs/PARITY_WORK_TRACKER.md),
 [docs/LIMITATIONS.md](docs/LIMITATIONS.md) and
 [docs/MILESTONE_STATUS.md](docs/MILESTONE_STATUS.md).
-Recovered optional minion/Ice data is packaged, but the Ice Floor and reference
-mod-selection/acquisition flows are not playable yet; see
+Recovered optional minion/Ice data is packaged. The Ice Floor campaign is
+unfinished; restored mod-selection/acquisition flows are available as described in
 [docs/MOD_STATUS.md](docs/MOD_STATUS.md).
 
 ## Windows export
 
 Install the export templates matching **Godot 4.7.2** via
-**Editor → Manage Export Templates**. Then use **Project → Export → Windows
-Desktop → Export Project**, with **Export With Debug** unchecked.
-The preset embeds the game data in `build/windows/MinHero.exe`.
+**Editor → Manage Export Templates**. Then use **Project → Export → Min Hero
+Extended → Export Project**, with **Export With Debug** unchecked.
+The preset embeds the game data in `build/windows/MinHeroExtended.exe`.
 
 Alternatively:
 

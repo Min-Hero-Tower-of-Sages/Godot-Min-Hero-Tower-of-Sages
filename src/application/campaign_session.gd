@@ -636,12 +636,10 @@ func claim_room_gem_chest(interaction: Dictionary) -> Dictionary:
 	var claimed_slots: Array = room_data.get("claimed_chest_slots", []).duplicate()
 	if chest_id in claimed_slots:
 		return {"ok": true, "kind": &"chest_already_claimed", "chest_kind": "gem"}
-	var gem := _create_source_random_gem(_source_gem_tier_for_floor(int(state.progression.get("floor_index", 0))))
+	var gem := CampaignSkillGemService.field_gem(state, catalog, room.id, source_index, _source_gem_tier_for_floor(int(state.progression.get("floor_index", 0))))
 	var candidate = StateScript.new()
 	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
-	var gem_sequence: int = candidate.owned_gems.size() + 1
-	gem["instance_id"] = "slot-%d-gem-%d" % [save_slot, gem_sequence]
-	candidate.owned_gems.append(gem)
+	CampaignSkillGemService.append_owned(candidate, gem, "field")
 	claimed_slots.append(chest_id)
 	room_data["claimed_chest_slots"] = claimed_slots
 	candidate.room_state[String(room.id)] = room_data
@@ -654,7 +652,7 @@ func claim_room_gem_chest(interaction: Dictionary) -> Dictionary:
 		"kind": &"chest_claimed",
 		"chest_kind": "gem",
 		"gem": gem.duplicate(true),
-		"message": "Found Gem (tier %d): +%d %s" % [int(gem.tier), int(gem.stat_value), String(gem.stat_label)],
+		"message": "Found %s" % CampaignSkillGemService.label(gem),
 	}
 
 func equip_gem(gem_instance_id: StringName, minion_instance_id: StringName, slot: int) -> Dictionary:
@@ -726,13 +724,13 @@ func move_gem_to_slot(gem_id: StringName, target_slot: int) -> Dictionary:
 	state = candidate
 	return moved
 
-func combine_gems(ids: Array[StringName], inventory_page: int = 0) -> Dictionary:
+func combine_gems(ids: Array[StringName], inventory_page: int = 0, forge: bool = false) -> Dictionary:
 	if state == null or catalog == null:
 		return _error("no_campaign", "there is no active campaign")
 	var candidate = StateScript.new()
 	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
 	candidate.progression["gem_inventory_slots"] = GemEquipmentService.inventory_slots(candidate)
-	var combined := GemEconomyService.combine_gems(candidate, ids)
+	var combined := GemEconomyService.combine_gems(candidate, ids, catalog, forge)
 	if not combined.ok:
 		return combined
 	var placed := GemEquipmentService.place_gem_from_page(candidate, StringName(combined.gem.instance_id), inventory_page)
@@ -1327,6 +1325,35 @@ func make_current_minions_shiny() -> Dictionary:
 	if not saved.ok: return saved
 	state = candidate
 	return {"ok": true, "changed_count": changed}
+
+func set_mod_option(group: String, value: bool) -> Dictionary:
+	if catalog == null: return _error("missing_catalog", "Load campaign content before changing mods.")
+	var status := CampaignModService.change_status(state, group, value)
+	if not status.ok: return status
+	var option: Dictionary = CampaignModService.OPTIONS[CampaignModService.option_index(group)]
+	var unchanged := true
+	for flag in option.flags:
+		if CampaignModService.enabled(state, flag) != value: unchanged = false
+	if unchanged: return {"ok": true, "group": group, "enabled": value, "unchanged": true}
+	var candidate = StateScript.new()
+	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	for flag in option.flags: candidate.active_mods[flag] = value
+	# Re-enabling Debug Mode never silently restores old cheats.
+	if group == "debug_mode": candidate.progression["debug_options"] = {}
+	# Removing an aura may reduce maxima. Clamp without granting free healing
+	# when the mod is re-enabled, and preserve the uninitialized sentinel.
+	if group == "skill_gems":
+		for owned in candidate.party + candidate.storage:
+			var definition := catalog.get_definition(owned.definition_id) as MinionDefinition
+			if definition == null: continue
+			var stats := ProgressionService.owned_display_stats(owned, definition, catalog, candidate)
+			if owned.persistent_health >= 0: owned.persistent_health = mini(owned.persistent_health, int(stats.health))
+			if owned.persistent_energy >= 0: owned.persistent_energy = mini(owned.persistent_energy, int(stats.energy))
+	ProgressionService.refresh_minion_pedia(candidate)
+	var saved := _save_candidate(candidate)
+	if not saved.ok: return saved
+	state = candidate
+	return {"ok": true, "group": group, "enabled": value}
 
 func set_debug_option(option: String, value: bool) -> Dictionary:
 	if not CampaignDebugService.available(state):
