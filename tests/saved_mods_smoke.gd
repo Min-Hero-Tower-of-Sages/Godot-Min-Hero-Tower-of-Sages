@@ -4,6 +4,8 @@ class MemoryRepository extends SaveRepository:
 	var payload: Dictionary = {}
 	var reject := false
 	func save_slot(_slot: int, data: Dictionary) -> Dictionary:
+		var validation := validate(data)
+		if not validation.ok: return validation
 		if reject: return {"ok": false, "message": "Fixture save rejection"}
 		payload = data.duplicate(true)
 		return {"ok": true}
@@ -125,7 +127,8 @@ func _check_debug() -> void:
 func _check_skill_gem_aura() -> void:
 	_check(session.set_mod_option("skill_gems", true).ok, "Enable skill-gem grants")
 	var holder: OwnedMinionState = session.state.party[0]
-	var aura := {"kind": "skill", "instance_id": "saved-aura", "tier": 6, "move_id": "base:move/hulk_inspiration/tier3", "skill_level": 3}
+	var aura := CampaignGemFactory.create_random(6)
+	aura.merge({"kind": "skill", "instance_id": "saved-aura", "move_id": "base:move/hulk_inspiration/tier3", "skill_level": 3, "type_id": "base:type/none", "stat_id": "", "stat_value": 0}, true)
 	session.state.owned_gems.append(aura)
 	_check(session.equip_gem(&"saved-aura", holder.instance_id, 0).ok, "Equip fixture aura")
 	holder = session.state.party[0]

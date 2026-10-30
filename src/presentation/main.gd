@@ -101,6 +101,7 @@ static func source_ground_damage_index_for_family(family: String) -> int:
 
 var battle_modifier_layer: Control
 var controller := BattleController.new()
+var _uncommitted_campaign_result: BattleResult
 var vfx_catalog: BattleVfxCatalog = VFX_CATALOG_SCRIPT.new()
 var audio_controller: BattleAudioController = AUDIO_CONTROLLER_SCRIPT.new()
 var catalog: ContentCatalog
@@ -655,6 +656,7 @@ func _start_battle() -> void:
 	_campaign_defeat_transition_pending = false
 	_campaign_victory_return_pending = false
 	_battle_result_presented = false
+	_uncommitted_campaign_result = null
 	_reset_move_selector_animation()
 	_reset_victory_presentation()
 	_reset_defeat_presentation()
@@ -3366,8 +3368,15 @@ func _show_result(result) -> void:
 			return
 		campaign_settlement = campaign_runtime.settle_campaign_battle(result)
 		if not campaign_settlement.get("ok", false):
-			_show_fatal("Campaign result could not be committed: %s" % campaign_settlement.get("message", "unknown save error"))
+			_uncommitted_campaign_result = result
+			_show_campaign_save_failure(String(campaign_settlement.get("message", "unknown save error")))
 			return
+	_present_committed_result(result)
+
+func _present_committed_result(result: BattleResult) -> void:
+	_uncommitted_campaign_result = null
+	result_overlay.visible = false
+	if campaign_mode:
 		restart_button.text = "Return to room"
 		restart_button.disabled = true
 	else:
@@ -3536,10 +3545,35 @@ func _on_campaign_progression_sequence_finished() -> void:
 		restart_button.disabled = false
 
 func _on_restart_pressed() -> void:
+	if _uncommitted_campaign_result != null:
+		_retry_campaign_result_save()
+		return
 	if campaign_mode:
 		campaign_return_requested.emit()
 		return
 	await _start_battle()
+
+func _show_campaign_save_failure(message: String) -> void:
+	busy = false
+	event_text.get_parent().visible = true
+	event_text.text = "Battle result not saved: %s" % message
+	result_title.text = "Result not saved"
+	restart_button.text = "Retry save"
+	restart_button.disabled = false
+	result_overlay.modulate.a = 1.0
+	result_overlay.visible = true
+
+func _retry_campaign_result_save() -> void:
+	var campaign_runtime: Variant = get_node_or_null("/root/CampaignRuntime")
+	if campaign_runtime == null or not campaign_runtime.active_campaign_battle:
+		_show_campaign_save_failure("The pending battle context is unavailable.")
+		return
+	restart_button.disabled = true
+	campaign_settlement = campaign_runtime.settle_campaign_battle(_uncommitted_campaign_result)
+	if not campaign_settlement.get("ok", false):
+		_show_campaign_save_failure(String(campaign_settlement.get("message", "unknown save error")))
+		return
+	_present_committed_result(_uncommitted_campaign_result)
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return

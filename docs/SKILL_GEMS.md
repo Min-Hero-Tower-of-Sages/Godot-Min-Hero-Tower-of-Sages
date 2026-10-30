@@ -103,3 +103,15 @@ active battle use, aura lifetime, talent isolation, serialization, toggling,
 unequipping/selling and transaction rejection/page placement. Rendered runs
 write forge-preview, recipe-reference and result captures under ignored
 `build/`. Fixtures use in-memory saves.
+
+`tests/skill_gem_save_regression.gd` additionally exercises the production
+`SaveRepository` against isolated files: forging across input tiers/colors,
+ordinary combining/shop transactions with existing skill gems, equipment,
+mod switches, JSON reload, both Hard Mode trainer rewards and exactly-once
+battle settlement. Its failed-write case keeps the battle result on screen
+with a Retry save action, then resumes only after the disk commit succeeds.
+It also verifies recovery of the pending marker left by a v1.3.0 failed award.
+
+This fixture requires `APPDATA` (Windows) or `XDG_DATA_HOME` (Linux) beneath
+the project's `build/skill-gem-save-profile`. It refuses a player-save directory.
+The in-memory skill-gem/mod fixtures also run the real save-shape validator.

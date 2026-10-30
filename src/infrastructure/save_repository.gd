@@ -84,13 +84,28 @@ func validate(payload: Dictionary) -> Dictionary:
 		for gem in payload.get("owned_gems", []):
 			if not gem is Dictionary:
 				return _error("invalid_save", "owned gem entries must be objects")
-			for key in ["tier", "stat_id", "raw_stats", "facet_positions"]:
+			for key in ["tier", "raw_stats", "facet_positions"]:
 				if not gem.has(key):
 					return _error("invalid_save", "owned gem is missing %s" % key)
-			if int(gem.tier) < 1 or String(gem.stat_id) not in ["health", "energy", "attack", "healing", "speed"]:
-				return _error("invalid_save", "owned gem tier or stat is invalid")
+			if int(gem.tier) < 1:
+				return _error("invalid_save", "owned gem tier is invalid")
 			if not gem.raw_stats is Array or gem.raw_stats.size() != 5 or not gem.facet_positions is Array or gem.facet_positions.size() != 12:
 				return _error("invalid_save", "owned gem stats or facets are invalid")
+			# Older stat gems have no discriminator. Skill-gem colors are only
+			# artwork; their identity is a move/rank/type rather than stat_id.
+			match gem.get("kind", "stat"):
+				"stat":
+					if not gem.get("stat_id", "") in ["health", "energy", "attack", "healing", "speed"]:
+						return _error("invalid_save", "owned stat gem stat is invalid")
+				"skill":
+					for key in ["move_id", "type_id"]:
+						if not gem.get(key) is String or String(gem[key]).is_empty():
+							return _error("invalid_save", "owned skill gem %s is invalid" % key)
+					var rank: Variant = gem.get("skill_level")
+					if (not rank is int and not rank is float) or not is_finite(float(rank)) or float(rank) != float(int(rank)) or int(rank) < 1 or int(rank) > 5:
+						return _error("invalid_save", "owned skill gem level is invalid")
+				_:
+					return _error("invalid_save", "owned gem kind is invalid")
 		if not payload.applied_battle_ids is Array:
 			return _error("invalid_save", "applied battle IDs must be an array")
 		if int(payload.battle_sequence) < 0:

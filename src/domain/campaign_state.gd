@@ -165,6 +165,14 @@ func validation_errors(catalog: ContentCatalog = null) -> PackedStringArray:
 				for move_id in owned.learned_move_ids:
 					if not catalog.get_definition(move_id) is MoveDefinition:
 						errors.append("owned minion %s references missing move %s" % [owned.instance_id, move_id])
+	if catalog != null:
+		for gem in owned_gems:
+			if gem.get("kind", "") != "skill": continue
+			var move := catalog.get_definition(StringName(gem.get("move_id", ""))) as MoveDefinition
+			if move == null or not move.available:
+				errors.append("owned skill gem references an unavailable move")
+			elif int(gem.get("skill_level", 0)) != move.tier or StringName(gem.get("type_id", "")) != move.type_id:
+				errors.append("owned skill gem rank or type does not match its move")
 	var seen_battle_ids: Dictionary = {}
 	for battle_id in applied_battle_ids:
 		if battle_id.is_empty() or seen_battle_ids.has(battle_id):

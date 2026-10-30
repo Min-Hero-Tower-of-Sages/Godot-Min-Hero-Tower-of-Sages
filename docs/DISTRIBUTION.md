@@ -32,6 +32,10 @@ software. Review `ASSET_NOTICES.md` before public distribution.
 The export helper keeps temporary pack serialization inside `build/`, rejects
 logged export errors even with a zero exit code, and checks the standalone
 player with isolated settings/saves before creating the release ZIP.
+When a feature adds persistent data, exercise a write and reload through
+`SaveRepository` as well. An in-memory replacement that bypasses its validator
+does not cover the shipping save path. The Skill Gems disk fixture uses an
+isolated `build/skill-gem-save-profile` and tests forge and battle rewards.
 Use `-OutputDirectory 'build/releases/extended-v1.3.0'` for an isolated release
 build. Tag the exact source commit used for export with `gh release create
 --target <commit>`, especially when releasing from a non-default branch.

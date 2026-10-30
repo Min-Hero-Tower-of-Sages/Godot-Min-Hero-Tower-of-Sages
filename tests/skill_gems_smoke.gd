@@ -4,6 +4,8 @@ class MemorySession extends CampaignSession:
 	var reject := false
 	func _save_candidate(candidate) -> Dictionary:
 		assert(candidate.validation_errors(catalog).is_empty())
+		var validation := save_repository.validate(candidate.to_dictionary(catalog.content_version))
+		if not validation.ok: return validation
 		return {"ok": false, "message": "Fixture rejection"} if reject else {"ok": true}
 
 var catalog: ContentCatalog
@@ -55,8 +57,11 @@ func _gems(colors: Array, tier: int = 6) -> Array[Dictionary]:
 func _skill(move_id: StringName, id: String) -> Dictionary:
 	var move := catalog.get_definition(move_id) as MoveDefinition
 	assert(move != null)
-	return {"instance_id": id, "kind": "skill", "tier": 6, "move_id": String(move.id), "skill_level": move.tier,
-		"skill_name": move.display_name, "skill_icon": String(move.buff_icon_name), "type_id": String(move.type_id), "raw_stats": [1.0, 0.0, 0.0, 0.0, 0.0]}
+	var gem := CampaignGemFactory.create_random(6)
+	gem.merge({"instance_id": id, "kind": "skill", "move_id": String(move.id), "skill_level": move.tier,
+		"skill_name": move.display_name, "skill_icon": String(move.buff_icon_name), "type_id": String(move.type_id), "stat_id": "", "stat_value": 0,
+		"raw_stats": [1.0, 0.0, 0.0, 0.0, 0.0]}, true)
+	return gem
 
 func _check_recipes() -> void:
 	for tier in range(1, 11):
