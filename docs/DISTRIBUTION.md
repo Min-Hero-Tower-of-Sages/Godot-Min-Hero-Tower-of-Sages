@@ -1,7 +1,10 @@
 # Repository and Windows release preparation
 
-The intended repository name is `Godot-Min-Hero-Tower-of-Sages`, with `main`
-as the default branch. A normal checkout includes all runtime content and
+This is the **original** branch of `Godot-Min-Hero-Tower-of-Sages`, formerly
+`main`. The default and active development branch is **extended**, formerly
+`multiplayer`; its README and distribution guide cover current Extended releases.
+This branch retains its `Windows Desktop` preset and `MinHero.exe` output.
+A normal checkout includes all runtime content and
 does not require the original developer's extraction tree. No machine-specific
 export-template path is stored in the preset.
 
@@ -33,17 +36,16 @@ player with isolated settings/saves before creating the release ZIP.
 
 ## Publish
 
-Choose **public or private** before publishing. GitHub Desktop's **Add Local
-Repository** and **Publish Repository** can publish the existing local repo.
-Alternatively, after creating an empty GitHub repository:
+The repository is already published. Push documentation or baseline maintenance
+to `original`:
 
 ```powershell
-git remote add origin https://github.com/YOUR_ACCOUNT/Godot-Min-Hero-Tower-of-Sages.git
-git push -u origin main
+git push -u origin original
 ```
 
-No remote URL, token or account credential is embedded in the project, and
-repository preparation does not infer a public/private choice.
+Current `MinHeroExtended.exe` releases are built and tagged from `extended`.
+Keep any Original baseline builds clearly labeled and tied to their own source
+commit. Renaming the branches does not move or rewrite earlier release tags.
 
 ## Maintainer-only asset repackaging
 

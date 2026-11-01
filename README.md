@@ -1,20 +1,30 @@
-# Godot-Min-Hero-Tower-of-Sages
+# Min Hero: Tower of Sages — Original Godot Port
 
-A maintainable Godot rebuild of **Min Hero: Tower of Sages**, with recovered
-game content and source-derived presentation. This is a work in progress,
-not an official release or a claim of complete visual/behavioral parity.
+This **original** branch preserves the earlier Godot port of **Min Hero:
+Tower of Sages**, formerly developed on `main`. It includes the recovered
+campaign and source-derived presentation at that baseline.
+
+The default and active development branch is now
+**[extended](https://github.com/Min-Hero-Tower-of-Sages/Godot-Min-Hero-Tower-of-Sages/tree/extended)**,
+formerly `multiplayer`. Its README describes the later gameplay options,
+multiplayer, replays, save importer and fixes. The `original` name describes
+this repository's Godot branch history. This remains an unofficial rebuild.
 
 ## Play
 
-Download the Windows build from this repository's **Releases** page when a
-release is available. Extract the release ZIP and run `MinHero.exe`.
-Godot is not required to play. Saves/settings are stored in Godot's per-user
-application-data directory, not in this repository.
+To run this baseline, open the **original** branch in Godot as described below,
+or export its `Windows Desktop` preset to produce `MinHero.exe`.
+An exported build runs without Godot installed.
+
+The **[latest releases](https://github.com/Min-Hero-Tower-of-Sages/Godot-Min-Hero-Tower-of-Sages/releases/latest)**
+provide `MinHeroExtended.exe` from **extended**. Use that branch for the current
+Extended build and its feature guides.
+Saves/settings are stored in Godot's per-user application-data directory.
 
 ## Open the source project
 
 1. Install **Godot 4.7.2 stable**, the standard non-.NET editor.
-2. Clone/download this repository and import `project.godot` in Godot.
+2. Clone/download the **original** branch and import `project.godot` in Godot.
 3. Allow the first asset import to finish, then press **F5** to run the game.
 
 The configured main scene is `scenes/application_shell.tscn`. All runtime
@@ -25,7 +35,7 @@ directories, SWF decompiler and Python are not needed simply to run the game.
 Controls: **WASD / arrow keys** to walk, **Space** to interact/advance dialogue,
 and the mouse for battle selections and menus.
 
-## Current scope
+## Scope of this baseline
 
 - Title screen, three save slots, character creation and skippable new-save intro.
 - Standard tower content through the Grand Sage, plus the hard tower.
@@ -33,8 +43,9 @@ and the mouse for battle selections and menus.
   stars, settings and lobby merchants.
 - Recovered artwork, font and music/sound bindings.
 
-Content integration does **not** mean every presentation detail or mechanic
-has been certified. See [docs/PARITY_WORK_TRACKER.md](docs/PARITY_WORK_TRACKER.md),
+This branch preserves the earlier game code; later fixes and additions are
+maintained on **extended**. The source notes here describe the earlier port:
+[docs/PARITY_WORK_TRACKER.md](docs/PARITY_WORK_TRACKER.md),
 [docs/LIMITATIONS.md](docs/LIMITATIONS.md) and
 [docs/MILESTONE_STATUS.md](docs/MILESTONE_STATUS.md).
 Recovered optional minion/Ice data is packaged, but the Ice Floor and reference
