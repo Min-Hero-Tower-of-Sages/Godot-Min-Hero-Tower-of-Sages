@@ -7,6 +7,7 @@ const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
 const PORTRAIT_RECT := Rect2(70, 80, 208, 207)
 var _catalog: ContentCatalog
 var _state: CampaignState
+var _settings: CampaignSettingsService
 var _minions: Array[MinionDefinition] = []
 var _selected := 0
 var _panel: Control
@@ -32,9 +33,10 @@ func _source_dex_id(definition: MinionDefinition) -> int:
 		if preceding != null and CampaignModService.minion_is_available(_state, preceding): virtual_id += 1
 	return virtual_id
 
-func configure(catalog: ContentCatalog, state: CampaignState) -> void:
+func configure(catalog: ContentCatalog, state: CampaignState, settings: CampaignSettingsService = null) -> void:
 	_catalog = catalog
 	_state = state
+	_settings = settings if settings != null else CampaignSettingsService.new()
 	_minions.clear()
 	_owned.clear()
 	_seen.clear()
@@ -163,7 +165,7 @@ func _open_type_guide() -> void:
 	var initial_type := &"base:type/fire"
 	if not _minions.is_empty() and _seen.has(String(_minions[_selected].id)) and not _minions[_selected].type_ids.is_empty():
 		initial_type = _minions[_selected].type_ids[0]
-	guide.configure(_catalog, initial_type)
+	guide.configure(_catalog, initial_type, _settings)
 	guide.closed.connect(func() -> void:
 		remove_child(guide)
 		guide.queue_free()

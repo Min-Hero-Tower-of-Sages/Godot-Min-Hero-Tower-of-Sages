@@ -7,6 +7,8 @@ const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
 var catalog: ContentCatalog
 var selected_type: StringName = &"base:type/fire"
 var healing := false
+var settings: CampaignSettingsService
+var _hints_toggle: TextureButton
 var _panel: Control
 var _types: Array[TypeDefinition] = []
 var _details: Control
@@ -14,9 +16,12 @@ var _type_buttons: Dictionary = {}
 var _damage_tab: Button
 var _healing_tab: Button
 
-func configure(content: ContentCatalog, initial_type: StringName = &"base:type/fire") -> void:
+func configure(content: ContentCatalog, initial_type: StringName = &"base:type/fire", settings_service: CampaignSettingsService = null) -> void:
 	catalog = content
 	selected_type = initial_type
+	settings = settings_service if settings_service != null else CampaignSettingsService.new()
+	if not settings.settings_changed.is_connected(_refresh_hint_toggle):
+		settings.settings_changed.connect(_refresh_hint_toggle)
 	if is_inside_tree(): _build()
 
 func _ready() -> void:
@@ -59,6 +64,11 @@ func _build() -> void:
 	SourceMenuArt.image(_panel, "menus_backgroundLarge", Vector2.ZERO)
 	SourceMenuArt.image(_panel, "minionPedia_background", Vector2(21, 18))
 	_label(_panel, "Type Guide", Vector2(20, 24), Vector2(650, 38), 28, Color8(249, 249, 249), HORIZONTAL_ALIGNMENT_CENTER)
+	_label(_panel, "Type Hints", Vector2(470, 30), Vector2(108, 30), 18)
+	_hints_toggle = SourceMenuArt.button(_panel, "menus_settings_offButton", Vector2(579, 36), _toggle_hints)
+	_hints_toggle.name = "TypeGuideHintsToggle"
+	_hints_toggle.tooltip_text = "Show matchup badges on legal targets while hovering a move or choosing targets."
+	_refresh_hint_toggle()
 	# A scrolling selector keeps future catalog types usable at the same size.
 	var scroll := ScrollContainer.new()
 	scroll.position = Vector2(36, 78)
@@ -119,6 +129,16 @@ func _select_type(type_id: StringName) -> void:
 func _set_healing(value: bool) -> void:
 	healing = value
 	_refresh()
+
+func _toggle_hints() -> void:
+	settings.set_effectiveness_hints_enabled(not settings.effectiveness_hints_enabled)
+
+func _refresh_hint_toggle() -> void:
+	if not is_instance_valid(_hints_toggle) or settings == null: return
+	var texture := SourceMenuArt.texture("menus_settings_onButton" if settings.effectiveness_hints_enabled else "menus_settings_offButton")
+	_hints_toggle.texture_normal = texture
+	_hints_toggle.texture_hover = texture
+	_hints_toggle.texture_pressed = texture
 
 func _refresh() -> void:
 	for child in _details.get_children():

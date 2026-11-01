@@ -1340,9 +1340,9 @@ func set_mod_option(group: String, value: bool) -> Dictionary:
 	for flag in option.flags: candidate.active_mods[flag] = value
 	# Re-enabling Debug Mode never silently restores old cheats.
 	if group == "debug_mode": candidate.progression["debug_options"] = {}
-	# Removing an aura may reduce maxima. Clamp without granting free healing
-	# when the mod is re-enabled, and preserve the uninitialized sentinel.
-	if group == "skill_gems":
+	# Stat mods may reduce maxima. Clamp in both directions without granting
+	# free healing when re-enabled, and preserve the uninitialized sentinel.
+	if group in ["skill_gems", "gem_affinity"]:
 		for owned in candidate.party + candidate.storage:
 			var definition := catalog.get_definition(owned.definition_id) as MinionDefinition
 			if definition == null: continue

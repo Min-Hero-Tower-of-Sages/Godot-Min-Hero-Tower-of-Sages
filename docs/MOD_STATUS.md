@@ -18,6 +18,7 @@ See [SAVED_MODS.md](SAVED_MODS.md) for switching restrictions.
 | No Regen | Pre-battle preparation refills energy but preserves health. Explicit healing, defeat recovery and floor entry still restore health. |
 | Move Trees | Optional Martyr talents for Holymantis/Foramare and Righteous Fate for Arkvian/Arkclaw; see BEHAVIOR_EXCEPTIONS.md. |
 | Skill Gems | Extended opt-in: equipped active/passive skills, rare field finds, Hard Sage/Expert Sage rewards and Random Forge after Talo. Non-elemental recipes include defensive support skills. See SKILL_GEMS.md. |
+| Gem Affinity | Extended opt-in: matching-affinity gem stats gain 20%; Energy gems are added after base Energy scaling. Existing gear is recalculated and toggles do not refill HP/energy. See GEM_AFFINITY.md. |
 | Shinies | 1-in-512 new-acquisition chance; saved, programmatic evolution-line palettes. See SHINY_PALETTES.md. |
 | Debug Mode | Unlocks gated per-save settings and the explicit current-roster shiny action. See DEBUG_MODE.md. |
 

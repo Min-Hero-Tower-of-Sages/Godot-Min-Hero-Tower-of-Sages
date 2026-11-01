@@ -25,6 +25,7 @@ func _run() -> void:
 		_check(session.enter_tower_lobby().ok, "Cannot enter Lobby")
 		shell.call("_show_room_from_state")
 		shell.call("_show_floor_picker")
+		await create_timer(1.3).timeout
 		var picker: CampaignFloorSelectView = shell.interaction_dialog
 		_check(not shell.current_room._controls_enabled, "Picker must block room movement")
 		var before: Dictionary = session.state.to_dictionary()
@@ -34,6 +35,7 @@ func _run() -> void:
 		session.reject_save = false
 		# Reopen after the expected rejection notice, then use the actual signal.
 		shell.call("_show_floor_picker")
+		await create_timer(1.3).timeout
 		picker = shell.interaction_dialog
 		picker.call("_choose_floor", floor_index)
 		_check(int(session.state.progression.floor_index) == floor_index, "Picker did not load requested floor")

@@ -971,6 +971,7 @@ func _run_campaign_intro_tutorial(entry_started_usec: int) -> void:
 	await get_tree().create_timer(0.4).timeout
 
 func _campaign_intro_tutorial_id(session) -> String:
+	if settings_service != null and not settings_service.tips_enabled: return ""
 	var progression: Dictionary = session.state.progression
 	if not bool(progression.get("battle_basics_tutorial_seen", false)):
 		return "battle_basics"
@@ -987,6 +988,7 @@ func _campaign_intro_tutorial_id(session) -> String:
 	return ""
 
 func _decision_tutorial_id(session, decision: Dictionary) -> String:
+	if settings_service != null and not settings_service.tips_enabled: return ""
 	var progression: Dictionary = session.state.progression
 	var keys := int(progression.get("floor_keys", 0))
 	if keys == 1 and not bool(progression.get("energy_tutorial_seen", false)):
@@ -1360,7 +1362,7 @@ func _selector_would_open(view: BattleCombatantView) -> bool:
 	return view.instance_id != _selector_minion_id or not move_panel.visible or _move_selector_exiting
 
 func _show_move_selection_hint() -> void:
-	if not campaign_mode:
+	if not campaign_mode or (settings_service != null and not settings_service.tips_enabled):
 		return
 	var runtime: Variant = get_node_or_null("/root/CampaignRuntime")
 	if runtime == null or runtime.session == null or bool(runtime.session.state.progression.get("move_select_tutorial_seen", false)):
@@ -1503,7 +1505,7 @@ func _open_type_guide() -> void:
 	stats_panel.close()
 	_clear_effectiveness_hints()
 	type_guide = TypeGuideView.new()
-	type_guide.configure(catalog, initial_type)
+	type_guide.configure(catalog, initial_type, settings_service)
 	type_guide.closed.connect(_close_type_guide)
 	add_child(type_guide)
 
@@ -3492,7 +3494,7 @@ func _begin_campaign_progression(battle_won: bool) -> void:
 		battle_won,
 		audio_controller,
 		Callable(campaign_runtime, "save_campaign"),
-		bool(campaign_settlement.get("show_first_defeat_tutorial", false)),
+		bool(campaign_settlement.get("show_first_defeat_tutorial", false)) and (settings_service == null or settings_service.tips_enabled),
 		campaign_runtime.session.state.owned_gems,
 		campaign_runtime.session.state.progression.get("star_upgrades", {}),
 		campaign_settlement.get("finish_stat_context", {}),

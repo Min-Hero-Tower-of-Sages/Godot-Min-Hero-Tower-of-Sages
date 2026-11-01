@@ -17,8 +17,10 @@ font, type badges and menu sounds.
 - Select the **move's type**, then Damage or Healing. The guide lists the
   stronger and weaker matchups; unlisted types are neutral. It reads the live
   catalog's type chart, including registered mod types such as Thaw.
-- **Settings → Type Hints** enables/disables the battle previews. It defaults
-  on and is stored with the other application settings, not per save.
+- **Type Hints** at the top-right of the guide enables/disables battle previews,
+  using the same setting as **Settings → Type Hints**. The Pedia and battle
+  guides share the caller's settings instance so the change takes effect
+  immediately. It defaults on and is stored with application settings, not per save.
 
 ## Battle previews
 

@@ -14,12 +14,13 @@ const OPTIONS := [
 	{"name": "Debug Mode", "flags": ["debug_mode"], "description": "Unlock debug tools in Settings: money, stars, keys, level-60 party and shiny options."},
 	{"name": "Starter Eggs", "flags": ["starter_eggs"], "description": "Find Ticub and Zapig in Floor 1-1 hatchery (also Hard Mode): 10% each. Other minions share 80%."},
 	{"name": "Skill Gems", "flags": ["skill_gems"], "description": "Equip gems to gain skills. Rare field finds and Hard Sage rewards. Defeat Talo to unlock Random Forge."},
+	{"name": "Gem Affinity", "flags": ["gem_affinity"], "description": "Affinity gem stats +20%. Fixes Energy gems' extra 50%. Base Energy and the 5% bonus stay."},
 ]
 const CATEGORIES := [
 	{"id": "minions", "name": "Extra Minions", "groups": ["dirtFish", "waterRay1", "holyBird1", "HolyEye1", "starter_eggs"], "description": "Add minion families to tower hatcheries. Select a mod to see where it can be found."},
 	{"id": "challenges", "name": "Challenge Rules", "groups": ["nuzlocke", "no_natural_regen"], "description": "Optional rules for a tougher run. Read each rule before enabling it."},
 	{"id": "experimental", "name": "Experimental Content", "groups": ["iceFloor"], "description": "Recovered, unfinished content. Read its limitations before enabling it."},
-	{"id": "gameplay", "name": "Gameplay Tweaks", "groups": ["restored_moves", "shinies", "skill_gems", "debug_mode"], "description": "Move-tree additions, skill gems, shiny variants and optional access to debug settings."},
+	{"id": "gameplay", "name": "Gameplay Tweaks", "groups": ["restored_moves", "shinies", "skill_gems", "gem_affinity", "debug_mode"], "description": "Move-tree additions, skill gems, gem affinity, shiny variants and optional debug settings."},
 ]
 # Bits belong to the recovered egg-table format, not presentation ordering.
 const EGG_POOL_BITS := {"dirtFish": 1, "waterRay1": 2, "holyBird1": 4, "HolyEye1": 8}
@@ -46,7 +47,7 @@ static func normalize(flags: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
 	for key in flags:
 		var canonical := String(ContentCatalog.canonical_mod_flag_id(StringName(key)))
-		if canonical in MINION_FLAGS or canonical in ["iceFloor", "nuzlocke", "no_natural_regen", "restored_moves", "restored_martyr", "restored_righteous_fate", "shinies", "debug_mode", "starter_eggs", "skill_gems"]:
+		if canonical in MINION_FLAGS or canonical in ["iceFloor", "nuzlocke", "no_natural_regen", "restored_moves", "restored_martyr", "restored_righteous_fate", "shinies", "debug_mode", "starter_eggs", "skill_gems", "gem_affinity"]:
 			result[canonical] = bool(flags[key])
 	return result
 
@@ -81,6 +82,7 @@ static func change_rule(group: String) -> String:
 		"nuzlocke": return "One-way: stays on once enabled. Applies to future battles. Lost minions cannot be restored."
 		"restored_moves": return "Switch off after resetting purchased Martyr/Righteous Fate talents in party and storage."
 		"skill_gems": return "Switch either way. Off suspends equipped skills and new skill-gem drops; existing gems stay removable and sellable."
+		"gem_affinity": return "Switch either way. Existing gems are recalculated; current HP/energy are capped without a free refill."
 		"shinies": return "Switch either way. Changes future shiny rolls; existing minions and cached egg rolls keep their appearance."
 		"debug_mode": return "Switch either way. Off clears debug toggles. Granted levels, shinies, upgrades and keys remain."
 		"no_natural_regen": return "Switch either way. Changes future natural healing; does not refill the party immediately."

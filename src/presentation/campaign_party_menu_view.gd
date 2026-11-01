@@ -22,6 +22,7 @@ const STAT_KEYS := ["health", "energy", "attack", "healing", "speed"]
 const STAT_ART := ["health", "armor", "attack", "armorPenetration", "speed"]
 var _session: Variant
 var _row_builder: Callable
+var _settings: CampaignSettingsService
 var _selected := -1
 var _showing_details := false
 var _tab := 0
@@ -32,9 +33,10 @@ var _tooltip: BattleMoveTooltip
 var _rename_entry: LineEdit
 var _transitioning := false
 
-func configure(session, row_builder: Callable) -> void:
+func configure(session, row_builder: Callable, settings: CampaignSettingsService = null) -> void:
 	_session = session
 	_row_builder = row_builder
+	_settings = settings if settings != null else CampaignSettingsService.new()
 	_render()
 
 func _process(_delta: float) -> void:
@@ -70,11 +72,11 @@ func _render() -> void:
 			host.position = SOURCE_SETTLED_PANEL_POSITION + SOURCE_ROSTER_INSET + Vector2(0, index * 75)
 			_source_root.add_child(host)
 			_row_builder.call(host, _session.state.party[index], _select.bind(index))
-			if _selected >= 0:
+			if _selected >= 0 or not _settings.tips_enabled:
 				_hide_row_reminders(host)
 			if _selected >= 0 and index != _selected:
 				create_tween().tween_property(host, "modulate:a", 0.3, 0.3)
-		if _selected < 0 and not _session.state.owned_gems.is_empty() and not bool(_session.state.progression.get("gem_tutorial_seen", false)):
+		if _selected < 0 and _gem_guidance_needed():
 			SourceMenuArt.image(_source_root, "tutorial_choosingAMinionBar", SOURCE_SETTLED_PANEL_POSITION + Vector2(382, 58))
 			var hint := _text(_source_root, "Choose a minion to add your gem to", SOURCE_SETTLED_PANEL_POSITION + Vector2(448, 161), Vector2(90, 150), 20)
 			hint.name = "GemTutorialHint"
@@ -136,9 +138,10 @@ func _refresh_detail_page() -> void:
 		2: _gems(page, owned, definition)
 
 func _gem_guidance_needed() -> bool:
-	return not _session.state.owned_gems.is_empty() and not bool(_session.state.progression.get("gem_tutorial_seen", false))
+	return _settings.tips_enabled and not _session.state.owned_gems.is_empty() and not bool(_session.state.progression.get("gem_tutorial_seen", false))
 
 func _add_reminder(parent: Control, symbol: String, at: Vector2) -> void:
+	if not _settings.tips_enabled: return
 	var reminder := preload("res://src/presentation/source_tutorial_popup.gd").new()
 	reminder.position = at
 	parent.add_child(reminder)

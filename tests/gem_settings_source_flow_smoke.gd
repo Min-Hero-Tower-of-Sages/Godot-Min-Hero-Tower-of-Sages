@@ -108,7 +108,7 @@ func _run() -> void:
 	root.add_child(settings_view)
 	settings_view.configure(settings)
 	_check(settings_view._panel.position == Vector2(148, 56), "Settings must use the authored position, not generic centering")
-	_check(settings_view._previous_quality.position == Vector2(207, 203), "Mirrored previous quality arrow must preserve its source registration")
+	_check(settings_view._previous_quality.position == settings_view._next_quality.position - Vector2(55, 0), "Mirrored previous quality arrow must preserve its registration relative to Next")
 	_check(not settings_view._next_quality.visible and settings_view._previous_quality.visible, "High quality must hide Next")
 	settings_view._step_quality(1)
 	_check(settings.quality_level == 2, "High quality must not wrap to Low")

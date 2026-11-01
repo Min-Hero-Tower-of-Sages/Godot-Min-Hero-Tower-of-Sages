@@ -52,6 +52,7 @@ and Flash challenge rules are listed separately below.
 | **[Flash save importing](docs/FLASH_SAVE_IMPORT.md)** | Preview and convert supported `.sol` saves into an empty slot, carrying over minions, learned moves, gems, progression, maps and Minion-pedia history. The Flash files are preserved. |
 | **[In-save mod controls](docs/SAVED_MODS.md)** | Categorized Mod Menu at creation and in Settings. Enable options on existing saves; each toggle explains its switching rules. Nuzlocke is one-way, and added Move Trees talents must be reset before disabling that option. |
 | **[Skill Gems and Random Forge](docs/SKILL_GEMS.md)** | Optional gems that grant active or passive skills while equipped. Rare field finds, Hard Mode map/extra-sage rewards, and color-based crafting after Talo. Non-elemental recipes include stats, armor, reflection and Taunt/Torment. |
+| **[Gem Affinity](docs/GEM_AFFINITY.md)** | Optional 20% bonus to gem contributions matching a minion's affinity stat, with corrected Energy gem scaling. Enable or disable it in Gameplay Tweaks on a new or existing save. |
 | **[Shinies](docs/SHINY_PALETTES.md)** | Optional 1-in-512 chance for newly obtained minions. Programmatic color palettes are consistent across each evolution line and persist through saving and evolution. Cosmetic only. |
 | **[Move Trees](docs/BEHAVIOR_EXCEPTIONS.md)** | Optional talents for recovered unused skills: Martyr for Holymantis/Foramare and Righteous Fate for Arkvian/Arkclaw. They use normal talent points. |
 | **Starter Eggs** | Optional Ticub and Zapig acquisition in the Floor 1-1 hatchery, also in Hard Mode, with a 10% chance each. These acquisitions use normal shiny rolls. |
@@ -63,6 +64,9 @@ debuffs, and Invigorate/Watergize restore the selected ally's energy. See
 [behavior exceptions](docs/BEHAVIOR_EXCEPTIONS.md) for the exact scope.
 Website-only gem sockets work locally, all four sockets are available at level
 60, and more than twelve active moves use additional selector pages.
+Settings also provide **Tutorials** and a separate **Exit Check** for the
+floor-to-lobby confirmation. Type Hints can be toggled in Settings or directly
+in the Type Guide.
 
 ## Recovered campaign and Flash mods
 

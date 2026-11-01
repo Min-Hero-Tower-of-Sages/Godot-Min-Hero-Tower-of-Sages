@@ -73,6 +73,11 @@ func _run() -> void:
 	assert(not pedia._panel.visible, "No doubled frames behind nested guide")
 	var pedia_guide := pedia.get_node("TypeGuide") as TypeGuideView
 	assert(pedia_guide != null)
+	var pedia_hints_before: bool = pedia._settings.effectiveness_hints_enabled
+	pedia_guide._hints_toggle.pressed.emit()
+	assert(pedia_guide.settings == pedia._settings and pedia._settings.effectiveness_hints_enabled != pedia_hints_before)
+	assert(CampaignSettingsService.new().effectiveness_hints_enabled == pedia._settings.effectiveness_hints_enabled)
+	pedia_guide._hints_toggle.pressed.emit()
 	pedia_guide.closed.emit()
 	assert(pedia.get_node_or_null("TypeGuide") == null and pedia._selected == selection and pedia._panel.visible)
 	var entry := pedia.find_child("TypeGuideEntry", true, false) as Button
@@ -161,6 +166,12 @@ func _run() -> void:
 	var pending: Dictionary = main.pending_move.duplicate(true)
 	main._open_type_guide()
 	assert(is_instance_valid(main.type_guide) and main._effectiveness_badges.is_empty())
+	assert(main.type_guide.settings == main.settings_service)
+	main.type_guide._hints_toggle.pressed.emit()
+	assert(not main.settings_service.effectiveness_hints_enabled and not CampaignSettingsService.new().effectiveness_hints_enabled)
+	assert(main.type_guide._hints_toggle.texture_normal == SourceMenuArt.texture("menus_settings_offButton"))
+	main.type_guide._hints_toggle.pressed.emit()
+	assert(main.settings_service.effectiveness_hints_enabled)
 	var click := InputEventMouseButton.new()
 	click.button_index = MOUSE_BUTTON_LEFT
 	click.pressed = true

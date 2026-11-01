@@ -1011,6 +1011,7 @@ func _show_room_from_state(spawn_id: StringName = &"", spawn_position: Vector2 =
 	_schedule_context_room_tutorial(current_room, room.id)
 
 func _schedule_context_room_tutorial(return_room: Node, room_id: StringName) -> void:
+	if not _settings.tips_enabled: return
 	var room := runtime.catalog.get_definition(room_id) as RoomDefinition
 	var tutorial_id := CampaignProgressionService.room_tutorial_id(runtime.session.state, room)
 	if tutorial_id.is_empty():
@@ -1020,7 +1021,7 @@ func _schedule_context_room_tutorial(return_room: Node, room_id: StringName) -> 
 		await get_tree().create_timer(0.25).timeout
 	if not is_instance_valid(return_room) or current_room != return_room or return_room.room.id != room_id or runtime.session.state == null:
 		return
-	if CampaignProgressionService.room_tutorial_id(runtime.session.state, room) != tutorial_id:
+	if not _settings.tips_enabled or CampaignProgressionService.room_tutorial_id(runtime.session.state, room) != tutorial_id:
 		return
 	var tutorial := preload("res://src/presentation/source_campaign_tutorial_view.gd").new()
 	interaction_dialog = tutorial
@@ -1095,7 +1096,7 @@ func _on_room_transition_requested(exit_data: Dictionary) -> void:
 		return
 	if not _multiplayer.allow_room_transition(exit_data):
 		return
-	if String(exit_data.get("target_route", "")) == "lobby" and not bool(exit_data.get("lobby_exit_confirmed", false)):
+	if _settings.confirm_floor_exit and String(exit_data.get("target_route", "")) == "lobby" and not bool(exit_data.get("lobby_exit_confirmed", false)):
 		var confirmed_exit := exit_data.duplicate(true)
 		confirmed_exit["lobby_exit_confirmed"] = true
 		var actor_screen: Vector2 = current_room.player_screen_position() if is_instance_valid(current_room) else Vector2(226, 334)
@@ -1806,12 +1807,13 @@ func _present_return_rewards(settlement: Dictionary) -> void:
 		_schedule_boss_room_tutorial(current_room, runtime.session.state.current_room_id)
 
 func _schedule_boss_room_tutorial(return_room: Node, room_id: StringName) -> void:
+	if not _settings.tips_enabled: return
 	await get_tree().create_timer(2.8).timeout
 	while is_instance_valid(return_room) and current_room == return_room and return_room.room.id == room_id and (is_instance_valid(interaction_dialog) or _room_transition_active):
 		await get_tree().create_timer(0.25).timeout
 	if not is_instance_valid(return_room) or current_room != return_room or return_room.room.id != room_id or runtime.session.state == null:
 		return
-	if bool(runtime.session.state.progression.get("boss_room_tutorial_seen", false)) or int(runtime.session.state.progression.get("floor_keys", 0)) != 3:
+	if not _settings.tips_enabled or bool(runtime.session.state.progression.get("boss_room_tutorial_seen", false)) or int(runtime.session.state.progression.get("floor_keys", 0)) != 3:
 		return
 	var tutorial := preload("res://src/presentation/source_campaign_tutorial_view.gd").new()
 	interaction_dialog = tutorial
@@ -1995,7 +1997,7 @@ func _show_minion_pedia() -> void:
 	interaction_dialog = view
 	view.closed.connect(_close_source_menu.bind(_show_campaign_menu))
 	_attach_interaction_dialog()
-	view.configure(runtime.catalog, runtime.session.state)
+	view.configure(runtime.catalog, runtime.session.state, _settings)
 	_adopt_source_menu_backdrop(view)
 	SourceMenuTransition.enter(view)
 
@@ -2079,14 +2081,29 @@ func _show_tower_lobby_screen() -> void:
 	_show_room_from_state()
 
 func _show_floor_picker() -> void:
+	if _room_transition_active or runtime == null or runtime.session == null: return
+	_room_transition_active = true
+	if is_instance_valid(current_room): current_room.set_controls_enabled(false)
+	await _fade_campaign_screen_out()
+	_create_floor_picker()
+	await _finish_campaign_screen_transition()
+
+func _create_floor_picker() -> void:
 	_clear_dialog()
 	var view := CampaignFloorSelectView.new()
 	interaction_dialog = view
-	view.closed.connect(_clear_dialog)
+	view.closed.connect(_close_floor_picker)
 	view.floor_selected.connect(_select_tower_floor)
 	view.mode_selected.connect(_select_tower_mode)
 	_attach_interaction_dialog()
-	view.configure(runtime.session, _campaign_audio)
+	view.configure(runtime.session, _campaign_audio, _settings)
+
+func _close_floor_picker() -> void:
+	if _room_transition_active or not interaction_dialog is CampaignFloorSelectView: return
+	_room_transition_active = true
+	await _fade_campaign_screen_out()
+	_clear_dialog()
+	await _finish_campaign_screen_transition()
 
 func _show_legacy_floor_picker() -> void:
 	if runtime == null or runtime.session == null or runtime.session.state == null or runtime.session.campaign == null:
@@ -2170,11 +2187,12 @@ func _select_tower_floor(floor_index: int) -> void:
 	await _finish_campaign_screen_transition()
 
 func _select_tower_mode(mode: StringName) -> void:
+	if _room_transition_active: return
 	var result: Dictionary = runtime.session.select_tower_mode(mode)
 	if not result.get("ok", false):
 		room_status.text = String(result.get("message", "Tower mode unavailable"))
 		return
-	_show_floor_picker()
+	_create_floor_picker()
 
 func _show_party_manager() -> void:
 	if runtime == null or runtime.session == null or runtime.session.state == null:
@@ -2187,7 +2205,7 @@ func _show_party_manager() -> void:
 	view.gems_requested.connect(_show_gem_inventory)
 	view.talents_requested.connect(_show_campaign_talents)
 	_attach_interaction_dialog()
-	view.configure(runtime.session, Callable(self, "_build_party_menu_row"))
+	view.configure(runtime.session, Callable(self, "_build_party_menu_row"), _settings)
 	_adopt_source_menu_backdrop(view)
 	SourceMenuTransition.enter(view, true)
 
@@ -2453,7 +2471,7 @@ func _build_source_party_row(parent: Control, at: Vector2, owned: OwnedMinionSta
 		text_label.position.y += 2.0 # Flash TextField's inset, not a vertically centered box.
 		text_label.add_theme_constant_override("shadow_offset_x", 0)
 		text_label.add_theme_constant_override("shadow_offset_y", 0)
-	if definition != null and CampaignProgressionService.available_talent_points(owned, definition) > 0:
+	if definition != null and (_settings == null or _settings.tips_enabled) and CampaignProgressionService.available_talent_points(owned, definition) > 0:
 		var talent_hint := preload("res://src/presentation/source_tutorial_popup.gd").new()
 		talent_hint.position = Vector2(-105, 13)
 		row.add_child(talent_hint)

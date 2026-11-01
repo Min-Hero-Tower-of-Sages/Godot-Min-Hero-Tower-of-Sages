@@ -37,8 +37,9 @@ preview artifacts only; games reuse the original sprite assets and JSON data.
 The mod menu at creation and in Settings has a Gameplay Tweaks category:
 Move Trees enables both restored skill additions; Shinies enables a 1-in-512
 chance on new starters, hatchery minions and Titan rewards. Debug Mode unlocks
-the gated debug menu in Settings (see DEBUG_MODE.md). Skill Gems is the fourth
-toggle in this category (see SKILL_GEMS.md). All are default-off.
+the gated debug menu in Settings (see DEBUG_MODE.md). Skill Gems and Gem Affinity
+also belong to this category (see SKILL_GEMS.md and GEM_AFFINITY.md).
+All are default-off.
 Owned minions save `is_shiny` and `shiny_line_id`; old saves and Flash imports
 default to ordinary appearances. Loading, rendering and evolution never roll.
 Shiny identity survives the ordinary talent reset and evolution paths.

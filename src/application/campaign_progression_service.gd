@@ -119,14 +119,16 @@ static func party_setup_combatants(state, catalog: ContentCatalog) -> Dictionary
 		var definition := catalog.get_definition(owned.definition_id) as MinionDefinition
 		if definition == null:
 			return _error("missing_minion", "party references missing minion %s" % owned.definition_id)
-		var stats := owned_stats(owned, definition, -1, state.owned_gems, state.progression.get("star_upgrades", {}))
-		var raw_stats := owned_stats(owned, definition, -1, state.owned_gems, state.progression.get("star_upgrades", {}), false)
+		var stats := owned_stats(owned, definition, -1, state.owned_gems, state.progression.get("star_upgrades", {}), true, state.active_mods)
+		var raw_stats := owned_stats(owned, definition, -1, state.owned_gems, state.progression.get("star_upgrades", {}), false, state.active_mods)
 		var persistent_maxima := owned_display_stats(owned, definition, catalog, state)
 		var move_ids := effective_move_ids(owned, catalog, state)
 		var attack_bonus_multiplier := 1.05 if owned.stat_bonus == &"attack" else 1.0
 		var healing_bonus_multiplier := 1.05 if owned.stat_bonus == &"healing" else 1.0
 		var attack_iv := float(owned.ivs.get("attack", owned.ivs.get(&"attack", 0.0)))
 		var healing_iv := float(owned.ivs.get("healing", owned.ivs.get(&"healing", 0.0)))
+		var attack_gem_bonus := effective_gem_stat_bonus(owned, &"attack", state.owned_gems, state.active_mods)
+		var healing_gem_bonus := effective_gem_stat_bonus(owned, &"healing", state.owned_gems, state.active_mods)
 		setup_combatants.append({
 			"instance_id": String(owned.instance_id),
 			"definition_id": String(owned.definition_id),
@@ -137,7 +139,7 @@ static func party_setup_combatants(state, catalog: ContentCatalog) -> Dictionary
 			"level": owned.level,
 			"type_ids": definition.type_ids.duplicate(),
 			"move_ids": move_ids,
-			"source_raw_stats": raw_stats.merged({"max_attack_stat": (LegacyMinionStats.max_attack_stat(definition, attack_iv, attack_bonus_multiplier) + float(GemEquipmentService.gem_stat_bonus(owned, &"attack", state.owned_gems)) * attack_bonus_multiplier) * _star_stat_multiplier(state, &"attack"), "max_healing_stat": (LegacyMinionStats.max_healing_stat(definition, healing_iv, healing_bonus_multiplier) + float(GemEquipmentService.gem_stat_bonus(owned, &"healing", state.owned_gems)) * healing_bonus_multiplier) * _star_stat_multiplier(state, &"healing")}),
+			"source_raw_stats": raw_stats.merged({"max_attack_stat": (LegacyMinionStats.max_attack_stat(definition, attack_iv, attack_bonus_multiplier) + attack_gem_bonus * attack_bonus_multiplier) * _star_stat_multiplier(state, &"attack"), "max_healing_stat": (LegacyMinionStats.max_healing_stat(definition, healing_iv, healing_bonus_multiplier) + healing_gem_bonus * healing_bonus_multiplier) * _star_stat_multiplier(state, &"healing")}),
 			"base_max_health": int(stats.health),
 			"max_health": int(stats.health),
 			"health": int(persistent_maxima.health) if owned.persistent_health < 0 else maxi(0, owned.persistent_health),
@@ -147,8 +149,8 @@ static func party_setup_combatants(state, catalog: ContentCatalog) -> Dictionary
 			"attack": int(stats.attack),
 			"healing": int(stats.healing),
 			"speed": int(stats.speed),
-			"max_attack_stat": (LegacyMinionStats.max_attack_stat(definition, attack_iv, attack_bonus_multiplier) + float(GemEquipmentService.gem_stat_bonus(owned, &"attack", state.owned_gems)) * attack_bonus_multiplier) * _star_stat_multiplier(state, &"attack"),
-			"max_healing_stat": (LegacyMinionStats.max_healing_stat(definition, healing_iv, healing_bonus_multiplier) + float(GemEquipmentService.gem_stat_bonus(owned, &"healing", state.owned_gems)) * healing_bonus_multiplier) * _star_stat_multiplier(state, &"healing"),
+			"max_attack_stat": (LegacyMinionStats.max_attack_stat(definition, attack_iv, attack_bonus_multiplier) + attack_gem_bonus * attack_bonus_multiplier) * _star_stat_multiplier(state, &"attack"),
+			"max_healing_stat": (LegacyMinionStats.max_healing_stat(definition, healing_iv, healing_bonus_multiplier) + healing_gem_bonus * healing_bonus_multiplier) * _star_stat_multiplier(state, &"healing"),
 		})
 	return {"ok": true, "combatants": setup_combatants}
 
@@ -517,11 +519,17 @@ static func maximum_talent_points(level: int) -> int:
 		points += 1.0
 	return int(points)
 
-static func owned_stats(owned: OwnedMinionState, definition: MinionDefinition, level: int = -1, owned_gems: Array[Dictionary] = [], star_upgrades: Dictionary = {}, round_values: bool = true) -> Dictionary:
+static func effective_gem_stat_bonus(owned: OwnedMinionState, stat_id: StringName, owned_gems: Array[Dictionary], active_mods: Dictionary = {}) -> float:
+	var value := float(GemEquipmentService.gem_stat_bonus(owned, stat_id, owned_gems))
+	if owned != null and bool(active_mods.get("gem_affinity", false)) and owned.stat_bonus == stat_id:
+		value *= 1.2
+	return value
+
+static func owned_stats(owned: OwnedMinionState, definition: MinionDefinition, level: int = -1, owned_gems: Array[Dictionary] = [], star_upgrades: Dictionary = {}, round_values: bool = true, active_mods: Dictionary = {}) -> Dictionary:
 	var gem_bonuses: Dictionary = {}
 	for stat_id in GemEquipmentService.STAT_IDS:
-		gem_bonuses[String(stat_id)] = GemEquipmentService.gem_stat_bonus(owned, stat_id, owned_gems)
-	var stats := LegacyMinionStats.raw_stats(definition, owned.level if level < 1 else level, owned.ivs, gem_bonuses)
+		gem_bonuses[String(stat_id)] = effective_gem_stat_bonus(owned, stat_id, owned_gems, active_mods)
+	var stats := LegacyMinionStats.raw_stats(definition, owned.level if level < 1 else level, owned.ivs, gem_bonuses, not bool(active_mods.get("gem_affinity", false)))
 	var bonus := String(owned.stat_bonus)
 	for stat_id in GemEquipmentService.STAT_IDS:
 		var stat_name := String(stat_id)
@@ -539,8 +547,8 @@ static func owned_display_stats(owned: OwnedMinionState, definition: MinionDefin
 	# Standalone level cards can be created before begin_sequence supplies a
 	# catalog. They still have valid base/IV/gem stats, but no resolvable passives.
 	if catalog == null:
-		return owned_stats(owned, definition, level, state.owned_gems, state.progression.get("star_upgrades", {}))
-	var stats := owned_stats(owned, definition, level, state.owned_gems, state.progression.get("star_upgrades", {}), false)
+		return owned_stats(owned, definition, level, state.owned_gems, state.progression.get("star_upgrades", {}), true, state.active_mods)
+	var stats := owned_stats(owned, definition, level, state.owned_gems, state.progression.get("star_upgrades", {}), false, state.active_mods)
 	var members: Dictionary = {}
 	for teammate in state.party:
 		var member := CombatantState.new()

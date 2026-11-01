@@ -88,21 +88,24 @@ func _build_view() -> void:
 		_source_button("menus_returnButton", Vector2(2, 356), _back_to_settings)
 		_source_button("menus_exitButton", Vector2(296, -22), _close_menu)
 		return
-	var labels := ["Sound", "Music", "Tips", "Quality"]
+	var labels := ["Sound", "Music", "Tutorials", "Quality"]
 	var toggle_names := ["sound", "music", "tips"]
 	for index in labels.size():
-		var row_y := 84.0 + float(index) * 38.0
+		var row_y := 82.0 + float(index) * 33.0
 		var label := _make_label(labels[index], Vector2(86.0, row_y), Vector2(150.0, 30.0), 22, Color8(250, 250, 250))
 		_panel.add_child(label)
 		if index >= toggle_names.size():
 			continue
 		var key: String = toggle_names[index]
 		var callback := Callable(self, "_toggle_setting").bind(key)
-		var toggle := _source_button("menus_settings_offButton", Vector2(200.0, 90.0 + float(index) * 38.0), callback)
+		var toggle := _source_button("menus_settings_offButton", Vector2(200.0, row_y + 6.0), callback)
 		if toggle != null:
 			_toggle_buttons[key] = toggle
-	_quality_icon = _source_image(_panel, GRAPHIC_SYMBOLS[settings.quality_level], Vector2(209.0, 202.0))
-	_next_quality = _source_button("menus_settings_nextGraphicSetting", Vector2(262.0, 203.0), Callable(self, "_step_quality").bind(1))
+			if key == "tips":
+				toggle.name = "TutorialPromptsToggle"
+				toggle.tooltip_text = "Show how-to-play pop-ups, first-defeat guidance and tutorial reminders."
+	_quality_icon = _source_image(_panel, GRAPHIC_SYMBOLS[settings.quality_level], Vector2(209.0, 185.0))
+	_next_quality = _source_button("menus_settings_nextGraphicSetting", Vector2(262.0, 186.0), Callable(self, "_step_quality").bind(1))
 	var previous_texture := SourceMenuArt.texture("menus_settings_nextGraphicSetting")
 	if previous_texture != null:
 		var previous := TextureButton.new()
@@ -110,25 +113,31 @@ func _build_view() -> void:
 		previous.texture_hover = previous_texture
 		previous.texture_pressed = previous_texture
 		previous.size = previous_texture.get_size()
-		previous.position = Vector2(207.0, 203.0)
+		previous.position = Vector2(207.0, 186.0)
 		previous.scale = Vector2(-1.0, 1.0)
 		previous.focus_mode = Control.FOCUS_NONE
 		_panel.add_child(previous)
 		preload("res://src/presentation/source_menu_button_audio.gd").bind_button(previous)
 		previous.pressed.connect(_step_quality.bind(-1))
 		_previous_quality = previous
-	var hint_label := _make_label("Type Hints", Vector2(86, 240), Vector2(150, 30), 22, Color8(250, 250, 250))
+	var hint_label := _make_label("Type Hints", Vector2(86, 214), Vector2(150, 30), 22, Color8(250, 250, 250))
 	_panel.add_child(hint_label)
-	var hints_toggle := _source_button("menus_settings_offButton", Vector2(200, 246), _toggle_setting.bind("type_hints"))
+	var hints_toggle := _source_button("menus_settings_offButton", Vector2(200, 220), _toggle_setting.bind("type_hints"))
 	if hints_toggle != null:
 		hints_toggle.name = "EffectivenessHintsToggle"
 		hints_toggle.tooltip_text = "Preview type effectiveness while hovering a move or choosing its targets."
 		_toggle_buttons["type_hints"] = hints_toggle
+	_panel.add_child(_make_label("Exit Check", Vector2(86, 247), Vector2(150, 30), 22, Color8(250, 250, 250)))
+	var exit_toggle := _source_button("menus_settings_offButton", Vector2(200, 253), _toggle_setting.bind("confirm_exit"))
+	if exit_toggle != null:
+		exit_toggle.name = "ConfirmFloorExitToggle"
+		exit_toggle.tooltip_text = "Ask before leaving a floor or hatchery for the lobby. Re-entering resets that floor's visit progress."
+		_toggle_buttons["confirm_exit"] = exit_toggle
 	if _session != null and CampaignDebugService.available(_session.state):
-		var debug_button := TypeGuideView.text_button(_panel, "Debug Mode", Vector2(86, 306), Vector2(196, 29), _open_debug, 18)
+		var debug_button := TypeGuideView.text_button(_panel, "Debug Mode", Vector2(86, 308), Vector2(196, 29), _open_debug, 18)
 		debug_button.name = "DebugMenuButton"
 	if _session != null and _session.state != null:
-		var mods_button := TypeGuideView.text_button(_panel, "Mod Menu", Vector2(86, 270), Vector2(196, 29), _open_mods, 18)
+		var mods_button := TypeGuideView.text_button(_panel, "Mod Menu", Vector2(86, 276), Vector2(196, 29), _open_mods, 18)
 		mods_button.name = "SavedModMenuButton"
 	var return_button := _source_button("menus_returnButton", Vector2(2.0, 356.0), Callable(self, "_close_menu"))
 	var close_button := _source_button("menus_exitButton", Vector2(296.0, -22.0), Callable(self, "_close_menu"))
@@ -144,6 +153,7 @@ func _toggle_setting(key: String) -> void:
 		"music": settings.set_music_enabled(not settings.music_enabled)
 		"tips": settings.set_tips_enabled(not settings.tips_enabled)
 		"type_hints": settings.set_effectiveness_hints_enabled(not settings.effectiveness_hints_enabled)
+		"confirm_exit": settings.set_confirm_floor_exit(not settings.confirm_floor_exit)
 	_refresh_controls()
 
 func _step_quality(step: int) -> void:
@@ -159,6 +169,7 @@ func _refresh_controls() -> void:
 		"music": settings.music_enabled,
 		"tips": settings.tips_enabled,
 		"type_hints": settings.effectiveness_hints_enabled,
+		"confirm_exit": settings.confirm_floor_exit,
 	}
 	for key in _toggle_buttons:
 		var button := _toggle_buttons[key] as TextureButton

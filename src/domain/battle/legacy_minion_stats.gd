@@ -59,14 +59,20 @@ static func current_stats(definition: MinionDefinition, level: int) -> Dictionar
 
 ## OwnedMinion.Calculate* keeps fractional base/IV arithmetic until the final
 ## cast. Energy gem bonuses are added BEFORE the final 1.5 multiplier.
-static func raw_stats(definition: MinionDefinition, level: int, ivs: Dictionary = {}, gem_bonuses: Dictionary = {}) -> Dictionary:
+## The optional correction keeps that multiplier on base/IV Energy only.
+static func raw_stats(definition: MinionDefinition, level: int, ivs: Dictionary = {}, gem_bonuses: Dictionary = {}, scale_energy_gems: bool = true) -> Dictionary:
 	var safe_level := maxi(1, level)
 	var bases := {"health": definition.base_health, "energy": definition.base_energy, "attack": definition.base_attack, "healing": definition.base_healing, "speed": definition.base_speed}
 	var stats: Dictionary = {}
 	for stat in bases:
 		var divisor := _health_divisor(safe_level) if stat == "health" else STAT_DIVISOR
-		var value := (float(bases[stat]) + float(ivs.get(stat, ivs.get(StringName(stat), 0)))) * safe_level / divisor + BASE_OTHER_STAT + float(gem_bonuses.get(stat, 0))
-		stats[stat] = value * (ENERGY_MULTIPLIER if stat == "energy" else 1.0)
+		var base_value := (float(bases[stat]) + float(ivs.get(stat, ivs.get(StringName(stat), 0)))) * safe_level / divisor + BASE_OTHER_STAT
+		var gem_value := float(gem_bonuses.get(stat, 0))
+		if stat == "energy" and not scale_energy_gems:
+			stats[stat] = base_value * ENERGY_MULTIPLIER + gem_value
+		else:
+			# Preserve the legacy operation order exactly when the option is off.
+			stats[stat] = (base_value + gem_value) * (ENERGY_MULTIPLIER if stat == "energy" else 1.0)
 	return stats
 
 ## The legacy battle formula uses m_maxAttackStat/m_maxHealingStat for move

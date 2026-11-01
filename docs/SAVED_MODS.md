@@ -8,6 +8,7 @@ its separate debug-tools button still requires the Debug Mode mod.
 | Mod | Can enable in a save? | Can disable? | Effect on existing content |
 | --- | --- | --- | --- |
 | Skill Gems | Yes | Yes | Gems/socket assignments remain; equipped skill grants are suspended while off. Re-enabling does not heal the party. |
+| Gem Affinity | Yes | Yes | Recalculates existing gem contributions and Energy scaling. Gems/affinities stay unchanged; current HP/energy are clamped to new maxima without a refill. |
 | Shinies | Yes | Yes | Future rolls change; existing palettes and cached egg appearances remain. |
 | No Regen | Yes | Yes | Future natural healing changes; toggling does not immediately restore HP. |
 | Debug Mode | Yes | Yes | Debug toggles clear when switched. Granted levels, keys, upgrades and shiny appearances remain. |

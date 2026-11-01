@@ -133,7 +133,7 @@ func _run() -> void:
 	await process_frame
 	assert(shell.current_room.room.id == state.current_room_id, "Lobby did not open as a walking room")
 	shell.call("_show_floor_picker")
-	await process_frame
+	await create_timer(1.3).timeout
 	assert(shell.interaction_dialog is CampaignFloorSelectView)
 	assert(SourceMenuArt.texture("hud_inGame_key") != null, "Shared embedded key sprite was not resolved")
 	var pickup := BattleRewardPresenter.new()

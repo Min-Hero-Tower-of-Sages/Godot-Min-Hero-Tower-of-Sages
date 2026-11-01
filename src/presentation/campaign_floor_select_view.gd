@@ -15,6 +15,7 @@ const SCREEN_SCROLL := 93.0 * ITEMS_PER_SCROLL
 const CLOUD_X := [20.0, 380.0, -90.0, 300.0]
 
 var _session: Variant
+var _settings: CampaignSettingsService
 var _root: Control
 var _clouds: Array[TextureRect] = []
 var _cloud_scales: Array[float] = []
@@ -36,9 +37,10 @@ var _insertion_active := false
 var _tutorial: Control
 var _tutorial_closing := false
 
-func configure(session, audio: BattleAudioController = null) -> void:
+func configure(session, audio: BattleAudioController = null, settings: CampaignSettingsService = null) -> void:
 	_session = session
 	_audio = audio
+	_settings = settings if settings != null else CampaignSettingsService.new()
 	if _session != null and _session.state != null:
 		_mode = CampaignTowerModeService.selected_mode(_session.state)
 		_page = _initial_page_for_mode()
@@ -160,22 +162,25 @@ func _finish_optional_floor_insertion() -> void:
 			info.visible = true
 			info.modulate.a = 0.0
 			create_tween().tween_property(info, "modulate:a", 1.0, 0.5)
-	if bool(_session.state.progression.get("bonus_floor_tutorial_seen", false)):
+	if not _settings.tips_enabled or bool(_session.state.progression.get("bonus_floor_tutorial_seen", false)):
 		_complete_optional_reveal(false)
 	else:
 		var delay := create_tween()
 		delay.tween_interval(1.5)
 		delay.tween_callback(_show_bonus_floor_tutorial)
 
-func _show_bonus_floor_tutorial() -> void:
+func _show_bonus_floor_tutorial(save_retry: bool = false) -> void:
+	if not _settings.tips_enabled and not save_retry:
+		_complete_optional_reveal(false)
+		return
 	_tutorial = Control.new()
-	_tutorial.name = "BonusFloorTutorial"
+	_tutorial.name = "BonusFloorSaveRetry" if save_retry else "BonusFloorTutorial"
 	_tutorial.position = Vector2(164, 38)
 	_root.add_child(_tutorial)
 	var background := _image(_tutorial, "tutorial_backgroundSmall", Vector2(0, 66))
-	var title := _label(_tutorial, "Bonus floors have a chance\nto drop rare minions", Vector2(20, 175), Vector2(380, 60), 18, Color.hex(0xf9faf9ff))
+	var title := _label(_tutorial, "Could not save floor progress.\nPress OK to retry." if save_retry else "Bonus floors have a chance\nto drop rare minions", Vector2(20, 175), Vector2(380, 60), 18, Color.hex(0xf9faf9ff))
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_image(_tutorial, "tutorial_bonusRooms", Vector2(132, 236))
+	if not save_retry: _image(_tutorial, "tutorial_bonusRooms", Vector2(132, 236))
 	var button := _button(_tutorial, "tutorial_okButton", Vector2(143, 66 + background.size.y - 75), _dismiss_bonus_floor_tutorial)
 	button.name = "BonusTutorialOK"
 	_tutorial.size = Vector2(background.size.x, 66 + background.size.y)
@@ -194,7 +199,7 @@ func _show_bonus_floor_tutorial() -> void:
 func _dismiss_bonus_floor_tutorial() -> void:
 	if _tutorial_closing:
 		return
-	if not _complete_optional_reveal(true):
+	if not _complete_optional_reveal(_settings.tips_enabled and _tutorial.name == "BonusFloorTutorial"):
 		return
 	_tutorial_closing = true
 	_insertion_active = true # Guard through the half-second tutorial fade.
@@ -215,7 +220,7 @@ func _complete_optional_reveal(tutorial_seen: bool) -> bool:
 				message.name = "SaveError"
 				message.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		else:
-			_show_bonus_floor_tutorial()
+			_show_bonus_floor_tutorial(true)
 		return false
 	_insertion_floor = -1
 	_insertion_active = false

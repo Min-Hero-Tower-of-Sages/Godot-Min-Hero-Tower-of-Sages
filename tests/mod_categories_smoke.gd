@@ -60,10 +60,14 @@ func _run() -> void:
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png("res://build/mod-categories.png")
 		selector._open_category(3)
-		selector._describe(CampaignModService.OPTIONS.back().description)
+		selector._describe(CampaignModService.OPTIONS[CampaignModService.option_index("shinies")].description)
 		await process_frame
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png("res://build/mod-shinies-submenu.png")
+		selector._describe(CampaignModService.OPTIONS[CampaignModService.option_index("gem_affinity")].description)
+		await process_frame
+		await RenderingServer.frame_post_draw
+		root.get_texture().get_image().save_png("res://build/mod-affinity-submenu.png")
 	print("PASS: category navigation, flags/counts/bounds, 15 egg-pool masks and restored skill gates/purchases/isolation")
 	quit()
 
