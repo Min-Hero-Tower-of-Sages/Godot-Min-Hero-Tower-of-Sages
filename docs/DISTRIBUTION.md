@@ -1,7 +1,10 @@
 # Repository and Windows release preparation
 
-The intended repository name is `Godot-Min-Hero-Tower-of-Sages`, with `main`
-as the default branch. A normal checkout includes all runtime content and
+The repository is `Min-Hero-Tower-of-Sages/Godot-Min-Hero-Tower-of-Sages`.
+**extended** is the default and active development branch (formerly
+`multiplayer`). **original** preserves the earlier Godot port (formerly `main`).
+Extended releases use `MinHeroExtended.exe`; Original's own export preset uses
+`MinHero.exe`. A normal checkout includes all runtime content and
 does not require the original developer's extraction tree. No machine-specific
 export-template path is stored in the preset.
 
@@ -36,23 +39,45 @@ When a feature adds persistent data, exercise a write and reload through
 `SaveRepository` as well. An in-memory replacement that bypasses its validator
 does not cover the shipping save path. The Skill Gems disk fixture uses an
 isolated `build/skill-gem-save-profile` and tests forge and battle rewards.
-Use `-OutputDirectory 'build/releases/extended-v1.3.0'` for an isolated release
-build. Tag the exact source commit used for export with `gh release create
---target <commit>`, especially when releasing from a non-default branch.
+Use `-OutputDirectory 'build/releases/extended-v1.3.2'` for an isolated release
+build. Commit the game changes and matching application/Windows versions before
+exporting, then tag that exact commit. The release tag must resolve to the
+exported source, regardless of the repository's default branch.
 
 ## Publish
 
-Choose **public or private** before publishing. GitHub Desktop's **Add Local
-Repository** and **Publish Repository** can publish the existing local repo.
-Alternatively, after creating an empty GitHub repository:
+The repository is already published. The current release format is
+`Min Hero Extended v<version>`, tag `extended-v<version>`, with a standalone
+`MinHeroExtended.exe` asset and concise change paragraphs. Preserve older
+release tags and assets.
+
+1. Push the `extended` commit and its release tag.
+2. Create a draft using the existing tag (`gh release create --verify-tag`)
+   and a release-notes file (`--notes-file`). Upload the verified executable.
+3. Compare the uploaded asset's size and SHA-256 digest with the local build,
+   and check that the tag resolves to the intended commit.
+4. Publish the draft as the latest release. Confirm the latest-release endpoint
+   and download URL resolve to the new version.
+
+## Updating older clones
+
+GitHub branch renames preserve branch history and redirect old web links.
+Local branch names and upstreams still need updating. For clones that still
+have both old local branch names:
 
 ```powershell
-git remote add origin https://github.com/YOUR_ACCOUNT/Godot-Min-Hero-Tower-of-Sages.git
-git push -u origin main
+git fetch origin --prune
+git branch -m multiplayer extended
+git branch -m main original
+git branch --set-upstream-to=origin/extended extended
+git branch --set-upstream-to=origin/original original
+git remote set-head origin -a
+git switch extended
 ```
 
-No remote URL, token or account credential is embedded in the project, and
-repository preparation does not infer a public/private choice.
+Use only the rename command for branches that still have their old names.
+Runtime multiplayer classes and `user://multiplayer_profiles` keep their names;
+the repository rename does not change the network protocol or save locations.
 
 ## Maintainer-only asset repackaging
 

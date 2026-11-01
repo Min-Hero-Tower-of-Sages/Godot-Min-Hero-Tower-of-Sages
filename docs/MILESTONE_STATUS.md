@@ -1,6 +1,7 @@
 # Milestone status — 2026-09-24
 
-Current parity implementation and outstanding user observations are tracked in
+For current Extended features and releases, start with [README.md](../README.md).
+This report is a historical snapshot. Parity implementation notes are tracked in
 [PARITY_WORK_TRACKER.md](PARITY_WORK_TRACKER.md) (2026-10-01). Percentages below
 are the historical estimates from this report; they have not been re-certified
 by a complete campaign/presentation audit. Gem inventory persistence and

@@ -284,7 +284,7 @@ func _build_recipe_reference() -> void:
 		var badge := SourceMenuArt.image(sheet, "menus_minionType_%s" % CampaignSkillGemService.RECIPES[recipe], at + Vector2(210, 8))
 		if badge != null: badge.scale = Vector2.ONE * 0.9
 		row += 1
-	_label("One color: its own type. Other mixes: a non-elemental stat skill.\nTiers 1–3: Lv.1   4–5: Lv.2   6–7: Lv.3   8–9: Lv.4   10: Lv.5\nSkills cap at their highest rank. Skill gems cannot be combined.", Vector2(40, 337), Vector2(600, 70), 15, sheet)
+	_label("One color: its type. Other mixes: non-elemental support.\nRed + Purple, for example: stats, armor, reflection or Taunt/Torment.\nTiers 1–3: Lv.1   4–5: Lv.2   6–7: Lv.3   8–9: Lv.4   10: Lv.5\nSkills cap at their highest rank. Skill gems cannot be combined.", Vector2(40, 319), Vector2(600, 86), 14, sheet).name = "ForgeRecipeDetails"
 	SourceMenuArt.button(sheet, "menus_returnButton", Vector2(3, 409), _close_recipes)
 	SourceMenuArt.button(sheet, "menus_exitButton", Vector2(624, -22), _close_recipes)
 

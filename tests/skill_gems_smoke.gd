@@ -33,6 +33,7 @@ func _run() -> void:
 	for owned in session.state.party: owned.level = 60
 	_check(CampaignModService.normalize({"skill_gems": true}).get("skill_gems", false), "Mod flag survives normalization")
 	_check_recipes()
+	_check_neutral_support_pool()
 	_check_acquisition()
 	_check_equipment()
 	_check_transactions()
@@ -92,11 +93,28 @@ func _check_recipes() -> void:
 		for move in pool:
 			_check(move.tier <= level and not families.has(move.family_id), "One candidate per family, capped at requested rank")
 			families[move.family_id] = true
-		var capped := pool.filter(func(move: MoveDefinition) -> bool: return move.family_id == &"base:move_family/purge")
-		_check(capped.size() == 1 and capped[0].tier == 1, "Purge caps at rank 1 even for high-tier inputs")
+		for family in [&"base:move_family/purge", &"base:move_family/stun"]:
+			var capped := pool.filter(func(move: MoveDefinition) -> bool: return move.family_id == family)
+			_check(capped.size() == 1 and capped[0].tier == 1, "%s stays available at rank 1 even for high-tier inputs" % family)
 	session.state.progression.sage_seals = 4
 	_check(not CampaignSkillGemService.forge_preview(session.state, catalog, _gems([0])).ok, "Forge requires Talo")
 	session.state.progression.sage_seals = 5
+
+func _check_neutral_support_pool() -> void:
+	for tier in [1, 4, 6, 8, 10]:
+		var preview := CampaignSkillGemService.forge_preview(session.state, catalog, _gems([0, 0, 1], tier))
+		_check(preview.ok and preview.gem.type_id == "base:type/none", "Red/Red/Purple selects non-elemental support")
+		var rank := CampaignSkillGemService.level_for_tier(tier)
+		var pool := CampaignSkillGemService.candidates(catalog, rank, StringName(preview.gem.type_id), true)
+		for family in ["taunt", "diamond_skin", "rock_skin", "mirror_skin", "mirror_coating"]:
+			var expected := StringName("base:move/%s/tier%d" % [family, rank])
+			_check(pool.any(func(move: MoveDefinition) -> bool: return move.id == expected), "Non-elemental forge can roll %s at its requested rank" % expected)
+		for move in pool:
+			_check(move.type_id == &"base:type/none" and CampaignSkillGemService.universal(move), "Non-elemental pool excludes attacks, negative effects and elemental moves")
+	var strongest := CampaignSkillGemService.candidates(catalog, 5, &"base:type/none", true)
+	_check(strongest.any(func(move: MoveDefinition) -> bool: return move.display_name == "Torment"), "Tier-10 inputs offer Torment rather than a lower-rank Taunt")
+	var normal := CampaignSkillGemService.candidates(catalog, 5, &"base:type/normal")
+	_check(normal.any(func(move: MoveDefinition) -> bool: return move.id == &"base:move/reflect_damage/tier5"), "Normal-type active Diamond Skin keeps its separate elemental recipe")
 
 func _check_acquisition() -> void:
 	var fields := 0

@@ -74,9 +74,17 @@ ID is `base:type/energy`.
 | Purple / Yellow / Blue | Titan |
 | Orange / Yellow / Blue | Ice |
 
-Other mixes produce a non-elemental stat-boosting skill. The recipe uses the
-set of colors: mixed duplicates do not count as a single-color recipe. Four
-or five colors also fall back to non-elemental stat skills.
+Other mixes produce a non-elemental support skill: stat increases, armor,
+reflection, shielding, redirection or critical chance. This includes
+**Taunt/Torment, Diamond Skin, Rock Skin, Mirror Skin and Mirror Coating**.
+For example, two red gems and one purple gem select this pool. The recipe uses
+the set of colors: mixed duplicates do not count as a single-color recipe.
+Four or five colors also fall back to non-elemental support skills. Negative
+effects, attacks and elemental moves are excluded from this pool.
+
+The passive armor **Diamond Skin** is distinct from the active Normal-type
+reflection move also called **Diamond Skin** at level five. The active move
+comes from Red / Orange / Blue; the passive armor uses a non-elemental mix.
 
 The pool contains one candidate per available implemented move family of the
 chosen type, using its highest existing rank at or below the requested rank.
@@ -103,6 +111,11 @@ active battle use, aura lifetime, talent isolation, serialization, toggling,
 unequipping/selling and transaction rejection/page placement. Rendered runs
 write forge-preview, recipe-reference and result captures under ignored
 `build/`. Fixtures use in-memory saves.
+
+The non-elemental recipe checks require Taunt/Torment, Diamond Skin, Rock Skin,
+Mirror Skin and Mirror Coating at every requested rank, while excluding attacks
+and elemental moves. Purge and Stun remain eligible at their actual maximum
+rank of one, including when forging with high-tier inputs.
 
 `tests/skill_gem_save_regression.gd` additionally exercises the production
 `SaveRepository` against isolated files: forging across input tiers/colors,

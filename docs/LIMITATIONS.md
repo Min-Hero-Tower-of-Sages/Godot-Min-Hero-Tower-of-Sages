@@ -1,4 +1,10 @@
-# Current limitations
+# Historical migration limitations
+
+This document preserves notes from earlier migration stages. Its statements
+about a four-room campaign slice, absent menu flows and missing progression
+have been superseded. Use [the Extended README](../README.md) and its linked
+feature guides for current gameplay coverage. The notes below are retained
+as implementation history, not as a current release checklist.
 
 - The reference SWFs contain no nested battle-move timelines. Their 16
   ActionScript tween implementations are inventoried; nine now have source-

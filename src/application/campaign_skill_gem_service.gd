@@ -69,8 +69,9 @@ static func candidates(catalog: ContentCatalog, requested_level: int, type_id: S
 		if not move.available or move.effects.is_empty() or move.family_id == &"base:move_family/desperation": continue
 		if not type_id.is_empty() and move.type_id != type_id: continue
 		if support_only:
+			# Non-elemental recipes include defensive support as well as stats:
+			# armor, reflection and damage redirection (Taunt/Torment).
 			if not universal(move) or move.type_id != &"base:type/none": continue
-			if move.effects.any(func(effect: EffectDefinition) -> bool: return effect.kind not in [EffectDefinition.Kind.STAT_PERCENT, EffectDefinition.Kind.STAT_STAGE]): continue
 		if move.tier > requested_level: continue
 		var previous := families.get(move.family_id) as MoveDefinition
 		if previous == null or move.tier > previous.tier: families[move.family_id] = move

@@ -1,6 +1,7 @@
 # Gated campaign debug options
 
-Enable **Gameplay Tweaks → Debug Mode** when creating a save. Only campaigns
+Enable **Gameplay Tweaks → Debug Mode** when creating a save or through
+**Settings → Mod Menu** in an existing save. Only campaigns
 with the `debug_mode` mod flag expose **Settings → Debug Mode**. The debug
 effects are also checked against this gate, not merely hidden in the UI.
 All five settings begin off and are saved per campaign in `debug_options`.

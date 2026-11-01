@@ -1,9 +1,10 @@
-# Mod integration status — 2026-10-20
+# Mod integration status — 2026-11-01
 
-The new-save character screen groups the recovered and Extended mod options
+The new-save character screen and Settings → Mod Menu group recovered and Extended mod options
 into Extra Minions, Challenge Rules, Experimental Content and Gameplay Tweaks.
 Settings belong to the save, not the process or shared content resources.
-Existing saves are not automatically changed or given mods.
+Existing saves can opt in through Settings; loading alone does not enable mods.
+See [SAVED_MODS.md](SAVED_MODS.md) for switching restrictions.
 
 | Option | Current implementation |
 | --- | --- |
@@ -16,6 +17,7 @@ Existing saves are not automatically changed or given mods.
 | Nuzlocke | Fainted active minions are retired after battle, including equipped gems. A non-playable memorial is retained. If the party is wiped, surviving storage minions fill it; an empty total roster ends the run and blocks further battles. |
 | No Regen | Pre-battle preparation refills energy but preserves health. Explicit healing, defeat recovery and floor entry still restore health. |
 | Move Trees | Optional Martyr talents for Holymantis/Foramare and Righteous Fate for Arkvian/Arkclaw; see BEHAVIOR_EXCEPTIONS.md. |
+| Skill Gems | Extended opt-in: equipped active/passive skills, rare field finds, Hard Sage/Expert Sage rewards and Random Forge after Talo. Non-elemental recipes include defensive support skills. See SKILL_GEMS.md. |
 | Shinies | 1-in-512 new-acquisition chance; saved, programmatic evolution-line palettes. See SHINY_PALETTES.md. |
 | Debug Mode | Unlocks gated per-save settings and the explicit current-roster shiny action. See DEBUG_MODE.md. |
 
