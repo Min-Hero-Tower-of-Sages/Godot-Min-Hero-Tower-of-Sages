@@ -232,6 +232,7 @@ static func build_battle_setup(state, catalog: ContentCatalog, encounter: Encoun
 		"tie_first_team": 0,
 		"combatants": setup_combatants,
 		"campaign_encounter_id": String(encounter.id),
+		"periodic_ignores_types": CampaignModService.enabled(state, "piercing_over_time"),
 		"source_stat_context": {"floor_index": encounter.source_floor_index, "player_stars": state.progression.get("star_upgrades", {}).duplicate(true)} if source_trainer else {},
 	}
 

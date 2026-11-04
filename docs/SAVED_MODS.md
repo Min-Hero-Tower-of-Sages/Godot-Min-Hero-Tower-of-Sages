@@ -9,6 +9,7 @@ its separate debug-tools button still requires the Debug Mode mod.
 | --- | --- | --- | --- |
 | Skill Gems | Yes | Yes | Gems/socket assignments remain; equipped skill grants are suspended while off. Re-enabling does not heal the party. |
 | Gem Affinity | Yes | Yes | Recalculates existing gem contributions and Energy scaling. Gems/affinities stay unchanged; current HP/energy are clamped to new maxima without a refill. |
+| Piercing Over-Time | Yes | Yes | Applies from the next battle: damage and healing over time ignore minion types. Direct hits, saved minions and battle history are unchanged. |
 | Shinies | Yes | Yes | Future rolls change; existing palettes and cached egg appearances remain. |
 | No Regen | Yes | Yes | Future natural healing changes; toggling does not immediately restore HP. |
 | Debug Mode | Yes | Yes | Debug toggles clear when switched. Granted levels, keys, upgrades and shiny appearances remain. |
@@ -16,6 +17,7 @@ its separate debug-tools button still requires the Debug Mode mod.
 | Ice Content | Yes | Yes | Imported minions/moves remain usable. This still does not add a playable Ice Floor. |
 | Move Trees | Yes | After resetting added talents | Reset purchased Martyr/Righteous Fate talents in party/storage first, so the tree does not hide spent points. Skill-gem grants are separate and do not lock this toggle. |
 | Nuzlocke | Yes | No | One-way policy preserves the challenge once enabled. It applies from that point onward; it does not revise previous battles or restore lost minions. |
+| [Player Mods](USER_MODS.md) | Yes, while offline | While no owned content or enabled mod depends on it | Adds and patches catalog definitions for this save. Missing mods stop loading; edited installed copies refresh the saved fingerprint. |
 
 The Nuzlocke restriction is a deliberate challenge rule. Ordinary content mods
 do not need permanent locking: the catalog keeps their definitions registered

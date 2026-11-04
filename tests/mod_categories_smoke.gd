@@ -8,7 +8,7 @@ func _run() -> void:
 	selector.position = Vector2(20, 20)
 	root.add_child(selector)
 	await process_frame
-	assert(selector._category_buttons.size() == CampaignModService.CATEGORIES.size())
+	assert(selector._category_buttons.size() == CampaignModService.CATEGORIES.size() + 1, "Built-in categories plus Player Mods")
 	for category_index in CampaignModService.CATEGORIES.size():
 		selector._category_buttons[category_index].pressed.emit()
 		assert(selector._category == category_index)

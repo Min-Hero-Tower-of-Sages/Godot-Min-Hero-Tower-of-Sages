@@ -1,5 +1,10 @@
 # Extension guide
 
+For player-created content without editing the project, see the
+[Mod Workshop guide](USER_MODS.md). Its JSON packs support new minions, move
+families, skill trees and types, patches, trainer teams, hatcheries and existing room edits.
+The resource/script extension points below are for engine development.
+
 ## Minion and move
 
 Create `MinionDefinition` and `MoveDefinition` Resources with namespaced IDs.

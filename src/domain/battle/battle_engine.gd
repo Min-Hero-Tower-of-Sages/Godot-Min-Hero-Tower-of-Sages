@@ -48,6 +48,7 @@ func start(setup: Dictionary, content: ContentCatalog, rules: RuleSetDefinition,
 	_state.battle_id = StringName(setup.get("battle_id", "battle"))
 	# BattleScreen names this flag "ties go to player", but its actual insertion
 	# order puts opponents first when the activation roll is above 50%.
+	_state.periodic_ignores_types = bool(setup.get("periodic_ignores_types", false))
 	_state.tie_first_team = int(setup.tie_first_team) if setup.has("tie_first_team") else (1 if _rng.next_percent_value() > 50.0 else 0)
 	var errors := _content.ensure_index()
 	if not errors.is_empty():
@@ -336,6 +337,9 @@ func _targets_for_scope(actor: CombatantState, move: MoveDefinition, selected: A
 	if scope == EffectDefinition.TargetScope.ALLIED_TEAM: return _state.living_team_members(actor.team)
 	return result
 
+func periodic_ignores_types() -> bool:
+	return _state != null and _state.periodic_ignores_types
+
 func snapshot() -> Dictionary:
 	return {"state": _state.snapshot(), "rng": _rng.snapshot(), "event_sequence": _event_sequence, "ai": _ai.snapshot(), "timer_actor": _timer_actor.to_dict() if _timer_actor != null else {}, "source_stat_context": _source_stat_context.duplicate(true)}
 
@@ -431,7 +435,10 @@ func _advance_turn() -> void:
 		if not remaining.is_empty():
 			_activate_next_actor()
 			return
-	_tick_periodic_effects()
+	# Flash RunQueuedMoves only ticks DOT/HOT when both parties are still
+	# alive. The final action of a round must not poison a winning survivor.
+	var both_alive := not _state.living_team_members(0).is_empty() and not _state.living_team_members(1).is_empty()
+	if both_alive: _tick_periodic_effects()
 	_state.round_number += 1
 	_state.turn_index = 0
 	_state.acted_ids.clear()
@@ -531,7 +538,7 @@ func _tick_periodic_effects() -> void:
 				var stat := LegacyModifiers.effective_attack(source, _content, _state.combatants) if effect.kind == EffectDefinition.Kind.PERIODIC_DAMAGE else LegacyModifiers.effective_healing(source, _content, _state.combatants)
 				var amount := float(LegacyMath.calculate_scaled_amount(effect.amount, effect.random_bonus, stat, source.level, _rng.next_unit()))
 				var effectiveness := 1.0
-				if effect.uses_type_effectiveness and _type_chart != null:
+				if effect.uses_type_effectiveness and _type_chart != null and not _state.periodic_ignores_types:
 					effectiveness = _type_chart.combined_multiplier(move.type_id, target.type_ids, effect.kind == EffectDefinition.Kind.PERIODIC_HEAL)
 					amount *= effectiveness
 				net_health += amount if effect.kind == EffectDefinition.Kind.PERIODIC_HEAL else -amount

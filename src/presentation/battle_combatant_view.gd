@@ -512,6 +512,17 @@ func set_move_order_position(order_position: int) -> void:
 	if move_order_label != null:
 		move_order_label.text = str(order_position) if order_position > 0 else ""
 
+var _turn_spent := false
+var _turn_spent_tween: Tween
+
+func set_turn_spent(spent: bool) -> void:
+	if _turn_spent == spent: return
+	_turn_spent = spent
+	if _turn_spent_tween != null: _turn_spent_tween.kill()
+	_turn_spent_tween = create_tween().set_parallel(true)
+	for item in [turn_badge, move_order_label]:
+		if item != null: _turn_spent_tween.tween_property(item, "modulate:a", 0.3 if spent else 1.0, 0.3)
+
 func set_campaign_level_display(level: int) -> void:
 	if level_label != null:
 		level_label.text = "lv. %d" % level

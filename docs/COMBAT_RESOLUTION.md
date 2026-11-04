@@ -72,8 +72,14 @@ the chart's resistant and super-effective multipliers exactly as the source does
   the player, matching `BattleScreen.RunTickMoves`.
 - DOT and HOT each call the legacy scaling formula again on every tick using the
   retained source's current maximum attack/healing stat and current level.
-- Target type effectiveness applies on every tick. Periodic effects receive no
-  STAB and cannot critical.
+- Target type effectiveness applies on every tick, as in
+  `OwnedMinion.TickDotsAndHots` (it multiplies by `CalculateEffectivenessModifier`
+  for both target types, checked against the decompiled `original.swf`).
+  Periodic effects receive no STAB and cannot critical. The optional
+  **Piercing Over-Time** save mod skips the type multiplier for DOT/HOT ticks
+  only; the battle setup carries it as `periodic_ignores_types` and the battle
+  snapshot keeps it, so resumed battles and replays use the same rule.
+  `tests/piercing_over_time_smoke.gd` covers both behaviors.
 - Every component is accumulated into one net health delta. That integer delta
   is passed once through battle-mod-shield and ordinary shield handling, matching
   `OwnedMinion.TickDotsAndHots` calling `AddToHealth` once.

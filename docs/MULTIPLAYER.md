@@ -19,6 +19,12 @@ is already using (the check ignores case). On a first visit, choose the team to
 bring: one of your saves, or **Fresh start** (the new-campaign starters, as a
 boy or girl). You don't need a save of your own to join.
 
+For [player mods](USER_MODS.md), install the host's share codes or ZIPs first.
+Joining activates the host's mod set and checks that fingerprints match,
+including imported art. Missing or different copies stop the join with a mod
+message. The host's mod set also applies to versus races. Enabled player mods
+can only be changed after leaving multiplayer.
+
 While connected, the menu's **Multiplayer** panel lists the players (★ host,
 ⚔ in a battle; in versus also their floor and stars). It also opens
 **Battle replays** (see [BATTLE_REPLAYS.md](BATTLE_REPLAYS.md)) and the

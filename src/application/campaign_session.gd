@@ -18,12 +18,22 @@ var save_slot: int = 1
 ## A multiplayer guest sends its progress to the host this way; its own save
 ## slots are never touched while it plays in someone else's world.
 var save_redirect: Callable
+## Runtime supplies the connection guard; isolated sessions remain usable by
+## tools without depending on the multiplayer autoload.
+var user_mod_changes_allowed: Callable
 var _pending_egg_preview: OwnedMinionState
 var _pending_egg_preview_slot: int = -1
 
-func start_new(campaign_id: StringName, new_party: Array[OwnedMinionState], character_data: Dictionary = {}, slot: int = 1, overwrite_existing: bool = false, mod_flags: Dictionary = {}) -> Dictionary:
+func start_new(campaign_id: StringName, new_party: Array[OwnedMinionState], character_data: Dictionary = {}, slot: int = 1, overwrite_existing: bool = false, mod_flags: Dictionary = {}, user_mod_ids: Array = []) -> Dictionary:
 	if catalog == null:
 		return _error("missing_catalog", "set a content catalog before starting a campaign")
+	var user_refs: Array[Dictionary] = []
+	for mod_id in user_mod_ids:
+		var ref := UserModService.ref_for(String(mod_id))
+		if ref.is_empty(): return _error("mod_unavailable", "Mod %s is not installed." % mod_id)
+		user_refs.append(ref)
+	var activated := UserModService.activate(catalog, user_refs)
+	if not activated.ok: return activated
 	campaign = catalog.get_definition(campaign_id) as CampaignDefinition
 	if campaign == null:
 		return _error("missing_campaign", "campaign %s does not exist" % campaign_id)
@@ -42,6 +52,7 @@ func start_new(campaign_id: StringName, new_party: Array[OwnedMinionState], char
 	created.current_room_id = starting_room.id
 	created.character = character_data.duplicate(true)
 	created.active_mods = CampaignModService.normalize(mod_flags)
+	created.user_mods.assign(activated.refs)
 	for owned in new_party:
 		var starter := owned.duplicate_state()
 		CampaignShinyService.initialize_new(starter, created, catalog)
@@ -77,6 +88,8 @@ func load(slot: int) -> Dictionary:
 		return loaded
 	var candidate = StateScript.new()
 	candidate.load_dictionary(loaded.state)
+	var mods := _activate_user_mods(candidate)
+	if not mods.ok: return mods
 	var import_repair := FlashSaveImportService.repair_import_state(candidate, catalog)
 	if not import_repair.ok: return import_repair
 	var recovered_egg := _recover_interrupted_egg_preview(candidate)
@@ -91,7 +104,7 @@ func load(slot: int) -> Dictionary:
 		return _error("missing_campaign", "save references missing campaign %s" % candidate.campaign_id)
 	if catalog.get_definition(candidate.current_room_id) is not RoomDefinition:
 		return _error("missing_room", "save references missing current room %s" % candidate.current_room_id)
-	if import_repair.changed or recovered_egg or repaired_floor_visit or repaired_hard_keys or repaired_map:
+	if import_repair.changed or recovered_egg or repaired_floor_visit or repaired_hard_keys or repaired_map or not mods.changed.is_empty():
 		var repaired_save := save_repository.save_slot(slot, candidate.to_dictionary(catalog.content_version))
 		if not repaired_save.ok: return repaired_save
 	state = candidate
@@ -100,6 +113,7 @@ func load(slot: int) -> Dictionary:
 	save_redirect = Callable()
 	_clear_pending_egg_preview()
 	loaded.state = candidate
+	if not mods.changed.is_empty(): loaded["changed_user_mods"] = mods.changed
 	return loaded
 
 ## Play a state that lives outside the save slots (a multiplayer guest).
@@ -109,6 +123,9 @@ func load_detached(data: Dictionary, id_slot: int, redirect: Callable) -> Dictio
 		return _error("missing_catalog", "set a content catalog before loading a campaign")
 	var candidate = StateScript.new()
 	candidate.load_dictionary(data)
+	# A guest must run the host's exact mods (multiplayer matched them on join).
+	var mods := UserModService.activate(catalog, candidate.user_mods, true)
+	if not mods.ok: return mods
 	var errors := candidate.validation_errors(catalog)
 	if not errors.is_empty():
 		return _error("invalid_campaign_state", "
@@ -507,7 +524,7 @@ func interact(interaction_id: StringName, checkpoint_position: Variant = null, c
 				if already_beaten:
 					var ratings: Dictionary = state.progression.get("encounter_star_ratings", {})
 					text = "You already beat me!   Replay me for exp?" if int(ratings.get(String(dialogue_encounter.id), 0)) >= 3 else String(dialogue.get("repeat_text", "You already beat me!   Retry for three stars?"))
-				return {"ok": true, "kind": kind, "encounter_id": encounter_id, "already_beaten": already_beaten, "dialog_text": text, "trainer_name": String(interaction.get("trainer_name", dialogue.get("trainer_name", "Trainer")))}
+				return {"ok": true, "kind": kind, "encounter_id": encounter_id, "already_beaten": already_beaten, "dialog_text": text, "trainer_name": String(UserModService.dialogue_for(dialogue_encounter.id).get("trainer_name", interaction.get("trainer_name", dialogue.get("trainer_name", "Trainer"))))}
 			&"map_station":
 				if not bool(state.progression.get("map_unlocked", false)):
 					var map_state = StateScript.new()
@@ -1354,6 +1371,64 @@ func set_mod_option(group: String, value: bool) -> Dictionary:
 	if not saved.ok: return saved
 	state = candidate
 	return {"ok": true, "group": group, "enabled": value}
+
+## Activates a loaded save's player mods. Fingerprints refresh to the
+## installed copies; `changed` names mods edited since the save used them.
+func _activate_user_mods(candidate) -> Dictionary:
+	var activated := UserModService.activate(catalog, candidate.user_mods)
+	if not activated.ok:
+		return _error("mod_unavailable", "This save uses player mods that cannot be loaded:\n%s" % activated.message)
+	candidate.user_mods.assign(activated.refs)
+	_clamp_user_mod_stats(candidate)
+	return {"ok": true, "changed": activated.changed}
+
+func _clamp_user_mod_stats(candidate) -> void:
+	for owned in candidate.party + candidate.storage:
+		var definition := catalog.get_definition(owned.definition_id) as MinionDefinition
+		if definition == null: continue
+		var stats := ProgressionService.owned_display_stats(owned, definition, catalog, candidate)
+		if owned.persistent_health >= 0: owned.persistent_health = mini(owned.persistent_health, int(stats.health))
+		if owned.persistent_energy >= 0: owned.persistent_energy = mini(owned.persistent_energy, int(stats.energy))
+
+## Turns a player mod on or off for this save. Turning one off is refused
+## while the save owns minions, moves or gems that come from it.
+func set_user_mod(mod_id: String, value: bool) -> Dictionary:
+	if catalog == null or state == null: return _error("no_campaign", "Load a save before changing mods.")
+	if user_mod_changes_allowed.is_valid() and not user_mod_changes_allowed.call(): return _error("multiplayer_mod_lock", "Leave multiplayer before changing player mods; everyone must use the same content.")
+	if not state.pending_battle.is_empty(): return _error("battle_pending", "Finish the battle before changing mods.")
+	if not state.pending_defeat_return.is_empty(): return _error("defeat_return_pending", "Finish returning to the checkpoint before changing mods.")
+	if not state.progression.get("pending_egg_preview", {}).is_empty(): return _error("egg_preview_pending", "Accept or decline the egg before changing mods.")
+	var refs: Array[Dictionary] = state.user_mods.duplicate(true)
+	var index := -1
+	for position in refs.size():
+		if String(refs[position].id) == mod_id: index = position
+	if value == (index >= 0): return {"ok": true, "unchanged": true}
+	if value:
+		var ref := UserModService.ref_for(mod_id)
+		if ref.is_empty(): return _error("mod_unavailable", "Mod %s is not installed." % mod_id)
+		refs.append(ref)
+	else:
+		var blockers := UserModService.removal_blockers(state, mod_id)
+		if not blockers.is_empty():
+			return _error("mod_content_owned", "Release or reset what comes from this mod first: %s." % "; ".join(blockers))
+		refs.remove_at(index)
+	var previous: Array[Dictionary] = state.user_mods.duplicate(true)
+	var activated := UserModService.activate(catalog, refs)
+	if not activated.ok:
+		UserModService.activate(catalog, previous)
+		return activated
+	var candidate = StateScript.new()
+	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	candidate.user_mods.assign(activated.refs)
+	_clamp_user_mod_stats(candidate)
+	ProgressionService.refresh_minion_pedia(candidate)
+	var errors: PackedStringArray = candidate.validation_errors(catalog)
+	var saved := _save_candidate(candidate) if errors.is_empty() else _error("invalid_campaign_state", "\n".join(errors))
+	if not saved.ok:
+		UserModService.activate(catalog, previous)
+		return saved
+	state = candidate
+	return {"ok": true, "mod_id": mod_id, "enabled": value}
 
 func set_debug_option(option: String, value: bool) -> Dictionary:
 	if not CampaignDebugService.available(state):

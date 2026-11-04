@@ -44,7 +44,7 @@ signal campaign_replaced
 
 enum Mode { OFFLINE, HOST, GUEST }
 
-const PROTOCOL_VERSION := 4
+const PROTOCOL_VERSION := 5
 const MODE_COOP := "coop"
 const MODE_FOLLOW := "follow"
 const MODE_VERSUS := "versus"
@@ -482,10 +482,14 @@ func leave(reason: String = "") -> void:
 ## the outgoing reliable queue to drain, so the old peer is polled until every
 ## connection has closed, then released.
 func _retire_peer(peer: ENetMultiplayerPeer) -> void:
-	if peer.host == null:
+	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		peer.close()
 		return
-	for connection in peer.host.get_peers():
+	var host := peer.host
+	if host == null:
+		peer.close()
+		return
+	for connection in host.get_peers():
 		connection.peer_disconnect_later()
 	_retiring.append({"peer": peer, "deadline": Time.get_ticks_msec() + RETIRE_TIMEOUT_MSEC})
 
@@ -494,10 +498,15 @@ func _poll_retiring() -> void:
 		var entry: Dictionary = _retiring[index]
 		var peer: ENetMultiplayerPeer = entry.peer
 		var open := false
-		if peer.host != null:
+		if peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED:
 			peer.poll()
-			for connection in peer.host.get_peers():
-				open = open or connection.get_state() != ENetPacketPeer.STATE_DISCONNECTED
+			# Polling can finish the disconnect and release the ENet host. Its
+			# getter is only valid while the multiplayer peer remains active.
+			if peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED:
+				var host := peer.host
+				if host != null:
+					for connection in host.get_peers():
+						open = open or connection.get_state() != ENetPacketPeer.STATE_DISCONNECTED
 		if not open or Time.get_ticks_msec() > int(entry.deadline):
 			peer.close()
 			_retiring.remove_at(index)
@@ -583,6 +592,11 @@ func _rpc_hello(protocol: int, content_version: String, username: String, reques
 		return
 	var sender := multiplayer.get_remote_sender_id()
 	var rejection := ""
+	if protocol == PROTOCOL_VERSION and content_version != _content_version() and _runtime != null and content_version.get_slice(UserModService.VERSION_SEPARATOR, 0) == UserModService.base_content_version(_runtime.catalog):
+		# Same build, different player mods: the guest switches to the host's
+		# set (if installed) and says hello again on the same connection.
+		_rpc_mods_required.rpc_id(sender, UserModService.active_refs())
+		return
 	if protocol != PROTOCOL_VERSION or content_version != _content_version():
 		rejection = "Version mismatch: the host runs a different build of the game."
 	elif not validate_username(username).is_empty():
@@ -658,6 +672,17 @@ func _guest_profile_for(username: String, request: Dictionary) -> Dictionary:
 @rpc("authority", "call_remote", "reliable", CHANNEL_WORLD)
 func _rpc_rejected(reason: String) -> void:
 	_fail_join(reason)
+
+@rpc("authority", "call_remote", "reliable", CHANNEL_WORLD)
+func _rpc_mods_required(refs: Array) -> void:
+	if _pending_join.is_empty() or _runtime == null:
+		return
+	var activated := UserModService.activate(_runtime.catalog, refs, true)
+	if not activated.ok:
+		_fail_join("The host plays with player mods you need first. Ask them for each mod's share code (Mod Workshop > Share).
+%s" % activated.message)
+		return
+	_rpc_hello.rpc_id(1, PROTOCOL_VERSION, _content_version(), local_name, _pending_join.get("request", {}))
 
 @rpc("authority", "call_remote", "reliable", CHANNEL_WORLD)
 func _rpc_welcome(roster: Dictionary, guest_state: Dictionary, world: Dictionary, location: Dictionary, lock: Dictionary, host_settings: Dictionary, info: Dictionary) -> void:

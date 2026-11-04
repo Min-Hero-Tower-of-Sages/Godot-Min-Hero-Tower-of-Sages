@@ -14,6 +14,8 @@ var turn_order: Array[StringName] = []
 var turn_index: int = 0
 var acted_ids: Array[StringName] = []
 var tie_first_team: int = 0
+# Opt-in "Piercing Over-Time" mod: DOT/HOT ticks skip type effectiveness.
+var periodic_ignores_types: bool = false
 var modifier_state: Dictionary = {}
 var result: Dictionary = {}
 
@@ -31,6 +33,7 @@ func snapshot() -> Dictionary:
 		"phase": phase, "active_actor_id": String(active_actor_id), "combatants": serialized,
 		"retired_combatants": retired_combatants.duplicate(true),
 		"turn_order": turn_order.duplicate(), "turn_index": turn_index, "acted_ids": acted_ids.duplicate(), "tie_first_team": tie_first_team,
+		"periodic_ignores_types": periodic_ignores_types,
 		"modifier_state": modifier_state.duplicate(true), "result": result.duplicate(true)
 	}
 
@@ -49,5 +52,6 @@ func restore(data: Dictionary) -> void:
 	turn_index = int(data.turn_index)
 	acted_ids.assign(data.get("acted_ids", []))
 	tie_first_team = int(data.get("tie_first_team", 0))
+	periodic_ignores_types = bool(data.get("periodic_ignores_types", false))
 	modifier_state = data.get("modifier_state", {}).duplicate(true)
 	result = data.result.duplicate(true)

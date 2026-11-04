@@ -4,6 +4,9 @@ extends Control
 const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
 const BUTTON_AUDIO := preload("res://src/presentation/source_menu_button_audio.gd")
 var flags: Dictionary = {}
+## Player mods (Mod Workshop) chosen for the new save, in activation order.
+var user_mod_ids: Array[String] = []
+var _player_mods: Array[Dictionary] = []
 var _body: Control
 var _description: Label
 var _buttons: Array[TextureButton] = []
@@ -36,16 +39,24 @@ func _clear_body() -> void:
 func _show_categories() -> void:
 	_category = -1
 	_clear_body()
-	for index in CampaignModService.CATEGORIES.size():
-		var category: Dictionary = CampaignModService.CATEGORIES[index]
-		var button := _text_button("", Vector2(11, 62 + index * 36), Vector2(193, 33), 12)
+	_player_mods.clear()
+	for manifest in UserModRepository.list():
+		if not manifest.get("broken", false): _player_mods.append(manifest)
+	var count := CampaignModService.CATEGORIES.size() + 1
+	var step := minf(36.0, 146.0 / count)
+	for index in count:
+		var description := "Mods made in the Mod Workshop on this computer." if index == CampaignModService.CATEGORIES.size() else String(CampaignModService.CATEGORIES[index].description)
+		var button := _text_button("", Vector2(11, 62 + index * step), Vector2(193, step - 3.0), 12)
 		button.pressed.connect(_open_category.bind(index))
-		button.mouse_entered.connect(_describe.bind(category.description))
+		button.mouse_entered.connect(_describe.bind(description))
 		_category_buttons.append(button)
 	_describe("Choose a category to configure your run. Enabled counts appear beside each category.")
 	_refresh()
 
 func _open_category(index: int) -> void:
+	if index == CampaignModService.CATEGORIES.size():
+		_open_player_mods()
+		return
 	if index < 0 or index >= CampaignModService.CATEGORIES.size(): return
 	_category = index
 	_clear_body()
@@ -85,6 +96,49 @@ func _open_category(index: int) -> void:
 	_describe(CampaignModService.OPTIONS[CampaignModService.option_index(category.groups[0])].description)
 	_refresh()
 
+func _open_player_mods() -> void:
+	_category = CampaignModService.CATEGORIES.size()
+	_clear_body()
+	var back := _text_button("< Back", Vector2(11, 48), Vector2(62, 25), 14)
+	back.pressed.connect(_show_categories)
+	_label("Player Mods", Vector2(11, 78), Vector2(193, 22), 15, _body)
+	var scroll := ScrollContainer.new()
+	scroll.position = Vector2(11, 105)
+	scroll.size = Vector2(193, 104)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_body.add_child(scroll)
+	var rows := VBoxContainer.new()
+	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	rows.add_theme_constant_override("separation", 0)
+	scroll.add_child(rows)
+	for manifest in _player_mods:
+		var mod_id := String(manifest.id)
+		var text := "%s\nBy %s · v%s" % [String(manifest.get("description", "")).left(160), manifest.get("author", "unknown"), manifest.get("version", "1")]
+		var row := Control.new()
+		row.custom_minimum_size = Vector2(185, 26)
+		row.mouse_filter = Control.MOUSE_FILTER_PASS
+		rows.add_child(row)
+		var caption := _label(String(manifest.name), Vector2(2, 1), Vector2(113, 24), 15, row)
+		caption.clip_text = true
+		caption.mouse_filter = Control.MOUSE_FILTER_PASS
+		caption.mouse_entered.connect(_describe.bind(text))
+		var toggle := SourceMenuArt.button(row, "menus_settings_offButton", Vector2(117, 2), _toggle_player.bind(mod_id))
+		if toggle != null:
+			toggle.ignore_texture_size = true
+			toggle.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+			toggle.size = Vector2(66, 24)
+			toggle.mouse_entered.connect(_describe.bind(text))
+			toggle.set_meta("player_mod", mod_id)
+			_buttons.append(toggle)
+			_option_indices.append(-1)
+	_describe("Choose player mods for this save. Change them later in Settings > Mod Menu." if not _player_mods.is_empty() else "No player mods are installed. Make one, or import a share code, in the Mod Workshop on the title screen.")
+	_refresh()
+
+func _toggle_player(mod_id: String) -> void:
+	if mod_id in user_mod_ids: user_mod_ids.erase(mod_id)
+	else: user_mod_ids.append(mod_id)
+	_refresh()
+
 func _toggle(index: int) -> void:
 	var option: Dictionary = CampaignModService.OPTIONS[index]
 	var value := not CampaignModService.group_enabled(flags, option.flags[0])
@@ -94,13 +148,20 @@ func _toggle(index: int) -> void:
 
 func _refresh() -> void:
 	for index in _buttons.size():
-		var option: Dictionary = CampaignModService.OPTIONS[_option_indices[index]]
-		var on := CampaignModService.group_enabled(flags, option.flags[0])
+		var on := false
+		if _option_indices[index] < 0:
+			on = String(_buttons[index].get_meta("player_mod", "")) in user_mod_ids
+		else:
+			var option: Dictionary = CampaignModService.OPTIONS[_option_indices[index]]
+			on = CampaignModService.group_enabled(flags, option.flags[0])
 		var art := SourceMenuArt.texture("menus_settings_onButton" if on else "menus_settings_offButton")
 		_buttons[index].texture_normal = art
 		_buttons[index].texture_hover = art
 		_buttons[index].texture_pressed = art
 	for index in _category_buttons.size():
+		if index == CampaignModService.CATEGORIES.size():
+			_category_buttons[index].text = "Player Mods  %d/%d" % [user_mod_ids.size(), _player_mods.size()]
+			continue
 		var category: Dictionary = CampaignModService.CATEGORIES[index]
 		var count := 0
 		for group in category.groups:

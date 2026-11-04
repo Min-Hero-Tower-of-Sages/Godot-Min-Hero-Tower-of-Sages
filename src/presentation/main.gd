@@ -6,6 +6,8 @@ signal campaign_defeat_return_requested
 signal campaign_forfeit_return_requested
 ## Spectated or arena battle finished; the shell returns everyone to the room.
 signal network_battle_finished
+## A Mod Workshop test battle was closed (see begin_sandbox_battle).
+signal sandbox_finished
 signal _network_command_arrived
 
 const RecoveredCatalog = preload("res://content/imported/recovered-20260911/catalog.tres")
@@ -154,6 +156,8 @@ var _hovered_effectiveness_move: MoveDefinition
 var _effectiveness_layer: Control
 var _effectiveness_badges: Dictionary = {}
 var _effectiveness_signature := ""
+var _presented_acted_ids: Dictionary = {}
+var _battle_backdrop: SourceBattleBackdrop
 var _stats_signature := 0
 var campaign_mode := false
 var campaign_settlement: Dictionary = {}
@@ -192,6 +196,8 @@ var _turns_played := 0
 ## Replay playback (net_role &"replay"): the recorded human commands are fed
 ## back in order; AI turns are recomputed by the engine as they were live.
 var replay_data: Dictionary = {}
+## Set by begin_sandbox_battle for Mod Workshop test battles.
+var sandbox_spec: Dictionary = {}
 var settings_service: CampaignSettingsService
 var _audio_controls: Control
 var _music_toggle: TextureButton
@@ -210,6 +216,8 @@ var _clock_base_real := 0
 var _clock_base_virtual := 0
 
 func _ready() -> void:
+	_battle_backdrop = SourceBattleBackdrop.new()
+	_battle_backdrop.configure(self)
 	preload("res://src/presentation/source_menu_button_audio.gd").bind_tree(self)
 	_create_audio_toggles()
 	# Hovered (passing clicks on) so its cursor shape is the one shown.
@@ -301,6 +309,25 @@ func begin_network_battle(spec: Dictionary) -> void:
 	start_overlay.visible = false
 	forfeit_button.visible = net_role in [&"pvp", &"ally"]
 	_connect_network_battle(net)
+	await _start_battle()
+
+## A Mod Workshop test battle: `spec.setup` holds both teams (built by
+## ModWorkshopController) and `spec.encounter_id` the trainer whose AI and
+## battle modifiers apply. Nothing is saved; leaves with sandbox_finished.
+func begin_sandbox_battle(spec: Dictionary) -> void:
+	sandbox_spec = spec.duplicate(true)
+	campaign_mode = false
+	start_overlay.visible = false
+	var leave := Button.new()
+	leave.name = "SandboxLeaveButton"
+	leave.text = "Back to Workshop"
+	leave.position = Vector2(185, 6)
+	leave.size = Vector2(134, 26)
+	leave.z_index = 1300
+	leave.add_theme_font_override("font", BURBIN_FONT)
+	leave.add_theme_font_size_override("font_size", 14)
+	leave.pressed.connect(func() -> void: sandbox_finished.emit())
+	add_child(leave)
 	await _start_battle()
 
 ## Watch a recorded battle (see BattleReplay). Leaves with network_battle_finished.
@@ -538,6 +565,7 @@ func _network_player_name(team: int) -> String:
 	return String(names.get(team, "Team %d" % (team + 1)))
 
 func _process(_delta: float) -> void:
+	if _battle_backdrop != null: _battle_backdrop.advance(_delta)
 	if is_instance_valid(type_guide) and (busy or _battle_result_presented): _close_type_guide()
 	if is_instance_valid(_type_guide_button):
 		_type_guide_button.visible = net_role != &"replay" # Keep replay transport controls unobstructed.
@@ -685,7 +713,7 @@ func _start_battle() -> void:
 	_replay_cursor = 0
 	_replay_finished = false
 	var campaign_runtime: Variant = get_node_or_null("/root/CampaignRuntime")
-	catalog = campaign_runtime.catalog if (campaign_mode or not net_role.is_empty()) and campaign_runtime != null else RecoveredCatalog
+	catalog = campaign_runtime.catalog if (campaign_mode or not net_role.is_empty() or not sandbox_spec.is_empty()) and campaign_runtime != null else RecoveredCatalog
 	for required_pack in [BATTLE_DEMO_PACK, CAMPAIGN_SLICE_PACK]:
 		var already_loaded := false
 		for pack in catalog.packs:
@@ -704,6 +732,9 @@ func _start_battle() -> void:
 	if campaign_mode and campaign_runtime != null and campaign_runtime.session != null and campaign_runtime.session.state != null:
 		var pending_context: Dictionary = campaign_runtime.session.state.pending_battle
 		source_encounter = catalog.get_definition(StringName(pending_context.get("encounter_id", ""))) as EncounterDefinition
+	elif not sandbox_spec.is_empty():
+		source_encounter = catalog.get_definition(StringName(sandbox_spec.get("encounter_id", SOURCE_ENCOUNTER_ID))) as EncounterDefinition
+		if source_encounter == null: source_encounter = catalog.get_definition(&"base:encounter/grass_floor1_room1_normal") as EncounterDefinition
 	else:
 		source_encounter = catalog.get_definition(SOURCE_ENCOUNTER_ID) as EncounterDefinition
 	if source_encounter == null:
@@ -717,7 +748,7 @@ func _start_battle() -> void:
 		"ai_teams": [1],
 		"ai_difficulty": {"trainer_type": "normal", "floor_rate": 0.5},
 	}
-	if campaign_mode:
+	if campaign_mode or not String(sandbox_spec.get("encounter_id", "")).is_empty():
 		rules.display_name = "Campaign trainer battle"
 		rules.configuration["refill_on_activation"] = true
 		rules.configuration["ai_difficulty"] = {
@@ -726,11 +757,12 @@ func _start_battle() -> void:
 			"floor_index": source_encounter.source_floor_index,
 		}
 	var trainer_modifier_configuration: Dictionary = source_encounter.battle_modifier_configuration.duplicate(true)
+	if not sandbox_spec.is_empty() and String(sandbox_spec.get("encounter_id", "")).is_empty(): trainer_modifier_configuration.clear()
 	if not trainer_modifier_configuration.is_empty():
 		rules.configuration["battle_modifiers"] = trainer_modifier_configuration
 	controller = BattleController.new()
 	campaign_settlement.clear()
-	var setup: Dictionary = campaign_runtime.prepared_battle_setup.duplicate(true) if campaign_mode and campaign_runtime != null else _build_battle_setup()
+	var setup: Dictionary = campaign_runtime.prepared_battle_setup.duplicate(true) if campaign_mode and campaign_runtime != null else sandbox_spec.setup.duplicate(true) if not sandbox_spec.is_empty() else _build_battle_setup()
 	var battle_seed := 20260911
 	if campaign_mode and campaign_runtime != null and campaign_runtime.session.state != null:
 		battle_seed += int(campaign_runtime.session.state.battle_sequence)
@@ -1560,7 +1592,7 @@ func _refresh_effectiveness_hints() -> void:
 			# updates retain engine team numbers. Compare consistently in display space.
 			var target_state := view.state_cache.duplicate()
 			target_state["team"] = view.team
-			var rows := TypeEffectivenessPreview.hints(move, actor.instance_id, actor.team, target_state, catalog.get_type_chart(), known)
+			var rows := TypeEffectivenessPreview.hints(move, actor.instance_id, actor.team, target_state, catalog.get_type_chart(), known, not controller.engine.periodic_ignores_types())
 			# Neutral needs no extra HUD; keep just advantages/resistances or ?.
 			rows = rows.filter(func(row: Dictionary) -> bool: return not row.has("multiplier") or not is_equal_approx(float(row.multiplier), 1.0))
 			if rows.is_empty(): continue
@@ -1782,6 +1814,11 @@ func _handle_response(response: BattleResponse) -> void:
 	await _continue_battle()
 
 func _present(events: Array[BattleEvent]) -> void:
+	# Complete the outgoing selector before any cast, including automatic
+	# single-target moves. Its energy bar used to linger over the attack.
+	if move_panel.visible:
+		_animate_move_selector_out()
+		await _wait_until_usec(_move_selector_exit_deadline_usec)
 	var source_queue := preload("res://src/presentation/source_battle_event_queue.gd").build(events)
 	var presentation_events: Array[BattleEvent] = source_queue.events
 	var deferred_resources: Dictionary = source_queue.resource_events
@@ -2048,18 +2085,29 @@ func _animate_queued_move(event: BattleEvent, targets: Array[StringName]) -> Dic
 	for delay in delays.values(): remaining_wait = maxf(remaining_wait, float(delay))
 	var cleanup_deadline := _now_usec() + roundi(_last_move_visual_duration_seconds * 1000000.0)
 	await _wait_until_usec(_now_usec() + roundi(remaining_wait * 1000000.0))
+	var next_by_target: Dictionary = {}
+	var callout_start := _now_usec()
+	var queue_finish := callout_start
 	for callout in stat_callouts:
-		await _wait_until_usec(_now_usec() + roundi(float(callout.lead_seconds) * 1000000.0))
-		var recipient := combatant_views.get(String(callout.target_id)) as BattleCombatantView
-		if recipient != null:
-			var positive := int(callout.amount) > 0
-			var stat_name := String(callout.stat_type_id).get_slice("/", 1).capitalize()
-			recipient.show_status_badge(BattleCombatantView.STAT_INCREASE_BADGE if positive else BattleCombatantView.STAT_DECREASE_BADGE, stat_name)
-			audio_controller.play_sound("battle_buff" if positive else "battle_debuff", 0.5 if positive else 0.4)
-		cleanup_deadline = maxi(cleanup_deadline, _now_usec() + 800000)
-		await _wait_until_usec(_now_usec() + 300000)
+		var target_id := String(callout.target_id)
+		var delay := float(next_by_target.get(target_id, 0.0)) + float(callout.lead_seconds)
+		next_by_target[target_id] = delay + 0.3
+		var feedback := create_tween()
+		feedback.tween_interval(delay)
+		feedback.tween_callback(_show_stat_callout.bind(callout))
+		cleanup_deadline = maxi(cleanup_deadline, callout_start + roundi((delay + 0.8) * 1000000.0))
+		queue_finish = maxi(queue_finish, callout_start + roundi((delay + 0.3) * 1000000.0))
+	await _wait_until_usec(queue_finish)
 	_last_move_visual_duration_seconds = maxf(0.0, float(cleanup_deadline - _now_usec()) / 1000000.0)
 	return {"": 0.0}
+
+func _show_stat_callout(callout: Dictionary) -> void:
+	var recipient := combatant_views.get(String(callout.target_id)) as BattleCombatantView
+	if recipient == null: return
+	var positive := int(callout.amount) > 0
+	var stat_name := String(callout.stat_type_id).get_slice("/", 1).capitalize()
+	recipient.show_status_badge(BattleCombatantView.STAT_INCREASE_BADGE if positive else BattleCombatantView.STAT_DECREASE_BADGE, stat_name)
+	audio_controller.play_sound("battle_buff" if positive else "battle_debuff", 0.5 if positive else 0.4)
 
 func _animate_attack_queue(event: BattleEvent, targets: Array[StringName]) -> Dictionary:
 	var move := catalog.get_definition(StringName(event.values.get("move_id", ""))) as MoveDefinition if catalog != null else null
@@ -2468,7 +2516,8 @@ func _animate_rise_out_of_target(texture: Texture2D, target_view: BattleCombatan
 		if not no_rise:
 			tween.tween_property(effect, "position:y", effect.position.y - rise_distance, rise_speed)
 		tween.tween_property(effect, "scale", Vector2.ONE * finish_scale, rise_speed)
-		tween.chain().tween_interval(final_hang)
+		tween.set_parallel(false)
+		tween.tween_interval(final_hang)
 		tween.tween_property(effect, "modulate:a", 0.0, 0.2)
 		tween.tween_callback(effect.queue_free)
 		var shake_count := int(profile.get("shake_count", 0))
@@ -2759,6 +2808,13 @@ func _animate_burn_at_target(texture: Texture2D, target_view: BattleCombatantVie
 			x_tween.tween_property(effect_sprite, "position:x", drift_position, 0.3)
 
 func _apply_event_values(event: BattleEvent) -> void:
+	if event.kind == &"round_started":
+		_presented_acted_ids.clear()
+		for raw_view in combatant_views.values(): (raw_view as BattleCombatantView).set_turn_spent(false)
+	elif event.kind in [&"move_used", &"charge_started", &"charge_progressed", &"frozen_turn_skipped", &"stunned_turn_skipped", &"exhausted_turn_skipped"]:
+		_presented_acted_ids[String(event.actor_id)] = true
+		var acting_view := combatant_views.get(String(event.actor_id)) as BattleCombatantView
+		if acting_view != null: acting_view.set_turn_spent(true)
 	if event.values.has("turn_order"):
 		_set_presented_turn_order(event.values.turn_order)
 	if event.kind == &"battle_mod_timer_triggered":
@@ -3233,6 +3289,12 @@ func _sync_from_engine() -> void:
 		else:
 			view.update_from_state(state, true)
 	_set_presented_turn_order(snapshot.state.turn_order)
+	_presented_acted_ids.clear()
+	for actor_id in snapshot.state.get("acted_ids", []):
+		if String(actor_id) != String(snapshot.state.get("active_actor_id", "")): _presented_acted_ids[String(actor_id)] = true
+	for raw_view in combatant_views.values():
+		var order_view := raw_view as BattleCombatantView
+		order_view.set_turn_spent(_presented_acted_ids.has(String(order_view.instance_id)))
 	_refresh_buff_icons(states)
 	_refresh_battle_modifier_counters(snapshot)
 
@@ -3608,7 +3670,7 @@ func _create_audio_toggles() -> void:
 	_effectiveness_layer = Control.new()
 	_effectiveness_layer.name = "EffectivenessHints"
 	_effectiveness_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_effectiveness_layer.z_index = 1050
+	_effectiveness_layer.z_index = 1150
 	add_child(_effectiveness_layer)
 
 func _refresh_audio_toggles() -> void:

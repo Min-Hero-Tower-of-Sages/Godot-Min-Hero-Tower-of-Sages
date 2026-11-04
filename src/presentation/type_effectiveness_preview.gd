@@ -8,11 +8,14 @@ const NORMAL := Color8(235, 234, 235)
 static func multiplier_text(value: float) -> String:
 	return ("%.2f" % value).trim_suffix("0").trim_suffix(".") if not is_equal_approx(value, roundf(value)) else str(int(roundf(value)))
 
-static func applicable_kinds(move: MoveDefinition, actor_id: StringName, actor_team: int, target: Dictionary) -> Array[bool]:
+# periodic_typed is false under the Piercing Over-Time mod, whose DOT/HOT ticks
+# skip the type chart, so only direct hits produce a matchup hint.
+static func applicable_kinds(move: MoveDefinition, actor_id: StringName, actor_team: int, target: Dictionary, periodic_typed: bool = true) -> Array[bool]:
 	var result: Array[bool] = [] # false: damage, true: healing
 	for effect in move.effects:
 		if effect == null or not effect.uses_type_effectiveness or (effect.amount == 0 and effect.random_bonus == 0): continue
 		if not effect.kind in [EffectDefinition.Kind.DAMAGE, EffectDefinition.Kind.PERIODIC_DAMAGE, EffectDefinition.Kind.HEAL, EffectDefinition.Kind.PERIODIC_HEAL]: continue
+		if not periodic_typed and effect.kind in [EffectDefinition.Kind.PERIODIC_DAMAGE, EffectDefinition.Kind.PERIODIC_HEAL]: continue
 		var allied := int(target.get("team", -1)) == actor_team
 		match effect.target_scope:
 			EffectDefinition.TargetScope.ACTOR:
@@ -25,9 +28,9 @@ static func applicable_kinds(move: MoveDefinition, actor_id: StringName, actor_t
 		if healing not in result: result.append(healing)
 	return result
 
-static func hints(move: MoveDefinition, actor_id: StringName, actor_team: int, target: Dictionary, chart: TypeChartDefinition, known: bool = true) -> Array[Dictionary]:
+static func hints(move: MoveDefinition, actor_id: StringName, actor_team: int, target: Dictionary, chart: TypeChartDefinition, known: bool = true, periodic_typed: bool = true) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
-	var kinds := applicable_kinds(move, actor_id, actor_team, target)
+	var kinds := applicable_kinds(move, actor_id, actor_team, target, periodic_typed)
 	if kinds.is_empty() or chart == null: return result
 	if not known: return [{"text": "Unknown matchup", "compact": "?", "color": NORMAL}]
 	var types: Array[StringName] = []

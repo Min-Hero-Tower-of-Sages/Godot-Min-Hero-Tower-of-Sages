@@ -6,6 +6,7 @@ const FONT: Font = preload("res://content/base/fonts/BurbinCasual.ttf")
 const NEW_CAMPAIGN_INTRO := preload("res://src/presentation/source_new_campaign_intro.gd")
 const MULTIPLAYER_CONTROLLER := preload("res://src/application/multiplayer_shell_controller.gd")
 const BATTLE_HISTORY_CONTROLLER := preload("res://src/application/battle_history_controller.gd")
+const MOD_WORKSHOP_CONTROLLER := preload("res://src/application/mod_workshop_controller.gd")
 
 const TITLE_BACKGROUND := "res://content/base/art/source_symbols/1242_Utilities.SpriteHandler_mainMenu_titleScreen_background.png"
 const TITLE_LOGO := "res://content/base/art/source_symbols/353_Utilities.SpriteHandler_mainMenu_titleLogo.png"
@@ -94,6 +95,7 @@ var party_swap_selected_storage := -1
 var party_manager_hint: Label
 var _multiplayer: MultiplayerShellController
 var _battle_history: BattleHistoryController
+var _mod_workshop: ModWorkshopController
 ## Resolved at runtime so this script compiles before autoloads exist.
 var net: Node:
 	get: return get_node_or_null("/root/NetSession")
@@ -118,6 +120,10 @@ func _ready() -> void:
 	_battle_history.name = "BattleHistory"
 	_battle_history.shell = self
 	add_child(_battle_history)
+	_mod_workshop = MOD_WORKSHOP_CONTROLLER.new()
+	_mod_workshop.name = "ModWorkshopController"
+	_mod_workshop.shell = self
+	add_child(_mod_workshop)
 	_show_title_screen()
 
 func show_catalog_menu(menu_id: StringName, context: Dictionary = {}) -> bool:
@@ -394,20 +400,23 @@ func _reveal_title_save_slots(screen: Control, immediate: bool) -> void:
 			_activate_save_card_later(card, 0.0)
 	# Below the save cards (they end at y 398) and above Credits (y 469),
 	# skinned with the save card's own stone art so they read as part of the list.
-	var join := _title_card_button(existing_slots, "Join a friend's game", Vector2(140.0, 412.0), Vector2(229.0, 42.0))
+	var join := _title_card_button(existing_slots, "Join a friend's game", Vector2(48.0, 412.0), Vector2(220.0, 42.0))
 	join.name = "JoinMultiplayerButton"
 	join.pressed.connect(_multiplayer.show_join_view)
-	var replays := _title_card_button(existing_slots, "Battle replays", Vector2(377.0, 412.0), Vector2(183.0, 42.0))
+	var replays := _title_card_button(existing_slots, "Battle replays", Vector2(276.0, 412.0), Vector2(174.0, 42.0))
 	replays.name = "BattleReplaysButton"
 	replays.pressed.connect(_battle_history.show_history.bind(false))
+	var workshop := _title_card_button(existing_slots, "Mod Workshop", Vector2(458.0, 412.0), Vector2(194.0, 42.0))
+	workshop.name = "ModWorkshopButton"
+	workshop.pressed.connect(_mod_workshop.show_workshop)
 	if not immediate:
-		for extra in [join, replays]:
+		for extra in [join, replays, workshop]:
 			# Slides up after the last card, like the cards themselves.
 			var target: Vector2 = extra.position
 			extra.position = target + Vector2(0.0, 30.0)
 			extra.modulate.a = 0.0
 			extra.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			var extra_tween := create_tween()
+			var extra_tween: Tween = extra.create_tween()
 			extra.set_meta("save_card_entrance", extra_tween)
 			extra_tween.tween_interval(0.3 * float(SaveRepository.SLOT_COUNT))
 			extra_tween.tween_property(extra, "position", target, 0.6)
@@ -729,11 +738,11 @@ func _on_save_slot_selected(slot: int, is_used: bool) -> void:
 		if not result.get("ok", false):
 			_show_notice("Unable to load slot %d: %s" % [slot, result.get("message", "unknown save error")])
 			return
-		_enter_loaded_save_with_transition()
+		_enter_loaded_save_with_transition(result.get("changed_user_mods", []))
 		return
 	_show_character_creation()
 
-func _enter_loaded_save_with_transition() -> void:
+func _enter_loaded_save_with_transition(changed_mods: Array = []) -> void:
 	_room_transition_active = true
 	_campaign_audio.fade_music_to(0.0, 0.8)
 	var curtain := _ensure_room_transition_curtain()
@@ -754,6 +763,8 @@ func _enter_loaded_save_with_transition() -> void:
 	if is_instance_valid(current_room):
 		current_room.set_controls_enabled(true)
 	_room_transition_active = false
+	if not changed_mods.is_empty():
+		_show_notice("Updated player mods: %s. This save is now using the installed versions." % ", ".join(changed_mods))
 
 func _show_character_creation() -> void:
 	var screen: Control
@@ -907,7 +918,8 @@ func _create_campaign() -> void:
 	var character_name := name_entry.text.strip_edges() if name_entry != null else ""
 	var mod_selector := current_screen.find_child("ModSelector", true, false) as CampaignModSelector
 	var mod_flags: Dictionary = mod_selector.flags if mod_selector != null else {}
-	var result: Dictionary = runtime.start_new_campaign(selected_slot, character_name, StringName(selected_gender), mod_flags)
+	var user_mod_ids: Array = mod_selector.user_mod_ids if mod_selector != null else []
+	var result: Dictionary = runtime.start_new_campaign(selected_slot, character_name, StringName(selected_gender), mod_flags, user_mod_ids)
 	if not result.get("ok", false):
 		_show_notice("Could not start campaign: %s" % result.get("message", "unknown save error"))
 		return

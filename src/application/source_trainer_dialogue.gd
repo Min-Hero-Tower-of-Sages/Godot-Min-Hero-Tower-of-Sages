@@ -17,4 +17,5 @@ static func for_encounter(encounter: EncounterDefinition, state = null) -> Dicti
 		entry["first_visit_text"] = "In Hard Mode, we must fight!"
 	if encounter.source_trainer_type == &"TrainerType.TRAINER_GYM_5" and CampaignModService.enabled(state, "skill_gems"):
 		entry["after_win_text"] = String(entry.get("after_win_text", "")).replace("With the talo Sage seal you have received a super strong gem.", "With the talo Sage seal you have unlocked Random Forge at the Gem Combiner. Combine three stat gems of the same tier to create a skill gem!")
+	entry.merge(UserModService.dialogue_for(encounter.id), true)
 	return entry

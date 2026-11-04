@@ -15,12 +15,13 @@ const OPTIONS := [
 	{"name": "Starter Eggs", "flags": ["starter_eggs"], "description": "Find Ticub and Zapig in Floor 1-1 hatchery (also Hard Mode): 10% each. Other minions share 80%."},
 	{"name": "Skill Gems", "flags": ["skill_gems"], "description": "Equip gems to gain skills. Rare field finds and Hard Sage rewards. Defeat Talo to unlock Random Forge."},
 	{"name": "Gem Affinity", "flags": ["gem_affinity"], "description": "Affinity gem stats +20%. Fixes Energy gems' extra 50%. Base Energy and the 5% bonus stay."},
+	{"name": "Piercing Over-Time", "flags": ["piercing_over_time"], "description": "Damage and healing over time ignore minion types: a Burn ticks fire minions for full damage. Direct hits still use types."},
 ]
 const CATEGORIES := [
 	{"id": "minions", "name": "Extra Minions", "groups": ["dirtFish", "waterRay1", "holyBird1", "HolyEye1", "starter_eggs"], "description": "Add minion families to tower hatcheries. Select a mod to see where it can be found."},
 	{"id": "challenges", "name": "Challenge Rules", "groups": ["nuzlocke", "no_natural_regen"], "description": "Optional rules for a tougher run. Read each rule before enabling it."},
 	{"id": "experimental", "name": "Experimental Content", "groups": ["iceFloor"], "description": "Recovered, unfinished content. Read its limitations before enabling it."},
-	{"id": "gameplay", "name": "Gameplay Tweaks", "groups": ["restored_moves", "shinies", "skill_gems", "gem_affinity", "debug_mode"], "description": "Move-tree additions, skill gems, gem affinity, shiny variants and optional debug settings."},
+	{"id": "gameplay", "name": "Gameplay Tweaks", "groups": ["restored_moves", "shinies", "skill_gems", "gem_affinity", "piercing_over_time", "debug_mode"], "description": "Move-tree additions, skill gems, gem affinity, over-time rules, shiny variants and optional debug settings."},
 ]
 # Bits belong to the recovered egg-table format, not presentation ordering.
 const EGG_POOL_BITS := {"dirtFish": 1, "waterRay1": 2, "holyBird1": 4, "HolyEye1": 8}
@@ -47,7 +48,7 @@ static func normalize(flags: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
 	for key in flags:
 		var canonical := String(ContentCatalog.canonical_mod_flag_id(StringName(key)))
-		if canonical in MINION_FLAGS or canonical in ["iceFloor", "nuzlocke", "no_natural_regen", "restored_moves", "restored_martyr", "restored_righteous_fate", "shinies", "debug_mode", "starter_eggs", "skill_gems", "gem_affinity"]:
+		if canonical in MINION_FLAGS or canonical in ["iceFloor", "nuzlocke", "no_natural_regen", "restored_moves", "restored_martyr", "restored_righteous_fate", "shinies", "debug_mode", "starter_eggs", "skill_gems", "gem_affinity", "piercing_over_time"]:
 			result[canonical] = bool(flags[key])
 	return result
 
@@ -85,6 +86,7 @@ static func change_rule(group: String) -> String:
 		"gem_affinity": return "Switch either way. Existing gems are recalculated; current HP/energy are capped without a free refill."
 		"shinies": return "Switch either way. Changes future shiny rolls; existing minions and cached egg rolls keep their appearance."
 		"debug_mode": return "Switch either way. Off clears debug toggles. Granted levels, shinies, upgrades and keys remain."
+		"piercing_over_time": return "Switch either way. Applies from the next battle; damage and healing over time then ignore minion types."
 		"no_natural_regen": return "Switch either way. Changes future natural healing; does not refill the party immediately."
 		_: return "Switch either way. Changes future hatchery choices; owned minions, evolutions and recorded discoveries stay available."
 
@@ -116,6 +118,8 @@ static func talent_tree(state, definition: MinionDefinition, tree_index: int, ca
 
 static func minion_is_available(state, definition: MinionDefinition) -> bool:
 	if definition.source_mod == &"base": return true
+	# Player mods are only in the catalog while the save has them enabled.
+	if UserModService.is_mod_definition(definition): return true
 	if state != null:
 		for owned in state.party + state.storage:
 			if owned.definition_id == definition.id: return true
@@ -152,7 +156,7 @@ static func egg_pool(state, source_floor: int, fallback: Dictionary) -> Dictiona
 			pool.candidates.append_array(["base:minion/tiger_1", "base:minion/fire_pig_1"])
 			weights.append_array([10, 10])
 			pool["weights"] = weights
-	return pool
+	return UserModService.hatchery_pool(source_floor, pool)
 
 static func retire_fainted(state, fainted_ids: Array[StringName]) -> void:
 	if fainted_ids.is_empty(): return

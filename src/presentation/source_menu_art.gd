@@ -7,6 +7,9 @@ static var _paths: Dictionary = {}
 static var _symbols_loaded := false
 
 static func texture(symbol: String) -> Texture2D:
+	var modded := UserModAssets.menu_texture(symbol)
+	if modded != null:
+		return modded
 	if not _symbols_loaded:
 		_symbols_loaded = true
 		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(SYMBOLS_PATH))

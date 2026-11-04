@@ -87,6 +87,12 @@ func _body(view: BattleCombatantView) -> Vector2:
 func _choosable_buttons(battle: Node) -> int:
 	var count := 0
 	for child in battle.move_buttons.get_children():
-		if child is Button and (child as Button).pressed.get_connections().size() > 0:
-			count += 1
+		if not child is Button: continue
+		# All buttons have a menu-sound callback, including read-only previews.
+		# Only the battle's move-selection callback makes a move choosable.
+		for connection in (child as Button).pressed.get_connections():
+			var callback: Callable = connection.callable
+			if callback.get_object() == battle and callback.get_method() == &"_choose_move":
+				count += 1
+				break
 	return count

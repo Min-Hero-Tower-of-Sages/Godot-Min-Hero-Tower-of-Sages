@@ -11,6 +11,10 @@ const LEGACY_MOD_FLAG_ALIASES := {
 
 @export var content_version: String = "0.1.0-foundation"
 @export var packs: Array[ContentPackDefinition] = []
+## Callable(definitions_by_id: Dictionary, errors: PackedStringArray) run after
+## every rebuild. Player mods edit rooms here because rooms are rebuilt from
+## their JSON graphs on each index.
+var post_index_hooks: Array[Callable] = []
 
 var _by_id: Dictionary = {}
 var _indexed_signature: Array = []
@@ -51,6 +55,8 @@ func rebuild_index() -> PackedStringArray:
 			for error in room.validation_errors(): errors.append(error)
 			_register(room, errors)
 	_bind_standard_map_trainers()
+	for hook in post_index_hooks:
+		if hook.is_valid(): hook.call(_by_id, errors)
 	_validate_references(errors)
 	_indexed_signature = _pack_signature()
 	_index_errors = errors.duplicate()

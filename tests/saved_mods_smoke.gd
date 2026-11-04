@@ -150,7 +150,7 @@ func _check_ui() -> void:
 	_check(view.find_child("SavedModMenuButton", true, false) != null and view.find_child("DebugMenuButton", true, false) == null, "Settings exposes mods without requiring Debug Mode")
 	view._open_mods()
 	var mods := view.get_node("SavedModMenu") as CampaignModMenuView
-	_check(mods._category_buttons.size() == CampaignModService.CATEGORIES.size(), "Saved mod categories are available")
+	_check(mods._category_buttons.size() == CampaignModService.CATEGORIES.size() + 1, "Saved mod categories include Player Mods")
 	mods._open_category(3)
 	mods._toggle("debug_mode")
 	_check(CampaignDebugService.available(session.state), "In-save toggle saves through the session")

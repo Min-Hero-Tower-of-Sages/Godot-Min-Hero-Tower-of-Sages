@@ -34,6 +34,9 @@ var room_state: Dictionary = {"current_room_id": "", "flags": {}}
 var safe_location: Dictionary = {}
 var active_mods: Dictionary = {}
 var pending_mods: Dictionary = {}
+## Player-made mods this save uses: [{id, name, version, fingerprint}], in
+## activation order. See UserModService.
+var user_mods: Array[Dictionary] = []
 var battle_sequence: int = 0
 var pending_battle: Dictionary = {}
 ## Loss XP is committed before the blackout/checkpoint return. Persist the
@@ -71,6 +74,7 @@ func to_dictionary(content_version: String = "", include_runtime_context: bool =
 		"safe_location": safe_location.duplicate(true),
 		"active_mods": active_mods.duplicate(true),
 		"pending_mods": pending_mods.duplicate(true),
+		"user_mods": user_mods.duplicate(true),
 		"battle_sequence": battle_sequence,
 		"pending_battle": pending_battle.duplicate(true),
 		"pending_defeat_return": pending_defeat_return.duplicate(true),
@@ -119,6 +123,10 @@ func load_dictionary(data: Dictionary) -> void:
 	safe_location = (data.get("safe_location", {}) as Dictionary).duplicate(true)
 	active_mods = (data.get("active_mods", {}) as Dictionary).duplicate(true)
 	pending_mods = (data.get("pending_mods", {}) as Dictionary).duplicate(true)
+	user_mods.clear()
+	for raw_ref in data.get("user_mods", []):
+		if raw_ref is Dictionary and not String(raw_ref.get("id", "")).is_empty():
+			user_mods.append({"id": String(raw_ref.id), "name": String(raw_ref.get("name", raw_ref.id)), "version": String(raw_ref.get("version", "1")), "fingerprint": String(raw_ref.get("fingerprint", ""))})
 	battle_sequence = int(data.get("battle_sequence", 0))
 	pending_battle = (data.get("pending_battle", {}) as Dictionary).duplicate(true)
 	pending_defeat_return = (data.get("pending_defeat_return", {}) as Dictionary).duplicate(true)

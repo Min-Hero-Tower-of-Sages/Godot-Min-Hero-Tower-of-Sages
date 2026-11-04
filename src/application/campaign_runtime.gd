@@ -101,20 +101,29 @@ func _ready() -> void:
 		push_error("Campaign catalog failed validation: %s" % ", ".join(errors))
 	session = SESSION_SCRIPT.new()
 	session.catalog = catalog
+	session.user_mod_changes_allowed = func() -> bool:
+		var net := get_node_or_null("/root/NetSession")
+		return net == null or not net.is_active()
 	var spawn_migration: Dictionary = session.repair_legacy_start_spawns()
 	if not spawn_migration.ok:
 		push_warning("Some legacy save spawn positions could not be repaired: %s" % "; ".join(spawn_migration.failures))
 
-func start_new_campaign(slot: int, character_name: String, gender: StringName, mod_flags: Dictionary = {}) -> Dictionary:
+func start_new_campaign(slot: int, character_name: String, gender: StringName, mod_flags: Dictionary = {}, user_mod_ids: Array = []) -> Dictionary:
 	if session == null:
 		return _error("runtime_not_ready", "campaign runtime has not initialized")
+	# Build newly obtained starters from this save's content, including patched
+	# starting moves, rather than from the previously loaded save's catalog.
+	var refs: Array[Dictionary] = []
+	for mod_id in user_mod_ids: refs.append({"id": String(mod_id)})
+	var activated := UserModService.activate(catalog, refs)
+	if not activated.ok: return activated
 	var party := CampaignProgressionService.starter_party(catalog, "slot-%d-" % slot)
 	if party.size() != CampaignProgressionService.STARTERS.size():
 		return _error("missing_starter", "a starter minion definition is missing")
 	var resolved_name := character_name.strip_edges()
 	if resolved_name.is_empty():
 		resolved_name = "Vala" if gender == &"female" else "Ryder"
-	var result := session.start_new(&"base:campaign/standard_tower", party, {"name": resolved_name, "gender": String(gender)}, slot, false, mod_flags)
+	var result := session.start_new(&"base:campaign/standard_tower", party, {"name": resolved_name, "gender": String(gender)}, slot, false, mod_flags, user_mod_ids)
 	if result.ok:
 		active_campaign_battle = false
 		campaign_return_pending = false

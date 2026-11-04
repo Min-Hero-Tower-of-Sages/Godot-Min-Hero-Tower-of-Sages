@@ -106,6 +106,12 @@ func validate(payload: Dictionary) -> Dictionary:
 						return _error("invalid_save", "owned skill gem level is invalid")
 				_:
 					return _error("invalid_save", "owned gem kind is invalid")
+		if payload.has("user_mods"):
+			if not payload.user_mods is Array:
+				return _error("invalid_save", "user_mods must be an array")
+			for ref in payload.user_mods:
+				if not ref is Dictionary or not ref.get("id") is String or String(ref.id).is_empty():
+					return _error("invalid_save", "user mod references need an id")
 		if not payload.applied_battle_ids is Array:
 			return _error("invalid_save", "applied battle IDs must be an array")
 		if int(payload.battle_sequence) < 0:

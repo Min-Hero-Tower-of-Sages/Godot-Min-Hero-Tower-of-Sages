@@ -209,6 +209,7 @@ static func race_state_payload(catalog: ContentCatalog, campaign_id: StringName,
 	var spawn_id := String(room.spawn_ids[0]) if not room.spawn_ids.is_empty() else ""
 	var position: Vector2 = room.spawn_positions.get(spawn_id, Vector2.ZERO)
 	var state := CampaignState.new()
+	state.user_mods.assign(UserModService.active_refs())
 	state.campaign_id = campaign_id
 	state.current_room_id = room.id
 	state.progression["eggery_picks_remaining"] = 1

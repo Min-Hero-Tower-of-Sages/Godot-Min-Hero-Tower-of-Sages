@@ -21,3 +21,10 @@ file is kept as `.bak` by the atomic replacement path.
 Future migrations must remain pure transformations from schema N to N+1, validate
 every referenced content ID against the active catalog, and never overwrite a
 save whose schema is newer than the running build. Flash import is out of scope.
+
+Player mods use an optional schema-2 `user_mods` array of
+`{id, name, version, fingerprint}` references in activation order. Older saves
+default to an empty array. The session activates these packs before validating
+content IDs; a missing or invalid mod stops loading. Edited installed mods
+refresh their references after a successful load. Multiplayer detached states
+require exact fingerprints. See [the Workshop guide](USER_MODS.md).

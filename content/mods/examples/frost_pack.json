@@ -1,0 +1,102 @@
+{
+	"format": 1,
+	"id": "frost_pack",
+	"name": "Frost Pack",
+	"version": "1.0.0",
+	"author": "Min Hero Extended",
+	"description": "Example mod: a Frost type, the Frost Bite move, the Frostcub line in the Floor 1 hatchery, a tougher first trainer and a small Bab-8r buff. Open it in the Mod Workshop to see how each part is made.",
+	"types": [
+		{"id": "frost_pack:type/frost", "name": "Frost", "color": "#7fd3ff", "description": "Cold-blooded minions that chill plants and fear fire."}
+	],
+	"type_chart": [
+		{"attacker": "frost_pack:type/frost", "defender": "base:type/plant", "result": "strong"},
+		{"attacker": "frost_pack:type/frost", "defender": "base:type/flying", "result": "strong"},
+		{"attacker": "frost_pack:type/frost", "defender": "base:type/fire", "result": "weak"},
+		{"attacker": "base:type/fire", "defender": "frost_pack:type/frost", "result": "strong"},
+		{"attacker": "base:type/plant", "defender": "frost_pack:type/frost", "result": "weak"}
+	],
+	"moves": [
+		{
+			"id": "frost_pack:move/frost_bite",
+			"name": "Frost Bite",
+			"description": "Bites with icy fangs and leaves frostbite that hurts for three turns.",
+			"type": "frost_pack:type/frost",
+			"looks_like": "base:move/burn/tier1",
+			"tiers": [
+				{"energy_cost": 7, "effects": [
+					{"kind": "damage", "scaling": "attack", "roll": "shared_move", "amount": 18, "type_effectiveness": true, "can_critical": true},
+					{"kind": "periodic_damage", "scaling": "attack", "roll": "periodic_tick", "amount": 5, "duration": 3, "type_effectiveness": true, "blocked_by_shield": true}
+				]},
+				{"energy_cost": 9, "effects": [
+					{"kind": "damage", "scaling": "attack", "roll": "shared_move", "amount": 24, "type_effectiveness": true, "can_critical": true},
+					{"kind": "periodic_damage", "scaling": "attack", "roll": "periodic_tick", "amount": 7, "duration": 3, "type_effectiveness": true, "blocked_by_shield": true}
+				]},
+				{"energy_cost": 11, "effects": [
+					{"kind": "damage", "scaling": "attack", "roll": "shared_move", "amount": 30, "type_effectiveness": true, "can_critical": true},
+					{"kind": "periodic_damage", "scaling": "attack", "roll": "periodic_tick", "amount": 9, "duration": 3, "type_effectiveness": true, "blocked_by_shield": true}
+				]}
+			]
+		}
+	],
+	"talent_trees": [
+		{
+			"id": "frost_pack:talent_tree/frost_arts",
+			"name": "Frost Arts",
+			"nodes": [
+				{"column": 0, "row": 0, "moves": ["base:move/roar/tier2", "base:move/roar/tier3", "base:move/roar/tier4"], "requires": []},
+				{"column": 1, "row": 0, "moves": ["frost_pack:move/frost_bite/tier3"], "requires": []},
+				{"column": 2, "row": 0, "moves": ["base:move/energize/tier1", "base:move/energize/tier2"], "requires": []},
+				{"column": 0, "row": 1, "moves": ["base:move/quickness/tier1", "base:move/quickness/tier2", "base:move/quickness/tier3"], "requires": []},
+				{"column": 1, "row": 1, "moves": ["base:move/mirror_skin/tier1", "base:move/mirror_skin/tier2", "base:move/mirror_skin/tier3"], "requires": ["1_0"]},
+				{"column": 2, "row": 1, "moves": ["base:move/fortitude/tier1", "base:move/fortitude/tier2"], "requires": []},
+				{"column": 1, "row": 2, "moves": ["base:move/destabilize/tier1", "base:move/destabilize/tier2", "base:move/destabilize/tier3"], "requires": ["1_1"]}
+			]
+		}
+	],
+	"minions": [
+		{
+			"id": "frost_pack:minion/frostcub_1",
+			"name": "Frostcub",
+			"description": "A tiger cub that wandered too far up the tower and never warmed up again.",
+			"based_on": "base:minion/tiger_1",
+			"types": ["frost_pack:type/frost"],
+			"stats": {"health": 33, "energy": 30, "attack": 36, "healing": 18, "speed": 38},
+			"initial_moves": ["base:move/claw/tier1", "frost_pack:move/frost_bite/tier1"],
+			"specialization_moves": ["base:move/reckless_dash/tier1", "base:move/chosen_earth/tier2", "frost_pack:move/frost_bite/tier2"],
+			"talent_trees": ["base:talent_tree/tiger_speed", "base:talent_tree/tiger_gaurd", "frost_pack:talent_tree/frost_arts"],
+			"evolves_into": "frost_pack:minion/frostcub_2",
+			"evolution_level": 32,
+			"sprite": {"from": "base:minion/tiger_1", "hue_shift": 0.52, "saturation": 0.8, "value": 1.05}
+		},
+		{
+			"id": "frost_pack:minion/frostcub_2",
+			"name": "Glaciger",
+			"description": "Frostcub fully grown. Its roar frosts the windows of every floor.",
+			"based_on": "base:minion/tiger_2",
+			"types": ["frost_pack:type/frost", "base:type/normal"],
+			"stats": {"health": 43, "energy": 38, "attack": 46, "healing": 22, "speed": 47},
+			"initial_moves": ["base:move/claw/tier1", "frost_pack:move/frost_bite/tier1"],
+			"sprite": {"from": "base:minion/tiger_2", "hue_shift": 0.52, "saturation": 0.8, "value": 1.05}
+		}
+	],
+	"minion_patches": [
+		{"target": "base:minion/anteater_1", "stats": {"attack": 34}}
+	],
+	"move_patches": [],
+	"trainers": [
+		{
+			"target": "base:encounter/grass_floor1_room1_normal",
+			"trainer_name": "Frosty Fan",
+			"first_visit_text": "Have you seen the new Frost minions? Let me show you!",
+			"after_win_text": "Brr! You can find Frostcubs in this floor's hatchery.",
+			"team": [
+				{"minion": "frost_pack:minion/frostcub_1", "level": 3, "moves": ["base:move/claw/tier1", "frost_pack:move/frost_bite/tier1"]},
+				{"minion": "base:minion/grasssnake_1", "level": 2, "moves": []}
+			]
+		}
+	],
+	"hatchery": [
+		{"floor": 0, "mode": "add", "entries": [{"minion": "frost_pack:minion/frostcub_1", "weight": 15}]}
+	],
+	"rooms": []
+}

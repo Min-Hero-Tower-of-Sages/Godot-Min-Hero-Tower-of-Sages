@@ -27,9 +27,11 @@ var checks := 0
 var runtime: Node
 var net: Node
 var repository: MemorySaveRepository
+var user_mods := false
 
 func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
+		if argument == "--user-mods": user_mods = true
 		if argument.begins_with("--role="): role = argument.trim_prefix("--role=")
 		if argument.begins_with("--port="): port = int(argument.trim_prefix("--port="))
 	if port == 0:
@@ -40,6 +42,7 @@ func _expect(condition: bool, message: String) -> void:
 	checks += 1
 	if not condition:
 		failures.append("[%s] %s" % [role, message])
+		print("CHECK FAILED: ", failures[-1])
 
 func _wait_for(condition: Callable, what: String) -> bool:
 	var deadline := Time.get_ticks_msec() + TIMEOUT_MSEC
@@ -56,8 +59,19 @@ func _run() -> void:
 	net = root.get_node("NetSession")
 	repository = MemorySaveRepository.new()
 	runtime.session.save_repository = repository
-	var created: Dictionary = runtime.start_new_campaign(1, "Host" if role == "host" else "Guest", &"male" if role == "host" else &"female")
+	if user_mods:
+		UserModRepository.root = "user://test_network_mods_%d" % port
+		if role == "host": UserModRepository.write(JSON.parse_string(FileAccess.get_file_as_string("res://content/mods/examples/frost_pack.json")))
+	var created: Dictionary = runtime.start_new_campaign(1, "Host" if role == "host" else "Guest", &"male" if role == "host" else &"female", {}, ["frost_pack"] if user_mods and role == "host" else [])
 	_expect(created.ok, "campaign starts")
+	if user_mods and role == "host" and created.ok:
+		var frost := OwnedMinionState.new()
+		frost.instance_id = &"network-frostcub"
+		frost.definition_id = &"frost_pack:minion/frostcub_1"
+		frost.level = 5
+		frost.learned_move_ids = [&"base:move/claw/tier1", &"frost_pack:move/frost_bite/tier1"]
+		runtime.session.state.party.append(frost)
+		_expect(runtime.save_campaign().ok, "save a host team containing mod content")
 	if role == "host":
 		await _run_host()
 	else:
@@ -69,6 +83,9 @@ func _finish() -> void:
 		file.store_string(JSON.stringify({"failures": failures, "checks": checks, "final": get_meta("final", "")}))
 		file.close()
 	net.leave()
+	if user_mods and role == "host":
+		UserModService.deactivate(runtime.catalog)
+		UserModRepository._remove_tree(UserModRepository.root)
 	await create_timer(0.3).timeout
 	if failures.is_empty():
 		print("PASS: %d multiplayer network checks (%s)" % [checks, role])
@@ -86,7 +103,13 @@ func _run_host() -> void:
 	var state = runtime.session.state
 	var hosted: Dictionary = net.host(port, "Hosty", {"mode": net.MODE_FOLLOW})
 	_expect(hosted.ok, "host opens port %d: %s" % [port, hosted.get("message", "")])
-	var guest_pid := OS.create_process(OS.get_executable_path(), ["--headless", "--path", ProjectSettings.globalize_path("res://"), "--script", "res://tests/multiplayer_network_smoke.gd", "--", "--role=guest", "--port=%d" % port])
+	var arguments := PackedStringArray(["--headless", "--path", ProjectSettings.globalize_path("res://"), "--script", "res://tests/multiplayer_network_smoke.gd", "--", "--role=guest", "--port=%d" % port])
+	if user_mods: arguments.append("--user-mods")
+	if user_mods:
+		DirAccess.make_dir_recursive_absolute("res://build/validation")
+		arguments.insert(1, "--log-file")
+		arguments.insert(2, ProjectSettings.globalize_path("res://build/validation/network-guest-%d.log" % port))
+	var guest_pid := OS.create_process(OS.get_executable_path(), arguments)
 	_expect(guest_pid > 0, "guest process launches")
 	var specs: Array = []
 	net.battle_spec_received.connect(func(spec: Dictionary) -> void: specs.append(spec))
@@ -103,6 +126,9 @@ func _run_host() -> void:
 		await _finish()
 		return
 	var guest_id: int = net.other_player_ids()[0]
+	if user_mods:
+		_expect(UserModService.is_active("frost_pack") and state.user_mods.size() == 1, "host keeps its modded content during guest negotiation")
+		_expect(not runtime.session.set_user_mod("frost_pack", false).ok, "host cannot change content while connected")
 	_expect(net.player_name(guest_id) == "Guesty", "the guest joined under its own name")
 	await _wait_for(func() -> bool: return not net.presence_of(guest_id).is_empty(), "guest presence")
 	var presence: Dictionary = net.presence_of(guest_id)
@@ -133,6 +159,9 @@ func _run_host() -> void:
 	for failure in report.get("failures", []):
 		failures.append(String(failure))
 	checks += int(report.get("checks", 0))
+	if user_mods:
+		var guest_log := FileAccess.get_file_as_string("res://build/validation/network-guest-%d.log" % port)
+		_expect(not guest_log.contains("SCRIPT ERROR:") and not guest_log.contains("\nERROR:"), "guest reconnect and disconnect produce no runtime errors")
 	_expect(String(report.get("final", "")) == String(get_meta("final")), "both machines finish the arena battle identically (%s vs %s)" % [report.get("final", ""), get_meta("final")])
 	await _wait_for(func() -> bool: return net.players.size() == 1, "the guest to leave")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(net._profiles.path()))
@@ -156,10 +185,16 @@ func _run_guest() -> void:
 		await _finish()
 		return
 	_expect(outcomes[0][0], "the guest is accepted: %s" % outcomes[0][1])
+	if not outcomes[0][0]:
+		await _finish()
+		return
 	_expect(net.join_profile_status == "imported", "a first join brings the save's team (%s)" % net.join_profile_status)
 	_expect(String(runtime.session.state.party[0].instance_id).begins_with("mp"), "imported minions are renamed for the host world")
 	var state = runtime.session.state
 	_expect(state != null and state.current_room_id == net.host_room_id, "the guest is placed in the host's room")
+	if user_mods:
+		_expect(UserModService.is_active("frost_pack") and state.user_mods.size() == 1, "unmodded guest adopts the host's exact installed mod set")
+		_expect(not runtime.session.set_user_mod("frost_pack", false).ok, "guest cannot change content while connected")
 	var presence_ticker := func() -> void: net.update_local_presence(state.current_room_id, Vector2(500, 420), {"pose": "front", "walking": false, "left": false})
 	process_frame.connect(presence_ticker)
 	await _wait_for(func() -> bool: return not net.presence_of(1).is_empty(), "host presence")

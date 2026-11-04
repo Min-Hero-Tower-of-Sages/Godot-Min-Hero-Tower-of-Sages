@@ -49,6 +49,8 @@ var _talent_selected_tree := -1
 var _skip_revision := 0
 var _campaign_talent_mode := false
 var _music_finish_started := false
+var _talent_materials: Dictionary = {}
+var _talent_node_states: Dictionary = {}
 
 func _input(event: InputEvent) -> void:
 	if not _sequence_active or not event is InputEventKey or not event.pressed or event.echo:
@@ -115,6 +117,8 @@ func show_campaign_talents(owned: OwnedMinionState, catalog: ContentCatalog, sav
 	sequence_finished.emit()
 
 func cancel_sequence() -> void:
+	_talent_materials.clear()
+	_talent_node_states.clear()
 	_display_stat_context.clear()
 	_sequence_id += 1
 	_sequence_active = false
@@ -364,6 +368,10 @@ func _animate_talent_entrance(modal: Control, run_id: int, origin_view: BattleCo
 		input_guard.queue_free()
 
 func _create_talent_modal(owned: OwnedMinionState, definition: MinionDefinition, catalog: ContentCatalog, choices: Array[Dictionary]) -> Control:
+	for move_id in _talent_materials:
+		var previous := _talent_materials[move_id] as ShaderMaterial
+		_talent_node_states[move_id] = {"saturation": previous.get_shader_parameter("saturation"), "brightness": previous.get_shader_parameter("brightness")}
+	_talent_materials.clear()
 	var modal := ColorRect.new()
 	modal.name = "TalentTreeModal"
 	modal.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -577,13 +585,17 @@ func _add_talent_choice_button(parent: Control, move: MoveDefinition, at: Vector
 	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if enabled else Control.CURSOR_ARROW
 	var state_material := ShaderMaterial.new()
 	state_material.shader = SOURCE_TALENT_STATE
-	state_material.set_shader_parameter("saturation", 1.0)
-	state_material.set_shader_parameter("brightness", 1.0)
+	var saturation := 1.0 if visually_active else 0.1
+	var brightness := 1.0 if visually_active else 0.5
+	var previous: Dictionary = _talent_node_states.get(String(move.id), {"saturation": saturation, "brightness": brightness})
+	state_material.set_shader_parameter("saturation", previous.saturation)
+	state_material.set_shader_parameter("brightness", previous.brightness)
+	_talent_materials[String(move.id)] = state_material
 	button.material = state_material
-	if not visually_active:
-		var inactive := create_tween().set_parallel(true)
-		inactive.tween_method(func(value: float) -> void: state_material.set_shader_parameter("saturation", value), 1.0, 0.1, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		inactive.tween_method(func(value: float) -> void: state_material.set_shader_parameter("brightness", value), 1.0, 0.5, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	if not is_equal_approx(float(previous.saturation), saturation) or not is_equal_approx(float(previous.brightness), brightness):
+		var inactive := create_tween().bind_node(button).set_parallel(true)
+		inactive.tween_method(func(value: float) -> void: state_material.set_shader_parameter("saturation", value), float(previous.saturation), saturation, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		inactive.tween_method(func(value: float) -> void: state_material.set_shader_parameter("brightness", value), float(previous.brightness), brightness, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	if talent_tooltip != null:
 		button.mouse_entered.connect(func() -> void: talent_tooltip.show_move(move))
 		button.mouse_exited.connect(func() -> void: talent_tooltip.visible = false)
