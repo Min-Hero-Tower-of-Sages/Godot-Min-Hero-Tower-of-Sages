@@ -43,6 +43,7 @@ static func base_content_version(catalog: ContentCatalog) -> String:
 static func activate(catalog: ContentCatalog, refs: Array, strict: bool = false) -> Dictionary:
 	if _same_set(catalog, refs): return {"ok": true, "changed": [], "refs": active_refs()}
 	deactivate(catalog)
+	RoomArtCatalog.clear_mod_art()
 	if refs.is_empty(): return {"ok": true, "changed": [], "refs": []}
 	var problems := PackedStringArray()
 	var changed: Array[String] = []
@@ -127,6 +128,10 @@ static func _warnings(manifest: Dictionary, builder: UserModBuilder) -> PackedSt
 	for record in manifest.get("rooms", []):
 		for interaction in record.get("interactions", []):
 			for candidate in interaction.get("set", {}).get("candidates", []): obtainable[String(candidate)] = true
+	for definition in builder.pack.definitions:
+		if definition is not RoomDefinition or definition.custom_floor_id.is_empty(): continue
+		for interaction in definition.interactions:
+			for candidate in interaction.get("candidates", []): obtainable[String(candidate)] = true
 	var evolved: Dictionary = {}
 	for record in manifest.get("minions", []):
 		if not String(record.get("evolves_into", "")).is_empty(): evolved[String(record.evolves_into)] = true
@@ -162,6 +167,7 @@ static func deactivate(catalog: ContentCatalog) -> void:
 	_builders.clear()
 	_refs.clear()
 	UserModAssets.clear()
+	RoomArtCatalog.clear_mod_art()
 	target.content_version = base_content_version(target)
 	target.rebuild_index()
 	_catalog = null
@@ -232,6 +238,8 @@ static func is_mod_definition(definition: ContentDefinition) -> bool:
 static func removal_blockers(state, mod_id: String) -> PackedStringArray:
 	var prefix := "%s:" % mod_id
 	var blockers := PackedStringArray()
+	if String(state.current_room_id).begins_with(prefix):
+		blockers.append("you are exploring one of its rooms")
 	for owned in state.party + state.storage:
 		var name: String = owned.nickname if not owned.nickname.is_empty() else String(owned.definition_id).get_file()
 		if String(owned.definition_id).begins_with(prefix):

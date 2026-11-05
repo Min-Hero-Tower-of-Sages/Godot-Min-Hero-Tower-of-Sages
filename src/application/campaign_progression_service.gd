@@ -279,7 +279,7 @@ static func apply_battle_result(state, result: BattleResult, encounter: Encounte
 			if owned.persistent_health == 0: fainted_ids.append(owned.instance_id)
 	var finish_stat_context := battle_finish_stat_context(state, result) if not forfeited else {}
 	var stars_earned := _battle_star_rating(state, result) if result.winning_team == 0 and not forfeited else 0
-	var stars_added := _record_encounter_stars(state, encounter, stars_earned) if result.winning_team == 0 and not forfeited else 0
+	var stars_added := _record_encounter_stars(state, encounter, stars_earned) if result.winning_team == 0 and not forfeited and String(state.progression.get("custom_floor_id", "")).is_empty() else 0
 	var experience_awards := _award_experience(state, encounter, catalog, result.winning_team == 0, result, finish_stat_context) if catalog != null and not forfeited else {}
 	CampaignModService.retire_fainted(state, fainted_ids)
 	var completed_before_battle: Dictionary = state.progression.get("completed_encounters", {})
@@ -353,7 +353,7 @@ static func star_upgrade_keys() -> Array[StringName]:
 	return [&"health", &"energy", &"attack", &"healing", &"speed", &"movement_speed", &"experience", &"money"]
 
 static func room_tutorial_id(state, room: RoomDefinition) -> String:
-	if state == null or room == null or bool(state.progression.get("in_tower_lobby", false)):
+	if state == null or room == null or bool(state.progression.get("in_tower_lobby", false)) or not room.custom_floor_id.is_empty():
 		return ""
 	var progression: Dictionary = state.progression
 	var floor_index := int(progression.get("floor_index", 0))
@@ -404,6 +404,11 @@ static func restore_floor_map(state) -> bool:
 	for value in original:
 		if (value is int or value is float) and int(value) >= 0 and int(value) < 62 and int(value) % 31 not in maps:
 			maps.append(int(value) % 31)
+	if not String(state.progression.get("custom_floor_id", "")).is_empty():
+		var changed := bool(state.progression.get("map_unlocked", false)) or original != maps
+		state.progression["map_unlocked_floor_indices"] = maps
+		state.progression["map_unlocked"] = false
+		return changed
 	var floor_index := int(state.progression.get("floor_index", 0)) % 31
 	var in_lobby := bool(state.progression.get("in_tower_lobby", false))
 	# The old lobby save retained the last floor's true flag as well.

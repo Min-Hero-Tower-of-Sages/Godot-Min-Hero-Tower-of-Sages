@@ -34,7 +34,7 @@ static func apply_party_levels(state, catalog: ContentCatalog) -> void:
 		owned.persistent_energy = int(stats.energy)
 
 static func apply_keys(state) -> void:
-	if not enabled(state, "full_keys") or bool(state.progression.get("in_tower_lobby", false)): return
+	if not enabled(state, "full_keys") or bool(state.progression.get("in_tower_lobby", false)) or not String(state.progression.get("custom_floor_id", "")).is_empty(): return
 	state.progression["floor_keys"] = maxi(3, int(state.progression.get("floor_keys", 0)))
 	var hatchery_keys := 3 if int(state.progression.get("floor_index", 0)) >= CampaignTowerModeService.STANDARD_FLOOR_COUNT else 1
 	state.progression["eggery_keys"] = maxi(hatchery_keys, int(state.progression.get("eggery_keys", 0)))

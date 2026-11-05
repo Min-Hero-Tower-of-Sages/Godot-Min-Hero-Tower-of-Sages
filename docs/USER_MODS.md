@@ -51,6 +51,7 @@ pickers, the move lists and the skill grid.
 | **Trainers** | Existing tower trainers' teams (shown as portraits), levels, preferred moves, reward money basis and dialogue. |
 | **Hatchery** | Adds weighted minions to a floor's egg pool or replaces the pool. A stacked bar shows the resulting odds. Additions can occupy at most 90%; replacements must total 100%. |
 | **Rooms** | A floor map and a to-scale room blueprint. See below. |
+| **Floors** | Build new side floors with linked rooms, puzzle tiles, trainers, healing stones, fixed eggs and room PNGs. |
 | **Test** | Content checks and a sandbox battle using the edited mod. Choose one to five minions per side, or fight an existing trainer. |
 
 ## Skill trees
@@ -150,6 +151,56 @@ opened). Saved art must be at most **1 MB**, and a shared mod code or ZIP at mos
 mod and included when sharing it. A mod can contain at most 48 PNG files. Type
 badges are framed the same way and saved at the recovered badge size.
 
+## Custom Floors
+
+Open **World → Floors** in the Workshop to see the whole floor map. Drag room
+cards to arrange the map. Each wire represents an outgoing door. Drag from a
+room’s gold socket to another room’s blue socket to create a one-way door, or
+select a room and use **+ Door to room**. The inspector can reroute or remove
+doors, set a trainer lock, place a Side Hall exit, and mark the entrance.
+Rooms with no route from the entrance are marked **Unreachable**.
+
+**+ New floor** starts with an entrance and a return door. **+ Room** adds a
+room and tries to link it in both directions to the selected room. Double-click
+a room or press **Edit room** to open its blueprint. **< Floor map** returns
+to the overview. The arrangement of cards is saved with the mod.
+
+In the blueprint, set the room’s size and choose Stone, Frost or Blank. Drag
+the green arrival point to set where the player enters. Use **+ Object → Wall**
+to add collision and **+ Feature** to place doors, trainers, healing stones
+and hatchery eggs. A door can require a victory against a trainer in the
+same room. Mount a door on any wall and give it a short sign in its inspector.
+
+**Import PNG** puts a picture on the blueprint and adds it to the mod’s art
+palette. Room PNGs can be up to **2048 × 2048**, with an 8 MB per-image limit.
+The mod’s PNGs travel with its ZIP or share code. You can resize or reorder
+placed artwork, draw it above the player, and use it for a door or trainer.
+
+| Tile | Effect |
+| --- | --- |
+| **Ice slide** | Continues in the direction the player entered until they leave the ice or hit a wall. |
+| **Slow ground** | Slows walking and ends forced movement. |
+| **Direction arrow** | Forces movement in its marked direction until stopped by a wall or brake. Another arrow can redirect it. |
+| **Jump pad** | Launches the player in its marked direction and clears gaps. Solid walls stop a jump. |
+| **Gap** | Blocks walking. Place jump pads for both directions if the player needs to return. |
+
+Use **Paint tiles** to stamp terrain on a 64-pixel grid. Direction arrows and
+jump pads have a direction control. The existing **Rooms** tab also lets you
+place puzzle tiles as objects when editing tower rooms.
+
+For a fixed hatchery, assign a minion and level to each egg. Assign the same
+minion to every egg if you want a guaranteed species. Players can inspect eggs
+and keep one per custom floor per save. Trainer victories and the claimed
+reward persist across visits. The **Check** button verifies room links,
+arrival points, trainer references and art. Playtest the actual puzzle in a
+campaign save to check that the route is walkable.
+
+To play, enable the mod under **Settings → Mod Menu → Player Mods**. In
+single-player, take the tower lobby’s right-hand door into the **Side Hall**,
+then use the **Custom Floors** doorway. The built-in Ice Floor is enabled
+under **Experimental Content → Ice Content**. In multiplayer the lobby’s
+right-hand door opens the Arena.
+
 ## Check and try it
 
 **Check this mod for problems** builds the definitions, validates references,
@@ -167,13 +218,10 @@ Use **Back to Workshop** to return to the same mod and Test tab. The sandbox
 does not award experience, change campaign saves or record battle history.
 Editor test-team choices survive this round trip for the current game session.
 
-The room editor changes the existing tower graph, where you arrive and the
-objects in a room. It cannot create new rooms, doors or trainers (a trainer
-interaction can point at a different encounter). Door references, arrival
-points and object edits are checked, but a valid graph can still have an unwinnable
-route or inaccessible rewards. The floor map's red marking only follows doors
-from the entrance and ignores keys. Try route changes in a separate campaign
-save before sharing them.
+The **Rooms** editor changes the existing tower graph and its rooms. The
+**Floors** editor creates separate side floors. The tower map’s red marking
+follows door links from the entrance and ignores keys. Try route changes in a
+separate campaign save before sharing them.
 
 ## Saves and multiplayer
 
@@ -243,7 +291,7 @@ This complete small mod changes Bab-8r's base Attack:
 ```
 
 Optional top-level arrays are `types`, `type_chart`, `moves`, `talent_trees`,
-`minions`, `minion_patches`, `move_patches`, `trainers`, `hatchery` and `rooms`.
+`minions`, `minion_patches`, `move_patches`, `trainers`, `hatchery`, `rooms` and `floors`.
 The bundled [`frost_pack.json`](../content/mods/examples/frost_pack.json) is a
 larger working example. Workshop edits write the same format; the generated
 JSON is also a reference for the supported fields.
@@ -281,6 +329,17 @@ them to a copy of the room's payload and rebinds healing stones to their zones.
 Unknown references,
 unsupported interaction fields and malformed field types are rejected before
 activation.
+
+A custom floor has an `id` of the form `<mod_id>:floor/<name>`, a `name`,
+optional `description`, a local `start_room` ID, and a list of `rooms`.
+Each room has a local `id`, `name`, `template`, `width`, `height`, `entry_x`,
+`entry_y`, plus `objects` and `features`. Optional `map_x` and `map_y` fields
+store where its card appears on the Workshop map. Each feature has a local `id`,
+`kind`, `x`, and `y`. Door features use `destination` and can set
+`requires_trainer` to a local trainer feature ID. An egg sets `minion` and
+`level`. Use a `return` feature to get back to the Side Hall. The bundled
+[Ice Floor manifest](../content/mods/builtin/ice_floor.json) shows the complete
+layout, including imported-source art names, door mounts and trainer teams.
 
 ## Implementation and checks
 

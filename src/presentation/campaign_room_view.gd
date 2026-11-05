@@ -63,6 +63,14 @@ var _movement_press_order: Array[StringName] = []
 var _controls_enabled := true
 var _campaign_context: Dictionary = {}
 var _ambient_emitters: Array[Dictionary] = []
+var _puzzle_tiles: Array[Dictionary] = []
+var _puzzle_force := Vector2.ZERO
+var _puzzle_arrow_chain: Dictionary = {}
+var _puzzle_last_step := Vector2.ZERO
+var _puzzle_last_tile := -1
+var _puzzle_jump_ticks := 0
+var _puzzle_jump_start := Vector2.ZERO
+const PUZZLE_JUMP_TICKS := 14
 
 ## Configure from a room resource and the already-resolved source-space spawn.
 ## `spawn_position` is in the original Flash level's top-left-origin coordinates.
@@ -90,6 +98,15 @@ func configure(room_definition: RoomDefinition, spawn_id: StringName, spawn_posi
 	_sinking_egg_slots.clear()
 	_chest_sprites_by_id.clear()
 	_automatic_contact_ids.clear()
+	_puzzle_tiles.clear()
+	_puzzle_force = Vector2.ZERO
+	_puzzle_arrow_chain.clear()
+	_puzzle_last_step = Vector2.ZERO
+	_puzzle_last_tile = -1
+	_puzzle_jump_ticks = 0
+	for attributes in payload.objects:
+		if not RoomPuzzleTile.kind(String(attributes.get("spriteName", ""))).is_empty():
+			_puzzle_tiles.append(RoomPuzzleTile.contact(attributes))
 	_build_world(payload, character, _campaign_context)
 	_build_collisions(payload)
 	_build_transition_triggers(payload)
@@ -107,6 +124,9 @@ func configure(room_definition: RoomDefinition, spawn_id: StringName, spawn_posi
 	_camera.limit_top = 0
 	_camera.limit_right = ceili(payload.dimensions.x)
 	_camera.limit_bottom = ceili(payload.dimensions.y)
+	if room.id == CustomFloorBuilder.HALL_ID or not room.custom_floor_id.is_empty():
+		_camera.offset = Vector2.ZERO
+		_camera.position.x = CustomFloorBuilder.PLAYER_FEET.x
 	_title.text = room_definition.display_name
 	_title.visible = false
 	_prompt.visible = false
@@ -118,6 +138,7 @@ func configure(room_definition: RoomDefinition, spawn_id: StringName, spawn_posi
 	return true
 
 func player_position() -> Vector2:
+	if _puzzle_jump_ticks > 0: return _puzzle_jump_start
 	return _player.position if _player != null else Vector2.ZERO
 
 func player_facing() -> StringName:
@@ -252,6 +273,13 @@ func _source_movement_tick() -> void:
 	var right := _movement_pressed(&"move_right", KEY_D, KEY_RIGHT)
 	var up := _movement_pressed(&"move_up", KEY_W, KEY_UP)
 	var down := _movement_pressed(&"move_down", KEY_S, KEY_DOWN)
+	var step_scale := 1.0
+	if not _puzzle_tiles.is_empty():
+		if _puzzle_jump_ticks == 0 and not _room_transitions.any(func(transition: Dictionary) -> bool: return _transition_area_overlaps_player(transition.area)):
+			_last_transition_free_position = _player.position
+		var requested := Vector2(int(right) - int(left), int(down) - int(up))
+		if _puzzle_movement_tick(requested): return
+		if _puzzle_last_tile >= 0 and _puzzle_tiles[_puzzle_last_tile].kind == "slow": step_scale = 0.45
 	# Opposing keys still stop movement, but neither direction gets a fixed
 	# left/up priority: face the most recently pressed key in that pair.
 	if left and right:
@@ -266,7 +294,7 @@ func _source_movement_tick() -> void:
 		_last_transition_free_position = _player.position
 	var moving := left or right or up or down
 	var upgrades: Dictionary = _campaign_context.get("progression", {}).get("star_upgrades", {})
-	var movement_step := SOURCE_MOVEMENT_STEP * (1.0 + 0.1 * maxi(0, int(upgrades.get("movement_speed", 0))))
+	var movement_step := SOURCE_MOVEMENT_STEP * step_scale * (1.0 + 0.1 * maxi(0, int(upgrades.get("movement_speed", 0))))
 	# Source order is horizontal first, then vertical; diagonals are not normalized.
 	if left:
 		_try_move_axis(Vector2(-movement_step, 0.0))
@@ -293,6 +321,82 @@ func _source_movement_tick() -> void:
 	if moving:
 		_check_transition_contacts()
 
+func _puzzle_tile_at(feet: Vector2) -> int:
+	for index in range(_puzzle_tiles.size() - 1, -1, -1):
+		if RoomPuzzleTile.contains(_puzzle_tiles[index], feet): return index
+	return -1
+
+func _puzzle_is_pit(feet: Vector2) -> bool:
+	var index := _puzzle_tile_at(feet)
+	return index >= 0 and _puzzle_tiles[index].kind == "pit"
+
+## Arrow movement persists across ordinary floor until stopped by a wall or
+## a brake tile. Ice coasts in the entry direction only until it leaves ice.
+func _puzzle_movement_tick(requested: Vector2) -> bool:
+	var feet := _player.position + CustomFloorBuilder.PLAYER_FEET
+	var tile_index := _puzzle_tile_at(feet)
+	var kind := String(_puzzle_tiles[tile_index].kind) if tile_index >= 0 else ""
+	var force := _puzzle_force
+	var airborne := _puzzle_jump_ticks > 0
+	var velocity := force
+	if not airborne:
+		var can_launch := tile_index != _puzzle_last_tile
+		if kind == "jump" and not can_launch:
+			var direction: Vector2 = _puzzle_tiles[tile_index].direction
+			can_launch = requested.dot(direction) > 0.0 and _puzzle_last_step.dot(direction) <= 0.0
+		if kind == "slow":
+			_puzzle_force = Vector2.ZERO
+			_puzzle_arrow_chain.clear()
+			velocity = Vector2.ZERO
+		elif can_launch and kind in ["arrow", "jump"]:
+			_puzzle_force = _puzzle_tiles[tile_index].direction
+			velocity = _puzzle_force
+			if kind == "jump":
+				_puzzle_arrow_chain.clear()
+				_puzzle_jump_start = _player.position
+				_puzzle_jump_ticks = PUZZLE_JUMP_TICKS
+				airborne = true
+			elif _puzzle_arrow_chain.has(tile_index):
+				# A loop in an authored room must give movement back to the player.
+				_puzzle_arrow_chain.clear()
+				_puzzle_force = Vector2.ZERO
+				velocity = Vector2.ZERO
+			else:
+				_puzzle_arrow_chain[tile_index] = true
+		elif kind == "ice" and velocity == Vector2.ZERO:
+			velocity = _puzzle_last_step
+		if kind == "ice" and velocity == Vector2.ZERO and requested != Vector2.ZERO:
+			velocity = requested
+	_puzzle_last_tile = tile_index
+	if velocity == Vector2.ZERO:
+		if requested != Vector2.ZERO: _puzzle_last_step = requested
+		return false
+	var before := _player.position
+	var distance := 16.0 if airborne else SOURCE_MOVEMENT_STEP
+	if velocity.x != 0: _try_move_axis(Vector2(velocity.x * distance, 0), airborne)
+	if velocity.y != 0: _try_move_axis(Vector2(0, velocity.y * distance), airborne)
+	if airborne:
+		_puzzle_jump_ticks = _puzzle_jump_ticks - 1 if before != _player.position else 0
+		if _puzzle_jump_ticks == 0:
+			if _puzzle_is_pit(_player.position + CustomFloorBuilder.PLAYER_FEET):
+				_player.position = _puzzle_jump_start
+			_puzzle_force = Vector2.ZERO
+	elif before == _player.position:
+		_puzzle_force = Vector2.ZERO
+		_puzzle_arrow_chain.clear()
+	_puzzle_last_step = velocity if airborne or before != _player.position else Vector2.ZERO
+	if velocity.y != 0:
+		_set_player_pose(&"front" if velocity.y > 0 else &"back", true, false)
+	else:
+		_set_player_pose(&"side", true, velocity.x < 0)
+	if _puzzle_jump_ticks > 0:
+		_player_sprite.position.y -= sin(PI * float(_puzzle_jump_ticks) / PUZZLE_JUMP_TICKS) * 43.0
+	_update_height_layers()
+	if _puzzle_jump_ticks == 0:
+		_refresh_nearby_interactions()
+		_check_transition_contacts()
+	return true
+
 func _apply_spawn_facing(spawn_id: StringName) -> void:
 	var direction := String(room.spawn_directions.get(String(spawn_id), ""))
 	match direction:
@@ -304,9 +408,14 @@ func _apply_spawn_facing(spawn_id: StringName) -> void:
 func _movement_pressed(action: StringName, primary_key: Key, secondary_key: Key) -> bool:
 	return Input.is_action_pressed(action) or Input.is_key_pressed(primary_key) or Input.is_key_pressed(secondary_key)
 
-func _try_move_axis(displacement: Vector2) -> void:
+func _try_move_axis(displacement: Vector2, airborne: bool = false) -> void:
 	if not _controls_enabled:
 		return
+	if not airborne and not _puzzle_tiles.is_empty():
+		var feet := _player.position + CustomFloorBuilder.PLAYER_FEET
+		var steps := maxi(1, ceili(displacement.length() / 3.0))
+		for index in range(1, steps + 1):
+			if _puzzle_is_pit(feet + displacement * float(index) / steps): return
 	# The Flash controller advanced an axis, tested its wall box, then restored
 	# that whole axis on overlap. A sweep preserves that rollback behavior.
 	if not _player.test_move(_player.transform, displacement):
@@ -321,7 +430,7 @@ func _try_move_axis(displacement: Vector2) -> void:
 					return
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not _controls_enabled:
+	if not _controls_enabled or _puzzle_jump_ticks > 0:
 		return
 	# Space/Enter are the source actions; configured E remains an alternate.
 	# Check the action as well as physical-key events with a zero keycode.
@@ -641,12 +750,13 @@ func _build_world(payload: Variant, character: Dictionary, campaign_context: Dic
 		if sprite_name.begins_with("eggery_egg") and egg_slot_suffix.is_valid_int() and int(egg_slot_suffix) in taken_egg_slots:
 			continue
 		var texture_name := _art_texture_name(sprite_name)
-		var texture_path := ROOM_ART_DIRECTORY + texture_name + ".png"
-		var texture := load(texture_path) as Texture2D if ResourceLoader.exists(texture_path) else SourceMenuArt.texture(texture_name)
+		var texture := RoomArtCatalog.texture(sprite_name)
 		if texture == null:
 			continue
 		var egg_slot := _egg_slot_from_sprite_name(sprite_name)
-		var sprite := _make_source_art_sprite(texture, "SourceObject_%03d" % index, attributes, egg_slot >= 0, _art)
+		var art_layer := _foreground_art if bool(attributes.get("above_player", false)) else _art
+		var sprite := _make_source_art_sprite(texture, "SourceObject_%03d" % index, attributes, egg_slot >= 0, art_layer)
+		sprite.modulate = Color.from_string(String(attributes.get("tint", "")), Color.WHITE)
 		_animate_river_sprite(sprite, sprite_name)
 		var displayed_sprite: Sprite2D = sprite.get_child(0) as Sprite2D if egg_slot >= 0 else sprite
 		if sprite_name in ["room_goldChest", "room_gemChest"]:
@@ -659,11 +769,14 @@ func _build_world(payload: Variant, character: Dictionary, campaign_context: Dic
 			if not _egg_sprites_by_slot.has(egg_slot):
 				_egg_sprites_by_slot[egg_slot] = []
 			_egg_sprites_by_slot[egg_slot].append(displayed_sprite)
-		if sprite_name == "generalRoom_specialDoor_open" and not _boss_door_unlocked():
+		if sprite_name == "generalRoom_specialDoor_open" and room.id != CustomFloorBuilder.HALL_ID and room.custom_floor_id.is_empty() and not _boss_door_unlocked():
 			_add_locked_door_overlay(attributes, "generalRoom_specialDoor_locked", index)
 		elif sprite_name == "generalRoom_eggeryDoor_open" and not bool(progression.get("eggery_door_unlocked", false)):
 			var eggery_lock_art := "generalRoom_eggeryDoor_locked_sixKeys" if expert_glow_enabled else "generalRoom_eggeryDoor_locked"
 			_add_locked_door_overlay(attributes, eggery_lock_art, index)
+		var custom_lock := String(attributes.get("custom_lock", ""))
+		if not custom_lock.is_empty() and not bool(progression.get("completed_encounters", {}).get(custom_lock, false)):
+			_add_world_label("LOCKED", _source_position(attributes) + Vector2(45, 84), Color8(253, 212, 114))
 		var height_key := sprite_name if height_thresholds.has(sprite_name) else texture_name
 		var depth_activation: Variant = height_thresholds.get(height_key)
 		if sprite_name in ["room_goldChest", "room_gemChest"]:
@@ -985,6 +1098,9 @@ func _build_interaction_triggers(payload: Variant) -> void:
 		interaction_copy["_zone_center"] = interaction_copy["source_position"]
 		interaction_copy["_zone_half_extents"] = zone_size * zone_data.scale.abs() * 0.5
 		interaction_copy["_zone_rotation"] = float(zone_data.rotation)
+		var world_label := String(interaction.get("world_label", ""))
+		if not world_label.is_empty():
+			_add_world_label(world_label, interaction.get("world_label_position", interaction_copy.source_position), Color8(255, 236, 147))
 		_room_interactions.append(interaction_copy)
 		var area := _make_trigger("Interaction_%s" % String(interaction.get("id", "unknown")), zone_data.position, zone_size, zone_data.scale, zone_data.rotation)
 		area.body_entered.connect(_on_interaction_entered.bind(interaction_copy))
@@ -1026,16 +1142,31 @@ func _build_interaction_triggers(payload: Variant) -> void:
 		chest_area.body_exited.connect(_on_interaction_exited.bind(chest_interaction))
 
 	var net: Node = get_node_or_null("/root/NetSession")
-	if room.id == LOBBY_ROOM_ID and net != null and net.is_active():
+	if room.id == LOBBY_ROOM_ID and (net != null and net.is_active() or bool(_campaign_context.get("side_hall_available", false))):
 		_room_interactions.append({
-			"id": &"multiplayer-arena",
-			"kind": &"pvp_arena",
+			"id": &"lobby-side-door",
+			"kind": &"pvp_arena" if net != null and net.is_active() else &"side_hall_entry",
 			"source_position": ARENA_ZONE_CENTER,
 			"_zone_center": ARENA_ZONE_CENTER,
 			"_zone_half_extents": ARENA_ZONE_HALF_EXTENTS,
 			"_zone_rotation": 0.0,
 			"trigger_on_enter": true,
 		})
+
+func _add_world_label(caption: String, center: Vector2, color: Color) -> void:
+	var label := Label.new()
+	label.text = caption
+	label.position = center - Vector2(110, 12)
+	label.size = Vector2(220, 24)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_override("font", preload("res://content/base/fonts/BurbinCasual.ttf"))
+	label.add_theme_font_size_override("font_size", 16)
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_color_override("font_outline_color", Color8(15, 20, 27))
+	label.add_theme_constant_override("outline_size", 5)
+	_foreground_art.add_child(label)
 
 func _chest_id(chest_kind: String, source_index: int) -> String:
 	return "chest-%s-%d" % [chest_kind, source_index]
@@ -1058,7 +1189,7 @@ func _make_trigger(trigger_name: String, origin: Vector2, base_size: Vector2, so
 	return area
 
 func _on_transition_entered(body: Node2D, exit_data: Dictionary) -> void:
-	if body != _player or _transition_locked or not _controls_enabled or not _route_is_available(exit_data):
+	if body != _player or _puzzle_jump_ticks > 0 or _transition_locked or not _controls_enabled or not _route_is_available(exit_data):
 		return
 	if _arrival_contact_guards.has(String(exit_data.get("_contact_guard_id", ""))):
 		return

@@ -13,7 +13,7 @@ const TEXT_FIELDS := ["id", "name", "version", "author", "description", "target"
 const NUMBER_FIELDS := ["format", "energy_cost", "cooldown", "charge", "exhaust", "accuracy", "target_count", "enemy_target_count", "ally_target_count", "amount", "random_bonus", "chance", "duration", "health", "energy", "attack", "healing", "speed", "xp_rate", "gem_slots", "locked_gem_slots", "evolution_level", "hue_shift", "saturation", "value", "money", "level", "floor", "weight", "transition_id", "required_floor_keys", "required_eggery_keys", "column", "row", "x", "y", "index", "x_scale", "y_scale", "rotation"]
 const BOOL_FIELDS := ["passive", "global_passive", "hit_each_target", "random_targets", "only_self", "type_effectiveness", "can_critical", "blocked_by_shield", "remove"]
 const STAT_FIELDS := {"health": "base_health", "energy": "base_energy", "attack": "base_attack", "healing": "base_healing", "speed": "base_speed"}
-const SECTIONS := ["types", "type_chart", "moves", "talent_trees", "minions", "minion_patches", "move_patches", "trainers", "hatchery", "rooms"]
+const SECTIONS := ["types", "type_chart", "moves", "talent_trees", "minions", "minion_patches", "move_patches", "trainers", "hatchery", "rooms", "floors"]
 const DAMAGE := preload("res://src/domain/battle/damage_effect_executor.gd")
 const HEAL := preload("res://src/domain/battle/heal_effect_executor.gd")
 const ENERGY := preload("res://src/domain/battle/energy_effect_executor.gd")
@@ -152,8 +152,14 @@ static func _shape_errors(record: Dictionary, context: String) -> PackedStringAr
 			problems.append("%s must be true or false" % field)
 		elif key in ["stats", "sprite", "set"]:
 			if not value is Dictionary: problems.append("%s must be an object" % field)
-		elif key in SECTIONS + ["tiers", "effects", "team", "entries", "exits", "interactions", "initial_moves", "specialization_moves", "talent_trees", "moves", "weights", "candidates", "nodes", "requires", "spawns", "objects"]:
+		elif key in SECTIONS + ["tiers", "effects", "team", "entries", "exits", "interactions", "initial_moves", "specialization_moves", "talent_trees", "moves", "weights", "candidates", "nodes", "requires", "spawns", "objects", "features"]:
 			if not value is Array: problems.append("%s must be a list" % field)
+		elif key in ["width", "height", "entry_x", "entry_y", "map_x", "map_y"] and not ((value is int or value is float) and is_finite(float(value))):
+			problems.append("%s must be a finite number" % field)
+		elif key in ["template", "start_room", "destination", "requires_trainer", "minion", "art", "mount", "label"] and not value is String:
+			problems.append("%s must be text" % field)
+		elif key == "above_player" and not value is bool:
+			problems.append("%s must be true or false" % field)
 		if value is Dictionary:
 			problems.append_array(_shape_errors(value, field))
 		elif value is Array:
@@ -186,6 +192,7 @@ func build() -> bool:
 	for record in manifest.get("trainers", []): _edit_trainer(record)
 	for record in manifest.get("hatchery", []): _add_hatchery_rule(record)
 	for record in manifest.get("rooms", []): _add_room_edit(record)
+	for record in manifest.get("floors", []): _add_custom_floor(record)
 	if not errors.is_empty():
 		changes.revert()
 		return false
@@ -677,6 +684,142 @@ func _add_room_edit(record: Variant):
 		for entry in record.get(section, []):
 			if not entry is Dictionary: return _fail("room %s %s entries must be objects" % [target, section])
 	room_edits.append(record.duplicate(true))
+
+func _add_custom_floor(record: Dictionary) -> void:
+	var id := _own_id(record, "floor")
+	if id.is_empty(): return
+	var rooms: Array = record.get("rooms", [])
+	var start := String(record.get("start_room", ""))
+	if rooms.is_empty() or rooms.size() > CustomFloorBuilder.MAX_ROOMS:
+		_fail("%s needs 1 to %d rooms" % [id, CustomFloorBuilder.MAX_ROOMS])
+		return
+	var room_records: Dictionary = {}
+	for room in rooms:
+		if not room is Dictionary or not CustomFloorBuilder.valid_local_id(String(room.get("id", ""))) or room_records.has(room.id):
+			_fail("%s has an invalid or duplicate room ID" % id)
+			return
+		room_records[room.id] = room
+	if not room_records.has(start):
+		_fail("%s needs a valid entrance room" % id)
+		return
+	var floor := CustomFloorDefinition.new()
+	floor.id = id
+	floor.display_name = String(record.get("name", id)).strip_edges().left(40)
+	floor.description = String(record.get("description", "")).strip_edges().left(160)
+	floor.source_mod = pack.source_mod
+	floor.start_room_id = CustomFloorBuilder.room_id(id, start)
+	pack.definitions.append(floor)
+	var before := errors.size()
+	for room in rooms:
+		_add_custom_room(floor, room, room_records)
+	if errors.size() != before: return
+	# Every room needs a route back to an exit even if links are one-way.
+	# Trainer locks are solvable in the room that owns the door.
+	var reachable := CustomFloorBuilder.reachable_rooms(start, room_records)
+	for local_id in room_records:
+		if not reachable.has(local_id):
+			_fail("%s: room %s cannot be reached from the entrance" % [id, local_id])
+		if not CustomFloorBuilder.reachable_rooms(local_id, room_records).any(func(key: String) -> bool:
+			return room_records[key].get("features", []).any(func(feature: Dictionary) -> bool: return feature.kind == "return")):
+			_fail("%s: room %s has no route back to the Side Hall" % [id, local_id])
+
+func _add_custom_room(floor: CustomFloorDefinition, record: Dictionary, rooms: Dictionary) -> void:
+	var context := "%s / %s" % [floor.id, record.id]
+	var dimensions := Vector2(float(record.get("width", 0)), float(record.get("height", 0)))
+	var template := String(record.get("template", "stone"))
+	if dimensions.x < 700 or dimensions.y < 525 or dimensions.x > 2400 or dimensions.y > 2400 or template not in CustomFloorBuilder.TEMPLATE_OPTIONS:
+		_fail("%s needs a valid template and dimensions between 700×525 and 2400×2400" % context)
+		return
+	var walkable := Rect2(Vector2(68, 134), dimensions - Vector2(136, 189))
+	if not walkable.has_point(CustomFloorBuilder.point(record, "entry_x", "entry_y")):
+		_fail("%s entrance must be inside the room" % context)
+		return
+	var objects: Array = record.get("objects", [])
+	var features: Array = record.get("features", [])
+	if objects.size() > CustomFloorBuilder.MAX_OBJECTS or features.size() > CustomFloorBuilder.MAX_FEATURES:
+		_fail("%s has too many objects or features" % context)
+		return
+	for object in objects:
+		if not object is Dictionary:
+			_fail("%s has an invalid object" % context)
+			return
+		var sprite := String(object.get("add", ""))
+		var foreign_art := sprite.begins_with("mod_art:") and not sprite.begins_with("mod_art:%s/" % mod_id)
+		var scale := Vector2(float(object.get("x_scale", 1)), float(object.get("y_scale", 1))).abs()
+		var is_directional := RoomPuzzleTile.kind(sprite) in ["arrow", "jump"]
+		if foreign_art or not object_addable(sprite) or scale.x < 0.05 or scale.y < 0.05 or scale.x > 30 or scale.y > 30 or not Rect2(Vector2(-200, -200), dimensions + Vector2(400, 400)).has_point(CustomFloorBuilder.point(object)) or (is_directional and not is_equal_approx(fposmod(float(object.get("rotation", 0)), 90.0), 0.0)):
+			_fail("%s has invalid art, size, position or tile direction for %s" % [context, sprite])
+			return
+	var feature_ids: Dictionary = {}
+	for feature in features:
+		if not feature is Dictionary or not CustomFloorBuilder.valid_local_id(String(feature.get("id", ""))) or feature_ids.has(feature.id):
+			_fail("%s has an invalid or duplicate feature ID" % context)
+			return
+		feature_ids[feature.id] = String(feature.get("kind", ""))
+	var eggs := 0
+	for feature in features:
+		if not walkable.has_point(CustomFloorBuilder.point(feature)):
+			_fail("%s: %s must be placed inside the room" % [context, feature.id])
+			return
+		var art := String(feature.get("art", ""))
+		if not art.is_empty() and (feature.kind not in ["door", "return", "trainer"] or not _custom_art_available(art)):
+			_fail("%s: %s has invalid artwork" % [context, feature.id])
+			return
+		if feature.get("mount", "auto") not in CustomFloorBuilder.DOOR_MOUNTS:
+			_fail("%s: %s has an invalid door mount" % [context, feature.id])
+			return
+		match feature.get("kind"):
+			"door":
+				var requirement := String(feature.get("requires_trainer", ""))
+				if not rooms.has(feature.get("destination", "")) or (not requirement.is_empty() and feature_ids.get(requirement) != "trainer"):
+					_fail("%s: door %s needs a valid destination and a trainer from this room if locked" % [context, feature.id])
+					return
+			"egg":
+				eggs += 1
+				if eggs > 9 or _lookup(feature.get("minion", ""), MinionDefinition) == null:
+					_fail("%s needs a known minion for each egg and can have at most nine eggs" % context)
+					return
+				_int(feature, "level", 1, 60, 5)
+			"trainer":
+				_add_custom_trainer(floor, record, feature)
+			"return", "heal_party": pass
+			_:
+				_fail("%s: unknown feature %s" % [context, feature.get("kind", "")])
+				return
+	var room := CustomFloorBuilder.make_room(floor.id, record)
+	if not CustomFloorBuilder.can_stand(room, CustomFloorBuilder.point(record, "entry_x", "entry_y")):
+		_fail("%s: move the arrival point away from walls and gaps" % context)
+		return
+	room.source_mod = pack.source_mod
+	floor.room_ids.append(room.id)
+	pack.definitions.append(room)
+
+func _custom_art_available(sprite: String) -> bool:
+	if sprite.begins_with("mod_art:") and not sprite.begins_with("mod_art:%s/" % mod_id): return false
+	return sprite != "collRect" and RoomPuzzleTile.kind(sprite).is_empty() and object_addable(sprite)
+
+func _add_custom_trainer(floor: CustomFloorDefinition, room: Dictionary, feature: Dictionary) -> void:
+	var encounter := EncounterDefinition.new()
+	encounter.id = CustomFloorBuilder.encounter_id(floor.id, room.id, feature.id)
+	encounter.display_name = String(feature.get("name", "Trainer")).strip_edges().left(24)
+	encounter.source_mod = pack.source_mod
+	encounter.ai_profile_id = &"base:ai/trainer/normal"
+	encounter.rewards = {"first_clear": {"money": _int(feature, "money", 0, 9999, 0)}}
+	var team: Array = feature.get("team", [])
+	if team.is_empty() or team.size() > 5:
+		_fail("%s needs a team of 1 to 5 minions" % encounter.id)
+		return
+	for index in team.size():
+		var member: Variant = team[index]
+		if not member is Dictionary or _lookup(member.get("minion", ""), MinionDefinition) == null:
+			_fail("%s needs a known minion in team slot %d" % [encounter.id, index + 1])
+			return
+		var moves: Variant = _string_names(member.get("moves", []), "%s slot %d moves" % [encounter.id, index + 1], MoveDefinition, 0, 8)
+		if moves == null: return
+		var entry := {"definition_id": StringName(member.minion), "level": _int(member, "level", 1, 60, 5), "slot_index": index}
+		if not moves.is_empty(): entry["move_ids"] = moves
+		encounter.team_entries.append(entry)
+	pack.definitions.append(encounter)
 
 ## Room objects a mod may move, resize or remove: art, walls and the
 ## invisible interaction zones. Doors, entries and other markers stay fixed

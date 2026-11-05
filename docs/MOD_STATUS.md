@@ -13,7 +13,7 @@ See [SAVED_MODS.md](SAVED_MODS.md) for switching restrictions.
 | Arkvian | Holy Bird / Arkclaw acquisition in source Floors 1-4 and 4-2; legacy Holy Birb spelling translated |
 | Ophan | Source hatchery branches in Floors 4-2 and 5-3, with the recovered later branch retained |
 | Starter Eggs | Extended opt-in: Ticub and Zapig each have a 10% hatchery chance in Floor 1-1, including Hard Mode; ordinary candidates share the remaining 80%. Uses normal shiny rolls and Pedia acquisition hints. |
-| Ice Floor | Twelve recovered forms and thirty move tiers remain registered; toggle exposes data in the Minionpedia and Flash imports retain these minions. No playable Ice Floor route is claimed. |
+| Ice Floor | Twelve recovered forms and thirty move tiers. Ice Content opens Extended’s playable Ice Floor through the Side Hall, using recovered scenery with a new puzzle, Ice Sage battle and hatchery. Flash imports retain the Ice minions. |
 | Nuzlocke | Fainted active minions are retired after battle, including equipped gems. A non-playable memorial is retained. If the party is wiped, surviving storage minions fill it; an empty total roster ends the run and blocks further battles. |
 | No Regen | Pre-battle preparation refills energy but preserves health. Explicit healing, defeat recovery and floor entry still restore health. |
 | Move Trees | Optional Martyr talents for Holymantis/Foramare and Righteous Fate for Arkvian/Arkclaw; see BEHAVIOR_EXCEPTIONS.md. |

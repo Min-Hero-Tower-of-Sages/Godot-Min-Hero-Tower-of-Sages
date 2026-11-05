@@ -96,6 +96,7 @@ func load(slot: int) -> Dictionary:
 	var repaired_floor_visit := _repair_legacy_floor_visit(candidate)
 	var repaired_hard_keys := _repair_hard_door_keys(candidate)
 	var repaired_map := ProgressionService.restore_floor_map(candidate)
+	var recovered_custom_room := _recover_custom_location(candidate)
 	var errors := candidate.validation_errors(catalog)
 	if not errors.is_empty():
 		return _error("invalid_campaign_state", "\n".join(errors))
@@ -104,7 +105,7 @@ func load(slot: int) -> Dictionary:
 		return _error("missing_campaign", "save references missing campaign %s" % candidate.campaign_id)
 	if catalog.get_definition(candidate.current_room_id) is not RoomDefinition:
 		return _error("missing_room", "save references missing current room %s" % candidate.current_room_id)
-	if import_repair.changed or recovered_egg or repaired_floor_visit or repaired_hard_keys or repaired_map or not mods.changed.is_empty():
+	if import_repair.changed or recovered_egg or repaired_floor_visit or repaired_hard_keys or repaired_map or recovered_custom_room or not mods.changed.is_empty():
 		var repaired_save := save_repository.save_slot(slot, candidate.to_dictionary(catalog.content_version))
 		if not repaired_save.ok: return repaired_save
 	state = candidate
@@ -244,6 +245,7 @@ func enter_tower_lobby(from_eggery: bool = false) -> Dictionary:
 		return _error("no_campaign", "there is no active campaign")
 	var candidate = StateScript.new()
 	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	candidate.progression.erase("custom_floor_id")
 	ProgressionService.restore_floor_map(candidate)
 	candidate.progression["in_tower_lobby"] = true
 	ProgressionService.restore_floor_map(candidate)
@@ -259,6 +261,84 @@ func enter_tower_lobby(from_eggery: bool = false) -> Dictionary:
 		return saved
 	state = candidate
 	return {"ok": true, "in_tower_lobby": true}
+
+func enter_side_hall() -> Dictionary:
+	if state == null or catalog == null:
+		return _error("no_campaign", "There is no active campaign.")
+	if user_mod_changes_allowed.is_valid() and not user_mod_changes_allowed.call():
+		return _error("network_active", "The Side Hall is available in single-player.")
+	if state.current_room_id != &"base:room/main_tower_lobby" and String(state.progression.get("custom_floor_id", "")).is_empty():
+		return _error("not_in_lobby", "Enter the Side Hall from the tower lobby.")
+	var hall := catalog.get_definition(CustomFloorBuilder.HALL_ID) as RoomDefinition
+	if hall == null: return _error("missing_hall", "The Side Hall is unavailable.")
+	var candidate = StateScript.new()
+	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	candidate.progression.erase("custom_floor_id")
+	candidate.progression["in_tower_lobby"] = true
+	candidate.progression["map_unlocked"] = false
+	return _arrive_at_custom_entry(candidate, hall)
+
+func enter_custom_floor(floor_id: StringName) -> Dictionary:
+	if state == null or catalog == null or state.current_room_id != CustomFloorBuilder.HALL_ID:
+		return _error("not_in_side_hall", "Choose a custom floor from the Side Hall.")
+	if user_mod_changes_allowed.is_valid() and not user_mod_changes_allowed.call():
+		return _error("network_active", "Custom floors are available in single-player.")
+	var floor := catalog.get_definition(floor_id) as CustomFloorDefinition
+	if floor == null or not floor.is_available(state):
+		return _error("floor_unavailable", "That floor is not enabled for this save.")
+	var room := catalog.get_definition(floor.start_room_id) as RoomDefinition
+	if room == null: return _error("missing_room", "The floor's entrance is unavailable.")
+	var candidate = StateScript.new()
+	candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+	candidate.progression["custom_floor_id"] = String(floor.id)
+	candidate.progression["in_tower_lobby"] = false
+	candidate.progression["map_unlocked"] = false
+	candidate.progression["floor_keys"] = 0
+	candidate.progression["eggery_keys"] = 0
+	candidate.progression["eggery_picks_remaining"] = 0 if bool(candidate.room_state.get(String(floor.id), {}).get("reward_spent", false)) else 1
+	var rested := ProgressionService.rest_party(candidate, catalog)
+	if not rested.ok: return rested
+	return _arrive_at_custom_entry(candidate, room)
+
+func _arrive_at_custom_entry(candidate: CampaignState, room: RoomDefinition) -> Dictionary:
+	var position: Vector2 = room.spawn_positions["start"]
+	candidate.current_room_id = room.id
+	candidate.safe_location = {"room_id": String(room.id), "spawn_id": "start", "position": position}
+	_set_exploration_location(candidate, room, &"start", position)
+	var saved := _save_candidate(candidate)
+	if not saved.ok: return saved
+	state = candidate
+	return {"ok": true, "room": room, "spawn_id": &"start", "position": position}
+
+func _recover_custom_location(candidate: CampaignState) -> bool:
+	var floor_id := StringName(candidate.progression.get("custom_floor_id", ""))
+	if floor_id.is_empty(): return false
+	var floor := catalog.get_definition(floor_id) as CustomFloorDefinition
+	var room := catalog.get_definition(candidate.current_room_id) as RoomDefinition
+	if floor != null and floor.is_available(candidate) and room != null and room.custom_floor_id == floor_id:
+		var changed := false
+		var position: Vector2 = room.spawn_positions["start"]
+		var location: Dictionary = candidate.room_state.get("current_location", {})
+		if StringName(location.get("room_id", "")) == room.id and not CustomFloorBuilder.can_stand(room, _as_vector2(location.get("position", position), position) + CustomFloorBuilder.PLAYER_FEET):
+			_set_exploration_location(candidate, room, &"start", position)
+			changed = true
+		var checkpoint := catalog.get_definition(StringName(candidate.safe_location.get("room_id", ""))) as RoomDefinition
+		if checkpoint == null or checkpoint.id not in floor.room_ids or not CustomFloorBuilder.can_stand(checkpoint, _as_vector2(candidate.safe_location.get("position", Vector2.ZERO), Vector2.ZERO) + CustomFloorBuilder.PLAYER_FEET):
+			candidate.safe_location = {"room_id": String(room.id), "spawn_id": "start", "position": position}
+			changed = true
+		return changed
+	# An updated mod may remove a room or floor while a save is inside it.
+	var hall := catalog.get_definition(CustomFloorBuilder.HALL_ID) as RoomDefinition
+	if hall == null: return false
+	candidate.progression.erase("custom_floor_id")
+	candidate.progression["in_tower_lobby"] = true
+	candidate.progression["map_unlocked"] = false
+	candidate.pending_battle.clear()
+	candidate.pending_defeat_return.clear()
+	candidate.current_room_id = hall.id
+	candidate.safe_location = {"room_id": String(hall.id), "spawn_id": "start", "position": hall.spawn_positions["start"]}
+	_set_exploration_location(candidate, hall, &"start", hall.spawn_positions["start"])
+	return true
 
 func lobby_titan_status() -> Dictionary:
 	return ProgressionService.lobby_titan_status(state)
@@ -465,6 +545,9 @@ func enter_room(target_room_id: StringName, transition_id: int = -1) -> Dictiona
 	var required_flag := StringName(matching_exit.get("requires_progression_flag", ""))
 	if not required_flag.is_empty() and not _progression_flag_open(required_flag):
 		return {"ok": false, "code": "locked_exit", "message": "that route is still locked", "required_flag": required_flag}
+	var required_encounter := String(matching_exit.get("requires_encounter", ""))
+	if not required_encounter.is_empty() and not bool(state.progression.get("completed_encounters", {}).get(required_encounter, false)):
+		return _error("locked_exit", "Defeat this room’s trainer to open the door.")
 	var entry_spawn_id := StringName(matching_exit.get("target_spawn_id", ""))
 	if not entry_spawn_id.is_empty() and entry_spawn_id not in next_room.spawn_ids:
 		return _error("invalid_spawn", "%s does not define entry spawn %s" % [next_room.id, entry_spawn_id])
@@ -520,10 +603,12 @@ func interact(interaction_id: StringName, checkpoint_position: Variant = null, c
 				var completed: Dictionary = state.progression.get("completed_encounters", {})
 				var already_beaten := bool(completed.get(String(dialogue_encounter.id), false))
 				var dialogue: Dictionary = TrainerDialogue.for_encounter(dialogue_encounter)
+				if not room.custom_floor_id.is_empty(): dialogue = UserModService.dialogue_for(dialogue_encounter.id)
 				var text := String(dialogue.get("first_visit_text", interaction.get("first_visit_text", "A trainer challenges you.")))
 				if already_beaten:
 					var ratings: Dictionary = state.progression.get("encounter_star_ratings", {})
 					text = "You already beat me!   Replay me for exp?" if int(ratings.get(String(dialogue_encounter.id), 0)) >= 3 else String(dialogue.get("repeat_text", "You already beat me!   Retry for three stars?"))
+					if not room.custom_floor_id.is_empty(): text = "You already beat me! Replay me for exp?"
 				return {"ok": true, "kind": kind, "encounter_id": encounter_id, "already_beaten": already_beaten, "dialog_text": text, "trainer_name": String(UserModService.dialogue_for(dialogue_encounter.id).get("trainer_name", interaction.get("trainer_name", dialogue.get("trainer_name", "Trainer"))))}
 			&"map_station":
 				if not bool(state.progression.get("map_unlocked", false)):
@@ -996,13 +1081,14 @@ func _pick_egg(interaction: Dictionary) -> Dictionary:
 		return {"ok": false, "code": "no_egg_picks", "message": "There are no unclaimed eggs remaining."}
 	var slot := int(interaction.get("source_zone_id", -1))
 	var current_room := catalog.get_definition(state.current_room_id) as RoomDefinition
-	if current_room == null or not String(current_room.id).ends_with("_eggery"):
+	if current_room == null or not current_room.is_hatchery():
 		return _error("wrong_room", "egg selection is only available in the hatchery")
 	var current_room_state: Dictionary = state.room_state.get(String(current_room.id), {}).duplicate(true)
-	var taken: Array = current_room_state.get("eggery_taken_slots", state.progression.get("eggery_taken_slots", [])).duplicate()
+	var custom := not current_room.custom_floor_id.is_empty()
+	var taken: Array = current_room_state.get("eggery_taken_slots", [] if custom else state.progression.get("eggery_taken_slots", [])).duplicate()
 	if slot < 0 or slot >= 9 or slot in taken:
 		return _error("egg_already_claimed", "that egg has already been chosen")
-	var pool := CampaignModService.egg_pool(state, CampaignTowerModeService.source_floor_index(int(state.progression.get("floor_index", 0))), interaction)
+	var pool := interaction if custom else CampaignModService.egg_pool(state, CampaignTowerModeService.source_floor_index(int(state.progression.get("floor_index", 0))), interaction)
 	var candidates: Array = pool.get("candidates", [])
 	var weights: Array = pool.get("weights", [])
 	if candidates.is_empty() or candidates.size() != weights.size():
@@ -1048,6 +1134,7 @@ func _pick_egg(interaction: Dictionary) -> Dictionary:
 				minion_base_level = int(floor_data.get("eggery_minion_base_level", minion_base_level))
 				break
 	level = CampaignTowerModeService.hard_eggery_level(selected_floor_index) if selected_floor_index >= CampaignTowerModeService.STANDARD_FLOOR_COUNT else mini(60, minion_base_level + randi_range(0, 2))
+	if custom: level = int(interaction.get("level", 5))
 	owned.level = level
 	owned.experience = level * 1000
 	var stat_bonuses: Array[StringName] = [&"health", &"energy", &"attack", &"healing", &"speed"]
@@ -1077,7 +1164,7 @@ func finish_egg_selection(accepted_instance_id: StringName, party_slot: int = -1
 	if state == null or catalog == null:
 		return _error("no_campaign", "there is no active campaign")
 	var current_room := catalog.get_definition(state.current_room_id) as RoomDefinition
-	if current_room == null or not String(current_room.id).ends_with("_eggery"):
+	if current_room == null or not current_room.is_hatchery():
 		return _error("wrong_room", "egg selection is only available in the hatchery")
 	var sequence := int(state.progression.get("eggery_pick_sequence", 0))
 	if sequence <= 0 or accepted_instance_id != StringName("slot-%d-eggery-%d" % [save_slot, sequence]):
@@ -1132,6 +1219,8 @@ func finish_egg_selection(accepted_instance_id: StringName, party_slot: int = -1
 	candidate.room_state[String(current_room.id)] = room_state
 	candidate.progression["eggery_taken_slots"] = taken.duplicate()
 	candidate.progression["eggery_picks_remaining"] = 0
+	if not current_room.custom_floor_id.is_empty():
+		candidate.room_state[String(current_room.custom_floor_id)] = {"reward_spent": true}
 	candidate.progression.erase("pending_egg_preview")
 	ProgressionService.refresh_minion_pedia(candidate)
 	var saved: Dictionary = _save_candidate(candidate)
@@ -1153,6 +1242,10 @@ func discard_latest_egg_minion(instance_id: StringName) -> Dictionary:
 			return _error("egg_preview_mismatch", "the pending preview does not match the selected hatchery egg")
 		var declined = StateScript.new()
 		declined.load_dictionary(state.to_dictionary(catalog.content_version, true))
+		var floor_id := String(declined.progression.get("custom_floor_id", ""))
+		if not floor_id.is_empty():
+			# Fixed eggs can be inspected freely. Only keeping one spends the floor reward.
+			_recover_interrupted_egg_preview(declined)
 		declined.progression.erase("pending_egg_preview")
 		var saved_decline := _save_candidate(declined)
 		if not saved_decline.ok: return saved_decline
@@ -1226,6 +1319,7 @@ func _repair_legacy_floor_visit(candidate: CampaignState) -> bool:
 	return true
 
 func _repair_hard_door_keys(candidate: CampaignState) -> bool:
+	if not String(candidate.progression.get("custom_floor_id", "")).is_empty(): return false
 	var floor_index := int(candidate.progression.get("floor_index", 0))
 	if floor_index < CampaignTowerModeService.STANDARD_FLOOR_COUNT: return false
 	var changed := false
@@ -1345,6 +1439,8 @@ func make_current_minions_shiny() -> Dictionary:
 
 func set_mod_option(group: String, value: bool) -> Dictionary:
 	if catalog == null: return _error("missing_catalog", "Load campaign content before changing mods.")
+	if state != null and group == "iceFloor" and not value and StringName(state.progression.get("custom_floor_id", "")) == CustomFloorBuilder.ICE_ID:
+		return _error("in_custom_floor", "Return to the Side Hall before turning off Ice Content.")
 	var status := CampaignModService.change_status(state, group, value)
 	if not status.ok: return status
 	var option: Dictionary = CampaignModService.OPTIONS[CampaignModService.option_index(group)]

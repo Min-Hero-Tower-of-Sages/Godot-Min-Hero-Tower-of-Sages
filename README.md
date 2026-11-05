@@ -52,6 +52,7 @@ and Flash challenge rules are listed separately below.
 | **[Flash save importing](docs/FLASH_SAVE_IMPORT.md)** | Preview and convert supported `.sol` saves into an empty slot, carrying over minions, learned moves, gems, progression, maps and Minion-pedia history. The Flash files are preserved. |
 | **[In-save mod controls](docs/SAVED_MODS.md)** | Categorized Mod Menu at creation and in Settings. Enable options on existing saves; each toggle explains its switching rules. Nuzlocke is one-way, and added Move Trees talents must be reset before disabling that option. |
 | **[Mod Workshop and player mods](docs/USER_MODS.md)** | Create minions, move families, skill trees and types; patch stats/moves; edit trainer teams, hatcheries, room connections and the objects inside rooms (move, add or remove art, walls and trainer zones with undo), with portraits, growth charts, a floor map and a zoomable room blueprint. Try sandbox battles, recolor/import PNG art, and share mods as codes or ZIPs. Open Play → Mod Workshop on the title screen and enable mods per save under Player Mods. |
+| **[Custom Floors and puzzle tiles](docs/USER_MODS.md#custom-floors)** | Build new floors with linked rooms, trainers, checkpoints, fixed hatchery eggs and your own PNG artwork. Paint ice, slow ground, direction arrows, jump pads and gaps. Play enabled floors through the right-hand lobby door in single-player. |
 | **[Skill Gems and Random Forge](docs/SKILL_GEMS.md)** | Optional gems that grant active or passive skills while equipped. Rare field finds, Hard Mode map/extra-sage rewards, and color-based crafting after Talo. Non-elemental recipes include stats, armor, reflection and Taunt/Torment. |
 | **[Gem Affinity](docs/GEM_AFFINITY.md)** | Optional 20% bonus to gem contributions matching a minion's affinity stat, with corrected Energy gem scaling. Enable or disable it in Gameplay Tweaks on a new or existing save. |
 | **[Piercing Over-Time](docs/COMBAT_RESOLUTION.md#recovered-periodic-lifecycle)** | Optional rule where damage and healing over time ignore minion types, so a Burn hurts fire minions for full damage. Direct hits still use types. Off by default, matching the original game. Enable or disable it in Gameplay Tweaks. |
@@ -82,10 +83,10 @@ tables/rules and groups them in the Mod Menu. These are recovered additions,
 rather than new minions invented for this port. See
 [mod integration status](docs/MOD_STATUS.md).
 
-**Ice Content remains experimental.** Its recovered minions and moves support
-imports and Minion-pedia visibility, but the reference Ice Floor was unfinished
-and this port does not add a completed Ice Floor campaign. Infinite Tower is
-also unimplemented.
+**Ice Content** opens a playable side floor made for Extended using recovered
+Flash scenery and minions. Enable it in **Settings → Mod Menu → Experimental
+Content**, then take the lobby’s right-hand door to **Custom Floors**. Cross
+the frozen passage, defeat the Ice Sage, and choose one egg from the hatchery.
 
 Development is ongoing, with campaign, combat and UI fixes delivered through
 the [releases](https://github.com/Min-Hero-Tower-of-Sages/Godot-Min-Hero-Tower-of-Sages/releases).

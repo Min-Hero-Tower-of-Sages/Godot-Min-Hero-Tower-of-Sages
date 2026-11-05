@@ -94,8 +94,8 @@ after a successful save of floor entry.
 
 Flash did not save IVs, current energy, per-egg selection identities or chest
 history. IVs and energy use port defaults, and original egg identities cannot
-be reconstructed. Ice minions and moves can be imported, but the reference
-Ice Floor campaign was unfinished and remains unavailable.
+be reconstructed. Ice minions and moves can be imported. Saves with Ice
+Content enabled can enter Extended’s Ice Floor through the lobby’s Side Hall.
 
 Unknown minions/moves reject the entire import with a specific error. No
 minion is silently skipped. Malformed or unsupported files change no saves.

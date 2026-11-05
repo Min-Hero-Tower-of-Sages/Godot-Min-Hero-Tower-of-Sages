@@ -970,7 +970,7 @@ func _show_room_from_state(spawn_id: StringName = &"", spawn_position: Vector2 =
 		return
 	var state = runtime.session.state
 	_multiplayer.place_guest_with_host()
-	if bool(state.progression.get("in_tower_lobby", false)) and state.current_room_id != &"base:room/main_tower_lobby":
+	if bool(state.progression.get("in_tower_lobby", false)) and state.current_room_id not in [&"base:room/main_tower_lobby", CustomFloorBuilder.HALL_ID]:
 		_show_tower_lobby_screen()
 		return
 	var room := runtime.catalog.get_definition(state.current_room_id) as RoomDefinition
@@ -1006,7 +1006,11 @@ func _show_room_from_state(spawn_id: StringName = &"", spawn_position: Vector2 =
 		"room_state": state.room_state.get(String(room.id), {}).duplicate(true),
 		"tower_mode": String(CampaignTowerModeService.mode_for_global_floor(int(state.progression.get("floor_index", 0)))),
 		"lobby_titan_owned": bool(runtime.session.lobby_titan_status().get("has_titan_1", false)),
+		"side_hall_available": runtime.catalog.has_definition(CustomFloorBuilder.HALL_ID),
 	}
+	if not room.custom_floor_id.is_empty():
+		room_context.progression["eggery_taken_slots"] = room_context.room_state.get("eggery_taken_slots", [])
+		room_context.progression["boss_door_unlocked"] = true
 	if not current_room.configure(room, spawn_id, spawn_position, state.character, room_context):
 		_show_notice("Room %s could not be created." % room.id)
 	var room_music = preload("res://src/presentation/source_room_music.gd")
@@ -1058,11 +1062,13 @@ func _process(_delta: float) -> void:
 		if _hud_stars != null:
 			var state: CampaignState = runtime.session.state
 			var floor_index := int(state.progression.get("floor_index", 0))
+			var custom_floor := not String(state.progression.get("custom_floor_id", "")).is_empty()
 			var ratings: Dictionary = state.progression.get("encounter_star_ratings", {})
-			var signature := Vector2i(floor_index, hash(ratings))
+			var signature := Vector2i(-1 if custom_floor else floor_index, hash(ratings))
 			if signature != _hud_star_signature:
 				_hud_star_signature = signature
-				_hud_stars.text = "x%d" % CampaignTowerModeService.floor_star_count(state, runtime.catalog, runtime.session.campaign, CampaignTowerModeService.source_floor_index(floor_index), CampaignTowerModeService.mode_for_global_floor(floor_index))
+				var stars := CampaignProgressionService.total_earned_stars(state) if custom_floor else CampaignTowerModeService.floor_star_count(state, runtime.catalog, runtime.session.campaign, CampaignTowerModeService.source_floor_index(floor_index), CampaignTowerModeService.mode_for_global_floor(floor_index))
+				_hud_stars.text = "x%d" % stars
 		if is_instance_valid(_hud_progress):
 			var state: CampaignState = runtime.session.state
 			var has_talents := false
@@ -1141,7 +1147,7 @@ func _on_room_transition_requested(exit_data: Dictionary) -> void:
 	if is_instance_valid(curtain):
 		curtain.visible = false
 	if current_room != null and is_instance_valid(current_room):
-		current_room.set_controls_enabled(true)
+		current_room.set_controls_enabled(not is_instance_valid(interaction_dialog))
 	_room_transition_active = false
 
 func _cancel_lobby_exit() -> void:
@@ -1165,6 +1171,13 @@ func _ensure_room_transition_curtain() -> ColorRect:
 	return room_transition_curtain
 
 func _complete_room_transition(exit_data: Dictionary) -> void:
+	if exit_data.get("target_route") == "side_hall":
+		var hall_result: Dictionary = runtime.session.enter_side_hall()
+		if hall_result.ok: _show_room_from_state()
+		else:
+			if is_instance_valid(current_room): current_room.release_transition_lock()
+			_show_player_dialogue(hall_result.message)
+		return
 	if String(exit_data.get("target_route", "")) == "lobby":
 		var lobby_result: Dictionary = runtime.enter_tower_lobby(current_room != null and String(current_room.room.id).contains("eggery"))
 		if not lobby_result.get("ok", false):
@@ -1188,6 +1201,23 @@ func _on_room_interaction_requested(interaction: Dictionary) -> void:
 	if interaction_kind == &"pvp_arena":
 		_multiplayer.show_arena_picker()
 		return
+	match interaction_kind:
+		&"side_hall_entry", &"custom_floor_return":
+			_on_room_transition_requested({"target_route": "side_hall"})
+			return
+		&"side_hall_exit":
+			_on_room_transition_requested({"target_route": "lobby", "lobby_exit_confirmed": true})
+			return
+		&"custom_floor_picker":
+			_show_custom_floor_picker()
+			return
+		&"custom_door":
+			var requirement := String(interaction.get("requires_encounter", ""))
+			if not requirement.is_empty() and not bool(runtime.session.state.progression.get("completed_encounters", {}).get(requirement, false)):
+				_show_player_dialogue("Defeat this room’s trainer to open the door.")
+			else:
+				_on_room_transition_requested(interaction)
+			return
 	if not _multiplayer.allow_interaction(interaction_kind):
 		return
 	if interaction_kind == &"eggery_exit_blocked":
@@ -2100,6 +2130,30 @@ func _show_floor_picker() -> void:
 	_create_floor_picker()
 	await _finish_campaign_screen_transition()
 
+func _show_custom_floor_picker() -> void:
+	if _room_transition_active or net.is_active(): return
+	_clear_dialog()
+	var view := CampaignCustomFloorView.new()
+	interaction_dialog = view
+	view.closed.connect(_clear_dialog)
+	view.floor_selected.connect(_select_custom_floor)
+	_attach_interaction_dialog()
+	view.configure(CustomFloorDefinition.available(runtime.catalog, runtime.session.state), runtime.session.state.room_state)
+	preload("res://src/presentation/source_menu_button_audio.gd").bind_tree(view)
+	SourceMenuTransition.enter(view, true)
+
+func _select_custom_floor(floor_id: StringName) -> void:
+	if _room_transition_active or not interaction_dialog is CampaignCustomFloorView: return
+	var result: Dictionary = runtime.session.enter_custom_floor(floor_id)
+	if not result.ok:
+		_show_notice(String(result.message))
+		return
+	_room_transition_active = true
+	await _fade_campaign_screen_out()
+	_clear_dialog(true)
+	_show_room_from_state()
+	await _finish_campaign_screen_transition()
+
 func _create_floor_picker() -> void:
 	_clear_dialog()
 	var view := CampaignFloorSelectView.new()
@@ -2677,6 +2731,9 @@ func _discard_egg_pick(instance_id: StringName, egg_slot: int, minion_name: Stri
 		return
 	_clear_dialog()
 	room_status.text = ""
+	if is_instance_valid(current_room) and not current_room.room.custom_floor_id.is_empty():
+		current_room.update_campaign_progression(runtime.session.state.progression)
+		return
 	await _sink_egg_and_refresh(egg_slot)
 
 func _sink_egg_and_refresh(egg_slot: int) -> void:

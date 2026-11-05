@@ -13,6 +13,11 @@ extends ContentDefinition
 @export var spawn_directions: Dictionary = {}
 @export var interactions: Array[Dictionary] = []
 @export var minimap_metadata: Dictionary = {}
+@export var custom_floor_id: StringName
+
+func is_hatchery() -> bool:
+	return String(id).ends_with("_eggery") or (not custom_floor_id.is_empty() and interactions.any(
+		func(interaction: Dictionary) -> bool: return interaction.get("kind") == &"egg_pick"))
 
 func ensure_payload(default_height_thresholds: Dictionary = {}) -> RoomPayloadDefinition:
 	if payload != null:

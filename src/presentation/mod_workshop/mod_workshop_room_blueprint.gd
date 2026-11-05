@@ -24,6 +24,7 @@ signal duplicate_requested(keys: Array)
 signal undo_requested
 signal redo_requested
 signal panel_toggle_requested
+signal tile_placed(position: Vector2)
 
 const WALL_SIZE := Vector2(100.0, 50.0)
 const DOOR_SIZE := Vector2(67.0, 67.0)
@@ -54,6 +55,8 @@ var object_mode := true
 var selected_objects: Array = []
 ## Pixels on the right covered by an overlay; the room is fitted beside it.
 var inset_right := 0.0
+var custom_room := false
+var paint_tiles := false
 
 var _dimensions := Vector2(800, 600)
 var _objects: Array[Dictionary] = []
@@ -101,6 +104,9 @@ func show_room(room: RoomDefinition, object_edits: Array = []) -> void:
 			"position": Vector2(float(attributes.get("xPos", 0.0)), float(attributes.get("yPos", 0.0))),
 			"scale": Vector2(float(attributes.get("xScale", 1.0)), float(attributes.get("yScale", 1.0))),
 			"rotation": deg_to_rad(float(attributes.get("rotation", 0.0))),
+			"tint": Color.from_string(String(attributes.get("tint", "")), Color.WHITE),
+			"workshop_object": int(attributes.get("workshop_object", -1)),
+			"workshop_feature": int(attributes.get("workshop_feature", -1)),
 		}
 		var normalized := original_name.trim_prefix("teleport_").trim_prefix("telport_")
 		if original_name == "collRect" or original_name.begins_with("wallRect_"):
@@ -121,6 +127,7 @@ func show_room(room: RoomDefinition, object_edits: Array = []) -> void:
 			if texture == null: continue
 			item.merge({"kind": "art", "texture": texture, "size": texture.get_size()})
 		item["editable"] = UserModBuilder.object_editable(original_name)
+		if custom_room: item["editable"] = item.workshop_object >= 0 or item.workshop_feature >= 0
 		_objects.append(item)
 	selected_objects = selected_objects.filter(func(key: Variant) -> bool: return _object(int(key)) != null)
 	queue_redraw()
@@ -222,6 +229,7 @@ func _pick(point: Vector2) -> Array:
 	var best: Variant = null
 	for item in _objects:
 		if item.removed or not _layer_visible(item) or not _hit_item(item, point): continue
+		if custom_room and not item.editable: continue
 		if item.kind != "zone" and not object_mode: continue
 		var rank := 0 if item.kind == "zone" else 1
 		var best_rank := 0 if best != null and best.kind == "zone" else 1
@@ -272,6 +280,11 @@ func _gui_input(event: InputEvent) -> void:
 
 func _press(point: Vector2, additive: bool) -> void:
 	grab_focus()
+	if paint_tiles:
+		var room_point := _to_room(point)
+		if Rect2(Vector2.ZERO, _dimensions).has_point(room_point):
+			tile_placed.emit((room_point / 64.0).floor() * 64.0)
+		return
 	var picked := _pick(point)
 	if picked[0] == "object":
 		var key := int(picked[1])
@@ -380,7 +393,7 @@ func _draw() -> void:
 		for item in _objects:
 			if item.kind != "art" or item.removed: continue
 			draw_set_transform_matrix(_item_transform(item))
-			draw_texture(item.texture, Vector2.ZERO)
+			draw_texture(item.texture, Vector2.ZERO, item.tint)
 	draw_set_transform_matrix(Transform2D.IDENTITY)
 	if snap > 0.0 and editable and _zoom >= 3.0:
 		_draw_grid(fit)

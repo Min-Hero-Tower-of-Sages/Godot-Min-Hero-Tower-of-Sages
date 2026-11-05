@@ -1,0 +1,491 @@
+{
+  "format": 1,
+  "id": "tower_ice",
+  "name": "Ice Floor",
+  "author": "Min Hero Extended",
+  "version": "1",
+  "floors": [
+    {
+      "id": "tower_ice:floor/ice",
+      "name": "Ice Floor",
+      "description": "Cross the frozen passage, challenge the Ice Sage, and choose one of four Ice minion eggs.",
+      "start_room": "passage",
+      "rooms": [
+        {
+          "id": "passage",
+          "name": "Frozen Passage",
+          "template": "frost",
+          "width": 980,
+          "height": 640,
+          "entry_x": 220,
+          "entry_y": 354,
+          "objects": [
+            {
+              "add": "iRock3",
+              "x": 412,
+              "y": 116,
+              "x_scale": 1.05,
+              "y_scale": 1.05
+            },
+            {
+              "add": "iRock3",
+              "x": 412,
+              "y": 171,
+              "x_scale": 1.05,
+              "y_scale": 1.05
+            },
+            {
+              "add": "iRock3",
+              "x": 412,
+              "y": 219,
+              "x_scale": 1.05,
+              "y_scale": 1.05
+            },
+            {
+              "add": "iRock3",
+              "x": 412,
+              "y": 251,
+              "x_scale": 1.05,
+              "y_scale": 1.05
+            },
+            {
+              "add": "iRock3",
+              "x": 412,
+              "y": 385,
+              "x_scale": 1.05,
+              "y_scale": 1.05,
+              "above_player": true
+            },
+            {
+              "add": "iRock3",
+              "x": 412,
+              "y": 445,
+              "x_scale": 1.05,
+              "y_scale": 1.05,
+              "above_player": true
+            },
+            {
+              "add": "iRock3",
+              "x": 412,
+              "y": 498,
+              "x_scale": 1.05,
+              "y_scale": 1.05,
+              "above_player": true
+            },
+            {
+              "add": "iRock3",
+              "x": 412,
+              "y": 548,
+              "x_scale": 1.05,
+              "y_scale": 1.05,
+              "above_player": true
+            },
+            {
+              "add": "iRock_small",
+              "x": 75,
+              "y": 432,
+              "x_scale": 1.0,
+              "y_scale": 1.0
+            },
+            {
+              "add": "iTree1_full",
+              "x": 15,
+              "y": 129,
+              "x_scale": 0.64,
+              "y_scale": 0.64,
+              "above_player": true
+            },
+            {
+              "add": "iTree1_full",
+              "x": 870,
+              "y": 286,
+              "x_scale": 0.67,
+              "y_scale": 0.67,
+              "above_player": true
+            },
+            {
+              "add": "iGrass",
+              "x": 177,
+              "y": 405,
+              "x_scale": 0.64,
+              "y_scale": 0.64
+            },
+            {
+              "add": "iRock2",
+              "x": 700,
+              "y": 465,
+              "x_scale": 0.77,
+              "y_scale": 0.77
+            },
+            {
+              "add": "iSnowman2",
+              "x": 762,
+              "y": 107,
+              "x_scale": 0.74,
+              "y_scale": 0.74
+            },
+            {
+              "add": "iGrass",
+              "x": 613,
+              "y": 498,
+              "x_scale": 0.75,
+              "y_scale": 0.75
+            },
+            {
+              "add": "iPuddle2",
+              "x": 588,
+              "y": 361,
+              "x_scale": 0.8,
+              "y_scale": 0.8
+            },
+            {
+              "add": "collRect",
+              "x": 416,
+              "y": 0,
+              "x_scale": 1.28,
+              "y_scale": 6.4,
+              "rotation": 0
+            },
+            {
+              "add": "collRect",
+              "x": 416,
+              "y": 384,
+              "x_scale": 1.28,
+              "y_scale": 5.12,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_pit",
+              "x": 416,
+              "y": 320,
+              "x_scale": 1,
+              "y_scale": 1,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_pit",
+              "x": 480,
+              "y": 320,
+              "x_scale": 1,
+              "y_scale": 1,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_jump",
+              "x": 352,
+              "y": 320,
+              "x_scale": 1,
+              "y_scale": 1,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_jump",
+              "x": 608,
+              "y": 384,
+              "x_scale": 1,
+              "y_scale": 1,
+              "rotation": 180
+            },
+            {
+              "add": "puzzle_ice",
+              "x": 250,
+              "y": 320,
+              "x_scale": 1,
+              "y_scale": 1,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_ice",
+              "x": 314,
+              "y": 320,
+              "x_scale": 0.594,
+              "y_scale": 1,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_ice",
+              "x": 680,
+              "y": 320,
+              "x_scale": 1,
+              "y_scale": 1,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_arrow",
+              "x": 744,
+              "y": 320,
+              "x_scale": 1,
+              "y_scale": 1,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_slow",
+              "x": 808,
+              "y": 320,
+              "x_scale": 1,
+              "y_scale": 1,
+              "rotation": 0
+            }
+          ],
+          "features": [
+            {
+              "id": "hall",
+              "kind": "return",
+              "x": 212,
+              "y": 145,
+              "mount": "north",
+              "label": "Side Hall"
+            },
+            {
+              "id": "sanctum",
+              "kind": "door",
+              "x": 841,
+              "y": 145,
+              "destination": "sanctum",
+              "mount": "north",
+              "label": "Ice Sage"
+            }
+          ]
+        },
+        {
+          "id": "sanctum",
+          "name": "Ice Sage's Sanctum",
+          "template": "frost",
+          "width": 820,
+          "height": 600,
+          "entry_x": 410,
+          "entry_y": 452,
+          "objects": [
+            {
+              "add": "iThaw",
+              "x": 190,
+              "y": 53,
+              "x_scale": 0.65,
+              "y_scale": 0.65
+            },
+            {
+              "add": "iWater2",
+              "x": 527,
+              "y": 53,
+              "x_scale": 0.65,
+              "y_scale": 0.65
+            },
+            {
+              "add": "iRock_small",
+              "x": 106,
+              "y": 386,
+              "x_scale": 0.9,
+              "y_scale": 0.9
+            },
+            {
+              "add": "iPuddle3",
+              "x": 76,
+              "y": 450,
+              "x_scale": 0.65,
+              "y_scale": 0.65
+            },
+            {
+              "add": "iRock2",
+              "x": 624,
+              "y": 337,
+              "x_scale": 0.92,
+              "y_scale": 0.92
+            },
+            {
+              "add": "iTree1_full",
+              "x": 713,
+              "y": 274,
+              "x_scale": 0.6,
+              "y_scale": 0.6,
+              "above_player": true
+            },
+            {
+              "add": "puzzle_ice",
+              "x": 282,
+              "y": 322,
+              "x_scale": 4,
+              "y_scale": 1,
+              "rotation": 0
+            },
+            {
+              "add": "puzzle_slow",
+              "x": 282,
+              "y": 386,
+              "x_scale": 4,
+              "y_scale": 1,
+              "rotation": 0
+            }
+          ],
+          "features": [
+            {
+              "id": "passage",
+              "kind": "door",
+              "x": 143,
+              "y": 145,
+              "destination": "passage",
+              "mount": "north",
+              "label": "Frozen Passage"
+            },
+            {
+              "id": "ice_sage",
+              "kind": "trainer",
+              "x": 410,
+              "y": 260,
+              "name": "Ice Sage",
+              "text": "The ice tests your footing. Let's see how your minions fare!",
+              "money": 120,
+              "team": [
+                {
+                  "minion": "ice_floor:minion/iseal1",
+                  "level": 15
+                },
+                {
+                  "minion": "ice_floor:minion/iunicorn1",
+                  "level": 16
+                },
+                {
+                  "minion": "ice_floor:minion/imammoth1",
+                  "level": 17
+                }
+              ]
+            },
+            {
+              "id": "hatchery",
+              "kind": "door",
+              "x": 673,
+              "y": 145,
+              "destination": "hatchery",
+              "requires_trainer": "ice_sage",
+              "mount": "north",
+              "label": "Hatchery"
+            },
+            {
+              "id": "heal",
+              "kind": "heal_party",
+              "x": 600,
+              "y": 470
+            }
+          ]
+        },
+        {
+          "id": "hatchery",
+          "name": "Ice Hatchery",
+          "template": "frost",
+          "width": 700,
+          "height": 550,
+          "entry_x": 350,
+          "entry_y": 385,
+          "objects": [
+            {
+              "add": "iThaw2",
+              "x": 110,
+              "y": 50,
+              "x_scale": 0.64,
+              "y_scale": 0.64
+            },
+            {
+              "add": "iWater",
+              "x": 502,
+              "y": 50,
+              "x_scale": 0.64,
+              "y_scale": 0.64
+            },
+            {
+              "add": "iPuddle3",
+              "x": 58,
+              "y": 239,
+              "x_scale": 0.74,
+              "y_scale": 0.74
+            },
+            {
+              "add": "iPuddle3",
+              "x": 427,
+              "y": 239,
+              "x_scale": 0.74,
+              "y_scale": 0.74
+            },
+            {
+              "add": "iSnowman1",
+              "x": 60,
+              "y": 153,
+              "x_scale": 0.72,
+              "y_scale": 0.72
+            },
+            {
+              "add": "iSnowman2",
+              "x": 553,
+              "y": 158,
+              "x_scale": 0.69,
+              "y_scale": 0.69
+            },
+            {
+              "add": "iGrass",
+              "x": 538,
+              "y": 397,
+              "x_scale": 0.7,
+              "y_scale": 0.7
+            },
+            {
+              "add": "iRock_small",
+              "x": 147,
+              "y": 410,
+              "x_scale": 0.65,
+              "y_scale": 0.65
+            }
+          ],
+          "features": [
+            {
+              "id": "egg_1",
+              "kind": "egg",
+              "x": 132,
+              "y": 277,
+              "minion": "ice_floor:minion/iseal1",
+              "level": 15
+            },
+            {
+              "id": "egg_2",
+              "kind": "egg",
+              "x": 277,
+              "y": 277,
+              "minion": "ice_floor:minion/iunicorn1",
+              "level": 15
+            },
+            {
+              "id": "egg_3",
+              "kind": "egg",
+              "x": 422,
+              "y": 277,
+              "minion": "ice_floor:minion/imammoth1",
+              "level": 15
+            },
+            {
+              "id": "egg_4",
+              "kind": "egg",
+              "x": 567,
+              "y": 277,
+              "minion": "ice_floor:minion/isloth1",
+              "level": 15
+            },
+            {
+              "id": "hall",
+              "kind": "return",
+              "x": 330,
+              "y": 487,
+              "mount": "south",
+              "label": "Side Hall"
+            },
+            {
+              "id": "sanctum",
+              "kind": "door",
+              "x": 70,
+              "y": 363,
+              "destination": "sanctum",
+              "mount": "west",
+              "label": "Ice Sage"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

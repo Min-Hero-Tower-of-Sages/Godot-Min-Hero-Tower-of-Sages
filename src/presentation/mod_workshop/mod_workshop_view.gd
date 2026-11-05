@@ -9,13 +9,13 @@ extends Control
 signal closed
 signal test_battle_requested(mod_id: String, spec: Dictionary)
 
-const TABS := ["Info", "Minions", "Moves", "Skills", "Types", "Changes", "Trainers", "Hatchery", "Rooms", "Test"]
+const TABS := ["Info", "Minions", "Moves", "Skills", "Types", "Changes", "Trainers", "Hatchery", "Rooms", "Floors", "Test"]
 ## The tabs grouped for the two navigation rows.
 const CATEGORIES := [
 	{"name": "Mod", "tabs": ["Info"], "tint": Color8(168, 184, 199)},
 	{"name": "Create", "tabs": ["Minions", "Moves", "Skills", "Types"], "tint": Color8(112, 205, 128)},
 	{"name": "Change", "tabs": ["Changes", "Trainers"], "tint": Color8(104, 164, 255)},
-	{"name": "World", "tabs": ["Hatchery", "Rooms"], "tint": Color8(255, 170, 70)},
+	{"name": "World", "tabs": ["Hatchery", "Rooms", "Floors"], "tint": Color8(255, 170, 70)},
 	{"name": "Test", "tabs": ["Test"], "tint": Color8(236, 150, 204)},
 ]
 const MINION_ART := "res://content/base/art/battle/minions/%s.png"
@@ -52,6 +52,7 @@ var _preview_guard: Dictionary = {}
 var _last_tab: Dictionary = {}
 var _skills: ModWorkshopSkills
 var _rooms_tab: ModWorkshopRooms
+var _floors_tab: ModWorkshopFloors
 ## The in-game move card, shown while hovering any move in the Workshop.
 var _move_tip: BattleMoveTooltip
 var _tip_owner: Control
@@ -127,6 +128,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	elif _tab == "Rooms" and not _mod_id.is_empty() and not String(_selection.get("room", "")).is_empty():
 		_selection.erase("room")
 		_build_editor()
+	elif _tab == "Floors" and _floors_tab != null and _floors_tab.return_to_floor_map():
+		return
 	elif not _mod_id.is_empty(): _leave_editor()
 	else: closed.emit()
 
@@ -464,6 +467,7 @@ func _edit(mod_id: String, tab: String) -> void:
 	_filters.clear()
 	_texture_cache.clear()
 	_rooms_tab = null
+	_floors_tab = null
 	_build_editor()
 
 func _leave_editor() -> void:
@@ -532,6 +536,9 @@ func _build_editor() -> void:
 		"Trainers": _list_tab(content, "trainers", "Edit a trainer...", _new_trainer, _trainer_form)
 		"Hatchery": _list_tab(content, "hatchery", "Add a hatchery rule", _new_hatchery_rule, _hatchery_form)
 		"Rooms": _rooms_tab_build(content)
+		"Floors":
+			if _floors_tab == null: _floors_tab = ModWorkshopFloors.new(self)
+			_floors_tab.build(content)
 		"Test": _test_tab(_scroll_form(content, false))
 
 func _open_tab(tab: String) -> void:
@@ -595,6 +602,7 @@ func _tab_count(tab: String) -> int:
 		"Trainers": return _manifest.trainers.size()
 		"Hatchery": return _manifest.hatchery.size()
 		"Rooms": return _manifest.rooms.size()
+		"Floors": return _manifest.floors.size()
 	return 0
 
 func _make_form() -> ModWorkshopForm:
@@ -767,7 +775,7 @@ func _unique_id(category: String, base_name: String) -> String:
 	return candidate
 
 func _id_taken(id: String) -> bool:
-	for section in ["minions", "moves", "types", "talent_trees"]:
+	for section in ["minions", "moves", "types", "talent_trees", "floors"]:
 		for record in _manifest[section]:
 			if String(record.get("id", "")) == id: return true
 	return catalog.has_definition(StringName(id))

@@ -6,7 +6,7 @@ const OPTIONS := [
 	{"name": "Stingaray", "flags": ["waterRay1", "waterRay2"], "description": "Water-infused minions. Found in Floors 1-3 and 3-1."},
 	{"name": "Arkvian", "flags": ["holyBird1", "holyBird2"], "description": "Holy birds Arkvian and Arkclaw. Found in Floors 1-4 and 4-2."},
 	{"name": "Ophan", "flags": ["HolyEye1", "HolyEye2", "HolyEye3"], "description": "A fast one-eyed minion and its evolutions. Found in Floors 4-2 and 5-3."},
-	{"name": "Ice Content", "flags": ["iceFloor", "iMammoth1", "iMammoth2", "iMammoth3", "iUnicorn1", "iUnicorn2", "iUnicorn3", "iSloth1", "iSloth2", "iSloth3", "iSeal1", "iSeal2", "iSeal3"], "description": "Ice minions and moves for imported saves. The Ice Floor itself is unfinished: this does not add a playable floor."},
+	{"name": "Ice Content", "flags": ["iceFloor", "iMammoth1", "iMammoth2", "iMammoth3", "iUnicorn1", "iUnicorn2", "iUnicorn3", "iSloth1", "iSloth2", "iSloth3", "iSeal1", "iSeal2", "iSeal3"], "description": "Opens the Ice Floor in the lobby’s Side Hall and makes the recovered Ice minions available."},
 	{"name": "Nuzlocke", "flags": ["nuzlocke"], "description": "Fainted minions are permanently lost after battle. Losing your entire roster ends the run."},
 	{"name": "No Regen", "flags": ["no_natural_regen"], "description": "No natural health refill within a floor. Explicit healing and entering another floor still restore health."},
 	{"name": "Move Trees", "flags": ["restored_moves", "restored_martyr", "restored_righteous_fate"], "description": "Martyr for Holymantis/Foramare; Righteous Fate for Arkvian/Arkclaw. Adds talents using normal skill points."},
@@ -20,7 +20,7 @@ const OPTIONS := [
 const CATEGORIES := [
 	{"id": "minions", "name": "Extra Minions", "groups": ["dirtFish", "waterRay1", "holyBird1", "HolyEye1", "starter_eggs"], "description": "Add minion families to tower hatcheries. Select a mod to see where it can be found."},
 	{"id": "challenges", "name": "Challenge Rules", "groups": ["nuzlocke", "no_natural_regen"], "description": "Optional rules for a tougher run. Read each rule before enabling it."},
-	{"id": "experimental", "name": "Experimental Content", "groups": ["iceFloor"], "description": "Recovered, unfinished content. Read its limitations before enabling it."},
+	{"id": "experimental", "name": "Experimental Content", "groups": ["iceFloor"], "description": "Optional side floors and experimental content."},
 	{"id": "gameplay", "name": "Gameplay Tweaks", "groups": ["restored_moves", "shinies", "skill_gems", "gem_affinity", "piercing_over_time", "debug_mode"], "description": "Move-tree additions, skill gems, gem affinity, over-time rules, shiny variants and optional debug settings."},
 ]
 # Bits belong to the recovered egg-table format, not presentation ordering.

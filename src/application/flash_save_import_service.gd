@@ -183,7 +183,7 @@ func convert_fields(data: Dictionary, catalog: ContentCatalog, character_name: S
 	if not repaired.ok: return repaired
 	warnings.append("Resume at the tower lobby. Selecting your saved floor once restores its keys, doors, remaining egg picks and trainer progress; other floor visits reset as in Flash.")
 	warnings.append("Flash did not save IVs or current energy; these use the port defaults. Original fields are archived inside the imported save.")
-	if bool(state.active_mods.get("iceFloor", false)): warnings.append("Ice minions/moves are retained; the reference Ice Floor route is unfinished.")
+	if bool(state.active_mods.get("iceFloor", false)): warnings.append("Ice minions and moves are retained. The new Ice Floor is accessible from the lobby’s Side Hall.")
 	var errors := state.validation_errors(catalog)
 	if not errors.is_empty(): return _error("\n".join(errors))
 	return {"ok": true, "state": state.to_dictionary(catalog.content_version), "warnings": warnings, "summary": "%s — %d party, %d stored, %d gems, %d coins; %d unlocked floors" % [state.character.name, state.party.size(), state.storage.size(), state.owned_gems.size(), int(state.progression.currency), unlocked.size()]}

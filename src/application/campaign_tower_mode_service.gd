@@ -173,7 +173,7 @@ static func floor_star_count(state: CampaignState, catalog: ContentCatalog, camp
 static func resolve_encounter(catalog: ContentCatalog, normal_encounter: EncounterDefinition, tower_floor: int) -> Dictionary:
 	if catalog == null or normal_encounter == null:
 		return _error("invalid_encounter", "catalog and source encounter are required")
-	if tower_floor < STANDARD_FLOOR_COUNT:
+	if tower_floor < STANDARD_FLOOR_COUNT or normal_encounter.source_floor_index < 0:
 		return {"ok": true, "encounter": normal_encounter, "mode": &"standard", "tower_floor_index": tower_floor}
 	if tower_floor >= TOTAL_TOWER_FLOORS:
 		return _error("floor_out_of_range", "tower floor index is outside the 31-floor hard tower")

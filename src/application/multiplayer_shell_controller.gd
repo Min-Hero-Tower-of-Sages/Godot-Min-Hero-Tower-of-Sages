@@ -557,6 +557,10 @@ func _on_join_finished(ok: bool, message: String) -> void:
 	_refresh_hud()
 
 func show_host_view() -> void:
+	var state: CampaignState = shell.runtime.session.state
+	if state != null and (state.current_room_id == CustomFloorBuilder.HALL_ID or not String(state.progression.get("custom_floor_id", "")).is_empty()):
+		_blocked_notice("Return to the tower lobby before opening a multiplayer game.")
+		return
 	shell._clear_dialog()
 	var view: Control = HOST_VIEW.new()
 	shell.interaction_dialog = view

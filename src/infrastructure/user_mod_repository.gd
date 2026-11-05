@@ -9,6 +9,8 @@ const MANIFEST := "mod.json"
 const CODE_PREFIX := "MHMOD1:"
 const MAX_MANIFEST_BYTES := 1 << 20
 const MAX_SPRITE_BYTES := 1 << 20
+const MAX_ROOM_ART_BYTES := 8 << 20
+const MAX_BUNDLE_ART_BYTES := 40 << 20
 const MAX_SPRITES := 48
 const MAX_CODE_BYTES := 64 << 20
 
@@ -16,10 +18,16 @@ const MAX_CODE_BYTES := 64 << 20
 static var root := "user://mods"
 
 static func valid_id(id: String) -> bool:
-	return RegEx.create_from_string(UserModBuilder.ID_PATTERN).search(id) != null and id not in ["base", "extended", "user"]
+	return RegEx.create_from_string(UserModBuilder.ID_PATTERN).search(id) != null and id not in ["base", "extended", "user", "tower_ice"]
 
 static func valid_sprite_path(path: String) -> bool:
 	return path.begins_with("sprites/") and path.get_extension().to_lower() == "png" and not path.contains("..") and not path.contains("\\") and not path.contains(":") and path.trim_prefix("sprites/") == path.get_file() and path.get_file().validate_filename() == path.get_file()
+
+static func _art_byte_limit(path: String) -> int:
+	return MAX_ROOM_ART_BYTES if path.begins_with("sprites/room_") else MAX_SPRITE_BYTES
+
+static func _art_dimension_limit(path: String) -> int:
+	return 2048 if path.begins_with("sprites/room_") else 512
 
 static func mod_dir(id: String) -> String:
 	return root.path_join(id)
@@ -62,6 +70,7 @@ static func read(id: String) -> Dictionary:
 static func write(manifest: Dictionary) -> Dictionary:
 	var problems := UserModBuilder.header_errors(manifest)
 	if not problems.is_empty(): return _error("invalid_mod", "; ".join(problems))
+	if not valid_id(String(manifest.id)): return _error("invalid_id", "That mod ID is reserved.")
 	var dir := mod_dir(String(manifest.id))
 	if DirAccess.make_dir_recursive_absolute(dir.path_join("sprites")) != OK: return _error("write_failed", "Could not create %s" % dir)
 	var path := dir.path_join(MANIFEST)
@@ -109,7 +118,7 @@ static func read_file(id: String, relative: String) -> PackedByteArray:
 	var path := mod_dir(id).path_join(relative)
 	if not FileAccess.file_exists(path): return PackedByteArray()
 	var file := FileAccess.open(path, FileAccess.READ)
-	return file.get_buffer(file.get_length()) if file != null and file.get_length() <= MAX_SPRITE_BYTES else PackedByteArray()
+	return file.get_buffer(file.get_length()) if file != null and file.get_length() <= _art_byte_limit(relative) else PackedByteArray()
 
 ## Copies a PNG the player picked into the mod. Returns its relative path.
 static func import_sprite(id: String, source_path: String, name: String) -> Dictionary:
@@ -119,15 +128,29 @@ static func import_sprite(id: String, source_path: String, name: String) -> Dict
 	return import_image(id, image, name)
 
 ## Saves an image already in memory (e.g. cropped in the Workshop) as mod art.
-static func import_image(id: String, image: Image, name: String) -> Dictionary:
+static func import_image(id: String, image: Image, name: String, room_art: bool = false) -> Dictionary:
 	if not exists(id): return _error("not_found", "Create the mod before importing art.")
 	if image == null or image.is_empty(): return _error("bad_image", "That file is not a readable image.")
-	if image.get_width() > 512 or image.get_height() > 512: return _error("bad_image", "Sprites can be at most 512 x 512 pixels.")
 	var safe := name.to_lower().validate_filename().replace(" ", "_").left(40)
 	if safe.is_empty() or safe.begins_with("."): safe = "sprite"
+	if room_art: safe = "room_" + safe
+	elif safe.begins_with("room_"): safe = "sprite_" + safe
 	var relative := "sprites/%s.png" % safe
+	if room_art:
+		var suffix := 2
+		while FileAccess.file_exists(mod_dir(id).path_join(relative)):
+			relative = "sprites/%s_%d.png" % [safe, suffix]
+			suffix += 1
+	var limit := _art_dimension_limit(relative)
+	if image.get_width() > limit or image.get_height() > limit: return _error("bad_image", "This image can be at most %d × %d pixels." % [limit, limit])
 	var bytes := image.save_png_to_buffer()
-	if bytes.size() > MAX_SPRITE_BYTES: return _error("bad_image", "That sprite is larger than 1 MB once saved.")
+	if bytes.size() > _art_byte_limit(relative): return _error("bad_image", "This PNG is too large once saved.")
+	var total := bytes.size()
+	for path in sprite_files(id):
+		if path != relative:
+			var existing := FileAccess.open(mod_dir(id).path_join(path), FileAccess.READ)
+			if existing != null: total += existing.get_length()
+	if total > MAX_BUNDLE_ART_BYTES: return _error("bad_image", "A mod can contain at most 40 MB of PNG art.")
 	if not FileAccess.file_exists(mod_dir(id).path_join(relative)) and sprite_files(id).size() >= MAX_SPRITES: return _error("bad_image", "A mod can contain at most %d PNG files." % MAX_SPRITES)
 	DirAccess.make_dir_recursive_absolute(mod_dir(id).path_join("sprites"))
 	var file := FileAccess.open(mod_dir(id).path_join(relative), FileAccess.WRITE)
@@ -197,16 +220,20 @@ static func _validate_bundle(manifest: Dictionary, files: Dictionary) -> Diction
 	if not problems.is_empty(): return _error("invalid_mod", "; ".join(problems))
 	if JSON.stringify(manifest).to_utf8_buffer().size() > MAX_MANIFEST_BYTES: return _error("invalid_mod", "The mod manifest is larger than 1 MB.")
 	if files.size() > MAX_SPRITES: return _error("invalid_mod", "The mod has too many sprites.")
+	var total := 0
 	for relative in files:
 		var path := String(relative)
 		if not valid_sprite_path(path):
 			return _error("invalid_mod", "The mod contains an unexpected file %s." % path)
 		if not files[relative] is PackedByteArray: return _error("invalid_mod", "The mod contains a damaged sprite %s." % path)
 		var bytes: PackedByteArray = files[relative]
+		total += bytes.size()
+		if total > MAX_BUNDLE_ART_BYTES: return _error("invalid_mod", "The mod has more than 40 MB of PNG art.")
 		var image := Image.new()
-		if bytes.size() > MAX_SPRITE_BYTES or image.load_png_from_buffer(bytes) != OK:
+		if bytes.size() > _art_byte_limit(path) or image.load_png_from_buffer(bytes) != OK:
 			return _error("invalid_mod", "The mod contains a damaged sprite %s." % path)
-		if image.get_width() > 512 or image.get_height() > 512: return _error("invalid_mod", "Sprites can be at most 512 x 512 pixels.")
+		var limit := _art_dimension_limit(path)
+		if image.get_width() > limit or image.get_height() > limit: return _error("invalid_mod", "%s can be at most %d × %d pixels." % [path, limit, limit])
 	return {"ok": true, "manifest": manifest, "files": files}
 
 static func install_bundle(bundle: Dictionary, overwrite: bool) -> Dictionary:
@@ -215,6 +242,7 @@ static func install_bundle(bundle: Dictionary, overwrite: bool) -> Dictionary:
 	if not validated.ok: return validated
 	var manifest: Dictionary = bundle.manifest
 	var id := String(manifest.id)
+	if not valid_id(id): return _error("invalid_id", "That mod ID is reserved.")
 	if exists(id) and not overwrite: return _error("exists", "A mod called %s is already installed." % id)
 	# Stage the complete folder first. A failed import keeps the installed copy.
 	var staging := root.path_join(".install_%s" % id)
@@ -243,6 +271,7 @@ static func install_bundle(bundle: Dictionary, overwrite: bool) -> Dictionary:
 		if had_previous: _rename_mod_directory(backup, mod_dir(id))
 		return _error("write_failed", "Could not install %s." % id)
 	_remove_tree(backup)
+	RoomArtCatalog.clear_mod_art()
 	return {"ok": true, "id": id}
 
 ## Windows can briefly keep a just-deleted directory locked. Retry its generic

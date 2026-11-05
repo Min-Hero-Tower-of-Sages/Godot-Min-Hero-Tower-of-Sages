@@ -97,6 +97,8 @@ func _ready() -> void:
 		_add_pack_once(pack)
 	_add_pack_once(HARD_TOWER_PACK)
 	var errors := catalog.rebuild_index()
+	if errors.is_empty():
+		errors = CustomFloorBuilder.install_builtin(catalog)
 	if not errors.is_empty():
 		push_error("Campaign catalog failed validation: %s" % ", ".join(errors))
 	session = SESSION_SCRIPT.new()
