@@ -2,6 +2,7 @@ class_name CampaignStorageMenuView
 extends Control
 
 signal closed
+signal exit_requested
 signal details_requested(member_id: StringName)
 signal gems_requested(member_id: StringName, socket: int)
 
@@ -287,6 +288,7 @@ func _build_gems(page: Control, owned: OwnedMinionState, definition: MinionDefin
 
 func _build_footer() -> void:
 	SourceMenuArt.button(_menu, "menus_returnButton", Vector2(3.0, 409.0), func() -> void: closed.emit())
+	SourceMenuArt.button(_menu, "menus_exitButton", Vector2(624, -22), func() -> void: exit_requested.emit())
 	var release := SourceMenuArt.button(_menu, "menus_minionStorage_releaseButton", Vector2(580.0, 412.0), Callable(self, "_ask_release"))
 	if release != null:
 		release.visible = not _selected_id.is_empty() and not _swap_mode

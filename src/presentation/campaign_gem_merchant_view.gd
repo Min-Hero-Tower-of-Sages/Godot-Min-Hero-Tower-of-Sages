@@ -65,6 +65,7 @@ func _refresh() -> void:
 	money_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	money_label.clip_text = true
 	var return_button := SourceMenuArt.button(_panel, "menus_returnButton", Vector2(3, 409), _return_from_merchant)
+	SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -22), _return_from_merchant.bind(true))
 	return_button.name = "MerchantReturn"
 	_build_inventory()
 	_selector.position = Vector2(332, 15)
@@ -209,10 +210,11 @@ func _reset_materials() -> bool:
 	_refresh()
 	return true
 
-func _return_from_merchant() -> void:
+func _return_from_merchant(close_all: bool = false) -> void:
 	if _mode == &"combine" and not _reset_materials():
 		return
-	closed.emit()
+	if close_all: exit_requested.emit()
+	else: closed.emit()
 
 func _combine() -> void:
 	var result: Dictionary = _session.combine_gems(_materials, _page, _skill_forge)
@@ -286,7 +288,7 @@ func _build_recipe_reference() -> void:
 		row += 1
 	_label("One color: its type. Other mixes: non-elemental support.\nRed + Purple, for example: stats, armor, reflection or Taunt/Torment.\nTiers 1–3: Lv.1   4–5: Lv.2   6–7: Lv.3   8–9: Lv.4   10: Lv.5\nSkills cap at their highest rank. Skill gems cannot be combined.", Vector2(40, 319), Vector2(600, 86), 14, sheet).name = "ForgeRecipeDetails"
 	SourceMenuArt.button(sheet, "menus_returnButton", Vector2(3, 409), _close_recipes)
-	SourceMenuArt.button(sheet, "menus_exitButton", Vector2(624, -22), _close_recipes)
+	SourceMenuArt.button(sheet, "menus_exitButton", Vector2(624, -22), _return_from_merchant.bind(true))
 
 func _sell() -> void:
 	var result: Dictionary = _session.sell_gem(_selected_gem)

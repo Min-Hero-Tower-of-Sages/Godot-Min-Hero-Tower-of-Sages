@@ -151,6 +151,20 @@ opened). Saved art must be at most **1 MB**, and a shared mod code or ZIP at mos
 mod and included when sharing it. A mod can contain at most 48 PNG files. Type
 badges are framed the same way and saved at the recovered badge size.
 
+The minion editor shows the dimensions of the visible art and a **Battle
+scale** control. For a large minion, start around 100–130 pixels tall after
+scaling and compare it with an existing minion in a Workshop test battle.
+Transparent margins on imported sprites are trimmed for battle placement.
+The **Minion-pedia** card accepts a one-based list position. Use 0 for default
+ordering.
+
+In the move editor, **Animation** chooses the visual and **Icon → Import PNG**
+sets the move's icon separately. Icons are framed at 53 × 51 pixels. Each
+tier can have its own name and energy cost. **Animation timing** can play the
+visual on all targets together, on one target at a time, or once per team.
+Type art has separate **Roster badge** and **Move tooltip** import buttons.
+Each cropper uses the dimensions of its in-game slot.
+
 ## Custom Floors
 
 Open **World → Floors** in the Workshop to see the whole floor map. Drag room

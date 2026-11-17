@@ -1013,6 +1013,7 @@ func _show_room_from_state(spawn_id: StringName = &"", spawn_position: Vector2 =
 		room_context.progression["boss_door_unlocked"] = true
 	if not current_room.configure(room, spawn_id, spawn_position, state.character, room_context):
 		_show_notice("Room %s could not be created." % room.id)
+	_sync_room_debug_options()
 	var room_music = preload("res://src/presentation/source_room_music.gd")
 	_previous_region_music = String(state.progression.get("previous_region_music", ""))
 	if _previous_region_music.is_empty():
@@ -1050,7 +1051,7 @@ func _schedule_context_room_tutorial(return_room: Node, room_id: StringName) -> 
 
 func _process(_delta: float) -> void:
 	if runtime != null and runtime.session != null and runtime.session.state != null and is_instance_valid(current_room) and current_room.room != null and current_room.room.id == runtime.session.state.current_room_id:
-		runtime.session.update_exploration_position(current_room.player_position(), StringName(current_room.get_meta("spawn_id", "")), current_room.player_facing())
+		runtime.session.update_exploration_position(current_room.safe_save_position(), StringName(current_room.get_meta("spawn_id", "")), current_room.player_facing())
 	if is_instance_valid(_reward_presenter) and _reward_presenter.visible:
 		_reward_presenter.position = get_viewport().get_canvas_transform().origin - _reward_canvas_origin
 	if room_hud != null and room_hud.visible and runtime != null and runtime.session != null and runtime.session.state != null:
@@ -1324,6 +1325,17 @@ func _show_player_dialogue(message: String, on_complete: Callable = Callable()) 
 	if bubble_texture != null and bubble_position.x + bubble_texture.get_width() > 700:
 		bubble_position.x = actor_screen.x - 225
 	_show_source_dialogue({"dialogue_layout": {"position": bubble_position, "scale": Vector2.ONE}}, "Inner Monologue", message, on_complete)
+
+func _sync_room_debug_options() -> void:
+	if not is_instance_valid(current_room) or runtime == null or runtime.session == null or runtime.session.state == null:
+		return
+	var state = runtime.session.state
+	if current_room.room == null or current_room.room.id != state.current_room_id: return
+	var single_player: bool = not net.is_active()
+	current_room.set_debug_exploration(
+		single_player and CampaignDebugService.enabled(state, "no_clip"),
+		runtime.session.hatchery_xray_names(current_room.room) if single_player else {},
+	)
 
 func _refresh_current_room() -> void:
 	if current_room == null or runtime == null or runtime.session == null or runtime.session.state == null:
@@ -2016,6 +2028,7 @@ func _show_settings_menu() -> void:
 	var view := CampaignSettingsView.new()
 	interaction_dialog = view
 	view.closed.connect(_close_source_menu.bind(_show_campaign_menu))
+	view.exit_requested.connect(_close_source_menu.bind(_clear_dialog))
 	_attach_interaction_dialog()
 	view.configure(_settings, runtime.session if runtime != null else null)
 	_adopt_source_menu_backdrop(view)
@@ -2028,6 +2041,7 @@ func _show_you_menu() -> void:
 	var view := CampaignYouMenuView.new()
 	interaction_dialog = view
 	view.closed.connect(_close_source_menu.bind(_show_campaign_menu))
+	view.exit_requested.connect(_close_source_menu.bind(_clear_dialog))
 	_attach_interaction_dialog()
 	view.configure(runtime.session)
 	_adopt_source_menu_backdrop(view)
@@ -2038,6 +2052,7 @@ func _show_minion_pedia() -> void:
 	var view := CampaignMinionPediaView.new()
 	interaction_dialog = view
 	view.closed.connect(_close_source_menu.bind(_show_campaign_menu))
+	view.exit_requested.connect(_close_source_menu.bind(_clear_dialog))
 	_attach_interaction_dialog()
 	view.configure(runtime.catalog, runtime.session.state, _settings)
 	_adopt_source_menu_backdrop(view)
@@ -2059,7 +2074,7 @@ func _show_gem_inventory(member_id: StringName = &"", socket: int = 0) -> void:
 	var gem_view := CampaignGemMenuView.new()
 	interaction_dialog = gem_view
 	gem_view.z_index = 1500
-	var return_route := Callable(self, "_restore_gem_storage_details").bind(member_id, previous_box) if return_to_storage else Callable(self, "_restore_gem_party_details").bind(member_id, previous_tab) if return_to_party else Callable(self, "_show_campaign_menu")
+	var return_route := Callable(self, "_restore_gem_storage_details").bind(member_id, previous_box, bool(previous_view.get_meta("return_to_party", false))) if return_to_storage else Callable(self, "_restore_gem_party_details").bind(member_id, previous_tab) if return_to_party else Callable(self, "_show_campaign_menu")
 	gem_view.closed.connect(_close_source_menu.bind(return_route))
 	gem_view.exit_requested.connect(_close_source_menu.bind(_clear_dialog))
 	_attach_interaction_dialog()
@@ -2083,8 +2098,8 @@ func _restore_gem_party_details(member_id: StringName, tab: int) -> void:
 			SourceMenuTransition.enter(view, true)
 			return
 
-func _restore_gem_storage_details(member_id: StringName, box: int) -> void:
-	_show_storage_manager()
+func _restore_gem_storage_details(member_id: StringName, box: int, from_party: bool = false) -> void:
+	_show_storage_manager(from_party)
 	var view := interaction_dialog as CampaignStorageMenuView
 	if view != null:
 		view._box_page = box
@@ -2093,13 +2108,14 @@ func _restore_gem_storage_details(member_id: StringName, box: int) -> void:
 		view._render()
 		SourceMenuTransition.enter(view, true)
 
-func _show_gem_merchant(mode: StringName = &"shop") -> void:
+func _show_gem_merchant(mode: StringName = &"shop", from_party: bool = false) -> void:
 	if runtime == null or runtime.session == null or runtime.session.state == null:
 		return
 	_clear_dialog()
 	var view := CampaignGemMerchantView.new()
 	interaction_dialog = view
-	view.closed.connect(_close_source_menu.bind(_clear_dialog))
+	view.closed.connect(_close_source_menu.bind(_show_party_manager if from_party else _clear_dialog))
+	view.exit_requested.connect(_close_source_menu.bind(_clear_dialog))
 	_attach_interaction_dialog()
 	view.configure_merchant(runtime.session, mode, _campaign_audio)
 	SourceMenuTransition.enter(view)
@@ -2266,12 +2282,13 @@ func _show_party_manager() -> void:
 	_clear_dialog()
 	var view := CampaignPartyMenuView.new()
 	interaction_dialog = view
-	view.closed.connect(_close_source_menu.bind(_show_campaign_menu))
-	view.storage_requested.connect(_show_storage_manager)
+	view.closed.connect(_close_source_menu.bind(_clear_dialog))
+	view.storage_requested.connect(_show_storage_manager.bind(true))
+	view.gem_merchant_requested.connect(func(mode: StringName) -> void: _show_gem_merchant(mode, true))
 	view.gems_requested.connect(_show_gem_inventory)
 	view.talents_requested.connect(_show_campaign_talents)
 	_attach_interaction_dialog()
-	view.configure(runtime.session, Callable(self, "_build_party_menu_row"), _settings)
+	view.configure(runtime.session, Callable(self, "_build_party_menu_row"), _settings, not net.is_active())
 	_adopt_source_menu_backdrop(view)
 	SourceMenuTransition.enter(view, true)
 
@@ -2297,7 +2314,7 @@ func _show_campaign_talents(member_id: StringName) -> void:
 	view.show_campaign_talents(owned, runtime.catalog, Callable(runtime, "save_campaign"))
 	_adopt_source_menu_backdrop(view)
 
-func _show_storage_manager() -> void:
+func _show_storage_manager(from_party: bool = false) -> void:
 	if runtime == null or runtime.session == null or runtime.session.state == null:
 		return
 	if not _multiplayer.storage_ready():
@@ -2305,7 +2322,9 @@ func _show_storage_manager() -> void:
 	_clear_dialog()
 	var view := CampaignStorageMenuView.new()
 	interaction_dialog = view
-	view.closed.connect(_close_source_menu.bind(_clear_dialog))
+	view.set_meta("return_to_party", from_party)
+	view.closed.connect(_close_source_menu.bind(_show_party_manager if from_party else _clear_dialog))
+	view.exit_requested.connect(_close_source_menu.bind(_clear_dialog))
 	view.gems_requested.connect(_show_gem_inventory)
 	_attach_interaction_dialog()
 	view.configure(runtime.session, Callable(self, "_build_party_menu_row"))
@@ -2917,6 +2936,7 @@ func _clear_dialog(immediate: bool = false) -> void:
 	if current_room != null and is_instance_valid(current_room):
 		if runtime != null and runtime.session != null and runtime.session.state != null:
 			current_room.update_campaign_progression(runtime.session.state.progression)
+			_sync_room_debug_options()
 		current_room.set_controls_enabled(not _room_transition_active)
 
 func _new_menu_screen() -> Control:

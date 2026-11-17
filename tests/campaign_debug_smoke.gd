@@ -30,8 +30,10 @@ func _run() -> void:
 	view.configure(settings, session)
 	assert(view.find_child("DebugMenuButton", true, false) != null)
 	view._open_debug()
-	for option in CampaignDebugService.OPTIONS:
-		assert(view.find_child("DebugToggle_%s" % option.id, true, false) != null)
+	for page in 2:
+		view._change_debug_page(page)
+		for option in CampaignDebugService.OPTIONS.slice(page * 5, (page + 1) * 5):
+			assert(view.find_child("DebugToggle_%s" % option.id, true, false) != null)
 	var before: Dictionary = session.state.to_dictionary(catalog.content_version, true)
 	repository.reject = true
 	assert(not session.set_debug_option("max_party_levels", true).ok)
@@ -76,6 +78,24 @@ func _run() -> void:
 	assert(new_minion.is_shiny, "Force shiny works without regular Shinies mod")
 	assert(not session.state.party[0].is_shiny, "Existing party stays unchanged")
 	assert(session.load(1).ok and CampaignDebugService.enabled(session.state, "force_shiny"))
+	assert(session.set_debug_option("egg_xray", true).ok)
+	session.state.progression.floor_index = 0
+	session.state.progression.eggery_picks_remaining = 1
+	var hatchery: RoomDefinition
+	for room_id in session.campaign.floors[0].room_ids:
+		if String(room_id).ends_with("_eggery"): hatchery = catalog.get_definition(StringName(room_id)) as RoomDefinition
+	assert(hatchery != null)
+	session.state.current_room_id = hatchery.id
+	repository.reject = true
+	assert(session.hatchery_xray_names(hatchery).is_empty(), "X-Ray must not display an unsaved roll")
+	repository.reject = false
+	var egg_names := session.hatchery_xray_names(hatchery)
+	assert(not egg_names.is_empty() and session.load(1).ok)
+	assert(session.hatchery_xray_names(hatchery) == egg_names, "X-Ray contents changed after reloading")
+	var egg: Dictionary = hatchery.interactions.filter(func(interaction: Dictionary) -> bool: return interaction.kind == &"egg_pick")[0]
+	var hatched := session.interact(egg.id)
+	assert(hatched.ok and hatched.definition.display_name == egg_names[int(egg.source_zone_id)], "Egg hatched a different minion from the X-Ray label")
+	assert(session.discard_latest_egg_minion(hatched.minion.instance_id).ok)
 	session.state.active_mods.erase("debug_mode")
 	assert(not CampaignDebugService.enabled(session.state, "force_shiny"))
 	view.configure(settings, session)

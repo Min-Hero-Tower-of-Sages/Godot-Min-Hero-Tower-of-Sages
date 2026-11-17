@@ -448,6 +448,7 @@ func select_tower_floor(floor_index: int) -> Dictionary:
 		var eggery_room_state: Dictionary = candidate.room_state.get(String(floor_room_id), {}).duplicate(true)
 		eggery_room_state.erase("eggery_taken_slots")
 		eggery_room_state.erase("eggery_shiny_slots")
+		eggery_room_state.erase("eggery_xray_rolls")
 		candidate.room_state[String(floor_room_id)] = eggery_room_state
 		break
 	var rested := ProgressionService.rest_party(candidate, catalog)
@@ -1071,6 +1072,47 @@ func _source_gem_tier_for_floor(floor_index: int) -> int:
 func _create_source_random_gem(tier: int) -> Dictionary:
 	return CampaignGemFactory.create_random(tier)
 
+func hatchery_xray_names(room: RoomDefinition) -> Dictionary:
+	if not CampaignDebugService.enabled(state, "egg_xray") or not room.is_hatchery() or int(state.progression.get("eggery_picks_remaining", 0)) <= 0:
+		return {}
+	var room_id := String(room.id)
+	var data: Dictionary = state.room_state.get(room_id, {}).duplicate(true)
+	var rolls: Dictionary = data.get("eggery_xray_rolls", {})
+	var names: Dictionary = {}
+	var taken: Array = data.get("eggery_taken_slots", state.progression.get("eggery_taken_slots", []) if room.custom_floor_id.is_empty() else [])
+	var new_rolls := false
+	for interaction in room.interactions:
+		if interaction.kind != &"egg_pick": continue
+		var slot := int(interaction.get("source_zone_id", -1))
+		if slot not in range(9) or slot in taken: continue
+		var key := str(slot)
+		if not rolls.has(key):
+			rolls[key] = randi_range(1, 100)
+			new_rolls = true
+		var definition := catalog.get_definition(_egg_definition_id(room, interaction, int(rolls[key]))) as MinionDefinition
+		if definition != null: names[slot] = definition.display_name
+	if new_rolls:
+		var candidate := CampaignState.new()
+		candidate.load_dictionary(state.to_dictionary(catalog.content_version, true))
+		data["eggery_xray_rolls"] = rolls
+		candidate.room_state[room_id] = data
+		var saved := _save_candidate(candidate)
+		if not saved.ok: return {}
+		state.room_state[room_id] = data
+	return names
+
+func _egg_definition_id(room: RoomDefinition, interaction: Dictionary, roll: int) -> StringName:
+	var floor := CampaignTowerModeService.source_floor_index(int(state.progression.get("floor_index", 0)))
+	var pool := interaction if not room.custom_floor_id.is_empty() else CampaignModService.egg_pool(state, floor, interaction)
+	var candidates: Array = pool.get("candidates", [])
+	var weights: Array = pool.get("weights", [])
+	if candidates.is_empty() or candidates.size() != weights.size(): return &""
+	var running_weight := 0
+	for index in candidates.size():
+		running_weight += int(weights[index])
+		if roll <= running_weight: return StringName(candidates[index])
+	return StringName(candidates.front())
+
 func _pick_egg(interaction: Dictionary) -> Dictionary:
 	if state == null or catalog == null:
 		return _error("no_campaign", "there is no active campaign")
@@ -1088,20 +1130,11 @@ func _pick_egg(interaction: Dictionary) -> Dictionary:
 	var taken: Array = current_room_state.get("eggery_taken_slots", [] if custom else state.progression.get("eggery_taken_slots", [])).duplicate()
 	if slot < 0 or slot >= 9 or slot in taken:
 		return _error("egg_already_claimed", "that egg has already been chosen")
-	var pool := interaction if custom else CampaignModService.egg_pool(state, CampaignTowerModeService.source_floor_index(int(state.progression.get("floor_index", 0))), interaction)
-	var candidates: Array = pool.get("candidates", [])
-	var weights: Array = pool.get("weights", [])
-	if candidates.is_empty() or candidates.size() != weights.size():
+	var rolls: Dictionary = current_room_state.get("eggery_xray_rolls", {})
+	var roll := int(rolls[str(slot)]) if rolls.has(str(slot)) else randi_range(1, 100)
+	var definition_id := _egg_definition_id(current_room, interaction, roll)
+	if definition_id.is_empty():
 		return _error("invalid_egg_table", "hatchery egg table is missing candidates or weights")
-	var roll := randi_range(1, 100)
-	var running_weight := 0
-	# Flash falls back to entry zero when authored integer weights total < 100.
-	var definition_id := StringName(candidates.front())
-	for index in candidates.size():
-		running_weight += int(weights[index])
-		if roll <= running_weight:
-			definition_id = StringName(candidates[index])
-			break
 	var definition := catalog.get_definition(definition_id) as MinionDefinition
 	if definition == null:
 		return _error("missing_egg_minion", "hatchery references missing minion %s" % definition_id)

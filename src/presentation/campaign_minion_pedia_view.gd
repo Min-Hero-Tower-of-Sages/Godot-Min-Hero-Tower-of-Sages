@@ -2,6 +2,7 @@ class_name CampaignMinionPediaView
 extends Control
 
 signal closed
+signal exit_requested
 
 const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
 const PORTRAIT_RECT := Rect2(70, 80, 208, 207)
@@ -21,6 +22,7 @@ var _scroll_tween: Tween
 var _up_buttons: Array[TextureButton] = []
 var _down_buttons: Array[TextureButton] = []
 var _found_floors: Dictionary = {}
+var _pedia_numbers: Dictionary = {}
 
 func _source_dex_id(definition: MinionDefinition) -> int:
 	if definition.legacy_numeric_id >= 0: return definition.legacy_numeric_id
@@ -46,8 +48,23 @@ func configure(catalog: ContentCatalog, state: CampaignState, settings: Campaign
 			if definition is MinionDefinition and CampaignModService.minion_is_available(state, definition):
 				_minions.append(definition)
 	_minions.sort_custom(func(a: MinionDefinition, b: MinionDefinition) -> bool:
-		return _source_dex_id(a) < _source_dex_id(b)
+		var a_index := _source_dex_id(a)
+		var b_index := _source_dex_id(b)
+		return String(a.id) < String(b.id) if a_index == b_index else a_index < b_index
 	)
+	_pedia_numbers.clear()
+	var placed := _minions.filter(func(minion: MinionDefinition) -> bool: return minion.pedia_position > 0)
+	placed.sort_custom(func(a: MinionDefinition, b: MinionDefinition) -> bool:
+		return a.pedia_position < b.pedia_position if a.pedia_position != b.pedia_position else String(a.id) < String(b.id))
+	for minion in placed: _minions.erase(minion)
+	var last_slot := -1
+	for minion: MinionDefinition in placed:
+		last_slot = mini(_minions.size(), maxi(last_slot + 1, minion.pedia_position - 1))
+		_minions.insert(last_slot, minion)
+	var previous_number := 0
+	for minion in _minions:
+		previous_number = previous_number + 1 if not placed.is_empty() else maxi(previous_number + 1, _source_dex_id(minion) + 1)
+		_pedia_numbers[minion.id] = previous_number
 	for group in [state.party, state.storage]:
 		for member in group:
 			_owned[String(member.definition_id)] = true
@@ -139,7 +156,7 @@ func _build() -> void:
 		row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_list_holder.add_child(row)
 		SourceMenuArt.button(row, "minionPedia_minionSelectBackground", Vector2.ZERO, _select.bind(index))
-		_text(row, "%03d   %s" % [_source_dex_id(definition) + 1, definition.display_name if _seen.has(String(definition.id)) else "????????"], Vector2(7, 3), Vector2(250, 43), 21)
+		_text(row, "%03d   %s" % [int(_pedia_numbers[definition.id]), definition.display_name if _seen.has(String(definition.id)) else "????????"], Vector2(7, 3), Vector2(250, 43), 21)
 		SourceMenuArt.image(row, "minionPedia_seenIcon", Vector2(200, 10))
 		if _owned.has(String(definition.id)):
 			SourceMenuArt.image(row, "minionPedia_OwnedIcon", Vector2(200, 2))
@@ -166,6 +183,7 @@ func _open_type_guide() -> void:
 	if not _minions.is_empty() and _seen.has(String(_minions[_selected].id)) and not _minions[_selected].type_ids.is_empty():
 		initial_type = _minions[_selected].type_ids[0]
 	guide.configure(_catalog, initial_type, _settings)
+	guide.exit_requested.connect(func() -> void: exit_requested.emit())
 	guide.closed.connect(func() -> void:
 		remove_child(guide)
 		guide.queue_free()

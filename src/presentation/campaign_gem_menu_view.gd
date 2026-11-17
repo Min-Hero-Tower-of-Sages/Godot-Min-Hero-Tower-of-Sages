@@ -77,10 +77,8 @@ func _refresh() -> void:
 	_panel.position = SOURCE_POSITION - Vector2(_panel.size.x * 0.5, (_panel.size.y - 22) * 0.5) * 0.1
 	set_meta("source_transition_center", _source_root.position + (_panel.position + Vector2(_panel.size.x * 0.5, (_panel.size.y - 22) * 0.5)) * factor)
 	SourceMenuArt.image(_panel, "menus_sponsorMoreGames_background", Vector2(23, 23))
-	if _member_id.is_empty():
-		var close := SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -22), func() -> void: exit_requested.emit())
-		if close != null:
-			close.name = "GemClose"
+	var close := SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -22), func() -> void: exit_requested.emit())
+	if close != null: close.name = "GemClose"
 	SourceMenuArt.button(_panel, "menus_returnButton", Vector2(3, 291), func() -> void: closed.emit())
 	var member := _member()
 	var feedback := _message

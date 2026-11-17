@@ -7,6 +7,10 @@ const OPTIONS := [
 	{"id": "force_shiny", "name": "100% Shiny", "description": "All newly acquired minions are shiny, even with the normal Shinies mod off. Existing minions stay unchanged."},
 	{"id": "unlimited_stars", "name": "Unlimited Stars", "description": "Star upgrades are free without changing earned ratings. Granted upgrades remain after disabling; Reset still works."},
 	{"id": "full_keys", "name": "Full Keys", "description": "Keeps floor-door and hatchery keys topped up for this floor, including both three-key rings in Hard Mode."},
+	{"id": "egg_xray", "name": "Hatchery X-Ray", "description": "Shows the minion inside each unopened egg."},
+	{"id": "no_clip", "name": "No Clip", "description": "Walk through room obstacles in single-player."},
+	{"id": "team_swap_anywhere", "name": "Team Swap Anywhere", "description": "Opens the Minion Keeper from the Minions menu."},
+	{"id": "gems_on_the_go", "name": "Gems on the Go", "description": "Opens the Gem Shop and unlocked Gem Combiner from the Minions menu."},
 ]
 
 static func available(state) -> bool:

@@ -23,10 +23,13 @@ func _run() -> void:
 	var cast_times: Array[int] = []
 	var actor_offsets: Array[float] = []
 	var damage_times: Array[int] = []
+	var spawned_by_mode: Dictionary = {}
+	var spawned: Array[int] = []
 	var actor := main.combatant_views["player-1"] as BattleCombatantView
 	var actor_anchor_x := actor.position.x
 	main.move_vfx_layer.child_entered_tree.connect(func(_child: Node) -> void:
 		var now := Time.get_ticks_usec()
+		spawned.append(now)
 		if cast_times.is_empty() or now - cast_times.back() > 300000:
 			cast_times.append(now)
 			actor_offsets.append(actor.position.x - actor_anchor_x)
@@ -35,12 +38,15 @@ func _run() -> void:
 		if event.kind == &"damage":
 			damage_times.append(Time.get_ticks_usec())
 	)
-	for mode in ["buffered", "simultaneous", "single_visual"]:
-		burn.visuals_have_buffer = mode != "simultaneous"
-		burn.hit_each_target = mode != "single_visual"
+	var timing_modes := {"buffered": MoveDefinition.VisualMode.SEQUENTIAL, "simultaneous": MoveDefinition.VisualMode.SIMULTANEOUS, "single_visual": MoveDefinition.VisualMode.PER_TEAM}
+	burn.visuals_have_buffer = true
+	burn.hit_each_target = false
+	for mode in timing_modes:
+		burn.visual_mode = timing_modes[mode]
 		cast_times.clear()
 		actor_offsets.clear()
 		damage_times.clear()
+		spawned.clear()
 		var enemy_one := main.combatant_views["enemy-1"] as BattleCombatantView
 		var enemy_two := main.combatant_views["enemy-2"] as BattleCombatantView
 		var events: Array[BattleEvent] = [
@@ -49,6 +55,7 @@ func _run() -> void:
 			BattleEvent.new(2, &"damage", &"player-1", &"enemy-2", {"amount": 1, "health": int(enemy_two.state_cache.health) - 1}),
 		]
 		await main._present(events)
+		spawned_by_mode[mode] = spawned.size()
 		assert(actor_offsets.all(func(offset: float) -> bool: return offset > 10.0 and offset <= 20.1), "Source actor lunge did not lead each visual cast: %s anchor=%f" % [actor_offsets, actor_anchor_x])
 		assert(is_equal_approx(actor.position.x, actor_anchor_x), "Actor did not return to its authored slot")
 		assert(damage_times.size() == 2 and abs(damage_times[1] - damage_times[0]) < 50000, "ApplyEffects staggered HP per target: %s" % mode)
@@ -59,6 +66,7 @@ func _run() -> void:
 			assert(cast_times.size() == 1, "Simultaneous/single visual mode emitted multiple cast groups")
 			assert(damage_times[0] - cast_times[0] >= 1050000 and damage_times[0] - cast_times[0] < 1300000, "Wrong shared effect barrier")
 		assert(main.move_vfx_layer.get_child_count() == 0 and not enemy_one._health_tween.is_running() and not enemy_two._health_tween.is_running())
+	assert(spawned_by_mode.simultaneous == spawned_by_mode.buffered and spawned_by_mode.simultaneous > spawned_by_mode.single_visual, "Simultaneous mode must animate every target")
 	main.queue_free()
 	await process_frame
 	print("PASS: 918 recovered buffer flags; sequential/simultaneous/single-per-team visual queues, grouped ApplyEffects and HP completion")

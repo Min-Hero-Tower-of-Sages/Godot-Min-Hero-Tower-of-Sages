@@ -2,6 +2,7 @@ class_name TypeGuideView
 extends Control
 
 signal closed
+signal exit_requested
 
 const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
 var catalog: ContentCatalog
@@ -117,7 +118,7 @@ func _build() -> void:
 	# right instead of letting small text straddle that artwork or the bottom rim.
 	_label(_panel, "Type bonuses only · dual types multiply · neutral: no badge", Vector2(145, 415), Vector2(495, 25), 12, Color8(201, 204, 212), HORIZONTAL_ALIGNMENT_CENTER)
 	SourceMenuArt.button(_panel, "menus_returnButton", Vector2(3, 409), func() -> void: closed.emit())
-	SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -22), func() -> void: closed.emit())
+	SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -22), func() -> void: exit_requested.emit())
 	_refresh()
 	_panel.modulate.a = 0.0
 	create_tween().set_ignore_time_scale(true).tween_property(_panel, "modulate:a", 1.0, 0.15)

@@ -36,12 +36,50 @@ func _run() -> void:
 	_check_rooms()
 	_check_session()
 	_check_runtime_starters()
+	_check_workshop_overrides(example)
 	_check_sharing()
 	UserModService.deactivate(catalog)
 	UserModRepository._remove_tree(UserModRepository.root)
 	for failure in failures: push_error(failure)
 	print("PASS: user mod build, patch revert, art, hatchery, dialogue, per-save activation, removal guard, share codes and ZIPs" if failures.is_empty() else "FAIL: user mods (%d)" % failures.size())
 	quit(0 if failures.is_empty() else 1)
+
+func _check_workshop_overrides(example: Dictionary) -> void:
+	UserModService.deactivate(catalog)
+	var authored := example.duplicate(true)
+	var image := Image.create_empty(120, 72, false, Image.FORMAT_RGBA8)
+	image.fill_rect(Rect2i(20, 12, 80, 48), Color.CORAL)
+	var imported := UserModRepository.import_image("frost_pack", image, "workshop_override")
+	_check(imported.ok, "Import an icon and sprite fixture")
+	if not imported.ok: return
+	var first: Dictionary = authored.moves[0].tiers[0]
+	first.merge({"name": "Ice Spray", "energy_cost": 250, "visual_mode": "simultaneous"}, true)
+	authored.moves[0]["icon"] = imported.path
+	authored.minions[0]["pedia_position"] = 1
+	authored.minions[0]["sprite"] = {"file": imported.path, "battle_scale": 1.5}
+	authored.types[0]["badge"] = imported.path
+	var activated := UserModRepository.write(authored)
+	if activated.ok: activated = UserModService.activate(catalog, [{"id": "frost_pack"}])
+	_check(activated.ok, "Activate Workshop overrides: %s" % activated.get("message", ""))
+	if activated.ok:
+		var move := catalog.get_definition(&"frost_pack:move/frost_bite/tier1") as MoveDefinition
+		var next := catalog.get_definition(&"frost_pack:move/frost_bite/tier2") as MoveDefinition
+		_check(move.display_name == "Ice Spray" and next.display_name != move.display_name and move.energy_cost == 250 and move.visual_mode == MoveDefinition.VisualMode.SIMULTANEOUS, "Independent name, cost and visual timing per tier")
+		var texture := SourceMenuArt.texture(String(move.buff_icon_name))
+		var icon_path := "res://content/base/art/battle/%s.png" % move.buff_icon_name
+		_check(texture != null and texture.get_size() == Vector2(53, 51) and ResourceLoader.exists(icon_path), "Custom icon works in menu and battle texture paths")
+		var minion := catalog.get_definition(StringName(authored.minions[0].id)) as MinionDefinition
+		var presentation := catalog.get_definition(minion.presentation_id) as MinionPresentationDefinition
+		var sprite := load(UserModAssets.MINION_ART % presentation.legacy_sprite_name) as Texture2D
+		_check(sprite.get_size() == Vector2(120, 72), "Imported minion sprite fits visible art and applies battle scale")
+		_check(SourceMenuArt.texture("menus_minionType_frost").get_size() == SourceMenuArt.texture("menus_minionType_fire").get_size(), "Imported type badge fits the roster frame")
+		var dex := CampaignMinionPediaView.new()
+		root.add_child(dex)
+		dex.configure(catalog, CampaignState.new())
+		_check(dex._minions.front().id == minion.id, "Minion-pedia uses the requested position")
+		dex.queue_free()
+	UserModService.deactivate(catalog)
+	_check(UserModRepository.write(example).ok, "Restore example for sharing checks")
 
 func _check_activation() -> void:
 	var base_version := String(catalog.content_version)

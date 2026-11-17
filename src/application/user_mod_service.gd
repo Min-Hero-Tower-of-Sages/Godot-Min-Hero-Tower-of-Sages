@@ -88,6 +88,10 @@ static func activate(catalog: ContentCatalog, refs: Array, strict: bool = false)
 			if not failure.is_empty(): problems.append(failure)
 		for type_id in builder.type_badges:
 			UserModAssets.install_type_badges(builder.mod_id, type_id, builder.type_badges[type_id])
+		for record in builder.manifest.get("moves", []) + builder.manifest.get("move_patches", []):
+			for entry in [record] + record.get("tiers", []):
+				var file := String(entry.get("icon", ""))
+				if not file.is_empty(): UserModAssets.install_move_icon(builder.mod_id, file)
 	_refs = applied
 	catalog.content_version = _base_version + VERSION_SEPARATOR + _set_digest(applied)
 	problems.append_array(catalog.rebuild_index())

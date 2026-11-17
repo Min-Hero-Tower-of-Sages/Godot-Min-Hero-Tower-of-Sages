@@ -2,6 +2,7 @@ class_name CampaignYouMenuView
 extends Control
 
 signal closed
+signal exit_requested
 
 const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
 const UPGRADE_IDS: Array[StringName] = [&"health", &"energy", &"attack", &"healing", &"speed", &"movement_speed", &"experience", &"money"]
@@ -56,7 +57,7 @@ func _refresh() -> void:
 	SourceMenuArt.image(_panel, "menus_youMenu_yourInformationBackground", Vector2(20, 20))
 	SourceMenuArt.image(_panel, "menus_pendant", Vector2(386, 20))
 	SourceMenuArt.image(_panel, "menus_youMenu_gemBackground", Vector2(18, 151))
-	SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -23), func() -> void: closed.emit())
+	SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -23), func() -> void: exit_requested.emit())
 	SourceMenuArt.button(_panel, "menus_returnButton", Vector2(3, 409), func() -> void: closed.emit())
 	var summary: Dictionary = _session.star_summary() if _session != null else {}
 	var character: Dictionary = _session.state.character if _session != null else {}

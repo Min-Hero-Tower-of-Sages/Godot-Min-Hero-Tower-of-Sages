@@ -2,6 +2,7 @@ class_name CampaignModMenuView
 extends Control
 
 signal closed
+signal exit_requested
 
 const FONT := preload("res://content/base/fonts/BurbinCasual.ttf")
 var _session: CampaignSession
@@ -84,7 +85,7 @@ func _build() -> void:
 		_describe(_selected_group)
 	_label(_message if not _message.is_empty() else "Changes save immediately · no new save needed", Vector2(146, 415), Vector2(493, 26), 13, Color8(247, 226, 153)).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	SourceMenuArt.button(_panel, "menus_returnButton", Vector2(3, 409), func() -> void: closed.emit())
-	SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -22), func() -> void: closed.emit())
+	SourceMenuArt.button(_panel, "menus_exitButton", Vector2(624, -22), func() -> void: exit_requested.emit())
 
 func _build_row(rows: VBoxContainer, group: String) -> void:
 	var option: Dictionary = CampaignModService.OPTIONS[CampaignModService.option_index(group)]

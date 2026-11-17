@@ -3,6 +3,9 @@ extends ContentDefinition
 
 enum TargetSide { ENEMY, ALLY, SELF }
 enum TargetMode { CHOSEN, ALL, RANDOM }
+enum VisualMode { INHERIT, PER_TEAM, SIMULTANEOUS, SEQUENTIAL }
+
+const MAX_ENERGY_COST := 9999
 
 @export_group("Family")
 @export var family_id: StringName
@@ -17,7 +20,7 @@ enum TargetMode { CHOSEN, ALL, RANDOM }
 @export var is_global_passive: bool = false
 
 @export_group("Cost and timing")
-@export_range(0, 99) var energy_cost: int = 1
+@export_range(0, MAX_ENERGY_COST) var energy_cost: int = 1
 @export_range(0, 99) var cooldown_turns: int = 0
 @export_range(0, 99) var charge_turns: int = 0
 @export_range(0, 99) var exhaust_turns: int = 0
@@ -28,6 +31,7 @@ enum TargetMode { CHOSEN, ALL, RANDOM }
 @export var target_mode: TargetMode = TargetMode.CHOSEN
 @export_range(1, 5) var target_count: int = 1
 @export var hit_each_target: bool = true
+@export var visual_mode: VisualMode = VisualMode.INHERIT
 @export var visuals_have_buffer: bool = true ## Source queues target visuals sequentially when true.
 @export_range(0, 5) var enemy_target_count: int = 1
 @export_range(0, 5) var ally_target_count: int = 0

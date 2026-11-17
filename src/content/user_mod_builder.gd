@@ -9,8 +9,8 @@ extends RefCounted
 const FORMAT_VERSION := 1
 const ID_PATTERN := "^[a-z][a-z0-9_]{1,31}$"
 const LOCAL_ID_PATTERN := "^[a-z0-9_]+$"
-const TEXT_FIELDS := ["id", "name", "version", "author", "description", "target", "attacker", "defender", "result", "based_on", "looks_like", "type", "evolves_into", "from", "file", "badge", "move_badge", "kind", "phase", "scaling", "roll", "removal", "stat", "target_side", "target_mode", "trainer_name", "first_visit_text", "repeat_text", "after_win_text", "mode", "target_room_id", "target_spawn_id", "encounter_id", "text", "locked_text", "add"]
-const NUMBER_FIELDS := ["format", "energy_cost", "cooldown", "charge", "exhaust", "accuracy", "target_count", "enemy_target_count", "ally_target_count", "amount", "random_bonus", "chance", "duration", "health", "energy", "attack", "healing", "speed", "xp_rate", "gem_slots", "locked_gem_slots", "evolution_level", "hue_shift", "saturation", "value", "money", "level", "floor", "weight", "transition_id", "required_floor_keys", "required_eggery_keys", "column", "row", "x", "y", "index", "x_scale", "y_scale", "rotation"]
+const TEXT_FIELDS := ["id", "name", "version", "author", "description", "target", "attacker", "defender", "result", "based_on", "looks_like", "type", "evolves_into", "from", "file", "badge", "move_badge", "kind", "phase", "scaling", "roll", "removal", "stat", "target_side", "target_mode", "trainer_name", "first_visit_text", "repeat_text", "after_win_text", "mode", "target_room_id", "target_spawn_id", "encounter_id", "text", "locked_text", "add", "icon", "visual_mode"]
+const NUMBER_FIELDS := ["format", "energy_cost", "cooldown", "charge", "exhaust", "accuracy", "target_count", "enemy_target_count", "ally_target_count", "amount", "random_bonus", "chance", "duration", "health", "energy", "attack", "healing", "speed", "xp_rate", "gem_slots", "locked_gem_slots", "evolution_level", "hue_shift", "saturation", "value", "money", "level", "floor", "weight", "transition_id", "required_floor_keys", "required_eggery_keys", "column", "row", "x", "y", "index", "x_scale", "y_scale", "rotation", "pedia_position", "battle_scale"]
 const BOOL_FIELDS := ["passive", "global_passive", "hit_each_target", "random_targets", "only_self", "type_effectiveness", "can_critical", "blocked_by_shield", "remove"]
 const STAT_FIELDS := {"health": "base_health", "energy": "base_energy", "attack": "base_attack", "healing": "base_healing", "speed": "base_speed"}
 const SECTIONS := ["types", "type_chart", "moves", "talent_trees", "minions", "minion_patches", "move_patches", "trainers", "hatchery", "rooms", "floors"]
@@ -345,6 +345,7 @@ func _add_move_family(record: Variant):
 		var merged: Dictionary = record.duplicate(true)
 		merged.erase("tiers")
 		merged.merge(tier_record, true)
+		if String(merged.get("name", "")).strip_edges().is_empty(): merged["name"] = record.get("name", "")
 		if not merged.has("effects"): return _fail("%s has no effects" % move.id)
 		_apply_move_fields(move, merged, false)
 		pack.definitions.append(move)
@@ -358,7 +359,14 @@ func _patch_move(record: Variant):
 
 func _apply_move_fields(move: MoveDefinition, record: Dictionary, editing: bool):
 	var context := String(move.id)
-	if record.has("name"):
+	if record.has("visual_mode"):
+		_put(move, &"visual_mode", _enum(MoveDefinition.VisualMode, record.visual_mode, context + " visual_mode"), editing)
+	var icon := String(record.get("icon", ""))
+	if not icon.is_empty():
+		if not UserModRepository.valid_sprite_path(icon) or UserModAssets.read_image(mod_id, icon) == null:
+			return _fail("%s references an unreadable icon PNG" % context)
+		_put(move, &"buff_icon_name", StringName(UserModAssets.move_icon_symbol(mod_id, icon)), editing)
+	if record.has("name") and (editing or not String(record.name).strip_edges().is_empty()):
 		var display := String(record.name).strip_edges().left(32)
 		if display.is_empty(): return _fail("%s needs a name" % context)
 		_put(move, &"display_name", display, editing)
@@ -366,7 +374,7 @@ func _apply_move_fields(move: MoveDefinition, record: Dictionary, editing: bool)
 	if record.has("type"):
 		if _lookup(record.type, TypeDefinition) == null: return _fail("%s uses unknown type %s" % [context, record.type])
 		_put(move, &"type_id", StringName(String(record.type)), editing)
-	var numbers := {"energy_cost": [&"energy_cost", 0, 99], "cooldown": [&"cooldown_turns", 0, 99], "charge": [&"charge_turns", 0, 99], "exhaust": [&"exhaust_turns", 0, 99], "accuracy": [&"accuracy_percent", 0, 100], "target_count": [&"target_count", 1, 5], "enemy_target_count": [&"enemy_target_count", 0, 5], "ally_target_count": [&"ally_target_count", 0, 5]}
+	var numbers := {"energy_cost": [&"energy_cost", 0, MoveDefinition.MAX_ENERGY_COST], "cooldown": [&"cooldown_turns", 0, 99], "charge": [&"charge_turns", 0, 99], "exhaust": [&"exhaust_turns", 0, 99], "accuracy": [&"accuracy_percent", 0, 100], "target_count": [&"target_count", 1, 5], "enemy_target_count": [&"enemy_target_count", 0, 5], "ally_target_count": [&"ally_target_count", 0, 5]}
 	for key in numbers:
 		if record.has(key): _put(move, numbers[key][0], _int(record, key, numbers[key][1], numbers[key][2], 0), editing)
 	var flags := {"passive": &"is_passive", "global_passive": &"is_global_passive", "hit_each_target": &"hit_each_target", "random_targets": &"random_targets", "only_self": &"only_self"}
@@ -559,6 +567,7 @@ func _apply_minion_fields(minion: MinionDefinition, record: Dictionary, editing:
 		for stat in record.stats:
 			if not STAT_FIELDS.has(stat): return _fail("%s has unknown stat %s" % [context, stat])
 			_put(minion, StringName(STAT_FIELDS[stat]), _int(record.stats, stat, 1 if stat == "health" else 0, 999, 1), editing)
+	if record.has("pedia_position"): _put(minion, &"pedia_position", _int(record, "pedia_position", 0, 9999, 0), editing)
 	if record.has("xp_rate"): _put(minion, &"experience_gain_rate", _int(record, "xp_rate", 0, 4, 1), editing)
 	if record.has("gem_slots"): _put(minion, &"gem_slots", _int(record, "gem_slots", 0, 8, 0), editing)
 	if record.has("locked_gem_slots"): _put(minion, &"locked_gem_slots", _int(record, "locked_gem_slots", 0, 8, 0), editing)
@@ -608,6 +617,7 @@ func _apply_sprite(minion: MinionDefinition, sprite: Variant, editing: bool):
 	sprite_requests[virtual_name] = {
 		"from": String(source_presentation.legacy_sprite_name) if source_presentation != null and file.is_empty() else "",
 		"file": file,
+		"battle_scale": clampf(float(sprite.get("battle_scale", 1.0)), 0.25, 3.0),
 		"hue_shift": clampf(float(sprite.get("hue_shift", 0.0)), 0.0, 1.0),
 		"saturation": clampf(float(sprite.get("saturation", 1.0)), 0.0, 2.0),
 		"value": clampf(float(sprite.get("value", 1.0)), 0.0, 2.0),

@@ -4,7 +4,7 @@ Enable **Gameplay Tweaks → Debug Mode** when creating a save or through
 **Settings → Mod Menu** in an existing save. Only campaigns
 with the `debug_mode` mod flag expose **Settings → Debug Mode**. The debug
 effects are also checked against this gate, not merely hidden in the UI.
-All five settings begin off and are saved per campaign in `debug_options`.
+The settings begin off and are saved per campaign in `debug_options`.
 
 - **Unlimited Money**: gem purchases and combining are free; the actual balance
   is preserved and normal charging resumes when disabled. Money displays read
@@ -26,6 +26,16 @@ All five settings begin off and are saved per campaign in `debug_options`.
   door unlock replenishes supplies while enabled. It does not grant sage seals
   or complete trainers. Disabling stops replenishment but does not remove keys
   already granted.
+
+The second page of **Settings → Debug Mode** has four single-player options.
+
+- **Hatchery X-Ray** shows what each unopened egg contains. The egg rolls are
+  saved so its label and the reveal agree after reloading.
+- **No Clip** lets you walk through obstacles inside the room bounds. If you
+  turn it off inside a wall, the game returns you to the last clear spot.
+- **Team Swap Anywhere** adds **Minion Keeper** to the Minions menu.
+- **Gems on the Go** adds **Gem Shop** and, once unlocked, **Gem Combiner**
+  to the Minions menu.
 
 **Make Current Minions Shiny** is a separate one-time button below the toggles.
 It makes all current party and storage minions shiny, including Ticub/Zapig

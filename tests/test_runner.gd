@@ -358,6 +358,9 @@ func _test_playable_recovered_battle_ui() -> void:
 	main._animate_event(BattleEvent.new(0, &"periodic_tick", &"enemy-1", &"player-1", {"move_id": String(burn_definition.id)}))
 	main._animate_event(BattleEvent.new(0, &"periodic_tick", &"enemy-1", &"player-1", {"move_id": String(poison_definition.id), "kind": EffectDefinition.Kind.PERIODIC_DAMAGE, "amount": 8, "effectiveness": 2.0}))
 	var poison_apply_effects_before: int = main.move_vfx_layer.get_child_count()
+	var wildfire := main.catalog.get_definition(&"base:move/wildfire/tier1") as MoveDefinition
+	var wildfire_apply: Dictionary = main._animate_event(BattleEvent.new(0, &"periodic_applied", &"enemy-1", &"player-1", {"move_id": String(wildfire.id)}))
+	_expect(wildfire_apply.is_empty() and main.move_vfx_layer.get_child_count() == poison_apply_effects_before, "Wildfire burn art waits for damage ticks")
 	main._animate_event(BattleEvent.new(0, &"periodic_applied", &"enemy-1", &"player-1", {"move_id": String(poison_definition.id)}))
 	_expect(main.move_vfx_layer.get_child_count() >= initial_effect_count + 10 and main.move_vfx_layer.get_child_count() >= poison_apply_effects_before + 3, "miss, Burn/Poison ticks, and newly applied poison must create visible source-art effects on the affected minion")
 	main._animate_event(BattleEvent.new(0, &"damage", &"player-1", &"enemy-5", {"amount": 10, "effectiveness": 2.0, "critical": true}))

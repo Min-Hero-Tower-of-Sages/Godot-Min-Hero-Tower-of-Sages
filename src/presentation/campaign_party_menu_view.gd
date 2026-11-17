@@ -3,6 +3,7 @@ extends Control
 
 signal closed
 signal storage_requested
+signal gem_merchant_requested(mode: StringName)
 signal talents_requested(member_id: StringName)
 signal gems_requested(member_id: StringName, socket: int)
 
@@ -32,9 +33,11 @@ var _source_root: Control
 var _tooltip: BattleMoveTooltip
 var _rename_entry: LineEdit
 var _transitioning := false
+var _debug_shortcuts := false
 
-func configure(session, row_builder: Callable, settings: CampaignSettingsService = null) -> void:
+func configure(session, row_builder: Callable, settings: CampaignSettingsService = null, debug_shortcuts: bool = false) -> void:
 	_session = session
+	_debug_shortcuts = debug_shortcuts
 	_row_builder = row_builder
 	_settings = settings if settings != null else CampaignSettingsService.new()
 	_render()
@@ -82,6 +85,7 @@ func _render() -> void:
 			hint.name = "GemTutorialHint"
 			hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		SourceMenuArt.button(_source_root, "menus_exitButton", SOURCE_SETTLED_PANEL_POSITION + Vector2(296, -22), func() -> void: closed.emit())
+		if _selected < 0 and _debug_shortcuts: _build_debug_shortcuts()
 		if _selected >= 0:
 			_build_options_popup(_session.state.party[_selected] as OwnedMinionState)
 		return
@@ -118,6 +122,16 @@ func _render() -> void:
 	SourceMenuArt.button(_detail, "menus_exitButton", Vector2(296, -22), func() -> void: closed.emit())
 	_build_minion_compare_arrows()
 	_hide_row_reminders(row)
+
+func _build_debug_shortcuts() -> void:
+	var position := SOURCE_SETTLED_PANEL_POSITION + Vector2(0, SOURCE_PANEL_SIZE.y + 4)
+	if CampaignDebugService.enabled(_session.state, "team_swap_anywhere"):
+		TypeGuideView.text_button(_source_root, "Minion Keeper", position, Vector2(126, 29), func() -> void: storage_requested.emit(), 14)
+		position.x += 130
+	if CampaignDebugService.enabled(_session.state, "gems_on_the_go"):
+		TypeGuideView.text_button(_source_root, "Gem Shop", position, Vector2(91, 29), func() -> void: gem_merchant_requested.emit(&"shop"), 14)
+		if int(_session.state.progression.get("sage_seals", 0)) > 1:
+			TypeGuideView.text_button(_source_root, "Gem Combiner", position + Vector2(95, 0), Vector2(126, 29), func() -> void: gem_merchant_requested.emit(&"combine"), 14)
 
 func _refresh_detail_page() -> void:
 	var previous := _detail.get_node_or_null("DetailPage")

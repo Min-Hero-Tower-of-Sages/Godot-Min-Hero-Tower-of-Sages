@@ -2,6 +2,7 @@ class_name CampaignSettingsView
 extends Control
 
 signal closed
+signal exit_requested
 
 const GRAPHIC_SYMBOLS: Array[String] = [
 	"menus_settings_graphicSetting_low",
@@ -19,6 +20,7 @@ var _previous_quality: TextureButton
 var _source_root: Control
 var _session: CampaignSession
 var _debug_page := false
+var _debug_page_index := 0
 var _debug_message := ""
 var _mod_page := false
 
@@ -59,6 +61,7 @@ func _build_view() -> void:
 		add_child(mods)
 		mods.configure(_session)
 		mods.closed.connect(_back_to_settings)
+		mods.exit_requested.connect(func() -> void: exit_requested.emit())
 		return
 	var viewport_size := get_viewport_rect().size
 	var shade := ColorRect.new()
@@ -86,7 +89,7 @@ func _build_view() -> void:
 	if _debug_page:
 		_build_debug_controls()
 		_source_button("menus_returnButton", Vector2(2, 356), _back_to_settings)
-		_source_button("menus_exitButton", Vector2(296, -22), _close_menu)
+		_source_button("menus_exitButton", Vector2(296, -22), func() -> void: exit_requested.emit())
 		return
 	var labels := ["Sound", "Music", "Tutorials", "Quality"]
 	var toggle_names := ["sound", "music", "tips"]
@@ -140,11 +143,11 @@ func _build_view() -> void:
 		var mods_button := TypeGuideView.text_button(_panel, "Mod Menu", Vector2(86, 276), Vector2(196, 29), _open_mods, 18)
 		mods_button.name = "SavedModMenuButton"
 	var return_button := _source_button("menus_returnButton", Vector2(2.0, 356.0), Callable(self, "_close_menu"))
-	var close_button := _source_button("menus_exitButton", Vector2(296.0, -22.0), Callable(self, "_close_menu"))
+	var close_button := _source_button("menus_exitButton", Vector2(296.0, -22.0), func() -> void: exit_requested.emit())
 	if return_button == null:
 		_add_text_button(_panel, "Return", Vector2(2.0, 356.0), Vector2(100.0, 32.0), Callable(self, "_close_menu"))
 	if close_button == null:
-		_add_text_button(_panel, "Close", Vector2(296.0, -22.0), Vector2(60.0, 32.0), Callable(self, "_close_menu"))
+		_add_text_button(_panel, "Close", Vector2(296.0, -22.0), Vector2(60.0, 32.0), func() -> void: exit_requested.emit())
 	_refresh_controls()
 
 func _toggle_setting(key: String) -> void:
@@ -247,6 +250,7 @@ func _add_text_button(parent: Control, text: String, at: Vector2, button_size: V
 func _open_debug() -> void:
 	if _session == null or not CampaignDebugService.available(_session.state): return
 	_debug_page = true
+	_debug_page_index = 0
 	_build_view()
 
 func _back_to_settings() -> void:
@@ -261,8 +265,11 @@ func _open_mods() -> void:
 	_build_view()
 
 func _build_debug_controls() -> void:
-	for index in CampaignDebugService.OPTIONS.size():
-		var option: Dictionary = CampaignDebugService.OPTIONS[index]
+	const OPTIONS_PER_PAGE := 5
+	var start := _debug_page_index * OPTIONS_PER_PAGE
+	var page := CampaignDebugService.OPTIONS.slice(start, start + OPTIONS_PER_PAGE)
+	for index in page.size():
+		var option: Dictionary = page[index]
 		var caption := _make_label(option.name, Vector2(34, 84 + index * 34), Vector2(208, 30), 19, Color8(250, 250, 250))
 		_panel.add_child(caption)
 		var active := CampaignDebugService.enabled(_session.state, option.id)
@@ -271,23 +278,36 @@ func _build_debug_controls() -> void:
 			toggle.name = "DebugToggle_%s" % option.id
 			toggle.tooltip_text = option.description
 			toggle.disabled = not _session.state.pending_battle.is_empty()
+	var back := TypeGuideView.text_button(_panel, "‹", Vector2(78, 315), Vector2(32, 28), _change_debug_page.bind(0), 18)
+	var next := TypeGuideView.text_button(_panel, "›", Vector2(249, 315), Vector2(32, 28), _change_debug_page.bind(1), 18)
+	back.disabled = _debug_page_index == 0
+	next.disabled = _debug_page_index == 1
+	var page_name := _make_label("1 / 2 · Cheats" if _debug_page_index == 0 else "2 / 2 · Exploration", Vector2(111, 315), Vector2(137, 27), 14, Color.WHITE)
+	page_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_panel.add_child(page_name)
 	var shiny_action := TypeGuideView.text_button(_panel, "Make Current Minions Shiny", Vector2(36, 264), Vector2(290, 34), _make_current_minions_shiny, 16)
 	shiny_action.name = "MakeCurrentMinionsShiny"
+	shiny_action.visible = _debug_page_index == 0
 	shiny_action.tooltip_text = "One-time action: make all current party and storage minions shiny. Saved immediately; does not affect future rolls."
 	shiny_action.disabled = not _session.state.pending_battle.is_empty() or not _session.state.progression.get("pending_egg_preview", {}).is_empty()
 	var description := Label.new()
 	description.name = "DebugDescription"
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	description.position = Vector2(36, 306)
-	description.size = Vector2(290, 43)
+	description.position = Vector2(36, 271) if _debug_page_index == 1 else Vector2(36, 298)
+	description.size = Vector2(290, 42 if _debug_page_index == 1 else 17)
 	description.clip_text = true
 	description.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	description.add_theme_font_override("font", MENU_FONT)
 	description.add_theme_font_size_override("font_size", 12)
 	description.add_theme_constant_override("line_spacing", 0)
 	description.add_theme_color_override("font_color", Color8(244, 221, 145))
-	description.text = _debug_message if not _debug_message.is_empty() else "100% Shiny: future minions only.\nButton: current party + storage; permanent."
+	description.text = _debug_message if not _debug_message.is_empty() else "Exploration cheats are available in single-player." if _debug_page_index == 1 else ""
 	_panel.add_child(description)
+
+func _change_debug_page(index: int) -> void:
+	_debug_page_index = index
+	_debug_message = ""
+	_build_view()
 
 func _make_current_minions_shiny() -> void:
 	var result := _session.make_current_minions_shiny()

@@ -34,6 +34,7 @@ const VICTORY_STAR_TEXTURE = preload("res://content/base/art/battle/battleScreen
 const VICTORY_MALE_BUST_TEXTURE = preload("res://content/base/art/source_symbols/744_Utilities.SpriteHandler_menus_maleBust_icon.png")
 const VICTORY_FEMALE_BUST_TEXTURE = preload("res://content/base/art/source_symbols/238_Utilities.SpriteHandler_menus_femaleBust_icon.png")
 const VISUAL_SAME_AS_CLASS_ID := 188
+const BURN_TICK_VISUAL := 1
 const BURBIN_FONT = preload("res://content/base/fonts/BurbinCasual.ttf")
 const MOVE_TOOLTIP_SCRIPT = preload("res://src/presentation/battle_move_tooltip.gd")
 const PROGRESSION_PRESENTER_SCRIPT = preload("res://src/presentation/battle_progression_presenter.gd")
@@ -1539,6 +1540,7 @@ func _open_type_guide() -> void:
 	type_guide = TypeGuideView.new()
 	type_guide.configure(catalog, initial_type, settings_service)
 	type_guide.closed.connect(_close_type_guide)
+	type_guide.exit_requested.connect(_close_type_guide)
 	add_child(type_guide)
 
 func _close_type_guide() -> void:
@@ -2026,8 +2028,12 @@ func _animate_event(event: BattleEvent, visual_targets: Array[StringName] = [], 
 		return {String(event.target_id): _animate_periodic_tick(event)}
 	if event.kind in [&"periodic_applied", &"periodic_refreshed"]:
 		var periodic_move := catalog.get_definition(StringName(event.values.get("move_id", ""))) as MoveDefinition
-		if periodic_move != null and _resolved_visual_id(periodic_move) == _resolved_dot_visual_id(periodic_move):
-			return {}
+		# Burning has a cast visual and a separate tick visual. The latter
+		# should appear only when the status deals damage.
+		if periodic_move != null:
+			var tick_visual := _resolved_dot_visual_id(periodic_move)
+			if tick_visual == BURN_TICK_VISUAL or tick_visual == _resolved_visual_id(periodic_move):
+				return {}
 		return {String(event.target_id): _animate_periodic_application(event)}
 	if event.kind == &"move_used":
 		var impact_delays: Dictionary = {}
@@ -2043,8 +2049,12 @@ func _animate_event(event: BattleEvent, visual_targets: Array[StringName] = [], 
 		elif visual_targets.is_empty():
 			impact_delays[""] = _animate_move_visual(event, &"")
 		else:
+			var longest := 0.0
 			for target_id in visual_targets:
+				_last_move_visual_duration_seconds = 0.0
 				impact_delays[String(target_id)] = _animate_move_visual(event, target_id)
+				longest = maxf(longest, _last_move_visual_duration_seconds)
+			_last_move_visual_duration_seconds = longest
 		return impact_delays
 	var target_view := combatant_views.get(String(event.target_id)) as BattleCombatantView
 	if target_view == null:
@@ -2115,19 +2125,22 @@ func _animate_attack_queue(event: BattleEvent, targets: Array[StringName]) -> Di
 		return _animate_event(event, targets)
 	var visual_targets: Array[StringName] = []
 	var seen_teams: Dictionary = {}
+	var each_target := move.hit_each_target if move.visual_mode == MoveDefinition.VisualMode.INHERIT else move.visual_mode != MoveDefinition.VisualMode.PER_TEAM
+	var sequential := move.visuals_have_buffer if move.visual_mode == MoveDefinition.VisualMode.INHERIT else move.visual_mode == MoveDefinition.VisualMode.SEQUENTIAL
 	for target_id in targets:
 		var view := combatant_views.get(String(target_id)) as BattleCombatantView
-		if not move.hit_each_target and view != null:
+		if not each_target and view != null:
 			if seen_teams.has(view.team):
 				continue
 			seen_teams[view.team] = true
 		visual_targets.append(target_id)
 	if not bool(event.values.get("hit", true)) and not visual_targets.is_empty():
-		return await _animate_queued_miss(event, move, visual_targets)
-	if not event.values.get("visual_callouts", {}).is_empty():
-		return await _animate_status_queued_move(event, move, visual_targets)
+		return await _animate_queued_miss(event, move, visual_targets, sequential)
+	var has_callouts: bool = not event.values.get("visual_callouts", {}).is_empty()
+	if has_callouts and (sequential or move.visual_mode == MoveDefinition.VisualMode.INHERIT):
+		return await _animate_status_queued_move(event, visual_targets, sequential)
 	var family := String(vfx_catalog.profile_for(_resolved_visual_id(move)).get("family", ""))
-	if not move.visuals_have_buffer or visual_targets.is_empty() or family == "screen_shake":
+	if not sequential or visual_targets.is_empty() or family == "screen_shake":
 		_play_move_actor_lunge(event.actor_id)
 		await _wait_until_usec(_now_usec() + 100000)
 		var delays := _animate_event(event, visual_targets)
@@ -2135,6 +2148,22 @@ func _animate_attack_queue(event: BattleEvent, targets: Array[StringName]) -> Di
 		var final_delay := 0.0
 		for delay in delays.values():
 			final_delay = maxf(final_delay, float(delay))
+		if has_callouts:
+			var tail := _last_move_visual_duration_seconds
+			var started := _now_usec()
+			await _wait_until_usec(started + roundi(final_delay * 1000000.0))
+			var longest := 0.0
+			for target_id in targets:
+				var callouts: Array = event.values.visual_callouts.get(String(target_id), [])
+				if callouts.is_empty(): continue
+				var queue := create_tween()
+				for kind in callouts:
+					queue.tween_callback(_show_attack_callout.bind(target_id, String(kind)))
+					queue.tween_interval(0.8)
+				longest = maxf(longest, callouts.size() * 0.8)
+			await _wait_until_usec(_now_usec() + roundi(longest * 1000000.0))
+			_last_move_visual_duration_seconds = maxf(0.0, tail - float(_now_usec() - started) / 1000000.0)
+			return {"": 0.0}
 		delays[""] = final_delay
 		for target_id in targets:
 			delays[String(target_id)] = final_delay
@@ -2156,48 +2185,42 @@ func _animate_attack_queue(event: BattleEvent, targets: Array[StringName]) -> Di
 		delays[String(target_id)] = 0.0
 	return delays
 
-func _animate_status_queued_move(event: BattleEvent, move: MoveDefinition, targets: Array[StringName]) -> Dictionary:
+func _animate_status_queued_move(event: BattleEvent, targets: Array[StringName], sequential: bool) -> Dictionary:
 	var cleanup_deadline := 0
 	var last_effect_wait := 0.0
-	if not move.visuals_have_buffer:
+	if not sequential:
 		_play_move_actor_lunge(event.actor_id)
 		await _wait_until_usec(_now_usec() + 100000)
 	for target_id in targets:
-		if move.visuals_have_buffer:
+		if sequential:
 			_play_move_actor_lunge(event.actor_id)
 			await _wait_until_usec(_now_usec() + 100000)
 		var cast_time := _now_usec()
 		_last_move_visual_duration_seconds = 0.0
 		last_effect_wait = _animate_move_visual(event, target_id)
 		cleanup_deadline = maxi(cleanup_deadline, cast_time + roundi(_last_move_visual_duration_seconds * 1000000.0))
-		if move.visuals_have_buffer:
+		if sequential:
 			await _wait_until_usec(cast_time + roundi(last_effect_wait * 1000000.0))
-		var target := combatant_views.get(String(target_id)) as BattleCombatantView
 		for kind in event.values.visual_callouts.get(String(target_id), []):
-			if target != null:
-				if kind == "reflection":
-					target.show_reflected_damage_feedback()
-				else:
-					target.show_status_badge(BattleCombatantView.STUNNED_BADGE if kind == "stunned" else BattleCombatantView.FROZEN_BADGE)
-					audio_controller.play_sound("battle_spark" if kind == "stunned" else "battle_whoosh_wind", 1.0)
+			_show_attack_callout(target_id, String(kind))
 			last_effect_wait = 0.8
 			cleanup_deadline = maxi(cleanup_deadline, _now_usec() + 800000)
 			await _wait_until_usec(_now_usec() + 800000)
 	# The unbuffered source queue adds a final wait using the last visual,
 	# even when that visual is a status callout already queued above.
-	if not move.visuals_have_buffer:
+	if not sequential:
 		await _wait_until_usec(_now_usec() + roundi(last_effect_wait * 1000000.0))
 	_last_move_visual_duration_seconds = maxf(0.0, float(cleanup_deadline - _now_usec()) / 1000000.0)
 	return {"": 0.0}
 
-func _animate_queued_miss(event: BattleEvent, move: MoveDefinition, targets: Array[StringName]) -> Dictionary:
+func _animate_queued_miss(event: BattleEvent, move: MoveDefinition, targets: Array[StringName], sequential: bool) -> Dictionary:
 	var actor := combatant_views.get(String(event.actor_id)) as BattleCombatantView
 	var final_cleanup_deadline := 0
-	if not move.visuals_have_buffer:
+	if not sequential:
 		_play_move_actor_lunge(event.actor_id)
 		await _wait_until_usec(_now_usec() + 100000)
 	for target_id in targets:
-		if move.visuals_have_buffer:
+		if sequential:
 			_play_move_actor_lunge(event.actor_id)
 			await _wait_until_usec(_now_usec() + 100000)
 		var cast_time := _now_usec()
@@ -2214,12 +2237,21 @@ func _animate_queued_miss(event: BattleEvent, move: MoveDefinition, targets: Arr
 			_animate_miss(BattleEvent.new(0, &"missed", event.actor_id, target_id))
 			audio_controller.play_sound("battle_whoosh_sword_swipe", 0.5)
 		final_cleanup_deadline = maxi(final_cleanup_deadline, cast_time + roundi(duration * 1000000.0))
-		if move.visuals_have_buffer:
+		if sequential:
 			await _wait_until_usec(cast_time + roundi(effect_delay * 1000000.0))
-	if not move.visuals_have_buffer:
+	if not sequential:
 		await _wait_until_usec(final_cleanup_deadline)
 	_last_move_visual_duration_seconds = maxf(0.0, float(final_cleanup_deadline - _now_usec()) / 1000000.0)
 	return {"": 0.0}
+
+func _show_attack_callout(target_id: StringName, kind: String) -> void:
+	var target := combatant_views.get(String(target_id)) as BattleCombatantView
+	if target == null: return
+	if kind == "reflection":
+		target.show_reflected_damage_feedback()
+	else:
+		target.show_status_badge(BattleCombatantView.STUNNED_BADGE if kind == "stunned" else BattleCombatantView.FROZEN_BADGE)
+		audio_controller.play_sound("battle_spark" if kind == "stunned" else "battle_whoosh_wind", 1.0)
 
 func _play_move_actor_lunge(actor_id: StringName) -> void:
 	var actor := combatant_views.get(String(actor_id)) as BattleCombatantView

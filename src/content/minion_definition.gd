@@ -21,6 +21,7 @@ extends ContentDefinition
 @export var talent_tree_ids: Array[StringName] = []
 @export var evolution_id: StringName
 @export_range(1, 999) var evolution_level: int = 999
+@export var pedia_position: int = 0 ## Optional 1-based position in the Minion-pedia.
 @export var presentation_id: StringName
 
 func validation_errors() -> PackedStringArray:

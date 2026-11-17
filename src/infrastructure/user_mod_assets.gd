@@ -32,7 +32,7 @@ static func validation_errors(mod_id: String, sprites: Dictionary, badges: Dicti
 		for key in ["badge", "move_badge"]:
 			if not String(info.get(key, "")).is_empty(): files.append(String(info[key]))
 	for path in files:
-		var image := _mod_image(mod_id, path)
+		var image := read_image(mod_id, path)
 		if image == null: errors.append("%s: image %s is missing or is not a readable PNG" % [mod_id, path])
 		elif image.get_width() > 512 or image.get_height() > 512: errors.append("%s: image %s must be at most 512 x 512 pixels" % [mod_id, path])
 	return errors
@@ -53,6 +53,13 @@ static func install_sprite(mod_id: String, virtual_name: String, request: Dictio
 	if image.is_compressed(): image.decompress()
 	image.convert(Image.FORMAT_RGBA8)
 	recolor(image, float(request.get("hue_shift", 0.0)), float(request.get("saturation", 1.0)), float(request.get("value", 1.0)))
+	if not String(request.get("file", "")).is_empty():
+		var visible := image.get_used_rect()
+		if visible.has_area(): image = image.get_region(visible)
+	var battle_scale := float(request.get("battle_scale", 1.0))
+	if not is_equal_approx(battle_scale, 1.0):
+		var dimensions := Vector2i((Vector2(image.get_size()) * battle_scale).round()).max(Vector2i.ONE)
+		image.resize(dimensions.x, dimensions.y, Image.INTERPOLATE_LANCZOS)
 	var texture := ImageTexture.create_from_image(image)
 	texture.take_over_path(MINION_ART % virtual_name)
 	_textures.append(texture)
@@ -71,22 +78,47 @@ static func recolor(image: Image, hue_shift: float, saturation: float, value: fl
 ## drawn in, unless the mod supplies its own PNGs.
 static func install_type_badges(mod_id: String, type_id: String, info: Dictionary) -> void:
 	var key := type_id.get_file()
-	var name := String(info.name).to_upper()
-	var color: Color = info.color
-	var badge := _mod_image(mod_id, String(info.get("badge", "")))
-	if badge == null: badge = _badge(_size_of("menus_minionType_fire", Vector2i(80, 20)), color, name, false)
-	var move_badge := _mod_image(mod_id, String(info.get("move_badge", "")))
-	if move_badge == null: move_badge = _badge(_size_of("moveDescription_type_fire", Vector2i(110, 20)), color, name, true)
-	for entry in [["menus_minionType_%s" % key, badge], ["moveDescription_type_%s" % key, move_badge]]:
-		var texture := ImageTexture.create_from_image(entry[1])
-		_textures.append(texture)
-		_menu_overrides[entry[0]] = texture
+	for is_move in [false, true]:
+		var symbol := ("moveDescription_type_%s" if is_move else "menus_minionType_%s") % key
+		var texture := ImageTexture.create_from_image(type_badge_image(mod_id, info, is_move))
+		_menu_overrides[symbol] = texture
 
-static func _mod_image(mod_id: String, relative: String) -> Image:
+static func type_badge_image(mod_id: String, info: Dictionary, is_move: bool) -> Image:
+	var symbol := "moveDescription_type_fire" if is_move else "menus_minionType_fire"
+	var dimensions := _size_of(symbol, Vector2i(110, 20) if is_move else Vector2i(80, 20))
+	var field := "move_badge" if is_move else "badge"
+	var image := read_image(mod_id, String(info.get(field, "")))
+	if image != null: return fit_image(image, dimensions)
+	var color: Color = info.color
+	return _badge(dimensions, color, String(info.name).to_upper(), is_move)
+
+static func read_image(mod_id: String, relative: String) -> Image:
 	if relative.is_empty(): return null
 	var image := Image.new()
 	var bytes := UserModRepository.read_file(mod_id, relative)
 	return image if not bytes.is_empty() and image.load_png_from_buffer(bytes) == OK else null
+
+static func move_icon_symbol(mod_id: String, file: String) -> String:
+	return "usermod_move_%s_%s" % [mod_id, file.sha256_text().left(16)]
+
+static func install_move_icon(mod_id: String, file: String) -> void:
+	var symbol := move_icon_symbol(mod_id, file)
+	if _menu_overrides.has(symbol): return
+	var image := read_image(mod_id, file)
+	if image == null: return
+	var texture := ImageTexture.create_from_image(fit_image(image, Vector2i(53, 51)))
+	texture.take_over_path("res://content/base/art/battle/%s.png" % symbol)
+	_menu_overrides[symbol] = texture
+
+static func fit_image(image: Image, dimensions: Vector2i) -> Image:
+	if image.get_size() == dimensions: return image
+	image.convert(Image.FORMAT_RGBA8)
+	var factor := minf(float(dimensions.x) / image.get_width(), float(dimensions.y) / image.get_height())
+	var scaled := Vector2i((Vector2(image.get_size()) * factor).round()).max(Vector2i.ONE)
+	image.resize(scaled.x, scaled.y, Image.INTERPOLATE_LANCZOS)
+	var result := Image.create_empty(dimensions.x, dimensions.y, false, Image.FORMAT_RGBA8)
+	result.blit_rect(image, Rect2i(Vector2i.ZERO, scaled), (dimensions - scaled) / 2)
+	return result
 
 static func _size_of(symbol: String, fallback: Vector2i) -> Vector2i:
 	var path := String(_symbol_paths().get(symbol, ""))
@@ -111,15 +143,30 @@ static func _badge(dimensions: Vector2i, color: Color, text: String, fading: boo
 			if not fading and border and (x == 0 or x == dimensions.x - 1) and (y == 0 or y == dimensions.y - 1): continue
 			image.set_pixel(x, y, Color(dark if border and not fading else shade, alpha))
 	var font_size := maxi(8, dimensions.y - 6)
-	var width := _text_width(text, font_size)
-	var origin := Vector2(dimensions.x - width - 6.0 if fading else (dimensions.x - width) * 0.5, (dimensions.y - font_size) * 0.5)
+	var ink := _glyph_bounds(text, font_size)
+	while font_size > 5 and (ink.size.x > dimensions.x - 10 or ink.size.y > dimensions.y - 8):
+		font_size -= 1
+		ink = _glyph_bounds(text, font_size)
+	var left := dimensions.x - ink.size.x - 6.0 if fading else (dimensions.x - ink.size.x) * 0.5
+	var origin := Vector2(left, (dimensions.y - ink.size.y) * 0.5) - ink.position
 	for offset in [Vector2(-1, 0), Vector2(1, 0), Vector2(0, -1), Vector2(0, 1), Vector2(1, 1)]:
 		_draw_text(image, text, font_size, origin + offset, dark.darkened(0.4))
 	_draw_text(image, text, font_size, origin, Color.WHITE)
 	return image
 
-static func _text_width(text: String, font_size: int) -> float:
-	return FONT.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+static func _glyph_bounds(text: String, font_size: int) -> Rect2:
+	var server := TextServerManager.get_primary_interface()
+	var rid: RID = FONT.get_rids()[0]
+	var size := Vector2i(font_size, 0)
+	var pen := Vector2(0, server.font_get_ascent(rid, font_size))
+	var bounds := Rect2()
+	for character in text:
+		var glyph := server.font_get_glyph_index(rid, font_size, character.unicode_at(0), 0)
+		server.font_render_glyph(rid, size, glyph)
+		var rect := Rect2(pen + server.font_get_glyph_offset(rid, size, glyph), server.font_get_glyph_size(rid, size, glyph))
+		if rect.has_area(): bounds = bounds.merge(rect) if bounds.has_area() else rect
+		pen.x += server.font_get_glyph_advance(rid, font_size, glyph).x
+	return bounds
 
 ## Blits glyphs from the font's rasterized cache. This works without a
 ## rendering viewport, so badges exist before any scene is drawn (and headless).

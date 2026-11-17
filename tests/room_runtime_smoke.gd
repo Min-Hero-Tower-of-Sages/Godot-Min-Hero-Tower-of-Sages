@@ -37,6 +37,22 @@ func _run() -> void:
 			view._try_move_axis(displacement)
 			_check(view.player_position() == spawn_before + displacement, "the corrected entry spawn must permit movement in each open direction")
 			view._player.position = spawn_before
+	var probe := RoomDefinition.new()
+	probe.id = &"debug:room/collision"
+	probe.payload = RoomPayloadDefinition.new()
+	probe.payload.dimensions = Vector2(700, 525)
+	probe.payload.objects.append({"spriteName": "collRect", "xPos": 300.0, "yPos": 100.0, "xScale": 1.0, "yScale": 5.0})
+	var start := Vector2(260, 210) - CustomFloorBuilder.PLAYER_FEET
+	_check(view.configure(probe, &"start", start), "configure a room with a wall")
+	await physics_frame
+	await physics_frame
+	view._try_move_axis(Vector2(60, 0))
+	_check(view.player_position() == start, "A wall blocks normal movement")
+	view.set_debug_exploration(true, {})
+	view._try_move_axis(Vector2(60, 0))
+	_check(view.player_position() == start + Vector2(60, 0) and view.safe_save_position() == start, "No Clip moves through the wall while retaining a safe save position")
+	view.set_debug_exploration(false, {})
+	_check(view.player_position() == start, "Disabling No Clip returns the player from inside a wall")
 	view.queue_free()
 	await process_frame
 	if _failures.is_empty():

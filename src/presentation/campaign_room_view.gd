@@ -53,6 +53,9 @@ var _interaction_zones: Dictionary = {}
 var _speech_bubble_positions: Dictionary = {}
 var _height_layer_pairs: Array[Dictionary] = []
 var _egg_sprites_by_slot: Dictionary = {}
+var _xray_labels: Dictionary = {}
+var _no_clip := false
+var _last_solid_position := Vector2.ZERO
 var _sinking_egg_slots: Dictionary = {}
 var _chest_sprites_by_id: Dictionary = {}
 var _automatic_contact_ids: Dictionary = {}
@@ -95,6 +98,9 @@ func configure(room_definition: RoomDefinition, spawn_id: StringName, spawn_posi
 	_speech_bubble_positions.clear()
 	_height_layer_pairs.clear()
 	_egg_sprites_by_slot.clear()
+	_xray_labels.clear()
+	_no_clip = false
+	_last_solid_position = spawn_position
 	_sinking_egg_slots.clear()
 	_chest_sprites_by_id.clear()
 	_automatic_contact_ids.clear()
@@ -136,6 +142,33 @@ func configure(room_definition: RoomDefinition, spawn_id: StringName, spawn_posi
 	set_meta("spawn_id", spawn_id)
 	_player.set_meta("gender", String(character.get("gender", "male")).to_lower())
 	return true
+
+func safe_save_position() -> Vector2:
+	return _last_solid_position if _no_clip else player_position()
+
+func set_debug_exploration(no_clip: bool, egg_names: Dictionary) -> void:
+	if _no_clip and not no_clip:
+		_player.position = _last_solid_position
+		_guard_overlapping_transitions()
+	elif no_clip and not _no_clip:
+		_player.position = player_position()
+		_last_solid_position = _player.position
+		_puzzle_jump_ticks = 0
+		_puzzle_force = Vector2.ZERO
+		_puzzle_last_step = Vector2.ZERO
+		_puzzle_last_tile = -1
+		_puzzle_arrow_chain.clear()
+	_no_clip = no_clip
+	for label in _xray_labels.values(): label.queue_free()
+	_xray_labels.clear()
+	for interaction in _room_interactions:
+		if interaction.kind != &"egg_pick": continue
+		var slot := int(interaction.get("source_zone_id", -1))
+		if not egg_names.has(slot): continue
+		var center: Vector2 = interaction._zone_center
+		var label := _add_world_label(String(egg_names[slot]), center - Vector2(0, 65), Color8(255, 236, 147))
+		label.add_theme_font_size_override("font_size", 13)
+		_xray_labels[slot] = label
 
 func player_position() -> Vector2:
 	if _puzzle_jump_ticks > 0: return _puzzle_jump_start
@@ -274,7 +307,7 @@ func _source_movement_tick() -> void:
 	var up := _movement_pressed(&"move_up", KEY_W, KEY_UP)
 	var down := _movement_pressed(&"move_down", KEY_S, KEY_DOWN)
 	var step_scale := 1.0
-	if not _puzzle_tiles.is_empty():
+	if not _puzzle_tiles.is_empty() and not _no_clip:
 		if _puzzle_jump_ticks == 0 and not _room_transitions.any(func(transition: Dictionary) -> bool: return _transition_area_overlaps_player(transition.area)):
 			_last_transition_free_position = _player.position
 		var requested := Vector2(int(right) - int(left), int(down) - int(up))
@@ -411,6 +444,13 @@ func _movement_pressed(action: StringName, primary_key: Key, secondary_key: Key)
 func _try_move_axis(displacement: Vector2, airborne: bool = false) -> void:
 	if not _controls_enabled:
 		return
+	if _no_clip:
+		var feet := CustomFloorBuilder.PLAYER_FEET
+		var bounds := room.payload.dimensions
+		_player.position = (_player.position + feet + displacement).clamp(Vector2(22.5, 12.5), bounds - Vector2(22.5, 12.5)) - feet
+		if not _player.test_move(_player.transform, Vector2.ZERO, null, 0.08, true) and not _puzzle_is_pit(_player.position + feet):
+			_last_solid_position = _player.position
+		return
 	if not airborne and not _puzzle_tiles.is_empty():
 		var feet := _player.position + CustomFloorBuilder.PLAYER_FEET
 		var steps := maxi(1, ceili(displacement.length() / 3.0))
@@ -459,6 +499,9 @@ func set_controls_enabled(enabled: bool) -> void:
 			_set_player_pose(_facing_pose, false, _facing_left)
 
 func sink_egg(slot: int) -> Tween:
+	if _xray_labels.has(slot):
+		_xray_labels[slot].queue_free()
+		_xray_labels.erase(slot)
 	if _sinking_egg_slots.has(slot):
 		return null
 	var egg_sprites: Array = _egg_sprites_by_slot.get(slot, [])
@@ -1153,7 +1196,7 @@ func _build_interaction_triggers(payload: Variant) -> void:
 			"trigger_on_enter": true,
 		})
 
-func _add_world_label(caption: String, center: Vector2, color: Color) -> void:
+func _add_world_label(caption: String, center: Vector2, color: Color) -> Label:
 	var label := Label.new()
 	label.text = caption
 	label.position = center - Vector2(110, 12)
@@ -1167,6 +1210,7 @@ func _add_world_label(caption: String, center: Vector2, color: Color) -> void:
 	label.add_theme_color_override("font_outline_color", Color8(15, 20, 27))
 	label.add_theme_constant_override("outline_size", 5)
 	_foreground_art.add_child(label)
+	return label
 
 func _chest_id(chest_kind: String, source_index: int) -> String:
 	return "chest-%s-%d" % [chest_kind, source_index]

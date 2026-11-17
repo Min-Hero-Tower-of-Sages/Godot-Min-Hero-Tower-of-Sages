@@ -80,6 +80,23 @@ func _run() -> void:
 	for merchant_mode in [&"shop", &"combine"]:
 		shell.call("_show_gem_merchant", merchant_mode)
 		await process_frame
+	state.active_mods["debug_mode"] = true
+	state.progression["debug_options"] = {"team_swap_anywhere": true, "gems_on_the_go": true}
+	shell.call("_show_party_manager")
+	var shortcuts := shell.interaction_dialog as CampaignPartyMenuView
+	var shortcut_labels := shortcuts.find_children("*", "Button", true, false).map(func(button: Button) -> String: return button.text)
+	assert("Minion Keeper" in shortcut_labels and "Gem Shop" in shortcut_labels)
+	shortcuts.storage_requested.emit()
+	var storage := shell.interaction_dialog as CampaignStorageMenuView
+	assert(storage != null, "Minions shortcut did not open Minion Keeper")
+	storage.closed.emit()
+	assert(shell.interaction_dialog is CampaignPartyMenuView, "Return from Minion Keeper should open Minions")
+	(shell.interaction_dialog as CampaignPartyMenuView).gem_merchant_requested.emit(&"shop")
+	var shop := shell.interaction_dialog as CampaignGemMerchantView
+	assert(shop != null, "Minions shortcut did not open the Gem Shop")
+	shop.exit_requested.emit()
+	await create_timer(0.85).timeout
+	assert(shell.interaction_dialog == null and shell.current_room._controls_enabled, "Close should return directly to exploration")
 	shell.call("_show_floor_map")
 	var party_view := shell.interaction_dialog as CampaignMinimapView
 	assert(party_view != null, "Authored minimap did not replace the room list")

@@ -44,13 +44,14 @@ func _ready() -> void:
 	column.add_child(details)
 	type_icon = TextureRect.new()
 	type_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	type_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	# The badge overhangs into the frame's footer; a RichTextLabel clips its
 	# children by default, which cut the badge's lower half off.
 	details.clip_contents = false
 	details.add_child(type_icon)
 	details.resized.connect(_position_type_icon)
 
-func show_move(move: MoveDefinition) -> void:
+func show_move(move: MoveDefinition, badge: Texture2D = null) -> void:
 	title.text = move.display_name
 	var rows: Array[String] = []
 	for effect in move.effects:
@@ -168,7 +169,7 @@ func show_move(move: MoveDefinition) -> void:
 		content_width = maxf(content_width, BURBIN_FONT.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x + 4.0)
 	title.custom_minimum_size.x = content_width
 	details.custom_minimum_size.x = content_width
-	type_icon.texture = SourceMenuArt.texture("moveDescription_type_%s" % String(move.type_id).get_file())
+	type_icon.texture = badge if badge != null else SourceMenuArt.texture("moveDescription_type_%s" % String(move.type_id).get_file())
 	type_icon.visible = type_icon.texture != null and move.type_id != &"base:type/none"
 	visible = true
 	reset_size()
@@ -177,6 +178,7 @@ func show_move(move: MoveDefinition) -> void:
 func _position_type_icon() -> void:
 	if type_icon.texture == null:
 		return
+	type_icon.size = type_icon.texture.get_size()
 	type_icon.position = Vector2(details.size.x - type_icon.texture.get_width() + 6.0, details.get_content_height() - 11.0)
 
 func _is_combined_debuff(move: MoveDefinition, effect: EffectDefinition) -> bool:

@@ -808,7 +808,7 @@ func _entries(kind: String) -> Array:
 		"move":
 			for record in _manifest.get("moves", []):
 				for tier in record.get("tiers", []).size():
-					own.append({"id": "%s/tier%d" % [record.id, tier + 1], "label": "* %s (tier %d)" % [record.get("name", record.id), tier + 1], "detail": "This mod"})
+					own.append({"id": "%s/tier%d" % [record.id, tier + 1], "label": "* %s (tier %d)" % [_tier_display_name(record, record.tiers[tier]), tier + 1], "detail": "This mod"})
 		"type", "minion_type":
 			for record in _manifest.get("types", []): own.append({"id": String(record.id), "label": "* %s" % record.get("name", record.id), "detail": "This mod"})
 		"talent_tree":
@@ -845,7 +845,9 @@ func _describe(kind: String, id: String) -> String:
 		for record in _manifest.get(section, []):
 			if String(record.get("id", "")) == id: return "* %s" % record.get("name", id)
 			if section == "moves" and id.begins_with(String(record.get("id", "")) + "/tier"):
-				return "* %s (tier %s)" % [record.get("name", id), id.get_slice("/tier", 1)]
+				var rank := int(id.get_slice("/tier", 1))
+				if rank >= 1 and rank <= record.tiers.size():
+					return "* %s (tier %d)" % [_tier_display_name(record, record.tiers[rank - 1]), rank]
 	var definition := catalog.get_definition(StringName(id))
 	if definition == null: return "%s (missing)" % id
 	if definition is MoveDefinition: return "%s (tier %d)" % [definition.display_name, definition.tier]
@@ -963,6 +965,9 @@ func _minion_form(form: ModWorkshopForm, record: Dictionary, is_patch: bool = fa
 	identity.text("Name", record, "name", 24)
 	identity.text("Pedia text", record, "description", 400, true)
 	identity.reference_list("Types (1-2)", record, "types", "minion_type", 2, 1)
+	var dex := form.card("Minion-pedia")
+	dex.number("List position", record, "pedia_position", 0, 9999, 0)
+	dex.note("0 keeps the default order. Use 1 for the first entry or another number to insert this minion at that position.")
 	var base_stats := form.card("Base stats")
 	base_stats.note("Recovered minions sit between about 20 and 60 per stat at their first stage." + (" The white tick marks the original value." if is_patch else ""))
 	var stats_row := base_stats.row("")
@@ -1173,8 +1178,20 @@ func _sprite_section(form: ModWorkshopForm, record: Dictionary) -> void:
 				_build_editor())))
 	for setting in [["Hue shift", "hue_shift", 0.0, 1.0, 0.0], ["Saturation", "saturation", 0.0, 2.0, 1.0], ["Brightness", "value", 0.0, 2.0, 1.0]]:
 		form.slider(setting[0], sprite, setting[1], setting[2], setting[3], setting[4]).value_changed.connect(func(_value: float) -> void: refresh.call())
-	form.note("Minion art faces right, like the recovered battle sprites. Imported art is copied into the mod and travels with its share code.")
+	var sizing := form.row("Battle scale")
+	form.number("", sprite, "battle_scale", 0.25, 3.0, 1.0, 0.05, sizing)
+	var size_hint := form.note("")
+	var update_size := func() -> void:
+		var texture := preview.texture
+		if texture == null:
+			size_hint.text = ""
+			return
+		var dimensions := texture.get_image().get_used_rect().size
+		var footprint := (Vector2(dimensions) * float(sprite.get("battle_scale", 1.0))).round()
+		size_hint.text = "Visible battle size %d × %d. Try 100–130 px tall for a large minion. Art faces right." % [int(footprint.x), int(footprint.y)]
+	form.changed.connect(update_size)
 	refresh.call()
+	update_size.call()
 
 func _sprite_preview(sprite: Dictionary) -> Texture2D:
 	var image: Image
@@ -1215,36 +1232,92 @@ func _minion_texture(id: String) -> Texture2D:
 	return _texture_cache[key]
 
 ## The small type badge: drawn from the name and colour for this mod's types.
-func _type_badge(id: String) -> Texture2D:
+func _type_badge_controls(form: ModWorkshopForm, record: Dictionary, field: String, label: String, symbol: String, fallback: Vector2i) -> void:
+	var native_size := UserModAssets._size_of(symbol, fallback)
+	var row := form.row(label)
+	var upload := _button("Import PNG...", func() -> void:
+		_pick_file("Choose a type badge picture", ["*.png ; PNG image"], func(path: String) -> void:
+			_crop_picture(path, "Frame your badge", float(native_size.x) / native_size.y, native_size, func(image: Image) -> void:
+				var imported := UserModRepository.import_image(_mod_id, image, field + "_" + String(record.id).get_file())
+				if not imported.ok: return show_message(imported.message)
+				record[field] = imported.path
+				_texture_cache.clear()
+				_changed()
+				_build_editor())), row)
+	upload.tooltip_text = "In-game artwork size %d × %d pixels" % [native_size.x, native_size.y]
+	if not String(record.get(field, "")).is_empty():
+		_button("Use drawn badge", func() -> void:
+			record.erase(field)
+			_texture_cache.clear()
+			_changed()
+			_build_editor(), row)
+
+func _type_badge(id: String, is_move: bool = false) -> Texture2D:
 	if id.is_empty(): return null
+	var field := "move_badge" if is_move else "badge"
 	for record in _manifest.get("types", []):
 		if String(record.get("id", "")) != id: continue
-		var key := "badge:%s:%s:%s:%s" % [id, record.get("name", ""), record.get("color", ""), record.get("badge", "")]
+		var key := "%s:%s:%s:%s:%s" % [field, id, record.get("name", ""), record.get("color", ""), record.get(field, "")]
 		if not _texture_cache.has(key):
-			var image: Image = null
-			if not String(record.get("badge", "")).is_empty():
-				var bytes := UserModRepository.read_file(_mod_id, String(record.badge))
-				image = Image.new()
-				if bytes.is_empty() or image.load_png_from_buffer(bytes) != OK: image = null
-			if image == null:
-				image = UserModAssets._badge(UserModAssets._size_of("menus_minionType_fire", Vector2i(80, 20)), Color.from_string(String(record.get("color", "#ffffff")), Color.WHITE), String(record.get("name", "")).to_upper(), false)
-			_texture_cache[key] = ImageTexture.create_from_image(image)
+			var info: Dictionary = record.duplicate()
+			info["color"] = Color.from_string(String(record.get("color", "#ffffff")), Color.WHITE)
+			_texture_cache[key] = ImageTexture.create_from_image(UserModAssets.type_badge_image(_mod_id, info, is_move))
 		return _texture_cache[key]
-	var base_key := "badge:" + id
-	if not _texture_cache.has(base_key): _texture_cache[base_key] = SourceMenuArt.texture("menus_minionType_%s" % id.get_file())
+	var base_key := field + ":" + id
+	var symbol := ("moveDescription_type_%s" if is_move else "menus_minionType_%s") % id.get_file()
+	if not _texture_cache.has(base_key): _texture_cache[base_key] = SourceMenuArt.texture(symbol)
 	return _texture_cache[base_key]
 
 ## The icon of a move tier (own tiers borrow the icon of the move they look like).
 func _move_icon(id: String, depth: int = 0) -> Texture2D:
 	if id.is_empty() or depth > 4: return null
 	for record in _manifest.get("moves", []):
-		if id.begins_with(String(record.get("id", "")) + "/tier"): return _move_icon(String(record.get("looks_like", "")), depth + 1)
+		if not id.begins_with(String(record.get("id", "")) + "/tier"): continue
+		var index := int(id.get_slice("/tier", 1)) - 1
+		var tier: Dictionary = record.tiers[index] if index >= 0 and index < record.tiers.size() else {}
+		var file := String(tier.get("icon", record.get("icon", "")))
+		if not file.is_empty():
+			var custom := _workshop_icon(file)
+			if custom != null: return custom
+		return _move_icon(String(record.get("looks_like", "")), depth + 1)
+	for patch in _manifest.get("move_patches", []):
+		if String(patch.get("target", "")) == id and not String(patch.get("icon", "")).is_empty():
+			var custom := _workshop_icon(String(patch.icon))
+			if custom != null: return custom
 	var key := "move:" + id
 	if not _texture_cache.has(key):
 		var move := catalog.get_definition(StringName(id)) as MoveDefinition
 		var path := MOVE_ICON % String(move.buff_icon_name) if move != null else ""
 		_texture_cache[key] = load(path) as Texture2D if not path.is_empty() and ResourceLoader.exists(path) else null
 	return _texture_cache[key]
+
+func _workshop_icon(file: String) -> Texture2D:
+	var key := "icon_file:" + file
+	if not _texture_cache.has(key):
+		var picture := UserModAssets.read_image(_mod_id, file)
+		_texture_cache[key] = ImageTexture.create_from_image(UserModAssets.fit_image(picture, Vector2i(53, 51))) if picture != null else null
+	return _texture_cache[key]
+
+func _move_icon_controls(form: ModWorkshopForm, record: Dictionary) -> void:
+	var row := form.row("Icon")
+	_button("Import PNG...", func() -> void:
+		_pick_file("Choose a move icon", ["*.png ; PNG image"], func(path: String) -> void:
+			_crop_picture(path, "Frame your move icon", 53.0 / 51.0, Vector2i(53, 51), func(image: Image) -> void:
+				var imported := UserModRepository.import_image(_mod_id, image, "move_" + String(record.get("id", record.get("target", ""))).replace(":", "_").replace("/", "_").right(34))
+				if not imported.ok: return show_message(imported.message)
+				record["icon"] = imported.path
+				_texture_cache.clear()
+				_changed()
+				_build_editor())), row)
+	if not String(record.get("icon", "")).is_empty():
+		_button("Use default", func() -> void:
+			record.erase("icon")
+			_changed()
+			_build_editor(), row)
+
+static func _tier_display_name(family: Dictionary, tier: Dictionary) -> String:
+	var override_name := String(tier.get("name", "")).strip_edges()
+	return String(family.get("name", "Move")) if override_name.is_empty() else override_name
 
 ## The picture for a referenced ID: a type badge, move icon or portrait.
 func reference_icon(kind: String, id: String) -> Texture2D:
@@ -1289,7 +1362,7 @@ func show_move_tip(owner: Control, move_id: String) -> void:
 		_move_tip.visible = false
 		return
 	_tip_owner = owner
-	_move_tip.show_move(move)
+	_move_tip.show_move(move, _type_badge(String(move.type_id), true))
 	# Godot reports mouse_entered before _input sees the motion, so only place
 	# the card here; the next frame checks the pointer is still over `owner`.
 	_pointer = get_global_transform().affine_inverse() * owner.get_global_mouse_position() if _pointer.x < 0.0 else _pointer
@@ -1359,8 +1432,8 @@ func _move_form(form: ModWorkshopForm, record: Dictionary) -> void:
 	identity.text("Name", record, "name", 32)
 	identity.text("Description", record, "description", 400, true)
 	identity.reference("Type", record, "type", "type")
-	identity.reference("Looks like", record, "looks_like", "move")
-	identity.note("The move plays this move's animation and uses its icon.")
+	identity.reference("Animation", record, "looks_like", "move")
+	_move_icon_controls(identity, record)
 	var tiers := form.card("Tiers")
 	var tier_row := tiers.row("Tier")
 	for index in record.tiers.size():
@@ -1385,7 +1458,11 @@ func _move_form(form: ModWorkshopForm, record: Dictionary) -> void:
 			_changed()
 			_build_editor(), tier_row)
 	tiers.note("Talents and level-ups unlock tiers in order; trainers and skill gems use the highest tier allowed. Editing tier %d below." % (tier_index + 1))
-	_power_preview(form, record, record.tiers[tier_index])
+	var tier := record.tiers[tier_index] as Dictionary
+	var tier_name := tiers.text("Tier name", tier, "name", 32) as LineEdit
+	tier_name.placeholder_text = String(record.name)
+	tiers.note("An empty tier name uses the family name.")
+	_power_preview(form, record, tier)
 	_tier_form(form, record.tiers[tier_index])
 
 ## The move as a player will see it: icon, name, type, cost chips and what each effect does.
@@ -1420,7 +1497,7 @@ func _move_card(form: ModWorkshopForm, record: Dictionary, tier: Dictionary, sub
 	effect_lines.add_theme_constant_override("separation", 1)
 	head.add_child(effect_lines)
 	var refresh := func() -> void:
-		title.text = String(record.get("name", "Move"))
+		title.text = _tier_display_name(record, tier)
 		icon.texture = _move_icon(icon_id)
 		badge.texture = _type_badge(String(record.get("type", "")))
 		for container in [chips, effect_lines]:
@@ -1561,7 +1638,7 @@ func _effect_text(effect: Dictionary) -> String:
 func _tier_form(form: ModWorkshopForm, tier: Dictionary) -> void:
 	var costs_card := form.card("Cost and timing")
 	var costs := costs_card.row("Energy / accuracy")
-	costs_card.number("", tier, "energy_cost", 0, 99, 5, 1, costs)
+	costs_card.number("", tier, "energy_cost", 0, MoveDefinition.MAX_ENERGY_COST, 5, 1, costs)
 	costs_card.number("", tier, "accuracy", 0, 100, 100, 1, costs)
 	var timing := costs_card.row("Cooldown / charge")
 	costs_card.number("", tier, "cooldown", 0, 99, 0, 1, timing)
@@ -1579,7 +1656,10 @@ func _tier_form(form: ModWorkshopForm, tier: Dictionary) -> void:
 	targets.number("", tier, "ally_target_count", 0, 5, 0, 1, counts)
 	targets.number("Selected target count", tier, "target_count", 1, 5, 1)
 	var target_flags := targets.row("")
-	targets.toggle("Hit each target", tier, "hit_each_target", target_flags)
+	var mode := targets.choice("Animation timing", tier, "visual_mode", ["inherit", "per_team", "simultaneous", "sequential"], ["Use animation default", "Once per team", "All targets together", "One target at a time"])
+	var legacy := targets.toggle("Show on each target", tier, "hit_each_target")
+	legacy.visible = mode.selected == 0
+	mode.item_selected.connect(func(index: int) -> void: legacy.visible = index == 0)
 	targets.toggle("Random targets", tier, "random_targets", target_flags)
 	targets.toggle("Only self", tier, "only_self", target_flags)
 	var effects_card := form.card("Effects, in order")
@@ -1690,23 +1770,8 @@ func _type_form(form: ModWorkshopForm, record: Dictionary) -> void:
 	identity.text("Name", record, "name", 16)
 	identity.color("Color", record, "color")
 	identity.text("Description", record, "description", 300, true)
-	identity.note("Badges are drawn from the name and color. To use your own art, import any PNG and frame it; it is resized to the game's badge size.")
-	var art := identity.row("")
-	_button("Import badge PNG...", func() -> void:
-		_pick_file("Choose a type badge picture", ["*.png ; PNG image"], func(path: String) -> void:
-			var badge_size := UserModAssets._size_of("menus_minionType_fire", Vector2i(80, 20))
-			_crop_picture(path, "Frame your badge", float(badge_size.x) / badge_size.y, badge_size, func(image: Image) -> void:
-				var imported := UserModRepository.import_image(_mod_id, image, "badge_" + String(record.id).get_file())
-				if not imported.ok: return show_message(imported.message)
-				record["badge"] = imported.path
-				_texture_cache.clear()
-				_changed()
-				_build_editor())), art)
-	if not String(record.get("badge", "")).is_empty():
-		_button("Use drawn badge", func() -> void:
-			record.erase("badge")
-			_changed()
-			_build_editor(), art)
+	_type_badge_controls(identity, record, "badge", "Roster badge", "menus_minionType_fire", Vector2i(80, 20))
+	_type_badge_controls(identity, record, "move_badge", "Move tooltip", "moveDescription_type_fire", Vector2i(110, 20))
 	var types: Array = []
 	for entry in _entries("minion_type"):
 		if String(entry.id) != String(record.id): types.append(entry)
@@ -1862,6 +1927,7 @@ func _move_patch_form(form: ModWorkshopForm, record: Dictionary) -> void:
 	identity.text("Name", record, "name", 32)
 	identity.text("Description", record, "description", 400, true)
 	identity.reference("Type", record, "type", "type")
+	_move_icon_controls(identity, record)
 	_tier_form(form, record)
 
 ## The combined Changes list removes from the right source list.
